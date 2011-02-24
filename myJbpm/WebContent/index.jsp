@@ -55,7 +55,7 @@
 			for(ProcessInstance pi : piList){
 				%>
 			<tr>
-				<td><%=pi.getId() %></td><td><%=pi.getName() %></td><td><%=pi.getState() %></td><td><a href="">do</a></td>
+				<td><%=pi.getId() %></td><td><%=pi.getKey() %></td><td><%=pi.getState() %></td><td><a href="">do</a></td>
 			</tr>
 				<%
 			}
