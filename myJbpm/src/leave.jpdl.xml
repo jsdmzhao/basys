@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process name="leave" xmlns="http://jbpm.org/4.4/jpdl">
-   <start name="start1" g="314,20,48,48"/>
+<process key="1" name="day" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="54,11,48,48" name="start1"/>
+   <end g="600,259,48,48" name="end1"/>
+   <task g="34,79,92,52" name="申请">
+      <transition g="-85,-25" name="to 经历审批" to="经历审批"/>
+   </task>
+   <task g="215,78,92,52" name="经历审批">
+      <transition g="-34,-14" name="to exclusive1" to="exclusive1"/>
+      <transition g="246,194;108,195:-15,13" name="驳回" to="申请"/>
+   </task>
+   <decision g="378,88,48,48" name="exclusive1">
+      <transition g="-85,-25" name="to 老板审批" to="老板审批"/>
+   </decision>
+   <task g="503,88,92,52" name="老板审批">
+      <transition g="-62,-25" name="to end1" to="end1"/>
+   </task>
 </process>
