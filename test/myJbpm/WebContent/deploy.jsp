@@ -7,5 +7,5 @@
 	RepositoryService repositoryService= processEngine.getRepositoryService();
 	repositoryService.createDeployment().addResourceFromClasspath("leave.jpdl.xml").deploy();
 	
-	response.sendRedirect("/index.jsp");
+	response.sendRedirect("index.jsp");
 %>
