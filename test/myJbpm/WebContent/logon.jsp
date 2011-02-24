@@ -7,5 +7,5 @@
 	String username = request.getParameter("username");
 	if(username!=null && !"".equals(username))
 		session.setAttribute("username",username);
-	response.sendRedirect("/index.jsp")	;
+	response.sendRedirect("index.jsp");
 %>
