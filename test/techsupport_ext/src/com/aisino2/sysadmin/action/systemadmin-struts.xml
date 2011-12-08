@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="sysadmin" namespace="/sysadminDefault" extends="json-default">
+		<!-- 用户管理 -->
+		<action name="*_usermanage" class="userManageAction" method="{1}">
+			<result type="json"></result>
+		</action>
+<!-- 		机构管理 -->
+		<action name="*_departmentmanage" class="departmentManageAction" method="{1}">
+			<result type="json"></result>
+		</action>
+<!-- 		角色管理 -->
+<!-- 		<action name="*_rolemanage" class="roleManageAction" method={1}> -->
+<!-- 			<result type="json"></result> -->
+<!-- 		</action> -->
+		
+		<action name="*_tree" class="treeMappingAction" method="{1}">
+<!-- 			跳转机构管理界面 -->
+			<result name="department">
+				/basic/systemadmin/department_manage_main.jsp
+			</result>
+<!-- 			跳转用户管理界面 -->
+			<result name="user">
+				/basic/systemadmin/user_manage_main.jsp
+			</result>
+<!-- 			跳转角色管理界面 -->
+			<result name="role">
+				/basic/systemadmin/role_manage_main.jsp
+			</result>
+		</action>
+	</package>
+	
+</struts>    

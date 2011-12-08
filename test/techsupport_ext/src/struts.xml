@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts SYSTEM "struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!-- fixed encoding error of json data  -->
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.multipart.maxSize" value="10000000" />
+	<package name="base" namespace="/" extends="struts-default">
+		<action name="login" class="loginAction">
+			<result name="success" type="chain">
+				<param name="namespace">/</param>
+				<param name="actionName">loadMenuItems</param>
+			</result>
+			<result name="error">/pages/Login/errorLogin.jsp</result>
+		</action>
+		<action name="loadMenuItems" class="loadMenuItemsAction">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="home" class="com.opensymphony.xwork2.ActionSupport">
+			<result>/index.jsp</result>
+		</action>
+	</package>
+	
+	<include file="com/aisino2/sysadmin/action/systemadmin-struts.xml"></include>
+</struts>    
