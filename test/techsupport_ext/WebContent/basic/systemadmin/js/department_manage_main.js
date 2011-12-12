@@ -89,7 +89,10 @@
 						root:'department_list',
 						totalProperty:'total',
 						fields:['departid','departcode','departname',{name:"parentname",mapping:'parent.departanme'}]
-					})
+					}),
+					api:{
+						
+					}
 				});
 		
 			this.right_detail_panel = new Ext.Panel({
@@ -131,7 +134,6 @@
 				id : this.id+'_grid',
 				store : this.store,
 				border:false,
-				width:'75%',
 				defaults:{
 					bodyStyle:'width:100%;'
 				},
@@ -157,60 +159,74 @@
 						'-',
 						{xtype:'button',text:'下移',handler:function(){}},
 						'-',
-						{xtype:'button',text:'置底',handler:function(){}}
+						{xtype:'button',text:'置底',handler:function(){}},
+						'-','-',
+						{xtype:'button',text:'保存',handler:function(){ /* 保存当前机构 */ }}
 					]
 			});
 			
 			
 			//右边详情显示面板
+			var detail_panel_items_defaults = {
+				   xtype:'textfield',
+				   columnWidth: .25
+			};
+			
 			this.detail_panel = Ext.create({
 				xtype:'panel',
 				layout:'column',
 				viewConfig:{forceFit:true},
+				frame:false,
+				defaults:{
+					border:false,
+					bodyStyle:'padding:2',
+					labelAlign:'right'
+				},
 				items:[
 				       {
 				    	   xtype:'form',
-				    	   defaults:{
-				    		   xtype:'textfield',
-				    		   columnWidth: .25
-				    	   },
+				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departid',text:this.title_base+'ID',readOnly:true},
-				    	          {name:'department.parentdepartid',text:'上级'+this.title_base+'ID',readOnly:true},
+				    	          {name:'department.departid',fieldLabel:this.title_base+'ID',readOnly:true}
+				    	          
 				    	   ]
 				       },
 				       {
 				    	   xtype:'form',
-				    	   defaults:{
-				    		   xtype:'textfield',
-				    		   columnWidth: .25
-				    	   },
+				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departcode',text:this.title_base+'代码',readOnly:true},
-				    	          {name:'department.parent.departname',text:'上级机构名称',readOnly:true}
+				    	          {name:'department.departcode',fieldLabel:this.title_base+'代码',readOnly:true}
+				    	          
 				    	   ]
 				       },
 				       {
 				    	   xtype:'form',
-				    	   defaults:{
-				    		   xtype:'textfield',
-				    		   columnWidth: .25
-				    	   },
+				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departname',text:this.title_base+'名称'},
+				    	          {name:'department.departname',fieldLabel:this.title_base+'名称'},
 				    	   ]
 				       },
 				       {
 				    	   xtype:'form',
-				    	   defaults:{
-				    		   xtype:'textfield',
-				    		   columnWidth: .25
-				    	   },
+				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.deoartfullcode',text:this.title_base+'全码',readOnly:true},
+				    	          {name:'department.deoartfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
+				    	   ]
+				       },
+				       {
+				    	   xtype:'form',
+				    	   defaults:detail_panel_items_defaults,
+				    	   items:[
+				    	          {name:'department.parentdepartid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
+				    	   ]
+				       },
+				       {
+				    	   xtype:'form',
+				    	   defaults:detail_panel_items_defaults,
+				    	   items:[
+				    	          {name:'department.parent.departname',fieldLabel:'上级机构名称',readOnly:true}
 				    	   ]
 				       }
-				       
 				]
 			});
 			//右边面板
