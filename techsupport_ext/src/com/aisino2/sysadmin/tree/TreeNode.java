@@ -20,6 +20,8 @@ public class TreeNode {
 	private boolean disabled;
 	//自定义属性
 	private Map<String, Object> attributes;
+	//是否叶子节点
+	private boolean isleaf;
 	
 	public String getId() {
 		return id;
@@ -68,6 +70,12 @@ public class TreeNode {
 	}
 	public void setAttributes(Map<String, Object> attributes) {
 		this.attributes = attributes;
+	}
+	public boolean isIsleaf() {
+		return isleaf;
+	}
+	public void setIsleaf(boolean isleaf) {
+		this.isleaf = isleaf;
 	}
 	
 	
