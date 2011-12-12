@@ -56,8 +56,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		return null;
 	}
 
-	public List<Department> getChildDepart(Department depart) {
-		return this.department_dao.getChildDepart(depart);
+	public List<Department> getChildDepart(Department depart,Integer departlevel) {
+		return this.department_dao.getChildDepart(depart,departlevel);
 	}
 
 	public Department getParentDepart(Department depart) {
