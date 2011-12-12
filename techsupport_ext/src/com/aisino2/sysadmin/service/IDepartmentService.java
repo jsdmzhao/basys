@@ -40,7 +40,7 @@ public interface IDepartmentService {
 	   *  根据id取得所有子部门
 	   * 
 	   *  */
-	  List<Department> getChildDepart(Department depart);
+	  List<Department> getChildDepart(Department depart,Integer departlevel);
 	  /** @param depart 
 	   * 根据parentdepartid取得父部门
 	   * 
