@@ -35,51 +35,49 @@
 	});
 	
 	
-	techsupport.deparmentmanage.DepartmentMain = function(config) {
-		// 父类
-		this.title = config.title || '机构管理';
-		this.title_base = config.title_base || '机构';
-		this.layout = config.layout ||'border';
-		this.id =  config.id ||'manage_panal';
-		this.defaults = config.defaults || {
-			bodyStyle : 'padding:4px;',
-			split : true
-		};
-		this.renderTo = config.renderTo || 'body';
-		
-		this.items = config.items || [];
-		
-		this.width = config.width || '100%;';
-		this.height = config.height || '100%;';
+	techsupport.deparmentmanage.DepartmentMain = Ext.extend(Ext.Panel, {
+		constructor:function(config) {
+			// 父类
+			this.title = config.title || '机构管理';
+			this.title_base = config.title_base || '机构';
+			this.layout = config.layout ||'border';
+			this.id =  config.id ||'manage_panal';
+			this.defaults = config.defaults || {
+				bodyStyle : 'padding:4px;',
+				split : true
+			};
+			this.renderTo = config.renderTo || 'body';
+			
+			this.items = config.items || [];
+			
+			this.width = config.width || '100%;';
+			this.height = config.height || '100%;';
 
-		this.style = 'height:100%;';
-		this.enableDD = config.enableDD ||false;
-		this.body_height;
-		this.viewConfig = {
-				forceFit:true
-		};
-		techsupport.deparmentmanage.DepartmentMain.superclass.constructor
-				.apply(this, arguments);
-		
-		/** 左边树*/
-		this.treepanel;
-		/** 后边表格*/
-		this.gridpanel;
-		/** 详情动作*/
-		this.action;
-		/** 当前的ID*/
-		this.current_treenode_id;
-		/** 数据集*/
-		this.store;
-		this.tree_level = 99;
-		this.treeloader;
-		
-		this.right_panel;
-		this.detail_panel;
-	};
-	
-	
-	Ext.extend(techsupport.deparmentmanage.DepartmentMain,Ext.Panel, {
+			this.style = 'height:100%;';
+			this.enableDD = config.enableDD ||false;
+			this.body_height;
+			this.viewConfig = {
+					forceFit:true
+			};
+			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
+					.apply(this, arguments);
+			
+			/** 左边树*/
+			this.treepanel;
+			/** 后边表格*/
+			this.gridpanel;
+			/** 详情动作*/
+			this.action;
+			/** 当前的ID*/
+			this.current_treenode_id;
+			/** 数据集*/
+			this.store;
+			this.tree_level = 99;
+			this.treeloader;
+			
+			this.right_panel;
+			this.detail_panel;
+		},
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
 			this.store =  new Ext.data.JsonStore({
@@ -130,8 +128,6 @@
 				}
 			});
 			this.gridpanel = new Ext.grid.GridPanel({
-				title : this.title_base +'信息',
-				region : 'center',
 				id : this.id+'_grid',
 				store : this.store,
 				border:false,
@@ -164,7 +160,69 @@
 						{xtype:'button',text:'置底',handler:function(){}}
 					]
 			});
-			this.items = [this.gridpanel, this.treepanel ];
+			
+			
+			//右边详情显示面板
+			this.detail_panel = Ext.create({
+				xtype:'panel',
+				layout:'column',
+				viewConfig:{forceFit:true},
+				items:[
+				       {
+				    	   xtype:'form',
+				    	   defaults:{
+				    		   xtype:'textfield',
+				    		   columnWidth: .25
+				    	   },
+				    	   items:[
+				    	          {name:'department.departid',text:this.title_base+'ID',readOnly:true},
+				    	          {name:'department.parentdepartid',text:'上级'+this.title_base+'ID',readOnly:true},
+				    	   ]
+				       },
+				       {
+				    	   xtype:'form',
+				    	   defaults:{
+				    		   xtype:'textfield',
+				    		   columnWidth: .25
+				    	   },
+				    	   items:[
+				    	          {name:'department.departcode',text:this.title_base+'代码',readOnly:true},
+				    	          {name:'department.parent.departname',text:'上级机构名称',readOnly:true}
+				    	   ]
+				       },
+				       {
+				    	   xtype:'form',
+				    	   defaults:{
+				    		   xtype:'textfield',
+				    		   columnWidth: .25
+				    	   },
+				    	   items:[
+				    	          {name:'department.departname',text:this.title_base+'名称'},
+				    	   ]
+				       },
+				       {
+				    	   xtype:'form',
+				    	   defaults:{
+				    		   xtype:'textfield',
+				    		   columnWidth: .25
+				    	   },
+				    	   items:[
+				    	          {name:'department.deoartfullcode',text:this.title_base+'全码',readOnly:true},
+				    	   ]
+				       }
+				       
+				]
+			});
+			//右边面板
+			this.right_panel = Ext.create({
+				xtype:'panel',
+				title : this.title_base +'信息',
+				region : 'center',
+				layout : 'vbox',
+				viewConfig : { forceFit:true},
+				items: [this.detail_panel , this.gridpanel]
+			});
+			this.items = [this.right_panel, this.treepanel ];
 			//父类
 			techsupport.deparmentmanage.DepartmentMain.superclass.initComponent.apply(this,arguments);
 		},
