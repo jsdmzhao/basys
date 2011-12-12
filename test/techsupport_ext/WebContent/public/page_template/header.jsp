@@ -15,6 +15,9 @@
 
 <script type="text/javascript"
 	src="<%=javascript_home%>/ext/ext-all-debug.js"></script>
+<!-- LOADER -->
+<script type="text/javascript"
+	src="<%=javascript_home%>/ext/src/ext-core/src/core/Loader.js"></script>
 <script type="text/javascript"
 	src="<%=javascript_home%>/ext/examples/shared/examples.js"></script>
 <script type="text/javascript" src="<%=javascript_home %>/common.js"></script>
