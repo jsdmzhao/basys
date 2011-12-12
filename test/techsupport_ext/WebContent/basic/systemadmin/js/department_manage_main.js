@@ -12,24 +12,23 @@
 	 * @author hooxin
 	 *
 	 */
-	techsupport.deparmentmanage.DepartmentAction = function(config){
-		this.action_name = config.action_name || '浏览';
-		this.width = config.width || 500;
-		this.height = config.height || 300;
-		this.layout = config.layout;
-		this.title = config.title || '机构';
-		this.id = config.id;
-		this.defaults = config.defaults || { bodyStyle : 'padding: 4px;',xtype:'textfield'};
-		this.renderTo = config.renderTo || 'body';
-		
-		this.viewConfig = {
-				forceFit:true
-		};
-		
-		techsupport.deparmentmanage.DepartmentActionFrame.superclass.constructor.apply(this,arguments);
-	};
-	
-	Ext.extend(techsupport.deparmentmanage.DepartmentAction,Ext.Window,{
+	techsupport.deparmentmanage.DepartmentAction = Ext.extend(Ext.Window,{
+		constructor: function(config){
+			this.action_name = config.action_name || '浏览';
+			this.width = config.width || 500;
+			this.height = config.height || 300;
+			this.layout = config.layout;
+			this.title = config.title || '机构';
+			this.id = config.id;
+			this.defaults = config.defaults || { bodyStyle : 'padding: 4px;',xtype:'textfield'};
+			this.renderTo = config.renderTo || 'body';
+			
+			this.viewConfig = {
+					forceFit:true
+			};
+			
+			techsupport.deparmentmanage.DepartmentActionFrame.superclass.constructor.apply(this,arguments);
+		},
 		initComponent:function(ct,position){
 			techsupport.deparmentmanage.DepartmentAction.superclass.initComponent.apply(this,arguments);
 		}
@@ -75,11 +74,10 @@
 		this.tree_level = 99;
 		this.treeloader;
 		
-		this.right_detail_panel;
-		
+		this.right_panel;
+		this.detail_panel;
 	};
 	
-	Ext.reg('department_main', techsupport.deparmentmanage.DepartmentMain);
 	
 	Ext.extend(techsupport.deparmentmanage.DepartmentMain,Ext.Panel, {
 		/** 初始化组件内容 */
@@ -88,10 +86,6 @@
 					proxy:new Ext.data.HttpProxy({
 						url:context_path+'/sysadminDefault/query_departmentmanage.action',
 						params:{'department.departid':this.current_treenode_id}}),
-//				    proxy:Ext.data.MemoryProxy({department_list:[{departid:'1',departcode:'1',departname:'1',parent:{parentname:'0'}},
-//				                                                 {departid:'2',departcode:'2',departname:'2',parent:{parentname:'0'}},
-//				                                                 {departid:'3',departcode:'3',departname:'3',parent:{parentname:'0'}}
-//				                                                 ],total:3}),
 					reader:new Ext.data.JsonReader({
 						idProperty:'department_reader_id',
 						root:'department_list',
@@ -186,7 +180,7 @@
 		}
 		//附加内容结束
 	});
-	
+	Ext.reg('department_main', techsupport.deparmentmanage.DepartmentMain);
 })();
 
 
