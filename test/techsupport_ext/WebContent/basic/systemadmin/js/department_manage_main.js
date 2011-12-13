@@ -59,9 +59,6 @@
 			this.viewConfig = {
 					forceFit:true
 			};
-			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
-					.apply(this, arguments);
-			
 			/** 左边树*/
 			this.treepanel;
 			/** 后边表格*/
@@ -80,16 +77,20 @@
 //			每页显示数
 			this.pagesize = 25;
 //			默认排序列
-			this.dir = 'noorder';
+			this.dir = 'nodeorder';
 //			默认排序方式
 			this.sort = 'asc';
+			
+			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
+					.apply(this, arguments);
+			
 		},
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
 			this.store =  new Ext.data.JsonStore({
 					proxy:new Ext.data.HttpProxy({
 						url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
-						baseParams:{
+						params:{
 							'department.departid':this.current_treenode_id,
 							start:0,
 							limit:this.pagesize,
@@ -101,21 +102,31 @@
 						idProperty:'department_reader_id',
 						root:'department_list',
 						totalProperty:'total',
-						fields:['departid','departcode','departname',{name:"parentname",mapping:'parent.departanme'}]
-					}),
-					
-					api:{
-						
-					}
+						fields:[
+						        {name:'department.departid',mapping:'departid'},
+						        {name:'department.departcode',mapping:'departcode'},
+						        {name:'department.departname',mapping:'departname'},
+						        {name:"department.parent.departname",mapping:'parent.departname'},
+						        {name:'department.departfullcode',mapping:'departfullcode'},
+						        {name:'department.departlevel',mapping:'departlevel'},
+						        {name:'department.isleaf',mapping:'isleaf'},
+						        {name:'department.nodeorder',mapping:'nodeorder'},
+						        {name:'department.parentdepartid',mapping:'parentdepartid'},
+						        
+						]
+					})
 				});
 		
 			this.treeloader = new Ext.tree.TreeLoader({
 				url:context_path+'/sysadminDefault/query_department_node_departmentmanage.action',
 				method:'post',
 				listeners:{
-					beforeload:function(loader,node){
-						loader.baseParams['department.departid'] = node.attributes.attributes.departid;
-						loader.baseParams['department.departlevel'] = techsupport.deparmentmanage.DepartmentMain.tree_level;
+					beforeload:{
+						fn:function(loader,node){
+							loader.baseParams['department.departid'] = node.attributes.attributes.departid;
+							loader.baseParams['department.departlevel'] = this.tree_level;
+						},
+						scope:this
 					}
 				}});
 			this.treepanel = new Ext.tree.TreePanel({
@@ -141,19 +152,30 @@
 //						子类可以按照自己的需求重载
 						var attr = node.attributes.attributes;
 						var record = new Ext.data.Record({
-							'department.departid':attr.departid,
-							'department.departcode':attr.departcode,
-							'department.departname':attr.departname,
-							'department.departfullcode':attr.departfullcode,
-							'department.parentdepartid':attr.parentdepartid,
-							'department.parent.departname':attr.parentdepartname
+							'department.departid':Ext.value(attr.departid,''),
+							'department.departcode':Ext.value(attr.departcode,''),
+							'department.departname':Ext.value(attr.departname,''),
+							'department.departfullcode':Ext.value(attr.departfullcode,''),
+							'department.parentdepartid':Ext.value(attr.parentdepartid,''),
+							'department.parent.departname':Ext.value(attr.parentdepartname,'')
 							},
 							attr.departid
 						);
 						
 						this.ownerCt.current_treenode_id = record.id;
 						this.ownerCt.detail_panel.getForm().loadRecord(record);
-						this.ownerCt.store.load();
+						this.ownerCt.store.load(
+								{
+									params:{
+										'department.parentdepartid':this.ownerCt.current_treenode_id,
+										pageNo:1,
+										limit:this.ownerCt.pagesize,
+										pageSize:this.ownerCt.pagesize,
+										dir:this.ownerCt.dir,
+										desc:this.ownerCt.desc
+									}
+								}
+						);
 					}
 				}
 			});
@@ -167,10 +189,10 @@
 					forceFit:true
 				},
 				columns:[
-					{id: 'departid', header: '机构ID', dataIndex: 'departid', sortable: false,width:100},
-					{header: this.title_base+'代码',dataIndex:'departcode',width:300},
-					{header: this.title_base+'名称',dataIndex:'departname',width:300},
-					{header:'上级'+this.title_base,dataIndex:'parentname',width:300}
+					{id: 'departid', header: '机构ID', dataIndex: 'department.departid', sortable: false,width:100},
+					{header: this.title_base+'代码',dataIndex:'department.departfullcode',width:300},
+					{header: this.title_base+'名称',dataIndex:'department.departname',width:300},
+					{header:'上级'+this.title_base,dataIndex:'department.parent.departname',width:300}
 				],
 				tbar:[
 						{xtype:'button',text:'添加',handler:function(){}},
@@ -244,7 +266,7 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.deoartfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
+				    	          {name:'department.departfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
 				    	   ]
 				       },
 				       {
@@ -274,6 +296,7 @@
 				items: [this.detail_panel , this.gridpanel]
 			});
 //			----------------------------右边面板-------------------------------------------
+			//给最外面的面板添加树形菜单和右边的垂直面板
 			this.items = [this.right_panel, this.treepanel ];
 			//父类
 			techsupport.deparmentmanage.DepartmentMain.superclass.initComponent.apply(this,arguments);
