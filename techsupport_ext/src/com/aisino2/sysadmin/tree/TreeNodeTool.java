@@ -92,8 +92,11 @@ public class TreeNodeTool {
 				buff.append("\t\t	node.attributes={");
 				String tempstr = "";
 				for (String key : node.getAttributes().keySet()) {
-					tempstr += "," + key + ":'" + node.getAttributes().get(key)
-							+ "'";
+					tempstr += ",'" + key + "':";
+					if (node.getAttributes().get(key) == null)
+						tempstr+=node.getAttributes().get(key);
+					else
+						tempstr+="'" + node.getAttributes().get(key) + "'";
 				}
 				tempstr = tempstr.substring(1);
 				buff.append(tempstr);
@@ -162,6 +165,8 @@ public class TreeNodeTool {
 		attrs.put("departcode", department.getDepartcode());
 		attrs.put("parentdepartid", department.getParentdepartid());
 		attrs.put("departlevel", department.getDepartlevel());
+		attrs.put("parentdepartname", department.getParent()==null?null:department.getParent().getDepartname());
+		attrs.put("departfullcode", department.getDepartfullcode());
 		node.setAttributes(attrs);
 
 		if (parent != null)

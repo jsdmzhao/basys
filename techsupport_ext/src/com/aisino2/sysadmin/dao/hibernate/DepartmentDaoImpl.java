@@ -6,9 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Component;
 
@@ -60,24 +65,34 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 
 					public List doInHibernate(Session sess)
 							throws HibernateException, SQLException {
-						StringBuffer hqlbuf = new StringBuffer(
-								"from Department t");
-						Map<String, Object> para_map = get_where(department,
-								hqlbuf);
-
-						hqlbuf = (StringBuffer) para_map.get("hql");
-						List<Object> para_list = (List<Object>) para_map
-								.get("para");
-
-						Query q = sess.createQuery(hqlbuf.toString());
+						Integer count = 0;
+						List lst = new ArrayList();
+						Criteria q = sess.createCriteria(Department.class,"t");
 						q.setCacheable(true);
-						// page
-						q.setFirstResult((pageNo - 1) * pageSize);
-						q.setMaxResults(pageSize);
-						// para
-						for (int i = 0; i < para_list.size(); i++)
-							q.setParameter(i, para_list.get(i));
-						return q.list();
+						//条件
+						Example ex = Example.create(department);
+						ex.enableLike();
+						ex.excludeZeroes();
+						ex.ignoreCase();
+						q.add(ex);
+						
+						//计数
+						q.setProjection(Projections.rowCount());
+						count = ((Long)q.uniqueResult()).intValue();
+						lst.add(count);
+						
+						if(count>0){
+							q.setProjection(null);
+							// page
+							q.setFirstResult((pageNo - 1) * pageSize);
+							q.setMaxResults(pageSize);
+							// para
+							lst.add(q.list());
+						}
+						else
+							lst.add(null);
+						
+						return lst;
 					}
 				});
 	}
