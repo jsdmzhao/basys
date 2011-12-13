@@ -88,33 +88,41 @@
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
 			this.store =  new Ext.data.JsonStore({
-					proxy:new Ext.data.HttpProxy({
-						url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
-						params:{
-							'department.departid':this.current_treenode_id,
-							start:0,
-							limit:this.pagesize,
-						    sort : this.sort,    
-						    dir : this.dir
-						}
-					}),
-					reader:new Ext.data.JsonReader({
-						idProperty:'department_reader_id',
-						root:'department_list',
-						totalProperty:'total',
-						fields:[
-						        {name:'department.departid',mapping:'departid'},
-						        {name:'department.departcode',mapping:'departcode'},
-						        {name:'department.departname',mapping:'departname'},
-						        {name:"department.parent.departname",mapping:'parent.departname'},
-						        {name:'department.departfullcode',mapping:'departfullcode'},
-						        {name:'department.departlevel',mapping:'departlevel'},
-						        {name:'department.isleaf',mapping:'isleaf'},
-						        {name:'department.nodeorder',mapping:'nodeorder'},
-						        {name:'department.parentdepartid',mapping:'parentdepartid'},
-						        
-						]
-					})
+				idProperty:'departid',
+				root:'department_list',
+				url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+				totalProperty:'total',
+				fields:[
+					{name:'department.departid',mapping:'departid'},
+					{name:'department.departcode',mapping:'departcode'},
+					{name:'department.departname',mapping:'departname'},
+					{name:"department.parent.departname",mapping:'parent.departname'},
+					{name:'department.departfullcode',mapping:'departfullcode'},
+					{name:'department.departlevel',mapping:'departlevel'},
+					{name:'department.isleaf',mapping:'isleaf'},
+					{name:'department.nodeorder',mapping:'nodeorder'},
+					{name:'department.parentdepartid',mapping:'parentdepartid'}
+				]
+//					proxy:new Ext.data.HttpProxy({
+//						url:context_path+'/sysadminDefault/querylist_departmentmanage.action'
+//					}),
+//					reader:new Ext.data.JsonReader({
+//						idProperty:'departid',
+//						root:'department_list',
+//						totalProperty:'total',
+//						fields:[
+//						        {name:'department.departid',mapping:'departid'},
+//						        {name:'department.departcode',mapping:'departcode'},
+//						        {name:'department.departname',mapping:'departname'},
+//						        {name:"department.parent.departname",mapping:'parent.departname'},
+//						        {name:'department.departfullcode',mapping:'departfullcode'},
+//						        {name:'department.departlevel',mapping:'departlevel'},
+//						        {name:'department.isleaf',mapping:'isleaf'},
+//						        {name:'department.nodeorder',mapping:'nodeorder'},
+//						        {name:'department.parentdepartid',mapping:'parentdepartid'},
+//						        
+//						]
+//					})
 				});
 		
 			this.treeloader = new Ext.tree.TreeLoader({
@@ -189,7 +197,7 @@
 					forceFit:true
 				},
 				columns:[
-					{id: 'departid', header: '机构ID', dataIndex: 'department.departid', sortable: false,width:100},
+					{header: '机构ID', dataIndex: 'department.departid', sortable: false,width:100},
 					{header: this.title_base+'代码',dataIndex:'department.departfullcode',width:300},
 					{header: this.title_base+'名称',dataIndex:'department.departname',width:300},
 					{header:'上级'+this.title_base,dataIndex:'department.parent.departname',width:300}
