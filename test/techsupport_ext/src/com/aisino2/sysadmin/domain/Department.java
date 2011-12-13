@@ -13,16 +13,42 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @javax.persistence.Entity
 @Entity(dynamicInsert = true, dynamicUpdate = true)
 @Table(name = "t_department")
 public class Department implements Serializable  {
 
+	public Department(Integer departid, String departcode, String departname,
+			Integer departlevel, Integer parentdepartid, String departfullcode,
+			Integer nodeorder, String isleaf, String departsimplepin,
+			String departallpin, String departbrevitycode, Department parent) {
+		super();
+		this.departid = departid;
+		this.departcode = departcode;
+		this.departname = departname;
+		this.departlevel = departlevel;
+		this.parentdepartid = parentdepartid;
+		this.departfullcode = departfullcode;
+		this.nodeorder = nodeorder;
+		this.isleaf = isleaf;
+		this.departsimplepin = departsimplepin;
+		this.departallpin = departallpin;
+		this.departbrevitycode = departbrevitycode;
+		this.parent = parent;
+	}
+
 	/**
 	 * @param 机构
 	 *            (t_department)
 	 */
+
+	public Department() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/** @ --机构ID--departid--Integer--9-- */
 	@Id
@@ -30,6 +56,7 @@ public class Department implements Serializable  {
 	@SequenceGenerator(name = "SEQ_GEN_DEPARTID", sequenceName = "departid")
 	private Integer departid;
 
+	
 	/** @ --机构代码--departcode--String--20-- */
 	@Column(name = "departcode")
 	private String departcode;
@@ -75,6 +102,7 @@ public class Department implements Serializable  {
 	 */
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parentdepartid", insertable = false, updatable = false)
+	@Fetch(FetchMode.SELECT)
 	private Department parent;
 
 
