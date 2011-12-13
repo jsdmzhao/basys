@@ -77,27 +77,38 @@
 			
 			this.right_panel;
 			this.detail_panel;
+//			每页显示数
+			this.pagesize = 25;
+//			默认排序列
+			this.dir = 'noorder';
+//			默认排序方式
+			this.sort = 'asc';
 		},
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
 			this.store =  new Ext.data.JsonStore({
 					proxy:new Ext.data.HttpProxy({
-						url:context_path+'/sysadminDefault/query_departmentmanage.action',
-						params:{'department.departid':this.current_treenode_id}}),
+						url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+						baseParams:{
+							'department.departid':this.current_treenode_id,
+							start:0,
+							limit:this.pagesize,
+						    sort : this.sort,    
+						    dir : this.dir
+						}
+					}),
 					reader:new Ext.data.JsonReader({
 						idProperty:'department_reader_id',
 						root:'department_list',
 						totalProperty:'total',
 						fields:['departid','departcode','departname',{name:"parentname",mapping:'parent.departanme'}]
 					}),
+					
 					api:{
 						
 					}
 				});
 		
-			this.right_detail_panel = new Ext.Panel({
-				id:this.id + '_detail',
-				});
 			this.treeloader = new Ext.tree.TreeLoader({
 				url:context_path+'/sysadminDefault/query_department_node_departmentmanage.action',
 				method:'post',
@@ -110,7 +121,7 @@
 			this.treepanel = new Ext.tree.TreePanel({
 				region : 'west',
 				id : this.id+'_tree',
-				title : this.title_base +'数',// 以后去掉
+				title : this.title_base +'树',// 以后去掉
 				useArrows : true,
 				autoScroll : true,
 				animate : true,
@@ -125,18 +136,33 @@
 				loader:this.treeloader,
 				root:{id:'tree_root',text:'顶端',nodeType: 'async',attributes:{'departid':0,departlevel:this.tree_level}},
 				listeners:{
-					click:function(tree,node){
+					click:function(node,evt){
 						//点击动作
+//						子类可以按照自己的需求重载
+						var attr = node.attributes.attributes;
+						var record = new Ext.data.Record({
+							'department.departid':attr.departid,
+							'department.departcode':attr.departcode,
+							'department.departname':attr.departname,
+							'department.departfullcode':attr.departfullcode,
+							'department.parentdepartid':attr.parentdepartid,
+							'department.parent.departname':attr.parentdepartname
+							},
+							attr.departid
+						);
+						
+						this.ownerCt.current_treenode_id = record.id;
+						this.ownerCt.detail_panel.getForm().loadRecord(record);
+						this.ownerCt.store.load();
 					}
 				}
 			});
+
+//			子机构面板
 			this.gridpanel = new Ext.grid.GridPanel({
 				id : this.id+'_grid',
 				store : this.store,
 				border:false,
-				defaults:{
-					bodyStyle:'width:100%;'
-				},
 				viewConfig:{
 					forceFit:true
 				},
@@ -162,9 +188,17 @@
 						{xtype:'button',text:'置底',handler:function(){}},
 						'-','-',
 						{xtype:'button',text:'保存',handler:function(){ /* 保存当前机构 */ }}
-					]
+					],
+					bbar:new Ext.PagingToolbar({
+						store:this.store,
+						displayInfo:true,
+						pageSize:this.pagesize,
+						prependButton:true,
+						emptyMsg : '没有数据显示',
+						displayMsg : '{0}-{1}条,总条数{2}'
+					})
 			});
-			
+//			-------------------------------子机构面板------------------------------------
 			
 			//右边详情显示面板
 			var detail_panel_items_defaults = {
@@ -173,7 +207,7 @@
 			};
 			
 			this.detail_panel = Ext.create({
-				xtype:'panel',
+				xtype:'form',
 				layout:'column',
 				viewConfig:{forceFit:true},
 				frame:false,
@@ -184,7 +218,7 @@
 				},
 				items:[
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.departid',fieldLabel:this.title_base+'ID',readOnly:true}
@@ -192,7 +226,7 @@
 				    	   ]
 				       },
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.departcode',fieldLabel:this.title_base+'代码',readOnly:true}
@@ -200,28 +234,28 @@
 				    	   ]
 				       },
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.departname',fieldLabel:this.title_base+'名称'},
 				    	   ]
 				       },
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.deoartfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
 				    	   ]
 				       },
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.parentdepartid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
 				    	   ]
 				       },
 				       {
-				    	   xtype:'form',
+				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
 				    	          {name:'department.parent.departname',fieldLabel:'上级机构名称',readOnly:true}
@@ -229,6 +263,7 @@
 				       }
 				]
 			});
+			//-----------------------------------------------详情面板------------------------
 			//右边面板
 			this.right_panel = Ext.create({
 				xtype:'panel',
@@ -238,6 +273,7 @@
 				viewConfig : { forceFit:true},
 				items: [this.detail_panel , this.gridpanel]
 			});
+//			----------------------------右边面板-------------------------------------------
 			this.items = [this.right_panel, this.treepanel ];
 			//父类
 			techsupport.deparmentmanage.DepartmentMain.superclass.initComponent.apply(this,arguments);
@@ -248,11 +284,10 @@
 		afterRender:function(ct,position){
 			this.body_height = this.getHeight()-this.getFrameHeight() - 15;
 			this.body.setHeight(this.body_height);
-			
 			techsupport.deparmentmanage.DepartmentMain.superclass.afterRender.apply(this,arguments );
 			this.treepanel.getRootNode().expand();
 		}
-		//附加内容结束
+		//-----------------------------------附加内容结束-------------------------------------
 	});
 	Ext.reg('department_main', techsupport.deparmentmanage.DepartmentMain);
 })();
