@@ -86,7 +86,7 @@ public class TreeNodeTool {
 				buff.append(",");
 			buff.append("function(){\n"); // 开始
 			buff.append("\t\t	var node = new Ext.tree.TreeNode({id:'"
-					+ node.getId() + "',text:'" + node.getText() + "'});\n");
+					+ node.getId() + "',text:'" + node.getText() + ",leaf:"+node.isIsleaf()+"'});\n");
 			// 设置属性
 			if (node.getAttributes() != null && !node.getAttributes().isEmpty()) {
 				buff.append("\t\t	node.attributes={");
@@ -173,6 +173,12 @@ public class TreeNodeTool {
 			node.setParent_node(parse_to_tree_node_from_department(parent,
 					null, false, departlevel));
 
+//		设置是否是叶子
+		if(deparemnt_service.checkChildDepart(department, departlevel))
+			node.setIsleaf(false);
+		else
+			node.setIsleaf(true);
+		
 		if (is_recursive) {
 			List<Department> child_departments = deparemnt_service
 					.getChildDepart(department, departlevel);
@@ -241,9 +247,12 @@ public class TreeNodeTool {
 			m.setChild_menu_list(temp_children_menu);
 			if (is_recursive && m.getChild_menu_list() != null
 					&& m.getChild_menu_list().size() > 0) {
+				node.setIsleaf(false);
 				node.setChild_nodes(parse_to_tree_node_from_menu(
 						m.getChild_menu_list(), is_recursive, m, user));
 			}
+			else
+				node.setIsleaf(true);
 
 			tree_node_list.add(node);
 		}

@@ -14,6 +14,7 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Component;
 
@@ -75,6 +76,9 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 						ex.excludeZeroes();
 						ex.ignoreCase();
 						q.add(ex);
+						if(department.getParentdepartid()==null || department.getParentdepartid()==0)
+							q.add(Restrictions.isNull("t.parentdepartid"));
+						
 						
 						//计数
 						q.setProjection(Projections.rowCount());
@@ -84,7 +88,7 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 						if(count>0){
 							q.setProjection(null);
 							// page
-							q.setFirstResult((pageNo - 1) * pageSize);
+							q.setFirstResult(pageNo);
 							q.setMaxResults(pageSize);
 							// para
 							lst.add(q.list());
@@ -176,7 +180,30 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 	}
 
 	public boolean checkChild(Department depart) {
-		// TODO Auto-generated method stub
+		String hql = "select count(t) from Department t where 1=1 ";
+		List<Object> para_list = new ArrayList<Object>();
+		if(depart!=null){
+			if(depart.getDepartid()!=null){
+				hql += " and t.parentdepartid = ?";
+				para_list.add(depart.getDepartid());
+			}
+			else{
+				hql += " and t.parentdepartid is null";
+			}
+			
+			if(depart.getDepartlevel()!=null){
+				hql += " and t.departlevel <= ?";
+				para_list.add(depart.getDepartlevel());
+			}
+		}
+		@SuppressWarnings("rawtypes")
+		List lst = this.getHibernateTemplate().find(hql,para_list);
+		
+		Long count = 0l;
+		if(lst.size()>0)
+			count = (Long)lst.get(0);
+		if(count!=0)
+			return true;
 		return false;
 	}
 

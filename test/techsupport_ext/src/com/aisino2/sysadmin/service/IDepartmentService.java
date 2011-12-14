@@ -22,7 +22,7 @@ public interface IDepartmentService {
 	Department getDepartment(Department department);
 
 	/** @param 机构(t_department) 分页查询 */
-	List getListForPage(Department department, int pageNo,int pageSize,String sort,String desc);
+	List getListForPage(Department department, int start,int limit,String sort,String desc);
 	
 	/** @param 机构(t_department) 分页查询 平板字典下拉框*/
 	List getDicListForPage(Department department, int pageNo,int pageSize,String sort,String desc);
@@ -41,6 +41,7 @@ public interface IDepartmentService {
 	   * 
 	   *  */
 	  List<Department> getChildDepart(Department depart,Integer departlevel);
+	  boolean checkChildDepart(Department depart,Integer departlevel);
 	  /** @param depart 
 	   * 根据parentdepartid取得父部门
 	   * 
