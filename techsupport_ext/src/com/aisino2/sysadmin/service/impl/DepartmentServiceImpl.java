@@ -31,9 +31,9 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		return this.department_dao.getDepartment(department);
 	}
 
-	public List getListForPage(Department department, int pageNo, int pageSize,
+	public List getListForPage(Department department, int start, int limit,
 			String sort, String desc) {
-		return this.department_dao.getListForPage(department, pageNo, pageSize, sort, desc);
+		return this.department_dao.getListForPage(department, start, limit, sort, desc);
 	}
 
 	public List getDicListForPage(Department department, int pageNo,
@@ -58,6 +58,11 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
 	public List<Department> getChildDepart(Department depart,Integer departlevel) {
 		return this.department_dao.getChildDepart(depart,departlevel);
+	}
+	
+	public boolean checkChildDepart(Department department, Integer departlevel){
+		department.setDepartlevel(departlevel);
+		return this.department_dao.checkChild(department);
 	}
 
 	public Department getParentDepart(Department depart) {
