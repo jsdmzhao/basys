@@ -75,7 +75,7 @@
 			this.right_panel;
 			this.detail_panel;
 //			每页显示数
-			this.pagesize = 25;
+			this.pagesize = 1;
 //			默认排序列
 			this.dir = 'nodeorder';
 //			默认排序方式
@@ -91,6 +91,14 @@
 				idProperty:'departid',
 				root:'department_list',
 				url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+				baseParams:{
+					'department.parentdepartid':this.current_treenode_id,
+					start:0,
+					limit:this.pagesize,
+					dir:this.dir,
+					sort:this.sort
+				},
+				remoteSort:true,
 				totalProperty:'total',
 				fields:[
 					{name:'department.departid',mapping:'departid'},
@@ -102,27 +110,20 @@
 					{name:'department.isleaf',mapping:'isleaf'},
 					{name:'department.nodeorder',mapping:'nodeorder'},
 					{name:'department.parentdepartid',mapping:'parentdepartid'}
-				]
-//					proxy:new Ext.data.HttpProxy({
-//						url:context_path+'/sysadminDefault/querylist_departmentmanage.action'
-//					}),
-//					reader:new Ext.data.JsonReader({
-//						idProperty:'departid',
-//						root:'department_list',
-//						totalProperty:'total',
-//						fields:[
-//						        {name:'department.departid',mapping:'departid'},
-//						        {name:'department.departcode',mapping:'departcode'},
-//						        {name:'department.departname',mapping:'departname'},
-//						        {name:"department.parent.departname",mapping:'parent.departname'},
-//						        {name:'department.departfullcode',mapping:'departfullcode'},
-//						        {name:'department.departlevel',mapping:'departlevel'},
-//						        {name:'department.isleaf',mapping:'isleaf'},
-//						        {name:'department.nodeorder',mapping:'nodeorder'},
-//						        {name:'department.parentdepartid',mapping:'parentdepartid'},
-//						        
-//						]
-//					})
+				],
+				listeners:{
+					beforeload:{
+						fn:function(store,options){
+							Ext.apply(options.params,{
+								'department.parentdepartid':this.current_treenode_id,
+								dir:this.dir,
+								sort:this.sort
+							});
+						},
+						scope:this
+					}
+					
+				}
 				});
 		
 			this.treeloader = new Ext.tree.TreeLoader({
@@ -172,13 +173,13 @@
 						
 						this.ownerCt.current_treenode_id = record.id;
 						this.ownerCt.detail_panel.getForm().loadRecord(record);
+						this.ownerCt.store.removeAll();
 						this.ownerCt.store.load(
 								{
 									params:{
 										'department.parentdepartid':this.ownerCt.current_treenode_id,
-										pageNo:1,
+										start:0,
 										limit:this.ownerCt.pagesize,
-										pageSize:this.ownerCt.pagesize,
 										dir:this.ownerCt.dir,
 										desc:this.ownerCt.desc
 									}
@@ -223,7 +224,13 @@
 						store:this.store,
 						displayInfo:true,
 						pageSize:this.pagesize,
-						prependButton:true,
+						 afterPageText: '共{0}页',
+                         beforePageText: '当前页',
+                         lastText:"尾页",   
+                         nextText :"下一页",   
+                         prevText :"上一页",   
+                         firstText :"首页",   
+                         refreshText:"刷新页面",  
 						emptyMsg : '没有数据显示',
 						displayMsg : '{0}-{1}条,总条数{2}'
 					})
@@ -246,6 +253,7 @@
 					bodyStyle:'padding:2',
 					labelAlign:'right'
 				},
+//				自动适应浏览器宽度
 				items:[
 				       {
 				    	   layout:'form',
