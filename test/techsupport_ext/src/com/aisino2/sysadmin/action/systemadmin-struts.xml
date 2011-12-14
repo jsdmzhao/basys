@@ -10,7 +10,9 @@
 		</action>
 <!-- 		机构管理 -->
 		<action name="*_departmentmanage" class="departmentManageAction" method="{1}">
-			<result type="json"></result>
+			<result type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
 		</action>
 <!-- 		角色管理 -->
 <!-- 		<action name="*_rolemanage" class="roleManageAction" method={1}> -->

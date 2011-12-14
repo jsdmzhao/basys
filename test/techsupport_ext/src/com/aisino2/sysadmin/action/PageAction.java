@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -15,6 +16,8 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	private static final long serialVersionUID = 442165876833019790L;
 	public String dir;
 	public String sort;
+	public Integer start;
+	public Integer limit;
 	public Integer pageNo;
 	public Integer pageSize;
 	public Integer total;
@@ -23,13 +26,16 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	public HttpServletResponse response;
 	public String returnMessage;
 	public Integer returnNo;
+	public String returnMessageDebug;
 	
+	@JSON(serialize=true)
 	public String getDir() {
 		return dir;
 	}
 	public void setDir(String dir) {
 		this.dir = dir;
 	}
+	@JSON(serialize=true)
 	public String getSort() {
 		return sort;
 	}
@@ -43,6 +49,7 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	public void setServletResponse(HttpServletResponse arg0) {
 		this.response = arg0;
 	}
+	@JSON(serialize=true)
 	public String getReturnMessage() {
 		return returnMessage;
 	}
@@ -61,17 +68,39 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
+	@JSON(serialize=true)
 	public Integer getTotal() {
 		return total;
 	}
 	public void setTotal(Integer total) {
 		this.total = total;
 	}
+	@JSON(serialize=true)
 	public Integer getReturnNo() {
 		return returnNo;
 	}
 	public void setReturnNo(Integer returnNo) {
 		this.returnNo = returnNo;
+	}
+	@JSON(serialize=true)
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	@JSON(serialize=true)
+	public Integer getLimit() {
+		return limit;
+	}
+	public void setLimit(Integer limit) {
+		this.limit = limit;
+	}
+	public String getReturnMessageDebug() {
+		return returnMessageDebug;
+	}
+	public void setReturnMessageDebug(String returnMessageDebug) {
+		this.returnMessageDebug = returnMessageDebug;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,7 @@ public class DepartmentManageAction extends PageAction {
 	private List<Department> department_list;
 	private String department_treenode_list;
 	private TreeNodeTool tree_node_tool;
-
+	private static final Logger log = Logger.getLogger(DepartmentManageAction.class);
 	@Resource(name = "treeNodeTool")
 	public void setTree_node_tool(TreeNodeTool tree_node_tool) {
 		this.tree_node_tool = tree_node_tool;
@@ -41,13 +42,17 @@ public class DepartmentManageAction extends PageAction {
 	public String querylist() throws Exception {
 		try {
 			List page_list = department_service.getListForPage(department,
-					this.pageNo, this.pageSize, this.dir, this.sort);
+					this.start, this.limit, this.dir, this.sort);
 			this.total = (Integer) page_list.get(0);
 			department_list = (List<Department>) page_list.get(1);
 
 		} catch (Exception e) {
 			this.returnNo = 1;
 			this.returnMessage = "获取列表发送错误";
+			if(log.isDebugEnabled()){
+				log.debug(e,e.fillInStackTrace());
+				this.returnMessageDebug = e.getMessage() +"\n";
+			}
 		}
 
 		return SUCCESS;
@@ -104,6 +109,19 @@ public class DepartmentManageAction extends PageAction {
 	}
 
 	public String add() throws Exception {
+		try{
+			if(department==null)
+				throw new RuntimeException("机构实体为空");
+		}catch (Exception e) {
+			this.returnNo = 1;
+			this.returnMessage = "获取列表发送错误";
+			if(log.isDebugEnabled()){
+				
+				log.debug(e,e.fillInStackTrace());
+				this.returnMessageDebug = e.getMessage() +"\n";
+			}
+		}
+			
 		return SUCCESS;
 	}
 
