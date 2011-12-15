@@ -22,7 +22,7 @@ import org.hibernate.annotations.FetchMode;
 public class Department implements Serializable  {
 
 	public Department(Integer departid, String departcode, String departname,
-			Integer departlevel, Integer parentdepartid, String departfullcode,
+			Integer departlevel, String departfullcode,
 			Integer nodeorder, String isleaf, String departsimplepin,
 			String departallpin, String departbrevitycode, Department parent) {
 		super();
@@ -30,7 +30,6 @@ public class Department implements Serializable  {
 		this.departcode = departcode;
 		this.departname = departname;
 		this.departlevel = departlevel;
-		this.parentdepartid = parentdepartid;
 		this.departfullcode = departfullcode;
 		this.nodeorder = nodeorder;
 		this.isleaf = isleaf;
@@ -68,10 +67,6 @@ public class Department implements Serializable  {
 	/** @ --机构层次--departlevel--Integer--1-- */
 	@Column(name = "departlevel")
 	private Integer departlevel;
-
-	/** @ --父机构ID--parentdepartid--Integer--9-- */
-	@Column(name = "parentdepartid")
-	private Integer parentdepartid;
 
 	/** @ --机构全路径代码--departfullcode--String--200-- */
 	@Column(name = "departfullcode")
@@ -140,15 +135,6 @@ public class Department implements Serializable  {
 
 	public void setDepartlevel(Integer departlevel) {
 		this.departlevel = departlevel;
-	}
-
-	/** @ 父机构ID(parentdepartid) */
-	public Integer getParentdepartid() {
-		return parentdepartid;
-	}
-
-	public void setParentdepartid(Integer parentdepartid) {
-		this.parentdepartid = parentdepartid;
 	}
 
 	/** @ 机构全路径代码(departfullcode) */

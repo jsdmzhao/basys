@@ -147,8 +147,9 @@ public class MenuDaoImpl extends TechSupportBaseDaoImpl implements IMenuDao {
 							hql += " and t.parent is null";
 						} else {
 							hql += " and t.parent = ?";
-							para_list.add(menu.getParent());
+							para_list.add(menu);
 						}
+						hql += " order by t.nodeorder asc";
 						
 						Query q = session.createQuery(hql);
 //						q.addEntity(Menu.class);
