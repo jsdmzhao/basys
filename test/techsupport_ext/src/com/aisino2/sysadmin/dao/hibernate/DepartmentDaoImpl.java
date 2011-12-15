@@ -76,9 +76,10 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 						ex.excludeZeroes();
 						ex.ignoreCase();
 						q.add(ex);
-						if(department.getParentdepartid()==null || department.getParentdepartid()==0)
-							q.add(Restrictions.isNull("t.parentdepartid"));
-						
+						if(department.getParent()==null || department.getParent().getDepartid()==0)
+							q.add(Restrictions.isNull("t.parent"));
+						else
+							q.add(Restrictions.eq("t.parent", department.getParent()));
 						
 						//计数
 						q.setProjection(Projections.rowCount());
@@ -118,17 +119,19 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 
 			public List<Department> doInHibernate(Session sess)
 					throws HibernateException, SQLException {
-				StringBuffer hqlbuf = new StringBuffer("from Department t");
-				Map<String, Object> para_map = get_where(department, hqlbuf);
-
-				hqlbuf = (StringBuffer) para_map.get("hql");
-				List<Object> para_list = (List<Object>) para_map.get("para");
-
-				Query q = sess.createQuery(hqlbuf.toString());
+				Integer count = 0;
+				Criteria q = sess.createCriteria(Department.class,"t");
 				q.setCacheable(true);
-				// para
-				for (int i = 0; i < para_list.size(); i++)
-					q.setParameter(i, para_list.get(i));
+				//条件
+				Example ex = Example.create(department);
+				ex.enableLike();
+				ex.excludeZeroes();
+				ex.ignoreCase();
+				q.add(ex);
+				if(department.getParent()==null || department.getParent().getDepartid()==0)
+					q.add(Restrictions.isNull("t.parent"));
+				else
+					q.add(Restrictions.eq("t.parent", department.getParent()));
 				return q.list();
 			}
 		});
@@ -140,10 +143,10 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 
 		para_list.add(departlevel == null ? 9999 : departlevel);
 		if (depart == null || depart.getDepartid() == null) {
-			hql += " and t.parentdepartid is null";
+			hql += " and t.parent is null";
 		} else {
-			hql += " and t.parentdepartid = ?";
-			para_list.add(depart.getDepartid());
+			hql += " and t.parent = ?";
+			para_list.add(depart);
 		}
 		hql += " order by t.nodeorder";
 		this.getHibernateTemplate().setCacheQueries(true);
@@ -213,47 +216,4 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 		return null;
 	}
 
-	private Map<String, Object> get_where(Department department,
-			StringBuffer hql) {
-		List<Object> para_list = new ArrayList<Object>();
-		if (department != null) {
-			hql.append(" where 1=1");
-
-			if (department.getDepartid() != null) {
-				hql.append(" and t.departid = ?");
-				para_list.add(department.getDepartid());
-			}
-
-			if (department.getDepartcode() != null) {
-				hql.append(" and t.departcode = ?");
-				para_list.add(department.getDepartcode());
-			}
-
-			if (department.getDepartname() != null) {
-				hql.append(" and t.departname like ?");
-				para_list.add(department.getDepartname() + "%");
-			}
-
-			if (department.getParentdepartid() != null
-					|| (department.getParent() != null && department
-							.getParent().getDepartid() != null)) {
-				hql.append(" and t.parentdepartid like ?");
-				if (department.getParentdepartid() != null)
-					para_list.add(department.getParentdepartid() + "%");
-				else
-					para_list.add(department.getParent().getDepartid() + "%");
-			}
-
-			if (department.getDepartlevel() != null) {
-				hql.append(" and t.departlevel <= ?");
-				para_list.add(department.getDepartlevel());
-			}
-
-		}
-
-		Map<String, Object> para_map = new HashMap<String, Object>();
-		para_map.put("hql", hql);
-		para_map.put("para", para_list);
-		return para_map;
-	}
 }

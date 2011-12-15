@@ -163,7 +163,7 @@ public class TreeNodeTool {
 		attrs.put("departid", department.getDepartid());
 		attrs.put("departname", department.getDepartname());
 		attrs.put("departcode", department.getDepartcode());
-		attrs.put("parentdepartid", department.getParentdepartid());
+		attrs.put("parentdepartid", department.getParent()==null?null:department.getParent().getDepartid());
 		attrs.put("departlevel", department.getDepartlevel());
 		attrs.put("parentdepartname", department.getParent()==null?null:department.getParent().getDepartname());
 		attrs.put("departfullcode", department.getDepartfullcode());

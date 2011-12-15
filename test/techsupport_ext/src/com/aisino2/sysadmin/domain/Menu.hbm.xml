@@ -25,10 +25,10 @@
         <property name="isleaf" type="java.lang.String">
             <column name="ISLEAF" />
         </property>
-        <many-to-one name="system" class="com.aisino2.sysadmin.domain.System" fetch="join" >
+        <many-to-one name="system" class="com.aisino2.sysadmin.domain.System" fetch="join" lazy="false">
             <column name="SYSTEMCODE" />
         </many-to-one>
-        <many-to-one name="parent" class="com.aisino2.sysadmin.domain.Menu" fetch="join">
+        <many-to-one name="parent" class="com.aisino2.sysadmin.domain.Menu" fetch="select" lazy="false">
             <column name="PARENTMENUCODE" />
         </many-to-one>
     </class>
