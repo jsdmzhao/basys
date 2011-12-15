@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Function" table="T_FUNCTION" dynamic-insert="true" dynamic-update="true">
+        <id name="funccode" type="java.lang.String">
+            <column name="FUNCCODE" />
+        </id>
+        <property name="systemcode" type="java.lang.String">
+            <column name="SYSTEMCODE" />
+        </property>
+        <property name="funcname" type="java.lang.String">
+            <column name="FUNCNAME" />
+        </property>
+        <property name="funcdefine" type="java.lang.String">
+            <column name="FUNCDEFINE" />
+        </property>
+        <property name="functype" type="java.lang.Integer">
+            <column name="FUNCTYPE" />
+        </property>
+    </class>
+</hibernate-mapping>

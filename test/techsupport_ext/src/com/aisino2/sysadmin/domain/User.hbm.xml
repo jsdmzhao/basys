@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.aisino2.sysadmin.domain.User" table="T_USER"
+		dynamic-insert="true" dynamic-update="true">
+		<id name="userid" type="java.lang.Integer">
+			<column name="USERID" />
+			<generator class="sequence">
+				<param name="sequence">userid</param>
+			</generator>
+		</id>
+		<property name="departid" type="java.lang.Integer">
+			<column name="DEPARTID" />
+		</property>
+		<property name="useraccount" type="java.lang.String">
+			<column name="USERACCOUNT" />
+		</property>
+		<property name="username" type="java.lang.String">
+			<column name="USERNAME" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="PASSWORD" />
+		</property>
+		<property name="userorder" type="java.lang.Integer">
+			<column name="USERORDER" />
+		</property>
+		<property name="isvalid" type="java.lang.String">
+			<column name="ISVALID" />
+		</property>
+		<property name="usertype" type="java.lang.String">
+			<column name="USERTYPE" />
+		</property>
+		<property name="idnum" type="java.lang.String">
+			<column name="IDNUM" />
+		</property>
+		<property name="mobilephone" type="java.lang.String">
+			<column name="MOBILEPHONE" />
+		</property>
+		<many-to-one name="department" class="com.aisino2.sysadmin.domain.Department"
+			fetch="join" insert="false" update="false">
+			<column name="departid" />
+		</many-to-one>
+		<list name="roles" inverse="false" table="T_USER_ROLE" lazy="true">
+			<key>
+				<column name="USERID" />
+			</key>
+			<list-index></list-index>
+			<one-to-many class="com.aisino2.sysadmin.domain.Role" />
+		</list>
+		<property name="jzlbdm" type="java.lang.String">
+			<column name="JZLBDM" />
+		</property>
+		<property name="jzlbmc" type="java.lang.String">
+			<column name="JZLBMC" />
+		</property>
+	</class>
+</hibernate-mapping>

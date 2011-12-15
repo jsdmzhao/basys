@@ -15,9 +15,11 @@ public class Role_param implements Serializable {
 
 	/** @param 角色参数(t_role_param) */
 
+	private RoleParamPk id;
 	@Id
 	/** @ --角色ID--roleid--Integer--9-- */
 	private Integer roleid;
+	
 	@Id
 	/** @ --参数编码--paramcode--String--50-- */
 	private String paramcode;
@@ -72,6 +74,14 @@ public class Role_param implements Serializable {
 
 	public void setParamvalue(String paramvalue) {
 		this.paramvalue = paramvalue;
+	}
+
+	public RoleParamPk getId() {
+		return id;
+	}
+
+	public void setId(RoleParamPk id) {
+		this.id = id;
 	}
 }
 

@@ -36,6 +36,7 @@ public class Role_menu implements Serializable {
 
 	/** @param 角色菜单(t_role_menu) */
 
+	private RoleMenuPk id;
 	@Id
 	/** @ --菜单代码--menucode--String--40-- */
 	private String menucode;
@@ -60,6 +61,14 @@ public class Role_menu implements Serializable {
 
 	public void setRoleid(Integer roleid) {
 		this.roleid = roleid;
+	}
+
+	public RoleMenuPk getId() {
+		return id;
+	}
+
+	public void setId(RoleMenuPk id) {
+		this.id = id;
 	}
 
 }

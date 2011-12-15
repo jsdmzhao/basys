@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Dict_item" table="T_DICT_ITEM" dynamic-insert="true" dynamic-update="true">
+        <id name="item_id" type="java.lang.Integer">
+            <column name="ITEM_ID" />
+            <generator class="sequence" >
+            	<param name="sequence">item_id</param>
+            </generator>
+        </id>
+        
+        <property name="dict_id" type="java.lang.Integer">
+            <column name="DICT_ID" />
+        </property>
+        
+        <property name="dict_code" type="java.lang.String">
+            <column name="DICT_CODE" />
+        </property>
+        <property name="display_name" type="java.lang.String">
+            <column name="DISPLAY_NAME" />
+        </property>
+        <property name="fact_value" type="java.lang.String">
+            <column name="FACT_VALUE" />
+        </property>
+        <property name="append_value" type="java.lang.String">
+            <column name="APPEND_VALUE" />
+        </property>
+        <property name="super_item_id" type="java.lang.Integer">
+            <column name="SUPER_ITEM_ID" />
+        </property>
+        <property name="sib_order" type="java.lang.Integer">
+            <column name="SIB_ORDER" />
+        </property>
+        <property name="leaf_flag" type="java.lang.String">
+            <column name="LEAF_FLAG" />
+        </property>
+        <property name="display_flag" type="java.lang.Integer">
+            <column name="DISPLAY_FLAG" />
+        </property>
+        <property name="valid_flag" type="java.lang.Integer">
+            <column name="VALID_FLAG" />
+        </property>
+        <property name="item_simplepin" type="java.lang.String">
+            <column name="ITEM_SIMPLEPIN" />
+        </property>
+        <property name="query_simplepin" type="java.lang.String">
+            <column name="QUERY_SIMPLEPIN" />
+        </property>
+        <property name="like_factValue" type="java.lang.String">
+            <column name="LIKE_FACTVALUE" />
+        </property>
+        <property name="exclude_factValue" type="java.lang.String">
+            <column name="EXCLUDE_FACTVALUE" />
+        </property>
+        <property name="orderBySib_order" type="java.lang.String">
+            <column name="ORDERBYSIB_ORDER" />
+        </property>
+        <property name="way" type="java.lang.String">
+            <column name="WAY" />
+        </property>
+        <property name="item_allpin" type="java.lang.String">
+            <column name="ITEM_ALLPIN" />
+        </property>
+        <property name="pageSort" type="java.lang.String">
+            <column name="PAGESORT" />
+        </property>
+    </class>
+</hibernate-mapping>

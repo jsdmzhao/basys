@@ -37,6 +37,7 @@ class RoleFuncPk implements Serializable{
 @IdClass(RoleFuncPk.class)
 public class Role_func implements Serializable {
 
+	private RoleFuncPk id;
 	/** @param 角色功能(t_role_func) */
 	@Id
 	/** @ --角色ID--roleid--Integer--9-- */
@@ -89,5 +90,13 @@ public class Role_func implements Serializable {
 
 	public void setParamObject(Param paramObject) {
 		this.paramObject = paramObject;
+	}
+
+	public RoleFuncPk getId() {
+		return id;
+	}
+
+	public void setId(RoleFuncPk id) {
+		this.id = id;
 	}
 }

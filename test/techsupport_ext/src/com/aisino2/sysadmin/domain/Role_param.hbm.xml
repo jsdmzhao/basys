@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Role_param" table="T_ROLE_PARAM">
+        <composite-id class="com.aisino2.sysadmin.domain.RoleParamPk" name="id">
+        	<key-property name="roleid" column="ROLEID"/>
+        	<key-property name="paramcode" column="paramcode"/>
+        </composite-id>
+        <property name="roleid" column="ROLEID" insert="false" update="false"></property>
+        <property name="paramcode" type="java.lang.String" insert="false" update="false">
+            <column name="PARAMCODE" />
+        </property>
+        <property name="paramname" type="java.lang.String">
+            <column name="PARAMNAME" />
+        </property>
+        <property name="paramvalue" type="java.lang.String">
+            <column name="PARAMVALUE" />
+        </property>
+    </class>
+</hibernate-mapping>

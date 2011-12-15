@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.aisino2.sysadmin.domain.Role" table="T_ROLE"
+		dynamic-insert="true" dynamic-update="true">
+		<id name="roleid" type="java.lang.Integer">
+			<column name="ROLEID" />
+			<generator class="sequence">
+				<param name="sequence">roleid</param>
+			</generator>
+		</id>
+		<property name="departid" type="java.lang.Integer">
+			<column name="DEPARTID" />
+		</property>
+		<property name="rolename" type="java.lang.String">
+			<column name="ROLENAME" />
+		</property>
+		<property name="roledescription" type="java.lang.String">
+			<column name="ROLEDESCRIPTION" />
+		</property>
+		<property name="roletype" type="java.lang.Integer">
+			<column name="ROLETYPE" />
+		</property>
+		<many-to-one name="department" class="com.aisino2.sysadmin.domain.Department"
+			fetch="join" insert="false" update="false">
+			<column name="DEPARTID" />
+		</many-to-one>
+		<list name="roleFunctions" inverse="false" table="T_ROLE_FUNCTION"
+			lazy="true">
+			<key>
+				<column name="ROLEID" />
+			</key>
+			<list-index></list-index>
+			<one-to-many class="com.aisino2.sysadmin.domain.Function" />
+		</list>
+		<list name="roleUsers" inverse="false" table="T_USER_ROLE" lazy="true">
+			<key>
+				<column name="ROLEID" />
+			</key>
+			<list-index></list-index>
+			<one-to-many class="com.aisino2.sysadmin.domain.User" />
+		</list>
+		<list name="roleMenus" inverse="false" table="T_ROLE_MENU" lazy="true">
+			<key>
+				<column name="ROLEID" />
+			</key>
+			<list-index></list-index>
+			<one-to-many class="com.aisino2.sysadmin.domain.Menu" />
+		</list>
+	</class>
+</hibernate-mapping>
