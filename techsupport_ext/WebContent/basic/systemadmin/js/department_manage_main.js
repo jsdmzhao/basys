@@ -78,7 +78,7 @@
 			this.right_panel;
 			this.detail_panel;
 //			每页显示数
-			this.pagesize = 1;
+			this.pagesize = 25;
 //			默认排序列
 			this.dir = 'nodeorder';
 //			默认排序方式
@@ -210,8 +210,10 @@
 						var self = this;
 						this.ownerCt.detail_store.load({params:{'department.departid':node.id},callback:function(r,options,success){
 							var record = this.getAt(0);
-							self.ownerCt.detail_panel.getForm().loadRecord(record);
+							var form = self.ownerCt.detail_panel.getForm()
 							
+							form.loadRecord(record);
+							form.setValues(record.data['department.parent']);
 						}});
 						
 					}
