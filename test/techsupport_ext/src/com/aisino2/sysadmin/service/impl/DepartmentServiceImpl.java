@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aisino2.sysadmin.dao.IDepartmentDao;
 import com.aisino2.sysadmin.domain.Department;
@@ -15,14 +16,24 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
 	private IDepartmentDao department_dao;
 	
+	@Transactional
 	public void insertDepartment(Department department) {
+//		Department last_brother_dept = new Department();
+//		try{
+//			last_brother_dept = this.department_dao.
+//		}catch (Exception e) {
+//			last_brother_dept.getNodeorder();
+//		}
+		
 		this.department_dao.insertDepartment(department);
 	}
 
+	@Transactional
 	public void deleteDepartment(Department department) {
 		this.department_dao.deleteDepartment(department);
 	}
 
+	@Transactional
 	public void updateDepartment(Department department) {
 		this.department_dao.updateDepartment(department);
 	}

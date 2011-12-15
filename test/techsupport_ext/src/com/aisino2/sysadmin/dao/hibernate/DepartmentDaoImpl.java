@@ -85,16 +85,12 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 						count = ((Long)q.uniqueResult()).intValue();
 						lst.add(count);
 						
-						if(count>0){
-							q.setProjection(null);
-							// page
-							q.setFirstResult(pageNo);
-							q.setMaxResults(pageSize);
-							// para
-							lst.add(q.list());
-						}
-						else
-							lst.add(null);
+						q.setProjection(null);
+						// page
+						q.setFirstResult(pageNo);
+						q.setMaxResults(pageSize);
+						// para
+						lst.add(q.list());
 						
 						return lst;
 					}

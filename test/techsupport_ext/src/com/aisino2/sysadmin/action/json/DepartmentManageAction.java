@@ -48,7 +48,7 @@ public class DepartmentManageAction extends PageAction {
 
 		} catch (Exception e) {
 			this.returnNo = 1;
-			this.returnMessage = "获取列表发送错误";
+			this.returnMessage = "获取列表发生错误";
 			if(log.isDebugEnabled()){
 				log.debug(e,e.fillInStackTrace());
 				this.returnMessageDebug = e.getMessage() +"\n";
@@ -111,12 +111,13 @@ public class DepartmentManageAction extends PageAction {
 	public String add() throws Exception {
 		try{
 			if(department==null)
-				throw new RuntimeException("机构实体为空");
+				throw new RuntimeException("需要添加的机构实体为空");
+			this.department_service.insertDepartment(department);
 		}catch (Exception e) {
 			this.returnNo = 1;
-			this.returnMessage = "获取列表发送错误";
+			this.returnMessage = "添加技工发生错误";
+			log.error(e);
 			if(log.isDebugEnabled()){
-				
 				log.debug(e,e.fillInStackTrace());
 				this.returnMessageDebug = e.getMessage() +"\n";
 			}
@@ -126,10 +127,50 @@ public class DepartmentManageAction extends PageAction {
 	}
 
 	public String remove() throws Exception {
+		try{
+			if(department_list==null || department_list.isEmpty())
+				throw new RuntimeException("未选择需要删除的机构");
+			this.returnMessageDebug="";
+			for(Department d : department_list){
+				try{
+					this.department_service.deleteDepartment(d);
+					department_list.remove(d);
+				}
+				catch (Exception e) {
+					log.error(e);
+					this.returnMessageDebug+=e.getMessage()+"\n"; 
+				}
+			}
+			
+			if(!department_list.isEmpty())
+				throw new RuntimeException("未全部删除，部分无法删除");
+		}catch (Exception e) {
+			this.returnNo=1;
+			this.returnMessage="删除发生了错误";
+			log.error(e);
+			if(log.isDebugEnabled()){
+				log.debug(e,e.fillInStackTrace());
+				this.returnMessageDebug=e.getMessage()+"\n";
+			}
+		}
+		
 		return SUCCESS;
 	}
 
 	public String modify() throws Exception {
+		try{
+			if(department == null || department.getDepartid()==null)
+				throw new RuntimeException("需要修改的机构为空");
+			this.department_service.updateDepartment(department);
+		}catch (Exception e) {
+			returnNo = 1;
+			returnMessage = "修改发生错误";
+			log.error(e);
+			if(log.isDebugEnabled()){
+				log.debug(e,e.fillInStackTrace());
+				this.returnMessageDebug=e.getMessage()+"\n";
+			}
+		}
 		return SUCCESS;
 	}
 

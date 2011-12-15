@@ -86,7 +86,7 @@ public class TreeNodeTool {
 				buff.append(",");
 			buff.append("function(){\n"); // 开始
 			buff.append("\t\t	var node = new Ext.tree.TreeNode({id:'"
-					+ node.getId() + "',text:'" + node.getText() + ",leaf:"+node.isIsleaf()+"'});\n");
+					+ node.getId() + "',text:'" + node.getText() +"',leaf:"+node.isIsleaf()+"});\n");
 			// 设置属性
 			if (node.getAttributes() != null && !node.getAttributes().isEmpty()) {
 				buff.append("\t\t	node.attributes={");
@@ -174,10 +174,10 @@ public class TreeNodeTool {
 					null, false, departlevel));
 
 //		设置是否是叶子
-		if(deparemnt_service.checkChildDepart(department, departlevel))
-			node.setIsleaf(false);
-		else
+		if (department.getIsleaf()!= null && department.getIsleaf().equals("Y"))
 			node.setIsleaf(true);
+		else
+			node.setIsleaf(false);
 		
 		if (is_recursive) {
 			List<Department> child_departments = deparemnt_service
