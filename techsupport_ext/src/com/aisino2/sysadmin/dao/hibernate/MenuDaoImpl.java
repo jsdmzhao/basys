@@ -113,8 +113,6 @@ public class MenuDaoImpl extends TechSupportBaseDaoImpl implements IMenuDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Menu> getTheUserChildMenu(final Menu menu, final User user) {
-		String hql = "select distinct t from Menu t , User_role ur, Role_menu rm "
-				+ "where t.menucode = rm.menucode and ur.roleid = rm.roleid and ur.userid = ?";
 		final String sql = "select distinct t.* from t_menu t,t_user_role ur, t_role_menu rm"
 				+ " where t.menucode = rm.menucode and ur.roleid = rm.roleid and ur.userid = ?";
 		final List<Object> para_list = new ArrayList();
@@ -137,7 +135,8 @@ public class MenuDaoImpl extends TechSupportBaseDaoImpl implements IMenuDao {
 
 					public List<Menu> doInHibernate(Session session)
 							throws HibernateException, SQLException {
-
+						String hql = "select distinct t from Menu t , User_role ur, Role_menu rm "
+							+ "where t.menucode = rm.menucode and ur.roleid = rm.roleid and ur.userid = ?";
 						String sql = "select distinct t.* from t_menu t,t_user_role ur, t_role_menu rm"
 								+ " where t.menucode = rm.menucode and ur.roleid = rm.roleid and ur.userid = ?";
 						
@@ -145,14 +144,14 @@ public class MenuDaoImpl extends TechSupportBaseDaoImpl implements IMenuDao {
 						para_list.add(user.getUserid());
 						
 						if (menu.getMenucode() == null) {
-							sql += " and t.parentmenucode is null";
+							hql += " and t.parent is null";
 						} else {
-							sql += " and t.parentmenucode = ?";
-							para_list.add(menu.getMenucode());
+							hql += " and t.parent = ?";
+							para_list.add(menu.getParent());
 						}
 						
-						SQLQuery q = session.createSQLQuery(sql);
-						q.addEntity(Menu.class);
+						Query q = session.createQuery(hql);
+//						q.addEntity(Menu.class);
 						for (int i = 0; i < para_list.size(); i++)
 							q.setParameter(i, para_list.get(i));
 

@@ -1,5 +1,8 @@
 package com.aisino2.sysadmin.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +27,7 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	
 	public HttpServletRequest request;
 	public HttpServletResponse response;
+	public Map<String, Object> returnMap = new HashMap<String, Object>();
 	public String returnMessage;
 	public Integer returnNo;
 	public String returnMessageDebug;
@@ -101,6 +105,16 @@ public class PageAction extends ActionSupport implements ServletRequestAware,Ser
 	}
 	public void setReturnMessageDebug(String returnMessageDebug) {
 		this.returnMessageDebug = returnMessageDebug;
+	}
+	public Map<String, Object> getReturnMap() {
+		returnMap.put("returnNo", this.returnNo);
+		returnMap.put("returnMessage",this.returnMessage);
+		returnMap.put("returnMessageDebug", this.returnMessageDebug);
+		
+		return returnMap;
+	}
+	public void setReturnMap(Map<String, Object> returnMap) {
+		this.returnMap = returnMap;
 	}
 	
 	
