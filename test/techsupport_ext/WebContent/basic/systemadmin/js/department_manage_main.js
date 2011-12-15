@@ -12,7 +12,7 @@
 	 * @author hooxin
 	 *
 	 */
-	techsupport.deparmentmanage.DepartmentAction = Ext.extend(Ext.Window,{
+	techsupport.deparmentmanage.DepartmentWindow = Ext.extend(Ext.Window,{
 		constructor: function(config){
 			this.action_name = config.action_name || '浏览';
 			this.width = config.width || 500;
@@ -27,10 +27,10 @@
 					forceFit:true
 			};
 			
-			techsupport.deparmentmanage.DepartmentActionFrame.superclass.constructor.apply(this,arguments);
+			techsupport.deparmentmanage.DepartmentWindow.superclass.constructor.apply(this,arguments);
 		},
 		initComponent:function(ct,position){
-			techsupport.deparmentmanage.DepartmentAction.superclass.initComponent.apply(this,arguments);
+			techsupport.deparmentmanage.DepartmentWindow.superclass.initComponent.apply(this,arguments);
 		}
 	});
 	
@@ -65,10 +65,13 @@
 			this.gridpanel;
 			/** 详情动作*/
 			this.action;
-			/** 当前的ID*/
-			this.current_treenode_id;
 			/** 数据集*/
 			this.store;
+			this.store_config;
+			/** 详情数据集*/
+			this.detail_store;
+			this.detail_store_config;
+			
 			this.tree_level = 99;
 			this.treeloader;
 			
@@ -80,6 +83,8 @@
 			this.dir = 'nodeorder';
 //			默认排序方式
 			this.sort = 'asc';
+//			当前id
+			this.current_treenode_id;
 			
 			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
 					.apply(this, arguments);
@@ -87,52 +92,81 @@
 		},
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
-			this.store =  new Ext.data.JsonStore({
-				idProperty:'departid',
-				root:'department_list',
-				url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
-				baseParams:{
-					'department.parentdepartid':this.current_treenode_id,
-					start:0,
-					limit:this.pagesize,
-					dir:this.dir,
-					sort:this.sort
-				},
-				remoteSort:true,
-				totalProperty:'total',
-				fields:[
-					{name:'department.departid',mapping:'departid'},
-					{name:'department.departcode',mapping:'departcode'},
-					{name:'department.departname',mapping:'departname'},
-					{name:"department.parent.departname",mapping:'parent.departname'},
-					{name:'department.departfullcode',mapping:'departfullcode'},
-					{name:'department.departlevel',mapping:'departlevel'},
-					{name:'department.isleaf',mapping:'isleaf'},
-					{name:'department.nodeorder',mapping:'nodeorder'},
-					{name:'department.parentdepartid',mapping:'parentdepartid'}
-				],
-				listeners:{
-					beforeload:{
-						fn:function(store,options){
-							Ext.apply(options.params,{
-								'department.parentdepartid':this.current_treenode_id,
-								dir:this.dir,
-								sort:this.sort
-							});
-						},
-						scope:this
+			this.store_config = {
+					idProperty:'departid',
+					root:'department_list',
+					url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+					baseParams:{
+						start:0,
+						limit:this.pagesize,
+						dir:this.dir,
+						sort:this.sort
+					},
+					remoteSort:true,
+					totalProperty:'total',
+					fields:[
+						{name:'department.departid',mapping:'departid'},
+						{name:'department.departcode',mapping:'departcode'},
+						{name:'department.departname',mapping:'departname'},
+//						{name:"department.parent.departname",mapping:'parent.departname'},
+						{name:'department.departfullcode',mapping:'departfullcode'},
+						{name:'department.departlevel',mapping:'departlevel'},
+						{name:'department.isleaf',mapping:'isleaf'},
+						{name:'department.nodeorder',mapping:'nodeorder'},
+						{name:'department.parent',mapping:'parent'}
+//						{name:'department.parent.departid',mapping:'parent.departid'}
+					],
+					listeners:{
+						beforeload:{
+							fn:function(store,options){
+								Ext.apply(options.params,{
+									'department.parent.departid':this.current_treenode_id,
+									dir:this.dir,
+									sort:this.sort
+								});
+							},
+							scope:this
+						}
+						
 					}
-					
-				}
-				});
-		
+					};
+			this.store =  new Ext.data.JsonStore(this.store_config);
+			
+			
+			this.detail_store_config = {
+					idProperty:'departid',
+					root:'department_list',
+					url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+					baseParams:{
+						start:0,
+						limit:this.pagesize,
+						dir:this.dir,
+						sort:this.sort
+					},
+					remoteSort:true,
+					totalProperty:'total',
+					fields:[
+						{name:'department.departid',mapping:'departid'},
+						{name:'department.departcode',mapping:'departcode'},
+						{name:'department.departname',mapping:'departname'},
+//						{name:"department.parent.departname",mapping:'parent.departname'},
+						{name:'department.departfullcode',mapping:'departfullcode'},
+						{name:'department.departlevel',mapping:'departlevel'},
+						{name:'department.isleaf',mapping:'isleaf'},
+						{name:'department.nodeorder',mapping:'nodeorder'},
+						{name:'department.parent',mapping:'parent'}
+//						{name:'department.parent.departid',mapping:'parent.departid'}
+					]
+					};
+			this.detail_store = new Ext.data.JsonStore(this.detail_store_config);
+			
 			this.treeloader = new Ext.tree.TreeLoader({
 				url:context_path+'/sysadminDefault/query_department_node_departmentmanage.action',
 				method:'post',
 				listeners:{
 					beforeload:{
 						fn:function(loader,node){
-							loader.baseParams['department.departid'] = node.attributes.attributes.departid;
+							loader.baseParams['department.departid'] = node.id;
 							loader.baseParams['department.departlevel'] = this.tree_level;
 						},
 						scope:this
@@ -151,33 +185,21 @@
 				width: '25%',
 				rootVisable : false,
 				viewConfig:{
-					forceFit:true
+					forceFit:true,
+					enableRowBody:true
 				},
 				loader:this.treeloader,
-				root:{id:'tree_root',text:'顶端',nodeType: 'async',attributes:{'departid':0,departlevel:this.tree_level}},
+				root:{id:'0',text:'顶端',nodeType: 'async',attributes:{'departid':0,departlevel:this.tree_level}},
 				listeners:{
 					click:function(node,evt){
 						//点击动作
 //						子类可以按照自己的需求重载
-						var attr = node.attributes.attributes;
-						var record = new Ext.data.Record({
-							'department.departid':Ext.value(attr.departid,''),
-							'department.departcode':Ext.value(attr.departcode,''),
-							'department.departname':Ext.value(attr.departname,''),
-							'department.departfullcode':Ext.value(attr.departfullcode,''),
-							'department.parentdepartid':Ext.value(attr.parentdepartid,''),
-							'department.parent.departname':Ext.value(attr.parentdepartname,'')
-							},
-							attr.departid
-						);
+						this.ownerCt.current_treenode_id = node.id;
 						
-						this.ownerCt.current_treenode_id = record.id;
-						this.ownerCt.detail_panel.getForm().loadRecord(record);
-						this.ownerCt.store.removeAll();
 						this.ownerCt.store.load(
 								{
 									params:{
-										'department.parentdepartid':this.ownerCt.current_treenode_id,
+										'department.parent.departid':node.id,
 										start:0,
 										limit:this.ownerCt.pagesize,
 										dir:this.ownerCt.dir,
@@ -185,11 +207,19 @@
 									}
 								}
 						);
+						var self = this;
+						this.ownerCt.detail_store.load({params:{'department.departid':node.id},callback:function(r,options,success){
+							var record = this.getAt(0);
+							self.ownerCt.detail_panel.getForm().loadRecord(record);
+							
+						}});
+						
 					}
 				}
 			});
 
 //			子机构面板
+			var sm = new Ext.grid.CheckboxSelectionModel();
 			this.gridpanel = new Ext.grid.GridPanel({
 				id : this.id+'_grid',
 				store : this.store,
@@ -197,11 +227,13 @@
 				viewConfig:{
 					forceFit:true
 				},
+				sm:sm,
 				columns:[
+				    sm,
 					{header: '机构ID', dataIndex: 'department.departid', sortable: false,width:100},
 					{header: this.title_base+'代码',dataIndex:'department.departfullcode',width:300},
 					{header: this.title_base+'名称',dataIndex:'department.departname',width:300},
-					{header:'上级'+this.title_base,dataIndex:'department.parent.departname',width:300}
+					{header:'上级'+this.title_base,dataIndex:'department.parent',renderer:function(obj){return obj.departname;},width:300}
 				],
 				tbar:[
 						{xtype:'button',text:'添加',handler:function(){}},
@@ -218,7 +250,10 @@
 						'-',
 						{xtype:'button',text:'置底',handler:function(){}},
 						'-','-',
-						{xtype:'button',text:'保存',handler:function(){ /* 保存当前机构 */ }}
+						{xtype:'button',text:'保存',handler:function(){ 
+							/* 保存当前机构 */
+							
+						}}
 					],
 					bbar:new Ext.PagingToolbar({
 						store:this.store,
@@ -289,7 +324,7 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.parentdepartid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
+				    	          {name:'department.parent.departid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
 				    	   ]
 				       },
 				       {
@@ -325,6 +360,10 @@
 			this.body.setHeight(this.body_height);
 			techsupport.deparmentmanage.DepartmentMain.superclass.afterRender.apply(this,arguments );
 			this.treepanel.getRootNode().expand();
+//			设置内容表格高度
+			this.grid_body_height = this.right_panel.getInnerHeight() - this.gridpanel.getFrameHeight()
+				- this.detail_panel.getHeight() - 9;
+			this.gridpanel.body.setHeight(this.grid_body_height);
 		}
 		//-----------------------------------附加内容结束-------------------------------------
 	});
