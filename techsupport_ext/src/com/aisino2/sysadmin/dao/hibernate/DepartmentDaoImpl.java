@@ -76,11 +76,12 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 						ex.excludeZeroes();
 						ex.ignoreCase();
 						q.add(ex);
-						if(department.getParent()==null || department.getParent().getDepartid()==0)
+						if(department.getParent()!=null && department.getParent().getDepartid()==0)
 							q.add(Restrictions.isNull("t.parent"));
-						else
+						if(department.getParent()!=null && department.getParent().getDepartid()>0)
 							q.add(Restrictions.eq("t.parent", department.getParent()));
-						
+						if(department.getDepartid()!=null)
+							q.add(Restrictions.eq("t.departid", department.getDepartid()));
 						//计数
 						q.setProjection(Projections.rowCount());
 						count = ((Long)q.uniqueResult()).intValue();
@@ -128,10 +129,12 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 				ex.excludeZeroes();
 				ex.ignoreCase();
 				q.add(ex);
-				if(department.getParent()==null || department.getParent().getDepartid()==0)
+				if(department.getParent()!=null && department.getParent().getDepartid()==0)
 					q.add(Restrictions.isNull("t.parent"));
-				else
+				if(department.getParent()!=null && department.getParent().getDepartid()>0)
 					q.add(Restrictions.eq("t.parent", department.getParent()));
+				if(department.getDepartid()!=null)
+					q.add(Restrictions.eq("t.departid", department.getDepartid()));
 				return q.list();
 			}
 		});
