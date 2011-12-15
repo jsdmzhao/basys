@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.User_role" table="T_USER_ROLE">
+       
+        <composite-id class="com.aisino2.sysadmin.domain.User_rolePk" name="id">
+        	<key-property name="roleid"></key-property>
+        	<key-property name="userid"></key-property>
+        </composite-id>
+        <property name="roleid" type="java.lang.Integer" insert="false" update="false">
+            <column name="ROLEID" />
+        </property>
+        <property name="userid" type="java.lang.Integer" insert="false" update="false">
+            <column name="USERID" />
+        </property>
+    </class>
+</hibernate-mapping>

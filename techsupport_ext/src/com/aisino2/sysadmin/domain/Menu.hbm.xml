@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Menu" table="T_MENU" dynamic-insert="true" dynamic-update="true">
+        <id name="menucode" type="java.lang.String">
+            <column name="MENUCODE" />
+        </id>
+        <property name="menuname" type="java.lang.String">
+            <column name="MENUNAME" />
+        </property>
+        <property name="funcentry" type="java.lang.String">
+            <column name="FUNCENTRY" />
+        </property>
+        <property name="menulevel" type="java.lang.Integer">
+            <column name="MENULEVEL" />
+        </property>
+        <property name="menufullcode" type="java.lang.String">
+            <column name="MENUFULLCODE" />
+        </property>
+        <property name="nodeorder" type="java.lang.Integer">
+            <column name="NODEORDER" />
+        </property>
+        <property name="isleaf" type="java.lang.String">
+            <column name="ISLEAF" />
+        </property>
+        <many-to-one name="system" class="com.aisino2.sysadmin.domain.System" fetch="join" >
+            <column name="SYSTEMCODE" />
+        </many-to-one>
+        <many-to-one name="parent" class="com.aisino2.sysadmin.domain.Menu" fetch="join">
+            <column name="PARENTMENUCODE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

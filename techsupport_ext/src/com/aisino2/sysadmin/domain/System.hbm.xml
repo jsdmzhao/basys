@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.System" table="T_SYSTEM" dynamic-insert="true" dynamic-update="true">
+        <id name="systemcode" type="java.lang.String">
+            <column name="SYSTEMCODE" />
+        </id>
+        <property name="systemname" type="java.lang.String">
+            <column name="SYSTEMNAME" />
+        </property>
+        <property name="systemdefine" type="java.lang.String">
+            <column name="SYSTEMDEFINE" />
+        </property>
+        <property name="picturepath" type="java.lang.String">
+            <column name="PICTUREPATH" />
+        </property>
+        <property name="parentsystemcode" type="java.lang.String">
+            <column name="PARENTSYSTEMCODE" />
+        </property>
+        <property name="nodeorder" type="java.lang.Integer">
+            <column name="NODEORDER" />
+        </property>
+        <property name="isleaf" type="java.lang.String">
+            <column name="ISLEAF" />
+        </property>
+        <property name="fullcode" type="java.lang.String">
+            <column name="FULLCODE" />
+        </property>
+    </class>
+</hibernate-mapping>

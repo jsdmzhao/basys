@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Department" table="T_DEPARTMENT" dynamic-insert="true" dynamic-update="true">
+        <id name="departid" type="java.lang.Integer">
+            <column name="DEPARTID" />
+            <generator class="sequence" >
+            	<param name="sequence">departid</param>
+            </generator>
+        </id>
+        <property name="departcode" type="java.lang.String">
+            <column name="DEPARTCODE" />
+        </property>
+        <property name="departname" type="java.lang.String">
+            <column name="DEPARTNAME" />
+        </property>
+        <property name="departlevel" type="java.lang.Integer">
+            <column name="DEPARTLEVEL" />
+        </property>
+        <property name="parentdepartid" type="java.lang.Integer">
+            <column name="PARENTDEPARTID" />
+        </property>
+        <property name="departfullcode" type="java.lang.String">
+            <column name="DEPARTFULLCODE" />
+        </property>
+        <property name="nodeorder" type="java.lang.Integer">
+            <column name="NODEORDER" />
+        </property>
+        <property name="isleaf" type="java.lang.String">
+            <column name="ISLEAF" />
+        </property>
+        <property name="departsimplepin" type="java.lang.String">
+            <column name="DEPARTSIMPLEPIN" />
+        </property>
+        <property name="departallpin" type="java.lang.String">
+            <column name="DEPARTALLPIN" />
+        </property>
+        <property name="departbrevitycode" type="java.lang.String">
+            <column name="DEPARTBREVITYCODE" />
+        </property>
+        <many-to-one name="parent"
+	class="com.aisino2.sysadmin.domain.Department" insert="false" update="false">
+        	<column name="PARENTDEPARTID"></column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

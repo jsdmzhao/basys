@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Role_menu" table="T_ROLE_MENU">
+        <composite-id name="id" class="com.aisino2.sysadmin.domain.RoleMenuPk">
+        	<key-property name="roleid" column="ROLEID"></key-property>
+        	<key-property name="menucode" column="MENUCODE"></key-property>
+        </composite-id>
+        <property name="roleid" column="ROLEID" insert="false" update="false"></property>
+        <property name="menucode" type="java.lang.String" insert="false" update="false">
+            <column name="MENUCODE" />
+        </property>
+    </class>
+</hibernate-mapping>

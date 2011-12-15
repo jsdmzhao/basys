@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-12-15 15:33:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.aisino2.sysadmin.domain.Dict" table="T_DICT" dynamic-insert="true" dynamic-update="true">
+        <id name="dict_id" type="java.lang.Integer">
+            <column name="DICT_ID" />
+            <generator class="sequence" >
+            	<param name="sequence">dict_id</param>
+            </generator>
+        </id>
+        <property name="dict_code" type="java.lang.String" unique="true">
+            <column name="DICT_CODE" />
+        </property>
+        <property name="dict_name" type="java.lang.String">
+            <column name="DICT_NAME" />
+        </property>
+        <property name="super_dict_code" type="java.lang.String">
+            <column name="SUPER_DICT_CODE" />
+        </property>
+        <property name="sib_order" type="java.lang.Integer">
+            <column name="SIB_ORDER" />
+        </property>
+        <property name="leaf_flag" type="java.lang.String">
+            <column name="LEAF_FLAG" />
+        </property>
+        <property name="maint_flag" type="java.lang.Integer">
+            <column name="MAINT_FLAG" />
+        </property>
+        <property name="dict_type" type="java.lang.String">
+            <column name="DICT_TYPE" />
+        </property>
+        <property name="dict_simplepin" type="java.lang.String">
+            <column name="DICT_SIMPLEPIN" />
+        </property>
+        <property name="dict_allpin" type="java.lang.String">
+            <column name="DICT_ALLPIN" />
+        </property>
+        <property name="dict_itemtablename" type="java.lang.String">
+            <column name="DICT_ITEMTABLENAME" />
+        </property>
+        <property name="dict_versionid" type="java.lang.String">
+            <column name="DICT_VERSIONID" />
+        </property>
+        <list name="dict_item_list" inverse="false" table="DICT_ITEM" lazy="true">
+            <key>
+                <column name="DICT_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.aisino2.sysadmin.domain.Dict_item" />
+        </list>
+    </class>
+</hibernate-mapping>

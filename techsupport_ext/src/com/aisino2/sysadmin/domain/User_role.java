@@ -37,6 +37,7 @@ public class User_role implements Serializable {
 
 	/** @param 用户角色(t_user_role) */
 
+	private User_rolePk id;
 	@Id
 	/** @ --角色ID--roleid--Integer--9-- */
 	private Integer roleid;
@@ -63,6 +64,14 @@ public class User_role implements Serializable {
 
 	public void setUserid(Integer userid) {
 		this.userid = userid;
+	}
+
+	public User_rolePk getId() {
+		return id;
+	}
+
+	public void setId(User_rolePk id) {
+		this.id = id;
 	}
 
 }
