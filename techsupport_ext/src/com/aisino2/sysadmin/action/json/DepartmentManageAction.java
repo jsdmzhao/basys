@@ -95,8 +95,19 @@ public class DepartmentManageAction extends PageAction {
 	 * @throws Exception
 	 */
 	public String query() throws Exception {
-
-		department = department_service.getDepartment(department);
+		try{
+			department = department_service.getDepartment(department);
+		}catch (Exception e) {
+			returnNo = 1;
+			returnMessage = "详情获取错误";
+			
+			log.error(e);
+			if(log.isDebugEnabled()){
+				log.debug(e,e.fillInStackTrace());
+				this.returnMessageDebug = e.getMessage() +"\n";
+			}
+		}
+		
 		return SUCCESS;
 	}
 
@@ -113,9 +124,11 @@ public class DepartmentManageAction extends PageAction {
 			if(department==null)
 				throw new RuntimeException("需要添加的机构实体为空");
 			this.department_service.insertDepartment(department);
+			returnNo = 0;
+			returnMessage="添加成功";
 		}catch (Exception e) {
 			this.returnNo = 1;
-			this.returnMessage = "添加技工发生错误";
+			this.returnMessage = "添加发生错误";
 			log.error(e);
 			if(log.isDebugEnabled()){
 				log.debug(e,e.fillInStackTrace());
@@ -162,6 +175,8 @@ public class DepartmentManageAction extends PageAction {
 			if(department == null || department.getDepartid()==null)
 				throw new RuntimeException("需要修改的机构为空");
 			this.department_service.updateDepartment(department);
+			returnNo=0;
+			returnMessage="修改成功";
 		}catch (Exception e) {
 			returnNo = 1;
 			returnMessage = "修改发生错误";

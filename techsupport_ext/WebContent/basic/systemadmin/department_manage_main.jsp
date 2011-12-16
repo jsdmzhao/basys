@@ -16,4 +16,3 @@ Ext.onReady(function() {
 		
 </script>
 <div id="department_manage_panel" style="width: 100%; height: 100%;"></div>
-

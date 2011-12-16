@@ -14,22 +14,75 @@
 	 */
 	techsupport.deparmentmanage.DepartmentWindow = Ext.extend(Ext.Window,{
 		constructor: function(config){
-			this.action_name = config.action_name || '浏览';
 			this.width = config.width || 500;
 			this.height = config.height || 300;
 			this.layout = config.layout;
 			this.title = config.title || '机构';
 			this.id = config.id;
 			this.defaults = config.defaults || { bodyStyle : 'padding: 4px;',xtype:'textfield'};
-			this.renderTo = config.renderTo || 'body';
-			
+			this.renderTo = config.renderTo || Ext.getBody();
+			this.closeAction=config.closeAction || "close";
 			this.viewConfig = {
 					forceFit:true
 			};
+//			设置上层容器
+			this.ownerCt = config.ownerCt;
+//			动作名称 例如 add modify detail之类的
+			this.action_name = config.action_name || 'detail';
+			this.action = config.action;
+			this.store = config.store;
+			this.modal = config.modal || true;
 			
 			techsupport.deparmentmanage.DepartmentWindow.superclass.constructor.apply(this,arguments);
 		},
 		initComponent:function(ct,position){
+			//form对象默认值
+			this.form_panel_default = {
+				xtype:'textfiled',
+				columnWidth:.20
+			};
+			//内容包含一个form表单
+			this.form_panel = Ext.create({
+				xtype:'form',
+				viewConfig:{ forceFit:true},
+				defaults:this.form_panel_default,
+//				面板里面放置机构所需的属性
+				item:[
+				      {fieldName:'departid',fieldLabel:'机构ID',xtype:'hidden'},
+				      {fieldName:'departcode',fieldLabel:'机构代码',allowBlank:false,blankText:'机构代码不能为空'},
+				      {fieldName:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
+				      {fieldName:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空'},
+				      {fieldName:'parent.departid',xtype:'hidden',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空'},
+				      {fieldName:'parent.isleaf',xtype:'hidden',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空'},
+				      {fieldName:'nodeorder',fieldLabel:'序列',allowBlank:false,blankText:'序列不能为空'}
+				]
+			});
+			this.items = [this.form_panel];
+			
+			if(this.action_name=='add'){
+				this.title='添加机构信息';
+				this.buttons = [
+				     {
+				    	 xtype:'button',text:'保存',handler:function(){
+				    		 var store = this.ownerCt.ownerCt.ownerCt.store;
+				    		 var action = this.ownerCt.ownerCt.action;
+				    		 store.load();
+				    	 }
+				     },
+				     {xtype:'button',text:'关闭',handler:function(){
+				    	 this.ownerCt.ownerCt.close();
+				     }}
+				];
+			}
+			else if (this.action_name == 'modify'){
+				this.title = '修改机构信息';
+				this.buttons = [];
+			}
+			else if (this.action_name == 'detail'){
+				this.title = '详情机构信息';
+				
+			}
+			
 			techsupport.deparmentmanage.DepartmentWindow.superclass.initComponent.apply(this,arguments);
 		}
 	});
@@ -38,7 +91,6 @@
 	techsupport.deparmentmanage.DepartmentMain = Ext.extend(Ext.Panel, {
 		constructor:function(config) {
 			// 父类
-			this.title = config.title || '机构管理';
 			this.title_base = config.title_base || '机构';
 			this.layout = config.layout ||'border';
 			this.id =  config.id ||'manage_panal';
@@ -67,10 +119,8 @@
 			this.action;
 			/** 数据集*/
 			this.store;
-			this.store_config;
 			/** 详情数据集*/
 			this.detail_store;
-			this.detail_store_config;
 			
 			this.tree_level = 99;
 			this.treeloader;
@@ -86,79 +136,150 @@
 //			当前id
 			this.current_treenode_id;
 			
+			this.addURL=context_path+'/sysadminDefault/add_departmentmanage.action';
+			this.modifyURL=context_path+'/sysadminDefault/modify_departmentmanage.action';
+			this.removeURL=context_path+'/sysadminDefault/remove_departmentmanage.action';
+			this.queryURL=context_path+'/sysadminDefault/querylist_departmentmanage.action';
+			this.detailURL=context_path+'/sysadminDefault/query_departmentmanage.action';
+			
+			this.action_prefix = 'department.';
+			this.remove_prefix = 'department_list[i].';
+			
+			//详情弹出窗口容器
+			this.detail_window = config.detail_window || Ext.getBody();
 			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
 					.apply(this, arguments);
 			
 		},
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
-			this.store_config = {
-					idProperty:'departid',
-					root:'department_list',
-					url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
-					baseParams:{
-						start:0,
-						limit:this.pagesize,
-						dir:this.dir,
-						sort:this.sort
-					},
-					remoteSort:true,
-					totalProperty:'total',
-					fields:[
-						{name:'department.departid',mapping:'departid'},
-						{name:'department.departcode',mapping:'departcode'},
-						{name:'department.departname',mapping:'departname'},
-//						{name:"department.parent.departname",mapping:'parent.departname'},
-						{name:'department.departfullcode',mapping:'departfullcode'},
-						{name:'department.departlevel',mapping:'departlevel'},
-						{name:'department.isleaf',mapping:'isleaf'},
-						{name:'department.nodeorder',mapping:'nodeorder'},
-						{name:'department.parent',mapping:'parent'}
-//						{name:'department.parent.departid',mapping:'parent.departid'}
-					],
-					listeners:{
-						beforeload:{
-							fn:function(store,options){
-								Ext.apply(options.params,{
-									'department.parent.departid':this.current_treenode_id,
-									dir:this.dir,
-									sort:this.sort
-								});
-							},
-							scope:this
+			var self = this;
+			this.action = {
+					modify:function(record,extra,callback,callback_scope){
+						var para = {};
+						for(var i in record.data){
+							if( typeof record.data[i] != "object")
+								para[self.action_prefix+i]=record.data[i];
 						}
 						
-					}
-					};
-			this.store =  new Ext.data.JsonStore(this.store_config);
-			
-			
-			this.detail_store_config = {
-					idProperty:'departid',
-					root:'department_list',
-					url:context_path+'/sysadminDefault/querylist_departmentmanage.action',
-					baseParams:{
-						start:0,
-						limit:this.pagesize,
-						dir:this.dir,
-						sort:this.sort
+						Ext.Ajax.request({
+							url:self.modifyURL,
+							params:para,
+							success:function(response,opt){
+								var data = Ext.decode(response.responseText);
+								//执行回调
+								with(callback_scope){
+									callback(response);
+								}
+								
+								if(!data.returnNo&&data.returnMessage)
+									Ext.example.msg('成功',data.returnMessage);
+								if(data.returnNo&&data.returnMessage){
+									Ext.example.msg('错误',data.returnMessage);
+									if(data.returnMessageDebug)
+										Ext.example.msg('错误',data.returnMessageDebug);
+								}
+									
+							},
+							failure:function(response,opt){
+								Ext.example.msg('错误',response.responseText);
+							}
+						});
 					},
-					remoteSort:true,
-					totalProperty:'total',
-					fields:[
-						{name:'department.departid',mapping:'departid'},
-						{name:'department.departcode',mapping:'departcode'},
-						{name:'department.departname',mapping:'departname'},
-//						{name:"department.parent.departname",mapping:'parent.departname'},
-						{name:'department.departfullcode',mapping:'departfullcode'},
-						{name:'department.departlevel',mapping:'departlevel'},
-						{name:'department.isleaf',mapping:'isleaf'},
-						{name:'department.nodeorder',mapping:'nodeorder'},
-						{name:'department.parent',mapping:'parent'}
-//						{name:'department.parent.departid',mapping:'parent.departid'}
-					]
-					};
-			this.detail_store = new Ext.data.JsonStore(this.detail_store_config);
+					add:function(record,extra,callback,callback_scope){
+						var para = {};
+						for(var i in record.data){
+							if( typeof record.data[i] != "object")
+								para[self.action_prefix+i]=record.data[i];
+						}
+						
+						Ext.Ajax.request({
+							url:self.addURL,
+							params:para,
+							success:function(response,opt){
+								var data = Ext.decode(response.responseText);
+								//执行回调
+								with(callback_scope){
+									callback(response);
+								}
+								if(!data.returnNo&&data.returnMessage)
+									Ext.example.msg('成功',data.returnMessage);
+								if(data.returnNo&&data.returnMessage){
+									Ext.example.msg('错误',data.returnMessage);
+									if(data.returnMessageDebug)
+										Ext.example.msg('错误',data.returnMessageDebug);
+								}
+									
+							},
+							failure:function(response,opt){
+								Ext.example.msg('错误',response.responseText);
+							}
+						});
+					}
+			};
+			this.store =  new Ext.data.JsonStore( {
+				idProperty:'departid',
+				root:'department_list',
+				url:this.queryURL,
+				baseParams:{
+					start:0,
+					limit:this.pagesize,
+					dir:this.dir,
+					sort:this.sort
+				},
+				remoteSort:true,
+				totalProperty:'total',
+				fields:[
+					{name:'departid',mapping:'departid'},
+					{name:'departcode',mapping:'departcode'},
+					{name:'departname',mapping:'departname'},
+					{name:'departfullcode',mapping:'departfullcode'},
+					{name:'departlevel',mapping:'departlevel'},
+					{name:'isleaf',mapping:'isleaf'},
+					{name:'nodeorder',mapping:'nodeorder'},
+					{name:'parent',mapping:'parent'},
+					{name:'departbrevitycode',mapping:'departbrevitycode'}
+				],
+				listeners:{
+					beforeload:{
+						fn:function(store,options){
+							Ext.apply(options.params,{
+								dir:this.dir,
+								sort:this.sort
+							});
+							options.params[this.action_prefix+'parent.departid']=this.current_treenode_id;
+						},
+						scope:this
+					}
+					
+				}
+				});
+			
+			
+			this.detail_store = new Ext.data.JsonStore({
+				idProperty:'departid',
+				root:'department_list',
+				url:this.queryURL,
+				baseParams:{
+					start:0,
+					limit:this.pagesize,
+					dir:this.dir,
+					sort:this.sort
+				},
+				remoteSort:true,
+				totalProperty:'total',
+				fields:[
+					{name:'departid',mapping:'departid'},
+					{name:'departcode',mapping:'departcode'},
+					{name:'departname',mapping:'departname'},
+					{name:'departfullcode',mapping:'departfullcode'},
+					{name:'departlevel',mapping:'departlevel'},
+					{name:'isleaf',mapping:'isleaf'},
+					{name:'nodeorder',mapping:'nodeorder'},
+					{name:'parent',mapping:'parent'},
+					{name:'departbrevitycode',mapping:'departbrevitycode'}
+				]
+				});
 			
 			this.treeloader = new Ext.tree.TreeLoader({
 				url:context_path+'/sysadminDefault/query_department_node_departmentmanage.action',
@@ -166,8 +287,8 @@
 				listeners:{
 					beforeload:{
 						fn:function(loader,node){
-							loader.baseParams['department.departid'] = node.id;
-							loader.baseParams['department.departlevel'] = this.tree_level;
+							loader.baseParams[this.action_prefix+'departid'] = node.id;
+							loader.baseParams[this.action_prefix+'departlevel'] = this.tree_level;
 						},
 						scope:this
 					}
@@ -199,7 +320,6 @@
 						this.ownerCt.store.load(
 								{
 									params:{
-										'department.parent.departid':node.id,
 										start:0,
 										limit:this.ownerCt.pagesize,
 										dir:this.ownerCt.dir,
@@ -208,12 +328,23 @@
 								}
 						);
 						var self = this;
-						this.ownerCt.detail_store.load({params:{'department.departid':node.id},callback:function(r,options,success){
+						var param={};
+						param[this.ownerCt.action_prefix+'departid']=node.id;
+						this.ownerCt.detail_store.load({params:param,callback:function(r,options,success){
 							var record = this.getAt(0);
-							var form = self.ownerCt.detail_panel.getForm()
+							var form = self.ownerCt.detail_panel.getForm();
 							
 							form.loadRecord(record);
-							form.setValues(record.data['department.parent']);
+							try{
+								form.setValues(
+										{
+											'parent.departname':record.data.parent.departname,
+											'parent.departid':record.data.parent.departid
+										}
+								);
+							}catch (e) {
+								
+							}
 						}});
 						
 					}
@@ -232,15 +363,26 @@
 				sm:sm,
 				columns:[
 				    sm,
-					{header: '机构ID', dataIndex: 'department.departid', sortable: false,width:100},
-					{header: this.title_base+'代码',dataIndex:'department.departfullcode',width:300},
-					{header: this.title_base+'名称',dataIndex:'department.departname',width:300},
-					{header:'上级'+this.title_base,dataIndex:'department.parent',renderer:function(obj){return obj.departname;},width:300}
+					{header: '机构ID', dataIndex: 'departid', sortable: false,width:100},
+					{header: this.title_base+'代码',dataIndex:'departfullcode',width:300},
+					{header: this.title_base+'名称',dataIndex:'departname',width:300},
+					{header:'上级'+this.title_base,dataIndex:'parent',renderer:function(obj){return obj.departname;},width:300}
 				],
 				tbar:[
-						{xtype:'button',text:'添加',handler:function(){}},
+						{xtype:'button',text:'添加',handler:function(){
+//							弹出添加窗口
+							var window = new techsupport.deparmentmanage.DepartmentWindow({
+								ownerCt:self,action_name:'add',action:self.action,
+								renderTo:self.detail_window,
+								store:self.store
+							});
+							window.center();
+							window.show();
+						}},
 						'-',
-						{xtype:'button',text:'修改',handler:function(){}},
+						{xtype:'button',text:'修改',handler:function(){
+//							弹出修改窗口
+						}},
 						'-',
 						{xtype:'button',text:'删除',handler:function(){}},
 						'-',
@@ -254,7 +396,9 @@
 						'-','-',
 						{xtype:'button',text:'保存',handler:function(){ 
 							/* 保存当前机构 */
-							
+							var record = this.ownerCt.ownerCt.ownerCt.ownerCt.detail_store.getAt(0);
+							this.ownerCt.ownerCt.ownerCt.ownerCt.detail_panel.getForm().updateRecord(record);
+							this.ownerCt.ownerCt.ownerCt.ownerCt.action.modify(record);
 						}}
 					],
 					bbar:new Ext.PagingToolbar({
@@ -296,7 +440,7 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departid',fieldLabel:this.title_base+'ID',readOnly:true}
+				    	          {name:'departid',fieldLabel:this.title_base+'ID',readOnly:true}
 				    	          
 				    	   ]
 				       },
@@ -304,7 +448,7 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departcode',fieldLabel:this.title_base+'代码',readOnly:true}
+				    	          {name:'departcode',fieldLabel:this.title_base+'代码',readOnly:true}
 				    	          
 				    	   ]
 				       },
@@ -312,28 +456,28 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departname',fieldLabel:this.title_base+'名称'},
+				    	          {name:'departname',fieldLabel:this.title_base+'名称'},
 				    	   ]
 				       },
 				       {
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.departfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
+				    	          {name:'departfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
 				    	   ]
 				       },
 				       {
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.parent.departid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
+				    	          {name:'parent.departid',fieldLabel:'上级'+this.title_base+'ID',readOnly:true}
 				    	   ]
 				       },
 				       {
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'department.parent.departname',fieldLabel:'上级机构名称',readOnly:true}
+				    	          {name:'parent.departname',fieldLabel:'上级机构名称',readOnly:true}
 				    	   ]
 				       }
 				]
@@ -358,9 +502,10 @@
 			techsupport.deparmentmanage.DepartmentMain.superclass.onRender.apply(this,arguments);
 		},
 		afterRender:function(ct,position){
-			this.body_height = this.getHeight()-this.getFrameHeight() - 15;
+			this.body_height = this.getHeight()-this.getFrameHeight();
 			this.body.setHeight(this.body_height);
 			techsupport.deparmentmanage.DepartmentMain.superclass.afterRender.apply(this,arguments );
+			
 			this.treepanel.getRootNode().expand();
 //			设置内容表格高度
 			this.grid_body_height = this.right_panel.getInnerHeight() - this.gridpanel.getFrameHeight()
