@@ -209,9 +209,10 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 		return false;
 	}
 
-	public Department getNextNodeorder(Department department) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getNextNodeorder(Department department) {
+		String hql = "select max(t.nodeorder)+1 from Department t where t.parent = ?";
+		List lst = this.getHibernateTemplate().find(hql, department.getParent());
+		return (Integer)lst.get(0);
 	}
 
 	public List getListAllDepartment(Department department) {

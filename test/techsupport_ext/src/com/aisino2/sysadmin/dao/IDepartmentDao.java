@@ -115,7 +115,7 @@ public interface IDepartmentDao {
 	  boolean checkChild(Department depart);
 	  
 	  /** 获得下一个排序号 */
-	Department getNextNodeorder(Department department);
+	Integer getNextNodeorder(Department department);
 	
 	/** @param 机构(t_department) 多条查询 */
 	List getListAllDepartment(Department department);
