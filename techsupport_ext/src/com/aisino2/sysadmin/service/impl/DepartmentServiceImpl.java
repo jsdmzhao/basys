@@ -18,12 +18,9 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	
 	@Transactional
 	public void insertDepartment(Department department) {
-//		Department last_brother_dept = new Department();
-//		try{
-//			last_brother_dept = this.department_dao.
-//		}catch (Exception e) {
-//			last_brother_dept.getNodeorder();
-//		}
+//		设置序列
+		if(department.getNodeorder()==null)
+			department.setNodeorder(getNextNodeorder(department));
 		
 		this.department_dao.insertDepartment(department);
 	}
@@ -110,8 +107,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 
 	public Integer getNextNodeorder(Department department) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.department_dao.getNextNodeorder(department);
 	}
 
 	public List<Department> getListAllDepartment(Department department) {
