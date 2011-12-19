@@ -32,18 +32,21 @@
 			this.action = config.action;
 			this.store = config.store;
 			this.modal = config.modal || true;
+			this.dstore = config.dstore;
 			
 			techsupport.deparmentmanage.DepartmentWindow.superclass.constructor.apply(this,arguments);
 		},
 		initComponent:function(ct,position){
+			var self = this;
 			//form对象默认值
 			this.form_panel_default = {
-				xtype:'textfiled',
+				xtype:'textfield',
 				columnWidth:.20
 			};
 			//内容包含一个form表单
 			this.form_panel = Ext.create({
 				xtype:'form',
+				layout:'form',
 				viewConfig:{ forceFit:true},
 				defaults:this.form_panel_default,
 //				面板里面放置机构所需的属性
@@ -64,23 +67,40 @@
 				this.buttons = [
 				     {
 				    	 xtype:'button',text:'保存',handler:function(){
-				    		 var store = this.ownerCt.ownerCt.ownerCt.store;
-				    		 var action = this.ownerCt.ownerCt.action;
-				    		 store.load();
+				    		 var store = self.store;
+				    		 var action = self.action;
+				    		 action.add(self.form_panel.getForm().getValues(),function(){
+				    			 store.load();
+				    			 self.close();
+				    		 });
 				    	 }
 				     },
 				     {xtype:'button',text:'关闭',handler:function(){
-				    	 this.ownerCt.ownerCt.close();
+				    	 self.close();
 				     }}
 				];
 			}
 			else if (this.action_name == 'modify'){
 				this.title = '修改机构信息';
-				this.buttons = [];
+				this.buttons = [
+				    {
+				    	xtype:'button',text:'保存',handler:function(){
+//				    		self.form_panel.getForm().getValues()
+				    		self.action.modify(self.form_panel.getForm().getValues(),function(){
+				    			self.store.load();
+				    			self.close();
+				    		});
+				    	}
+				    },
+				    {
+				    	xtype:'button',text:'关闭',handler:function(){
+				    		self.close();
+				    	}
+				    }
+				];
 			}
 			else if (this.action_name == 'detail'){
-				this.title = '详情机构信息';
-				
+				this.title = '机构信息';
 			}
 			
 			techsupport.deparmentmanage.DepartmentWindow.superclass.initComponent.apply(this,arguments);
@@ -155,21 +175,26 @@
 		initComponent : function(ct,position) {
 			var self = this;
 			this.action = {
-					modify:function(record,extra,callback,callback_scope){
-						var para = {};
-						for(var i in record.data){
-							if( typeof record.data[i] != "object")
-								para[self.action_prefix+i]=record.data[i];
-						}
+					modify:function(para,callback,callback_scope){
 						
+						if(this.action_prefix){
+							para = buildSubmitParam({},para,this.action_prefix);
+						}
+							
 						Ext.Ajax.request({
 							url:self.modifyURL,
 							params:para,
 							success:function(response,opt){
 								var data = Ext.decode(response.responseText);
 								//执行回调
-								with(callback_scope){
-									callback(response);
+								
+								if(callback){
+									if(callback_scope)
+										with(callback_scope){
+										callback(response);
+										}
+									else 
+										callback(response);
 								}
 								
 								if(!data.returnNo&&data.returnMessage)
@@ -186,22 +211,26 @@
 							}
 						});
 					},
-					add:function(record,extra,callback,callback_scope){
-						var para = {};
-						for(var i in record.data){
-							if( typeof record.data[i] != "object")
-								para[self.action_prefix+i]=record.data[i];
+					add:function(para,callback,callback_scope){
+						if(this.action_prefix){
+							para = buildSubmitParam({},para,this.action_prefix);
 						}
-						
 						Ext.Ajax.request({
 							url:self.addURL,
 							params:para,
 							success:function(response,opt){
 								var data = Ext.decode(response.responseText);
 								//执行回调
-								with(callback_scope){
-									callback(response);
+								
+								if(callback){
+									if(callback_scope)
+										with(callback_scope){
+										callback(response);
+										}
+									else 
+										callback(response);
 								}
+									
 								if(!data.returnNo&&data.returnMessage)
 									Ext.example.msg('成功',data.returnMessage);
 								if(data.returnNo&&data.returnMessage){
@@ -333,18 +362,8 @@
 						this.ownerCt.detail_store.load({params:param,callback:function(r,options,success){
 							var record = this.getAt(0);
 							var form = self.ownerCt.detail_panel.getForm();
-							
-							form.loadRecord(record);
-							try{
-								form.setValues(
-										{
-											'parent.departname':record.data.parent.departname,
-											'parent.departid':record.data.parent.departid
-										}
-								);
-							}catch (e) {
-								
-							}
+						
+							form.setValues(buildSubmitParam({},record.data));
 						}});
 						
 					}
@@ -374,7 +393,8 @@
 							var window = new techsupport.deparmentmanage.DepartmentWindow({
 								ownerCt:self,action_name:'add',action:self.action,
 								renderTo:self.detail_window,
-								store:self.store
+								store:self.store,
+								dstore:self.detail_store
 							});
 							window.center();
 							window.show();
