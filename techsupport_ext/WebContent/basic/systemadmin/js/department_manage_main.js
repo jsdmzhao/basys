@@ -52,23 +52,31 @@
 				items:[
 				      {name:'departid',fieldLabel:'机构ID',xtype:'hidden'},
 				      {name:'departcode',fieldLabel:'机构代码',allowBlank:false,blankText:'机构代码不能为空',
-				    	  listeners:{
-				    		  blur:function(field){
-					    		    var parentfullcodeField = this.findField('parent.departfullcode');
-									var fullcodeField = this.findField('departfullcode');
-									fullcodeField.setValue(parentfullcodeField.getValue()+field.getValue());
-					    	  }
+				    	  validator:function(val){
+				    		  //验证机构代码是否可用
+				    		  var result = null;
+				    		  Ext.Ajax.request({url:});//###
+				    		  return result;
 				    	  }
 				      },
 				      {name:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
-				      {name:'parent.departname',fieldLabel:'上级机构',allowBlank:false,blankText:'上级机构不能为空'},
-				      {name:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空'},
-				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空'},
-				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空',value:'N'},
-				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空'},
-				      {name:'nodeorder',fieldLabel:'序列',allowBlank:false,blankText:'序列不能为空',xtype:'hidden'}
+				      {name:'parent.departname',fieldLabel:'上级机构',allowBlank:false,blankText:'上级机构不能为空',readOnly:true},
+				      {name:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空',readOnly:true},
+				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空',readOnly:true,hidden:true},
+				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空',value:'N',hidden:true},
+				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空',readOnly:true,hidden:true},
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,blankText:'序列不能为空',readOnly:true,hidden:true}
 				]
 			});
+			//添加FORM事件
+			this.form_panel.getForm().findField('departcode').on('blur',function(field){
+	    				  	var form = this.form_panel.getForm();
+			    		    var parentfullcodeField = form.findField('parent.departfullcode');
+							var fullcodeField = form.findField('departfullcode');
+							fullcodeField.setValue(parentfullcodeField.getValue()+field.getValue());
+			    	  },
+	    			  this
+	    		  );
 			
 			this.items = [this.form_panel];
 			
@@ -77,11 +85,13 @@
 				this.buttons = [
 				     {
 				    	 xtype:'button',text:'保存',handler:function(){
-				    		 var store = self.store;
 				    		 var action = self.action;
-				    		 action.add(self.form_panel.getForm().getValues(),function(){
-				    			 self.close();
-				    		 });
+				    		 if(self.form_panel.getForm().isValid()){
+				    			 action.add(self.form_panel.getForm().getValues(),function(){
+					    			 self.close();
+					    		 });
+				    		 }
+				    		 
 				    	 }
 				     },
 				     {xtype:'button',text:'关闭',handler:function(){
@@ -92,13 +102,17 @@
 			}
 			else if (this.action_name == 'modify'){
 				this.title = '修改机构信息';
+				var form = self.form_panel.getForm();
 				this.buttons = [
 				    {
 				    	xtype:'button',text:'保存',handler:function(){
-//				    		self.form_panel.getForm().getValues()
-				    		self.action.modify(self.form_panel.getForm().getValues(),function(){
-				    			self.close();
-				    		});
+				    		self.form_panel.getForm().findField('nodeorder').setVisable
+				    		if(self.form_panel.getForm().isValid()){
+				    			self.action.modify(self.form_panel.getForm().getValues(),function(){
+					    			self.close();
+					    		});
+				    		}
+				    		
 				    	}
 				    },
 				    {
@@ -189,8 +203,8 @@
 			this.action = {
 					modify:function(para,callback,callback_scope){
 						
-						if(this.action_prefix){
-							para = buildSubmitParam({},para,this.action_prefix);
+						if(self.action_prefix){
+							para = buildSubmitParam({},para,self.action_prefix);
 						}
 							
 						Ext.Ajax.request({
@@ -224,8 +238,8 @@
 						});
 					},
 					add:function(para,callback,callback_scope){
-						if(this.action_prefix){
-							para = buildSubmitParam({},para,this.action_prefix);
+						if(self.action_prefix){
+							para = buildSubmitParam({},para,self.action_prefix);
 						}
 						Ext.Ajax.request({
 							url:self.addURL,
