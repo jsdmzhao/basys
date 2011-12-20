@@ -14,8 +14,7 @@
 	 */
 	techsupport.deparmentmanage.DepartmentWindow = Ext.extend(Ext.Window,{
 		constructor: function(config){
-			this.width = config.width || 500;
-			this.height = config.height || 300;
+			this.width = config.width || 300;
 			this.layout = config.layout;
 			this.title = config.title || '机构';
 			this.id = config.id;
@@ -50,16 +49,27 @@
 				viewConfig:{ forceFit:true},
 				defaults:this.form_panel_default,
 //				面板里面放置机构所需的属性
-				item:[
-				      {fieldName:'departid',fieldLabel:'机构ID',xtype:'hidden'},
-				      {fieldName:'departcode',fieldLabel:'机构代码',allowBlank:false,blankText:'机构代码不能为空'},
-				      {fieldName:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
-				      {fieldName:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空'},
-				      {fieldName:'parent.departid',xtype:'hidden',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空'},
-				      {fieldName:'parent.isleaf',xtype:'hidden',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空'},
-				      {fieldName:'nodeorder',fieldLabel:'序列',allowBlank:false,blankText:'序列不能为空'}
+				items:[
+				      {name:'departid',fieldLabel:'机构ID',xtype:'hidden'},
+				      {name:'departcode',fieldLabel:'机构代码',allowBlank:false,blankText:'机构代码不能为空',
+				    	  listeners:{
+				    		  blur:function(field){
+					    		    var parentfullcodeField = this.findField('parent.departfullcode');
+									var fullcodeField = this.findField('departfullcode');
+									fullcodeField.setValue(parentfullcodeField.getValue()+field.getValue());
+					    	  }
+				    	  }
+				      },
+				      {name:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
+				      {name:'parent.departname',fieldLabel:'上级机构',allowBlank:false,blankText:'上级机构不能为空'},
+				      {name:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空'},
+				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空'},
+				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空',value:'N'},
+				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空'},
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:false,blankText:'序列不能为空',xtype:'hidden'}
 				]
 			});
+			
 			this.items = [this.form_panel];
 			
 			if(this.action_name=='add'){
@@ -70,7 +80,6 @@
 				    		 var store = self.store;
 				    		 var action = self.action;
 				    		 action.add(self.form_panel.getForm().getValues(),function(){
-				    			 store.load();
 				    			 self.close();
 				    		 });
 				    	 }
@@ -79,6 +88,7 @@
 				    	 self.close();
 				     }}
 				];
+
 			}
 			else if (this.action_name == 'modify'){
 				this.title = '修改机构信息';
@@ -87,7 +97,6 @@
 				    	xtype:'button',text:'保存',handler:function(){
 //				    		self.form_panel.getForm().getValues()
 				    		self.action.modify(self.form_panel.getForm().getValues(),function(){
-				    			self.store.load();
 				    			self.close();
 				    		});
 				    	}
@@ -104,6 +113,9 @@
 			}
 			
 			techsupport.deparmentmanage.DepartmentWindow.superclass.initComponent.apply(this,arguments);
+		},
+		afterRender:function(ct,position){
+			techsupport.deparmentmanage.DepartmentWindow.superclass.afterRender.apply(this,arguments);
 		}
 	});
 	
@@ -186,8 +198,8 @@
 							params:para,
 							success:function(response,opt){
 								var data = Ext.decode(response.responseText);
-								//执行回调
 								
+								//执行回调
 								if(callback){
 									if(callback_scope)
 										with(callback_scope){
@@ -230,7 +242,7 @@
 									else 
 										callback(response);
 								}
-									
+								
 								if(!data.returnNo&&data.returnMessage)
 									Ext.example.msg('成功',data.returnMessage);
 								if(data.returnNo&&data.returnMessage){
@@ -390,14 +402,28 @@
 				tbar:[
 						{xtype:'button',text:'添加',handler:function(){
 //							弹出添加窗口
-							var window = new techsupport.deparmentmanage.DepartmentWindow({
-								ownerCt:self,action_name:'add',action:self.action,
-								renderTo:self.detail_window,
-								store:self.store,
-								dstore:self.detail_store
-							});
-							window.center();
-							window.show();
+//							判断是不是已经点击了左边的机构树
+							if(self.current_treenode_id && self.current_treenode_id > 0){
+								var window = new techsupport.deparmentmanage.DepartmentWindow({
+									ownerCt:self,action_name:'add',action:self.action,
+									renderTo:self.detail_window,
+									store:self.store,
+									dstore:self.detail_store
+								});
+								window.center();
+								window.show();
+//								初始化添加机构时候的必须数据
+								var record = self.detail_store.getAt(0);
+								var form = window.form_panel.getForm();
+								form.setValues({
+											'parent.departid':record.data.departid,
+											'parent.departname':record.data.departname,
+											'parent.departfullcode':record.data.departfullcode
+										});
+							}
+							else{
+								Ext.MessageBox.alert("提示","请选择树形菜单中的机构");
+							}
 						}},
 						'-',
 						{xtype:'button',text:'修改',handler:function(){
@@ -418,7 +444,7 @@
 							/* 保存当前机构 */
 							var record = this.ownerCt.ownerCt.ownerCt.ownerCt.detail_store.getAt(0);
 							this.ownerCt.ownerCt.ownerCt.ownerCt.detail_panel.getForm().updateRecord(record);
-							this.ownerCt.ownerCt.ownerCt.ownerCt.action.modify(record);
+							this.ownerCt.ownerCt.ownerCt.ownerCt.action.modify(record.data);
 						}}
 					],
 					bbar:new Ext.PagingToolbar({
