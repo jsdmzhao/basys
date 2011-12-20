@@ -7,7 +7,8 @@
 	href="<%=javascript_home%>/ext/resources/css/xtheme-gray.css" />
 <!-- GC -->
 <%--     <link rel="stylesheet" type="text/css" href="<%=javascript_home %>/ext/examples/shared/icons/silk.css" /> --%>
-
+<link rel="stylesheet" type="text/css"
+	href="<%=javascript_home%>/../page_template/layout/css/main_window_style1.css" />
 <!-- LIBS -->
 <script type="text/javascript"
 	src="<%=javascript_home%>/ext/adapter/ext/ext-base.js"></script>
