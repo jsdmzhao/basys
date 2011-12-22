@@ -17,9 +17,10 @@
 <script type="text/javascript"
 	src="<%=javascript_home%>/ext/ext-all-debug.js"></script>
 <script type="text/javascript"
-	src="<%=javascript_home%>/ext/jit.js"></script>
-<script type="text/javascript"
 	src="<%=javascript_home%>/ext/ext-basex.js"></script>
+<script type="text/javascript"
+	src="<%=javascript_home%>/ext/jit.js"></script>
+
 <!-- LOADER -->
 <script type="text/javascript"
 	src="<%=javascript_home%>/ext/src/ext-core/src/core/Loader.js"></script>
