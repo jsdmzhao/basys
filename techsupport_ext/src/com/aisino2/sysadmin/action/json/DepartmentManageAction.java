@@ -190,6 +190,32 @@ public class DepartmentManageAction extends PageAction {
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 效验机构代码是否可用
+	 * @return
+	 * @throws Exception
+	 */
+	public String check_departcode() throws Exception{
+		try{
+			if(department == null || department.getDepartcode() == null)
+				throw new RuntimeException("机构代码为空");
+			boolean result  =  this.department_service.check_departcode(department);
+			if(result)
+				returnNo = 0;
+			else
+				returnNo = 1;
+		}catch (Exception e) {
+			returnNo = 1;
+			returnMessage = "效验机构代码发生了错误";
+			log.error(e);
+			if(log.isDebugEnabled()){
+				log.debug(e,e.fillInStackTrace());
+				returnMessageDebug = e.getMessage();
+			}
+		}
+		return SUCCESS;
+	}
 
 	@Resource(name = "departmentServiceImpl")
 	public void setDepartment_service(IDepartmentService department_service) {

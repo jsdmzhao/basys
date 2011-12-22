@@ -120,5 +120,14 @@ public interface IDepartmentService {
 	  
 	  /** @param 机构(t_department) 多条查询 */
 		List<Department> getListAllDepartment(Department department);
+		
+	  /**
+	   * 效验机构代码是否可用
+	 * @param department
+	 * @return
+	 */
+	boolean check_departcode(Department department);
+	
+	Integer getNextDepartlevel(Department department);
 	
 }

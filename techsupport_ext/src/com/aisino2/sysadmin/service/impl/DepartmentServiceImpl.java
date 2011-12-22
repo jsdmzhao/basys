@@ -21,7 +21,14 @@ public class DepartmentServiceImpl implements IDepartmentService {
 //		设置序列
 		if(department.getNodeorder()==null)
 			department.setNodeorder(getNextNodeorder(department));
-		
+//		设置机构等级
+		if(department.getDepartlevel()==null){
+			department.setDepartlevel(getNextDepartlevel(department));
+		}
+//		更新上级机构字典信息
+		if(department.getParent()!=null){
+			this.department_dao.updateDepartment(department.getParent());
+		}
 		this.department_dao.insertDepartment(department);
 	}
 
@@ -119,6 +126,24 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	@Resource(name="departmentDaoImpl")
 	public void setDepartment_dao(IDepartmentDao department_dao) {
 		this.department_dao = department_dao;
+	}
+
+	public boolean check_departcode(Department department) {
+		if(department.getDepartcode()==null || department.getDepartcode().equals(""))
+			throw new RuntimeException("机构代码为空");
+		return this.department_dao.check_departcode(department);
+	}
+	
+	public Integer getNextDepartlevel(Department department){
+		if(department==null)
+			throw new RuntimeException("机构为空");
+		Department d = null;
+		if(department.getParent()!=null){
+			d = this.department_dao.getDepartment(department.getParent());
+			return d.getDepartlevel()+1;
+		}
+		else
+			return 1;
 	}
 
 }

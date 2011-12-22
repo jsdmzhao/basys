@@ -120,4 +120,7 @@ public interface IDepartmentDao {
 	/** @param 机构(t_department) 多条查询 */
 	List getListAllDepartment(Department department);
 	
+	boolean check_departcode(Department department);
+	
+	
 }
