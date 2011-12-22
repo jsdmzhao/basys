@@ -210,7 +210,7 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 	}
 
 	public Integer getNextNodeorder(Department department) {
-		String hql = "select max(t.nodeorder)+1 from Department t where t.parent = ?";
+		String hql = "select max(nvl(t.nodeorder,0))+1 from Department t where t.parent = ?";
 		List lst = this.getHibernateTemplate().find(hql, department.getParent());
 		return (Integer)lst.get(0);
 	}
@@ -218,6 +218,14 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 	public List getListAllDepartment(Department department) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean check_departcode(Department department) {
+		String hql = "select count(t) from Department t where t.departcode = ?";
+		List<Long> list = this.getHibernateTemplate().find(hql,department.getDepartcode());
+		if(list.size()>0 && list.get(0)>0)
+			return false;
+		return true;
 	}
 
 }

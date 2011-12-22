@@ -51,21 +51,37 @@
 //				面板里面放置机构所需的属性
 				items:[
 				      {name:'departid',fieldLabel:'机构ID',xtype:'hidden'},
+				      {name:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
 				      {name:'departcode',fieldLabel:'机构代码',allowBlank:false,blankText:'机构代码不能为空',
+				    	  validationEvent:'blur',
 				    	  validator:function(val){
 				    		  //验证机构代码是否可用
-				    		  var result = null;
-				    		  Ext.Ajax.request({url:});//###
-				    		  return result;
+				    		  var result = false;
+				    		  Ext.Ajax.request({url:context_path+'/sysadminDefault/check_departcode_departmentmanage.action',
+				    			  params:{'department.departcode':val},
+				    			  async:false,
+				    			  success:function(response,opt){
+				    				  var data = Ext.decode(response.responseText);
+				    				  if(!data.returnNo)
+				    					  result = true;
+				    				  else
+				    					  result = false;
+				    			  }
+				    		  });
+				    		  if(result)
+				    			  return true;
+				    		  else
+				    			  return '机构代码不可用';
 				    	  }
 				      },
-				      {name:'departname',fieldLabel:'机构名称',allowBlank:false,blankText:'机构名称不能空'},
+				      {name:'departlevel',fieldLabel:'机构级别',allowBlank:false,blankText:'机构级别不能空',readOnly:true,hidden:true},
 				      {name:'parent.departname',fieldLabel:'上级机构',allowBlank:false,blankText:'上级机构不能为空',readOnly:true},
 				      {name:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空',readOnly:true},
 				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空',readOnly:true,hidden:true},
 				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空',value:'N',hidden:true},
 				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空',readOnly:true,hidden:true},
-				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,blankText:'序列不能为空',readOnly:true,hidden:true}
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,blankText:'序列不能为空',readOnly:true,hidden:true},
+				      
 				]
 			});
 			//添加FORM事件
@@ -201,7 +217,7 @@
 		initComponent : function(ct,position) {
 			var self = this;
 			this.action = {
-					modify:function(para,callback,callback_scope){
+					modify:function(para,success_callback){
 						
 						if(self.action_prefix){
 							para = buildSubmitParam({},para,self.action_prefix);
@@ -213,18 +229,17 @@
 							success:function(response,opt){
 								var data = Ext.decode(response.responseText);
 								
-								//执行回调
-								if(callback){
-									if(callback_scope)
-										with(callback_scope){
-										callback(response);
-										}
-									else 
-										callback(response);
-								}
 								
-								if(!data.returnNo&&data.returnMessage)
+								if(!data.returnNo&&data.returnMessage){
+									
+									//执行回调
+									if(success_callback){
+											callback(response);
+									}
+									self.store.load();
 									Ext.example.msg('成功',data.returnMessage);
+								}
+									
 								if(data.returnNo&&data.returnMessage){
 									Ext.example.msg('错误',data.returnMessage);
 									if(data.returnMessageDebug)
@@ -237,7 +252,7 @@
 							}
 						});
 					},
-					add:function(para,callback,callback_scope){
+					add:function(para,success_callback){
 						if(self.action_prefix){
 							para = buildSubmitParam({},para,self.action_prefix);
 						}
@@ -246,19 +261,16 @@
 							params:para,
 							success:function(response,opt){
 								var data = Ext.decode(response.responseText);
-								//执行回调
 								
-								if(callback){
-									if(callback_scope)
-										with(callback_scope){
-										callback(response);
-										}
-									else 
-										callback(response);
-								}
-								
-								if(!data.returnNo&&data.returnMessage)
+								if(!data.returnNo&&data.returnMessage){
 									Ext.example.msg('成功',data.returnMessage);
+									//执行回调
+									if(success_callback){
+											callback(response);
+									}
+									self.store.load();
+								}
+									
 								if(data.returnNo&&data.returnMessage){
 									Ext.example.msg('错误',data.returnMessage);
 									if(data.returnMessageDebug)
@@ -444,15 +456,25 @@
 //							弹出修改窗口
 						}},
 						'-',
-						{xtype:'button',text:'删除',handler:function(){}},
+						{xtype:'button',text:'删除',handler:function(){
+//							执行删除动作
+						}},
 						'-',
-						{xtype:'button',text:'置顶',handler:function(){}},
+						{xtype:'button',text:'置顶',handler:function(){
+//							执行置顶动作
+						}},
 						'-',
-						{xtype:'button',text:'上移',handler:function(){}},
+						{xtype:'button',text:'上移',handler:function(){
+//							执行上移动作
+						}},
 						'-',
-						{xtype:'button',text:'下移',handler:function(){}},
+						{xtype:'button',text:'下移',handler:function(){
+//							执行下移动作
+						}},
 						'-',
-						{xtype:'button',text:'置底',handler:function(){}},
+						{xtype:'button',text:'置底',handler:function(){
+//							执行置底动作
+						}},
 						'-','-',
 						{xtype:'button',text:'保存',handler:function(){ 
 							/* 保存当前机构 */

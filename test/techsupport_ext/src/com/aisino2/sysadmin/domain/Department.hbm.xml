@@ -38,7 +38,7 @@
             <column name="DEPARTBREVITYCODE" />
         </property>
         <many-to-one name="parent"
-	class="com.aisino2.sysadmin.domain.Department" insert="false" update="false" lazy="false">
+	class="com.aisino2.sysadmin.domain.Department" lazy="false">
         	<column name="PARENTDEPARTID"></column>
         </many-to-one>
     </class>
