@@ -21,6 +21,12 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "t_department")
 public class Department implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6158476935265483041L;
+
+
 	public Department(Integer departid, String departcode, String departname,
 			Integer departlevel, String departfullcode,
 			Integer nodeorder, String isleaf, String departsimplepin,

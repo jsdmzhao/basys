@@ -27,7 +27,9 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		}
 //		更新上级机构字典信息
 		if(department.getParent()!=null){
-			this.department_dao.updateDepartment(department.getParent());
+			Department parent = this.department_dao.getDepartment(department.getParent());
+			parent.setIsleaf("N");
+			this.department_dao.updateDepartment(parent);
 		}
 		this.department_dao.insertDepartment(department);
 	}
@@ -35,6 +37,11 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	@Transactional
 	public void deleteDepartment(Department department) {
 		this.department_dao.deleteDepartment(department);
+		if(department.getParent()!=null)
+			if(!this.department_dao.checkChild(department.getParent())){
+				department.getParent().setIsleaf("Y");
+				this.department_dao.updateCacheDepartment(department.getParent());
+			}
 	}
 
 	@Transactional
