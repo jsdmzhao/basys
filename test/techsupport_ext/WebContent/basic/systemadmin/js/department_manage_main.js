@@ -74,13 +74,13 @@
 				    			  return '机构代码不可用';
 				    	  }
 				      },
-				      {name:'departlevel',fieldLabel:'机构级别',allowBlank:false,blankText:'机构级别不能空',readOnly:true,hidden:true},
+				      {name:'departlevel',fieldLabel:'机构级别',readOnly:true,hidden:true},
 				      {name:'parent.departname',fieldLabel:'上级机构',allowBlank:false,blankText:'上级机构不能为空',readOnly:true},
 				      {name:'departfullcode',fieldLabel:'机构全码',allowBlank:false,blankText:'机构全码不能为空',readOnly:true},
 				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空',readOnly:true,hidden:true},
-				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',allowBlank:false,blankText:'上级机构叶子不能为空',value:'N',hidden:true},
+				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',hidden:true,readOnly:true},
 				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空',readOnly:true,hidden:true},
-				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,blankText:'序列不能为空',readOnly:true,hidden:true},
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,readOnly:true,regex:/^\d*$/,regexText:'序列必须为数字',hidden:true},
 				      
 				]
 			});
@@ -103,9 +103,7 @@
 				    	 xtype:'button',text:'保存',handler:function(){
 				    		 var action = self.action;
 				    		 if(self.form_panel.getForm().isValid()){
-				    			 action.add(self.form_panel.getForm().getValues(),function(){
-					    			 self.close();
-					    		 });
+				    			 action.add(self.form_panel.getForm().getValues());
 				    		 }
 				    		 
 				    	 }
@@ -119,6 +117,12 @@
 			else if (this.action_name == 'modify'){
 				this.title = '修改机构信息';
 				var form = self.form_panel.getForm();
+				//显示序列
+				var itm = form.findField("nodeorder");
+				itm.visible(true);
+				itm.setReadOnly(false);
+				itm.show();
+				//
 				this.buttons = [
 				    {
 				    	xtype:'button',text:'保存',handler:function(){
@@ -204,11 +208,11 @@
 			this.queryURL=context_path+'/sysadminDefault/querylist_departmentmanage.action';
 			this.detailURL=context_path+'/sysadminDefault/query_departmentmanage.action';
 			
-			this.action_prefix = 'department.';
-			this.remove_prefix = 'department_list[i].';
+			this.actionPrefix = 'department.';
+			this.removePrefix = 'department_list[i]';
 			
 			//详情弹出窗口容器
-			this.detail_window = config.detail_window || Ext.getBody();
+			this.detailWindowCt = config.detailWindowCt || Ext.getBody();
 			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
 					.apply(this, arguments);
 			
@@ -217,71 +221,27 @@
 		initComponent : function(ct,position) {
 			var self = this;
 			this.action = {
-					modify:function(para,success_callback){
+					remove:function(records){
+						var para = [];
+						for(var i=0;i< records.length;i++){
+							para.push(records[i].data);
+						}
 						
-						if(self.action_prefix){
-							para = buildSubmitParam({},para,self.action_prefix);
-						}
-							
-						Ext.Ajax.request({
-							url:self.modifyURL,
-							params:para,
-							success:function(response,opt){
-								var data = Ext.decode(response.responseText);
-								
-								
-								if(!data.returnNo&&data.returnMessage){
-									
-									//执行回调
-									if(success_callback){
-											callback(response);
-									}
-									self.store.load();
-									Ext.example.msg('成功',data.returnMessage);
-								}
-									
-								if(data.returnNo&&data.returnMessage){
-									Ext.example.msg('错误',data.returnMessage);
-									if(data.returnMessageDebug)
-										Ext.example.msg('错误',data.returnMessageDebug);
-								}
-									
-							},
-							failure:function(response,opt){
-								Ext.example.msg('错误',response.responseText);
-							}
-						});
+						Ext.Ajax.simpleSubmit({url:self.removeURL,para:para,actionPrefix:self.removePrefix,successCallback:function(data){
+							self.store.load();
+						}});
 					},
-					add:function(para,success_callback){
-						if(self.action_prefix){
-							para = buildSubmitParam({},para,self.action_prefix);
-						}
-						Ext.Ajax.request({
-							url:self.addURL,
-							params:para,
-							success:function(response,opt){
-								var data = Ext.decode(response.responseText);
-								
-								if(!data.returnNo&&data.returnMessage){
-									Ext.example.msg('成功',data.returnMessage);
-									//执行回调
-									if(success_callback){
-											callback(response);
-									}
-									self.store.load();
-								}
-									
-								if(data.returnNo&&data.returnMessage){
-									Ext.example.msg('错误',data.returnMessage);
-									if(data.returnMessageDebug)
-										Ext.example.msg('错误',data.returnMessageDebug);
-								}
-									
-							},
-							failure:function(response,opt){
-								Ext.example.msg('错误',response.responseText);
-							}
-						});
+					modify:function(para){
+						Ext.Ajax.simpleSubmit({url:self.modifyURL,para:para,actionPrefix:self.actionPrefix,successCallback:function(data){
+							self.store.load();
+							self.window.close();
+						}});
+					},
+					add:function(para){
+						Ext.Ajax.simpleSubmit({url:self.addURL,para:para,actionPrefix:self.actionPrefix,successCallback:function(data){
+							self.store.load();
+							self.window.close();
+						}});
 					}
 			};
 			this.store =  new Ext.data.JsonStore( {
@@ -314,7 +274,7 @@
 								dir:this.dir,
 								sort:this.sort
 							});
-							options.params[this.action_prefix+'parent.departid']=this.current_treenode_id;
+							options.params[this.actionPrefix+'parent.departid']=this.current_treenode_id;
 						},
 						scope:this
 					}
@@ -354,8 +314,8 @@
 				listeners:{
 					beforeload:{
 						fn:function(loader,node){
-							loader.baseParams[this.action_prefix+'departid'] = node.id;
-							loader.baseParams[this.action_prefix+'departlevel'] = this.tree_level;
+							loader.baseParams[this.actionPrefix+'departid'] = node.id;
+							loader.baseParams[this.actionPrefix+'departlevel'] = this.tree_level;
 						},
 						scope:this
 					}
@@ -394,12 +354,11 @@
 									}
 								}
 						);
-						var self = this;
 						var param={};
-						param[this.ownerCt.action_prefix+'departid']=node.id;
+						param[this.ownerCt.actionPrefix+'departid']=node.id;
 						this.ownerCt.detail_store.load({params:param,callback:function(r,options,success){
 							var record = this.getAt(0);
-							var form = self.ownerCt.detail_panel.getForm();
+							var form = self.detail_panel.getForm();
 						
 							form.setValues(buildSubmitParam({},record.data));
 						}});
@@ -430,17 +389,17 @@
 //							弹出添加窗口
 //							判断是不是已经点击了左边的机构树
 							if(self.current_treenode_id && self.current_treenode_id > 0){
-								var window = new techsupport.deparmentmanage.DepartmentWindow({
+								 self.window = new techsupport.deparmentmanage.DepartmentWindow({
 									ownerCt:self,action_name:'add',action:self.action,
-									renderTo:self.detail_window,
+									renderTo:self.detailWindowCt,
 									store:self.store,
 									dstore:self.detail_store
 								});
-								window.center();
-								window.show();
+								 self.window.center();
+								 self.window.show();
 //								初始化添加机构时候的必须数据
 								var record = self.detail_store.getAt(0);
-								var form = window.form_panel.getForm();
+								var form = self.window.form_panel.getForm();
 								form.setValues({
 											'parent.departid':record.data.departid,
 											'parent.departname':record.data.departname,
@@ -454,10 +413,34 @@
 						'-',
 						{xtype:'button',text:'修改',handler:function(){
 //							弹出修改窗口
+							var record = self.gridpanel.getSelectionModel().getSelected();
+							if(record){
+								self.window = new techsupport.deparmentmanage.DepartmentWindow({
+									ownerCt:self,action_name:'modify',action:self.action,
+									renderTo:self.detailWindowCt,
+									store:self.store,
+									dstore:self.detail_store
+								});
+								self.window.center();
+								self.window.show();
+								
+								
+								var form = self.window.form_panel.getForm();
+								form.setValues(buildSubmitParam({},record.data));
+							}
+							else
+								Ext.MessageBox.alert("提示","请选择需要修改的记录");
+							
 						}},
 						'-',
 						{xtype:'button',text:'删除',handler:function(){
 //							执行删除动作
+							var records = self.gridpanel.getSelectionModel().getSelections();
+							if(records && records.length > 0){
+								self.action.remove(records);
+							}
+							else
+								Ext.MessageBox.alert("提示","请选择需要修改的记录");
 						}},
 						'-',
 						{xtype:'button',text:'置顶',handler:function(){
@@ -483,19 +466,20 @@
 							this.ownerCt.ownerCt.ownerCt.ownerCt.action.modify(record.data);
 						}}
 					],
-					bbar:new Ext.PagingToolbar({
+					bbar:new Ext.AsinoPagingToolBar({
 						store:this.store,
 						displayInfo:true,
-						pageSize:this.pagesize,
-						 afterPageText: '共{0}页',
-                         beforePageText: '当前页',
-                         lastText:"尾页",   
-                         nextText :"下一页",   
-                         prevText :"上一页",   
-                         firstText :"首页",   
-                         refreshText:"刷新页面",  
-						emptyMsg : '没有数据显示',
-						displayMsg : '{0}-{1}条,总条数{2}'
+						pageSize:this.pagesize
+//						,
+//						 afterPageText: '共{0}页',
+//                        beforePageText: '当前页',
+//                        lastText:"尾页",   
+//                        nextText :"下一页",   
+//                        prevText :"上一页",   
+//                        firstText :"首页",   
+//                        refreshText:"刷新页面",  
+//						emptyMsg : '没有数据显示',
+//						displayMsg : '{0}-{1}条,总条数{2}'
 					})
 			});
 //			-------------------------------子机构面板------------------------------------
