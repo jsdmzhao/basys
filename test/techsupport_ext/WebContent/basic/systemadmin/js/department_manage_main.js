@@ -126,7 +126,7 @@
 				this.buttons = [
 				    {
 				    	xtype:'button',text:'保存',handler:function(){
-				    		self.form_panel.getForm().findField('nodeorder').setVisable
+				    		self.form_panel.getForm().findField('nodeorder').setVisable(true);
 				    		if(self.form_panel.getForm().isValid()){
 				    			self.action.modify(self.form_panel.getForm().getValues(),function(){
 					    			self.close();
@@ -232,7 +232,10 @@
 								self.store.load();
 								var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
 								
-								self.treeloader.load(currentNode,function(){
+								self.treeloader.load(currentNode,function(node){
+									if(node.childNodes.length=0)
+										node.leaf=true;
+									
 									currentNode.expand();
 								});
 							}
@@ -244,6 +247,11 @@
 							self.window.close();
 							var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
 							self.treeloader.load(currentNode,function(){
+								if(currentNode.childNodes.length>0){
+									currentNode.leaf=false;
+								}
+								else
+									currentNode.leaf=true;
 								currentNode.expand();
 							});
 						}});
@@ -254,7 +262,11 @@
 							self.window.close();
 							var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
 							self.treeloader.load(currentNode,function(){
+								if(currentNode.childNodes.length>0){
+									currentNode.leaf=false;
+								}
 								currentNode.expand();
+								
 							});
 						}});
 					}
