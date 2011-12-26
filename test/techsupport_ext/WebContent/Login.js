@@ -5,7 +5,14 @@ function  LoginPageInit(){
     Ext.form.Field.prototype.msgTarget = 'qtip';
 
     var bd = Ext.getBody();
-
+	  /**
+     * 回车监听
+     * */
+    function enterListener(val,evt){
+    	if(evt.keyCode == 13){
+    		LoginForm.getForm().submit();
+    	}
+    }
 
     var LoginForm = new Ext.FormPanel({
         labelWidth: 75, // label settings here cascade unless overridden
@@ -26,13 +33,21 @@ function  LoginPageInit(){
                 fieldLabel: '用户名',
                 name: 'user.useraccount',
                 allowBlank:false,
-                blankText:'用户名不能为空'
+                blankText:'用户名不能为空',
+                enableKeyEvents:true,
+                listeners:{
+                	keyup:enterListener
+                }
             },{
                 fieldLabel: '密码',
                 name: 'user.password',
                 allowBlank:false,
                 blankText:'密码不能为空',
-                inputType:'password'
+                inputType:'password',
+                enableKeyEvents:true,
+                listeners:{
+                	keyup:enterListener
+                }
             }
         ]
     });
