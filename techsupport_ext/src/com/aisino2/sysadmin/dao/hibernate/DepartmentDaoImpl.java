@@ -181,32 +181,26 @@ public class DepartmentDaoImpl extends TechSupportBaseDaoImpl implements
 		return null;
 	}
 
-	public boolean checkChild(Department depart) {
-		String hql = "select count(t) from Department t where 1=1 ";
-		List<Object> para_list = new ArrayList<Object>();
-		if(depart!=null){
-			if(depart.getDepartid()!=null){
-				hql += " and t.parentdepartid = ?";
-				para_list.add(depart.getDepartid());
+	public boolean checkChild(final Department depart) {
+		return this.getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+
+			public Boolean doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Criteria q = session.createCriteria(Department.class,"t");
+				if(depart == null || depart.getDepartid()==null)
+					q.add(Restrictions.isNull("t.parent"));
+				else
+					q.add(Restrictions.eq("t.parent", depart));
+				q.setProjection(Projections.rowCount());
+				
+				Long count = (Long) q.uniqueResult();
+				if(count > 0)
+					return true;
+				else
+					return false;
 			}
-			else{
-				hql += " and t.parentdepartid is null";
-			}
-			
-			if(depart.getDepartlevel()!=null){
-				hql += " and t.departlevel <= ?";
-				para_list.add(depart.getDepartlevel());
-			}
-		}
-		@SuppressWarnings("rawtypes")
-		List lst = this.getHibernateTemplate().find(hql,para_list);
+		});
 		
-		Long count = 0l;
-		if(lst.size()>0)
-			count = (Long)lst.get(0);
-		if(count!=0)
-			return true;
-		return false;
 	}
 
 	public Integer getNextNodeorder(Department department) {
