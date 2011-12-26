@@ -40,7 +40,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		if(department.getParent()!=null)
 			if(!this.department_dao.checkChild(department.getParent())){
 				department.getParent().setIsleaf("Y");
-				this.department_dao.updateCacheDepartment(department.getParent());
+				this.department_dao.updateDepartment(department.getParent());
 			}
 	}
 

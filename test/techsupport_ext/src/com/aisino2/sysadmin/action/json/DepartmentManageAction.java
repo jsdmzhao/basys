@@ -1,11 +1,10 @@
 package com.aisino2.sysadmin.action.json;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import net.sf.json.JSONArray;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -146,10 +145,11 @@ public class DepartmentManageAction extends PageAction {
 			if(department_list==null || department_list.isEmpty())
 				throw new RuntimeException("未选择需要删除的机构");
 			this.returnMessageDebug="";
+			List<Department> removedList = new ArrayList<Department>();
 			for(Department d : department_list){
 				try{
 					this.department_service.deleteDepartment(d);
-					department_list.remove(d);
+					removedList.add(d);
 				}
 				catch (Exception e) {
 					log.error(e);
@@ -157,8 +157,10 @@ public class DepartmentManageAction extends PageAction {
 				}
 			}
 			
-			if(!department_list.isEmpty())
+			if(department_list.size() != removedList.size() )
 				throw new RuntimeException("未全部删除，部分无法删除");
+			this.returnNo=0;
+			this.returnMessage="已删除选择的记录";
 		}catch (Exception e) {
 			this.returnNo=1;
 			this.returnMessage="删除发生了错误";
