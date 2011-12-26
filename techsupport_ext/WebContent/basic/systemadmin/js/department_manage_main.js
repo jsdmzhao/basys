@@ -80,7 +80,7 @@
 				      {name:'parent.departid',fieldLabel:'上级机构ID',allowBlank:false,blankText:'上级机构ID不能为空',readOnly:true,hidden:true},
 				      {name:'parent.isleaf',fieldLabel:'上级机构叶子',hidden:true,readOnly:true},
 				      {name:'parent.departfullcode',fieldLabel:'上级机构全码',allowBlank:false,blankText:'上级机构全码不能为空',readOnly:true,hidden:true},
-				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,readOnly:true,regex:/^\d*$/,regexText:'序列必须为数字',hidden:true},
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,readOnly:true,regex:/^\d*$/,regexText:'序列必须为数字',hidden:true}
 				      
 				]
 			});
@@ -522,14 +522,14 @@
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'departname',fieldLabel:this.title_base+'名称'},
+				    	          {name:'departname',fieldLabel:this.title_base+'名称'}
 				    	   ]
 				       },
 				       {
 				    	   layout:'form',
 				    	   defaults:detail_panel_items_defaults,
 				    	   items:[
-				    	          {name:'departfullcode',fieldLabel:this.title_base+'全码',readOnly:true},
+				    	          {name:'departfullcode',fieldLabel:this.title_base+'全码',readOnly:true}
 				    	   ]
 				       },
 				       {
