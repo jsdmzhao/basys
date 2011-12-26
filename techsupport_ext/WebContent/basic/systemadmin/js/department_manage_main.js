@@ -89,7 +89,7 @@
 	    				  	var form = this.form_panel.getForm();
 			    		    var parentfullcodeField = form.findField('parent.departfullcode');
 							var fullcodeField = form.findField('departfullcode');
-							fullcodeField.setValue(parentfullcodeField.getValue()+field.getValue());
+							fullcodeField.setValue(parentfullcodeField.getValue()+field.getValue()+'.');
 			    	  },
 	    			  this
 	    		  );
@@ -227,20 +227,35 @@
 							para.push(records[i].data);
 						}
 						
-						Ext.Ajax.simpleSubmit({url:self.removeURL,para:para,actionPrefix:self.removePrefix,successCallback:function(data){
-							self.store.load();
-						}});
+						Ext.Ajax.simpleSubmit({url:self.removeURL,para:para,actionPrefix:self.removePrefix,
+							successCallback:function(data){
+								self.store.load();
+								var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
+								
+								self.treeloader.load(currentNode,function(){
+									currentNode.expand();
+								});
+							}
+						});
 					},
 					modify:function(para){
 						Ext.Ajax.simpleSubmit({url:self.modifyURL,para:para,actionPrefix:self.actionPrefix,successCallback:function(data){
 							self.store.load();
 							self.window.close();
+							var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
+							self.treeloader.load(currentNode,function(){
+								currentNode.expand();
+							});
 						}});
 					},
 					add:function(para){
 						Ext.Ajax.simpleSubmit({url:self.addURL,para:para,actionPrefix:self.actionPrefix,successCallback:function(data){
 							self.store.load();
 							self.window.close();
+							var currentNode = self.treepanel.getNodeById(self.current_treenode_id);
+							self.treeloader.load(currentNode,function(){
+								currentNode.expand();
+							});
 						}});
 					}
 			};
