@@ -364,7 +364,7 @@
 					enableRowBody:true
 				},
 				loader:this.treeloader,
-				root:{id:'0',text:'顶端',nodeType: 'async',attributes:{'departid':0,departlevel:this.tree_level}},
+				root:{id:'0',text:'顶端',nodeType: 'async'},
 				listeners:{
 					click:function(node,evt){
 						//点击动作
@@ -382,7 +382,7 @@
 								}
 						);
 						var param={};
-						param[this.ownerCt.actionPrefix+'departid']=node.id;
+						param[this.ownerCt.actionPrefix+self.store.idProperty]=node.id;
 						this.ownerCt.detail_store.load({params:param,callback:function(r,options,success){
 							var record = this.getAt(0);
 							var form = self.detail_panel.getForm();
@@ -396,6 +396,20 @@
 
 //			子机构面板
 			var sm = new Ext.grid.CheckboxSelectionModel();
+			this.columnModel = new Ext.grid.ColumnModel({
+			    columns:[
+				    sm,
+					{header: '机构ID', dataIndex: 'departid', sortable: false,width:100},
+					{header: this.title_base+'代码',dataIndex:'departfullcode',width:300},
+					{header: this.title_base+'名称',dataIndex:'departname',width:300},
+					{header:'上级'+this.title_base,dataIndex:'parent',renderer:function(obj){return obj.departname;},width:300}
+				],
+			    defaults: {
+			        sortable: false,
+			        menuDisabled: false
+			    }
+			    
+			});
 			this.gridpanel = new Ext.grid.GridPanel({
 				id : this.id+'_grid',
 				store : this.store,
@@ -404,13 +418,7 @@
 					forceFit:true
 				},
 				sm:sm,
-				columns:[
-				    sm,
-					{header: '机构ID', dataIndex: 'departid', sortable: false,width:100},
-					{header: this.title_base+'代码',dataIndex:'departfullcode',width:300},
-					{header: this.title_base+'名称',dataIndex:'departname',width:300},
-					{header:'上级'+this.title_base,dataIndex:'parent',renderer:function(obj){return obj.departname;},width:300}
-				],
+				cm:this.columnModel,
 				tbar:[
 						{xtype:'button',text:'添加',handler:function(){
 //							弹出添加窗口
@@ -497,16 +505,6 @@
 						store:this.store,
 						displayInfo:true,
 						pageSize:this.pagesize
-//						,
-//						 afterPageText: '共{0}页',
-//                        beforePageText: '当前页',
-//                        lastText:"尾页",   
-//                        nextText :"下一页",   
-//                        prevText :"上一页",   
-//                        firstText :"首页",   
-//                        refreshText:"刷新页面",  
-//						emptyMsg : '没有数据显示',
-//						displayMsg : '{0}-{1}条,总条数{2}'
 					})
 			});
 //			-------------------------------子机构面板------------------------------------
