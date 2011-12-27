@@ -18,7 +18,12 @@
 <!-- 		<action name="*_rolemanage" class="roleManageAction" method={1}> -->
 <!-- 			<result type="json"></result> -->
 <!-- 		</action> -->
-		
+<!-- 		系统管理 -->
+		<action name="*_systemmanage" class="systemManageAction" method="{1}">
+			<result type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
 		<action name="*_tree" class="treeMappingAction" method="{1}">
 <!-- 			跳转机构管理界面 -->
 			<result name="department">
@@ -31,6 +36,14 @@
 <!-- 			跳转角色管理界面 -->
 			<result name="role">
 				/basic/systemadmin/role_manage_main.jsp
+			</result>
+<!-- 			跳转系统管理界面 -->
+			<result name="system">
+				/basic/systemadmin/systemManageMain.jsp
+			</result>
+<!-- 			跳转到功能管理界面 -->
+			<result name="function">
+				/basic/systemadmin/functionManageMain.jsp
 			</result>
 		</action>
 	</package>
