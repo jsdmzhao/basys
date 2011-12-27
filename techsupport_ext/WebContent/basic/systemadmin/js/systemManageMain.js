@@ -65,6 +65,12 @@
 					
 				}
 			});
+			
+			//右边详情显示面板
+			var detail_panel_items_defaults = {
+				   xtype:'textfield',
+				   columnWidth: .25
+			};
 			//当前系统详情面板
 			this.detail_panel = Ext.create({
 				xtype:'form',
@@ -116,7 +122,7 @@
 			        menuDisabled: false
 			    }
 			});
-			
+			var sm = new Ext.grid.CheckboxSelectionModel();
 			
 			techsupport.systemmanage.SystemMain.superclass.initComponent.apply(this,arguments);
 		}
