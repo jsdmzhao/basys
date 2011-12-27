@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class TreeMappingAction extends PageAction {
 	private String treeFalg;
-
+	private String systemTreeFalg;
 	
 	/**
 	 * 机构树
@@ -22,7 +22,9 @@ public class TreeMappingAction extends PageAction {
 	}
 	/** 系统树 */
 	public String systemTreeForm() throws Exception{
-		return SUCCESS;
+		if(systemTreeFalg==null)
+			systemTreeFalg="system";
+		return systemTreeFalg;
 	}
 	
 	public String getTreeFalg() {
@@ -30,6 +32,12 @@ public class TreeMappingAction extends PageAction {
 	}
 	public void setTreeFalg(String treeFalg) {
 		this.treeFalg = treeFalg;
+	}
+	public String getSystemTreeFalg() {
+		return systemTreeFalg;
+	}
+	public void setSystemTreeFalg(String systemTreeFalg) {
+		this.systemTreeFalg = systemTreeFalg;
 	}
 	
 }
