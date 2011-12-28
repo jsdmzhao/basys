@@ -10,4 +10,4 @@
 		});
 	});
 </script>
-<div id="systemManageCt"></div>
+<div id="systemManageCt" style="width:100%; height:100%;"></div>

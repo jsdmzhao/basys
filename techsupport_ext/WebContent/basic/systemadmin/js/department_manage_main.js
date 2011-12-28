@@ -155,68 +155,31 @@
 	
 	
 	techsupport.deparmentmanage.DepartmentMain = Ext.extend(Ext.Panel, {
-		constructor:function(config) {
-			// 父类
-			this.title_base = config.title_base || '机构';
-			this.layout = config.layout ||'border';
-			this.id =  config.id ||'manage_panal';
-			this.defaults = config.defaults || {
-				bodyStyle : 'padding:4px;',
+		title_base:'机构',
+		layout:'border',
+		id:'manage_panal',
+		defaults:{
+			bodyStyle : 'padding:4px;',
 				split : true
-			};
-			this.renderTo = config.renderTo || 'body';
-			
-			this.items = config.items || [];
-			
-			this.width = config.width || '100%;';
-			this.height = config.height || '100%;';
-
-			this.style = 'height:100%;';
-			this.enableDD = config.enableDD ||false;
-			this.body_height;
-			this.viewConfig = {
-					forceFit:true
-			};
-			/** 左边树*/
-			this.treepanel;
-			/** 后边表格*/
-			this.gridpanel;
-			/** 详情动作*/
-			this.action;
-			/** 数据集*/
-			this.store;
-			/** 详情数据集*/
-			this.detail_store;
-			
-			this.tree_level = 99;
-			this.treeloader;
-			
-			this.right_panel;
-			this.detail_panel;
-//			每页显示数
-			this.pagesize = 25;
-//			默认排序列
-			this.dir = 'nodeorder';
-//			默认排序方式
-			this.sort = 'asc';
-//			当前id
-			this.current_treenode_id;
-			
-			this.addURL=context_path+'/sysadminDefault/add_departmentmanage.action';
-			this.modifyURL=context_path+'/sysadminDefault/modify_departmentmanage.action';
-			this.removeURL=context_path+'/sysadminDefault/remove_departmentmanage.action';
-			this.queryURL=context_path+'/sysadminDefault/querylist_departmentmanage.action';
-			this.detailURL=context_path+'/sysadminDefault/query_departmentmanage.action';
-			
-			this.actionPrefix = 'department.';
-			this.removePrefix = 'department_list[i]';
-			
-			//详情弹出窗口容器
-			this.detailWindowCt = config.detailWindowCt || Ext.getBody();
-			techsupport.deparmentmanage.DepartmentMain.superclass.constructor
-					.apply(this, arguments);
-			
 		},
+		width:'100%',
+		height:'100%',
+		style:'height:100%;',
+		enableDD:false,
+		viewConfig:{
+			forceFit:true
+		},
+		tree_level:99,
+		pagesize:25,
+		addURL:context_path+'/sysadminDefault/add_departmentmanage.action',
+		modifyURL:context_path+'/sysadminDefault/modify_departmentmanage.action',
+		removeURL:context_path+'/sysadminDefault/remove_departmentmanage.action',
+		queryURL:context_path+'/sysadminDefault/querylist_departmentmanage.action',
+		detailURL:context_path+'/sysadminDefault/query_departmentmanage.action',
+		actionPrefix : 'department.',
+		removePrefix : 'department_list[i]',
+		//详情弹出窗口容器
+		detailWindowCt : Ext.getBody(),
 		/** 初始化组件内容 */
 		initComponent : function(ct,position) {
 			var self = this;
@@ -396,7 +359,7 @@
 
 //			子机构面板
 			var sm = new Ext.grid.CheckboxSelectionModel();
-			this.columnModel = new Ext.grid.ColumnModel({
+			var columnModel = new Ext.grid.ColumnModel({
 			    columns:[
 				    sm,
 					{header: '机构ID', dataIndex: 'departid', sortable: false,width:100},
@@ -418,7 +381,7 @@
 					forceFit:true
 				},
 				sm:sm,
-				cm:this.columnModel,
+				cm:columnModel,
 				tbar:[
 						{xtype:'button',text:'添加',handler:function(){
 //							弹出添加窗口
@@ -586,7 +549,6 @@
 //			----------------------------右边面板-------------------------------------------
 			//给最外面的面板添加树形菜单和右边的垂直面板
 			this.items = [this.right_panel, this.treepanel ];
-			//父类
 			techsupport.deparmentmanage.DepartmentMain.superclass.initComponent.apply(this,arguments);
 		},
 		onRender:function(ct,position){
@@ -605,7 +567,6 @@
 		}
 		//-----------------------------------附加内容结束-------------------------------------
 	});
-	Ext.reg('department_main', techsupport.deparmentmanage.DepartmentMain);
 })();
 
 
