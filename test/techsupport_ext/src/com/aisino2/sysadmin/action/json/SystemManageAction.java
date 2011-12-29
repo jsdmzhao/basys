@@ -1,18 +1,26 @@
 package com.aisino2.sysadmin.action.json;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.sysadmin.action.PageAction;
 import com.aisino2.sysadmin.domain.System;
+import com.aisino2.sysadmin.service.ISystemService;
+import com.aisino2.sysadmin.tree.TreeNodeTool;
 
 @Component
 @Scope("prototype")
 public class SystemManageAction extends PageAction {
 	private System system;
 	private List<System> systemList;
+	private ISystemService systemService;
+	private TreeNodeTool treeNodeTool;
+	
 	/**
 	 * 
 	 */
@@ -84,6 +92,32 @@ public class SystemManageAction extends PageAction {
 	public String bottom() throws Exception{
 		return SUCCESS;
 	}
+	
+	/**
+	 * 查询系统信息的树形节点 
+	 */
+	public String querySystemNodes() throws Exception {
+		if (system == null)
+			system = new System();
+		if(system.getSystemcode()!=null && system.getSystemcode().equals("0"))
+			system.setSystemcode(null);
+		List<System> childSystemList = this.systemService.getChildSystem(system);
+		try{
+			system = this.systemService.getSystem(system);
+		}catch (Exception e) {
+			system = null;
+		}
+		StringBuffer buff = new StringBuffer();
+		String systemTreenodeList = "["+treeNodeTool.make_ext_tree_node(treeNodeTool
+				.parseToTreenodeFromSystem(childSystemList,
+						system, false),buff).toString()+"]";
+		this.response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = this.response.getWriter();
+		out.print(systemTreenodeList);
+		out.close();
+		return null;
+	}
+	
 	public System getSystem() {
 		return system;
 	}
@@ -98,6 +132,14 @@ public class SystemManageAction extends PageAction {
 
 	public void setSystemList(List<System> systemList) {
 		this.systemList = systemList;
+	}
+	@Resource(name="systemServiceImpl")
+	public void setSystemService(ISystemService systemService) {
+		this.systemService = systemService;
+	}
+	@Resource(name="treeNodeTool")
+	public void setTreeNodeTool(TreeNodeTool treeNodeTool) {
+		this.treeNodeTool = treeNodeTool;
 	}
 	
 }
