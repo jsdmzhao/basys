@@ -1,6 +1,6 @@
 /***
  * filename: systemManageMain.js
- * description: 系统管理页面组件 主要继承 机构管理页面组件，
+ * description: 系统管理页面组件 主要继承 系统管理页面组件，
  * 				对中间部分组件做修改
  * 
  */
@@ -9,7 +9,7 @@
 //	声明包
 	Ext.ns("techsupport.systemmanage");
 	
-	techsupport.systemmanage.SystemMain = Ext.extend(techsupport.deparmentmanage.DepartmentMain,{
+	techsupport.systemmanage.SystemMain = Ext.extend(techsupport.deparmentmanage.systemmentMain,{
 		title_base : "系统",
 		dir : "nodeorder",
 		
@@ -47,7 +47,7 @@
 					{name:'picturepath',mapping:'picturepath'},
 					{name:'isleaf',mapping:'isleaf'},
 					{name:'nodeorder',mapping:'nodeorder'},
-					{name:'parentsystemcode',mapping:'parentsystemcode'},
+					{name:'parent',mapping:'parent'},
 					{name:'systemdefine',mapping:'systemdefine'}
 				],
 				listeners:{
@@ -85,7 +85,7 @@
 					{name:'picturepath',mapping:'picturepath'},
 					{name:'isleaf',mapping:'isleaf'},
 					{name:'nodeorder',mapping:'nodeorder'},
-					{name:'parentsystemcode',mapping:'parentsystemcode'},
+					{name:'parent',mapping:'parent'},
 					{name:'systemdefine',mapping:'systemdefine'}
 				]
 			});
@@ -156,11 +156,65 @@
 			this.gridpanel.store = this.store;
 			this.gridpanel.selModel = sm;
 			this.gridpanel.colModel = columnModel;
+			
+			//-----------------------重写表格区域属性-----------------
 			/*
 			 * 
 			
 			 * 
 			 * */
+		}
+	});
+	/**
+	 * 
+	 */
+	techsupport.systemmanage.SystemWindow = Ext.extend(techsupport.systemmentmanage.systemmentWindow,{
+		title:'系统',
+		initComponent:function(ct,position){
+			
+			techsupport.systemmanage.SystemWindow.initComponent.call(this,ct,position);
+			//========================重写form_panel表单信息===============================
+			this.form_panel.items.items.clear();
+			//添加系统的表单信息
+			this.form_panel.add([
+				      {name:'systemname',fieldLabel:'系统名称',allowBlank:false,blankText:'系统名称不能空'},
+				      {name:'systemcode',fieldLabel:'系统代码',allowBlank:false,blankText:'系统代码不能为空',
+				    	  validationEvent:'blur',
+				    	  validator:function(val){
+				    		  //验证系统代码是否可用
+				    		  var result = false;
+				    		  Ext.Ajax.request({url:context_path+'/sysadminDefault/check_systemcode_systemmanage.action',
+				    			  params:{'system.systemcode':val},
+				    			  async:false,
+				    			  success:function(response,opt){
+				    				  var data = Ext.decode(response.responseText);
+				    				  if(!data.returnNo)
+				    					  result = true;
+				    				  else
+				    					  result = false;
+				    			  }
+				    		  });
+				    		  if(result)
+				    			  return true;
+				    		  else
+				    			  return '系统代码不可用';
+				    	  }
+				      },
+				      {name:'picturepath',fieldLabel:'系统图标'},
+				      {name:'parent.systemname',fieldLabel:'上级系统',allowBlank:false,blankText:'上级系统不能为空',readOnly:true},
+				      {name:'fullcode',fieldLabel:'系统全码',allowBlank:false,blankText:'系统全码不能为空',readOnly:true},
+				      {name:'parent.systemcode',fieldLabel:'上级系统代码',allowBlank:false,blankText:'上级系统代码不能为空',readOnly:true,hidden:true},
+				      {name:'parent.isleaf',fieldLabel:'上级系统叶子',hidden:true,readOnly:true},
+				      {name:'parent.fullcode',fieldLabel:'上级系统全码',allowBlank:false,blankText:'上级系统全码不能为空',readOnly:true,hidden:true},
+				      {name:'nodeorder',fieldLabel:'序列',allowBlank:true,readOnly:true,regex:/^\d*$/,regexText:'序列必须为数字',hidden:true}
+			]);
+			
+			//添加全码设置事件
+			this.form_panel.getForm().findField("systemcode").on("blur",function(field){
+							
+			});
+			//------------------------重写form_panel表单信息-------------------------------
+			
 		}
 	});
 })();
