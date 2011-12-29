@@ -16,9 +16,6 @@
         <property name="picturepath" type="java.lang.String">
             <column name="PICTUREPATH" />
         </property>
-        <property name="parentsystemcode" type="java.lang.String">
-            <column name="PARENTSYSTEMCODE" />
-        </property>
         <property name="nodeorder" type="java.lang.Integer">
             <column name="NODEORDER" />
         </property>
@@ -28,5 +25,8 @@
         <property name="fullcode" type="java.lang.String">
             <column name="FULLCODE" />
         </property>
+        <many-to-one name="parent">
+        	<column name="PARENTSYSTEMCODE" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

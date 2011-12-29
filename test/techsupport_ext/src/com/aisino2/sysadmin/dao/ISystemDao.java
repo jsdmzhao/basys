@@ -65,5 +65,5 @@ public interface ISystemDao {
 	   */
 	  List<System> getSystemByUserID(System system);
 	  /** 获得下一个排序号 */
-	  System getNextNodeorder(System system);
+	  Integer getNextNodeorder(System system);
 }
