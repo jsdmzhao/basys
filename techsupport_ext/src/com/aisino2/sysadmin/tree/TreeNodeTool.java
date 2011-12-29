@@ -14,7 +14,8 @@ import com.aisino2.sysadmin.domain.Menu;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDepartmentService;
 import com.aisino2.sysadmin.service.IMenuService;
-
+import com.aisino2.sysadmin.service.ISystemService;
+import com.aisino2.sysadmin.domain.System;
 /**
  *
  *
@@ -23,7 +24,7 @@ import com.aisino2.sysadmin.service.IMenuService;
 public class TreeNodeTool {
 	private IMenuService menu_service;
 	private IDepartmentService deparemnt_service;
-
+	private ISystemService systemSerive;
 	/**
 	 * 生成EXT 树
 	 * 
@@ -258,6 +259,68 @@ public class TreeNodeTool {
 		}
 		return tree_node_list;
 	}
+	
+	/**
+	 * 解析系统信息到节点
+	 * @param systemList
+	 * @param parent
+	 * @param is_recursive
+	 * @return
+	 */
+	public List<TreeNode> parseToTreenodeFromSystem(
+			List<System> systemList, System parent,
+			boolean is_recursive) {
+		if (systemList == null || systemList.isEmpty())
+			throw new RuntimeException("需要生成树节点类型的机构列表为空");
+		List<TreeNode> tree_node_list = new ArrayList();
+
+		for (System d : systemList) {
+			TreeNode node = parseToTreenodeFromSystem(d, parent, true);
+			tree_node_list.add(node);
+		}
+		return tree_node_list;
+	}
+
+	/**
+	 * 解析系统信息为树形节点 单一
+	 * @param system
+	 * @param parent
+	 * @param isRecursive
+	 * @return
+	 */
+	public TreeNode parseToTreenodeFromSystem(System system,
+			System parent, boolean isRecursive) {
+
+		TreeNode node = new TreeNode();
+		node.setId(system.getSystemcode());
+		node.setText(system.getSystemname());
+
+		node.setDisabled(false);
+		Map<String, Object> attrs = new HashMap<String, Object>();
+		
+		node.setAttributes(attrs);
+
+		if (parent != null)
+			node.setParent_node(parseToTreenodeFromSystem(parent,
+					null, false));
+
+//		设置是否是叶子
+		if (system.getIsleaf()!= null && system.getIsleaf().equals("Y"))
+			node.setIsleaf(true);
+		else
+			node.setIsleaf(false);
+		
+		if (isRecursive) {
+			List<System> childSystemList = systemSerive.getChildSystem(system);
+			
+			if (childSystemList != null && !childSystemList.isEmpty()) {
+				node.setChild_nodes(parseToTreenodeFromSystem(
+						childSystemList, system, isRecursive));
+			}
+		}
+
+		return node;
+	}
 
 	@Resource(name = "menuServiceImpl")
 	public void setMenu_service(IMenuService menu_service) {
@@ -267,6 +330,10 @@ public class TreeNodeTool {
 	@Resource(name = "departmentServiceImpl")
 	public void setDeparemnt_service(IDepartmentService deparemnt_service) {
 		this.deparemnt_service = deparemnt_service;
+	}
+	@Resource(name = "systemServiceImpl")
+	public void setSystemSerive(ISystemService systemSerive) {
+		this.systemSerive = systemSerive;
 	}
 
 }

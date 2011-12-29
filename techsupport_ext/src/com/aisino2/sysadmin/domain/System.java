@@ -13,19 +13,6 @@ import javax.persistence.Table;
 public class System implements Serializable {
 
 	
-	public System(String systemcode, String systemname, String systemdefine,
-			String picturepath, String parentsystemcode, Integer nodeorder,
-			String isleaf, String fullcode) {
-		super();
-		this.systemcode = systemcode;
-		this.systemname = systemname;
-		this.systemdefine = systemdefine;
-		this.picturepath = picturepath;
-		this.parentsystemcode = parentsystemcode;
-		this.nodeorder = nodeorder;
-		this.isleaf = isleaf;
-		this.fullcode = fullcode;
-	}
 
 	/** @param 系统(t_system) */
 
@@ -50,10 +37,7 @@ public class System implements Serializable {
 	/** @ --图片路径--picturepath--String--200-- */
 	private String picturepath;
 
-	@Column
-	/** @ --上级系统代码--parentsystemcode--String--20-- */
-	private String parentsystemcode;
-
+	private System parent;
 	@Column
 	/** @ --节点顺序--nodeorder--Integer--9-- */
 	private Integer nodeorder;
@@ -103,15 +87,6 @@ public class System implements Serializable {
 		this.picturepath = picturepath;
 	}
 
-	/** @ 上级系统代码(parentsystemcode) */
-	public String getParentsystemcode() {
-		return parentsystemcode;
-	}
-
-	public void setParentsystemcode(String parentsystemcode) {
-		this.parentsystemcode = parentsystemcode;
-	}
-
 	/** @ 节点顺序(nodeorder) */
 	public Integer getNodeorder() {
 		return nodeorder;
@@ -137,5 +112,13 @@ public class System implements Serializable {
 
 	public void setFullcode(String fullcode) {
 		this.fullcode = fullcode;
+	}
+
+	public System getParent() {
+		return parent;
+	}
+
+	public void setParent(System parent) {
+		this.parent = parent;
 	}
 }

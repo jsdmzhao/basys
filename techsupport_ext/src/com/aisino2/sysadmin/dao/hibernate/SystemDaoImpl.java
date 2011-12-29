@@ -50,9 +50,9 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 				para_list.add(para_entity.getSystemname() + "%");
 			}
 
-			if (para_entity.getParentsystemcode() != null) {
-				hql.append(" and t.parentsystemcode = ?");
-				para_list.add(para_entity.getParentsystemcode());
+			if (para_entity.getParent() != null) {
+				hql.append(" and t.parent = ?");
+				para_list.add(para_entity.getParent());
 			}
 
 		}
@@ -118,9 +118,9 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 	@SuppressWarnings("unchecked")
 	public List<System> getChildSystem(System system) {
 		this.getHibernateTemplate().setCacheQueries(true);
-		String hql = "select new System(t.systemcode, t.systemname, t.systemdefine,	t.picturepath, t.parentsystemcode,t.nodeorder,t.isleaf, t.fullcode) from System t where t.parentsystemcode = ?";
+		String hql = "from System t where t.parent = ?";
 		
-		return this.getHibernateTemplate().find(hql,new Object[]{system.getParentsystemcode()});
+		return this.getHibernateTemplate().find(hql,new Object[]{system});
 	}
 
 	public List getTheUserChildSystem(System system) {
@@ -153,9 +153,30 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 		return null;
 	}
 
-	public System getNextNodeorder(System system) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getNextNodeorder(final System system) {
+		return this.getHibernateTemplate().execute(
+				new HibernateCallback<Integer>() {
+			public Integer doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				String hql = "select max(nvl(t,0))+1 from System t" +
+						"where 1=1";
+				List<Object> paraList = new ArrayList<Object>();
+				
+				if(system.getParent()!=null){
+					hql += " and t.parent = ?";
+					paraList.add(system.getParent());
+				}
+				else
+					hql += " and t.parent is null";
+				Query q = session.createQuery(hql);
+				for(int i=0;i<paraList.size();i++)
+					q.setParameter(i, paraList.get(i));
+				
+				Integer nodeorder = (Integer) q.uniqueResult();
+				
+				return nodeorder;
+			}
+		});
 	}
 
 }
