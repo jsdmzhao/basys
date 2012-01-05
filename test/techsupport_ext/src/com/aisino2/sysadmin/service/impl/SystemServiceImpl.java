@@ -39,7 +39,7 @@ public class SystemServiceImpl implements ISystemService {
 
 	public System getSystem(System system) {
 		
-		return this.getSystem(system);
+		return this.system_dao.getSystem(system);
 	}
 
 
