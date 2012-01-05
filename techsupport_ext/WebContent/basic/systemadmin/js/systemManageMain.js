@@ -9,24 +9,33 @@
 //	声明包
 	Ext.ns("techsupport.systemmanage");
 	
-	techsupport.systemmanage.SystemMain = Ext.extend(techsupport.deparmentmanage.systemmentMain,{
-		title_base : "系统",
-		dir : "nodeorder",
+	techsupport.systemmanage.SystemMain = Ext.extend(techsupport.deparmentmanage.DepartmentMain,{
+		constructor:function(config){
+			config.title_base = "系统",
+			config.dir = "nodeorder",
+			config.pagesize=15;
+			config.sort="asc";
+			
+			config.addURL = context_path+'/sysadminDefault/add_systemmanage.action';
+			config.modifyURL = context_path+'/sysadminDefault/modify_systemmanage.action';
+			config.queryURL = context_path+'/sysadminDefault/querylist_systemmanage.action';
+			config.detailURL = context_path+'/sysadminDefault/query_systemmanage.action';
+			config.removeURL = context_path+'/sysadminDefault/remove_systemmanage.action';
+			
+			config.actionPrefix = 'system.';
+			config.removePrefix = 'systemList[i]';
 		
-		addURL : context_path+'/sysadminDefault/add_systemmanage.action',
-		modifyURL : context_path+'/sysadminDefault/modify_systemmanage.action',
-		queryURL : context_path+'/sysadminDefault/querylist_systemmanage.action',
-		detailURL : context_path+'/sysadminDefault/query_systemmanage.action',
-		removeURL : context_path+'/sysadminDefault/remove_systemmanage.action',
-		
-		actionPrefix : 'system.',
-		removePrefix : 'systemList[i]',
+			
+			//-----------------------重写表格区域属性-----------------
+			techsupport.systemmanage.SystemMain.superclass.constructor.apply(this,arguments);
+		},
+			
 		initComponent:function(ct,position){
 			//父类加载前
 			var self = this;
 			
+			//----------------------重写gridpanel 的重要属性------------------------
 			techsupport.systemmanage.SystemMain.superclass.initComponent.apply(this,arguments);
-			//父类加载后
 			//列表区域的数据仓库
 			this.store =  new Ext.data.JsonStore( {
 				idProperty:'systemcode',
@@ -57,7 +66,7 @@
 								dir:this.dir,
 								sort:this.sort
 							});
-							options.params[this.actionPrefix+'parentsystemcode']=this.current_treenode_id;
+							options.params[this.actionPrefix+'parent.systemcode']=this.current_treenode_id;
 						},
 						scope:this
 					}
@@ -91,18 +100,83 @@
 			});
 			//复习重新设定父类属性加载器属性
 			this.treeloader = new Ext.tree.TreeLoader({
-				url:context_path+'/sysadminDefault/query_system_node_systemmanage.action',
-				method:'post',
-				listeners:{
-					beforeload:{
-						fn:function(loader,node){
+					url:context_path+'/sysadminDefault/querySystemNodes_systemmanage.action',
+					method:'post',
+					listeners:{
+						beforeload:function(loader,node){
 							loader.baseParams[this.actionPrefix+'systemcode'] = node.id;
-						},
-						scope:this
+						}
+					}});
+			this.remove(this.treepanel);
+			this.treepanel = new Ext.tree.TreePanel({
+				region : 'west',
+				id : this.id+'_tree',
+				title : this.title_base +'树',// 以后去掉
+				useArrows : true,
+				autoScroll : true,
+				animate : true,
+				enableDD : false,
+				containerScroll : true,
+				border : false,
+				width: '25%',
+				rootVisable : false,
+				viewConfig:{
+					forceFit:true,
+					enableRowBody:true
+				},
+				loader:this.treeloader,
+				root:{id:'0',text:'顶端',nodeType: 'async'},
+				listeners:{
+					click:function(node,evt){
+						//点击动作
+//						子类可以按照自己的需求重载
+						this.ownerCt.current_treenode_id = node.id;
+						
+						this.ownerCt.store.load(
+								{
+									params:{
+										start:0,
+										limit:this.ownerCt.pagesize,
+										dir:this.ownerCt.dir,
+										desc:this.ownerCt.desc
+									}
+								}
+						);
+						var param={};
+						param[this.ownerCt.actionPrefix+self.store.idProperty]=node.id;
+						this.ownerCt.detail_store.load({params:param,callback:function(r,options,success){
+							var record = this.getAt(0);
+							var form = self.detail_panel.getForm();
+							if(record)
+								form.setValues(buildSubmitParam({},record.data));
+						}});
+						
 					}
-				}});
-			this.treepanel.loader = this.treeloader;	
-			//------------------------	复习重新设定父类属性加载器属性-----------------------
+				}
+			});
+			this.add(this.treepanel);
+			
+			//----------------------复习重新设定父类属性加载器属性--------------------------------
+			//重写gridpanel 的重要属性
+			this.sm = new Ext.grid.CheckboxSelectionModel();
+			
+			this.columnModel = new Ext.grid.ColumnModel({
+			    columns:[
+				     this.sm,
+					{id:'systemcode',header: this.title_base+'代码', dataIndex:'systemcode',width:100},
+					{header: this.title_base+'名称',dataIndex:'systemname',width:300},
+					{header: this.title_base+'全码',dataIndex:'fullcode',width:300},
+					{header: this.title_base+'定义',dataIndex:'systemdefine',width:300}
+				],
+			    defaults: {
+			        sortable: false,
+			        menuDisabled: false
+			    }
+			});
+			this.gridpanel.store = this.store;
+			this.gridpanel.selModel = this.sm;
+			this.gridpanel.colModel = this.columnModel;
+			//父类加载后
 			//右边详情显示面板
 			var detail_panel_items_defaults = {
 				   xtype:'textfield',
@@ -137,38 +211,15 @@
 				    	   ]
 				       })
 				       ]);
-			//重写gridpanel 的重要属性
-			var sm = new Ext.grid.CheckboxSelectionModel();
 			
-			var columnModel = new Ext.grid.ColumnModel({
-			    columns:[
-				     sm,
-					{id:'systemcode',header: this.title_base+'代码', dataIndex:'systemcode',width:100},
-					{header: this.title_base+'名称',dataIndex:'systemname',width:300},
-					{header: this.title_base+'全码',dataIndex:'fullcode',width:300},
-					{header: this.title_base+'定义',dataIndex:'systemdefine',width:300}
-				],
-			    defaults: {
-			        sortable: false,
-			        menuDisabled: false
-			    }
-			});
-			this.gridpanel.store = this.store;
-			this.gridpanel.selModel = sm;
-			this.gridpanel.colModel = columnModel;
-			
-			//-----------------------重写表格区域属性-----------------
-			/*
-			 * 
-			
-			 * 
-			 * */
 		}
 	});
+	
+	
 	/**
 	 * 
 	 */
-	techsupport.systemmanage.SystemWindow = Ext.extend(techsupport.systemmentmanage.systemmentWindow,{
+	techsupport.systemmanage.SystemWindow = Ext.extend(techsupport.deparmentmanage.DepartmentWindow,{
 		title:'系统',
 		initComponent:function(ct,position){
 			
@@ -183,7 +234,7 @@
 				    	  validator:function(val){
 				    		  //验证系统代码是否可用
 				    		  var result = false;
-				    		  Ext.Ajax.request({url:context_path+'/sysadminDefault/check_systemcode_systemmanage.action',
+				    		  Ext.Ajax.request({url:context_path+'/sysadminDefault/checkSystemcode_systemmanage.action',
 				    			  params:{'system.systemcode':val},
 				    			  async:false,
 				    			  success:function(response,opt){
@@ -211,10 +262,15 @@
 			
 			//添加全码设置事件
 			this.form_panel.getForm().findField("systemcode").on("blur",function(field){
-							
+				var form = this.form_panel.getForm();
+				var fullcode = form.findField("fullcode");
+				var parentFullcode = form.findField("parent.fullcode");
+				fullcode.setValue(parentFullcode.getValue()+fullcode+".");
 			});
+			
 			//------------------------重写form_panel表单信息-------------------------------
 			
 		}
 	});
+	
 })();
