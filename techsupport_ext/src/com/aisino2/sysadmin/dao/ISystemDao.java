@@ -17,7 +17,7 @@ public interface ISystemDao {
 	System getSystem(System system);
 
 	/** @param 系统(t_system) 分页查询 */
-	List<System> getListForPage(System system, int pageNo,int pageSize,String sort,String desc);
+	List getListForPage(System system, int pageNo,int pageSize,String sort,String desc);
 
 	/** @param 系统(t_system) 多条查询 */
 	List<System> getListSystem(System system);

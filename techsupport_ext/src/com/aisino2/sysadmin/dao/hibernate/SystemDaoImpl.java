@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Component;
 
@@ -64,30 +68,33 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<System> getListForPage(final System system, final int pageNo,
+	public List getListForPage(final System system, final int pageNo,
 			final int pageSize, String sort, String desc) {
 
 		return this.getHibernateTemplate().executeFind(new HibernateCallback<List<System>>() {
 
 			public List<System> doInHibernate(Session sess)
 					throws HibernateException, SQLException {
-				StringBuffer hql = new StringBuffer("select new System(t.systemcode, t.systemname, t.systemdefine,	t.picturepath, t.parentsystemcode,t.nodeorder,t.isleaf, t.fullcode) from System t");
-				Map<String, Object> para_map = get_para_and_hql(system, hql);
-				hql = (StringBuffer) para_map.get("hql");
-				List<Object> para_list = (List<Object>) para_map.get("para");
-
-				Query q = sess.createQuery(hql.toString());
-				q.setCacheable(true);
-
-				// page
-				q.setFirstResult((pageNo - 1) * pageSize);
-				q.setMaxResults(pageSize);
-
-				// para
-				for (int i = 0; i < para_list.size(); i++)
-					q.setParameter(i, para_list.get(i));
-
-				return q.list();
+				
+				List resultList = new ArrayList();
+				Criteria q = sess.createCriteria(System.class, "t");
+				Example ex = Example.create(System.class);
+				ex.excludeZeroes();
+				ex.ignoreCase();
+				q.add(ex);
+				
+				//条件
+				if(system.getSystemcode()!=null)
+					q.add(Restrictions.eq("t.systemcode", system.getSystemcode()));
+				
+				//长度
+				Integer count = 0;
+				q.setProjection(Projections.rowCount());
+				count = ((Long)q.uniqueResult()).intValue();
+				resultList.add(count);
+				q.setProjection(null);
+				resultList.add(q.list());
+				return resultList;
 			}
 		});
 	}
@@ -98,19 +105,19 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 
 			public List<System> doInHibernate(Session sess)
 					throws HibernateException, SQLException {
-				StringBuffer hql = new StringBuffer("select new System(t.systemcode, t.systemname, t.systemdefine,	t.picturepath, t.parentsystemcode,t.nodeorder,t.isleaf, t.fullcode)from System t");
-				Map<String, Object> para_map = get_para_and_hql(system, hql);
-				hql = (StringBuffer) para_map.get("hql");
-				List<Object> para_list = (List<Object>) para_map.get("para");
-
-				Query q = sess.createQuery(hql.toString());
-				q.setCacheable(true);
-
-				// para
-				for (int i = 0; i < para_list.size(); i++)
-					q.setParameter(i, para_list.get(i));
-
+				
+				Criteria q = sess.createCriteria(System.class,"t");
+				Example ex = Example.create(System.class);
+				ex.excludeZeroes();
+				ex.ignoreCase();
+				q.add(ex);
+				
+				//条件
+				if(system.getSystemcode()!=null)
+					q.add(Restrictions.eq("t.systemcode", system.getSystemcode()));
+				
 				return q.list();
+				
 			}
 		});
 	}
@@ -118,9 +125,17 @@ public class SystemDaoImpl extends TechSupportBaseDaoImpl implements ISystemDao 
 	@SuppressWarnings("unchecked")
 	public List<System> getChildSystem(System system) {
 		this.getHibernateTemplate().setCacheQueries(true);
-		String hql = "from System t where t.parent = ?";
-		
-		return this.getHibernateTemplate().find(hql,new Object[]{system});
+		String hql = "from System t where ";
+		List<Object> paraList = new ArrayList<Object>();
+
+		if(system == null || system.getSystemcode() == null){
+			hql += " t.parent is null";
+		}
+		else{
+			hql += " t.parent = ? ";
+			paraList.add(system);
+		}
+		return this.getHibernateTemplate().find(hql,paraList.toArray());
 	}
 
 	public List getTheUserChildSystem(System system) {
