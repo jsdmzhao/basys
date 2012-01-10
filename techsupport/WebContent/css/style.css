@@ -1,0 +1,782 @@
+/*企业端表格显示底线样式*/
+.tdLine{
+
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+	text-align:right;
+	font-weight:bold;
+}
+
+.tdLinePrivise{
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+	font-weight:bold;
+}
+.tdLineq{
+
+	font-size: 12px; 
+	line-height:2.0;
+	white-space: nowrap;
+	text-align:right;
+	font-weight:bold;
+}
+.body1{
+
+ BACKGROUND-COLOR: #ECF1FF;
+}
+.STYLE2 {
+	
+	color: #0d4bb8; font-size: 12px
+	
+	
+	}
+.textarea1{
+
+ width:100%;
+
+}
+
+
+/*下拉列表*/
+.select1 {
+        position:relative;
+        font-size:12px;
+        width:154px;
+        left:2px;
+        line-height:12px;border:0px;
+        color:#000000;
+        z-index:0;
+}
+
+.select2{
+        position:relative;
+        font-size:12px;
+        height:170px;
+        width:154px;
+        left:2px;
+        line-height:12px;border:0px;
+        color:#000000;
+        z-index:0;
+}
+
+/*单行文本*/
+.text1{
+	 WIDTH:155px;
+	 height:20px;
+	 margin-left:2px;
+	 BORDER: #A3B4CD 1px solid;
+	 BACKGROUND-COLOR: #fff;
+	 font-size:12px;
+	 color:#000000;
+}
+/*单行文本,长度相对*/
+.text1relative{
+	 		WIDTH:100%;
+	 		height:18px;
+	 		margin-left:2px;
+	 		BORDER: #A3B4CD 1px solid;
+	 		BACKGROUND-COLOR: #fff;
+	 		font-size:12px;
+	 		color:#000000;
+		}
+/*单行文本灰色*/
+.text2{
+	 WIDTH:155px;
+	 height:20px;
+	 margin-left:2px;
+	 BORDER: #A3B4CD 1px solid;
+	 BACKGROUND-COLOR: #fff;
+	 font-size:12px;
+	 color:#000000;
+	 background:#EEF0F0;
+}
+
+/*翻页单行文本*/
+.textpage1{
+	 WIDTH:20px;
+	 height:15px;
+	 margin-left:2px;
+	 BORDER: #F24200 1px solid;
+	 BACKGROUND-COLOR: #fff;
+	 font-size:12px;
+	 color:#004499;
+}	
+/*多行文本*/
+
+/*多行列表*/
+/*单选按钮*/
+.radio1{
+	 WIDTH:15px;
+	 height:12px;
+	 margin-left:2px;
+	 border:1px #909993 solid;
+	 border-color:expression((this.type=="radio")?"#ff9966":"#004499")
+	 font-size:12px;
+}	
+/*复选框*/
+.checkbox1{
+	 WIDTH:15px;
+	 height:15px;
+	 margin-left:2px;
+	 border:1px #909993 solid;
+	 border-color:expression((this.type=="checkbox")?"#ff9966":"#004499")
+	 font-size:12px;
+}	
+.titleTable{
+	border-collapse:collapse; 
+	border:solid #dceafa;
+	font-size: 12px;
+	color: #405368;
+	text-align: left;
+	border-width:1px 1px 1px 1px;
+	background:url(../images/tree/bg1.gif);
+	
+}
+.titleTablenei{width:100%;background-color:#f6faff; border:1px solid Silver; overflow:auto;}
+.titleTable2{
+	
+	border:solid #A3A3A3;
+	font-size: 14px;
+	font-weight:bold;
+	color: #000000;
+	text-align: left;
+	border-width:1px 1px 1px 1px; 
+}
+
+/*明细表格*/
+.listTable{
+	border-collapse:collapse; 
+	border:solid #C1D0DD;
+	color: #004499;
+	text-align: left;
+	border-width:1px 1px 1px 1px; 
+	BACKGROUND-COLOR: #cde4fc;
+	
+}
+.listTD{
+	font-size: 12px; 
+	line-height:2.0;
+	white-space: nowrap;
+}
+.listTDColor{
+	color: #0000ff;
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+}
+
+.listTDSpan{
+	color: #004499;
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+}	
+
+.notnull{
+	font-size: 12px;
+	color: #004499;
+	white-space: nowrap;
+}	
+
+.listTD1{
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+}
+.listTDblue{
+	font-size: 12px; 
+	line-height:2.0;
+	white-space: nowrap;
+	color:blue;
+	
+}
+
+
+/* 标题和选项卡 */
+.mulutitle h2{
+		line-height:32px;
+		font-size:13px;
+		color:#032070;
+}
+.tabletr{
+		margin:8px 0 0 15px;
+}
+.tabletd{
+		float:left;
+		width:80px;
+		height:33px;
+		text-align:center;
+		valign:bottom;
+		background:url(../images/tab1.jpg) no-repeat;
+}
+.tabletdactive{
+		float:left;
+		width:80px;
+		height:33px;
+		valign:bottom;
+		text-align:center;
+		background:url(../images/tab3.jpg) no-repeat;
+}
+
+.mulutitle p{
+		float:right;
+		padding-top:5px;
+}
+/*标题和选项卡内容*/
+.div_bg{
+		padding:10px 14px 10px;
+}	
+.mulutitle{
+		align:left;
+		height:100%;
+		overflow:hidden;
+		width:100%;
+}
+.mulutitle span.l_bg{
+		background: url(../images/title_1_1.gif) no-repeat;
+		float:left;
+		height:32px;
+		width:17px;
+		display:block;
+}
+.mulutitle span.r_bg{
+		background: url(../images/title_1_3.gif) no-repeat;
+		float:right;
+		height:32px;
+		width:17px;
+		display:block;
+}
+/*数据列表*/	
+.eXtremeTable {
+	margin: 0;
+	padding: 0;
+	BACKGROUND-COLOR: #C0D0DB;
+}
+
+.titletr {
+	BACKGROUND-COLOR: #BDE4FF;
+	color: #000000;
+	font-weight: bold;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}
+.titletd {
+	
+	padding-top: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+}
+.datatr {
+	BACKGROUND-COLOR: #FFFFFF;
+	color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}
+.datatd {
+	
+	padding-top: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+}
+.datatr:hover{
+	BACKGROUND-COLOR: #F9FCC2;
+	color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}
+.datatr1 {
+	BACKGROUND-COLOR: #E6E9FF;
+	color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}
+
+.datatr1:hover{
+	BACKGROUND-COLOR: #F9FCC2;
+	color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}
+/*链接文字 */
+.linkText {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #0D19B1;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkText:active {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #0D19B1;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkText:visited {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #0D19B1;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+.linkText:hover {
+	FONT-SIZE: 12px;
+	COLOR: #0D19B1;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	font-weight: bold;
+	position: relative;
+	left: 1px;
+	top: 1px;}
+/*操作链接 */
+.linkOperate {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #004499;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkOperate:active {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #004499;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkOperate:visited {
+	top:15px;
+	FONT-SIZE: 12px;
+	COLOR: #004499;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkOperate:hover {
+	FONT-SIZE: 12px;
+	COLOR: #004499;
+	
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;}		
+/*翻页链接 */
+.linkPage {
+	top:15px;
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	LINE-HEIGHT: 34px;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkPage:active {
+	top:15px;
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	LINE-HEIGHT: 34px;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkPage:visited {
+	top:15px;
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	LINE-HEIGHT: 34px;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+.linkPage:hover {
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	LINE-HEIGHT: 34px;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	font-weight: bold;
+	position: relative;
+	left: 1px;
+	top: 1px;
+}
+
+
+
+/*上下翻页链接 */
+.linkPage1 {
+    FONT-SIZE: 13px;
+	COLOR: #F24200;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkPage1:active {
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkPage1:visited {
+	FONT-SIZE: 13px;
+	COLOR: #F24200;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.linkPage1:hover {
+	FONT-SIZE: 13px;
+	COLOR: #F24FFF;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;
+}	
+
+
+
+/*上下翻页*/
+.pagetd{
+	color: #004499;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;
+	height:20px
+}	
+/*添加、修改、删除、保存、关闭、返回按钮*/
+.button1{
+	color: #032070;
+	border: 0px ;
+	font-family: 宋体;
+	font-size: 9pt;
+	width: 73px;
+	height: 23px;
+	background-image: url(../images/public/onclick.gif);
+	text-align: center;
+}
+.button1:hover{
+	color: #000;
+	border: 0px ;
+	font-family: 宋体;
+	font-size: 9pt;
+	width: 74px;
+	height: 23px;
+	background-image: url(../images/public/noclick.gif) ;
+	text-align: center;
+}
+
+/*娱乐场所制卡业务管理系统*/ /*����ϵͳ�ƿ�主体样式�����ϵͳ*/
+body {
+	font-size: 12px;
+	margin: 0px;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*�������td中的form样式*/
+.tbForm {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom: none;
+	font-size: 12px;
+	width: 99.5%;
+	padding-top: 0px;
+	border-collapse: collapse;
+}
+
+/*td中的title样式�еı�ͷ��ʽ */
+.tdTitle {
+	width: 100%;
+	height: 25px;
+	padding-top: 2px;
+	vertical-align: middle;
+	background-image: url(../images/title_bg.gif);
+	border-right: #81bfd6 1px solid;
+	border-top: #81bfd6 1px solid;
+	border-left: #81bfd6 1px solid;
+	border-bottom: none;
+}
+
+/*td中的内容样式*/
+.tdContent {
+	width: 100%;
+	padding-top: 2px;
+	text-align: center;
+	vertical-align: top;
+	border-right: #81bfd6 1px solid;
+	border-top: #81bfd6 1px solid;
+	border-left: #81bfd6 1px solid;
+	border-bottom: none;
+}
+
+/*td�е中的底部样式���ʽ */
+.tdBottom {
+	border-right: none;
+	border-top: #81bfd6 1px solid;
+	border-left: none;
+	border-bottom: none;
+}
+
+/*td中的内容样式*/
+.tbMain {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom: none;
+	font-size: 12px;
+	width: 100%;
+	padding-top: 0px;
+	border-collapse: collapse;
+}
+
+/*边角 */
+.gv_pager {
+	border-right: #b4b0c1 1px solid;
+	border-left: #b4b0c1 1px solid;
+	border-bottom: #b4b0c1 1px solid;
+}
+
+
+/*自定义翻页中表格样式*/
+.tableHeaderCustom {
+	background-color: #5D9FEB;
+	color: #FFFFFF;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin: 0px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-color: white;
+	white-space:nowrap;
+}
+.tableTd {
+	color: black;
+	font-size: 12px;
+	text-align:left;
+}
+
+
+
+
+/*娱乐业中的 添加、修改、删除、保存、关闭、返回按钮*/
+
+.clssbutton{
+
+	background-position:6px 4px;
+	background-image: url(../images/public/onclick.gif) ;
+	background-repeat: no-repeat;
+	color:#FA6400;
+	text-decoration:none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	width:84px;
+	height:20px;
+	text-align:center;
+
+}
+.clssbutton:hover{
+	background-position:6px 4px;
+	background-image: url(../images/public/noclick.gif) ;
+	background-repeat: no-repeat;
+	text-decoration:none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	width:84px;
+	height:20px;
+	text-align:center;	
+		color:#FA6400;
+}
+
+
+
+
+
+
+
+
+/*娱乐业中的 添加、修改、删除、保存、关闭、返回小按钮*/
+
+.clssbutton1{
+
+	background-position:6px 4px;
+	background-image: url(../images/public/little_out.gif) ;
+	background-repeat: no-repeat;
+	color:#FA6400;
+	text-decoration:none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	width:60px;
+	height:20px;
+	text-align:center;
+
+}
+.clssbutton1:hover{
+	background-position:6px 4px;
+	background-image: url(../images/public/little_in.gif) ;
+	background-repeat: no-repeat;
+	text-decoration:none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	width:60px;
+	height:20px;
+	text-align:center;	
+		color:#FA6400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*struts 菜单memu*/
+
+.memu1{
+		color: #135860;
+		font-family: 宋体;
+	font-size: 14px;
+	vertical-align: middle;
+		font-weight: bold;
+	 line-height:20px;
+	 TEXT-DECORATION: none;
+
+}
+.memu1:link{
+	COLOR: #135860; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+		font-weight: bold;
+	position: relative;
+		font-size: 14px;
+	left: 1px;
+	top: 1px;}
+	/*	
+.memu1:visited{
+	COLOR: #FF5900; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+			font-size: 14px;
+	left: 1px;
+	top: 1px;}
+*/
+.memu1:active{
+	COLOR: #135860; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+		font-size: 14px;
+			font-weight: bold;
+	left: 1px;
+	top: 1px;}
+.memu1:hover{
+	COLOR: #135860; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+		font-size: 14px;
+			font-weight: bold;
+	left: 1px;
+	top: 1px;}
+
+
+.memu2{
+		color: #135860;
+		font-family: 宋体;
+	   font-size: 12px;
+	   vertical-align: middle;
+	   TEXT-DECORATION: none;
+
+}
+.memu2:link{
+	COLOR: #135860; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;}
+
+.memu2:active{
+	COLOR: #FF8840; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;}
+.memu2:hover{
+	COLOR: #FF8840; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;}
+	/*
+.memu2:visited{
+	COLOR: #FF8840; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+	position: relative;
+	left: 1px;
+	top: 1px;}
+	*
+
+/*中间树*/
+.memutree {
+	width: 100%;
+	height: 25px;
+	padding-top: 2px;
+	vertical-align: middle;
+	   /*bgcolor: #B9DAFF;*/
+ BACKGROUND-COLOR: #B9DAFF;
+	border-right: #81bfd6 1px solid;
+	border-top: #81bfd6 1px solid;
+	border-left: #81bfd6 1px solid;
+	border-bottom: none;
+	}
+	
+	.listHongTD{
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+	COLOR: #004499;
+}	
+.ShuJuDaoLast{
+	COLOR: #F24200;
+	font-size: 12px; 
+	line-height:2.4;
+	white-space: nowrap;
+}
+.imageStyle{
+   cursor:hand;
+
+}
+/*操作链接 清空 */
+.linkOperateClean {
+	
+	FONT-SIZE: 13px;
+	COLOR: blue;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+}
+.

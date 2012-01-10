@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+body{font-size:12px;}
+.logofont{font-size:12px; color:#FFFFFF}
+.btsmall{background-image:url(../images/btsmall.jpg); background-repeat:no-repeat;  width:166px; height:24px; font-size:13px;color:#015ab4; font-weight:bold; padding-left:33px; padding-top:3px;}
+a.btsmallfont{font-size:13px;color:#015ab4; font-weight:bold; text-decoration:none}
+a.btsmallfont:hover{font-size:13px;color:#8d0000; font-weight:bold;}
+.titlefont{font-size:28px;font-weight:bold; font-family:"隶书"}/*标题*/
+.smalltitlefont{font-size:16px;font-weight:bold; font-family:"隶书"}/*副标*/
+.yhxx{color:#990000; font-size:12px; font-weight:bold;}/*用户信息*/
+/*head部链接按钮*/
+a.headlink{text-decoration:none; color:#000000}
+a.headlink:hover{ text-decoration:underline; color:#993300}
+a.headlink:active{ text-decoration:underline; color:#993300}
+a.mout{background-image:url(../images/out3.gif);background-repeat:no-repeat;width:51px; height:49px; display:block;}
+a.mout:hover{background-image:url(../images/out33.gif);background-repeat:no-repeat;width:51px;  height:49px;display:block}
+a.mout:activer{background-image:url(../images/out3.gif);background-repeat:no-repeat; width:51px; height:49px;display:block}
+a.mpass{background-image:url(../images/pass3.gif);background-repeat:no-repeat;width:49px; height:49px; display:block}
+a.mpass:hover{background-image:url(../images/pass33.gif);background-repeat:no-repeat;width:49px;  height:49px;display:block}
+a.mpass:activer{background-image:url(../images/pass3.gif);background-repeat:no-repeat; width:49px; height:49px;display:block}
+a.mhelp{background-image:url(../images/help_in.gif);background-repeat:no-repeat;width:49px; height:49px; display:block}
+a.mhelp:hover{background-image:url(../images/help_out.gif);background-repeat:no-repeat;width:49px;  height:49px;display:block}
+a.mhelp:activer{background-image:url(../images/help_in.gif);background-repeat:no-repeat; width:49px; height:49px;display:block}
+.scrollbarface{ BACKGROUND-COLOR: transparent;scrollbar-face-color: #edf2f6; scrollbar-shadow-color: #FFFFFF; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #daecfb; scrollbar-darkshadow-color: #c5d9e8; scrollbar-track-color: #edf2f6; scrollbar-arrow-color: #0f1d27
+}

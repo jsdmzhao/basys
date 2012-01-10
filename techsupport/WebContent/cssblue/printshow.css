@@ -1,0 +1,39 @@
+  .titlebig{font-size:18px; color:#000000; height:30px; padding:12px;}
+.detail{margin-top:5px; font-size:12px; width:100%; border-collapse:collapse;}
+.queryfont{font-size:14px;}
+.distd1 {border:1px solid  #d7d7d7;text-align:right;word-break:keep-all; height:25px; padding:5px; }
+.detailtd2 {border:1px solid  #d7d7d7; color:#004499; text-align:left;word-wrap:break-word;height:25px; padding:5px;}
+.distd3 {border:1px solid  #d7d7d7;word-break:keep-all; padding:5px; }
+.detailtd4 {border:1px solid  #d7d7d7; color:#004499; word-wrap:break-word; padding:5px;}
+.biaoti {
+	font-size: 34px;
+	font-weight: bold;
+}
+.bianhao{font-size:14px;}
+.biaotihei {
+	font-size: 19px;
+	font-weight: bold;
+}
+.biaotihei1 {
+	font-size: 16px;
+}
+.beizhu{
+	font-size: 16px;
+	color: #FF0000;}
+.neirong{font-size:14px; font-weight:bold;}	
+
+
+
+.danwei {
+	font-size: 19px;
+}
+.danweistr {
+	font-size: 18px;
+	font-weight: bold;
+}
+.beizhu{
+	font-size: 16px;
+	color: #FF0000;}
+.gaizhang{
+	font-size: 12px;
+}
