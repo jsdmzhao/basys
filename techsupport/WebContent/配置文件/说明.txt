@@ -1,0 +1,2 @@
+DisplayerStrings-nw.properties 为内网环境下配置文件，用时将文件名后-nw去掉;
+DisplayerStrings-ww.properties  为外网环境下配置文件，用时将文件名后-ww去掉;
