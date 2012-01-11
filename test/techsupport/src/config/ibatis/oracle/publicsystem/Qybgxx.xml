@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qybgxx" type="com.aisino2.publicsystem.domain.Qybgxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业变更信息(t_qybgxx)-->
+	<resultMap id="qybgxxResult" class="qybgxx">
+		<result property="qyid" column="qyid" />
+		<result property="qylsid" column="qylsid" />
+		<result property="qybgxxid" column="qybgxxid" />
+		<result property="bgdjxh" column="bgdjxh" />
+		<result property="bglxdm" column="bglxdm" />
+		<result property="bglx" column="bglx" />
+		<result property="bgrq" column="bgrq" />
+		<result property="bgyy" column="bgyy" />
+		<result property="bgqnr" column="bgqnr" />
+		<result property="bghnr" column="bghnr" />
+		
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="yzbm" column="yzbm"/>
+		<result property="yyztmc" column="yyztmc"/>
+		<result property="jydz" column="jydz"/>
+	</resultMap>
+	<!--企业变更信息(t_qybgxx)-->
+	<resultMap id="qybgxxListResult" class="qybgxx">
+		<result property="qybgxxid" column="qybgxxid"/>
+		<result property="bgdjxh" column="bgdjxh"/>
+		<result property="bglx" column="bglx"/>
+		<result property="bgrq" column="bgrq"/>
+		<result property="bgyy" column="bgyy"/>
+		
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+	</resultMap>
+	<sql id="t_qybgxxWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qylsid">
+				a.qylsid=#qylsid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybgxxid">
+				a.qybgxxid=#qybgxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qybgxxPageWhere" >
+		<include refid="t_qybgxxWhere" />	</sql>
+	<sql id="t_qybgxxListWhere" >
+		<include refid="t_qybgxxWhere" />	</sql>
+	<sql id="t_qybgxxSelectWhere"  >
+		<include refid="t_qybgxxWhere" />	</sql>
+	<!--企业变更信息(t_qybgxx)-->
+	<insert id="insertQybgxx"  parameterClass="qybgxx">
+		insert into t_qybgxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qylsid">
+				qylsid
+			</isNotNull>
+			<isNotNull prepend="," property="qybgxxid">
+				qybgxxid
+			</isNotNull>
+			<isNotNull prepend="," property="bgdjxh">
+				bgdjxh
+			</isNotNull>
+			<isNotNull prepend="," property="bglxdm">
+				bglxdm
+			</isNotNull>
+			<isNotNull prepend="," property="bglx">
+				bglx
+			</isNotNull>
+			<isNotNull prepend="," property="bgrq">
+				bgrq
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				bgyy
+			</isNotNull>
+			<isNotNull prepend="," property="bgqnr">
+				bgqnr
+			</isNotNull>
+			<isNotNull prepend="," property="bghnr">
+				bghnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qylsid">
+				#qylsid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybgxxid">
+				#qybgxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="bgdjxh">
+				#bgdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="bglxdm">
+				#bglxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bglx">
+				#bglx#
+			</isNotNull>
+			<isNotNull prepend="," property="bgrq">
+				#bgrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				#bgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bgqnr">
+				#bgqnr#
+			</isNotNull>
+			<isNotNull prepend="," property="bghnr">
+				#bghnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业变更信息(t_qybgxx)-->
+	<update id="updateQybgxx" parameterClass="qybgxx">
+		update t_qybgxx a set a.qybgxxid=a.qybgxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qylsid">
+				qylsid=#qylsid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybgxxid">
+				qybgxxid=#qybgxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="bgdjxh">
+				bgdjxh=#bgdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="bglxdm">
+				bglxdm=#bglxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bglx">
+				bglx=#bglx#
+			</isNotNull>
+			<isNotNull prepend="," property="bgrq">
+				bgrq=#bgrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				bgyy=#bgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bgqnr">
+				bgqnr=#bgqnr#
+			</isNotNull>
+			<isNotNull prepend="," property="bghnr">
+				bghnr=#bghnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybgxxWhere" />
+		</dynamic>
+	</update>
+	<!--企业变更信息(t_qybgxx)-->
+	<delete id="deleteQybgxx" parameterClass="qybgxx">
+		delete from t_qybgxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qybgxxWhere" />
+		</dynamic>
+	</delete>
+	<!--企业变更信息(t_qybgxx)-->
+	<select id="getQybgxxList" resultMap="qybgxxListResult" parameterClass="map">
+		select x.* from ( select rownum rowno,z.* from (
+		select 	b.qybm qybm, 		b.qymc qymc, 	b.qyzflmc qyzflmc,
+				a.bgdjxh bgdjxh, 	a.bglx bglx, 	a.bgyy bgyy,
+       			a.bgrq bgrq,		a.qybgxxid qybgxxid
+		from t_qybgxx a,t_qyjbxx b,(select distinct t.qyid,t.zjbh,t.qsrq from t_qyzjb t where t.zjfl ='营业执照') c
+		where a.qyid = b.qyid and a.qyid=c.qyid(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyzflbm">
+				b.qyzflbm=#qyzflbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="frdb">
+				b.frdb like '%$frdb$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jydz">
+				b.jydz like '%$jydz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjbh">
+				c.zjbh like '%$zjbh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgdjxh">
+				a.bgdjxh like '%$bgdjxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bglxdm">
+				a.bglxdm=#bglxdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgyy">
+				a.bgyy like '%$bgyy$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgrqf">
+				a.bgrq&gt;=#bgrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgrqt">
+				a.bgrq&lt; #bgrqt:DATE#+1
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业变更信息(t_qybgxx)-->
+	<select id="getQybgxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_qybgxx a,t_qyjbxx b,(select distinct t.qyid,t.zjbh,t.qsrq from t_qyzjb t where t.zjfl ='营业执照') c
+		where a.qyid = b.qyid and a.qyid=c.qyid(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyzflbm">
+				b.qyzflbm=#qyzflbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="frdb">
+				b.frdb like '%$frdb$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jydz">
+				b.jydz like '%$jydz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjbh">
+				c.zjbh like '%$zjbh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgdjxh">
+				a.bgdjxh like '%$bgdjxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bglxdm">
+				a.bglxdm=#bglxdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgyy">
+				a.bgyy like '%$bgyy$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgrqf">
+				a.bgrq&gt;=#bgrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgrqt">
+				a.bgrq&lt; #bgrqt:DATE#+1
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--企业变更信息(t_qybgxx)-->
+	<select id="getQybgxxListNoPage" resultMap="qybgxxListResult" parameterClass="qybgxx">
+		select 	b.qybm qybm, 		b.qymc qymc, 	b.qyzflmc qyzflmc,
+				a.bgdjxh bgdjxh, 	a.bglx bglx, 	a.bgyy bgyy,
+       			a.bgrq bgrq,		a.qybgxxid qybgxxid
+		from t_qybgxx a,t_qyjbxx b
+		where a.qyid = b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qylsid">
+				a.qylsid=#qylsid#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.qylsid,a.qybgxxid
+	</select>
+	<!--企业变更信息(t_qybgxx)-->
+	<select id="getQybgxx" resultMap="qybgxxResult" parameterClass="qybgxx">
+		select 	a.qyid qyid,a.qylsid qylsid,a.qybgxxid qybgxxid,a.bgdjxh bgdjxh,a.bglxdm bglxdm,a.bglx bglx,a.bgrq bgrq,a.bgyy bgyy,a.bgqnr bgqnr,a.bghnr bghnr,
+				b.qybm qybm, b.qymc qymc, b.qyzflmc qyzflmc, b.gxdwmc gxdwmc, 
+				b.lxdh lxdh, b.yzbm yzbm, b.yyztmc yyztmc, b.jydz jydz
+		from t_qybgxx a,t_qyjbxx b
+		where a.qyid = b.qyid 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qybgxxid">
+				a.qybgxxid=#qybgxxid#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.qylsid,a.qybgxxid
+	</select>
+</sqlMap>

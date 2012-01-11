@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="lhjc" type="com.aisino2.publicsystem.domain.Lhjc"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--联合检查(t_lhjc)-->
+	<resultMap id="lhjcResult" class="lhjc">
+		<result property="qyid" column="qyid" />
+		<result property="lhjcid" column="lhjcid" />
+		<result property="glbmlhjcdjxh" column="glbmlhjcdjxh" />
+		<result property="lcjgjbdm" column="lcjgjbdm" />
+		<result property="lcjgjb" column="lcjgjb" />
+		<result property="lcjglxdm" column="lcjglxdm" />
+		<result property="lcjglx" column="lcjglx" />
+		<result property="lcjgdm" column="lcjgdm" />
+		<result property="lcjgmc" column="lcjgmc" />
+		<result property="lcsj" column="lcsj" />
+		<result property="lcryxm" column="lcryxm" />
+		<result property="lcsx" column="lcsx" />
+		<result property="fxwt" column="fxwt" />
+		<result property="lcjg" column="lcjg" />
+		<result property="qymc" column="qymc" />
+		<result property="hylbdm" column="hylbdm" />
+	</resultMap>
+	<!--联合检查(t_lhjc)-->
+	<resultMap id="lhjcListResult" class="lhjc">
+		<result property="qyid" column="qyid"/>
+		<result property="lhjcid" column="lhjcid"/>
+		<result property="glbmlhjcdjxh" column="glbmlhjcdjxh"/>
+		<result property="lcjgjbdm" column="lcjgjbdm"/>
+		<result property="lcjgjb" column="lcjgjb"/>
+		<result property="lcjglxdm" column="lcjglxdm"/>
+		<result property="lcjglx" column="lcjglx"/>
+		<result property="lcjgdm" column="lcjgdm"/>
+		<result property="lcjgmc" column="lcjgmc"/>
+		<result property="lcsj" column="lcsj"/>
+		<result property="lcryxm" column="lcryxm"/>
+		<result property="lcsx" column="lcsx"/>
+		<result property="fxwt" column="fxwt"/>
+		<result property="lcjg" column="lcjg"/>
+		<result property="qymc" column="qymc" />
+	</resultMap>
+	<sql id="t_lhjcWhere">
+			<isNotEmpty prepend="and" property="lcjg">
+				a.lcjg like '%$lcjg$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lhjcid">
+				a.lhjcid=#lhjcid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="glbmlhjcdjxh">
+				a.glbmlhjcdjxh=#glbmlhjcdjxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcjgjbdm">
+				a.lcjgjbdm=#lcjgjbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcjglxdm">
+				a.lcjglxdm=#lcjglxdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcjgmc">
+				a.lcjgmc like '%$lcjgmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcryxm">
+				a.lcryxm like '%$lcryxm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+					t.gxdwbm like '%$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+					t.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+					t.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+					t.hylbdm like #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcsj">
+				to_char(a.lcsj,'yyyy-MM-dd') &gt;=to_char(#lcsj:TIMESTAMP#,'yyyy-MM-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lcsjzhi">
+				to_char(a.lcsj,'yyyy-MM-dd') &lt;=to_char(#lcsjzhi:TIMESTAMP#,'yyyy-MM-dd')||' 23:59:59'
+			</isNotEmpty>
+	</sql>
+	<sql id="t_lhjcPageWhere" >
+		<include refid="t_lhjcWhere" />	</sql>
+	<sql id="t_lhjcListWhere" >
+		<include refid="t_lhjcWhere" />	</sql>
+	<sql id="t_lhjcSelectWhere"  >
+		<include refid="t_lhjcWhere" />	</sql>
+	<!--联合检查(t_lhjc)-->
+	<insert id="insertLhjc"  parameterClass="lhjc">
+		insert into t_lhjc (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="lhjcid">
+				lhjcid
+			</isNotNull>
+			<isNotNull prepend="," property="glbmlhjcdjxh">
+				glbmlhjcdjxh
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjbdm">
+				lcjgjbdm
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjb">
+				lcjgjb
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglxdm">
+				lcjglxdm
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglx">
+				lcjglx
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgdm">
+				lcjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgmc">
+				lcjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="lcsj">
+				lcsj
+			</isNotNull>
+			<isNotNull prepend="," property="lcryxm">
+				lcryxm
+			</isNotNull>
+			<isNotNull prepend="," property="lcsx">
+				lcsx
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt
+			</isNotNull>
+			<isNotNull prepend="," property="lcjg">
+				lcjg
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="lhjcid">
+				#lhjcid#
+			</isNotNull>
+			<isNotNull prepend="," property="glbmlhjcdjxh">
+				#glbmlhjcdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjbdm">
+				#lcjgjbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjb">
+				#lcjgjb#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglxdm">
+				#lcjglxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglx">
+				#lcjglx#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgdm">
+				#lcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgmc">
+				#lcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lcsj">
+				#lcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lcryxm">
+				#lcryxm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcsx">
+				#lcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjg">
+				#lcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--联合检查(t_lhjc)-->
+	<update id="updateLhjc" parameterClass="lhjc">
+		update t_lhjc a set a.lhjcid=a.lhjcid
+		<dynamic prepend="">
+		<!--  
+			<isNotNull prepend="," property="lhjcid">
+				lhjcid=#lhjcid#
+			</isNotNull>
+		-->
+			<isNotNull prepend="," property="glbmlhjcdjxh">
+				glbmlhjcdjxh=#glbmlhjcdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjbdm">
+				lcjgjbdm=#lcjgjbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgjb">
+				lcjgjb=#lcjgjb#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglxdm">
+				lcjglxdm=#lcjglxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjglx">
+				lcjglx=#lcjglx#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgdm">
+				lcjgdm=#lcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjgmc">
+				lcjgmc=#lcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lcsj">
+				lcsj=#lcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lcryxm">
+				lcryxm=#lcryxm#
+			</isNotNull>
+			<isNotNull prepend="," property="lcsx">
+				lcsx=#lcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt=#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="lcjg">
+				lcjg=#lcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				dcbs=#dcbs#
+			</isNotNull>
+		</dynamic>
+		where 1=1 
+		<isNotNull prepend="and" property="lhjcid">
+				a.lhjcid=#lhjcid#
+		</isNotNull>
+		<!--  
+		<dynamic prepend="">
+			<include refid="t_lhjcWhere" />
+		</dynamic>
+		-->
+	</update>
+	<!--联合检查(t_lhjc)-->
+	<delete id="deleteLhjc" parameterClass="lhjc">
+		update t_lhjc a set a.scbz=1 where 1=1
+		<isNotNull prepend="and" property="lhjcid">
+				lhjcid=#lhjcid#
+			</isNotNull>
+		<!--  
+		<dynamic prepend="">
+			<include refid="t_lhjcWhere" />
+		</dynamic>
+		-->
+	</delete>
+	<!--联合检查(t_lhjc)-->
+	<select id="getLhjcList" resultMap="lhjcListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select t.qymc qymc,a.qyid qyid,a.lhjcid lhjcid,a.glbmlhjcdjxh glbmlhjcdjxh,a.lcjgjbdm lcjgjbdm,a.lcjgjb lcjgjb,a.lcjglxdm lcjglxdm,a.lcjglx lcjglx,a.lcjgdm lcjgdm,a.lcjgmc lcjgmc,a.lcsj lcsj,a.lcryxm lcryxm,a.lcsx lcsx,a.fxwt fxwt,a.lcjg lcjg
+		from t_lhjc a ,t_qyjbxx t
+		where 1=1 and a.scbz=0 and a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_lhjcPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--联合检查(t_lhjc)-->
+	<select id="getLhjcListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_lhjc a ,t_qyjbxx t
+		where 1=1 and a.scbz=0 and a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_lhjcPageWhere" />
+		</dynamic>
+	</select>
+	<!--联合检查(t_lhjc)-->
+	<select id="getLhjcListNoPage" resultMap="lhjcListResult" parameterClass="lhjc">
+		select t.qymc qymc,a.qyid qyid,a.lhjcid lhjcid,a.glbmlhjcdjxh glbmlhjcdjxh,a.lcjgjbdm lcjgjbdm,a.lcjgjb lcjgjb,a.lcjglxdm lcjglxdm,a.lcjglx lcjglx,a.lcjgdm lcjgdm,a.lcjgmc lcjgmc,a.lcsj lcsj,a.lcryxm lcryxm,a.lcsx lcsx,a.fxwt fxwt,a.lcjg lcjg
+		from t_lhjc a ,t_qyjbxx t
+		where 1=1 and a.scbz=0 and a.qyid=t.qyid
+		<dynamic prepend="">
+		    <isNotEmpty prepend="and" property="dcbs">
+				a.dcbs=#dcbs#
+			</isNotEmpty>
+			<include refid="t_lhjcListWhere" />
+		</dynamic>
+		order by a.qyid,a.lhjcid
+	</select>
+	<!--联合检查(t_lhjc)-->
+	<select id="getLhjc" resultMap="lhjcResult" parameterClass="lhjc">
+		select t.qymc qymc,t.hylbdm hylbdm,a.qyid qyid,a.lhjcid lhjcid,a.glbmlhjcdjxh glbmlhjcdjxh,a.lcjgjbdm lcjgjbdm,a.lcjgjb lcjgjb,a.lcjglxdm lcjglxdm,a.lcjglx lcjglx,a.lcjgdm lcjgdm,a.lcjgmc lcjgmc,a.lcsj lcsj,a.lcryxm lcryxm,a.lcsx lcsx,a.fxwt fxwt,a.lcjg lcjg
+		from t_lhjc a ,t_qyjbxx t
+		where 1=1 and a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_lhjcSelectWhere" />
+			<isNotEmpty prepend="and" property="glbmlhjcdjxh"><!-- 娱乐业接口 根据登记序号判断唯一 防止多次上传 -->
+				a.glbmlhjcdjxh=#glbmlhjcdjxh#
+	    	</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.lhjcid
+	</select>
+</sqlMap>

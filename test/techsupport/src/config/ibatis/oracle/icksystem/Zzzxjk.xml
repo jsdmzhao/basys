@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.aisino2.icksystem.domain.SendIckInfoWs">
+	<typeAlias alias="sendIckInfoWs" type="com.aisino2.icksystem.domain.SendIckInfoWs"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--放送信息Result-->
+	<resultMap id="sendIckInfoWsResult" class="sendIckInfoWs">
+		<result property="ickslid" column="ickslid" />
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="cjr" column="cjr" />
+		<result property="ickslh" column="ickslh" />
+		<result property="xingming" column="xingming" />
+		<result property="xb" column="xb" />
+		<result property="ywm" column="ywm" />
+		<result property="ywx" column="ywx" />
+		<result property="csrq" column="csrq" />
+		<result property="wjnr" column="wjnr" />
+		<result property="gj" column="gj" />
+		<result property="minzu" column="minzu" />
+		<result property="hjsx" column="hjsx" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="zjhm" column="zjhm" />
+		<result property="zzzhm" column="zzzhm" />
+		<result property="xzd" column="xzd" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="cyrylb" column="cyrylb" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="beizhu" column="beizhu" />
+		<result property="cyrybh" column="cyrybh" />
+	</resultMap>
+	<!--发送信息-->
+	<select id="getSendIckInfoWsListNoPage" resultMap="sendIckInfoWsResult" parameterClass="sendIckInfoWs">
+select a.qyid,
+	   a.ryid,	
+	   b.ickslid,
+       a.cjdbm,
+       a.cjdmc,
+       a.cjr,
+       b.kh ickslh,
+       a.xm xingming,
+       a.xbdm xb,
+       case
+         when instr(a.xm, ' ') > 0 then
+          substr(a.xm, instr(a.xm, ' '), length(a.xm))
+         else
+          ''
+       end ywx,
+       case
+         when instr(a.xm, ' ') > 0 then
+          substr(a.xm, 1, instr(a.xm, ' '))
+         else
+          ''
+       end ywm,
+       a.csrq csrq,
+       e.tpnr wjnr,
+       a.gjdm gj,
+       a.mzdm minzu,
+       a.hjdxzqhdm hjsx,
+       a.hjdxz hjdxz,
+       a.zjhm zjhm,
+       a.zzzhm zzzhm,
+       a.zzdz xzd,
+       f.wgrjyxkz wgrjyxkz,
+       a.cylbdm cyrylbdm,
+       b.yxsksrq,
+       b.yxqhzrq,
+       a.bz beizhu,
+       a.cyrybh
+  from t_qyryxx a, t_icksl b, t_qyry_zp e, t_wgcyryxx f
+ where a.ryid = b.ryid
+   and a.ryid = e.ryid
+   and a.ryid = f.ryid(+)
+   and a.scbz = 0
+   and a.zxbz = 0
+   <isNotEmpty prepend="" property="beizhu">
+             <isEqual prepend=" " property="beizhu" compareValue="0">
+				and (b.zkztbs = 1 or b.zkztbs=0)
+				</isEqual>
+				<isEqual prepend=" " property="beizhu" compareValue="1">
+					and  b.zkztbs = 1 
+				</isEqual>
+  
+			</isNotEmpty>
+
+	</select>
+
+
+	<!--发送信息-->
+	<update id="updateSendIckInfoWs"  parameterClass="sendIckInfoWs">
+      update t_icksl set zkztbs =#zkztbs#  where ickslid=#ickslid# 
+	</update>
+</sqlMap>

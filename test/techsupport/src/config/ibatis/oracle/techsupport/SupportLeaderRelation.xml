@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="SupportLeaderRelation" type="com.aisino2.techsupport.domain.SupportLeaderRelation" />
+
+	<!-- 支持单关联单位结果集 -->
+	<resultMap class="SupportLeaderRelation" id="SupportLeaderRelationResult">
+		<result property="stId" column="ST_ID" />
+		<result property="supportLeaderId" column="SL_ID" />
+	</resultMap>
+
+
+	<sql id="SupportLeaderRelationWhere">
+
+			<isNotNull prepend="and" property="stId">
+				T.ST_ID = #stId#
+			</isNotNull>
+			<isNotNull prepend="and" property="supportLeaderId">
+				T.SL_ID = #supportLeaderId#
+			</isNotNull>
+	</sql>
+	<sql id="SupportLeaderRelationPageWhere">
+		<include refid="SupportLeaderRelationWhere" />
+	</sql>
+	<sql id="SupportLeaderRelationListWhere">
+		<include refid="SupportLeaderRelationWhere" />
+	</sql>
+	
+	
+	<select id="SupportLeaderRelation.querylist" resultMap="SupportLeaderRelationResult"
+		parameterClass="SupportLeaderRelation">
+		select t.* from T_TS_STSL_MAP t
+		<dynamic prepend="where">
+			<include refid="SupportLeaderRelationWhere"/>
+		</dynamic>
+	</select>
+	
+	<select id="SupportLeaderRelation.querySupportLeaderByStId" resultMap="userResult" parameterClass="Integer">
+		select a.*,
+		d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		 from T_TS_STSL_MAP t ,T_USER a,t_department d
+		 where a.userid=t.SL_ID and a.departid=d.departid and  t.ST_ID=#value# 
+		 order by a.userid,a.departid
+	</select>
+	
+<!-- 	<select id="SupportLeaderRelationWhere.getPageCount" parameterClass="map" -->
+<!-- 		resultClass="integer"> -->
+<!-- 		select count(*) from -->
+<!-- 		t_ts_tracking t -->
+<!-- 		<dynamic prepend="where"> -->
+<!-- 			<include refid="TrackingPageWhere" /> -->
+<!-- 		</dynamic> -->
+<!-- 	</select> -->
+
+<!-- 	<select id="SupportLeaderRelationWhere.getPage" resultMap="TrackingResult" -->
+<!-- 		parameterClass="map"> -->
+<!-- 		select x.* from ( -->
+<!-- 		select rownum rowno,z.* from -->
+<!-- 		( select t.* from -->
+<!-- 		t_ts_tracking t -->
+<!-- 		<dynamic prepend="where"> -->
+<!-- 			<include refid="TrackingPageWhere" /> -->
+<!-- 		</dynamic> -->
+<!-- 		order by $pageSort$) z) x where rowno &gt;$beginRow$ and rowno &lt;= -->
+<!-- 		$endRow$ -->
+<!-- 	</select> -->
+
+
+	<!-- 插入 -->
+	<insert id="SupportLeaderRelation.insert" parameterClass="SupportLeaderRelation">
+		insert
+		into T_TS_STSL_MAP (
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="supportLeaderId">
+				SL_ID
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				ST_ID
+			</isNotNull>
+		</dynamic>
+		)
+		values(
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="supportLeaderId">
+				#supportLeaderId#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				#stId#
+			</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+
+	<delete id="SupportLeaderRelation.delete" parameterClass="SupportLeaderRelation">
+		delete from
+		T_TS_STSL_MAP T 
+		<dynamic prepend="where">
+			<include refid="SupportLeaderRelationWhere"/>
+		</dynamic>
+	</delete>
+
+</sqlMap>

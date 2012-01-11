@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bwryxx"
+		type="com.aisino2.publicsystem.domain.Bwryxx" />
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24" />
+	</cacheModel>
+	<!--保卫人员信息(t_bwryxx)-->
+	<resultMap id="bwryxxResult" class="bwryxx">
+		<result property="qyid" column="qyid" />
+		<result property="bwryid" column="bwryid" />
+		<result property="xm" column="xm" />
+		<result property="csrq" column="csrq" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="gmsfhm" column="gmsfhm" />
+		<result property="sgrq" column="sgrq" />
+		<result property="lzyy" column="lzyy" />
+		<result property="lzrq" column="lzrq" />
+		<result property="bz" column="bz" />
+		<result property="zt" column="zt" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+		<result property="hylb" column="hylb" />
+		<result property="qymc" column="qymc" />
+	</resultMap>
+	<!--保卫人员信息(t_bwryxx)-->
+	<resultMap id="bwryxxListResult" class="bwryxx">
+		<result property="qyid" column="qyid" />
+		<result property="bwryid" column="bwryid" />
+		<result property="xm" column="xm" />
+		<result property="csrq" column="csrq" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="gmsfhm" column="gmsfhm" />
+		<result property="sgrq" column="sgrq" />
+		<result property="lzyy" column="lzyy" />
+		<result property="lzrq" column="lzrq" />
+		<result property="bz" column="bz" />
+		<result property="zt" column="zt" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+		<result property="hylb" column="hylb" />
+		<result property="qymc" column="qymc" />
+	</resultMap>
+	<sql id="t_bwryxxWhere">
+		<isNotEmpty prepend="and" property="qyid">
+			a.qyid=#qyid#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="bwryid">
+			a.bwryid=#bwryid#
+		</isNotEmpty>
+	</sql>
+	<sql id="t_bwryxxPageWhere">
+		<include refid="t_bwryxxWhere" />
+		<isNotEmpty prepend="and" property="hylbdm">
+			b.hylbdm=#hylbdm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hylb">
+			b.hylb=#hylb#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qybm">
+			b.qybm=#qybm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			b.qymc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="xm">
+			a.xm like '%$xm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gmsfhm">
+			a.gmsfhm like '%$gmsfhm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hjdxzqhdm">
+			a.hjdxzqhdm=#gmsfhm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hjdxzqh">
+			a.hjdxzqh=#hjdxzqh#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hjdxz">
+			a.hjdxz=#hjdxz#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="zt">
+		    a.zt=#zt#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			b.gxdwbm like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<sql id="t_bwryxxListWhere">
+		<include refid="t_bwryxxWhere" />
+	</sql>
+	<sql id="t_bwryxxSelectWhere">
+		<include refid="t_bwryxxWhere" />
+	</sql>
+	<!--保卫人员信息(t_bwryxx)-->
+	<insert id="insertBwryxx" parameterClass="bwryxx">
+		insert into t_bwryxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">qyid</isNotNull>
+			<isNotNull prepend="," property="bwryid">bwryid</isNotNull>
+			<isNotNull prepend="," property="xm">xm</isNotNull>
+			<isNotNull prepend="," property="csrq">csrq</isNotNull>
+			<isNotNull prepend="," property="xbdm">xbdm</isNotNull>
+			<isNotNull prepend="," property="xb">xb</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">hjdxz</isNotNull>
+			<isNotNull prepend="," property="gmsfhm">gmsfhm</isNotNull>
+			<isNotNull prepend="," property="sgrq">sgrq</isNotNull>
+			<isNotNull prepend="," property="lzyy">lzyy</isNotNull>
+			<isNotNull prepend="," property="lzrq">lzrq</isNotNull>
+			<isNotNull prepend="," property="bz">bz</isNotNull>
+			<isNotNull prepend="," property="zt">zt</isNotNull>
+			<isNotNull prepend="," property="lrr">lrr</isNotNull>
+			<isNotNull prepend="," property="lrsj">lrsj</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">#qyid#</isNotNull>
+			<isNotNull prepend="," property="bwryid">
+				#bwryid#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">#xm#</isNotNull>
+			<isNotNull prepend="" property="csrq">
+				#csrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">#xbdm#</isNotNull>
+			<isNotNull prepend="," property="xb">#xb#</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">#hjdxz#</isNotNull>
+			<isNotNull prepend="," property="gmsfhm">
+				#gmsfhm#
+			</isNotNull>
+			<isNotNull prepend="," property="sgrq">
+				#sgrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="lzyy">#lzyy#</isNotNull>
+			<isNotNull prepend="," property="lzrq">
+				#lzrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">#bz#</isNotNull>
+			<isNotNull prepend="," property="zt">#zt#</isNotNull>
+			<isNotNull prepend="," property="lrr">#lrr#</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--保卫人员信息(t_bwryxx)-->
+	<update id="updateBwryxx" parameterClass="bwryxx">
+		update t_bwryxx a set a.bwryid=a.bwryid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="xm">xm=#xm#</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq=#csrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm=#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">xb=#xb#</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm=#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh=#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz=#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="gmsfhm">
+				gmsfhm=#gmsfhm#
+			</isNotNull>
+			<isNotNull prepend="," property="sgrq">
+				sgrq=#sgrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="lzyy">
+				lzyy=#lzyy#
+			</isNotNull>
+			<isNotNull prepend="," property="lzrq">
+				lzrq=#lzrq:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">bz=#bz#</isNotNull>
+			<isNotNull prepend="," property="zt">zt=#zt#</isNotNull>
+			<isNotNull prepend="," property="lrr">lrr=#lrr#</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bwryxxWhere" />
+		</dynamic>
+	</update>
+	<!--保卫人员信息(t_bwryxx)-->
+	<delete id="deleteBwryxx" parameterClass="bwryxx">
+		delete from t_bwryxx a where 1=1
+		<dynamic prepend="">
+			<include refid="t_bwryxxWhere" />
+		</dynamic>
+	</delete>
+	<!--保卫人员信息(t_bwryxx)-->
+	<select id="getBwryxxList" resultMap="bwryxxListResult"
+		parameterClass="map">
+		select x.* from ( select rownum rowno,z.* from (select a.qyid
+		qyid,a.bwryid bwryid,a.xm xm,a.csrq csrq,a.xbdm xbdm,a.xb
+		xb,a.hjdxzqhdm hjdxzqhdm,a.hjdxzqh hjdxzqh,a.hjdxz
+		hjdxz,a.gmsfhm gmsfhm,a.sgrq sgrq,a.lzyy lzyy,a.lzrq lzrq,a.bz
+		bz,a.zt zt,a.lrr lrr,a.lrsj lrsj, b.qymc qymc,b.hylb hylb from
+		t_bwryxx a, t_qyjbxx b where a.qyid = b.qyid
+		<dynamic prepend="">
+			<include refid="t_bwryxxPageWhere" />
+		</dynamic>
+		order by $pageSort$) z) x where rowno &gt;$beginRow$ and rowno
+		&lt;= $endRow$
+	</select>
+	<!--保卫人员信息(t_bwryxx)-->
+	<select id="getBwryxxListCount" resultClass="int"
+		parameterClass="map">
+		select count(1) a from t_bwryxx a, t_qyjbxx b where a.qyid =
+		b.qyid
+		<dynamic prepend="">
+			<include refid="t_bwryxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--保卫人员信息(t_bwryxx)-->
+	<select id="getBwryxxListNoPage" resultMap="bwryxxListResult"
+		parameterClass="bwryxx">
+		select a.qyid qyid,a.bwryid bwryid,a.xm xm,a.csrq csrq,a.xbdm
+		xbdm,a.xb xb,a.hjdxzqhdm hjdxzqhdm,a.hjdxzqh hjdxzqh,a.hjdxz
+		hjdxz,a.gmsfhm gmsfhm,a.sgrq sgrq,a.lzyy lzyy,a.lzrq lzrq,a.bz
+		bz,a.zt zt,a.lrr lrr,a.lrsj lrsj, b.qymc qymc,b.hylb hylb from t_bwryxx a, t_qyjbxx b 
+		where a.qyid = b.qyid
+		<dynamic prepend="">
+			<include refid="t_bwryxxListWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.bwryid
+	</select>
+	<!--保卫人员信息(t_bwryxx)-->
+	<select id="getBwryxx" resultMap="bwryxxResult"
+		parameterClass="bwryxx">
+		select a.qyid qyid,a.bwryid bwryid,a.xm xm,a.csrq csrq,a.xbdm
+		xbdm,a.xb xb,a.hjdxzqhdm hjdxzqhdm,a.hjdxzqh hjdxzqh,a.hjdxz
+		hjdxz,a.gmsfhm gmsfhm,a.sgrq sgrq,a.lzyy lzyy,a.lzrq lzrq,a.bz
+		bz,a.zt zt,a.lrr lrr,a.lrsj lrsj, b.qymc qymc,b.hylb hylb from
+		t_bwryxx a, t_qyjbxx b where a.qyid = b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bwryid">
+				a.bwryid=#bwryid#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.bwryid
+	</select>
+	<!--保卫人员信息(t_bwryxx)-->
+	<select id="getBwryxxCount" resultClass="int" parameterClass="bwryxx">
+		select count(1) a from t_bwryxx a
+		where a.zt=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

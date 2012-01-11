@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyry_zp" type="com.aisino2.publicsystem.domain.Qyry_zp"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<resultMap id="qyry_zpResult" class="qyry_zp">
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="zpid" column="zpid" />
+		<result property="tpmc" column="tpmc" />
+		<result property="tplx" column="tplx" />
+		<result property="tpnr" column="tpnr" />
+	</resultMap>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<resultMap id="qyry_zpListResult" class="qyry_zp">
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="zpid" column="zpid"/>
+		<result property="tpmc" column="tpmc"/>
+		<result property="tplx" column="tplx"/>
+		<result property="tpnr" column="tpnr"/>
+	</resultMap>
+	<sql id="t_qyry_zpWhere">
+			<isNotEmpty prepend="and" property="tplx">
+				a.tplx=#tplx#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zpid">
+				a.zpid=#zpid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyry_zpPageWhere" >
+		<include refid="t_qyry_zpWhere" />	</sql>
+	<sql id="t_qyry_zpListWhere" >
+		<include refid="t_qyry_zpWhere" />	</sql>
+	<sql id="t_qyry_zpSelectWhere"  >
+		<include refid="t_qyry_zpWhere" />	</sql>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<insert id="insertQyry_zp"  parameterClass="qyry_zp">
+		insert into t_qyry_zp (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="zpid">
+				zpid
+			</isNotNull>
+			<isNotNull prepend="," property="tpmc">
+				tpmc
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				tplx
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				tpnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="zpid">
+				#zpid#
+			</isNotNull>
+			<isNotNull prepend="," property="tpmc">
+				#tpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				#tplx#
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				#tpnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<update id="updateQyry_zp" parameterClass="qyry_zp">
+		update t_qyry_zp a set a.zpid=a.zpid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+		<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="tpmc">
+				tpmc=#tpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				tplx=#tplx#
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				tpnr=#tpnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_zpWhere" />
+		</dynamic>
+	</update>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<delete id="deleteQyry_zp" parameterClass="qyry_zp">
+		delete from t_qyry_zp a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyry_zpWhere" />
+		</dynamic>
+	</delete>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<select id="getQyry_zpList" resultMap="qyry_zpListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.ryid ryid,a.zpid zpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_qyry_zp a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_zpPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<select id="getQyry_zpListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyry_zp a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_zpPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<select id="getQyry_zpListNoPage" resultMap="qyry_zpListResult" parameterClass="qyry_zp">
+		select a.qyid qyid,a.ryid ryid,a.zpid zpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_qyry_zp a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="isZpExist">
+				a.tplx='0' and a.tpnr is not null
+			</isNotEmpty>
+			<include refid="t_qyry_zpListWhere" />
+		</dynamic>
+		order by a.qyid,a.ryid,a.zpid
+	</select>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<select id="getQyry_zp" resultMap="qyry_zpResult" parameterClass="qyry_zp">
+		select a.qyid qyid,a.ryid ryid,a.zpid zpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_qyry_zp a
+		where 1=1
+		<dynamic prepend="">
+		<isNotEmpty prepend="and" property="tplx">
+				a.tplx = #tplx#
+			</isNotEmpty>
+			<include refid="t_qyry_zpSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.ryid,a.zpid
+	</select>
+</sqlMap>

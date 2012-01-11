@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="khxx" type="com.aisino2.publicsystem.domain.Khxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--客户信息表(t_khxx)-->
+	<resultMap id="khxxResult" class="khxx">
+		<result property="khxxid" column="khxxid" />
+		<result property="xm" column="xm" />
+		<result property="lxdh" column="lxdh" />
+		<result property="mzdm" column="mzdm" />
+		<result property="minzu" column="minzu" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="biduiflag" column="biduiflag" />
+		<result property="zt" column="zt" />
+	</resultMap>
+	<!--客户信息表(t_khxx)-->
+	<resultMap id="khxxListResult" class="khxx">
+		<result property="khxxid" column="khxxid"/>
+		<result property="xm" column="xm"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="biduiflag" column="biduiflag"/>
+		<result property="zt" column="zt"/>
+	</resultMap>
+	<sql id="t_khxxWhere">
+		<isNotEmpty prepend="and" property="khxxid">
+			a.khxxid=#khxxid#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="zjhm">
+			a.zjhm=#zjhm#
+		</isNotEmpty>
+	</sql>
+	<sql id="t_khxxPageWhere" >
+		<include refid="t_khxxWhere" />	</sql>
+	<sql id="t_khxxListWhere" >
+		<include refid="t_khxxWhere" />	</sql>
+	<sql id="t_khxxSelectWhere"  >
+		<include refid="t_khxxWhere" />	</sql>
+	<!--客户信息表(t_khxx)-->
+	<insert id="insertKhxx"  parameterClass="khxx">
+		insert into t_khxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="khxxid">
+				khxxid
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				biduiflag
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="khxxid">
+				#khxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				#biduiflag#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--客户信息表(t_khxx)-->
+	<update id="updateKhxx" parameterClass="khxx">
+		update t_khxx a set a.khxxid=a.khxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="xm">
+				xm=#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm=#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu=#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm=#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj=#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm=#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb=#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz=#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm=#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj=#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm=#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				biduiflag=#biduiflag#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm=#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<include refid="t_khxxWhere" />
+		</dynamic>
+	</update>
+	<!--客户信息表(t_khxx)-->
+	<delete id="deleteKhxx" parameterClass="khxx">
+		delete from t_khxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_khxxWhere" />
+		</dynamic>
+	</delete>
+	<!--客户信息表(t_khxx)-->
+	<select id="getKhxxList" resultMap="khxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.khxxid khxxid,a.xm xm,a.lxdh lxdh,a.mzdm mzdm,a.minzu minzu,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.biduiflag biduiflag,a.zt zt
+		from t_khxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_khxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--客户信息表(t_khxx)-->
+	<select id="getKhxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_khxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_khxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--客户信息表(t_khxx)-->
+	<select id="getKhxxListNoPage" resultMap="khxxListResult" parameterClass="khxx">
+		select a.khxxid khxxid,a.xm xm,a.lxdh lxdh,a.mzdm mzdm,a.minzu minzu,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.biduiflag biduiflag,a.zt zt
+		from t_khxx a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm=#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<include refid="t_khxxListWhere" />
+		</dynamic>
+		order by a.khxxid
+	</select>
+	<!--客户信息表(t_khxx)判断客户是否存在 -->
+	<select id="isKhxxExist" resultMap="khxxListResult" parameterClass="khxx">
+		select a.khxxid khxxid,a.xm xm,a.lxdh lxdh,a.mzdm mzdm,a.minzu minzu,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.biduiflag biduiflag,a.zt zt
+		from t_khxx a
+		where 1=1 and a.zjhm=#zjhm#
+	</select>
+	<!--客户信息表(t_khxx)-->
+	<select id="getKhxx" resultMap="khxxResult" parameterClass="khxx">
+		select a.khxxid khxxid,a.xm xm,a.lxdh lxdh,a.mzdm mzdm,a.minzu minzu,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.biduiflag biduiflag,a.zt zt
+		from t_khxx a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm=#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<include refid="t_khxxSelectWhere" />
+		</dynamic>
+	</select>
+	<!--客户信息表(t_khxx)获得证件号码及国籍代码相同的客户信息中最新一条信息-->
+	<select id="getLatestKhxx" resultMap="khxxResult" parameterClass="khxx">
+		select a.khxxid khxxid,a.xm xm,a.lxdh lxdh,a.mzdm mzdm,a.minzu minzu,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.biduiflag biduiflag,a.zt zt
+		from t_khxx a,
+			       (select max(t.khxxid) khxxid, t.zjhm, t.gjdm
+			          from t_khxx t
+			         group by t.zjhm, t.gjdm) b
+ 		where a.khxxid = b.khxxid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm=#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<include refid="t_khxxSelectWhere" />
+		</dynamic>
+	</select>
+</sqlMap>

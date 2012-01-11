@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyzlxxfj" type="com.aisino2.publicsystem.domain.Qyzlxxfj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<resultMap id="qyzlxxfjResult" class="qyzlxxfj">
+		<result property="qyzlxxfjid" column="qyzlxxfjid" />
+		<result property="qyzlxxid" column="qyzlxxid" />
+		<result property="fjmc" column="fjmc" />
+		<result property="fjlx" column="fjlx" />
+		<result property="fjnr" column="fjnr" />
+	</resultMap>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<resultMap id="qyzlxxfjListResult" class="qyzlxxfj">
+		<result property="qyzlxxfjid" column="qyzlxxfjid"/>
+		<result property="qyzlxxid" column="qyzlxxid"/>
+		<result property="fjmc" column="fjmc"/>
+		<result property="fjlx" column="fjlx"/>
+		<result property="fjnr" column="fjnr"/>
+	</resultMap>
+	<sql id="t_qyzlxxfjWhere">
+			<isNotEmpty prepend="and" property="qyzlxxfjid">
+				a.qyzlxxfjid=#qyzlxxfjid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyzlxxid">
+				a.qyzlxxid=#qyzlxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyzlxxfjPageWhere" >
+		<include refid="t_qyzlxxfjWhere" />	</sql>
+	<sql id="t_qyzlxxfjListWhere" >
+		<include refid="t_qyzlxxfjWhere" />	</sql>
+	<sql id="t_qyzlxxfjSelectWhere"  >
+		<include refid="t_qyzlxxfjWhere" />	</sql>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<insert id="insertQyzlxxfj"  parameterClass="qyzlxxfj">
+		insert into t_qyzlxxfj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyzlxxfjid">
+				qyzlxxfjid
+			</isNotNull>
+			<isNotNull prepend="," property="qyzlxxid">
+				qyzlxxid
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyzlxxfjid">
+				#qyzlxxfjid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyzlxxid">
+				#qyzlxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				#fjnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<update id="updateQyzlxxfj" parameterClass="qyzlxxfj">
+		update t_qyzlxxfj a set a.qyzlxxid=a.qyzlxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyzlxxid">
+				qyzlxxid=#qyzlxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc=#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx=#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr=#fjnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxfjWhere" />
+		</dynamic>
+	</update>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<delete id="deleteQyzlxxfj" parameterClass="qyzlxxfj">
+		delete from t_qyzlxxfj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyzlxxfjWhere" />
+		</dynamic>
+	</delete>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<select id="getQyzlxxfjList" resultMap="qyzlxxfjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyzlxxfjid qyzlxxfjid,a.qyzlxxid qyzlxxid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr
+		from t_qyzlxxfj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxfjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<select id="getQyzlxxfjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyzlxxfj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxfjPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<select id="getQyzlxxfjListNoPage" resultMap="qyzlxxfjListResult" parameterClass="qyzlxxfj">
+		select a.qyzlxxfjid qyzlxxfjid,a.qyzlxxid qyzlxxid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr
+		from t_qyzlxxfj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxfjListWhere" />
+		</dynamic>
+		order by a.qyzlxxfjid,a.qyzlxxid
+	</select>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<select id="getQyzlxxfj" resultMap="qyzlxxfjResult" parameterClass="qyzlxxfj">
+		select a.qyzlxxfjid qyzlxxfjid,a.qyzlxxid qyzlxxid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr
+		from t_qyzlxxfj a
+		where 1=1
+		and a.qyzlxxfjid=#qyzlxxfjid# 
+		order by a.qyzlxxfjid,a.qyzlxxid
+	</select>
+</sqlMap>

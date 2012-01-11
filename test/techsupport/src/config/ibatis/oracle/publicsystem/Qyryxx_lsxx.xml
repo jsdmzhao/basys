@@ -1,0 +1,1348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyryxx_lsxx" type="com.aisino2.publicsystem.domain.Qyryxx_lsxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<resultMap id="qyryxx_lsxxResult" class="qyryxx_lsxx">
+		<result property="rylsid" column="rylsid" />
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="cyrylbdm" column="cyrylbdm" />
+		<result property="cyrylbmc" column="cyrylbmc" />
+		<result property="xm" column="xm" />
+		<result property="qm" column="qm" />
+		<result property="bm" column="bm" />
+		<result property="xmpy" column="xmpy" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="mzdm" column="mzdm" />
+		<result property="minzu" column="minzu" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="csrq" column="csrq" />
+		<result property="hyzkdm" column="hyzkdm" />
+		<result property="hyzk" column="hyzk" />
+		<result property="shengao" column="shengao" />
+		<result property="tizh" column="tizh" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="zzzhm" column="zzzhm" />
+		<result property="zzdz" column="zzdz" />
+		<result property="gwbh" column="gwbh" />
+		<result property="gwmc" column="gwmc" />
+		<result property="gwzrms" column="gwzrms" />
+		<result property="shouji" column="shouji" />
+		<result property="lxdh" column="lxdh" />
+		<result property="jjlxr" column="jjlxr" />
+		<result property="jjlxrdh" column="jjlxrdh" />
+		<result property="zhiwu" column="zhiwu" />
+		<result property="rzrq" column="rzrq" />
+		<result property="cyryztdm" column="cyryztdm" />
+		<result property="cyryzt" column="cyryzt" />
+		<result property="zxr" column="zxr" />
+		<result property="zxbz" column="zxbz" />
+		<result property="zxsj" column="zxsj" />
+		<result property="lrsj" column="lrsj" />
+		<result property="lrr" column="lrr" />
+		<result property="lrdwbm" column="lrdwbm" />
+		<result property="lrdwmc" column="lrdwmc" />
+		<result property="hcdw" column="hcdw" />
+		<result property="hcr" column="hcr" />
+		<result property="hcsj" column="hcsj" />
+		<result property="zxyy" column="zxyy" />
+		<result property="zkzt" column="zkzt" />
+		<result property="bcsj" column="bcsj" />
+		<result property="dcbs" column="dcbs" />
+		<result property="bz" column="bz" />
+		<result property="scbz" column="scbz" />
+		<result property="biduiflag" column="biduiflag" />
+		<result property="zpwtgyy" column="zpwtgyy" />
+		<result property="zt" column="zt" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="qzzldm" column="qzzldm" />
+		<result property="qzhm" column="qzhm" />
+		<result property="zatlq" column="zatlq" />
+		<result property="qfjg" column="qfjg" />
+		<result property="rjrq" column="rjrq" />
+		<result property="rjka" column="rjka" />
+		<result property="czlx" column="czlx" />
+		<result property="bgyy" column="bgyy" />
+		<result property="bglbdm" column="bglbdm" />
+		<result property="bglb" column="bglb" />
+		<result property="gzdm" column="gzdm" />
+		<result property="gz" column="gz" />
+		<result property="qymc" column="qymc" />
+		<result property="qybm" column="qybm" />
+		<result property="lzrq" column="lzrq"/>
+		<result property="xxdm" column="xxdm"/>
+		<result property="xx" column="xx"/>
+		<result property="whcd" column="whcd"/>
+		<result property="whcddm" column="whcddm"/>
+		<result property="cylbdm" column="cylbdm"/>
+		<result property="cylb" column="cylb"/>
+		<result property="yjbz" column="yjbz"/>
+		<result property="yjsj" column="yjsj"/>
+		<result property="djrq" column="djrq"/>
+				
+	</resultMap>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<resultMap id="qyryxx_lsxxBgResult" class="qyryxx_lsxx">
+		<result property="rylsid" column="rylsid" />
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="cyrylbdm" column="cyrylbdm" />
+		<result property="cyrylbmc" column="cyrylbmc" />
+		<result property="xm" column="xm" />
+		<result property="qm" column="qm" />
+		<result property="bm" column="bm" />
+		<result property="xmpy" column="xmpy" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="mzdm" column="mzdm" />
+		<result property="minzu" column="minzu" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="csrq" column="csrq" />
+		<result property="hyzkdm" column="hyzkdm" />
+		<result property="hyzk" column="hyzk" />
+		<result property="shengao" column="shengao" />
+		<result property="tizh" column="tizh" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="zzzhm" column="zzzhm" />
+		<result property="zzdz" column="zzdz" />
+		<result property="gwbh" column="gwbh" />
+		<result property="gwmc" column="gwmc" />
+		<result property="gwzrms" column="gwzrms" />
+		<result property="shouji" column="shouji" />
+		<result property="lxdh" column="lxdh" />
+		<result property="jjlxr" column="jjlxr" />
+		<result property="jjlxrdh" column="jjlxrdh" />
+		<result property="zhiwu" column="zhiwu" />
+		<result property="rzrq" column="rzrq" />
+		<result property="cyryztdm" column="cyryztdm" />
+		<result property="cyryzt" column="cyryzt" />
+		<result property="zxr" column="zxr" />
+		<result property="zxbz" column="zxbz" />
+		<result property="zxsj" column="zxsj" />
+		<result property="lrsj" column="lrsj" />
+		<result property="lrr" column="lrr" />
+		<result property="lrdwbm" column="lrdwbm" />
+		<result property="lrdwmc" column="lrdwmc" />
+		<result property="hcdw" column="hcdw" />
+		<result property="hcr" column="hcr" />
+		<result property="hcsj" column="hcsj" />
+		<result property="zxyy" column="zxyy" />
+		<result property="zkzt" column="zkzt" />
+		<result property="bcsj" column="bcsj" />
+		<result property="dcbs" column="dcbs" />
+		<result property="bz" column="bz" />
+		<result property="scbz" column="scbz" />
+		<result property="biduiflag" column="biduiflag" />
+		<result property="zpwtgyy" column="zpwtgyy" />
+		<result property="zt" column="zt" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="qzzldm" column="qzzldm" />
+		<result property="qzhm" column="qzhm" />
+		<result property="zatlq" column="zatlq" />
+		<result property="qfjg" column="qfjg" />
+		<result property="rjrq" column="rjrq" />
+		<result property="rjka" column="rjka" />
+		<result property="czlx" column="czlx" />
+		<result property="bgyy" column="bgyy" />
+		<result property="bglbdm" column="bglbdm" />
+		<result property="bglb" column="bglb" />
+		<result property="gzdm" column="gzdm" />
+		<result property="gz" column="gz" />
+		<result property="lzrq" column="lzrq"/>
+		<result property="xxdm" column="xxdm"/>
+		<result property="xx" column="xx"/>
+		<result property="whcd" column="whcd"/>
+		<result property="whcddm" column="whcddm"/>	
+	</resultMap>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<resultMap id="qyryxx_lsxxListResult" class="qyryxx_lsxx">
+		<result property="rylsid" column="rylsid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cyrylbmc" column="cyrylbmc"/>
+		<result property="xm" column="xm"/>
+		<result property="qm" column="qm"/>
+		<result property="bm" column="bm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hyzkdm" column="hyzkdm"/>
+		<result property="hyzk" column="hyzk"/>
+		<result property="shengao" column="shengao"/>
+		<result property="tizh" column="tizh"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zzzhm" column="zzzhm"/>
+		<result property="zzdz" column="zzdz"/>
+		<result property="gwbh" column="gwbh"/>
+		<result property="gwmc" column="gwmc"/>
+		<result property="gwzrms" column="gwzrms"/>
+		<result property="shouji" column="shouji"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="jjlxr" column="jjlxr"/>
+		<result property="jjlxrdh" column="jjlxrdh"/>
+		<result property="zhiwu" column="zhiwu"/>
+		<result property="rzrq" column="rzrq"/>
+		<result property="cyryztdm" column="cyryztdm"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="zxr" column="zxr"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxsj" column="zxsj"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrdwbm" column="lrdwbm"/>
+		<result property="lrdwmc" column="lrdwmc"/>
+		<result property="hcdw" column="hcdw"/>
+		<result property="hcr" column="hcr"/>
+		<result property="hcsj" column="hcsj"/>
+		<result property="zxyy" column="zxyy"/>
+		<result property="zkzt" column="zkzt"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="dcbs" column="dcbs"/>
+		<result property="bz" column="bz"/>
+		<result property="scbz" column="scbz"/>
+		<result property="biduiflag" column="biduiflag"/>
+		<result property="zpwtgyy" column="zpwtgyy"/>
+		<result property="zt" column="zt"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="wgrjyxkz" column="wgrjyxkz"/>
+		<result property="qzzldm" column="qzzldm"/>
+		<result property="qzhm" column="qzhm"/>
+		<result property="zatlq" column="zatlq"/>
+		<result property="qfjg" column="qfjg"/>
+		<result property="rjrq" column="rjrq"/>
+		<result property="rjka" column="rjka"/>
+		<result property="czlx" column="czlx"/>
+		<result property="bgyy" column="bgyy"/>
+		<result property="bglbdm" column="bglbdm"/>
+		<result property="bglb" column="bglb"/>
+		<result property="gzdm" column="gzdm"/>
+		<result property="gz" column="gz"/>
+		<result property="lzrq" column="lzrq"/>
+		<result property="xxdm" column="xxdm"/>
+		<result property="xx" column="xx"/>
+		<result property="whcd" column="whcd"/>
+		<result property="whcddm" column="whcddm"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>
+	
+	
+		<!--从业人员历史信息(t_qyryxx_lsxx) 企业端从业人员历史信息查询-->
+	<resultMap id="qyryxx_lsxxListQydResult" class="qyryxx_lsxx">
+		<result property="rylsid" column="rylsid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid" />
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="gwbh" column="gwbh"/>
+		<result property="gwmc" column="gwmc"/>
+		<result property="rzrq" column="rzrq"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="lzrq" column="lzrq"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qzhm" column="qzhm"/>
+			<result property="xxdm" column="xxdm"/>
+		<result property="xx" column="xx"/>
+			<result property="whcd" column="whcd"/>
+			<result property="whcddm" column="whcddm"/>
+	</resultMap>
+	
+	
+		<sql id="t_qyryxx_lsxxQydWhere">
+	
+	<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm=#zjhm#
+ 			</isNotEmpty>
+ 			
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm =#gjdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				a.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gwbh">
+				a.gwbh =#gwbh#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrylbdm"><!-- cyrylbdm：0-国内人员查询，1-境外人员查询 -->
+ 				a.cyrylbdm =#cyrylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				a.ywx =#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				a.ywm =#ywm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				a.hylbdm =#hylbdm#
+ 			</isNotEmpty>
+	</sql>
+	
+	
+	<sql id="t_qyryxx_lsxxWhere">
+			<isNotEmpty prepend="and" property="rylsid">
+				a.rylsid=#rylsid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyryxx_lsxxPageWhere" >
+		<include refid="t_qyryxx_lsxxWhere" />	</sql>
+	<sql id="t_qyryxx_lsxxListWhere" >
+		<include refid="t_qyryxx_lsxxWhere" />	</sql>
+	<sql id="t_qyryxx_lsxxSelectWhere"  >
+		<include refid="t_qyryxx_lsxxWhere" />	</sql>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<insert id="insertQyryxx_lsxx"  parameterClass="qyryxx_lsxx">
+		insert into t_qyryxx_lsxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rylsid">
+				rylsid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbdm">
+				cyrylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbmc">
+				cyrylbmc
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm
+			</isNotNull>
+			<isNotNull prepend="," property="qm">
+				qm
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				bm
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq
+			</isNotNull>
+			<isNotNull prepend="," property="hyzkdm">
+				hyzkdm
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				hyzk
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				shengao
+			</isNotNull>
+			<isNotNull prepend="," property="tizh">
+				tizh
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm
+			</isNotNull>
+			<isNotNull prepend="," property="zzzhm">
+				zzzhm
+			</isNotNull>
+			<isNotNull prepend="," property="zzdz">
+				zzdz
+			</isNotNull>
+			<isNotNull prepend="," property="gwbh">
+				gwbh
+			</isNotNull>
+			<isNotNull prepend="," property="gwmc">
+				gwmc
+			</isNotNull>
+			<isNotNull prepend="," property="gwzrms">
+				gwzrms
+			</isNotNull>
+			<isNotNull prepend="," property="shouji">
+				shouji
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxr">
+				jjlxr
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxrdh">
+				jjlxrdh
+			</isNotNull>
+			<isNotNull prepend="," property="zhiwu">
+				zhiwu
+			</isNotNull>
+			<isNotNull prepend="," property="rzrq">
+				rzrq
+			</isNotNull>
+			<isNotNull prepend="," property="cyryztdm">
+				cyryztdm
+			</isNotNull>
+			<isNotNull prepend="," property="cyryzt">
+				cyryzt
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				zxr
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				zxbz
+			</isNotNull>
+			<isNotNull prepend="," property="zxsj">
+				zxsj
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				lrdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwmc">
+				lrdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="hcdw">
+				hcdw
+			</isNotNull>
+			<isNotNull prepend="," property="hcr">
+				hcr
+			</isNotNull>
+			<isNotNull prepend="," property="hcsj">
+				hcsj
+			</isNotNull>
+			<isNotNull prepend="," property="zxyy">
+				zxyy
+			</isNotNull>
+			<isNotNull prepend="," property="zkzt">
+				zkzt
+			</isNotNull>
+			<isNotNull prepend="," property="bcsj">
+				bcsj
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				dcbs
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				biduiflag
+			</isNotNull>
+			<isNotNull prepend="," property="zpwtgyy">
+				zpwtgyy
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				wgrjyxkz
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				bgyy
+			</isNotNull>
+			<isNotNull prepend="," property="bglbdm">
+				bglbdm
+			</isNotNull>
+			<isNotNull prepend="," property="bglb">
+				bglb
+			</isNotNull>
+			<isNotNull prepend="," property="gzdm">
+				gzdm
+			</isNotNull>
+			<isNotNull prepend="," property="gz">
+				gz
+			</isNotNull>
+				<isNotNull prepend="," property="lzrq">
+				lzrq
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				cylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				cylb
+			</isNotNull>
+			
+			<isNotNull prepend="," property="xxdm">
+				xxdm
+			</isNotNull>
+			<isNotNull prepend="," property="xx">
+				xx
+			</isNotNull>
+				<isNotNull prepend="," property="whcd">
+				whcd
+			</isNotNull>
+			<isNotNull prepend="," property="whcddm">
+				whcddm
+			</isNotNull>
+			<isNotNull prepend="," property="yjbz">
+				yjbz
+			</isNotNull>
+			<isNotNull prepend="," property="yjsj">
+				yjsj
+			</isNotNull>
+			<isNotNull prepend="," property="djrq">
+				djrq
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rylsid">
+				#rylsid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbdm">
+				#cyrylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbmc">
+				#cyrylbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="qm">
+				#qm#
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				#bm#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzkdm">
+				#hyzkdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				#hyzk#
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				#shengao#
+			</isNotNull>
+			<isNotNull prepend="," property="tizh">
+				#tizh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zzzhm">
+				#zzzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zzdz">
+				#zzdz#
+			</isNotNull>
+			<isNotNull prepend="," property="gwbh">
+				#gwbh#
+			</isNotNull>
+			<isNotNull prepend="," property="gwmc">
+				#gwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gwzrms">
+				#gwzrms#
+			</isNotNull>
+			<isNotNull prepend="," property="shouji">
+				#shouji#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxr">
+				#jjlxr#
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxrdh">
+				#jjlxrdh#
+			</isNotNull>
+			<isNotNull prepend="," property="zhiwu">
+				#zhiwu#
+			</isNotNull>
+			<isNotNull prepend="," property="rzrq">
+				#rzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyryztdm">
+				#cyryztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyryzt">
+				#cyryzt#
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				#zxr#
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				#zxbz#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsj">
+				#zxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				#lrdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwmc">
+				#lrdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="hcdw">
+				#hcdw#
+			</isNotNull>
+			<isNotNull prepend="," property="hcr">
+				#hcr#
+			</isNotNull>
+			<isNotNull prepend="," property="hcsj">
+				#hcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxyy">
+				#zxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzt">
+				#zkzt#
+			</isNotNull>
+			<isNotNull prepend="," property="bcsj">
+				#bcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				#dcbs#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				#biduiflag#
+			</isNotNull>
+			<isNotNull prepend="," property="zpwtgyy">
+				#zpwtgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				#wgrjyxkz#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				#rjka#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				#bgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bglbdm">
+				#bglbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bglb">
+				#bglb#
+			</isNotNull>
+			<isNotNull prepend="," property="gzdm">
+				#gzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gz">
+				#gz#
+			</isNotNull>
+				<isNotNull prepend="," property="lzrq">
+				#lzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				#cylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				#cylb#
+			</isNotNull>
+			<isNotNull prepend="," property="xxdm">
+				#xxdm#
+			</isNotNull>
+			  <isNotNull prepend="," property="xx">
+				#xx#
+			</isNotNull>
+				<isNotNull prepend="," property="whcd">
+				#whcd#
+			</isNotNull>
+			<isNotNull prepend="," property="whcddm">
+				#whcddm#
+			</isNotNull>
+			<isNotNull prepend="," property="yjbz">
+				#yjbz#
+			</isNotNull>
+			<isNotNull prepend="," property="yjsj">
+				#yjsj#
+			</isNotNull>
+			<isNotNull prepend="," property="djrq">
+				#djrq#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<update id="updateQyryxx_lsxx" parameterClass="qyryxx_lsxx">
+		update t_qyryxx_lsxx a set a.rylsid=a.rylsid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh=#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbdm">
+				cyrylbdm=#cyrylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrylbmc">
+				cyrylbmc=#cyrylbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm=#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="qm">
+				qm=#qm#
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				bm=#bm#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy=#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm=#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj=#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm=#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu=#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm=#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb=#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq=#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzkdm">
+				hyzkdm=#hyzkdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				hyzk=#hyzk#
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				shengao=#shengao#
+			</isNotNull>
+			<isNotNull prepend="," property="tizh">
+				tizh=#tizh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh=#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm=#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz=#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm=#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj=#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm=#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zzzhm">
+				zzzhm=#zzzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zzdz">
+				zzdz=#zzdz#
+			</isNotNull>
+			<isNotNull prepend="," property="gwbh">
+				gwbh=#gwbh#
+			</isNotNull>
+			<isNotNull prepend="," property="gwmc">
+				gwmc=#gwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gwzrms">
+				gwzrms=#gwzrms#
+			</isNotNull>
+			<isNotNull prepend="," property="shouji">
+				shouji=#shouji#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxr">
+				jjlxr=#jjlxr#
+			</isNotNull>
+			<isNotNull prepend="," property="jjlxrdh">
+				jjlxrdh=#jjlxrdh#
+			</isNotNull>
+			<isNotNull prepend="," property="zhiwu">
+				zhiwu=#zhiwu#
+			</isNotNull>
+			<isNotNull prepend="," property="rzrq">
+				rzrq=#rzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyryztdm">
+				cyryztdm=#cyryztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyryzt">
+				cyryzt=#cyryzt#
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				zxr=#zxr#
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				zxbz=#zxbz#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsj">
+				zxsj=#zxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr=#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				lrdwbm=#lrdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwmc">
+				lrdwmc=#lrdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="hcdw">
+				hcdw=#hcdw#
+			</isNotNull>
+			<isNotNull prepend="," property="hcr">
+				hcr=#hcr#
+			</isNotNull>
+			<isNotNull prepend="," property="hcsj">
+				hcsj=#hcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxyy">
+				zxyy=#zxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzt">
+				zkzt=#zkzt#
+			</isNotNull>
+			<isNotNull prepend="," property="bcsj">
+				bcsj=#bcsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				dcbs=#dcbs#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz=#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="biduiflag">
+				biduiflag=#biduiflag#
+			</isNotNull>
+			<isNotNull prepend="," property="zpwtgyy">
+				zpwtgyy=#zpwtgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx=#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm=#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				wgrjyxkz=#wgrjyxkz#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm=#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm=#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq=#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg=#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq=#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka=#rjka#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx=#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="bgyy">
+				bgyy=#bgyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bglbdm">
+				bglbdm=#bglbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bglb">
+				bglb=#bglb#
+			</isNotNull>
+			<isNotNull prepend="," property="gzdm">
+				gzdm=#gzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gz">
+				gz=#gz#
+			</isNotNull>
+				<isNotNull prepend="," property="lzrq">
+				lzrq=#lzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				cylbdm=#cylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				cylb=#cylb#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="xxdm">
+				xxdm=#xxdm#
+			</isNotNull>
+				<isNotNull prepend="," property="xx">
+				xx=#xx#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="whcd">
+				whcd=#whcd#
+			</isNotNull>
+			<isNotNull prepend="," property="whcddm">
+				whcddm=#whcddm#
+			</isNotNull>
+			<isNotNull prepend="," property="yjbz">
+				yjbz=#yjbz#
+			</isNotNull>
+			<isNotNull prepend="," property="yjsj">
+				yjsj=#yjsj#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxWhere" />
+		</dynamic>
+	</update>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<delete id="deleteQyryxx_lsxx" parameterClass="qyryxx_lsxx">
+		delete from t_qyryxx_lsxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxWhere" />
+		</dynamic>
+	</delete>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxxList" resultMap="qyryxx_lsxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rylsid rylsid,a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt,a.ywx ywx,a.ywm ywm,a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka,a.czlx czlx,a.bgyy bgyy,a.bglbdm bglbdm,a.bglb bglb,a.gzdm gzdm,a.gz gz
+		,a.lzrq ,a.xxdm,a.xx ,a.whcd,a.whcddm
+		from t_qyryxx_lsxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryxx_lsxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxxListNoPage" resultMap="qyryxx_lsxxListResult" parameterClass="qyryxx_lsxx">
+		select a.rylsid rylsid,a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt,a.ywx ywx,a.ywm ywm,a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka,a.czlx czlx,a.bgyy bgyy,a.bglbdm bglbdm,a.bglb bglb,a.gzdm gzdm,a.gz gz
+		,a.lzrq ,a.xxdm,a.xx ,a.whcd,a.whcddm
+		from t_qyryxx_lsxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxListWhere" />
+		</dynamic>
+		order by a.rylsid,a.qyid,a.ryid
+	</select>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxx" resultMap="qyryxx_lsxxResult" parameterClass="qyryxx_lsxx">
+		select a.rylsid rylsid, a.qyid qyid, a.ryid ryid,a.hylbdm hylbdm, a.hylb hylb, a.cyrybh cyrybh,
+		       a.cyrylbdm cyrylbdm, a.cyrylbmc cyrylbmc, a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm, a.gj gj,
+		       a.mzdm mzdm, a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,
+		       a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,
+		       a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,
+		       a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,
+		       a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj, a.lrsj lrsj,
+		       a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr, a.hcsj hcsj, a.zxyy zxyy,
+		       a.zkzt zkzt,a.bcsj bcsj, a.dcbs dcbs, a.bz bz, a.scbz scbz, a.biduiflag biduiflag,
+		       a.zpwtgyy zpwtgyy,a.zt zt, a.ywx ywx,a.ywm ywm, a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,
+		       a.qzhm qzhm,a.zatlq zatlq, a.qfjg qfjg,a.rjrq rjrq, a.rjka rjka, a.czlx czlx, a.bgyy bgyy,
+		       a.bglbdm bglbdm, a.bglb bglb, a.gzdm gzdm, a.gz gz, y.qymc, y.qybm, a.lzrq, a.xxdm,
+		       a.xx, a.whcd, a.whcddm, a.cylbdm, a.cylb,  a.yjbz yjbz,a.yjsj yjsj,a.djrq djrq
+       from t_qyryxx_lsxx a, t_qyjbxx y
+ 		where a.qyid = y.qyid
+		<dynamic prepend="">
+			<include refid="t_qyryxx_lsxxSelectWhere" />
+		</dynamic>
+	</select>
+	
+		<!-- 从业人员查询 企业端历史人员查询 -->
+	<select id="getQyryxx_lsxxListQyd" parameterClass="java.util.Map" resultMap="qyryxx_lsxxListQydResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rylsid rylsid ,a.ryid ryid , a.qyid qyid ,a.cyrybh cyrybh ,
+			    a.cyrylbdm cyrylbdm ,a.xm xm , a.gjdm gjdm , a.gj gj , a.mzdm mzdm ,
+			    a.minzu minzu ,a.xbdm xbdm , a.xb xb ,a.cyzjdm cyzjdm ,a.cyzj cyzj ,
+			    a.zjhm zjhm , a.gwbh gwbh ,a.gwmc gwmc ,a.rzrq rzrq ,a.cyryzt cyryzt ,
+			    a.bcsj bcsj ,a.ywx ywx , a.ywm ywm ,a.lzrq ,b.qymc ,a.qzhm , a.xxdm ,a.xx  ,a.whcd,a.whcddm
+  			from t_qyryxx_lsxx a ,t_qyjbxx b ,
+  			(select max(rylsid) rylsid,qyid, ryid from t_qyryxx_lsxx  group by qyid, ryid )c
+  		
+ 			where  a.qyid=b.qyid 
+ 				and a.rylsid=c.rylsid
+ 			
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 	      	<include refid="t_qyryxx_lsxxQydWhere" />
+ 		</dynamic>
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getQyryxx_lsxxListQydCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a
+  			from t_qyryxx_lsxx a ,t_qyjbxx b ,
+  			(select max(rylsid) rylsid,qyid, ryid from t_qyryxx_lsxx  group by qyid, ryid )c
+  			
+ 			where  a.qyid=b.qyid 
+ 				and a.rylsid=c.rylsid
+ 			
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 	     	<include refid="t_qyryxx_lsxxQydWhere" />
+ 		</dynamic>
+	</select>
+	
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxxListGad" resultMap="qyryxx_lsxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rylsid rylsid,a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt,a.ywx ywx,a.ywm ywm,a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka,a.czlx czlx,a.bgyy bgyy,a.bglbdm bglbdm,a.bglb bglb,a.gzdm gzdm,a.gz gz
+		,a.lzrq ,a.xxdm,a.xx ,a.whcd,a.whcddm,b.qymc
+		from t_qyryxx_lsxx a ,t_qyjbxx b
+		where a.qyid=b.qyid 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="bcsjf">
+				a.bcsj &gt;=#bcsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bcsjt">
+				a.bcsj &lt; #bcsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgyy">
+				a.bgyy like '%$bgyy$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bglbdm">
+				a.bglbdm =#bglbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgdjxh">
+				a.bgdjxh ='%$bgdjxh$%'
+			</isNotEmpty>
+			<include refid="t_qyryxx_lsxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<select id="getQyryxx_lsxxListGadCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryxx_lsxx a,t_qyjbxx b
+		where a.qyid=b.qyid
+		<dynamic prepend="">
+		<isNotEmpty prepend="and" property="bcsjf">
+				a.bcsj &gt;=#bcsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bcsjt">
+				a.bcsj &lt; #bcsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgyy">
+				a.bgyy like '%$bgyy$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bglbdm">
+				a.bglbdm =#bglbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bgdjxh">
+				a.bgdjxh ='%$bgdjxh$%'
+			</isNotEmpty>
+			<include refid="t_qyryxx_lsxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--查询指定企业人员的操作类型为变更的最新一条历史记录(t_qyryxx_lsxx)-->
+	<select id="getLatestBgQyryxx_lsxx" resultMap="qyryxx_lsxxBgResult" parameterClass="qyryxx_lsxx">
+		select a.rylsid rylsid,a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt,a.ywx ywx,a.ywm ywm,a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka,a.czlx czlx,a.bgyy bgyy,a.bglbdm bglbdm,a.bglb bglb,a.gzdm gzdm,a.gz gz
+		,  a.lzrq ,a.xxdm,a.xx ,a.whcd,a.whcddm  
+		from t_qyryxx_lsxx a ,
+       (select  max(rylsid) rylsid
+          from t_qyryxx_lsxx t
+         where t.ryid = #ryid#
+       ) b
+ 		where a.rylsid = b.rylsid
+	</select>
+	<!--查询指定企业人员且操作类型为变更的某条历史记录的下一条记录(即rylsid较大的一条)-->
+	<select id="getNextBgQyryxx_lsxx" resultMap="qyryxx_lsxxBgResult" parameterClass="qyryxx_lsxx">
+	    select a.rylsid rylsid,a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt,a.ywx ywx,a.ywm ywm,a.wgrjyxkz wgrjyxkz,a.qzzldm qzzldm,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka,a.czlx czlx,a.bgyy bgyy,a.bglbdm bglbdm,a.bglb bglb,a.gzdm gzdm,a.gz gz
+		,  a.lzrq ,a.xxdm,a.xx ,a.whcd,a.whcddm  
+		from t_qyryxx_lsxx a ,
+		(select min(rylsid) rylsid
+          from t_qyryxx_lsxx t,
+               (select ryid
+                  from t_qyryxx_lsxx
+                 where rylsid = #rylsid#) t1
+         where t.ryid = t1.ryid
+           and t.rylsid > #rylsid#
+           ) b
+           where a.rylsid = b.rylsid
+	</select>
+</sqlMap>

@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wpbjxxb" type="com.aisino2.basicsystem.domain.Wpbjxxb"/>
+	<typeAlias alias="bjtemp" type="com.aisino2.basicsystem.domain.WpbaojingTemp"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<resultMap id="wpbjxxbResult" class="wpbjxxb">
+	
+	    <result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2" />
+		<result property="ssqymc" column="ssqymc" />
+		<result property="ssqydz" column="ssqydz" />
+		<result property="gxdwbm" column="gxdwbm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="bjlxdm" column="bjlxdm" />
+		<result property="bjlx" column="bjlx" />
+		<result property="bjsj" column="bjsj" />
+		<result property="bdbm" column="bdbm" />
+		<result property="ywbm" column="ywbm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="jyaq" column="jyaq" />
+		<result property="ladwbm" column="ladwbm" />
+		<result property="ladwmc" column="ladwmc" />
+		<result property="gxbbh" column="gxbbh" />
+		<result property="ywlbdm" column="ywlbdm" />
+		<result property="ywlb" column="ywlb" />
+		<result property="pjbmbm" column="pjbmbm" />
+		<result property="pjbmmc" column="pjbmmc" />
+		<result property="pjr" column="pjr" />
+		<result property="pjsj" column="pjsj" />
+		<result property="jqztdm" column="jqztdm" />
+		<result property="jqzt" column="jqzt" />
+		<result property="cjbmbm" column="cjbmbm" />
+		<result property="cjbm" column="cjbm" />
+		<result property="chjsj" column="chjsj" />
+		<result property="cjfzr" column="cjfzr" />
+		<result property="lxdh" column="lxdh" />
+		<result property="cjfklbdm" column="cjfklbdm" />
+		<result property="cjfklb" column="cjfklb" />
+		<result property="cjfkbz" column="cjfkbz" />
+		<result property="fkdwbm" column="fkdwbm" />
+		<result property="fkdw" column="fkdw" />
+		<result property="fkrq" column="fkrq" />
+		<result property="cjjg" column="cjjg" />
+		<result property="cjjgdm" column="cjjgdm" />
+		<result property="chjjg" column="chjjg" />
+		<result property="zhsj" column="zhsj" />
+		<result property="wxyydm" column="wxyydm" />
+		<result property="wxyy" column="wxyy" />
+		<result property="sfyxbjdm" column="sfyxbjdm" />
+		<result property="sfyxbj" column="sfyxbj" />
+		<result property="fkr" column="fkr" />
+		<result property="ywbzj" column="ywbzj" />
+		<result property="bdbzj" column="bdbzj" />
+		<result property="wpmc" column="wpmc" />
+	</resultMap>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<resultMap id="wpbjxxbListResult" class="wpbjxxb">
+	    <result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2"/>
+		<result property="ssqymc" column="ssqymc"/>
+		<result property="ssqydz" column="ssqydz"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="bjlxdm" column="bjlxdm"/>
+		<result property="bjlx" column="bjlx"/>
+		<result property="bjsj" column="bjsj"/>
+		<result property="bdbm" column="bdbm"/>
+		<result property="ywbm" column="ywbm"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="jyaq" column="jyaq"/>
+		<result property="ladwbm" column="ladwbm"/>
+		<result property="ladwmc" column="ladwmc"/>
+		<result property="gxbbh" column="gxbbh"/>
+		<result property="ywlbdm" column="ywlbdm"/>
+		<result property="ywlb" column="ywlb"/>
+		<result property="pjbmbm" column="pjbmbm"/>
+		<result property="pjbmmc" column="pjbmmc"/>
+		<result property="pjr" column="pjr"/>
+		<result property="pjsj" column="pjsj"/>
+		<result property="jqztdm" column="jqztdm"/>
+		<result property="jqzt" column="jqzt"/>
+		<result property="cjbmbm" column="cjbmbm"/>
+		<result property="cjbm" column="cjbm"/>
+		<result property="chjsj" column="chjsj"/>
+		<result property="cjfzr" column="cjfzr"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="cjfklbdm" column="cjfklbdm"/>
+		<result property="cjfklb" column="cjfklb"/>
+		<result property="cjfkbz" column="cjfkbz"/>
+		<result property="fkdwbm" column="fkdwbm"/>
+		<result property="fkdw" column="fkdw"/>
+		<result property="fkrq" column="fkrq"/>
+		<result property="cjjg" column="cjjg"/>
+		<result property="cjjgdm" column="cjjgdm"/>
+		<result property="chjjg" column="chjjg"/>
+		<result property="zhsj" column="zhsj"/>
+		<result property="wxyydm" column="wxyydm"/>
+		<result property="wxyy" column="wxyy"/>
+		<result property="sfyxbjdm" column="sfyxbjdm"/>
+		<result property="sfyxbj" column="sfyxbj"/>
+		<result property="fkr" column="fkr"/>
+		<result property="ywbzj" column="ywbzj"/>
+		<result property="bdbzj" column="bdbzj"/>
+		<result property="wpmc" column="wpmc" />
+	</resultMap>
+	
+	<resultMap id="wpbjxxbListResult1" class="wpbjxxb">
+	  <result property="wpbjgzid" column="wpbjgzid" />
+	  <result property="bjxxid2" column="bjxxid2"/>
+	  <result property="wpmc" column="wpmc"/>
+	  <result property="ssqymc" column="ssqymc" />
+	  <result property="gxdwbm" column="gxdwbm" />
+	  <result property="gxdwmc" column="gxdwmc" />
+	  <result property="bjsj" column="bjsj" />
+	  <result property="bjlxdm" column="bjlxdm" />
+	   <result property="bjlx" column="bjlx" />
+	  <result property="jqztdm" column="jqztdm" />
+	  <result property="jqzt" column="jqzt" />
+	  <result property="chjjg" column="chjjg" />
+	  <result property="cjjgdm" column="cjjgdm" />
+	  <result property="hylbdm" column="hylbdm" />
+	</resultMap>
+	
+	<resultMap id="wpbjxxbJBResult" class="wpbjxxb">
+	     <result property="wpbjgzid" column="wpbjgzid"/>
+		 <result property="ssqymc" column="ssqymc"/>
+		 <result property="ssqydz" column="ssqydz"/>
+		 <result property="gxdwbm" column="gxdwbm"/>
+		 <result property="gxdwmc" column="gxdwmc"/>
+		 <result property="bjlxdm" column="bjlxdm"/>
+		 <result property="bjlx" column="bjlx"/>
+		 <result property="bdbm" column="bdbm"/>
+		 <result property="ywbm" column="ywbm"/>
+		 <result property="hylb" column="hylb"/>
+		 <result property="hylbdm" column="hylbdm"/> 
+		 <result property="ladwbm" column="ladwbm"/>
+		 <result property="ladwmc" column="ladwmc"/>
+		 <result property="ywbzj" column="ywbzj"/>
+		 <result property="bdbzj" column="bdbzj"/>
+		 <result property="wpmc" column="wpmc"/>
+		 <result property="wpjp" column="wpjp"/>
+		 <result property="wpqp" column="wpqp"/>
+	</resultMap>
+	<!--报警临时表(t_baojingtemp)-->
+	<resultMap id="bjtempListResult" class="bjtemp">
+		<result property="ywb" column="ywb" />
+		<result property="ywbzjzd" column="ywbzjzd" />
+		<result property="ywbzj" column="ywbzj" />
+	</resultMap>
+	
+	<sql id="t_wpbjxxbWhere">
+			<isNotEmpty prepend="and" property="bjxxid2">
+				a.bjxxid2=#bjxxid2#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wpbjxxbPageWhere" >
+		<include refid="t_wpbjxxbWhere" />
+	</sql>
+	<sql id="t_wpbjxxbListWhere" >
+		<include refid="t_wpbjxxbWhere" />	</sql>
+	<sql id="t_wpbjxxbSelectWhere"  >
+		<include refid="t_wpbjxxbWhere" />	</sql>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<insert id="insertWpbjxxb"  parameterClass="wpbjxxb">
+		insert into t_wpbjxxb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="ssqymc">
+				ssqymc
+			</isNotNull>
+			<isNotNull prepend="," property="ssqydz">
+				ssqydz
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwbm">
+				gxdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="bjlxdm">
+				bjlxdm
+			</isNotNull>
+			<isNotNull prepend="," property="bjlx">
+				bjlx
+			</isNotNull>
+			<isNotNull prepend="," property="bjsj">
+				bjsj
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				bdbm
+			</isNotNull>
+			<isNotNull prepend="," property="ywbm">
+				ywbm
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				ladwmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxbbh">
+				gxbbh
+			</isNotNull>
+			<isNotNull prepend="," property="ywlbdm">
+				ywlbdm
+			</isNotNull>
+			<isNotNull prepend="," property="ywlb">
+				ywlb
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmbm">
+				pjbmbm
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmmc">
+				pjbmmc
+			</isNotNull>
+			<isNotNull prepend="," property="pjr">
+				pjr
+			</isNotNull>
+			<isNotNull prepend="," property="pjsj">
+				pjsj
+			</isNotNull>
+			<isNotNull prepend="," property="jqztdm">
+				jqztdm
+			</isNotNull>
+			<isNotNull prepend="," property="jqzt">
+				jqzt
+			</isNotNull>
+			<isNotNull prepend="," property="cjbmbm">
+				cjbmbm
+			</isNotNull>
+			<isNotNull prepend="," property="cjbm">
+				cjbm
+			</isNotNull>
+			<isNotNull prepend="," property="chjsj">
+				chjsj
+			</isNotNull>
+			<isNotNull prepend="," property="cjfzr">
+				cjfzr
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklbdm">
+				cjfklbdm
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklb">
+				cjfklb
+			</isNotNull>
+			<isNotNull prepend="," property="cjfkbz">
+				cjfkbz
+			</isNotNull>
+			<isNotNull prepend="," property="fkdwbm">
+				fkdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="fkdw">
+				fkdw
+			</isNotNull>
+			<isNotNull prepend="," property="fkrq">
+				fkrq
+			</isNotNull>
+			<isNotNull prepend="," property="cjjg">
+				cjjg
+			</isNotNull>
+			<isNotNull prepend="," property="cjjgdm">
+				cjjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="chjjg">
+				chjjg
+			</isNotNull>
+			<isNotNull prepend="," property="zhsj">
+				zhsj
+			</isNotNull>
+			<isNotNull prepend="," property="wxyydm">
+				wxyydm
+			</isNotNull>
+			<isNotNull prepend="," property="wxyy">
+				wxyy
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbjdm">
+				sfyxbjdm
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbj">
+				sfyxbj
+			</isNotNull>
+			<isNotNull prepend="," property="fkr">
+				fkr
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzj">
+				ywbzj
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzj">
+				bdbzj
+			</isNotNull>
+			<isNotNull prepend="," property="wpmc">
+				wpmc
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				wpjp
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				wpqp
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+		    
+			<isNotNull prepend="" property="bjxxid2">
+				#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="ssqymc">
+				#ssqymc#
+			</isNotNull>
+			<isNotNull prepend="," property="ssqydz">
+				#ssqydz#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwbm">
+				#gxdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bjlxdm">
+				#bjlxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bjlx">
+				#bjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="bjsj">
+				#bjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				#bdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbm">
+				#ywbm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				#ladwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxbbh">
+				#gxbbh#
+			</isNotNull>
+			<isNotNull prepend="," property="ywlbdm">
+				#ywlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywlb">
+				#ywlb#
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmbm">
+				#pjbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmmc">
+				#pjbmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="pjr">
+				#pjr#
+			</isNotNull>
+			<isNotNull prepend="," property="pjsj">
+				#pjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jqztdm">
+				#jqztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jqzt">
+				#jqzt#
+			</isNotNull>
+			<isNotNull prepend="," property="cjbmbm">
+				#cjbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjbm">
+				#cjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="chjsj">
+				#chjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfzr">
+				#cjfzr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklbdm">
+				#cjfklbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklb">
+				#cjfklb#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfkbz">
+				#cjfkbz#
+			</isNotNull>
+			<isNotNull prepend="," property="fkdwbm">
+				#fkdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="fkdw">
+				#fkdw#
+			</isNotNull>
+			<isNotNull prepend="," property="fkrq">
+				#fkrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjjg">
+				#cjjg#
+			</isNotNull>
+			<isNotNull prepend="," property="cjjgdm">
+				#cjjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="chjjg">
+				#chjjg#
+			</isNotNull>
+			<isNotNull prepend="," property="zhsj">
+				#zhsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="wxyydm">
+				#wxyydm#
+			</isNotNull>
+			<isNotNull prepend="," property="wxyy">
+				#wxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbjdm">
+				#sfyxbjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbj">
+				#sfyxbj#
+			</isNotNull>
+			<isNotNull prepend="," property="fkr">
+				#fkr#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzj">
+				#ywbzj#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzj">
+				#bdbzj#
+			</isNotNull>
+			<isNotNull prepend="," property="wpmc">
+				#wpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				#wpjp#
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				#wpqp#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<update id="updateWpbjxxb" parameterClass="wpbjxxb">
+		update t_wpbjxxb a set a.bjxxid2=a.bjxxid2,gxbbh=SEQ_WPBJXXXUHAO.NEXTVAL
+		<dynamic prepend="">
+		    <isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="ssqymc">
+				ssqymc=#ssqymc#
+			</isNotNull>
+			<isNotNull prepend="," property="ssqydz">
+				ssqydz=#ssqydz#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwbm">
+				gxdwbm=#gxdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bjlxdm">
+				bjlxdm=#bjlxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bjlx">
+				bjlx=#bjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="bjsj">
+				bjsj=#bjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				bdbm=#bdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbm">
+				ywbm=#ywbm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq=#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm=#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				ladwmc=#ladwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ywlbdm">
+				ywlbdm=#ywlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywlb">
+				ywlb=#ywlb#
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmbm">
+				pjbmbm=#pjbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="pjbmmc">
+				pjbmmc=#pjbmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="pjr">
+				pjr=#pjr#
+			</isNotNull>
+			<isNotNull prepend="," property="pjsj">
+				pjsj=#pjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jqztdm">
+				jqztdm=#jqztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jqzt">
+				jqzt=#jqzt#
+			</isNotNull>
+			<isNotNull prepend="," property="cjbmbm">
+				cjbmbm=#cjbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjbm">
+				cjbm=#cjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="chjsj">
+				chjsj=#chjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfzr">
+				cjfzr=#cjfzr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklbdm">
+				cjfklbdm=#cjfklbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfklb">
+				cjfklb=#cjfklb#
+			</isNotNull>
+			<isNotNull prepend="," property="cjfkbz">
+				cjfkbz=#cjfkbz#
+			</isNotNull>
+			<isNotNull prepend="," property="fkdwbm">
+				fkdwbm=#fkdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="fkdw">
+				fkdw=#fkdw#
+			</isNotNull>
+			<isNotNull prepend="," property="fkrq">
+				fkrq=#fkrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjjg">
+				cjjg=#cjjg#
+			</isNotNull>
+			<isNotNull prepend="," property="cjjgdm">
+				cjjgdm=#cjjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="chjjg">
+				chjjg=#chjjg#
+			</isNotNull>
+			<isNotNull prepend="," property="zhsj">
+				zhsj=#zhsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="wxyydm">
+				wxyydm=#wxyydm#
+			</isNotNull>
+			<isNotNull prepend="," property="wxyy">
+				wxyy=#wxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbjdm">
+				sfyxbjdm=#sfyxbjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyxbj">
+				sfyxbj=#sfyxbj#
+			</isNotNull>
+			<isNotNull prepend="," property="fkr">
+				fkr=#fkr#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzj">
+				ywbzj=#ywbzj#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzj">
+				bdbzj=#bdbzj#
+			</isNotNull>
+			<isNotNull prepend="," property="wpmc">
+				wpmc=#wpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				wpjp=#wpjp#
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				wpqp=#wpqp#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjxxbWhere" />
+		</dynamic>
+	</update>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<delete id="deleteWpbjxxb" parameterClass="wpbjxxb">
+		delete from t_wpbjxxb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wpbjxxbWhere" />
+		</dynamic>
+	</delete>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<select id="getWpbjxxbList" resultMap="wpbjxxbListResult1" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.wpbjgzid, a.bjxxid2, a.wpmc, a.ssqymc , a.gxdwbm ,a.gxdwmc, a.bjsj, a.bjlxdm, a.bjlx,
+		a.jqztdm, a.jqzt,a.cjjgdm cjjgdm,  a.chjjg, a.hylbdm
+		from t_wpbjxxb a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wpmc">
+				a.wpmc like '%$wpmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wpqp">
+					a.wpqp=#wpqp#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wpjp">
+					a.wpjp=#wpjp#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+					a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssqymc">
+					a.ssqymc like '%$ssqymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjjgdm">
+					a.cjjgdm=#cjjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjsjks">
+					a.bjsj &gt;=#bjsjks:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjsjjs">
+					a.bjsj &lt;#bjsjjs:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="chjsjks">
+					a.chjsj &gt;=#chjsjks:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="chjsjjs">
+					a.chjsj &lt;#chjsjjs:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+					a.gxdwbm=#gxdwbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm1">
+					a.gxdwbm like '$gxdwbm1$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jqztdm">
+					a.jqztdm=#jqztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyxbjdm">
+					a.sfyxbjdm=#sfyxbjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjlxdm">
+					a.bjlxdm=#bjlxdm#
+			</isNotEmpty>
+			<include refid="t_wpbjxxbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<select id="getWpbjxxbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wpbjxxb a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wpmc">
+				a.wpmc like '%$wpmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wpqp">
+					a.wpqp=#wpqp#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wpjp">
+					a.wpjp=#wpjp#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+					a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssqymc">
+					a.ssqymc like '%$ssqymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjjgdm">
+					a.cjjgdm=#cjjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjsjks">
+					a.bjsj &gt;=#bjsjks:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjsjjs">
+					a.bjsj &lt;#bjsjjs:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="chjsjks">
+					a.chjsj &gt;=#chjsjks:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="chjsjjs">
+					a.chjsj &lt;#chjsjjs:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+					a.gxdwbm=#gxdwbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm1">
+					a.gxdwbm like '$gxdwbm1$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jqztdm">
+					a.jqztdm=#jqztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyxbjdm">
+					a.sfyxbjdm=#sfyxbjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjlxdm">
+					a.bjlxdm=#bjlxdm#
+			</isNotEmpty>
+			<include refid="t_wpbjxxbPageWhere" />
+		</dynamic>
+	</select>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<select id="getWpbjxxbListNoPage" resultMap="wpbjxxbListResult" parameterClass="wpbjxxb">
+		select a.wpbjgzid wpbjgzid, a.bjxxid2 bjxxid2,a.ssqymc ssqymc,a.ssqydz ssqydz,a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,a.bjlxdm bjlxdm,
+		a.bjlx bjlx,a.bjsj bjsj,a.bdbm bdbm,a.ywbm ywbm,a.hylbdm hylbdm,a.hylb hylb,a.jyaq jyaq,a.ladwbm ladwbm,a.ladwmc ladwmc,
+		a.gxbbh gxbbh,a.ywlbdm ywlbdm,a.ywlb ywlb,a.pjbmbm pjbmbm,a.pjbmmc pjbmmc,a.pjr pjr,a.pjsj pjsj,a.jqztdm jqztdm,a.jqzt jqzt,
+		a.cjbmbm cjbmbm,a.cjbm cjbm,a.chjsj chjsj,a.cjfzr cjfzr,a.lxdh lxdh,a.cjfklbdm cjfklbdm,a.cjfklb cjfklb,a.cjfkbz cjfkbz,
+		a.fkdwbm fkdwbm,a.fkdw fkdw,a.fkrq fkrq,a.cjjg cjjg,a.cjjgdm cjjgdm,a.chjjg chjjg,a.zhsj zhsj,a.wxyydm wxyydm,a.wxyy wxyy,
+		a.sfyxbjdm sfyxbjdm,a.sfyxbj sfyxbj,a.fkr fkr,a.ywbzj ywbzj,a.bdbzj bdbzj,a.wpmc wpmc
+		from t_wpbjxxb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjxxbListWhere" />
+		</dynamic>
+		order by a.bjxxid2
+	</select>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<select id="getWpbjxxb" resultMap="wpbjxxbResult" parameterClass="wpbjxxb">
+		select a.wpbjgzid wpbjgzid, a.bjxxid2 bjxxid2,a.ssqymc ssqymc,a.ssqydz ssqydz,a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,a.bjlxdm bjlxdm,
+		a.bjlx bjlx,a.bjsj bjsj,a.bdbm bdbm,a.ywbm ywbm,a.hylbdm hylbdm,a.hylb hylb,a.jyaq jyaq,a.ladwbm ladwbm,a.ladwmc ladwmc,
+		a.gxbbh gxbbh,a.ywlbdm ywlbdm,a.ywlb ywlb,a.pjbmbm pjbmbm,a.pjbmmc pjbmmc,a.pjr pjr,a.pjsj pjsj,a.jqztdm jqztdm,a.jqzt jqzt,
+		a.cjbmbm cjbmbm,a.cjbm cjbm,a.chjsj chjsj,a.cjfzr cjfzr,a.lxdh lxdh,a.cjfklbdm cjfklbdm,a.cjfklb cjfklb,a.cjfkbz cjfkbz,
+		a.fkdwbm fkdwbm,a.fkdw fkdw,a.fkrq fkrq,a.cjjg cjjg,a.cjjgdm cjjgdm,a.chjjg chjjg,a.zhsj zhsj,a.wxyydm wxyydm,a.wxyy wxyy,
+		a.sfyxbjdm sfyxbjdm,a.sfyxbj sfyxbj,a.fkr fkr,a.ywbzj ywbzj,a.bdbzj bdbzj,a.wpmc wpmc
+		from t_wpbjxxb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjxxbSelectWhere" />
+		</dynamic>
+		order by a.bjxxid2
+	</select>
+	<!--ByTy 查询业务表，中间处理过程-->
+	<select id="getWpbaojingTempList" resultMap="bjtempListResult" parameterClass="bjtemp">
+		$tempSql$
+	</select>
+	<!--ByTy 按照比对规则SQL执行查询，返回报警信息-->
+	<select id="getWpbjxxByBdtjSql" resultMap="wpbjxxbJBResult" parameterClass="wpbjxxb">
+		$bdtjSql$
+	</select>
+</sqlMap>

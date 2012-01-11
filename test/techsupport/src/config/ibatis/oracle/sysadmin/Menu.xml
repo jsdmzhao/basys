@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="menu" type="com.aisino2.sysadmin.domain.Menu"/>
+	  <typeAlias alias="system" type="com.aisino2.sysadmin.domain.System"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--菜单(t_menu)-->
+	<resultMap id="menuResult" class="menu">
+		<result property="menucode" column="menucode" />
+		<result property="systemcode" column="systemcode" />
+		<result property="menuname" column="menuname" />
+		<result property="funcentry" column="funcentry" />
+		<result property="menulevel" column="menulevel" />
+		<result property="parentmenucode" column="parentmenucode" />
+		<result property="menufullcode" column="menufullcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+		<result property="menuTypeCode" column="menuTypeCode" />
+		<result property="menuTypeName" column="menuTypeName" />
+		
+	</resultMap>
+	<!--菜单(t_menu)sql翻译-->
+	<resultMap id="menuResultTran" class="menu">
+		<result property="menucode" column="menucode" />
+		<result property="systemcode" column="systemcode" />
+		<result property="menuname" column="menuname" />
+		<result property="funcentry" column="funcentry" />
+		<result property="menulevel" column="menulevel" />
+		<result property="parentmenucode" column="parentmenucode" />
+		<result property="menufullcode" column="menufullcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+			<result property="menuTypeCode" column="menuTypeCode" />
+		<result property="menuTypeName" column="menuTypeName" />
+		<result property="parentmenuname" column="parentmenuname" />
+	</resultMap>
+	<!--菜单(t_menu)-->
+	<resultMap id="menuListResult" class="menu">
+		<result property="menucode" column="menucode"/>
+		<result property="systemcode" column="systemcode"/>
+		<result property="menuname" column="menuname"/>
+		<result property="funcentry" column="funcentry"/>
+		<result property="menulevel" column="menulevel"/>
+		<result property="parentmenucode" column="parentmenucode"/>
+		<result property="menufullcode" column="menufullcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+			<result property="menuTypeCode" column="menuTypeCode" />
+		<result property="menuTypeName" column="menuTypeName" />
+	</resultMap>
+	<!--菜单(t_menu)sql翻译-->
+	<resultMap id="menuListResultTran" class="menu">
+		<result property="menucode" column="menucode"/>
+		<result property="systemcode" column="systemcode"/>
+		<result property="menuname" column="menuname"/>
+		<result property="funcentry" column="funcentry"/>
+		<result property="menulevel" column="menulevel"/>
+		<result property="parentmenucode" column="parentmenucode"/>
+		<result property="menufullcode" column="menufullcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+			<result property="menuTypeCode" column="menuTypeCode" />
+		<result property="menuTypeName" column="menuTypeName" />
+		<result property="parentmenuname" column="parentmenuname" />
+	</resultMap>
+	<!--菜单(t_menu)-->
+	<resultMap id="menuNodeorderResult" class="menu">
+		<result property="nodeorder" column="nodeorder"/>
+	</resultMap>
+	<sql id="t_menuWhere">
+			<isNotEmpty prepend="and" property="menucode">
+				a.menucode=#menucode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="systemcode">
+				a.systemcode=#systemcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_menuPageWhere" >
+		<include refid="t_menuWhere" />
+			<isNotEmpty prepend="and" property="parentmenucode">
+				a.parentmenucode=#parentmenucode#
+			</isNotEmpty>
+			</sql>
+	<sql id="t_menuListWhere" >
+		<include refid="t_menuWhere" />	</sql>
+	<sql id="t_menuSelectWhere"  >
+		<include refid="t_menuWhere" />	</sql>
+	<!--菜单(t_menu)-->
+	<insert id="insertMenu"  parameterClass="menu">
+		insert into t_menu (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="menucode">
+				menucode
+			</isNotNull>
+			<isNotNull prepend="," property="systemcode">
+				systemcode
+			</isNotNull>
+			<isNotNull prepend="," property="menuname">
+				menuname
+			</isNotNull>
+			<isNotNull prepend="," property="funcentry">
+				funcentry
+			</isNotNull>
+			<isNotNull prepend="," property="menulevel">
+				menulevel
+			</isNotNull>
+			<isNotNull prepend="," property="parentmenucode">
+				parentmenucode
+			</isNotNull>
+			<isNotNull prepend="," property="menufullcode">
+				menufullcode
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf
+			</isNotNull>
+			<isNotNull prepend="," property="menuTypeCode">
+				menuTypeCode
+			</isNotNull>
+			<isNotNull prepend="," property="menuTypeName">
+				menuTypeName
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="menucode">
+				#menucode#
+			</isNotNull>
+			<isNotNull prepend="," property="systemcode">
+				#systemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="menuname">
+				#menuname#
+			</isNotNull>
+			<isNotNull prepend="," property="funcentry">
+				#funcentry#
+			</isNotNull>
+			<isNotNull prepend="," property="menulevel">
+				#menulevel#
+			</isNotNull>
+			<isNotNull prepend="," property="parentmenucode">
+				#parentmenucode#
+			</isNotNull>
+			<isNotNull prepend="," property="menufullcode">
+				#menufullcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				#isleaf#
+			</isNotNull>
+				<isNotNull prepend="," property="menuTypeCode">
+				#menuTypeCode#
+			</isNotNull>
+				<isNotNull prepend="," property="menuTypeName">
+				#menuTypeName#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--菜单(t_menu)-->
+	<update id="updateMenu" parameterClass="menu">
+		update t_menu a set menucode=menucode
+		<dynamic prepend="">
+		
+			<isNotNull prepend="," property="systemcode">
+				systemcode=#systemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="menuname">
+				menuname=#menuname#
+			</isNotNull>
+			<isNotNull prepend="," property="funcentry">
+				funcentry=#funcentry#
+			</isNotNull>
+			<isNotNull prepend="," property="menulevel">
+				menulevel=#menulevel#
+			</isNotNull>
+			<isNotNull prepend="," property="parentmenucode">
+				parentmenucode=#parentmenucode#
+			</isNotNull>
+			<isNotNull prepend="," property="menufullcode">
+				menufullcode=#menufullcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder=#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf=#isleaf#
+			</isNotNull>
+				<isNotNull prepend="," property="menuTypeCode">
+				menuTypeCode=#menuTypeCode#
+			</isNotNull>
+				<isNotNull prepend="," property="menuTypeName">
+				menuTypeName=#menuTypeName#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_menuWhere" />
+		</dynamic>
+	</update>
+	<!--菜单(t_menu)-->
+	<delete id="deleteMenu" parameterClass="menu">
+	    begin
+  delete from t_role_menu where menuCode in (select menuCode from t_menu where MenuFullCode like '$menufullcode$%');
+    delete from t_menu where MenuFullCode like '$menufullcode$%';
+    end;
+	</delete>
+	
+		
+	<!--菜单(t_menu)-->
+	<select id="getMenuList" resultMap="menuListResultTran" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,
+		a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,
+		a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName,
+    		nvl(b.menuname,'顶级') parentmenuname
+    	from t_menu a,(select menucode,menuname from t_menu t )b
+    	where a.parentmenucode=b.menucode(+)
+		<dynamic prepend="">
+			<include refid="t_menuPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--菜单(t_menu)-->
+	<select id="getMenuListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_menu a,(select menucode,menuname from t_menu t )b
+    	where a.parentmenucode=b.menucode(+)
+		<dynamic prepend="">
+			<include refid="t_menuPageWhere" />
+		</dynamic>
+	</select>
+	<!--菜单(t_menu)-->
+	<select id="getMenuListNoPage" resultMap="menuListResult" parameterClass="menu">
+		select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+		,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_menuListWhere" />
+		</dynamic>
+		order by a.menucode,a.systemcode
+	</select>
+	<!--菜单(t_menu)-->
+	<select id="getMenu" resultMap="menuResultTran" parameterClass="menu">
+		select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,
+			a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,
+			a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName,
+    		nvl(b.menuname,'顶级') parentmenuname
+    	from t_menu a,(select menucode,menuname from t_menu t )b
+    	where a.parentmenucode=b.menucode(+)
+		<dynamic prepend="">
+			<include refid="t_menuSelectWhere" />
+		</dynamic>
+		order by a.menucode,a.systemcode
+	</select>
+	<!--取子菜单(t_menu)-->
+		<select id="getChildMenu" resultMap="menuResult" parameterClass="menu">
+   select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+		,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a
+		where  a.parentmenucode = #menucode# 
+   <dynamic prepend="">
+     <isNotEmpty prepend="and" property="systemcode">
+            a.systemcode = #systemcode#
+     </isNotEmpty>
+    </dynamic>
+     order by nodeorder
+  </select>
+   <select id="getOwnMenu" parameterClass="menu" resultMap="menuResult">
+		 select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,
+				 a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,
+				 a.nodeorder nodeorder,a.isleaf isleaf ,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		 from t_menu a , (select t.nodeorder, t.menucode from t_menu t) b
+		 where a.parentmenucode = b.menucode(+) and a.menucode 
+		 	in (select menucode from t_role_menu where roleid in 
+		 				(select roleid from t_user_role where userid =#userid#))
+		<dynamic prepend="and">
+		     <isNotEmpty prepend="and" property="menucodein">
+		    	a.menucode not in($menucodein$)
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="fullcodelike">
+		    	a.menufullcode like #fullcodelike#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="systemcode">
+		    	a.systemcode =#systemcode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="menucode">
+		    	a.menucode =#menucode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="menulevel">
+		    	a.menulevel =#menulevel#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="parentmenucode">
+		    	a.parentmenucode =#parentmenucode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="menufullcode">
+		    	a.menufullcode =#menufullcode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="isleaf">
+		    	a.isleaf =#isleaf#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="menuTypeCode">
+		    	a.menuTypeCode =#menuTypeCode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="" property="singleHylb"><!-- singleHylb:登录用户是否只属于一个行业 0-否，1-是 -->
+		     	<!-- <isEqual prepend="and" property="singleHylb" compareValue="1">
+		     		(instr(a.menufullcode,a.menucode)=1
+					and substr(a.menufullcode,length(a.menucode)+1,1)='.')
+		     	</isEqual> -->
+		     	<isEqual prepend="and" property="singleHylb" compareValue="1">
+		     		(instr(a.menufullcode,a.menucode)>1 or a.menucode='xtgl_g' or a.menucode = 'usbkey_qyd' or a.systemcode='zcd')
+		     	</isEqual>
+		     </isNotEmpty>
+	   </dynamic><!-- 排序规则为：父节点排序号+该节点排序号 -->
+	   order by nvl(b.nodeorder, 0) + nodeOrder asc
+	</select>
+    <select id="checkMenu" parameterClass="menu" resultClass="int">
+select count(1) from t_role_menu where roleid in (select roleid from t_user_role where userid =#userid#) and menucode = #menucode#
+</select>
+
+  <!--  checkChildMenu  -->
+   <select id="checkChildMenu" resultClass="int" parameterClass="menu">
+    select  count(1) from t_menu  where parentmenucode = #parentmenucode#
+  </select>
+
+  <select id="getParentMenu" resultMap="menuResult" parameterClass="menu">
+   select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+	,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a
+	 where menucode= #parentmenucode#
+  </select>
+
+  <select id="getAllChildMenu" resultMap="menuResult" parameterClass="menu">
+     <![CDATA[   select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+		,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a
+    where menufullcode like '%#menucode#%' and  menucode <> #menucode#
+     order by nodeorder]]>
+  </select>
+ <select id="getAllMenu" resultMap="menuResult" parameterClass="menu">
+    select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+		,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a order by nodeOrder
+  </select>
+   <select id="getMenuBySystem" resultMap="menuResult" parameterClass="map">
+    select a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,a.isleaf isleaf
+		,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a
+    where systemcode=#systemcode# order by nodeOrder
+  </select>
+	<!--  获得所有兄弟节点最大排序号+1  -->
+  <select id="getNextMenuNodeorder" resultMap="menuNodeorderResult" parameterClass="menu">
+    	select nvl((max(a.nodeorder)+1),0) nodeorder from t_menu a
+    	 where 1=1 
+    	 <isNotEmpty prepend="and" property="parentmenucode">
+			a.parentmenucode = #parentmenucode#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="systemcode">
+			a.systemcode = #systemcode#
+		</isNotEmpty>
+  </select>
+
+	<!-- 当前用户所拥有的菜单 -->
+	<select id="getTheUserChildMenu" resultMap="menuResult" parameterClass="menu">
+		select distinct a.menucode menucode,a.systemcode systemcode,a.menuname menuname,a.funcentry funcentry,
+		a.menulevel menulevel,a.parentmenucode parentmenucode,a.menufullcode menufullcode,a.nodeorder nodeorder,
+		a.isleaf isleaf,a.menuTypeCode menuTypeCode,a.menuTypeName menuTypeName
+		from t_menu a,t_user b,t_user_role c,t_role_menu d
+		where b.userid = c.userid
+		and c.roleid = d.roleid
+		and a.menucode = d.menucode
+		and a.parentmenucode = #menucode# 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="systemcode">
+				a.systemcode = #systemcode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userid">
+				b.userid = #userid#
+			</isNotEmpty>
+		</dynamic>
+		order by nodeorder
+	</select>
+		
+	<select id="getRoleCheckedMenuList" resultClass="menu" parameterClass="menu">
+		$pageSort$
+	</select>
+</sqlMap>

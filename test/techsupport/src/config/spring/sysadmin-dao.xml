@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--用户(t_user)-->
+	<bean id="userDao" class="com.aisino2.sysadmin.dao.ibatis.UserDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--菜单(t_menu)-->
+	<bean id="menuDao" class="com.aisino2.sysadmin.dao.ibatis.MenuDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--角色(t_role)-->
+	<bean id="roleDao" class="com.aisino2.sysadmin.dao.ibatis.RoleDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--系统(t_system)-->
+	<bean id="systemDao" class="com.aisino2.sysadmin.dao.ibatis.SystemDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--机构(t_department)-->
+	<bean id="departmentDao" class="com.aisino2.sysadmin.dao.ibatis.DepartmentDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--功能(t_function)-->
+	<bean id="functionDao" class="com.aisino2.sysadmin.dao.ibatis.FunctionDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--全局参数(t_globalpar)-->
+	<bean id="globalparDao" class="com.aisino2.sysadmin.dao.ibatis.GlobalparDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--登录日志表(t_loginlog)-->
+	<bean id="loginlogDao" class="com.aisino2.sysadmin.dao.ibatis.LoginlogDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--参数设置(t_param)-->
+	<bean id="paramDao" class="com.aisino2.sysadmin.dao.ibatis.ParamDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--字典项(t_dict_item)-->
+	<bean id="dict_itemDao" class="com.aisino2.sysadmin.dao.ibatis.Dict_itemDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--字典(t_dict)-->
+	<bean id="dictDao" class="com.aisino2.sysadmin.dao.ibatis.DictDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--角色功能(t_role_func)-->
+	<bean id="role_funcDao" class="com.aisino2.sysadmin.dao.ibatis.Role_funcDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--角色菜单(t_role_menu)-->
+	<bean id="role_menuDao" class="com.aisino2.sysadmin.dao.ibatis.Role_menuDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--用户角色(t_user_role)-->
+	<bean id="user_roleDao" class="com.aisino2.sysadmin.dao.ibatis.User_roleDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--角色参数(t_role_param)-->
+	<bean id="role_paramDao" class="com.aisino2.sysadmin.dao.ibatis.Role_paramDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+	<!--操作日志表(t_operatelog)-->
+	<bean id="operatelogDao" class="com.aisino2.sysadmin.dao.ibatis.OperatelogDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapSysadmin" />
+	</bean>
+
+
+</beans>

@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qycftj" type="com.aisino2.basicsystem.domain.Qycftj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业处罚统计表(t_qycftj)-->
+	<resultMap id="qycftjResult" class="qycftj">
+		<result property="qycftjid" column="qycftjid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="tjrq" column="tjrq" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="csbm" column="csbm" />
+		<result property="csmc" column="csmc" />
+		<result property="jgcs" column="jgcs" />
+		<result property="fmcs" column="fmcs" />
+		<result property="tdcs" column="tdcs" />
+		<result property="zjcs" column="zjcs" />
+		<result property="qtfmcs" column="qtfmcs" />
+	</resultMap>
+	<!--企业处罚统计表(t_qycftj)-->
+	<resultMap id="qycftjListResult" class="qycftj">
+		<result property="qycftjid" column="qycftjid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="tjrq" column="tjrq"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+		<result property="jgcs" column="jgcs"/>
+		<result property="fmcs" column="fmcs"/>
+		<result property="tdcs" column="tdcs"/>
+		<result property="zjcs" column="zjcs"/>
+		<result property="qtfmcs" column="qtfmcs"/>
+	</resultMap>
+	
+	
+		<!--企业处罚统计表(t_qycftj)-->
+	<resultMap id="qycftjListResultTj" class="qycftj">
+		<result property="jgcs" column="jgcs"/>
+		<result property="fmcs" column="fmcs"/>
+		<result property="tdcs" column="tdcs"/>
+		<result property="zjcs" column="zjcs"/>
+		<result property="qtfmcs" column="qtfmcs"/>
+		<result property="xiaoji" column="xiaoji"/>
+		
+		
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+	</resultMap>
+	
+	<!--企业处罚统计表(t_qycftj)-->
+	<resultMap id="qycftjListResultTjYZ" class="qycftj">
+	    <result property="gxdwdm" column="gxdwdm"/>
+	    <result property="gxdwmc" column="gxdwmc"/>
+	    
+	    <result property="xiaoji" column="xiaoji"/>
+		<result property="jgcs" column="jgcs"/>
+		<result property="fmcs" column="fmcs"/>
+		<result property="tdcs" column="tdcs"/>
+		<result property="zjcs" column="zjcs"/>
+		<result property="qtfmcs" column="qtfmcs"/>
+		
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+	</resultMap>
+	<!--企业处罚统计表(t_qycftj)-->
+	<resultMap id="qycftjListResultBzh" class="qycftj">
+	    <result property="jczsT" column="jczsT"/>
+        <result property="cfzsT" column="cfzsT"/>
+        <result property="jlzsT" column="jlzsT"/>
+	    <result property="jczs" column="jczs"/>
+        <result property="cfzs" column="cfzs"/>
+        <result property="jgcs" column="jgcs"/>
+        <result property="fmcs" column="fmcs"/>
+        <result property="tdcs" column="tdcs"/>
+        <result property="zjcs" column="zjcs"/>
+		<result property="qtfmcs" column="qtfmcs"/>
+		<result property="jlzs" column="jlzs"/>
+		<result property="tbbycs" column="tbbycs"/>
+		<result property="wzjlcs" column="wzjlcs"/>
+		<result property="qtjlcs" column="qtjlcs"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+	</resultMap>
+	<sql id="t_qycftjPageWhereBzh">
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csbm">
+				a.csbm=#csbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+		    </isNotEmpty>
+	</sql>
+	
+	<sql id="t_qycftjTongjiPageWhere">
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csbm">
+				a.csbm=#csbm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="tjrq">
+				a.tjrq &gt;=#tjrq:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tjrqzhi">
+				a.tjrq &lt; #tjrqzhi:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+	</sql>
+	
+	
+	<sql id="t_qycftjWhere">
+			<isNotEmpty prepend="and" property="qycftjid">
+				a.qycftjid=#qycftjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qycftjPageWhere" >
+		<include refid="t_qycftjWhere" />	</sql>
+	<sql id="t_qycftjListWhere" >
+		<include refid="t_qycftjWhere" />	</sql>
+	<sql id="t_qycftjSelectWhere"  >
+		<include refid="t_qycftjWhere" />	</sql>
+		
+	 <sql id="t_qycftjListYzWhere">
+		<isNotEmpty prepend="and" property="hylbdm">
+				qycf.hylbdm=#hylbdm#
+		</isNotEmpty>
+	</sql>
+		
+	<!--企业处罚统计表(t_qycftj)-->
+	<insert id="insertQycftj"  parameterClass="qycftj">
+		insert into t_qycftj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qycftjid">
+				qycftjid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				tjrq
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				csmc
+			</isNotNull>
+			<isNotNull prepend="," property="jgcs">
+				jgcs
+			</isNotNull>
+			<isNotNull prepend="," property="fmcs">
+				fmcs
+			</isNotNull>
+			<isNotNull prepend="," property="tdcs">
+				tdcs
+			</isNotNull>
+			<isNotNull prepend="," property="zjcs">
+				zjcs
+			</isNotNull>
+			<isNotNull prepend="," property="qtfmcs">
+				qtfmcs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qycftjid">
+				#qycftjid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				#csbm#
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				#csmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jgcs">
+				#jgcs#
+			</isNotNull>
+			<isNotNull prepend="," property="fmcs">
+				#fmcs#
+			</isNotNull>
+			<isNotNull prepend="," property="tdcs">
+				#tdcs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjcs">
+				#zjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="qtfmcs">
+				#qtfmcs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业处罚统计表(t_qycftj)-->
+	<update id="updateQycftj" parameterClass="qycftj">
+		update t_qycftj a set a.qycftjid=a.qycftjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				tjrq=#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm=#csbm#
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				csmc=#csmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jgcs">
+				jgcs=#jgcs#
+			</isNotNull>
+			<isNotNull prepend="," property="fmcs">
+				fmcs=#fmcs#
+			</isNotNull>
+			<isNotNull prepend="," property="tdcs">
+				tdcs=#tdcs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjcs">
+				zjcs=#zjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="qtfmcs">
+				qtfmcs=#qtfmcs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjWhere" />
+		</dynamic>
+	</update>
+	<!--企业处罚统计表(t_qycftj)-->
+	<delete id="deleteQycftj" parameterClass="qycftj">
+		delete from t_qycftj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qycftjWhere" />
+		</dynamic>
+	</delete>
+	<!--企业处罚统计表(t_qycftj)-->
+	<select id="getQycftjList" resultMap="qycftjListResultTj" parameterClass="map">
+		select m.* from (select rownum rowno, x.* from (
+		select z.* from 
+		(select 
+		  sum(a.jgcs) jgcs,
+	      sum(a.fmcs) fmcs,
+		  sum(a.tdcs) tdcs,
+		    sum(a.zjcs) zjcs,
+		      sum(a.qtfmcs) qtfmcs,
+		         sum(a.jgcs+a.fmcs+a.tdcs+a.zjcs+a.qtfmcs) xiaoji
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjTongjiPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)  z order by $pageSort$ ) x ) m where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业处罚统计表(t_qycftj)-->
+	<select id="getQycftjListCount" resultClass="int" parameterClass="map">
+			select count(1) from (
+		select count(1)  from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjTongjiPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	
+	</select>
+	<!--企业处罚统计表(t_qycftj)-->
+	<select id="getQycftjListNoPage" resultMap="qycftjListResult" parameterClass="qycftj">
+		select a.qycftjid qycftjid,a.hylbdm hylbdm,a.hylb hylb,a.tjrq tjrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwmc gxdwmc,a.gxdwdm gxdwdm,a.csbm csbm,a.csmc csmc,a.jgcs jgcs,a.fmcs fmcs,a.tdcs tdcs,a.zjcs zjcs,a.qtfmcs qtfmcs
+		from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjListWhere" />
+		</dynamic>
+		order by a.qycftjid
+	</select>
+	<!--企业处罚统计表(t_qycftj)-->
+	<select id="getQycftj" resultMap="qycftjResult" parameterClass="qycftj">
+		select a.qycftjid qycftjid,a.hylbdm hylbdm,a.hylb hylb,a.tjrq tjrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwmc gxdwmc,a.gxdwdm gxdwdm,a.csbm csbm,a.csmc csmc,a.jgcs jgcs,a.fmcs fmcs,a.tdcs tdcs,a.zjcs zjcs,a.qtfmcs qtfmcs
+		from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjSelectWhere" />
+		</dynamic>
+		order by a.qycftjid
+	</select>
+	
+	<!--企业处罚统计表印章业(t_qycftj)-->
+	<select id="getQycftjListyzy" resultMap="qycftjListResultTjYZ" parameterClass="map">
+	
+	SELECT * FROM (
+	 SELECT A.*, ROWNUM rowno
+	 from ( 
+	   SELECT PCS.DEPARTBREVITYCODE gxdwdm,
+		      PCS.DEPARTNAME gxdwmc,
+		       NVL(JGCS.JGCS,'0')+ NVL(FMCS.FMCS,'0')+ NVL(TDCS.TDCS,'0')+NVL(ZJCS.ZJCS,'0')+ NVL(QTCS.QTCS,'0') xiaoji,
+		       NVL(JGCS.JGCS,'0') jgcs,
+		       NVL(FMCS.FMCS,'0') fmcs,
+		       NVL(TDCS.TDCS,'0') tdcs,
+		       NVL(ZJCS.ZJCS,'0') zjcs,
+		       NVL(QTCS.QTCS,'0') qtfmcs,
+		       '' csbm,
+		       '' csmc
+		       
+	   from (SELECT DEPT.DEPARTCODE, DEPT.DEPARTBREVITYCODE, DEPT.DEPARTNAME, DEPT.NODEORDER
+		          FROM T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			           AND DEPT.DEPARTCODE LIKE #gxdwbm#  order by dept.nodeorder ) PCS,
+			 
+			(SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) JGCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='1'
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) JGCS,
+		         
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) FMCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='2' or qycf.cfjgdm ='3' or qycf.cfjgdm ='4')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) FMCS,
+		    
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) TDCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='5' or qycf.cfjgdm ='6')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) TDCS,
+		    
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) ZJCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='7' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) ZJCS,
+		         
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) QTCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='9' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) QTCS
+		         
+		   WHERE PCS.DEPARTBREVITYCODE = JGCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = FMCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = TDCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = ZJCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = QTCS.ssdwbm(+)
+  		   ORDER BY $pageSort$
+	 
+	 ) A
+	 <![CDATA[
+  		WHERE ROWNUM <= #endRow#
+		)
+		WHERE rowno > #beginRow#
+	  ]]>
+	  
+	</select>
+	<!--企业处罚统计表(t_qycftj)-->
+	<select id="getQycftjListyzyCount" resultClass="int" parameterClass="map">
+	SELECT COUNT(*) FROM (
+	   SELECT PCS.DEPARTBREVITYCODE gxdwdm,
+		      PCS.DEPARTNAME gxdwmc,
+		       NVL(JGCS.JGCS,'0')+ NVL(FMCS.FMCS,'0')+ NVL(TDCS.TDCS,'0')+NVL(ZJCS.ZJCS,'0')+ NVL(QTCS.QTCS,'0') xiaoji,
+		       NVL(JGCS.JGCS,'0') jgcs,
+		       NVL(FMCS.FMCS,'0') fmcs,
+		       NVL(TDCS.TDCS,'0') tdcs,
+		       NVL(ZJCS.ZJCS,'0') zjcs,
+		       NVL(QTCS.QTCS,'0') qtfmcs,
+		       '' csbm,
+		       '' csmc
+		       
+	   from (SELECT DEPT.DEPARTCODE, DEPT.DEPARTBREVITYCODE, DEPT.DEPARTNAME, DEPT.NODEORDER
+		          FROM T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			           AND DEPT.DEPARTCODE LIKE #gxdwbm#  order by dept.nodeorder ) PCS,
+			 
+			(SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) JGCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='1'
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) JGCS,
+		         
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) FMCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='2' or qycf.cfjgdm ='3' or qycf.cfjgdm ='4')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) FMCS,
+		    
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) TDCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='5' or qycf.cfjgdm ='6')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) TDCS,
+		    
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) ZJCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='7' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) ZJCS,
+		         
+		    (SELECT SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ssdwbm,
+		               COUNT(1) QTCS
+		          FROM t_qycf qycf, T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTLEVEL = #gxdwlevel#
+			       AND DEPT.DEPARTCODE LIKE #gxdwbm#
+		           AND qycf.ssdwbm LIKE DEPT.DEPARTBREVITYCODE || '%'
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='9' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY SUBSTR(qycf.ssdwbm, 0, LENGTH(DEPT.DEPARTBREVITYCODE))) QTCS
+		    
+		   WHERE PCS.DEPARTBREVITYCODE = JGCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = FMCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = TDCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = ZJCS.ssdwbm(+)
+		   AND PCS.DEPARTBREVITYCODE = QTCS.ssdwbm(+)
+	  )
+	
+	</select>
+	
+	<select id="getQycftjTotalNum" resultMap="qycftjListResultTjYZ" parameterClass="map">
+	
+	   SELECT PCS.DEPARTBREVITYCODE gxdwdm,
+		      PCS.DEPARTNAME gxdwmc,
+		       NVL(JGCS.JGCS,'0')+ NVL(FMCS.FMCS,'0')+ NVL(TDCS.TDCS,'0')+NVL(ZJCS.ZJCS,'0')+ NVL(QTCS.QTCS,'0') xiaoji,
+		       NVL(JGCS.JGCS,'0') jgcs,
+		       NVL(FMCS.FMCS,'0') fmcs,
+		       NVL(TDCS.TDCS,'0') tdcs,
+		       NVL(ZJCS.ZJCS,'0') zjcs,
+		       NVL(QTCS.QTCS,'0') qtfmcs,
+		       '' csbm,
+		       '' csmc
+		       
+	   from (SELECT DEPT.DEPARTCODE, DEPT.DEPARTBREVITYCODE, DEPT.DEPARTNAME, DEPT.NODEORDER
+		          FROM T_DEPARTMENT DEPT
+		         WHERE DEPT.DEPARTCODE = #gxdwbmall# 
+			        order by dept.nodeorder    ) PCS,
+			           
+			 (SELECT qycf.ssdwbm ssdwbm,
+		               COUNT(1) JGCS
+		          FROM t_qycf qycf 
+		         WHERE  qycf.ssdwbm = #gxdwbmall#
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='1'
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY qycf.ssdwbm ) JGCS, 
+		         
+		         (SELECT qycf.ssdwbm ssdwbm,
+		               COUNT(1) FMCS
+		          FROM t_qycf qycf 
+		         WHERE  qycf.ssdwbm = #gxdwbmall#
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='2' or qycf.cfjgdm ='3' or qycf.cfjgdm ='4')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY qycf.ssdwbm ) FMCS, 
+		         
+		     (SELECT qycf.ssdwbm ssdwbm,
+		               COUNT(1) TDCS
+		          FROM t_qycf qycf  
+		         WHERE qycf.ssdwbm = #gxdwbmall#
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND (qycf.cfjgdm ='5' or qycf.cfjgdm ='6')
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY qycf.ssdwbm ) TDCS,   
+		         
+		       (SELECT qycf.ssdwbm  ssdwbm,
+		               COUNT(1) ZJCS
+		          FROM t_qycf qycf 
+		         WHERE qycf.ssdwbm = #gxdwbmall#
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='7' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY qycf.ssdwbm ) ZJCS,  
+		         
+		       (SELECT qycf.ssdwbm ssdwbm,
+		               COUNT(1) QTCS
+		          FROM t_qycf qycf  
+		         WHERE qycf.ssdwbm = #gxdwbmall#
+		           AND qycf.djsj BETWEEN #qssj:TIMESTAMP# AND #jzsj:TIMESTAMP#
+		           AND qycf.cfjgdm ='9' 
+		           <dynamic prepend="">
+					<include refid="t_qycftjListYzWhere" />
+				</dynamic>
+		         GROUP BY qycf.ssdwbm ) QTCS 
+		         
+		   WHERE PCS.DEPARTCODE = JGCS.ssdwbm(+)
+			   AND PCS.DEPARTCODE = FMCS.ssdwbm(+)
+			   AND PCS.DEPARTCODE = TDCS.ssdwbm(+)
+			   AND PCS.DEPARTCODE = ZJCS.ssdwbm(+)
+			   AND PCS.DEPARTCODE = QTCS.ssdwbm(+)
+	   
+	
+	</select>
+	
+	<!--企业处罚统计表标准化(t_qycftj)-->
+	<select id="getQycftjListBzh" resultMap="qycftjListResultBzh" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select  
+		    NVL(sum(b.jgcsT+b.fmcsT+b.tdcsT+b.zjcsT+b.qtfmcsT+b.tbbycsT+b.wzjlcsT+b.qtjlcsT),'0') as jczsT,
+		    NVL(sum(b.jgcsT+b.fmcsT+b.tdcsT+b.zjcsT+b.qtfmcsT),'0') as cfzsT,
+		    NVL(sum(b.tbbycsT+b.wzjlcsT+b.qtjlcsT),'0') as jlzsT,
+		    NVL(sum(b.jgcs+b.fmcs+b.tdcs+b.zjcs+b.qtfmcs+b.tbbycs+b.wzjlcs+b.qtjlcs),'0') as jczs,
+		    NVL(sum(b.jgcs+b.fmcs+b.tdcs+b.zjcs+b.qtfmcs),'0') as cfzs,
+		    NVL(sum(b.tbbycs+b.wzjlcs+b.qtjlcs),'0') as jlzs,
+		    NVL(sum(b.jgcsT),'0') as jgcsT,
+		    NVL(sum(b.fmcsT),'0') as fmcsT,
+		    NVL(sum(b.tdcsT),'0') as tdcsT,
+		    NVL(sum(b.zjcsT),'0') as zjcsT,
+		    NVL(sum(b.qtfmcsT),'0') as qtfmcsT,
+		    NVL(sum(b.tbbycsT),'0') as tbbycsT,
+		    NVL(sum(b.wzjlcsT),'0') as wzjlcsT,
+		    NVL(sum(b.qtjlcsT),'0') as qtjlcsT,
+		    NVL(sum(b.jgcs),'0') as jgcs,
+		    NVL(sum(b.fmcs),'0') as fmcs,
+		    NVL(sum(b.tdcs),'0') as tdcs,
+		    NVL(sum(b.zjcs),'0') as zjcs,
+		    NVL(sum(b.qtfmcs),'0') as qtfmcs,
+		    NVL(sum(b.tbbycs),'0') as tbbycs,
+		    NVL(sum(b.wzjlcs),'0') as wzjlcs,
+		    NVL(sum(b.qtjlcs),'0') as qtjlcs
+		    <isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		    </isNotEmpty>
+		from
+		(select 
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.jgcs end) as jgcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.fmcs end) as fmcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.tdcs end) as tdcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.zjcs end) as zjcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.qtfmcs end) as qtfmcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.tbbycs end) as tbbycsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.wzjlcs end) as wzjlcsT,
+		 sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.qtjlcs end) as qtjlcsT,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.jgcs end) as jgcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.fmcs end) as fmcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.tdcs end) as tdcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.zjcs end) as zjcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.qtfmcs end) as qtfmcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.tbbycs end) as tbbycs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.wzjlcs end) as wzjlcs,
+		 sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.qtjlcs end) as qtjlcs
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjPageWhereBzh" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		) b
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业处罚统计表标准化(t_qycftj)-->
+	<select id="getQycftjListBzhCount" resultClass="int" parameterClass="map">
+			select count(1) from (
+		select count(1)  from t_qycftj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qycftjPageWhereBzh" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	
+	</select>
+</sqlMap>

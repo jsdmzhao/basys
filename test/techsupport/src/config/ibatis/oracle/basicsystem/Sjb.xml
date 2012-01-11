@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="sjb" type="com.aisino2.basicsystem.domain.Sjb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--数据表(t_sjb)-->
+	<resultMap id="sjbResult" class="sjb">
+		<result property="sjbid" column="sjbid" />
+		<result property="sjbm" column="sjbm" />
+		<result property="sjbzwm" column="sjbzwm" />
+		<result property="dyldx" column="dyldx" />
+		<result property="sfjlczrz" column="sfjlczrz" />
+		<result property="sfxtzd" column="sfxtzd" />
+		<result property="sssjkyh" column="sssjkyh" />
+		<result property="zj" column="zj" />
+	</resultMap>
+	<!--数据表(t_sjb)-->
+	<resultMap id="sjbListResult" class="sjb">
+		<result property="sjbid" column="sjbid"/>
+		<result property="sjbm" column="sjbm"/>
+		<result property="sjbzwm" column="sjbzwm"/>
+		<result property="dyldx" column="dyldx"/>
+		<result property="sfjlczrz" column="sfjlczrz"/>
+		<result property="sfxtzd" column="sfxtzd"/>
+		<result property="sssjkyh" column="sssjkyh"/>
+		<result property="zj" column="zj"/>
+	</resultMap>
+	<sql id="t_sjbWhere">
+			<isNotEmpty prepend="and" property="sjbid">
+				a.sjbid=#sjbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_sjbPageWhere" >
+		<include refid="t_sjbWhere" />	</sql>
+	<sql id="t_sjbListWhere" >
+		<include refid="t_sjbWhere" />	</sql>
+	<sql id="t_sjbSelectWhere"  >
+		<include refid="t_sjbWhere" />	</sql>
+	<!--数据表(t_sjb)-->
+	<insert id="insertSjb"  parameterClass="sjb">
+		insert into t_sjb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="sjbid">
+				sjbid
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				sjbm
+			</isNotNull>
+			<isNotNull prepend="," property="sjbzwm">
+				sjbzwm
+			</isNotNull>
+			<isNotNull prepend="," property="dyldx">
+				dyldx
+			</isNotNull>
+			<isNotNull prepend="," property="sfjlczrz">
+				sfjlczrz
+			</isNotNull>
+			<isNotNull prepend="," property="sfxtzd">
+				sfxtzd
+			</isNotNull>
+			<isNotNull prepend="," property="sssjkyh">
+				sssjkyh
+			</isNotNull>
+			<isNotNull prepend="," property="zj">
+				zj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="sjbid">
+				#sjbid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbzwm">
+				#sjbzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="dyldx">
+				#dyldx#
+			</isNotNull>
+			<isNotNull prepend="," property="sfjlczrz">
+				#sfjlczrz#
+			</isNotNull>
+			<isNotNull prepend="," property="sfxtzd">
+				#sfxtzd#
+			</isNotNull>
+			<isNotNull prepend="," property="sssjkyh">
+				#sssjkyh#
+			</isNotNull>
+			<isNotNull prepend="," property="zj">
+				#zj#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--数据表(t_sjb)-->
+	<update id="updateSjb" parameterClass="sjb">
+		update t_sjb a set a.sjbid=a.sjbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="sjbm">
+				sjbm=#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbzwm">
+				sjbzwm=#sjbzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="dyldx">
+				dyldx=#dyldx#
+			</isNotNull>
+			<isNotNull prepend="," property="sfjlczrz">
+				sfjlczrz=#sfjlczrz#
+			</isNotNull>
+			<isNotNull prepend="," property="sfxtzd">
+				sfxtzd=#sfxtzd#
+			</isNotNull>
+			<isNotNull prepend="," property="sssjkyh">
+				sssjkyh=#sssjkyh#
+			</isNotNull>
+			<isNotNull prepend="," property="zj">
+				zj=#zj#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbWhere" />
+		</dynamic>
+	</update>
+	<!--数据表(t_sjb)-->
+	<delete id="deleteSjb" parameterClass="sjb">
+		delete from t_sjb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_sjbWhere" />
+		</dynamic>
+	</delete>
+	<!--数据表(t_sjb)-->
+	<select id="getSjbList" resultMap="sjbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.sjbid sjbid,a.sjbm sjbm,a.sjbzwm sjbzwm,a.dyldx dyldx,a.sfjlczrz sfjlczrz,a.sfxtzd sfxtzd,a.sssjkyh sssjkyh,a.zj zj
+		from t_sjb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--数据表(t_sjb)-->
+	<select id="getSjbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_sjb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbPageWhere" />
+		</dynamic>
+	</select>
+	<!--数据表(t_sjb)-->
+	<select id="getSjbListNoPage" resultMap="sjbListResult" parameterClass="sjb">
+		select a.sjbid sjbid,a.sjbm sjbm,a.sjbzwm sjbzwm,a.dyldx dyldx,a.sfjlczrz sfjlczrz,a.sfxtzd sfxtzd,a.sssjkyh sssjkyh,a.zj zj
+		from t_sjb a
+		where 1=1
+		<dynamic prepend="">
+		<isNotEmpty prepend="and" property="sjbidSet">
+				a.sjbid in ($sjbidSet$)
+			</isNotEmpty>
+		<isNotEmpty prepend="and" property="sjbmSet">
+				lower(a.sjbm) in ($sjbmSet$)
+			</isNotEmpty>
+			<include refid="t_sjbListWhere" />
+		</dynamic>
+		order by a.sjbid
+	</select>
+	<!--数据表(t_sjb)-->
+	<select id="getSjb" resultMap="sjbResult" parameterClass="sjb">
+		select a.sjbid sjbid,a.sjbm sjbm,a.sjbzwm sjbzwm,a.dyldx dyldx,a.sfjlczrz sfjlczrz,a.sfxtzd sfxtzd,a.sssjkyh sssjkyh,a.zj zj
+		from t_sjb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbSelectWhere" />
+		</dynamic>
+		order by a.sjbid
+	</select>
+</sqlMap>

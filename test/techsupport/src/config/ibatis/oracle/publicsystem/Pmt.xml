@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="pmt" type="com.aisino2.publicsystem.domain.Pmt"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--平面图(t_pmt)-->
+	<resultMap id="pmtResult" class="pmt">
+		<result property="qyid" column="qyid" />
+		<result property="pmtid" column="pmtid" />
+		<result property="pmtlxdm" column="pmtlxdm" />
+		<result property="pmtlxmc" column="pmtlxmc" />
+		<result property="pmtz" column="pmtz" />
+	</resultMap>
+	<!--平面图(t_pmt)-->
+	<resultMap id="pmtListResult" class="pmt">
+		<result property="qyid" column="qyid"/>
+		<result property="pmtid" column="pmtid"/>
+		<result property="pmtlxdm" column="pmtlxdm"/>
+		<result property="pmtlxmc" column="pmtlxmc"/>
+	</resultMap>
+	<sql id="t_pmtWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pmtid">
+				a.pmtid=#pmtid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_pmtPageWhere" >
+		<include refid="t_pmtWhere" />	</sql>
+	<sql id="t_pmtListWhere" >
+		<include refid="t_pmtWhere" />	</sql>
+	<sql id="t_pmtSelectWhere"  >
+		<include refid="t_pmtWhere" />	</sql>
+	<!--平面图(t_pmt)-->
+	<insert id="insertPmt"  parameterClass="pmt">
+		insert into t_pmt (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="pmtid">
+				pmtid
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxdm">
+				pmtlxdm
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxmc">
+				pmtlxmc
+			</isNotNull>
+			<isNotNull prepend="," property="pmtz">
+				pmtz
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtid">
+				#pmtid#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxdm">
+				#pmtlxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxmc">
+				#pmtlxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtz">
+				#pmtz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--平面图(t_pmt)-->
+	<update id="updatePmt" parameterClass="pmt">
+		update t_pmt a set a.pmtid=a.pmtid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxdm">
+				pmtlxdm=#pmtlxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtlxmc">
+				pmtlxmc=#pmtlxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="pmtz">
+				pmtz=#pmtz#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtWhere" />
+		</dynamic>
+	</update>
+	<!--平面图(t_pmt)-->
+	<delete id="deletePmt" parameterClass="pmt">
+		delete from t_pmt a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_pmtWhere" />
+		</dynamic>
+	</delete>
+	<!--平面图(t_pmt)-->
+	<select id="getPmtList" resultMap="pmtListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.pmtid pmtid,a.pmtlxdm pmtlxdm,a.pmtlxmc pmtlxmc,a.pmtz pmtz
+		from t_pmt a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--平面图(t_pmt)-->
+	<select id="getPmtListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_pmt a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtPageWhere" />
+		</dynamic>
+	</select>
+	<!--平面图(t_pmt)-->
+	<select id="getPmtListNoPage" resultMap="pmtListResult" parameterClass="pmt">
+		select a.qyid qyid,a.pmtid pmtid,a.pmtlxdm pmtlxdm,a.pmtlxmc pmtlxmc,a.pmtz pmtz
+		from t_pmt a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtListWhere" />
+		</dynamic>
+		order by a.qyid,a.pmtid
+	</select>
+	<!--平面图(t_pmt)-->
+	<select id="getPmt" resultMap="pmtResult" parameterClass="pmt">
+		select a.qyid qyid,a.pmtid pmtid,a.pmtlxdm pmtlxdm,a.pmtlxmc pmtlxmc,a.pmtz pmtz
+		from t_pmt a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.pmtid
+	</select>
+	<!--平面图(t_pmt)不查询BLOB-->
+	<select id="getPmtNoBlob" resultMap="pmtListResult" parameterClass="pmt">
+		select a.qyid qyid,a.pmtid pmtid,a.pmtlxdm pmtlxdm,a.pmtlxmc pmtlxmc
+		from t_pmt a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pmtSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.pmtid
+	</select>
+</sqlMap>

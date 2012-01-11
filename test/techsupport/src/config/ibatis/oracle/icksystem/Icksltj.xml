@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="icksltj" type="com.aisino2.icksystem.domain.Icksltj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理统计(t_icksltj)-->
+	<resultMap id="icksltjResult" class="icksltj">
+		<result property="icksltjid" column="icksltjid" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qymc" column="qymc" />
+		<result property="qybm" column="qybm" />
+		<result property="dqzzrs" column="dqzzrs" />
+		<result property="yslrs" column="yslrs" />
+		<result property="ffs" column="ffs" />
+		<result property="zt" column="zt" />
+	</resultMap>
+	<!--IC卡受理统计(t_icksltj)-->
+	<resultMap id="icksltjListResult" class="icksltj">
+		<result property="icksltjid" column="icksltjid"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="dqzzrs" column="dqzzrs"/>
+		<result property="yslrs" column="yslrs"/>
+		<result property="ffs" column="ffs"/>
+		<result property="zt" column="zt"/>
+	</resultMap>
+	<sql id="t_icksltjWhere">
+			<isNotEmpty prepend="and" property="icksltjid">
+				a.icksltjid=#icksltjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_icksltjPageWhere" >
+		<include refid="t_icksltjWhere" />	</sql>
+	<sql id="t_icksltjListWhere" >
+		<include refid="t_icksltjWhere" />	</sql>
+	<sql id="t_icksltjSelectWhere"  >
+		<include refid="t_icksltjWhere" />	</sql>
+	<!--IC卡受理统计(t_icksltj)-->
+	<insert id="insertIcksltj"  parameterClass="icksltj">
+		insert into t_icksltj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="icksltjid">
+				icksltjid
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				dqzzrs
+			</isNotNull>
+			<isNotNull prepend="," property="yslrs">
+				yslrs
+			</isNotNull>
+			<isNotNull prepend="," property="ffs">
+				ffs
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="icksltjid">
+				#icksltjid#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				#dqzzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="yslrs">
+				#yslrs#
+			</isNotNull>
+			<isNotNull prepend="," property="ffs">
+				#ffs#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理统计(t_icksltj)-->
+	<update id="updateIcksltj" parameterClass="icksltj">
+		update t_icksltj a set a.icksltjid=a.icksltjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				dqzzrs=#dqzzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="yslrs">
+				yslrs=#yslrs#
+			</isNotNull>
+			<isNotNull prepend="," property="ffs">
+				ffs=#ffs#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksltjWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡受理统计(t_icksltj)-->
+	<delete id="deleteIcksltj" parameterClass="icksltj">
+		delete from t_icksltj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_icksltjWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理统计(t_icksltj)-->
+	<select id="getIcksltjList" resultMap="icksltjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.icksltjid icksltjid,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.dqzzrs dqzzrs,a.yslrs yslrs,a.ffs ffs,a.zt zt
+		from t_icksltj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksltjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理统计(t_icksltj)-->
+	<select id="getIcksltjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_icksltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksltjPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡受理统计(t_icksltj)-->
+	<select id="getIcksltjListNoPage" resultMap="icksltjListResult" parameterClass="icksltj">
+		select a.icksltjid icksltjid,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.dqzzrs dqzzrs,a.yslrs yslrs,a.ffs ffs,a.zt zt
+		from t_icksltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksltjListWhere" />
+		</dynamic>
+		order by a.icksltjid
+	</select>
+	<!--IC卡受理统计(t_icksltj)-->
+	<select id="getIcksltj" resultMap="icksltjResult" parameterClass="icksltj">
+		select a.icksltjid icksltjid,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.dqzzrs dqzzrs,a.yslrs yslrs,a.ffs ffs,a.zt zt
+		from t_icksltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksltjSelectWhere" />
+		</dynamic>
+		order by a.icksltjid
+	</select>
+</sqlMap>

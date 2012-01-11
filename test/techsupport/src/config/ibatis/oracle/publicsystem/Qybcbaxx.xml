@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qybcbaxx" type="com.aisino2.publicsystem.domain.Qybcbaxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<resultMap id="qybcbaxxResult" class="qybcbaxx">
+		<result property="qyid" column="qyid" />
+		<result property="qybaxxid" column="qybaxxid" />
+		<result property="bbgzrq" column="bbgzrq" />
+		<result property="bbyy" column="bbyy" />
+		<result property="bbwcrq" column="bbwcrq" />
+	</resultMap>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<resultMap id="qybcbaxxListResult" class="qybcbaxx">
+		<result property="qyid" column="qyid"/>
+		<result property="qybaxxid" column="qybaxxid"/>
+		<result property="bbgzrq" column="bbgzrq"/>
+		<result property="bbyy" column="bbyy"/>
+		<result property="bbwcrq" column="bbwcrq"/>
+	</resultMap>
+	<sql id="t_qybcbaxxWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybaxxid">
+				a.qybaxxid=#qybaxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qybcbaxxPageWhere" >
+		<include refid="t_qybcbaxxWhere" />	</sql>
+	<sql id="t_qybcbaxxListWhere" >
+		<include refid="t_qybcbaxxWhere" />	</sql>
+	<sql id="t_qybcbaxxSelectWhere"  >
+		<include refid="t_qybcbaxxWhere" />	</sql>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<insert id="insertQybcbaxx"  parameterClass="qybcbaxx">
+		insert into t_qybcbaxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qybaxxid">
+				qybaxxid
+			</isNotNull>
+			<isNotNull prepend="," property="bbgzrq">
+				bbgzrq
+			</isNotNull>
+			<isNotNull prepend="," property="bbyy">
+				bbyy
+			</isNotNull>
+			<isNotNull prepend="," property="bbwcrq">
+				bbwcrq
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybaxxid">
+				#qybaxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="bbgzrq">
+				#bbgzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bbyy">
+				#bbyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bbwcrq">
+				#bbwcrq:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<update id="updateQybcbaxx" parameterClass="qybcbaxx">
+		update t_qybcbaxx a set a.qybaxxid=a.qybaxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bbgzrq">
+				bbgzrq=#bbgzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bbyy">
+				bbyy=#bbyy#
+			</isNotNull>
+			<isNotNull prepend="," property="bbwcrq">
+				bbwcrq=#bbwcrq:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxWhere" />
+		</dynamic>
+	</update>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<delete id="deleteQybcbaxx" parameterClass="qybcbaxx">
+		delete from t_qybcbaxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxWhere" />
+		</dynamic>
+	</delete>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<select id="getQybcbaxxList" resultMap="qybcbaxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.qybaxxid qybaxxid,a.bbgzrq bbgzrq,a.bbyy bbyy,a.bbwcrq bbwcrq
+		from t_qybcbaxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<select id="getQybcbaxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qybcbaxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<select id="getQybcbaxxListNoPage" resultMap="qybcbaxxListResult" parameterClass="qybcbaxx">
+		select a.qyid qyid,a.qybaxxid qybaxxid,a.bbgzrq bbgzrq,a.bbyy bbyy,a.bbwcrq bbwcrq
+		from t_qybcbaxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxListWhere" />
+		</dynamic>
+		order by a.qyid,a.qybaxxid
+	</select>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<select id="getQybcbaxx" resultMap="qybcbaxxResult" parameterClass="qybcbaxx">
+		select a.qyid qyid,a.qybaxxid qybaxxid,a.bbgzrq bbgzrq,a.bbyy bbyy,a.bbwcrq bbwcrq
+		from t_qybcbaxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qybcbaxxSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.qybaxxid
+	</select>
+</sqlMap>

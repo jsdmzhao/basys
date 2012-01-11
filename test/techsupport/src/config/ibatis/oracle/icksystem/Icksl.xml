@@ -1,0 +1,2871 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="icksl" type="com.aisino2.icksystem.domain.Icksl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理(t_icksl)-->
+	<resultMap id="ickslcyryResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+	</resultMap>
+	<!--IC卡受理(t_icksl)-->
+	<resultMap id="ickslResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="slyy" column="slyy" />
+		<result property="slr" column="slr" />
+		<result property="slsj" column="slsj" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="cjsj" column="cjsj" />
+		<result property="cjr" column="cjr" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="jssj" column="jssj" />
+		<result property="jsbmc" column="jsbmc" />
+		<result property="ffr" column="ffr" />
+		<result property="ffsj" column="ffsj" />
+		<result property="lqr" column="lqr" />
+		<result property="lqsj" column="lqsj" />
+		<result property="lqrzjlx" column="lqrzjlx" />
+		<result property="lqrzjhm" column="lqrzjhm" />
+		<result property="ickzxr" column="ickzxr" />
+		<result property="ickzxsj" column="ickzxsj" />
+		<result property="ickzxyy" column="ickzxyy" />
+		<result property="njr" column="njr" />
+		<result property="njsj" column="njsj" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="sfqr" column="sfqr" />
+		<result property="ysr" column="ysr" />
+		<result property="yssj" column="yssj" />
+		<result property="dxrr" column="dxrr" />
+		<result property="dxrsj" column="dxrsj" />
+		<result property="cyssj" column="cyssj" />
+		<result property="cysyy" column="cysyy" />
+		<result property="cdxrsj" column="cdxrsj" />
+		<result property="cdxryy" column="cdxryy" />
+		<result property="bhkyy" column="bhkyy" />
+		<result property="yksfsh" column="yksfsh" />
+		<result property="qyid" column="qyid" />
+	</resultMap>
+	<!--从业人员信息 IC卡受理-->
+	<resultMap id="ickslWldjResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="qyid" column="qyid" />
+		<result property="cyrybh" column="cyrybh"/>
+	</resultMap>
+	<!--从业人员信息 IC卡受理-->
+	<resultMap id="ickslValid" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="cyrybh" column="cyrybh"/>
+	</resultMap>
+	<!--从业人员信息 IC卡受理-->
+	<resultMap id="ickslResultForWlfk" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="slyy" column="slyy" />
+		<result property="slr" column="slr" />
+		<result property="slsj" column="slsj" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="cjsj" column="cjsj" />
+		<result property="cjr" column="cjr" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="jssj" column="jssj" />
+		<result property="jsbmc" column="jsbmc" />
+		<result property="ffr" column="ffr" />
+		<result property="ffsj" column="ffsj" />
+		<result property="lqr" column="lqr" />
+		<result property="lqsj" column="lqsj" />
+		<result property="lqrzjlx" column="lqrzjlx" />
+		<result property="lqrzjhm" column="lqrzjhm" />
+		<result property="ickzxr" column="ickzxr" />
+		<result property="ickzxsj" column="ickzxsj" />
+		<result property="ickzxyy" column="ickzxyy" />
+		<result property="njr" column="njr" />
+		<result property="njsj" column="njsj" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="sfqr" column="sfqr" />
+		<result property="ysr" column="ysr" />
+		<result property="yssj" column="yssj" />
+		<result property="dxrr" column="dxrr" />
+		<result property="dxrsj" column="dxrsj" />
+		<result property="cyssj" column="cyssj" />
+		<result property="cysyy" column="cysyy" />
+		<result property="cdxrsj" column="cdxrsj" />
+		<result property="cdxryy" column="cdxryy" />
+		<result property="bhkyy" column="bhkyy" />
+		<result property="yksfsh" column="yksfsh" />
+
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="zt" column="zt"/>
+		<result property="wlbzkztbs" column="wlbzkztbs"/>
+	</resultMap>
+	<!--IC卡受理(t_icksl)-->
+	<resultMap id="ickslListResult" class="icksl">
+		<result property="ryid" column="ryid"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="kh" column="kh"/>
+		<result property="ickh" column="ickh"/>
+		<result property="slyy" column="slyy"/>
+		<result property="slr" column="slr"/>
+		<result property="slsj" column="slsj"/>
+		<result property="yxsksrq" column="yxsksrq"/>
+		<result property="yxqhzrq" column="yxqhzrq"/>
+		<result property="cjsj" column="cjsj"/>
+		<result property="cjr" column="cjr"/>
+		<result property="cjdbm" column="cjdbm"/>
+		<result property="cjdmc" column="cjdmc"/>
+		<result property="jssj" column="jssj"/>
+		<result property="jsbmc" column="jsbmc"/>
+		<result property="ffr" column="ffr"/>
+		<result property="ffsj" column="ffsj"/>
+		<result property="lqr" column="lqr"/>
+		<result property="lqsj" column="lqsj"/>
+		<result property="lqrzjlx" column="lqrzjlx"/>
+		<result property="lqrzjhm" column="lqrzjhm"/>
+		<result property="ickzxr" column="ickzxr"/>
+		<result property="ickzxsj" column="ickzxsj"/>
+		<result property="ickzxyy" column="ickzxyy"/>
+		<result property="njr" column="njr"/>
+		<result property="njsj" column="njsj"/>
+		<result property="zkztbs" column="zkztbs"/>
+		<result property="sfqr" column="sfqr"/>
+		<result property="ysr" column="ysr"/>
+		<result property="yssj" column="yssj"/>
+		<result property="dxrr" column="dxrr"/>
+		<result property="dxrsj" column="dxrsj"/>
+		<result property="cyssj" column="cyssj"/>
+		<result property="cysyy" column="cysyy"/>
+		<result property="cdxrsj" column="cdxrsj"/>
+		<result property="cdxryy" column="cdxryy"/>
+		<result property="bhkyy" column="bhkyy"/>
+		<result property="yksfsh" column="yksfsh"/>
+	</resultMap>
+	<!--未受理从业人员-->
+	<resultMap id="wslCyryxxListResult" class="icksl">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="hylb" column="hylb"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbmc" column="cyrylbmc"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="gwbh" column="gwbh"/>
+		<result property="gwmc" column="gwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zt" column="zt"/>
+		<result property="cylbdm" column="cylbdm"/>
+		<result property="cylb" column="cylb"/>
+	</resultMap>
+	<!--补换卡查询-->
+	<resultMap id="bhkCyryxxListResult" class="icksl">
+		<result property="ryid" column="ryid"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cjsj" column="cjsj"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cylb" column="cylb"/>
+		<result property="cylbdm" column="cylbdm"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zt" column="zt"/>
+	</resultMap>
+	<!--查询具备发放条件的IC卡-->
+	<resultMap id="wffIckslListResult" class="icksl">
+		<result property="ryid" column="ryid"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="kh" column="kh"/>
+		<result property="ickh" column="ickh"/>
+		<result property="qyid" column="qyid"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="yxqhzrq" column="yxqhzrq"/>
+		<result property="wlpc" column="wlpc"/>
+	</resultMap>
+	<!--具备接收或发放条件的IC卡-->
+	<resultMap id="ickslJsAndFfListResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="slyy" column="slyy" />
+		<result property="slr" column="slr" />
+		<result property="slsj" column="slsj" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="cjsj" column="cjsj" />
+		<result property="cjr" column="cjr" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="jssj" column="jssj" />
+		<result property="jsbmc" column="jsbmc" />
+		<result property="ffr" column="ffr" />
+		<result property="ffsj" column="ffsj" />
+		<result property="lqr" column="lqr" />
+		<result property="lqsj" column="lqsj" />
+		<result property="lqrzjlx" column="lqrzjlx" />
+		<result property="lqrzjhm" column="lqrzjhm" />
+		<result property="ickzxr" column="ickzxr" />
+		<result property="ickzxsj" column="ickzxsj" />
+		<result property="ickzxyy" column="ickzxyy" />
+		<result property="njr" column="njr" />
+		<result property="njsj" column="njsj" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="sfqr" column="sfqr" />
+		<result property="ysr" column="ysr" />
+		<result property="yssj" column="yssj" />
+		<result property="dxrr" column="dxrr" />
+		<result property="dxrsj" column="dxrsj" />
+		<result property="cyssj" column="cyssj" />
+		<result property="cysyy" column="cysyy" />
+		<result property="cdxrsj" column="cdxrsj" />
+		<result property="cdxryy" column="cdxryy" />
+		<result property="bhkyy" column="bhkyy" />
+		<result property="yksfsh" column="yksfsh" />
+		
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cylb" column="cylb"/>
+		<result property="cylbdm" column="cylbdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zt" column="zt"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="wgrjyxkz" column="wgrjyxkz"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="hylbdm" column="hylbdm"/>
+
+	</resultMap>
+	
+	<!--IC卡综合查询-->
+	<resultMap id="ickslZhListResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="zkztbs" column="zkztbs" />
+	
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="csrq" column="csrq"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+
+	</resultMap>
+	
+	<!--制卡端信息列表-->
+	<resultMap id="ickslZkdListResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="slsj" column="slsj"/>
+		<result property="cjdbm" column="cjdbm"/>
+		<result property="pch" column="pch"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cjdmc" column="cjdmc"/>
+	</resultMap>
+	<!--制卡端关联查询-->
+	<resultMap id="ickslZkdglcxListResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="gj" column="gj"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="cyrylbdm" column="cyrylbdm"/>
+	</resultMap>
+	<!--判断是否可以受理-->
+	<resultMap id="isIckslExist" class="icksl">
+		<result property="ryid" column="ryid"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="zkztbs" column="zkztbs"/>
+	</resultMap>
+	<!--判断是否可以受理-->
+	<resultMap id="isWlzbResult" class="icksl">
+		<result property="cjdbm" column="cjdbm"/>
+	</resultMap>
+	<!--获得物流包内所有IC卡所在场所-->
+	<resultMap id="ylcsListInWldj" class="icksl">
+		<result property="qyid" column="qyid"/>
+		<result property="wlpc" column="wlpc"/>
+	</resultMap>
+	<!--获得物流包内指定场所需打印的人员及IC卡信息-->
+	<resultMap id="cyryAndIckInWldj" class="icksl">
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="slsj" column="slsj"/>
+	</resultMap>
+	<!--查询未组包IC卡记录 自定义组包-->
+	<resultMap id="wzbIckslListResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="slsj" column="slsj" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="qyid" column="qyid" />
+		<result property="zjhm" column="zjhm" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="xm" column="xm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+	</resultMap>
+	<!--IC卡受理(t_icksl)-->
+	<resultMap id="wldjUpdateResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="xm" column="xm" />
+		<result property="xb" column="xb"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="gj" column="gj"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="zkztbs" column="zkztbs"/>
+		<result property="wlbzkztbs" column="wlbzkztbs"/>
+	</resultMap>
+	<!--未审核通过照片查询 分页-->
+	<resultMap id="wshzpResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="qyid" column="qyid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="zpwtgyy" column="zpwtgyy" />
+		<result property="tpnr" column="tpnr" />
+	</resultMap>
+	<!--未审核通过照片查询 不分页-->
+	<resultMap id="wshzpNoPageResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="qyid" column="qyid" />
+		<result property="ickslid" column="ickslid" />
+	</resultMap>
+	<!--IC卡组包(t_ickzb)查询包内需电写入的卡的信息-->
+	<resultMap id="dxrValidateResult" class="icksl">
+		<result property="ryid" column="ryid" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="xm" column="xm" />
+		<result property="zjhm" column="zjhm" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="minzu" column="minzu" />
+		<result property="mzdm" column="mzdm" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="csrq" column="csrq" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="ickslid" column="ickslid" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="kh" column="kh" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="sfzx" column="sfzx" />
+		<result property="sfzxmc" column="sfzxmc" />
+	</resultMap>
+	<!--IC卡受理(t_icksl) 采集点 第三方制卡情况统计-->
+	<resultMap id="dsfzktjResult" class="icksl">
+		<result property="ssdsbm" column="ssdsbm" />
+		<result property="ssdsmc" column="ssdsmc" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="yfssl" column="yfssl" />
+		<result property="yfksl" column="yfksl" />
+		<result property="yzksl" column="yzksl" />
+		<result property="fksbsl" column="fksbsl" />
+		<result property="yffsl" column="yffsl" />
+		<result property="hylb" column="hylb" />
+		<result property="hylbdm" column="hylbdm" />
+	</resultMap>
+		<!--台账  采集点 第三方制卡情况统计-->
+	<resultMap id="tzdsfzktjResult" class="icksl">
+		<result property="ssdsbm" column="ssdsbm" />
+		<result property="ssdsmc" column="ssdsmc" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="yfssl" column="yfssl" />
+		<result property="yfksl" column="yfksl" />
+		<result property="yzksl" column="yzksl" />
+		<result property="fksbsl" column="fksbsl" />
+		<result property="yffsl" column="yffsl" />
+		<result property="qysl" column="qysl" />
+		<result property="rysl" column="rysl" />
+		<result property="yslick" column="yslick" />
+	</resultMap>
+	
+    <!--台账  采集点 制卡情况统计-->
+	<resultMap id="cjdicktjxx" class="icksl">
+	    <result property="ycjcssl" column="ycjcssl" />
+		<result property="ycjrysl" column="ycjrysl" />
+		<result property="ytjcssl" column="ytjcssl" />
+		<result property="ytjrysl" column="ytjrysl" />
+		<result property="wtjcssl" column="wtjcssl" />
+		<result property="wtjrysl" column="wtjrysl" />
+		<result property="yslick" column="yslick" />
+		<result property="yffsl" column="yffsl" />
+		<result property="yjswlbsl" column="yjswlbsl" />
+		<result property="yzxicksl" column="yzxicksl" />
+		<result property="bhicksl" column="bhicksl" />
+		<result property="dfficksl" column="dfficksl" />
+		<result property="dbhicksl" column="dbhicksl" />
+		<result property="wlbbfjs" column="wlbbfjs" />
+		<result property="wlbjsbcg" column="wlbjsbcg" />
+	</resultMap>
+	<!--IC卡受理-企业端(t_icksl) 采集点 第三方制卡情况统计-->
+	<resultMap id="dsfzktjResultQyd" class="icksl">
+		<result property="yfssl" column="yfssl" />
+		<result property="yfksl" column="yfksl" />
+		<result property="yzksl" column="yzksl" />
+		<result property="fksbsl" column="fksbsl" />
+		<result property="yffsl" column="yffsl" />
+	</resultMap>
+
+    <!--台账-制卡端(t_icksl) 台账 信息统计-->
+	<resultMap id="zkdIckTjxx" class="icksl">
+		<result property="yshzpsl" column="yshzpsl" />
+		<result property="yzbsl" column="yzbsl" />
+		<result property="yyssl" column="yyssl" />
+		<result property="ydxrsl" column="ydxrsl" />
+		<result property="ickwlyfssl" column="ickwlyfssl" />
+		<result property="ickwlyzbsl" column="ickwlyzbsl" />
+		<result property="ickwlyjssl" column="ickwlyjssl" />
+		
+		<result property="dshzpsl" column="dshzpsl" />
+		<result property="dzbsl" column="dzbsl" />
+		<result property="dyssl" column="dyssl" />
+		<result property="ddxrsl" column="ddxrsl" />
+	</resultMap>	
+
+	<!--webservice 根据卡号取得人员和受理信息-->
+	<resultMap id="ickslResultBykh" class="icksl">
+	    <result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="xb" column="xb" />
+	    <result property="xbdm" column="xbdm" />
+		<result property="minzu" column="minzu" />
+		<result property="mzdm" column="mzdm" />
+		<result property="csrq" column="csrq" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="gj" column="gj" />
+		<result property="gjdm" column="gjdm" />
+		
+	    <result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="qzhm" column="qzhm" />
+		
+		<result property="tpnr" column="tpnr" />
+		
+		
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="zkztbs" column="zkztbs" />
+	    <result property="kh" column="kh" />
+
+	</resultMap>
+	
+	
+	
+	
+	
+		<!--根据卡号取得ick受理信息用于大河接口-->
+	<resultMap id="ickslListWs" class="icksl">
+		<result property="kh" column="kh" />
+		<result property="zkztbs" column="zkztbs" />
+	</resultMap>
+	
+	
+	
+	
+	
+	<sql id="t_ickslWhere">
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			
+	</sql>
+	<sql id="t_ickslPageWhere" >
+		<include refid="t_ickslWhere" />	</sql>
+	<sql id="t_ickslListWhere" >
+		<include refid="t_ickslWhere" />	</sql>
+	<sql id="t_ickslSelectWhere"  >
+		<include refid="t_ickslWhere" />	</sql>
+	<!--IC卡受理(t_icksl)-->
+	<insert id="insertIcksl"  parameterClass="icksl">
+		insert into t_icksl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="ickslid">
+				ickslid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				slyy
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				slr
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				yxsksrq
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				yxqhzrq
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				cjsj
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				cjr
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				jsbmc
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				ffr
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				ffsj
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				lqr
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				lqsj
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				lqrzjlx
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				lqrzjhm
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				ickzxr
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				ickzxsj
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				ickzxyy
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				njr
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				njsj
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				zkztbs
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				sfqr
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				ysr
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				yssj
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				dxrr
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				dxrsj
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				cyssj
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				cysyy
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				cdxrsj
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				cdxryy
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				bhkyy
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				yksfsh
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="ickslid">
+				#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				#slyy#
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				#slr#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				#yxsksrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				#yxqhzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				#cjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				#cjr#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				#jsbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				#ffr#
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				#ffsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				#lqr#
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				#lqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				#lqrzjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				#lqrzjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				#ickzxr#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				#ickzxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				#ickzxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				#njr#
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				#njsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				#zkztbs#
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				#sfqr#
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				#ysr#
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				#yssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				#dxrr#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				#dxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				#cyssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				#cysyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				#cdxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				#cdxryy#
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				#bhkyy#
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				#yksfsh#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理(t_icksl)-->
+	<update id="updateIcksl" parameterClass="icksl">
+		update t_icksl a set a.ickslid=a.ickslid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="kh">
+				kh=#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh=#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				slyy=#slyy#
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				slr=#slr#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj=#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				yxsksrq=#yxsksrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				yxqhzrq=#yxqhzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				cjsj=#cjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				cjr=#cjr#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm=#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc=#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj=#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				jsbmc=#jsbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				ffr=#ffr#
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				ffsj=#ffsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				lqr=#lqr#
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				lqsj=#lqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				lqrzjlx=#lqrzjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				lqrzjhm=#lqrzjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				ickzxr=#ickzxr#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				ickzxsj=#ickzxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				ickzxyy=#ickzxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				njr=#njr#
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				njsj=#njsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				zkztbs=#zkztbs#
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				sfqr=#sfqr#
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				ysr=#ysr#
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				yssj=#yssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				dxrr=#dxrr#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				dxrsj=#dxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				cyssj=#cyssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				cysyy=#cysyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				cdxrsj=#cdxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				cdxryy=#cdxryy#
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				bhkyy=#bhkyy#
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				yksfsh=#yksfsh#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡受理(t_icksl)-->
+	<delete id="deleteIcksl" parameterClass="icksl">
+		delete from t_icksl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ickslWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理(t_icksl)-->
+	<select id="getIckslList" resultMap="ickslListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid,a.ickslid ickslid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_icksl a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理(t_icksl)-->
+	<select id="getIckslListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_icksl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslPageWhere" />
+		</dynamic>
+	</select>
+	<!--未受理从业人员查询-->
+	<select id="getWslIckslCyryxxList" resultMap="wslCyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid,a.qyid,a.cyrybh,a.cyrylbdm,a.cyrylbmc,a.gwbh,a.gwmc,a.xm,a.xbdm,a.xb,a.cyzjdm,a.cyzj,a.zjhm,a.zt,a.lrsj lrsj,
+			c.qymc qymc,c.qybm qybm,c.qyzt qyzt,a.hylbdm hylbdm,a.hylb hylb,cylb,cylbdm
+		from t_qyryxx a ,t_qyry_zp b,(select qyid,qymc,qybm,zt qyzt from t_qyjbxx where scbz=0) c
+		where 1=1 and a.ryid=b.ryid and a.qyid=c.qyid and b.tplx='0' and a.scbz=0 and a.zxbz='0'
+			and a.ryid not in (select ryid from t_icksl where (zkztbs &lt;&gt; '7' and zkztbs &lt;&gt; '9'))
+			and b.tpnr is not null 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				c.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm = #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="ryhcdxkg"><!-- 人员核查单向开关。 为1时，只有当人员提交后才能受理-->
+				<isEqual prepend="and" property="ryhcdxkg" compareValue="1">
+					a.zt &lt;&gt;'0'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(c.qyzt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--未受理从业人员查询-->
+	<select id="getWslIckslCyryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_qyryxx a ,t_qyry_zp b,(select qyid,qymc,qybm,zt qyzt from t_qyjbxx where scbz=0) c
+		where 1=1 and a.ryid=b.ryid and a.qyid=c.qyid and b.tplx='0' and a.scbz=0 and a.zxbz='0'
+			and a.ryid not in (select ryid from t_icksl where (zkztbs &lt;&gt; '7' and zkztbs &lt;&gt; '9'))
+			and b.tpnr is not null 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				c.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm = #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="ryhcdxkg"><!-- 人员核查单向开关。 为1时，只有当人员提交后才能受理-->
+				<isEqual prepend="and" property="ryhcdxkg" compareValue="1">
+					a.zt &lt;&gt;'0'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(c.qyzt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--查询具备发放条件或注销条件的IC卡-->
+	<select id="getWffIckslList" resultMap="wffIckslListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid,
+		       a.ickslid, a.kh, a.ickh,a.yxqhzrq, b.xm,b.xbdm,b.xb,b.cyrylbdm,b.cyrybh,d.wlpc,e.qyid,e.qymc
+		  from t_icksl a, t_qyryxx b, t_icksl_wldj c, t_wldj d, t_qyjbxx e
+		 where a.ryid = b.ryid
+		   and a.ickslid = c.ickslid
+		   and c.wlid = d.wlid
+		   and b.qyid = e.qyid
+		   and b.scbz = 0
+		   and e.scbz = 0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				e.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh = #cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjf">
+				a.slsj &gt;=#slsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjt">
+				a.slsj &lt; #slsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh = #kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zkztbs">
+				a.zkztbs = #zkztbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					  to_number(a.zkztbs)  &lt; 90 and to_number(b.zt)  &lt; 90 and to_number(e.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--查询具备发放条件或注销条件的IC卡-->
+	<select id="getWffIckslListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_icksl a, t_qyryxx b, t_icksl_wldj c, t_wldj d, t_qyjbxx e
+		 where a.ryid = b.ryid
+		   and a.ickslid = c.ickslid
+		   and c.wlid = d.wlid
+		   and b.qyid = e.qyid
+		   and b.scbz = 0
+		   and e.scbz = 0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				e.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh = #cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjf">
+				a.slsj &gt;=#slsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjt">
+				a.slsj &lt; #slsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh = #kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zkztbs">
+				a.zkztbs = #zkztbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					  to_number(a.zkztbs)  &lt; 90 and to_number(b.zt)  &lt; 90 and to_number(e.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!--查询具备补换卡条件的IC卡-->
+	<select id="getBhkIckslList" resultMap="bhkCyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickslid,b.ryid,b.qyid,b.cyrybh,b.cylb,b.cylbdm,b.cyrylbdm,b.xm,b.xbdm,b.xb,b.cyzjdm,b.cyzj,b.zjhm,b.zt,b.lrsj cjsj,
+			e.qymc qymc,e.qybm qybm
+		  from t_icksl a, t_qyryxx b, t_qyjbxx e
+		 where a.ryid = b.ryid
+		   and b.qyid = e.qyid
+		   and b.scbz = 0
+		   and e.scbz = 0
+		   and a.zkztbs = '6'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				e.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				e.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm = #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjf">
+				b.lrsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				b.lrsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					  to_number(a.zkztbs)  &lt; 90 and to_number(b.zt)  &lt; 90 and to_number(e.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--查询具备补换卡条件的IC卡-->
+	<select id="getBhkIckslListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_icksl a, t_qyryxx b, t_qyjbxx e
+		 where a.ryid = b.ryid
+		   and b.qyid = e.qyid
+		   and b.scbz = 0
+		   and e.scbz = 0
+		   and a.zkztbs = '6'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				e.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				e.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm = #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjf">
+				b.lrsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				b.lrsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					  to_number(a.zkztbs)  &lt; 90 and to_number(b.zt)  &lt; 90 and to_number(e.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--IC卡受理(t_icksl)-->
+	<select id="getIckslListNoPage" resultMap="ickslListResult" parameterClass="icksl">
+		select a.ryid ryid,a.ickslid ickslid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_icksl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslListWhere" />
+			<isNotEmpty prepend="and" property="ickh">
+					a.ickh=#ickh#
+			</isNotEmpty>
+		</dynamic>
+		order by a.ryid,a.ickslid
+	</select>
+	<!--IC卡受理(t_icksl)-->
+	<select id="getIcksl" resultMap="ickslResult" parameterClass="icksl">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.hylbdm hylbdm,a.hylb hylb,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_icksl a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="zkztbs">
+					a.zkztbs=#zkztbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+					a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickh">
+					a.ickh=#ickh#
+			</isNotEmpty>
+			<include refid="t_ickslSelectWhere" />
+		</dynamic>
+		
+		order by a.ryid,a.ickslid
+	</select>
+	<!-- 由从业人员编号、卡号及物流ID获得IC卡受理 -->
+	<select id="getIckslByCyrybhAndWlid" resultMap="ickslResult" parameterClass="java.util.Map">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.hylbdm hylbdm,a.hylb hylb,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_icksl a,t_qyryxx b,t_icksl_wldj c,t_wldj d
+		where a.ryid=b.ryid and a.ickslid=c.ickslid and c.wlid=d.wlid and a.zkztbs='23'
+		<dynamic prepend="">
+     		<isNotEmpty prepend="and" property="cyrybhSet">
+				b.cyrybh in ($cyrybhSet$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="khSet">
+				a.kh in ($khSet$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wlid">
+				d.wlid=#wlid#
+     		</isNotEmpty>
+     	</dynamic>
+	</select>
+	<!-- 由从业人员编号、卡号获得IC卡受理信息 -->
+	<select id="getIckslByCyrybhAndKh" resultMap="ickslWldjResult" parameterClass="java.util.Map">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.kh kh,a.ickh ickh,
+		a.cjdbm cjdbm,a.cjdmc cjdmc,a.zkztbs zkztbs,b.cyrybh cyrybh
+		from t_icksl a,t_qyryxx b
+		where a.ryid=b.ryid and b.scbz=0
+		<dynamic prepend="">
+     		<isNotEmpty prepend="and" property="cyrybhSet">
+				b.cyrybh in ($cyrybhSet$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="khSet">
+				a.kh in ($khSet$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zkztbs">
+				a.zkztbs =#zkztbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh  =#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickh">
+				a.ickh =#ickh#
+			</isNotEmpty>
+     	</dynamic>
+	</select>
+	<!-- 查询物流包内所有IC卡-->
+	<select id="getIckslByWlid" resultMap="ickslResult" parameterClass="java.util.Map">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.hylbdm hylbdm,a.hylb hylb,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_icksl a,t_icksl_wldj b,t_wldj c
+		where a.ickslid=b.ickslid and b.wlid=c.wlid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wlid">
+				c.wlid=#wlid#
+     		</isNotEmpty>
+     	</dynamic>
+	</select>
+	<!-- 查询物流包内所有IC卡 分页-->
+	<select id="getIckslByWlidList" resultMap="ickslResultForWlfk" parameterClass="java.util.Map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid,a.ickslid ickslid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,
+		a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,
+		a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,
+		a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,
+		a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,
+		a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh,
+		d.xm xm ,d.zjhm zjhm ,d.csrq csrq ,d.hjdxzqhdm hjdxzqhdm,d.hjdxzqh hjdxzqh,d.zt zt,b.wlbzkztbs wlbzkztbs
+		from t_icksl a,t_icksl_wldj b,t_wldj c,t_qyryxx d
+		where a.ickslid=b.ickslid and b.wlid=c.wlid and a.ryid=d.ryid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wlid">
+				c.wlid=#wlid#
+     		</isNotEmpty>
+     	</dynamic>
+     	order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 查询物流包内所有IC卡 分页-->
+	<select id="getIckslByWlidListCount" resultClass="int" parameterClass="java.util.Map">
+		select count(1) a
+		from t_icksl a,t_icksl_wldj b,t_wldj c,t_qyryxx d
+		where a.ickslid=b.ickslid and b.wlid=c.wlid and a.ryid=d.ryid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wlid">
+				c.wlid=#wlid#
+     		</isNotEmpty>
+     	</dynamic>
+     	
+	</select>
+	<!-- 查询物流包内所有IC卡 不分页-->
+	<select id="getIckslByWlidListNoPage" resultMap="wldjUpdateResult" parameterClass="icksl">
+		select a.ryid ryid,a.ickslid ickslid,a.kh kh,d.cyrybh cyrybh,
+		d.xm xm ,d.xb xb,d.gj gj,d.zjhm zjhm ,d.csrq csrq ,d.hjdxz hjdxz,a.zkztbs zkztbs,b.wlbzkztbs wlbzkztbs
+		from t_icksl a,t_icksl_wldj b,t_wldj c,t_qyryxx d
+		where a.ickslid=b.ickslid and b.wlid=c.wlid and a.ryid=d.ryid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="wlid">
+				c.wlid=#wlid#
+     		</isNotEmpty>
+     	</dynamic>
+     	order by d.cyrybh
+	</select>
+	<!--查询指定从业人员是否存在除Ic卡注销和补换卡注销外的其他记录-->
+	<select id="getIckslExist" resultMap="isIckslExist" parameterClass="icksl">
+		select a.ickslid ickslid,a.zkztbs zkztbs,a.ryid ryid
+		from t_icksl a
+		where a.zkztbs &lt;&gt; '7' and a.zkztbs &lt;&gt; '9'
+		<dynamic prepend="">
+			<include refid="t_ickslWhere" />
+		</dynamic>
+	</select>
+	<!--查询物流包内已接收卡数量-->
+	<select id="getYjsIckslListInWldj" resultMap="ickslResult" parameterClass="java.util.Map">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.hylbdm hylbdm,a.hylb hylb,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		  from t_icksl a,t_qyryxx b,  t_icksl_wldj c, t_wldj d
+		 where c.wlid = d.wlid
+		   and a.ickslid = c.ickslid
+		   and b.ryid = a.ryid
+		   and b.scbz = 0
+		   and a.zkztbs in ('24','6','7','8','9')
+		   and d.wlid = #wlid#
+	</select>
+	<!--判断IC卡是否具备接收和发放条件 具备接收条件：zkztbs=23, 具备发放条件：zkztbs=24-->
+	<select id="isCyrybhExistInIckslAndWldj" resultMap="ickslJsAndFfListResult" parameterClass="java.util.Map">
+		select a.ryid ryid,a.ickslid ickslid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,
+		a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,
+		a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,
+		a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,
+		a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,
+		a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh,
+		b.qyid,b.hylbdm hylbdm,b.cyrybh,b.cylb,b.cylbdm,b.xm,b.xbdm,b.xb,b.cyzjdm,b.cyzj,b.zjhm,b.zt,b.mzdm,b.minzu,
+		b.csrq,b.hjdxzqh,b.hjdxzqhdm,b.gjdm,b.gj,b.hjdxz,e.qybm,e.qymc,f.ywx,f.ywm,f.wgrjyxkz
+		  from t_icksl a,t_qyryxx b,  t_icksl_wldj c, t_wldj d,t_qyjbxx e,t_wgcyryxx f
+		 where c.wlid = d.wlid
+		   and a.ickslid = c.ickslid
+		   and b.ryid = a.ryid
+		   and b.ryid=f.ryid(+)
+		   and b.qyid=e.qyid
+		   and b.scbz = 0
+		 <dynamic prepend="">
+		 	<isNotEmpty prepend="and" property="zkztbs">
+		   		a.zkztbs = #zkztbs#
+		   	</isNotEmpty>
+		 	<isNotEmpty prepend="and" property="cyrybh">
+		   		b.cyrybh = #cyrybh#
+		   	</isNotEmpty>
+		   	<isNotEmpty prepend="and" property="kh">
+		   		a.kh = #kh#
+		   	</isNotEmpty>
+		   	<isNotEmpty prepend="and" property="wlid">
+		   		d.wlid = #wlid#
+		   	</isNotEmpty>
+		 </dynamic>
+	</select>
+	<!--判断IC卡是否具备物流组包条件 zkztbs=5(IC卡已电写入)-->
+	<select id="isWlzb" resultMap="isWlzbResult" parameterClass="icksl">
+		select a.cjdbm
+		  from t_icksl a
+		 where  a.zkztbs = '5'
+		 <dynamic prepend="">
+		 	<isNotEmpty prepend="and" property="kh">
+		   		a.kh = #kh#
+		   	</isNotEmpty>
+		   	<isNotEmpty prepend="and" property="ickh">
+		   		a.ickh = #ickh#
+		   	</isNotEmpty>
+		 	<isNotEmpty prepend="and" property="cjdbm">
+		   		a.cjdbm = #cjdbm#
+		   	</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+	<!--IC卡综合查询-->
+	<select id="getIckslZhList" resultMap="ickslZhListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid,a.ickslid,a.kh,a.zkztbs,
+				b.qyid,b.cyrybh,b.cyrylbdm,b.xm,b.xbdm,b.xb,b.zjhm,b.csrq,b.gjdm,b.gj,
+				d.qybm,d.qymc
+		  from t_icksl a,t_qyryxx b,t_wgcyryxx c,t_qyjbxx d
+			where a.ryid=b.ryid and b.ryid=c.ryid(+) and b.qyid=d.qyid
+					and b.scbz=0 and d.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh =#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				c.ywx =#ywx#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				c.ywm =#ywm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="sfzx">
+				<isEqual prepend="and" property="sfzx" compareValue="0"><!-- 是否注销sfzx：0-未注销，1-已注销 -->
+					a.zkztbs &lt;&gt; '7' and a.zkztbs &lt;&gt; '8' and a.zkztbs &lt;&gt; '9' 
+				</isEqual>
+				<isEqual prepend="and" property="sfzx" compareValue="1">
+					(a.zkztbs = '7' or a.zkztbs = '8' or a.zkztbs = '9' )
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				d.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gmsfhm">
+				b.cyrylbdm='0' and b.zjhm = #gmsfhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hz">
+				b.cyrylbdm='1' and b.zjhm = #hz#
+			</isNotEmpty>
+			
+				<isNotEmpty prepend="and" property="zkztbs">
+					<isEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs &gt;=#zkztbs#
+					</isEqual>
+					<isNotEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs =#zkztbs#
+					</isNotEqual>
+				</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="slyy">
+				a.slyy =#slyy#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickcsblts">	<!--是否是超时卡未办理情况-->
+			    (a.zkztbs &lt;&gt; '6' and a.zkztbs &lt;&gt; '7' and a.zkztbs &lt;&gt; '8' and a.zkztbs &lt;&gt; '9' )
+				and (trunc(sysdate)-trunc(a.slsj)) &gt;= #ickcsblts#
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="yffickxx">	<!--已发放IC卡信息-->
+			   a.zkztbs in ('6','7','8','9')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="yzxickxx">	<!--已注销IC卡信息-->
+			   a.zkztbs in ('7','8','9')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="bhickxx">	<!--补换IC卡信息-->
+			   a.zkztbs in ('9')
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="ffsj">
+				a.ffsj &gt;=#ffsj:DATE#  and a.ffsj &lt; #ffsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zxsj">
+				a.ickzxsj &gt;=#zxsj:DATE#  and a.ickzxsj &lt; #zxsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bhksj">
+				a.ickzxsj &gt;=#bhksj:DATE#  and a.ickzxsj &lt; #bhksj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zkztbs) &lt;90 and  to_number(b.zt) &lt;90 and  to_number(d.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡综合查询-->
+	<select id="getIckslZhListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_icksl a,t_qyryxx b,t_wgcyryxx c,t_qyjbxx d
+			where a.ryid=b.ryid and b.ryid=c.ryid(+) and b.qyid=d.qyid
+					and b.scbz=0 and d.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh =#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				c.ywx =#ywx#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				c.ywm =#ywm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="sfzx">
+				<isEqual prepend="and" property="sfzx" compareValue="0"><!-- 是否注销sfzx：0-未注销，1-已注销 -->
+					a.zkztbs &lt;&gt; '7' and a.zkztbs &lt;&gt; '8' and a.zkztbs &lt;&gt; '9' 
+				</isEqual>
+				<isEqual prepend="and" property="sfzx" compareValue="1">
+					(a.zkztbs = '7' or a.zkztbs = '8' or a.zkztbs = '9' )
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				d.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gmsfhm">
+				b.cyrylbdm='0' and b.zjhm = #gmsfhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hz">
+				b.cyrylbdm='1' and b.zjhm = #hz#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zkztbs">
+					<isEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs &gt;=#zkztbs#
+					</isEqual>
+					<isNotEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs =#zkztbs#
+					</isNotEqual>
+				</isNotEmpty>
+			<isNotEmpty prepend="and" property="slyy">
+				a.slyy =#slyy#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickcsblts">	<!--是否是超时卡未办理情况-->
+			    (a.zkztbs &lt;&gt; '6' and a.zkztbs &lt;&gt; '7' and a.zkztbs &lt;&gt; '8' and a.zkztbs &lt;&gt; '9' )
+				and (trunc(sysdate)-trunc(a.slsj)) &gt;= #ickcsblts#
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="yffickxx">	<!--已发放IC卡信息-->
+			   a.zkztbs in ('6','7','8','9')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="yzxickxx">	<!--已注销IC卡信息-->
+			   a.zkztbs in ('7','8','9')
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="bhickxx">	<!--补换IC卡信息-->
+			   a.zkztbs in ('9')
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="ffsj">
+				a.ffsj &gt;=#ffsj:DATE#  and a.ffsj &lt; #ffsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zxsj">
+				a.ickzxsj &gt;=#zxsj:DATE#  and a.ickzxsj &lt; #zxsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bhksj">
+				a.ickzxsj &gt;=#bhksj:DATE#  and a.ickzxsj &lt; #bhksj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zkztbs) &lt;90 and  to_number(b.zt) &lt;90 and  to_number(d.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--获得物流包内所有IC卡所在场所-->
+	<select id="getYlcsListInWldj" resultMap="ylcsListInWldj" parameterClass="icksl">
+		select distinct d.qyid qyid,a.wlpc wlpc
+	     from t_wldj a, t_icksl_wldj b,t_icksl c,t_qyryxx  d
+	     where a.wlid = b.wlid
+	     and b.ickslid =c.ickslid
+	     and c.ryid=d.ryid
+		<isNotEmpty prepend="and" property="wlpc">
+				a.wlpc = #wlpc#
+		</isNotEmpty>
+	</select>
+	<!--获得物流包内指定场所需打印的人员及IC卡信息-->
+	<select id="getCyryAndIckInWldj" resultMap="cyryAndIckInWldj" parameterClass="icksl">
+		select d.cyrybh, d.xm, d.zjhm, e.qymc, c.slsj
+      from t_wldj a, t_icksl_wldj b,t_icksl c, t_qyryxx d, t_qyjbxx e
+     where a.wlid = b.wlid
+       and b.ickslid = c.ickslid
+       and c.ryid=d.ryid
+       and d.qyid = e.qyid
+		 <dynamic prepend="">
+			<isNotEmpty prepend="and" property="wlpc">
+					a.wlpc = #wlpc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+					e.qyid = #qyid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--获得未组包的IC卡受理信息-->
+	<select id="getWzbIckslList" resultMap="wzbIckslListResult" parameterClass="icksl">
+		select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.slsj slsj,a.hylbdm hylbdm,a.hylb hylb,
+			a.cjdbm cjdbm,a.cjdmc cjdmc,a.zkztbs zkztbs,b.zjhm zjhm,b.cyrybh cyrybh,b.xm xm
+		  from  t_icksl a,t_qyryxx b
+		 where a.ryid = b.ryid and b.scbz=0
+		 <dynamic prepend="">
+		 	<isNotEmpty prepend="and" property="slsjf">
+				a.slsj &gt;=#slsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjt">
+				a.slsj &lt; #slsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="moreThan3days"><!-- 连续三天以上未组包的记录 -->
+				a.cjsj &lt; sysdate-3
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+					a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+					a.cjdbm = #cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+					b.cyrybh = #cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+					a.qybm = #qybm#
+			</isNotEmpty>
+		</dynamic>
+		and a.zkztbs='2'
+		<isNotEmpty prepend="" property="orderByCjdbm">
+				<isEqual prepend="" property="orderByCjdbm" compareValue="0">
+					order by a.ickslid
+				</isEqual>
+				<isEqual prepend="" property="orderByCjdbm" compareValue="1">
+					order by a.cjdbm
+				</isEqual>
+		</isNotEmpty>
+		<isEmpty prepend="" property="orderByCjdbm">
+				order by a.ickslid
+		</isEmpty>
+	</select>
+	<!--查询未审核通过照片信息 分页-->
+	<select id="getWshzpList" resultMap="wshzpResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid, a.ryid, a.zpwtgyy, b.ickslid, b.kh,c.tpnr
+		  from t_qyryxx a, t_icksl b, t_qyry_zp c,t_qyjbxx d
+		 where a.ryid = b.ryid
+		 	and a.qyid=d.qyid
+		   and a.ryid = c.ryid
+		   and c.tpnr is not null
+		   and c.tplx = '0'
+		   and a.scbz=0
+		   and a.zxbz='0'
+		<dynamic prepend="">
+			<isEqual prepend="" property="ejshkg" compareValue="0"><!-- 是否进行二级审核 0-不进行二级审核 1-进行二级审核-->
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="0"><!-- 是否进行与公安人口库比对 0-不比对 1-比对-->
+					 (b.zkztbs = '0' or b.zkztbs = '1') and
+					(a.zt = '6' or a.zt = '1' or a.zt = '7' or a.zt = '4' or a.zt = '5')
+				</isEqual>
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="1">
+				 	b.zkztbs = '1' and
+					(a.zt='1' or  a.zt = '7'  or a.zt='4' or a.zt='5' )
+				</isEqual>
+			</isEqual>
+			<isEqual prepend="and" property="ejshkg" compareValue="1">
+				b.zkztbs = '1' and a.zt='1'
+			</isEqual>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.lrdwbm = #cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				d.gxdwbm  like '$gxdwbm$%'
+			</isNotEmpty>
+		</dynamic> 
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--查询未审核通过照片信息-->
+	<select id="getWshzpListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryxx a, t_icksl b, t_qyry_zp c,t_qyjbxx d
+		 where a.ryid = b.ryid
+		 	and a.qyid=d.qyid
+		   and a.ryid = c.ryid
+		   and c.tpnr is not null
+		   and c.tplx = '0'
+		   and a.scbz=0
+		   and a.zxbz='0'
+		<dynamic prepend="">
+			<isEqual prepend="" property="ejshkg" compareValue="0"><!-- 是否进行二级审核 0-不进行二级审核 1-进行二级审核-->
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="0"><!-- 是否进行与公安人口库比对 0-不比对 1-比对-->
+					 (b.zkztbs = '0' or b.zkztbs = '1') and
+					(a.zt = '6' or a.zt = '1' or a.zt = '7' or a.zt = '4' or a.zt = '5')
+				</isEqual>
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="1">
+				 	b.zkztbs = '1' and
+					(a.zt='1' or  a.zt = '7'  or a.zt='4' or a.zt='5' )
+				</isEqual>
+			</isEqual>
+			<isEqual prepend="and" property="ejshkg" compareValue="1">
+				b.zkztbs = '1' and a.zt='1'
+			</isEqual>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.lrdwbm = #cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				d.gxdwbm  like '$gxdwbm$%'
+			</isNotEmpty>
+		</dynamic> 
+	</select>
+	<!--查询未审核通过照片信息 不分页-->
+	<select id="getWshzpListNoPage" resultMap="wshzpNoPageResult" parameterClass="icksl">
+		select a.qyid,a.ryid, b.ickslid
+		  from t_qyryxx a, t_icksl b, t_qyry_zp c,t_qyjbxx d
+		 where a.ryid = b.ryid
+		 	and a.qyid=d.qyid
+		   and a.ryid = c.ryid
+		   and c.tpnr is not null
+		   and c.tplx = '0'
+		   and a.scbz=0
+		   and a.zxbz='0'
+		<dynamic prepend="">
+			<isEqual prepend="" property="ejshkg" compareValue="0"><!-- 是否进行二级审核 0-不进行二级审核 1-进行二级审核-->
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="0"><!-- 是否进行与公安人口库比对 0-不比对 1-比对-->
+					 (b.zkztbs = '0' or b.zkztbs = '1') and
+					(a.zt = '6' or a.zt = '1' or a.zt = '7' or a.zt = '4' or a.zt = '5')
+				</isEqual>
+				<isEqual prepend="and" property="sfjxgarkkbd" compareValue="1">
+				 	b.zkztbs = '1' and
+					(a.zt='1' or  a.zt = '7'  or a.zt='4' or a.zt='5' )
+				</isEqual>
+			</isEqual>
+			<isEqual prepend="and" property="ejshkg" compareValue="1">
+				b.zkztbs = '1' and a.zt='1'
+			</isEqual>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.lrdwbm = #cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				d.gxdwbm  like '$gxdwbm$%'
+			</isNotEmpty>
+		</dynamic> 
+	</select>
+	<!--制卡端信息列表-->
+	<select id="getIckslZkdList" resultMap="ickslZkdListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid,a.ickslid,b.qyid,a.kh,a.zkztbs,a.slsj,a.cjdbm,a.cjdmc,
+				b.cyrybh,b.xm,b.xbdm,b.xb,b.zjhm,e.pch,b.cyrylbdm 
+		  from t_icksl a,t_qyryxx b,
+		  		(select t1.pch,t2.ickslid,max(t1.zbid) zbid from t_ickzb t1, t_icksl_ickzb t2 
+		           where t1.zbid=t2.zbid
+		          group by t1.pch,ickslid )e
+			where a.ryid=b.ryid  and a.ickslid=e.ickslid(+) 
+					and b.scbz=0 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						b.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						b.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zkztbs">
+					<isEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs &gt;=#zkztbs#
+					</isEqual>
+					<isNotEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs =#zkztbs#
+					</isNotEqual>
+				</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					b.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<!--  
+ 			<isNotEmpty prepend="and" property="zkztbs">
+				a.zkztbs =#zkztbs#
+			</isNotEmpty>
+			-->
+ 			<isNotEmpty prepend="and" property="xbdm">
+				b.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mzdm">
+				b.mzdm =#mzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjf">
+				a.slsj &gt;=#slsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjt">
+				a.slsj &lt; #slsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pch">
+				e.pch =#pch#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm= #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm = #deptCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--制卡端信息列表-->
+	<select id="getIckslZkdListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		 from t_icksl a,t_qyryxx b,
+		  		(select t1.pch,t2.ickslid,max(t1.zbid) zbid from t_ickzb t1, t_icksl_ickzb t2 
+		           where t1.zbid=t2.zbid
+		          group by t1.pch,ickslid )e
+			where a.ryid=b.ryid  and a.ickslid=e.ickslid(+) 
+					and b.scbz=0 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						b.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						b.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					b.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zkztbs">
+					<isEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs &gt;=#zkztbs#
+					</isEqual>
+					<isNotEqual prepend="" property="dqzt" compareValue="1">
+						a.zkztbs =#zkztbs#
+					</isNotEqual>
+				</isNotEmpty>
+			<!--  
+ 			<isNotEmpty prepend="and" property="zkztbs">
+				a.zkztbs =#zkztbs#
+			</isNotEmpty>
+			-->
+ 			<isNotEmpty prepend="and" property="xbdm">
+				b.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mzdm">
+				b.mzdm =#mzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjf">
+				a.slsj &gt;=#slsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="slsjt">
+				a.slsj &lt; #slsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pch">
+				e.pch =#pch#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm= #cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.lrdwbm = #deptCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--制卡端关联查询；采集点第三方制卡统计-->
+	<select id="getIckslZkdglcxList" resultMap="ickslZkdglcxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid ,
+			    a.ickslid ickslid ,
+			    a.kh kh ,
+			    a.zkztbs zkztbs ,
+			    b.qyid qyid,
+			    b.cyrybh cyrybh,
+			    b.xm xm,
+			    b.xbdm xbdm,
+			    b.xb xb,
+			    b.gj gj,
+			    b.gjdm gjdm,
+			    b.zjhm zjhm,
+			    a.yxqhzrq yxqhzrq ,
+			    b.cyrylbdm cyrylbdm
+		  	from t_icksl a,t_qyryxx b
+			where a.ryid=b.ryid 
+					and b.scbz=0 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+ 				b.xm like '%$xm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+				a.kh =#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;= #cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				a.cjsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zqsjx"><!-- 钻取数据项 zqsjx：yfssl-已发送数，yfksl-已反馈数，yzksl-已制卡数，fksbsl-反馈失败数，yffsl-已发放数-->
+				<isEqual prepend="" property="zqsjx" compareValue="yfssl">
+					a.zkztbs in ('6','10','11','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yfksl">
+					a.zkztbs in ('6','11','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yzksl">
+					a.zkztbs in ('6','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="fksbsl">
+					a.zkztbs in ('11')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yffsl">
+					a.zkztbs in ('6')
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm=#cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zkztbs) &lt;90 and  to_number(b.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--制卡关联查询；采集点第三方制卡统计钻取-->
+	<select id="getIckslZkdglcxListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		 from t_icksl a,t_qyryxx b
+			where a.ryid=b.ryid 
+					and b.scbz=0 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+ 				b.xm like '%$xm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+				a.kh =#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;= #cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				a.cjsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zqsjx"><!-- 钻取数据项 zqsjx：yfssl-已发送数，yfksl-已反馈数，yzksl-已制卡数，fksbsl-反馈失败数，yffsl-已发放数-->
+				<isEqual prepend="" property="zqsjx" compareValue="yfssl">
+					a.zkztbs in ('6','10','11','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yfksl">
+					a.zkztbs in ('6','11','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yzksl">
+					a.zkztbs in ('6','20','21','22','23','24','25')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="fksbsl">
+					a.zkztbs in ('11')
+				</isEqual>
+				<isEqual prepend="" property="zqsjx" compareValue="yffsl">
+					a.zkztbs in ('6')
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm=#cjdbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zkztbs) &lt;90 and  to_number(b.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 		</dynamic>
+	</select>
+	<!--IC卡组包(t_ickzb)制卡端数据校验查询-->
+	<select id="getDxrValidate" resultMap="dxrValidateResult" parameterClass="icksl">
+		select d.ryid,
+		       d.cyrybh,
+		       d.xm,
+		       d.zjhm,
+		       d.xbdm,d.xb,
+		       d.minzu,d.mzdm,
+		       d.gjdm,d.gj,
+		       d.csrq,
+		       d.hjdxzqh,d.hjdxzqhdm,d.hjdxz,
+		       c.yxsksrq,c.yxqhzrq,c.kh,c.ickslid,
+		       (case when (c.zkztbs = '7' or c.zkztbs = '8' or c.zkztbs = '9') then '1' else '0' end) sfzx,
+		       (case when (c.zkztbs = '7' or c.zkztbs = '8' or c.zkztbs = '9') then '是' else '否' end) sfzxmc,
+		       e.ywx,e.ywm,e.wgrjyxkz
+		      from  t_icksl c,t_qyryxx d,t_wgcyryxx e
+		     where  c.ryid=d.ryid
+		       and d.ryid=e.ryid(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				d.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+ 				c.kh =#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ickh">
+				c.ickh =#ickh#
+			</isNotEmpty>
+ 		</dynamic>
+		       and c.zkztbs='5'
+	</select>
+	<!--场所端刷卡时，查询该卡是否有效，若有效则返回有效记录 制卡状态为6、7、9时可以刷卡-->
+	<select id="getValidIcksl" resultMap="ickslValid" parameterClass="icksl">
+		
+		select b.ryid    ryid,
+		       a.ickslid ickslid,
+		       a.kh      kh,
+		       a.zkztbs  zkztbs,
+		       b.cyrybh  cyrybh,
+		       a.ickh    ickh
+		  from (select ryid, ickslid, kh, zkztbs, ickh
+		          from t_icksl
+		         where ickslid in (select max(ickslid) from t_icksl 
+		          group by ryid)) a,
+		       t_qyryxx b
+			where a.ryid=b.ryid 
+				and b.scbz=0 and (a.zkztbs ='6' or a.zkztbs ='7' or a.zkztbs ='9')
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+ 				b.zjhm =#zjhm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+				a.kh =#kh#
+			</isNotEmpty>
+ 		</dynamic>
+	</select>
+	<!--IC卡受理(t_icksl) 采集点 第三方制卡情况统计-->
+	<select id="getDsfzktjList" resultMap="dsfzktjResult" parameterClass="map">
+		select x.*
+  		from (select rownum rowno, z.*
+          from (
+		select  <isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				substr(a.cjdbm,0,7) ssdsbm,b.departname ssdsmc, 
+	 			</isEqual>
+	 			<isEqual prepend="" property="ssdsbz" compareValue='0'>
+	 				'' ssdsbm,'' ssdsmc, 
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm cjdbm,a.cjdmc cjdmc,a.hylbdm hylbdm,a.hylb hylb,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='0'>
+	 				'' cjdbm,'' cjdmc,a.hylbdm hylbdm,a.hylb hylb,
+	 			</isEqual>
+		       sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a,t_department b,t_qyryxx c
+	 where 1 = 1  and	substr(a.cjdbm,0,7) = b.departcode and a.ryid=c.ryid and c.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+ 				a.cjsj &lt;#cjsjt:DATE#+1
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				a.hylbdm =#hylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cjdbm">
+ 				<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm =#cjdbm#
+	 			</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '$deptCode$%'
+			</isNotEmpty>
+ 		</dynamic>
+		<dynamic prepend="group by">
+			<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				substr(a.cjdbm, 0, 7),b.departname,a.hylbdm,a.hylb
+			</isEqual>
+			<isEqual prepend="" property="ssdsbz" compareValue='0'>
+				substr(a.cjdbm, 0, 7),b.departname,a.hylbdm,a.hylb
+			</isEqual>
+			<isEqual prepend="" property="cjdbz" compareValue='1'>
+				<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				,
+				</isEqual>
+				a.cjdbm, a.cjdmc 
+			</isEqual>
+ 		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理(t_icksl) 采集点 第三方制卡情况统计-->
+	<select id="getDsfzktjListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		 from (select  <isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				substr(a.cjdbm,0,7) ssdsbm,
+	 			</isEqual>
+	 			<isEqual prepend="" property="ssdsbz" compareValue='0'>
+	 				'' ssdsbm,'' ssdsmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm cjdbm,a.cjdmc cjdmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='0'>
+	 				'' cjdbm,'' cjdmc,
+	 			</isEqual>
+	 			sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a
+	  where 1 = 1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+ 				a.cjsj &lt;#cjsjt:DATE#+1
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cjdbm">
+ 				<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm =#cjdbm#
+	 			</isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				a.cjdbm like '$deptCode$%'
+			</isNotEmpty>
+ 		</dynamic>
+		<dynamic prepend="group by">
+			<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				substr(a.cjdbm, 0, 7)
+			</isEqual>
+			<isEqual prepend="" property="cjdbz" compareValue='1'>
+				<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				,
+				</isEqual>
+				a.cjdbm, a.cjdmc
+			</isEqual>
+ 		</dynamic>)a
+	</select>
+	<!--IC卡受理-企业端(t_icksl) 采集点 第三方制卡情况统计-->
+	<select id="getDsfzktjListQyd" resultMap="dsfzktjResultQyd" parameterClass="map">
+		select x.*
+  		from (select rownum rowno, z.*
+          from (
+		select  
+		       sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a
+	 where 1 = 1 
+	 <dynamic prepend="">
+			<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+ 				a.cjsj &lt;#cjsjt:DATE#+1
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cjdbm">
+	 			a.cjdbm =#cjdbm#
+			</isNotEmpty>
+			</dynamic>
+		group by a.cjdbm)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理(t_icksl)-企业端 采集点 第三方制卡情况统计-->
+	<select id="getDsfzktjListQydCount" resultClass="int" parameterClass="map">
+		select count(1) 
+		 from (select  
+	 		   sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a
+	  where 1 = 1
+		<dynamic prepend="">
+		<isNotEmpty prepend="and" property="cjsjf">
+				a.cjsj &gt;=#cjsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+ 				a.cjsj &lt;#cjsjt:DATE#+1
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cjdbm">
+	 			a.cjdbm =#cjdbm#
+			</isNotEmpty>
+ 		</dynamic>
+ 		group by a.cjdbm
+		)
+	</select>
+	
+	
+		<!--webservice 根据卡号取得人员和受理信息-->
+	<select id="getIckslWs" resultMap="ickslResultBykh" parameterClass="icksl">
+select b.xm        xm,
+       b.zjhm      zjhm,
+       b.xb        xb,
+       b.xbdm      xbdm,
+       b.minzu     minzu,
+       b.mzdm      mzdm,
+       b.csrq      csrq,
+       b.hjdxzqh   hjdxzqh,
+       b.hjdxzqhdm hjdxzqhdm,
+       b.hjdxz     hjdxz,
+       b.gj        gj,
+       b.gjdm      gjdm,
+       c.ywx       ywx,
+       c.ywm       ywm,
+       c.wgrjyxkz  wgrjyxkz,
+       c.qzhm      qzhm,
+       p.tpnr      tpnr,
+       a.yxsksrq   yxsksrq,
+       a.yxqhzrq   yxqhzrq,
+       a.zkztbs    zkztbs,
+       a.kh        kh
+  from t_icksl a, t_qyryxx b, t_wgcyryxx c, t_qyry_zp p
+ where 1 = 1
+   and a.qyid = b.qyid 
+   and a.qyid =p.qyid 
+   and a.qyid= c.qyid(+)
+   and a.ryid = b.ryid
+   and a.ryid = p.ryid 
+   and a.ryid= c.ryid(+)
+	<isNotEmpty prepend="and" property="kh">
+		a.kh = #kh#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cyrybh">
+		b.cyrybh = #cyrybh#
+	</isNotEmpty>
+	</select>
+	<!--webservice 根据卡号取得人员和受理信息-->
+	<select id="getIckslListWs" resultMap="ickslListWs" parameterClass="icksl">
+  select   a.kh        kh ,a.zkztbs    zkztbs from t_icksl a
+ where  a.kh in ( $stringkh$ )
+	</select>
+	
+	
+	<!--t_icksl-->
+	<select id="getIckslyj" resultMap="ickslResult" parameterClass="icksl">
+	select c.* from
+		(select a.ryid ryid,a.ickslid ickslid,a.qyid qyid,a.hylbdm hylbdm,a.hylb hylb,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		 from t_icksl a,t_qyryxx b 
+    	where a.ryid=b.ryid 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ickh">
+				ickh = #ickh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+		     	cyrybh=#cyrybh#
+			</isNotEmpty>
+				<isNotEmpty prepend="and" property="ryid">
+		     	b.ryid=#ryid#
+			</isNotEmpty>
+	  </dynamic>) c  where c.ickslid=
+	  	(select max(ickslid) from t_icksl a,t_qyryxx b 
+    	where a.ryid=b.ryid 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ickh">
+				ickh = #ickh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+		     	cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+		     	b.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="zxbz">
+				<isEqual prepend="and" property="zxbz" compareValue="0">
+					a.zkztbs not in ('7','8','9')
+				</isEqual>
+				<isEqual prepend="and" property="zxbz" compareValue="1">
+					a.zkztbs in ('7','8','9')
+				</isEqual>
+			</isNotEmpty>
+	  </dynamic>)
+	  
+	  	</select>
+	  	
+	  	<!--IC卡受理(t_icksl)-->
+	<update id="updateIckslByqybg" parameterClass="icksl">
+	  update t_icksl a set a.ickslid=a.ickslid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ryid">
+				a.ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				a.qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				a.qybm=#qybm#
+			</isNotNull>
+		</dynamic>
+		where a.ickslid=#ickslid#
+	</update>
+	
+	<!---制卡端 台账 制卡情况统计-->
+	<select id="getIckTjxx" resultMap="zkdIckTjxx" parameterClass="map">
+		select  
+		       sum(case when b.zkztbs &gt;=2 then 1 else 0 end) yshzpsl,
+		       sum(case when b.zkztbs &gt;=3 then 1 else 0 end) yzbsl,
+		       sum(case when b.zkztbs &gt;=4 then 1 else 0 end) yyssl,
+		       sum(case when b.zkztbs &gt;=5 then 1 else 0 end) ydxrsl,
+		       sum(case when b.zkztbs &gt;=23 then 1 else 0 end) ickwlyfssl,
+		       sum(case when b.zkztbs &gt;=20 then 1 else 0 end) ickwlyzbsl,
+		       sum(case when b.zkztbs &gt;=24 then 1 else 0 end) ickwlyjssl,
+		<dynamic prepend="">
+	        <isEqual prepend="" property="ejshkg" compareValue="0"><!-- 是否进行二级审核 0-不进行二级审核 1-进行二级审核-->
+				<isEqual prepend="" property="sfjxgarkkbd" compareValue="0"><!-- 是否进行与公安人口库比对 0-不比对 1-比对-->
+				sum(case when 
+				  (b.zkztbs = '0' or b.zkztbs = '1') and
+				  (a.zt = '6' or a.zt = '1' or a.zt = '7' or a.zt = '4' or a.zt = '5')
+				  and c.tpnr is not null
+		          and c.tplx = '0'
+		          and a.scbz=0
+		          and a.zxbz='0'
+				then 1 else 0 end) dshzpsl,
+				</isEqual>
+				<isEqual prepend="" property="sfjxgarkkbd" compareValue="1">
+				sum(case when 
+				  b.zkztbs = '1' and
+				  (a.zt='1' or  a.zt = '7'  or a.zt='4' or a.zt='5' )
+		          and c.tpnr is not null
+		          and c.tplx = '0'
+		          and a.scbz=0
+		          and a.zxbz='0'
+				then 1 else 0 end) dshzpsl,
+				</isEqual>
+			</isEqual>
+			<isEqual prepend="" property="ejshkg" compareValue="1">
+				sum(case when (b.zkztbs = '1' and a.zt='1') then 1 else 0 end) dshzpsl,
+			</isEqual>
+		</dynamic>
+		       sum(case when b.zkztbs =2 then 1 else 0 end) dzbsl,
+		       sum(case when b.zkztbs =3 then 1 else 0 end) dyssl,
+		       sum(case when b.zkztbs =4 then 1 else 0 end) ddxrsl
+	    from t_qyryxx a, t_icksl b, t_qyry_zp c
+		 where a.ryid = b.ryid(+)
+		       and a.ryid = c.ryid(+)
+	</select>
+	
+	<!--采集点 台账 第三方制卡情况统计-->
+	<select id="getTzDsfzktjList" resultMap="tzdsfzktjResult" parameterClass="map">
+		select x.*
+  		from (select rownum rowno, z.*
+          from (
+          select
+                ssdsbm,
+		        ssdsmc,
+		        cjdbm,
+		        cjdmc,
+		        qysl,
+		        rysl,
+		        yslick,
+		        yfssl,
+		        yfksl,
+		        yzksl,
+		        fksbsl,
+		        yffsl
+          from
+		(select  <isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				substr(a.cjdbm,0,7) ssdsbm,b.departname ssdsmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="ssdsbz" compareValue='0'>
+	 				'' ssdsbm,'' ssdsmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm cjdbm,a.cjdmc cjdmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='0'>
+	 				'' cjdbm,'' cjdmc,
+	 			</isEqual>
+	 		   sum(case when a.zkztbs &gt;=1 then 1 else 0 end) yslick,
+		       sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a
+	  		<isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				,t_department b
+	 		</isEqual>
+	 where 1 = 1 
+	 	<isEqual prepend="and" property="ssdsbz" compareValue='1'>
+	 		substr(a.cjdbm,0,7) = b.departcode
+	 	</isEqual>
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+ 		</dynamic>
+		<dynamic prepend="group by">
+			<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				substr(a.cjdbm, 0, 7),b.departname
+			</isEqual>
+			<isEqual prepend="" property="cjdbz" compareValue='1'>
+				<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				,
+				</isEqual>
+				a.cjdbm, a.cjdmc
+			</isEqual>
+ 		</dynamic>
+ 		) k,
+ 		 (select count(c.qyid) qysl,c.lrdwbm from t_qyjbxx c group by c.lrdwbm) q,
+ 		 (select count(d.ryid) rysl,d.lrdwbm from t_qyryxx d group by d.lrdwbm) r
+ 	    where k.cjdbm = q.lrdwbm(+)
+          and k.cjdbm = r.lrdwbm(+)
+ 		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--采集点 台账 第三方制卡情况统计-->
+	<select id="getTzDsfzktjListCount" resultClass="int" parameterClass="map">
+		select count(1)
+		 from 
+		(select  <isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				substr(a.cjdbm,0,7) ssdsbm,b.departname ssdsmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="ssdsbz" compareValue='0'>
+	 				'' ssdsbm,'' ssdsmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='1'>
+	 				a.cjdbm cjdbm,a.cjdmc cjdmc,
+	 			</isEqual>
+	 			<isEqual prepend="" property="cjdbz" compareValue='0'>
+	 				'' cjdbm,'' cjdmc,
+	 			</isEqual>
+	 		   sum(case when a.zkztbs &gt;=1 then 1 else 0 end) yslick,
+		       sum(case when a.zkztbs in ('6','10','11','20','21','22','23','24','25') then 1 else 0 end) yfssl,
+		       sum(case when a.zkztbs in ('6','11','20','21','22','23','24','25') then 1 else 0 end) yfksl,
+		       sum(case when a.zkztbs in ('6','20','21','22','23','24','25') then 1 else 0 end) yzksl,
+		       sum(case when a.zkztbs in ('11') then 1 else 0 end) fksbsl,
+		       sum(case when a.zkztbs in ('6') then 1 else 0 end) yffsl
+	  from t_icksl a
+	  		<isEqual prepend="" property="ssdsbz" compareValue='1'>
+	 				,t_department b
+	 		</isEqual>
+	 where 1 = 1 
+	 	<isEqual prepend="and" property="ssdsbz" compareValue='1'>
+	 		substr(a.cjdbm,0,7) = b.departcode
+	 	</isEqual>
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.cjdbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+ 		</dynamic>
+		<dynamic prepend="group by">
+			<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				substr(a.cjdbm, 0, 7),b.departname
+			</isEqual>
+			<isEqual prepend="" property="cjdbz" compareValue='1'>
+				<isEqual prepend="" property="ssdsbz" compareValue='1'>
+				,
+				</isEqual>
+				a.cjdbm, a.cjdmc
+			</isEqual>
+ 		</dynamic>
+ 		) k,
+ 		 (select count(c.qyid) qysl,c.lrdwbm from t_qyjbxx c group by c.lrdwbm) q,
+ 		 (select count(d.ryid) rysl,d.lrdwbm from t_qyryxx d group by d.lrdwbm) r
+ 	    where k.cjdbm = q.lrdwbm(+)
+          and k.cjdbm = r.lrdwbm(+)
+ 		
+	</select>
+	<!--采集端 台账 IC卡信息统计-->
+	<select id="getCjdIckTjxx" resultMap="cjdicktjxx" parameterClass="map">
+	select 
+		    sum(tz.ytjcssl) ytjcssl,
+		    sum(tz.wtjcssl) wtjcssl,
+		    sum(tz.ycjcssl) ycjcssl,
+		    sum(tz.ycjrysl) ycjrysl,
+		    sum(tz.ytjrysl) ytjrysl,
+		    sum(tz.wtjrysl) wtjrysl,
+		    sum(tz.yslick) yslick,
+		    sum(tz.yffsl) yffsl,
+		    sum(tz.yjswlbsl) yjswlbsl,
+		    sum(tz.yzxicksl) yzxicksl,
+		    sum(tz.bhicksl) bhicksl,
+		    sum(tz.dfficksl) dfficksl,
+		    sum(tz.dbhicksl) dbhicksl,
+		    sum(tz.wlbbfjs) wlbbfjs,
+		    sum(tz.wlbjsbcg) wlbjsbcg
+    from (
+		select 
+		    NVL(b.ytjcssl,'0') ytjcssl,
+		    NVL(b.wtjcssl,'0') wtjcssl,
+		    NVL(b.ycjcssl,'0') ycjcssl,
+		    NVL(c.ytjrysl,'0') ytjrysl,
+		    NVL(c.wtjrysl,'0') wtjrysl,
+		    NVL(c.ycjrysl,'0') ycjrysl,
+		    NVL(a.yslick,'0') yslick,
+		    NVL(a.yffsl,'0') yffsl,
+		    NVL(d.yjswlbsl,'0') yjswlbsl,
+		    NVL(a.yzxicksl,'0') yzxicksl,
+		    NVL(a.bhicksl,'0') bhicksl,
+		    NVL(a.dfficksl,'0') dfficksl,
+		    NVL(a.dbhicksl,'0') dbhicksl,
+		    NVL(d.wlbbfjs,'0') wlbbfjs,
+		    NVL(d.wlbjsbcg,'0') wlbjsbcg
+		from
+		    (select 
+		    ic.cjdbm cjdbm,
+		    sum(case when (ic.bhkyy is null or ic.bhkyy &lt;&gt; '04') then 1 else 0 end) yslick,
+            sum(case when ic.zkztbs in ('6','7','8','9') then 1 else 0 end) yffsl,
+            <!--sum(case when ic.zkztbs in ('24','6','7','8','9') then 1 else 0 end) yjswlbsl,-->
+            sum(case when ic.zkztbs in ('7','8','9') then 1 else 0 end) yzxicksl,
+            sum(case when ic.zkztbs in ('9') then 1 else 0 end) bhicksl,
+            sum(case when ic.zkztbs in ('24') then 1 else 0 end) dfficksl,
+            sum(case when ic.zkztbs in ('6') then 1 else 0 end) dbhicksl
+		    from t_icksl ic,t_qyryxx ry,t_wgcyryxx wg,t_qyjbxx qy
+			where ic.ryid=ry.ryid and ry.ryid=wg.ryid(+) and ry.qyid=qy.qyid
+					and ry.scbz=0 and qy.scbz=0 and ic.zkztbs &lt;90 and ry.zt &lt;90 and qy.zt &lt;90
+		    <dynamic prepend="">
+			    <isNotEmpty prepend="and" property="deptCode">
+				ic.cjdbm like '$deptCode$%'
+			    </isNotEmpty>
+			    <isNotEmpty prepend="and" property="allhylbdm">
+				  ry.hylbdm in ($allhylbdm$)
+			     </isNotEmpty>
+		    </dynamic> group by ic.cjdbm) a,
+		    (select sum(case when zt in ('1','2','3') then 1 else 0 end) ytjcssl,
+		            sum(case when (zt='0' and scbz = 0) then 1 else 0 end) wtjcssl,
+		            sum(case when (scbz = 0 and zt &lt;90) then 1 else 0 end) ycjcssl,
+		            lrdwbm 
+		    from t_qyjbxx 
+		    where 1=1
+		    <dynamic prepend="">
+			      <isNotEmpty prepend="and" property="deptCode">
+				  lrdwbm like '$deptCode$%'
+			      </isNotEmpty>
+			      <isNotEmpty prepend="and" property="allhylbdm">
+				  hylbdm in ($allhylbdm$)
+			      </isNotEmpty>
+		    </dynamic> group by lrdwbm) b,
+		    (select sum(case when (r.zt in ('1','2','3','4','5','6','7') and r.scbz = '0') then 1 else 0 end) ytjrysl,
+		            sum(case when (r.zt ='0' and r.scbz = '0') then 1 else 0 end) wtjrysl,
+		            sum(case when (r.scbz = '0' and r.zt &lt;90 and q.zt &lt;90) then 1 else 0 end) ycjrysl,
+		            r.lrdwbm lrdwbm
+		    from t_qyryxx r,t_qyjbxx q,(select ryid from t_qyry_zp where tplx = '0' and tpnr is not null) zp
+		    where r.qyid = q.qyid
+		      and r.ryid = zp.ryid 
+		    <dynamic prepend="">
+			      <isNotEmpty prepend="and" property="deptCode">
+				  r.lrdwbm like '$deptCode$%'
+			      </isNotEmpty>
+			      <isNotEmpty prepend="and" property="allhylbdm">
+				  r.hylbdm in ($allhylbdm$)
+			      </isNotEmpty>
+		    </dynamic>group by r.lrdwbm) c,
+		    (select  sum(case when ztdm in ('2') then 1 else 0 end) wlbbfjs, 
+		             sum(case when ztdm in ('4') then 1 else 0 end) wlbjsbcg,
+		             sum(case when ztdm in ('3') then 1 else 0 end) yjswlbsl,
+		             mbsldbh 
+		    from t_wldj
+		    where 1=1 
+		    <dynamic prepend="">
+			    <isNotEmpty prepend="and" property="deptCode">
+				mbsldbh like '$deptCode$%'
+			    </isNotEmpty>
+		    </dynamic>group by mbsldbh) d
+		where b.lrdwbm = c.lrdwbm(+)
+              and c.lrdwbm = a.cjdbm(+)
+              and a.cjdbm = d.mbsldbh(+)
+       )tz
+	</select>
+	<!--IC卡受理(t_icksl)-->
+	<select id="getIckslCyrybh" resultMap="ickslcyryResult" parameterClass="icksl">
+		select a.ryid ryid, b.cyrybh cyrybh,a.kh kh,a.ickslid ickslid
+		from t_icksl a, t_qyryxx b
+		where 1=1 and a.ryid=b.ryid and b.scbz=0
+			and a.ickslid in (select max(ickslid)
+	          from t_icksl t
+	         where t.zkztbs in ('6', '7', '8', '9')
+	           and ickh = #ickh#
+	         group by ickh)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ickh">
+					a.ickh=#ickh#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--已受理信息查询-->
+	<select id="getYslIckslCyryxxList" resultMap="wslCyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid,a.qyid,a.cyrybh,a.cyrylbdm,a.cyrylbmc,a.gwbh,a.gwmc,a.xm,a.xbdm,a.xb,a.cyzjdm,a.cyzj,a.zjhm,a.zt,a.lrsj lrsj,
+			c.qymc qymc,c.qybm qybm,a.hylbdm hylbdm,a.hylb hylb,a.cylb cylb,a.cylbdm cylbdm
+		from t_qyryxx a, t_icksl b,t_qyjbxx c,t_wgcyryxx d
+		where b.ryid = a.ryid and a.ryid = d.ryid(+) and a.qyid = c.qyid
+					and a.scbz=0 and c.scbz=0
+					and (b.bhkyy is null or b.bhkyy &lt;&gt; '04')
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="lrsj">
+				a.lrsj &gt;=#lrsj:DATE#  and a.lrsj &lt; #lrsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.cjdbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(b.zkztbs) &lt;90 and  to_number(a.zt) &lt;90 and to_number(c.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+			
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--已受理信息查询-->
+	<select id="getYslIckslCyryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+		from t_qyryxx a, t_icksl b,t_qyjbxx c,t_wgcyryxx d
+		where b.ryid = a.ryid and a.ryid = d.ryid(+) and a.qyid = c.qyid
+		  and a.scbz=0 and c.scbz=0
+		  and (b.bhkyy is null or b.bhkyy &lt;&gt; '04')
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="lrsj">
+				a.lrsj &gt;=#lrsj:DATE#  and a.lrsj &lt; #lrsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.cjdbm like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(b.zkztbs) &lt;90 and  to_number(a.zt) &lt;90 and to_number(c.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

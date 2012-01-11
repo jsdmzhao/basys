@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="dxbj" type="com.aisino2.basicsystem.domain.Dxbj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--短信报警(t_dxbj)-->
+	<resultMap id="dxbjResult" class="dxbj">
+		<result property="bjgzid" column="bjgzid" />
+		<result property="bjxxid" column="bjxxid" />
+		<result property="dxbjid" column="dxbjid" />
+		<result property="dxhm" column="dxhm" />
+		<result property="dycfssj" column="dycfssj" />
+		<result property="zhycfssj" column="zhycfssj" />
+		<result property="fscs" column="fscs" />
+		<result property="dxzt" column="dxzt" />
+		<result property="dxnr" column="dxnr" />
+	</resultMap>
+	<!--短信报警(t_dxbj)-->
+	<resultMap id="dxbjListResult" class="dxbj">
+		<result property="bjgzid" column="bjgzid"/>
+		<result property="bjxxid" column="bjxxid"/>
+		<result property="dxbjid" column="dxbjid"/>
+		<result property="dxhm" column="dxhm"/>
+		<result property="dycfssj" column="dycfssj"/>
+		<result property="zhycfssj" column="zhycfssj"/>
+		<result property="fscs" column="fscs"/>
+		<result property="dxzt" column="dxzt"/>
+		<result property="dxnr" column="dxnr"/>
+	</resultMap>
+	<sql id="t_dxbjWhere">
+			<isNotEmpty prepend="and" property="bjgzid">
+				a.bjgzid=#bjgzid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjxxid">
+				a.bjxxid=#bjxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dxbjid">
+				a.dxbjid=#dxbjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_dxbjPageWhere" >
+		<include refid="t_dxbjWhere" />	</sql>
+	<sql id="t_dxbjListWhere" >
+		<include refid="t_dxbjWhere" />	</sql>
+	<sql id="t_dxbjSelectWhere"  >
+		<include refid="t_dxbjWhere" />	</sql>
+	<!--短信报警(t_dxbj)-->
+	<insert id="insertDxbj"  parameterClass="dxbj">
+		insert into t_dxbj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjgzid">
+				bjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="bjxxid">
+				bjxxid
+			</isNotNull>
+			<isNotNull prepend="," property="dxbjid">
+				dxbjid
+			</isNotNull>
+			<isNotNull prepend="," property="dxhm">
+				dxhm
+			</isNotNull>
+			<isNotNull prepend="," property="dycfssj">
+				dycfssj
+			</isNotNull>
+			<isNotNull prepend="," property="zhycfssj">
+				zhycfssj
+			</isNotNull>
+			<isNotNull prepend="," property="fscs">
+				fscs
+			</isNotNull>
+			<isNotNull prepend="," property="dxzt">
+				dxzt
+			</isNotNull>
+			<isNotNull prepend="," property="dxnr">
+				dxnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjgzid">
+				#bjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bjxxid">
+				#bjxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="dxbjid">
+				#dxbjid#
+			</isNotNull>
+			<isNotNull prepend="," property="dxhm">
+				#dxhm#
+			</isNotNull>
+			<isNotNull prepend="," property="dycfssj">
+				#dycfssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zhycfssj">
+				#zhycfssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fscs">
+				#fscs#
+			</isNotNull>
+			<isNotNull prepend="," property="dxzt">
+				#dxzt#
+			</isNotNull>
+			<isNotNull prepend="," property="dxnr">
+				#dxnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--短信报警(t_dxbj)-->
+	<update id="updateDxbj" parameterClass="dxbj">
+		update t_dxbj a set a.dxbjid=a.dxbjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bjxxid">
+				bjxxid=#bjxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="dxbjid">
+				dxbjid=#dxbjid#
+			</isNotNull>
+			<isNotNull prepend="," property="dxhm">
+				dxhm=#dxhm#
+			</isNotNull>
+			<isNotNull prepend="," property="dycfssj">
+				dycfssj=#dycfssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zhycfssj">
+				zhycfssj=#zhycfssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fscs">
+				fscs=#fscs#
+			</isNotNull>
+			<isNotNull prepend="," property="dxzt">
+				dxzt=#dxzt#
+			</isNotNull>
+			<isNotNull prepend="," property="dxnr">
+				dxnr=#dxnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dxbjWhere" />
+		</dynamic>
+	</update>
+	<!--短信报警(t_dxbj)-->
+	<delete id="deleteDxbj" parameterClass="dxbj">
+		delete from t_dxbj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_dxbjWhere" />
+		</dynamic>
+	</delete>
+	<!--短信报警(t_dxbj)-->
+	<select id="getDxbjList" resultMap="dxbjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjgzid bjgzid,a.bjxxid bjxxid,a.dxbjid dxbjid,a.dxhm dxhm,a.dycfssj dycfssj,a.zhycfssj zhycfssj,a.fscs fscs,a.dxzt dxzt,a.dxnr dxnr
+		from t_dxbj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dxbjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--短信报警(t_dxbj)-->
+	<select id="getDxbjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_dxbj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dxbjPageWhere" />
+		</dynamic>
+	</select>
+	<!--短信报警(t_dxbj)-->
+	<select id="getDxbjListNoPage" resultMap="dxbjListResult" parameterClass="dxbj">
+		select a.bjgzid bjgzid,a.bjxxid bjxxid,a.dxbjid dxbjid,a.dxhm dxhm,a.dycfssj dycfssj,a.zhycfssj zhycfssj,a.fscs fscs,a.dxzt dxzt,a.dxnr dxnr
+		from t_dxbj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dxbjListWhere" />
+		</dynamic>
+		order by a.bjgzid,a.bjxxid,a.dxbjid
+	</select>
+	<!--短信报警(t_dxbj)-->
+	<select id="getDxbj" resultMap="dxbjResult" parameterClass="dxbj">
+		select a.bjgzid bjgzid,a.bjxxid bjxxid,a.dxbjid dxbjid,a.dxhm dxhm,a.dycfssj dycfssj,a.zhycfssj zhycfssj,a.fscs fscs,a.dxzt dxzt,a.dxnr dxnr
+		from t_dxbj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dxbjSelectWhere" />
+		</dynamic>
+		order by a.bjgzid,a.bjxxid,a.dxbjid
+	</select>
+</sqlMap>

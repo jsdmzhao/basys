@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ickrzjl" type="com.aisino2.icksystem.domain.Ickrzjl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<resultMap id="ickrzjlResult" class="ickrzjl">
+		<result property="rzbh" column="rzbh" />
+		<result property="pch" column="pch" />
+		<result property="glbh" column="glbh" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="czlb" column="czlb" />
+		<result property="czyy" column="czyy" />
+		<result property="czr" column="czr" />
+		<result property="czsj" column="czsj" />
+	</resultMap>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<resultMap id="ickrzjlListResult" class="ickrzjl">
+		<result property="rzbh" column="rzbh"/>
+		<result property="pch" column="pch"/>
+		<result property="glbh" column="glbh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="czlb" column="czlb"/>
+		<result property="czyy" column="czyy"/>
+		<result property="czr" column="czr"/>
+		<result property="czsj" column="czsj"/>
+		<result property="xm" column="xm"/>
+	</resultMap>
+	<sql id="t_ickrzjlWhere">
+			<isNotEmpty prepend="and" property="rzbh">
+				a.rzbh=#rzbh#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_ickrzjlPageWhere" >
+		<include refid="t_ickrzjlWhere" />	</sql>
+	<sql id="t_ickrzjlListWhere" >
+		<include refid="t_ickrzjlWhere" />	</sql>
+	<sql id="t_ickrzjlSelectWhere"  >
+		<include refid="t_ickrzjlWhere" />	</sql>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<insert id="insertIckrzjl"  parameterClass="ickrzjl">
+		insert into t_ickrzjl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rzbh">
+				rzbh
+			</isNotNull>
+			<isNotNull prepend="," property="pch">
+				pch
+			</isNotNull>
+			<isNotNull prepend="," property="glbh">
+				glbh
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh
+			</isNotNull>
+			<isNotNull prepend="," property="czlb">
+				czlb
+			</isNotNull>
+			<isNotNull prepend="," property="czyy">
+				czyy
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				czr
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				czsj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rzbh">
+				#rzbh#
+			</isNotNull>
+			<isNotNull prepend="," property="pch">
+				#pch#
+			</isNotNull>
+			<isNotNull prepend="," property="glbh">
+				#glbh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="czlb">
+				#czlb#
+			</isNotNull>
+			<isNotNull prepend="," property="czyy">
+				#czyy#
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				#czr#
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				#czsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<update id="updateIckrzjl" parameterClass="ickrzjl">
+		update t_ickrzjl a set a.rzbh=a.rzbh
+		<dynamic prepend="">
+			<isNotNull prepend="," property="pch">
+				pch=#pch#
+			</isNotNull>
+			<isNotNull prepend="," property="glbh">
+				glbh=#glbh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh=#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="czlb">
+				czlb=#czlb#
+			</isNotNull>
+			<isNotNull prepend="," property="czyy">
+				czyy=#czyy#
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				czr=#czr#
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				czsj=#czsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickrzjlWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<delete id="deleteIckrzjl" parameterClass="ickrzjl">
+		delete from t_ickrzjl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ickrzjlWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<select id="getIckrzjlList" resultMap="ickrzjlListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rzbh rzbh,a.pch pch,a.glbh glbh,a.cyrybh cyrybh,a.czlb czlb,a.czyy czyy,
+		a.czr czr,a.czsj czsj ,b.xm xm
+		from t_ickrzjl a ,t_qyryxx b
+		where 1=1 and a.cyrybh=b.cyrybh
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="czlb">
+				a.czlb like '%$czlb$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm =#hylbdm#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<select id="getIckrzjlListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ickrzjl a ,t_qyryxx b
+		where 1=1 and a.cyrybh=b.cyrybh
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="czlb">
+				a.czlb like '%$czlb$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<select id="getIckrzjlListNoPage" resultMap="ickrzjlListResult" parameterClass="ickrzjl">
+		select a.rzbh rzbh,a.pch pch,a.glbh glbh,a.cyrybh cyrybh,a.czlb czlb,a.czyy czyy,a.czr czr,a.czsj czsj
+		from t_ickrzjl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickrzjlListWhere" />
+		</dynamic>
+		order by a.rzbh
+	</select>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<select id="getIckrzjl" resultMap="ickrzjlResult" parameterClass="ickrzjl">
+		select a.rzbh rzbh,a.pch pch,a.glbh glbh,a.cyrybh cyrybh,a.czlb czlb,a.czyy czyy,a.czr czr,a.czsj czsj
+		from t_ickrzjl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickrzjlSelectWhere" />
+		</dynamic>
+		order by a.rzbh
+	</select>
+</sqlMap>

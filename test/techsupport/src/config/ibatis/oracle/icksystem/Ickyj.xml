@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ickyj" type="com.aisino2.icksystem.domain.Ickyj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡预警(t_ickyj)-->
+	<resultMap id="ickyjResult" class="ickyj">
+		<result property="ickyjid" column="ickyjid" />
+		<result property="sksj" column="sksj" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="xb" column="xb" />
+		<result property="ywm" column="ywm" />
+		<result property="ywx" column="ywx" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="cylb" column="cylb" />
+		<result property="cylbdm" column="cylbdm" />
+		<result property="xmpy" column="xmpy" />
+		<result property="yjyy" column="yjyy" />
+		<result property="ickh" column="ickh" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="xm" column="xm" />
+		<result property="ryid" column="ryid" />
+		<result property="sxsj" column="sxsj"/>
+		
+	   <result property="qyid" column="qyid" />
+		<result property="xm" column="xm"/>
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="kh" column="kh"/>
+	</resultMap>
+	<!--IC卡预警(t_ickyj)-->
+	<resultMap id="ickyjListResult" class="ickyj">
+		<result property="ickyjid" column="ickyjid"/>
+		<result property="sksj" column="sksj"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="xb" column="xb"/>
+		<result property="ywm" column="ywm"/>
+		<result property="ywx" column="ywx"/>
+		<result property="wgrjyxkz" column="wgrjyxkz"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylb" column="cylb"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="yjyy" column="yjyy"/>
+		<result property="ickh" column="ickh"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="ryid" column="ryid" />
+		<result property="sxsj" column="sxsj"/>
+		<result property="qyid" column="qyid" />
+		
+		
+		
+		
+		
+	</resultMap>
+	<!--IC卡预警(t_ickyj)-->
+	<resultMap id="ickyjPageResult" class="ickyj">
+		<result property="ickyjid" column="ickyjid"/>
+		<result property="sksj" column="sksj"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="xb" column="xb"/>
+		<result property="ywm" column="ywm"/>
+		<result property="ywx" column="ywx"/>
+		<result property="wgrjyxkz" column="wgrjyxkz"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylb" column="cylb"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="yjyy" column="yjyy"/>
+		<result property="ickh" column="ickh"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="ryid" column="ryid" />
+		<result property="sxsj" column="sxsj"/>
+		<result property="qyid" column="qyid" />
+		<result property="hylbdm" column="hylbdm" />
+	</resultMap>
+	<sql id="t_ickyjWhere">
+			<isNotEmpty prepend="and" property="ickyjid">
+				a.ickyjid=#ickyjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_ickyjPageWhere" >
+		<include refid="t_ickyjWhere" />	
+		<isNotEmpty prepend="and" property="qssj">
+				a.sksj &gt;=TO_DATE(#qssj#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.sksj &lt;=TO_DATE(#jzsj#,'yyyy-mm-dd')
+			</isNotEmpty>
+		</sql>
+	<sql id="t_ickyjListWhere" >
+		<include refid="t_ickyjWhere" />	</sql>
+	<sql id="t_ickyjSelectWhere"  >
+		<include refid="t_ickyjWhere" />	</sql>
+		
+	<sql id="t_feicardPageWhere" >
+			<isNotEmpty prepend="" property="fkflag">
+		       <isEqual prepend="and" property="fkflag" compareValue="1">
+		       		a.yjyy !='假卡'
+		       </isEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+		       a.sksj &gt;= trunc(#sksjf:DATE#)+6/24
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+	 			a.sksj &lt;trunc(#sksjt:DATE#)+6/24+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				a.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm like '$gxdwdm$%'
+			</isNotEmpty>
+	</sql>
+	<!--IC卡预警(t_ickyj)-->
+	<insert id="insertIckyj"  parameterClass="ickyj">
+		insert into t_ickyj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickyjid">
+				ickyjid
+			</isNotNull>
+			<isNotNull prepend="," property="sksj">
+				sksj
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				wgrjyxkz
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				cylb
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy
+			</isNotNull>
+			<isNotNull prepend="," property="yjyy">
+				yjyy
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				cylbdm
+			</isNotNull>
+			
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="sxsj">
+				sxsj
+			</isNotNull>
+	
+		
+		
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm
+			</isNotNull>
+				<isNotNull prepend="," property="cyzjdm">
+				cyzjdm
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh
+			</isNotNull>
+			
+			
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickyjid">
+				#ickyjid#
+			</isNotNull>
+			<isNotNull prepend="," property="sksj">
+				#sksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				#wgrjyxkz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				#cylb#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="yjyy">
+				#yjyy#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				#cylbdm#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="sxsj">
+				#sxsj#
+			</isNotNull>
+			
+			
+			
+			
+			
+			
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				#xm#
+			</isNotNull>
+				<isNotNull prepend="," property="cyzjdm">
+				#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				#kh#
+			</isNotNull>
+			
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡预警(t_ickyj)-->
+	<update id="updateIckyj" parameterClass="ickyj">
+		update t_ickyj a set a.ickyjid=a.ickyjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="sksj">
+				sksj=#sksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb=#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm=#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx=#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrjyxkz">
+				wgrjyxkz=#wgrjyxkz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj=#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm=#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="cylb">
+				cylb=#cylb#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy=#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="yjyy">
+				yjyy=#yjyy#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh=#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh=#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="cylbdm">
+				cylbdm = #cylbdm#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="sxsj">
+				sxsj = #sxsj#
+			</isNotNull>
+			
+			
+				<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm=#xm#
+			</isNotNull>
+				<isNotNull prepend="," property="cyzjdm">
+				cyzjdm=#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh=#kh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickyjWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡预警(t_ickyj)-->
+	<delete id="deleteIckyj" parameterClass="ickyj">
+		delete from t_ickyj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ickyjWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡预警(t_ickyj)-->
+	<select id="getIckyjList" resultMap="ickyjPageResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickyjid ickyjid,a.sksj sksj,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.xb xb,a.ywm ywm,a.ywx ywx,a.wgrjyxkz wgrjyxkz,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.xmpy xmpy,a.yjyy yjyy,a.ickh ickh,a.cyrybh cyrybh,a.cylbdm cylbdm
+		,a.ryid ryid,a.sxsj sxsj,a.qyid qyid,a.xm xm ,a.cyzjdm cyzjdm ,a.kh kh,b.hylbdm hylbdm
+		from t_ickyj a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<include refid="t_feicardPageWhere" />
+			<include refid="t_ickyjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$ 
+	</select>
+	<!--IC卡预警(t_ickyj)-->
+	<select id="getIckyjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ickyj a,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<include refid="t_feicardPageWhere" />
+			<include refid="t_ickyjPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡预警(t_ickyj)-->
+	<select id="getIckyjListNoPage" resultMap="ickyjListResult" parameterClass="ickyj">
+		select a.ickyjid ickyjid,a.sksj sksj,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.xb xb,a.ywm ywm,a.ywx ywx,a.wgrjyxkz wgrjyxkz,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.xmpy xmpy,a.yjyy yjyy,a.ickh ickh,a.cyrybh cyrybh,a.cylbdm cylbdm
+		,a.ryid ryid,a.sxsj sxsj ,a.qyid qyid,a.xm xm ,a.cyzjdm cyzjdm ,a.kh kh
+		from t_ickyj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickyjListWhere" />
+		</dynamic>
+		order by a.ickyjid
+	</select>
+	<!--IC卡预警(t_ickyj)-->
+	<select id="getIckyj" resultMap="ickyjResult" parameterClass="ickyj">
+		select a.ickyjid ickyjid,a.sksj sksj,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.xb xb,a.ywm ywm,a.ywx ywx,a.wgrjyxkz wgrjyxkz,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.xmpy xmpy,a.yjyy yjyy,a.ickh ickh,a.cyrybh cyrybh,a.cylbdm cylbdm
+		,a.ryid ryid,a.sxsj sxsj ,a.qyid qyid,a.xm xm ,a.cyzjdm cyzjdm ,a.kh kh
+		from t_ickyj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickyjSelectWhere" />
+		</dynamic>
+		order by a.ickyjid
+	</select>
+</sqlMap>

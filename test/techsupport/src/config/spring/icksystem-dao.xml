@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--无线终端设备(ST_DEVICE)-->
+	<bean id="st_deviceDao" class="com.aisino2.icksystem.dao.ibatis.St_deviceDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--企业人员刷卡记录(t_qyryskjl)-->
+	<bean id="qyryskjlDao" class="com.aisino2.icksystem.dao.ibatis.QyryskjlDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--物流登记信息(t_wldj)-->
+	<bean id="wldjDao" class="com.aisino2.icksystem.dao.ibatis.WldjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理(t_icksl)-->
+	<bean id="ickslDao" class="com.aisino2.icksystem.dao.ibatis.IckslDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡组包(t_ickzb)-->
+	<bean id="ickzbDao" class="com.aisino2.icksystem.dao.ibatis.IckzbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<bean id="ickrzjlDao" class="com.aisino2.icksystem.dao.ibatis.IckrzjlDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<bean id="icksl_ickzbDao" class="com.aisino2.icksystem.dao.ibatis.Icksl_ickzbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<bean id="icksl_wldjDao" class="com.aisino2.icksystem.dao.ibatis.Icksl_wldjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<bean id="ickslbgDao" class="com.aisino2.icksystem.dao.ibatis.IckslbgDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--刷卡信息统计明细(t_qyryskxxtj)-->
+	<bean id="qyryskxxtjDao" class="com.aisino2.icksystem.dao.ibatis.QyryskxxtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制卡统计日报(t_zktjrb)-->
+	<bean id="zktjrbDao" class="com.aisino2.icksystem.dao.ibatis.ZktjrbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制卡统计月报(t_zktjyb)-->
+	<bean id="zktjybDao" class="com.aisino2.icksystem.dao.ibatis.ZktjybDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制卡统计季报(t_zktjjb)-->
+	<bean id="zktjjbDao" class="com.aisino2.icksystem.dao.ibatis.ZktjjbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制卡统计汇总日报(t_zktjhjrb)-->
+	<bean id="zktjhjrbDao" class="com.aisino2.icksystem.dao.ibatis.ZktjhjrbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理统计(t_icksltj)-->
+	<bean id="icksltjDao" class="com.aisino2.icksystem.dao.ibatis.IcksltjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡预警(t_ickyj)-->
+	<bean id="ickyjDao" class="com.aisino2.icksystem.dao.ibatis.IckyjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<bean id="cjdtjrbDao" class="com.aisino2.icksystem.dao.ibatis.CjdtjrbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制证中心上传(t_zzzxsc)-->
+	<bean id="zzzxscDao" class="com.aisino2.icksystem.dao.ibatis.ZzzxscDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--异常刷卡场所(t_ycskqy)-->
+	<bean id="ycskqyDao" class="com.aisino2.icksystem.dao.ibatis.YcskqyDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--制证中心上传-->
+	<bean id="ickSendDaoWs" class="com.aisino2.icksystem.dao.ibatis.IckSendDaoWsImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+		<!--无线终端设备(ST_DEVICE)-->
+	<bean id="gzrztjDao" class="com.aisino2.icksystem.dao.ibatis.GzrztjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--走台人员刷卡信息统计明细(t_ztryskxxtj)-->
+	<bean id="ztryskxxtjDao" class="com.aisino2.icksystem.dao.ibatis.ZtryskxxtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<bean id="icksl_lsbDao" class="com.aisino2.icksystem.dao.ibatis.Icksl_lsbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapIcksystem" />
+	</bean>
+	
+</beans>

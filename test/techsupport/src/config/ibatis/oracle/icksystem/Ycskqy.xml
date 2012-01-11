@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ycskqy" type="com.aisino2.icksystem.domain.Ycskqy"/>
+	<typeAlias alias="skxx" type="com.aisino2.icksystem.domain.Skxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--日常检查统计(t_rcjctj)-->
+	<resultMap id="YcskqyResult" class="ycskqy">
+		<!--  <result property="rcjctjid" column="rcjctjid" />-->
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qymc" column="qymc" />
+		<result property="qybm" column="qybm" />
+		<result property="yyztdm" column="yyztdm" />
+		<result property="yyztmc" column="yyztmc" />
+		<result property="dwfzr" column="dwfzr" />
+		<result property="dwfzrlxfs" column="dwfzrlxfs" />
+	</resultMap>
+	
+	<resultMap id="SkxxResult" class="skxx">
+		<result property="xm" column="xm" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="sksj" column="sksj" />
+		<result property="scsj" column="scsj" />
+	</resultMap>
+	
+
+	
+	<sql id="t_YcskqyWhere">
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qssj">
+				a.ycskrq &gt;=TO_DATE(#qssj#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.ycskrq &lt;=TO_DATE(#jzsj#,'yyyy-mm-dd')
+			</isNotEmpty>
+	</sql>
+	
+	<sql id="t_SkxxWhere">
+			<isNotEmpty prepend="and" property="qybm">
+				a.ssqybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qssj">
+				a.sksj &gt;=to_date(#qssj#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.sksj &lt;=to_date(#jzsj#,'yyyy-mm-dd')
+			</isNotEmpty>
+	</sql>
+	
+	
+	<select id="getYcskqyList" resultMap="YcskqyResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select distinct a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.yyztdm yyztdm,a.yyztmc yyztmc,a.dwfzr dwfzr,a.dwfzrlxfs dwfzrlxfs
+		 from t_ycskqy a
+		 where 1=1 
+		<dynamic prepend="">
+			<include refid="t_YcskqyWhere" />
+		</dynamic>	
+		 order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$ 
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getYcskqyListCount" resultClass="int" parameterClass="map">
+		select count(1) from 
+		(select distinct a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.yyztdm yyztdm,a.yyztmc yyztmc,a.dwfzr dwfzr,a.dwfzrlxfs dwfzrlxfs
+		 from t_ycskqy a
+		 where 1=1 
+		<dynamic prepend="">
+			<include refid="t_YcskqyWhere" />
+		</dynamic>)
+	</select>
+	
+	
+	<select id="getSkxxList" resultMap="SkxxResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select xm,cyrybh,sksj,scsj
+		from t_skxxtjmx a
+		where 1=1 
+		<dynamic prepend="">
+			<include refid="t_SkxxWhere" />
+		</dynamic>
+		order by sksj desc)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$ 
+	</select>
+	
+	<select id="getSkxxListCount" resultClass="int" parameterClass="map">
+		select count(1) from  t_skxxtjmx a
+		where 1=1 
+		<dynamic prepend="">
+			<include refid="t_SkxxWhere" />
+		</dynamic>
+		
+	</select>
+	
+</sqlMap>

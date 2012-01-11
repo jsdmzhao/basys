@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyryskjl" type="com.aisino2.icksystem.domain.Qyryskjl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<resultMap id="qyryskjlResult" class="qyryskjl">
+		<result property="qyid" column="qyid" />
+		<result property="qybm" column="qybm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="skid" column="skid" />
+		<result property="ickh" column="ickh" />
+		<result property="sksj" column="sksj" />
+		<result property="scsj" column="scsj" />
+		<result property="kh" column="kh" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="icksllsh" column="icksllsh" />
+	</resultMap>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<resultMap id="qyryskjlListResult" class="qyryskjl">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="skid" column="skid"/>
+		<result property="ickh" column="ickh"/>
+		<result property="sksj" column="sksj"/>
+		<result property="scsj" column="scsj"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="icksllsh" column="icksllsh"/>
+		<result property="sfzt" column="sfzt"/>
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zhiwu" column="zhiwu"/>
+		<result property="ryid" column="ryid"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>
+	
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<resultMap id="qyryskjlListResultOne" class="qyryskjl">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="skid" column="skid"/>
+		<result property="ickh" column="ickh"/>
+		<result property="sksj" column="sksj"/>
+		<result property="scsj" column="scsj"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="icksllsh" column="icksllsh"/>
+		<result property="sfzt" column="sfzt"/>
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zhiwu" column="zhiwu"/>
+		<result property="ryid" column="ryid"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>
+	
+	<!--场所人员刷卡记录(t_qyryskjl) 公安端场所刷卡记录-->
+	<resultMap id="qyryskjlGadListResult" class="qyryskjl">
+		<result property="qyid" column="qyid"/>
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="skid" column="skid"/>
+		<result property="ickh" column="ickh"/>
+		<result property="sksj" column="sksj"/>
+		<result property="scsj" column="scsj"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="icksllsh" column="icksllsh"/>
+		<result property="xmzc" column="xmzc"/>
+		<result property="xmfzc" column="xmfzc"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="shouji" column="shouji"/>
+	</resultMap>
+	<!--场所人员刷卡记录(t_qyryskjl) 公安端场人员工作日志-->
+	<resultMap id="cyrygzrzListResult" class="qyryskjl">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="skid" column="skid"/>
+		<result property="ickh" column="ickh"/>
+		<result property="sksj" column="sksj"/>
+		<result property="scsj" column="scsj"/>
+		<result property="kh" column="kh"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="icksllsh" column="icksllsh"/>
+		<result property="xm" column="xm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="zhiwu" column="zhiwu"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="ryid" column="ryid"/>
+	</resultMap>
+	<!--场所人员刷卡记录(t_qyryskjl) 频繁刷卡-->
+	<resultMap id="pfskListResult" class="qyryskjl">
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="ryid" column="ryid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="xm" column="xm" />
+		<result property="zjhm" column="zjhm" />
+		<result property="skcs" column="skcs" />
+		<result property="cyrylbdm" column="cyrylbdm" />
+	</resultMap>
+	<!--场所人员刷卡记录(t_qyryskjl) 频繁刷卡轨迹-->
+	<resultMap id="pfskGjResult" class="qyryskjl">
+		<result property="sksj" column="sksj"/>
+		<result property="scsj" column="scsj" />
+		<result property="qymc" column="qymc" />
+		<result property="gxdwmc" column="gxdwmc" />
+	</resultMap>
+	<sql id="t_qyryskjlWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="skid">
+				a.skid=#skid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyryskjlPageWhere" >
+		<include refid="t_qyryskjlWhere" />	</sql>
+	<sql id="t_qyryskjlListWhere" >
+		<include refid="t_qyryskjlWhere" />	</sql>
+	<sql id="t_qyryskjlSelectWhere"  >
+		<include refid="t_qyryskjlWhere" />	</sql>
+	<sql id="t_pfskPageWhere" >
+		<isNotEmpty prepend="and" property="sksjf">
+			<![CDATA[
+ 				a.sksj>=trunc(#sksjf#)+6/24
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sksjt">
+			<![CDATA[
+ 				a.sksj<trunc(#sksjt#)+1+6/24
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			c.gxdwbm  like '$gxdwbm$%' 
+		   </isNotEmpty>	
+		<isNotEmpty prepend="and" property="deptCode">
+			c.gxdwbm like '$deptCode$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="hylbdm">
+			c.hylbdm =#hylbdm#
+		</isNotEmpty>	
+	</sql>	
+	<sql id="t_pfskSelectWhere" >
+		<isNotNull prepend="" property="skcs">
+			<isEqual prepend="and" property="bds" compareValue="1">
+				<![CDATA[
+ 					a.skcs>#skcs#
+ 				]]>
+			</isEqual>
+			<isEqual prepend="and" property="bds" compareValue="-1">
+				<![CDATA[
+ 					a.skcs<#skcs#
+ 				]]>
+			</isEqual>
+			<isEqual prepend="and" property="bds" compareValue="0">
+				<![CDATA[
+ 					a.skcs=#skcs#
+ 				]]>
+			</isEqual>
+		</isNotNull>
+	</sql>
+	<sql id="t_pfskGjWhere">
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=trunc(#sksjf:DATE#)+6/24
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt;trunc(#sksjt:DATE#)+1+6/24
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				c.hylbdm=#hylbdm#
+			</isNotEmpty>
+	</sql>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<insert id="insertQyryskjl"  parameterClass="qyryskjl">
+		insert into t_qyryskjl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="skid">
+				skid
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh
+			</isNotNull>
+			<isNotNull prepend="," property="sksj">
+				sksj
+			</isNotNull>
+			<isNotNull prepend="," property="scsj">
+				scsj
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh
+			</isNotNull>
+			<isNotNull prepend="," property="icksllsh">
+				icksllsh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="skid">
+				#skid#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="sksj">
+				#sksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="scsj">
+				#scsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="icksllsh">
+				#icksllsh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<update id="updateQyryskjl" parameterClass="qyryskjl">
+		update t_qyryskjl a set a.skid=a.skid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh=#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="sksj">
+				sksj=#sksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="scsj">
+				scsj=#scsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh=#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh=#cyrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="icksllsh">
+				icksllsh=#icksllsh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryskjlWhere" />
+		</dynamic>
+	</update>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<delete id="deleteQyryskjl" parameterClass="qyryskjl">
+		delete from t_qyryskjl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyryskjlWhere" />
+		</dynamic>
+	</delete>
+	<!--场所人员刷卡记录(t_qyryskjl) 场所端人员工作日志-->
+	<select id="getQyryskjlList" resultMap="qyryskjlListResultOne" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.qybm qybm,a.hylbdm hylbdm,a.hylb hylb,a.skid skid,a.ickh ickh,a.sksj sksj,a.scsj scsj,
+			a.kh kh,a.cyrybh cyrybh,a.icksllsh icksllsh,
+			(case when a.qyid = b.qyid then '0' else '1' end) sfzt,
+			b.xm xm,b.zjhm zjhm,b.zhiwu zhiwu,b.ryid ryid,b.cyrylbdm cyrylbdm,c.qymc
+		from t_qyryskjl a ,t_qyryxx b,t_qyjbxx c
+		where 1=1 and a.cyrybh=b.cyrybh and a.qyid=c.qyid and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm=#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrylbdm">
+				b.cyrylbdm=#cyrylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzj">
+				b.cyzj=#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm=#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<include refid="t_qyryskjlPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<select id="getQyryskjlListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryskjl a ,t_qyryxx b,t_qyjbxx c
+		where 1=1 and a.cyrybh=b.cyrybh and a.qyid=c.qyid and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm=#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrylbdm">
+				b.cyrylbdm=#cyrylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzj">
+				b.cyzj=#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm=#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<include refid="t_qyryskjlPageWhere" />
+		</dynamic>
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<select id="getQyryskjlListNoPage" resultMap="qyryskjlListResult" parameterClass="qyryskjl">
+	select a.qyid qyid,a.qybm qybm,a.hylbdm hylbdm,a.hylb hylb,a.skid skid,a.ickh ickh,a.sksj sksj,a.scsj scsj,
+			a.kh kh,a.cyrybh cyrybh,a.icksllsh icksllsh,
+			(case when a.qyid = b.qyid then '0' else '1' end) sfzt,
+			b.xm xm,b.zjhm zjhm,b.zhiwu zhiwu,b.ryid ryid,b.cyrylbdm cyrylbdm,c.qymc
+		from t_qyryskjl a ,t_qyryxx b,t_qyjbxx c
+		where 1=1 and a.cyrybh=b.cyrybh and a.qyid=c.qyid and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="kh">
+				a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzj">
+				b.cyzj=#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm=#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<include refid="t_qyryskjlPageWhere" />
+		</dynamic>
+		order by a.qyid,a.skid
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<select id="getQyryskjl" resultMap="qyryskjlResult" parameterClass="qyryskjl">
+		select a.qyid qyid,a.qybm qybm,a.hylbdm hylbdm,a.hylb hylb,a.skid skid,a.ickh ickh,a.sksj sksj,a.scsj scsj,a.kh kh,a.cyrybh cyrybh,a.icksllsh icksllsh
+		from t_qyryskjl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryskjlSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.skid
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)公安端场所刷卡记录查询-->
+	<select id="getQyryskjlGadList" resultMap="qyryskjlGadListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,b.hylbdm ,b.hylb,a.skid skid,a.ickh ickh,a.sksj sksj,a.scsj scsj,
+			a.kh kh,a.cyrybh cyrybh,a.icksllsh icksllsh,
+			(case   when a.qyid = b.qyid then  b.xm   else  ''   end) xmzc,
+       		(case   when a.qyid &lt;&gt; b.qyid then   b.xm    else   ''  end) xmfzc,
+       		b.lxdh,b.shouji
+		from t_qyryskjl a, t_qyryxx b
+		 where 1 = 1
+		   and a.cyrybh = b.cyrybh
+		   and b.scbz = 0
+		<dynamic prepend="">
+			<include refid="t_qyryskjlPageWhere" />
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<select id="getQyryskjlGadListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryskjl a, t_qyryxx b
+		 where 1 = 1
+		   and a.cyrybh = b.cyrybh
+		   and b.scbz = 0
+		<dynamic prepend="">
+			<include refid="t_qyryskjlPageWhere" />
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)公安端从业人员工作日志-->
+	<select id="getCyrygzrzList" resultMap="cyrygzrzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.qybm qybm,a.hylbdm hylbdm,a.hylb hylb,a.skid skid,a.ickh ickh,a.sksj sksj,a.scsj scsj,
+			a.kh kh,a.cyrybh cyrybh,a.icksllsh icksllsh,
+			b.xm xm ,c.qymc qymc,c.gxdwbm gxdwbm,c.gxdwmc gxdwmc,b.cyrylbdm cyrylbdm,
+			b.zhiwu zhiwu,b.zjhm zjhm,b.ryid ryid
+		from t_qyryskjl a ,t_qyryxx b,t_qyjbxx c
+		where 1=1 and a.cyrybh=b.cyrybh and a.qyid=c.qyid and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm=#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzj">
+				b.cyzj=#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm=#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm1">
+				c.gxdwbm like '$gxdwbm1$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				c.gxdwbm = #gxdwbm#
+			</isNotEmpty>
+			<include refid="t_qyryskjlPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<select id="getCyrygzrzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryskjl a ,t_qyryxx b,t_qyjbxx c
+		where 1=1 and a.cyrybh=b.cyrybh and a.qyid=c.qyid and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				b.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjf">
+				a.sksj &gt;=#sksjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sksjt">
+				a.sksj &lt; #sksjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				c.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				b.cylbdm=#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kh">
+				a.kh=#kh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzj">
+				b.cyzj=#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				b.cyzjdm=#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				b.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				b.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm1">
+				c.gxdwbm like '$gxdwbm1$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				c.gxdwbm = #gxdwbm#
+			</isNotEmpty>
+			<include refid="t_qyryskjlPageWhere" />
+		</dynamic>
+	</select>
+	<!--频繁刷卡-->
+	<select id="getPfskList" resultMap="pfskListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (select a.ryid,a.hylbdm,a.cyrybh,a.xm,a.zjhm,a.cyrylbdm,a.skcs from
+		(select b.ryid,c.hylbdm,a.cyrybh,b.xm,b.zjhm,b.cyrylbdm,count(a.cyrybh) skcs 
+			from t_qyryskjl a,
+                 t_qyryxx   b,
+                 t_qyjbxx c
+            where a.cyrybh=b.cyrybh 
+                 and b.qyid = c.qyid
+                 and b.scbz=0
+                 and c.scbz=0
+		<dynamic prepend="">
+			<include refid="t_pfskPageWhere" />
+		</dynamic>
+		group by b.ryid,c.hylbdm,a.cyrybh,b.xm,b.zjhm,b.cyrylbdm) a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pfskSelectWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--频繁刷卡-->
+	<select id="getPfskListCount" resultClass="int" parameterClass="map">
+		select count(1) from (select b.ryid,c.hylbdm,a.cyrybh,b.xm,b.zjhm,b.cyrylbdm ,count(a.cyrybh) skcs 
+			from t_qyryskjl a,
+                 t_qyryxx   b,
+                 t_qyjbxx c
+            where a.cyrybh=b.cyrybh  
+                 and b.qyid = c.qyid
+                 and b.scbz=0
+                 and c.scbz=0
+		<dynamic prepend="">
+			<include refid="t_pfskPageWhere" />
+		</dynamic>
+		group by b.ryid,c.hylbdm,a.cyrybh,b.xm,b.zjhm,b.cyrylbdm) a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_pfskSelectWhere" />
+		</dynamic>
+	</select>
+	<!--频繁刷卡轨迹-->
+	<select id="getPfskGjList" resultMap="pfskGjResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.sksj,a.scsj,(select qymc from t_qyjbxx where qybm=a.qybm ) qymc,c.gxdwmc
+		 from t_qyryskjl a,t_qyryxx b,t_qyjbxx c
+		where a.cyrybh=b.cyrybh and b.scbz=0 and c.scbz=0
+		and b.qyid=c.qyid
+		<dynamic prepend="">
+			<include refid="t_pfskGjWhere" />
+		</dynamic>
+		)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$ 
+	</select>
+	<!--频繁刷卡轨迹-->
+	<select id="getPfskGjListCount" resultClass="int" parameterClass="map">
+		select count(1) from t_qyryskjl a,t_qyryxx b,t_qyjbxx c
+		where a.cyrybh=b.cyrybh and b.scbz=0 and c.scbz=0
+		and b.qyid=c.qyid
+		<dynamic prepend="">
+			<include refid="t_pfskGjWhere" />
+		</dynamic>
+		
+	</select>
+</sqlMap>

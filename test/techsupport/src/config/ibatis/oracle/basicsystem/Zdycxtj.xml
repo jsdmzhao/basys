@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="zdycxtj" type="com.aisino2.basicsystem.domain.Zdycxtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<resultMap id="zdycxtjResult" class="zdycxtj">
+		<result property="zdycxtjid" column="zdycxtjid" />
+		<result property="gjcxfaid" column="gjcxfaid" />
+		<result property="cxtj" column="cxtj" />
+		<result property="cxpx" column="cxpx" />
+	</resultMap>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<resultMap id="zdycxtjListResult" class="zdycxtj">
+		<result property="zdycxtjid" column="zdycxtjid"/>
+		<result property="gjcxfaid" column="gjcxfaid"/>
+		<result property="cxtj" column="cxtj"/>
+		<result property="cxpx" column="cxpx"/>
+	</resultMap>
+	<sql id="t_zdycxtjWhere">
+			<isNotEmpty prepend="and" property="zdycxtjid">
+				a.zdycxtjid=#zdycxtjid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjcxfaid">
+				a.gjcxfaid=#gjcxfaid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_zdycxtjPageWhere" >
+		<include refid="t_zdycxtjWhere" />	</sql>
+	<sql id="t_zdycxtjListWhere" >
+		<include refid="t_zdycxtjWhere" />	</sql>
+	<sql id="t_zdycxtjSelectWhere"  >
+		<include refid="t_zdycxtjWhere" />	</sql>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<insert id="insertZdycxtj"  parameterClass="zdycxtj">
+		insert into t_zdycxtj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zdycxtjid">
+				zdycxtjid
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid
+			</isNotNull>
+			<isNotNull prepend="," property="cxtj">
+				cxtj
+			</isNotNull>
+			<isNotNull prepend="," property="cxpx">
+				cxpx
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zdycxtjid">
+				#zdycxtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="cxtj">
+				#cxtj#
+			</isNotNull>
+			<isNotNull prepend="," property="cxpx">
+				#cxpx#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<update id="updateZdycxtj" parameterClass="zdycxtj">
+		update t_zdycxtj a set a.gjcxfaid=a.gjcxfaid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid=#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="cxtj">
+				cxtj=#cxtj#
+			</isNotNull>
+			<isNotNull prepend="," property="cxpx">
+				cxpx=#cxpx#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zdycxtjWhere" />
+		</dynamic>
+	</update>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<delete id="deleteZdycxtj" parameterClass="zdycxtj">
+		delete from t_zdycxtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_zdycxtjWhere" />
+		</dynamic>
+	</delete>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<select id="getZdycxtjList" resultMap="zdycxtjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.zdycxtjid zdycxtjid,a.gjcxfaid gjcxfaid,a.cxtj cxtj,a.cxpx cxpx
+		from t_zdycxtj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zdycxtjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<select id="getZdycxtjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_zdycxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zdycxtjPageWhere" />
+		</dynamic>
+	</select>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<select id="getZdycxtjListNoPage" resultMap="zdycxtjListResult" parameterClass="zdycxtj">
+		select a.zdycxtjid zdycxtjid,a.gjcxfaid gjcxfaid,a.cxtj cxtj,a.cxpx cxpx
+		from t_zdycxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zdycxtjListWhere" />
+		</dynamic>
+		order by a.zdycxtjid,a.gjcxfaid
+	</select>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<select id="getZdycxtj" resultMap="zdycxtjResult" parameterClass="zdycxtj">
+		select a.zdycxtjid zdycxtjid,a.gjcxfaid gjcxfaid,a.cxtj cxtj,a.cxpx cxpx
+		from t_zdycxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zdycxtjSelectWhere" />
+		</dynamic>
+		order by a.zdycxtjid,a.gjcxfaid
+	</select>
+</sqlMap>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="loginlog" type="com.aisino2.sysadmin.domain.Loginlog"/>
+	<typeAlias alias="dltj" type="com.aisino2.sysadmin.domain.Dltj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--登录日志表(t_loginlog)-->
+	<resultMap id="loginlogResult" class="loginlog">
+		<result property="loginlogid" column="loginlogid" />
+		<result property="loginuserid" column="loginuserid" />
+		<result property="useraccount" column="useraccount" />
+		<result property="username" column="username" />
+		<result property="loginunitcode" column="loginunitcode" />
+		<result property="loginunitname" column="loginunitname" />
+		<result property="loginip" column="loginip" />
+		<result property="loginmac" column="loginmac" />
+		<result property="logintiime" column="logintiime" />
+		<result property="quittime" column="quittime" />
+	</resultMap>
+	<!--登录日志表(t_loginlog)-->
+	<resultMap id="loginlogListResult" class="loginlog">
+		<result property="loginlogid" column="loginlogid"/>
+		<result property="loginuserid" column="loginuserid"/>
+		<result property="useraccount" column="useraccount"/>
+		<result property="username" column="username"/>
+		<result property="loginunitcode" column="loginunitcode"/>
+		<result property="loginunitname" column="loginunitname"/>
+		<result property="loginip" column="loginip"/>
+		<result property="loginmac" column="loginmac"/>
+		<result property="logintiime" column="logintiime"/>
+		<result property="quittime" column="quittime"/>
+	</resultMap>
+	
+	<!--登录日志表统计(t_loginlog)-->
+	<resultMap id="dltjResult" class="dltj">
+		<result property="departbrevitycode" column="departbrevitycode" />
+		<result property="departname" column="departname" />
+		<result property="dlzs" column="dlzs" />
+    </resultMap>
+	
+	<sql id="t_loginlogWhere">
+			<isNotEmpty prepend="and" property="loginlogid">
+				a.loginlogid=#loginlogid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_loginlogPageWhere" >
+		<include refid="t_loginlogWhere" />
+	</sql>
+	<sql id="t_loginlogListWhere" >
+		<include refid="t_loginlogWhere" />	</sql>
+	<sql id="t_loginlogSelectWhere"  >
+		<include refid="t_loginlogWhere" />	</sql>
+	<!--登录日志表(t_loginlog)-->
+	<insert id="insertLoginlog"  parameterClass="loginlog">
+		insert into t_loginlog (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="loginlogid">
+				loginlogid
+			</isNotNull>
+			<isNotNull prepend="," property="loginuserid">
+				loginuserid
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitcode">
+				loginunitcode
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitname">
+				loginunitname
+			</isNotNull>
+			<isNotNull prepend="," property="loginip">
+				loginip
+			</isNotNull>
+			<isNotNull prepend="," property="loginmac">
+				loginmac
+			</isNotNull>
+			<isNotNull prepend="," property="logintiime">
+				logintiime
+			</isNotNull>
+			<isNotNull prepend="," property="quittime">
+				quittime
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="loginlogid">
+				#loginlogid#
+			</isNotNull>
+			<isNotNull prepend="," property="loginuserid">
+				#loginuserid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				#username#
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitcode">
+				#loginunitcode#
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitname">
+				#loginunitname#
+			</isNotNull>
+			<isNotNull prepend="," property="loginip">
+				#loginip#
+			</isNotNull>
+			<isNotNull prepend="," property="loginmac">
+				#loginmac#
+			</isNotNull>
+			<isNotNull prepend="," property="logintiime">
+				#logintiime:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="quittime">
+				#quittime:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--登录日志表(t_loginlog)-->
+	<update id="updateLoginlog" parameterClass="loginlog">
+		update t_loginlog a set loginlogid=loginlogid
+		<dynamic prepend="">
+			
+			<isNotNull prepend="," property="loginuserid">
+				loginuserid=#loginuserid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount=#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username=#username#
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitcode">
+				loginunitcode=#loginunitcode#
+			</isNotNull>
+			<isNotNull prepend="," property="loginunitname">
+				loginunitname=#loginunitname#
+			</isNotNull>
+			<isNotNull prepend="," property="loginip">
+				loginip=#loginip#
+			</isNotNull>
+			<isNotNull prepend="," property="loginmac">
+				loginmac=#loginmac#
+			</isNotNull>
+			<isNotNull prepend="," property="logintiime">
+				logintiime=#logintiime:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="quittime">
+				quittime=#quittime:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_loginlogWhere" />
+		</dynamic>
+	</update>
+	<!--登录日志表(t_loginlog)-->
+	<delete id="deleteLoginlog" parameterClass="loginlog">
+		delete from t_loginlog a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_loginlogWhere" />
+		</dynamic>
+	</delete>
+	<!--登录日志表(t_loginlog)-->
+	<select id="getLoginlogList" resultMap="loginlogListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.loginlogid loginlogid,a.loginuserid loginuserid,a.useraccount useraccount,a.username username,a.loginunitcode loginunitcode,a.loginunitname loginunitname,a.loginip loginip,a.loginmac loginmac,a.logintiime logintiime,a.quittime quittime
+		from t_loginlog a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount like '%$useraccount$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+				a.username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="loginip">
+				a.loginip like '%$loginip$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="logintiimef">
+ 				a.logintiime &gt;= #logintiimef:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="logintiimet">
+	 			a.logintiime &lt; #logintiimet:DATE#+1
+			</isNotEmpty>
+			<include refid="t_loginlogPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--登录日志表(t_loginlog)-->
+	<select id="getLoginlogListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_loginlog a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount like '%$useraccount$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+				a.username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="loginip">
+				a.loginip like '%$loginip$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="logintiimef">
+ 				a.logintiime &gt;= #logintiimef:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="logintiimet">
+	 			a.logintiime &lt; #logintiimet:DATE#+1
+			</isNotEmpty>
+			<include refid="t_loginlogPageWhere" />
+		</dynamic>
+	</select>
+	<!--登录日志表(t_loginlog)-->
+	<select id="getLoginlogListNoPage" resultMap="loginlogListResult" parameterClass="loginlog">
+		select a.loginlogid loginlogid,a.loginuserid loginuserid,a.useraccount useraccount,a.username username,a.loginunitcode loginunitcode,a.loginunitname loginunitname,a.loginip loginip,a.loginmac loginmac,a.logintiime logintiime,a.quittime quittime
+		from t_loginlog a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_loginlogListWhere" />
+		</dynamic>
+		order by a.loginlogid
+	</select>
+	<!--登录日志表(t_loginlog)-->
+	<select id="getLoginlog" resultMap="loginlogResult" parameterClass="loginlog">
+		select a.loginlogid loginlogid,a.loginuserid loginuserid,a.useraccount useraccount,a.username username,a.loginunitcode loginunitcode,a.loginunitname loginunitname,a.loginip loginip,a.loginmac loginmac,a.logintiime logintiime,a.quittime quittime
+		from t_loginlog a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_loginlogSelectWhere" />
+		</dynamic>
+		order by a.loginlogid
+	</select>
+	
+	<!--登录日志表(t_loginlog)-->
+	<select id="getLoginlogNum" resultClass="string" parameterClass="map">
+		select count(1)
+		from t_loginlog a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="kssj">
+			   a.logintiime &gt;= trunc(#kssj:DATE#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssj">
+			   a.logintiime &lt; trunc(#jssj:DATE#)+1
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	
+	
+	<select id="getDltjList" resultMap="dltjResult" parameterClass="map">
+	SELECT * FROM (
+	 SELECT A.*, ROWNUM RN 
+	 FROM (
+			SELECT PCS.DEPARTBREVITYCODE departbrevitycode,
+			       PCS.DEPARTNAME DEPARTNAME,
+			      NVL(loginlog.dlzs,'0') as dlzs
+			  FROM (SELECT DEPT.DEPARTCODE, DEPT.DEPARTBREVITYCODE, DEPT.DEPARTNAME, DEPT.NODEORDER
+			          FROM T_DEPARTMENT DEPT
+			         WHERE DEPT.DEPARTLEVEL = ((select t.departlevel from t_department t where t.departbrevitycode='$gxdwbm$')+1)
+			           AND DEPT.DEPARTCODE LIKE '$gxdwbm$%'
+			           order by DEPT.nodeorder
+			           ) PCS,
+			           
+			       (SELECT SUBSTR(log.LOGINUNITCODE, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) PAICHUSUOBM,
+		               count(*) dlzs
+		               FROM t_loginlog log, T_DEPARTMENT DEPT
+		               WHERE DEPT.DEPARTLEVEL = ((select t.departlevel from t_department t where t.departbrevitycode='$gxdwbm$')+1)
+			           AND DEPT.DEPARTCODE LIKE '$gxdwbm$%'
+			           AND log.LOGINUNITCODE LIKE DEPT.DEPARTBREVITYCODE || '%'
+			           and log.LOGINTIIME &gt;= trunc(#kssj:DATE#)
+			           and log.LOGINTIIME &lt; trunc(#jssj:DATE#)+1
+			          GROUP BY SUBSTR(log.LOGINUNITCODE, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ) loginlog
+			         
+			 WHERE 
+			 PCS.DEPARTBREVITYCODE = loginlog.PAICHUSUOBM(+)
+			
+  		) A
+  		
+  		<![CDATA[
+  		WHERE ROWNUM <= #endRow#
+		)
+		WHERE RN > #beginRow#
+		]]>
+ 	 
+	</select>
+	
+	<!--错误数据 总数-->
+	<select id="getDltjListCount" resultClass="int" parameterClass="map">
+		
+		SELECT COUNT(*)
+			          FROM T_DEPARTMENT DEPT
+			         WHERE DEPT.DEPARTLEVEL = ((select t.departlevel from t_department t where t.departbrevitycode='$gxdwbm$')+1)
+			           AND DEPT.DEPARTCODE LIKE '$gxdwbm$%' 
+			           order by dept.nodeorder
+			          
+	</select>
+	
+	<select id="getDltjTotalNum" resultMap="dltjResult" parameterClass="map">
+	     
+	        
+	 SELECT '$gxdwbm$' departbrevitycode,
+	        '合计' DEPARTNAME,
+	        NVL(sum(A.dlzs),'0') dlzs
+	        
+	     FROM (
+			SELECT PCS.DEPARTBREVITYCODE departbrevitycode,
+			       PCS.DEPARTNAME DEPARTNAME,
+			      NVL(loginlog.dlzs,'0') as dlzs
+			  FROM (SELECT DEPT.DEPARTCODE, DEPT.DEPARTBREVITYCODE, DEPT.DEPARTNAME, DEPT.NODEORDER
+			          FROM T_DEPARTMENT DEPT
+			         WHERE DEPT.DEPARTLEVEL = ((select t.departlevel from t_department t where t.departbrevitycode='$gxdwbm$')+1)
+			           AND DEPT.DEPARTCODE LIKE '$gxdwbm$%'
+			           order by DEPT.nodeorder
+			           ) PCS,
+			           
+			       (SELECT SUBSTR(log.LOGINUNITCODE, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) PAICHUSUOBM,
+		               count(*) dlzs
+		               FROM t_loginlog log, T_DEPARTMENT DEPT
+		               WHERE DEPT.DEPARTLEVEL = ((select t.departlevel from t_department t where t.departbrevitycode='$gxdwbm$')+1)
+			           AND DEPT.DEPARTCODE LIKE '$gxdwbm$%'
+			           AND log.LOGINUNITCODE LIKE DEPT.DEPARTBREVITYCODE || '%'
+			           and log.LOGINTIIME &gt;= trunc(#kssj:DATE#)
+			           and log.LOGINTIIME &lt; trunc(#jssj:DATE#)+1
+			          GROUP BY SUBSTR(log.LOGINUNITCODE, 0, LENGTH(DEPT.DEPARTBREVITYCODE)) ) loginlog
+			          
+			 WHERE 
+			 PCS.DEPARTBREVITYCODE = loginlog.PAICHUSUOBM(+)
+			
+  		) A
+	     
+	</select>
+</sqlMap>

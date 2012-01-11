@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <package name="basicsystem" extends="json-default" namespace="/basicsystem">
+    <action name="*_asjgl" method="{1}" class="asjglAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bjbdtj" method="{1}" class="bjbdtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bjgz" method="{1}" class="bjgzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bjjsx" method="{1}" class="bjjsxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bjxxb" method="{1}" class="bjxxbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkry" method="{1}" class="bkryAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkry_kz" method="{1}" class="bkry_kzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dxbj" method="{1}" class="dxbjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dxyj" method="{1}" class="dxyjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gzdx" method="{1}" class="gzdxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gzdx_kz" method="{1}" class="gzdx_kzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qgztjx" method="{1}" class="qgztjxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qgztjx_kz" method="{1}" class="qgztjx_kzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qycf" method="{1}" class="qycfAction">
+      <result type="json"/>
+    </action>
+    <action name="*_xctb" method="{1}" class="xctbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_xctb_fj" method="{1}" class="xctb_fjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_xctbhf" method="{1}" class="xctbhfAction">
+      <result type="json"/>
+    </action>
+    <action name="*_xctbjsdw" method="{1}" class="xctbjsdwAction">
+      <result type="json"/>
+    </action>
+    <action name="*_yjbdtj" method="{1}" class="yjbdtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_yjgz" method="{1}" class="yjgzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_yjxxb" method="{1}" class="yjxxbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_ztxx" method="{1}" class="ztxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_cjtj" method="{1}" class="cjtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_sjb" method="{1}" class="sjbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_sjbjg" method="{1}" class="sjbjgAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gjcxfa" method="{1}" class="gjcxfaAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dtcxtj" method="{1}" class="dtcxtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dtcxpx" method="{1}" class="dtcxpxAction">
+      <result type="json"/>
+    </action> 
+    <action name="*_zdycxtj" method="{1}" class="zdycxtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_publicPrint" method="{1}" class="publicPrintAction">
+      <result type="json"/>
+    </action>
+    <action name="*_asjtj" method="{1}" class="asjtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bdqclxx" method="{1}" class="bdqclxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bdqclxxkz" method="{1}" class="bdqclxxkzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bdqclxxlsb" method="{1}" class="bdqclxxlsbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkcl" method="{1}" class="bkclAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkclkz" method="{1}" class="bkclkzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bksj" method="{1}" class="bksjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bksjkz" method="{1}" class="bksjkzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkwpkbxx" method="{1}" class="bkwpkbxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bkwpkbxxkz" method="{1}" class="bkwpkbxxkzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_sjbdqxx" method="{1}" class="sjbdqxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_sjbdqxxkz" method="{1}" class="sjbdqxxkzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wpbjbdtj" method="{1}" class="wpbjbdtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wpbjgz" method="{1}" class="wpbjgzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wpbjxxb" method="{1}" class="wpbjxxbAction">
+      <result type="json"/>
+    </action>
+      <action name="*_qycftj" method="{1}" class="qycftjAction">
+      <result type="json"/>
+    </action>
+     <action name="*_bdbjtj" method="{1}" class="bdbjtjAction">
+      <result type="json"/>
+    </action>
+     <action name="*_jqhzlgy" method="{1}" class="jqhzlgyAction">
+      <result type="json"/>
+    </action>
+    <action name="*_expimp" method="{1}" class="qyxxExpImpAction">
+	  <result type="json"/>
+	</action>
+	
+	<!--车辆预警信息	-->
+	<action name="*_clyjxx" method="{1}" class="clyjxxAction">
+      <result type="json"/>
+    </action>
+	<!--公安协查通报   -->
+    <action name="*_gatztb" method="{1}" class="gatztbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gatztb_fj" method="{1}" class="gatztb_fjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gatztbhf" method="{1}" class="gatztbhfAction">
+      <result type="json"/>
+    </action>
+    <action name="*_gatztbjsdw" method="{1}" class="gatztbjsdwAction">
+      <result type="json"/>
+    </action>
+  </package>
+</struts>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <package name="icksystem" extends="json-default" namespace="/icksystem">
+   <action name="*_st_device" method="{1}" class="st_deviceAction">
+      <result type="json"/>
+    </action>
+    <action name="*_icksl" method="{1}" class="ickslAction">
+      <result type="json"/>
+    </action>
+    <action name="*_icksl_ickzb" method="{1}" class="icksl_ickzbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_icksl_wldj" method="{1}" class="icksl_wldjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_ickyj" method="{1}" class="ickyjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_ickzb" method="{1}" class="ickzbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wldj" method="{1}" class="wldjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_cjdtjrb" method="{1}" class="cjdtjrbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryskjl" method="{1}" class="qyryskjlAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryskxxtj" method="{1}" class="qyryskxxtjAction">
+      <result type="json"/>
+    </action>
+    
+      <action name="*_gzrztj" method="{1}" class="gzrztjAction">
+       <result type="json"/>
+    </action>
+    <action name="*_ztryskxxtj" method="{1}" class="ztryskxxtjAction">
+      <result type="json"/>
+    </action>
+ 
+    
+  </package>
+   <package name="kjdy" extends="struts-default" namespace="/kjdy">
+	<action name="kongJianDiaoYong" class="kjdyAction" method="kongJianDiaoYong">
+    </action>
+    <action name="creatKongJianSession" class="kjdyAction" method="creatKongJianSession">
+    	<result name="success">/public/kongJianCreatSession.jsp</result>
+    </action>
+  </package>
+</struts>

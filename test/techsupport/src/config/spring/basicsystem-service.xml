@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--全国人口核查服务-->
+	<bean id="gabRkhcService" class="com.aisino2.basicsystem.service.impl.GabRkhcServiceImpl">
+		<property name="gabrkhc" ref="gabrkhc" />
+	</bean>
+	<bean id="gabrkhc" class="com.aisino2.basicsystem.domain.Gabrkhc" >
+		<property name="m_serviceUrl" value="http://10.9.27.88:8090/XFire/services/PopulationService"></property>
+	</bean>
+	<!--全国在逃简项(t_qgztjx)-->
+	<bean id="qgztjxService" class="com.aisino2.basicsystem.service.impl.QgztjxServiceImpl">
+		<property name="qgztjxDao" ref="qgztjxDao" />
+	</bean>
+	<!--布控人员(t_bkry)-->
+	<bean id="bkryService" class="com.aisino2.basicsystem.service.impl.BkryServiceImpl">
+		<property name="bkryDao" ref="bkryDao" />
+		<property name="scbmDao" ref="scbmDao" />
+	</bean>
+	<!--案事件管理(t_asjgl)-->
+	<bean id="asjglService" class="com.aisino2.basicsystem.service.impl.AsjglServiceImpl">
+		<property name="asjglDao" ref="asjglDao" />
+	</bean>
+	<!--企业处罚(t_qycf)-->
+	<bean id="qycfService" class="com.aisino2.basicsystem.service.impl.QycfServiceImpl">
+		<property name="qycfDao" ref="qycfDao" />
+	</bean>
+	<!--协查通报(t_xctb)-->
+	<bean id="xctbService" class="com.aisino2.basicsystem.service.impl.XctbServiceImpl">
+		<property name="xctbDao" ref="xctbDao" />
+		<property name="xctb_fjDao" ref="xctb_fjDao" />
+		<property name="xctbjsdwDao" ref="xctbjsdwDao" />
+		<property name="xctbhfDao" ref="xctbhfDao" />
+	</bean>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<bean id="xctb_fjService" class="com.aisino2.basicsystem.service.impl.Xctb_fjServiceImpl">
+		<property name="xctb_fjDao" ref="xctb_fjDao" />
+	</bean>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<bean id="xctbjsdwService" class="com.aisino2.basicsystem.service.impl.XctbjsdwServiceImpl">
+		<property name="xctbjsdwDao" ref="xctbjsdwDao" />
+	</bean>
+	<!--协查通报回复(t_xctbhf)-->
+	<bean id="xctbhfService" class="com.aisino2.basicsystem.service.impl.XctbhfServiceImpl">
+		<property name="xctbhfDao" ref="xctbhfDao" />
+	</bean>
+	<!--短信预警(t_dxyj)-->
+	<bean id="dxyjService" class="com.aisino2.basicsystem.service.impl.DxyjServiceImpl">
+		<property name="dxyjDao" ref="dxyjDao" />
+	</bean>
+	<!--关注对象(t_gzdx)-->
+	<bean id="gzdxService" class="com.aisino2.basicsystem.service.impl.GzdxServiceImpl">
+		<property name="gzdxDao" ref="gzdxDao" />
+	</bean>
+	<!--报警规则(t_bjgz)-->
+	<bean id="bjgzService" class="com.aisino2.basicsystem.service.impl.BjgzServiceImpl">
+		<property name="bjgzDao" ref="bjgzDao" />
+	</bean>
+	<!--报警比对条件(t_bjbdtj)-->
+	<bean id="bjbdtjService" class="com.aisino2.basicsystem.service.impl.BjbdtjServiceImpl">
+		<property name="bjbdtjDao" ref="bjbdtjDao" />
+	</bean>
+	<!--报警机刷新(t_bjjsx)-->
+	<bean id="bjjsxService" class="com.aisino2.basicsystem.service.impl.BjjsxServiceImpl">
+		<property name="bjjsxDao" ref="bjjsxDao" />
+	</bean>
+	<!--报警信息表(t_bjxxb)-->
+	<bean id="bjxxbService" class="com.aisino2.basicsystem.service.impl.BjxxbServiceImpl">
+		<property name="bjxxbDao" ref="bjxxbDao" />
+		<property name="bjgzService" ref="bjgzService" />
+		<property name="bjbdtjService" ref="bjbdtjService" />
+		<property name="qgztjxkzService" ref="qgztjx_kzService" />
+		<property name="qgztjxService" ref="qgztjxService" />
+		<property name="bkryService" ref="bkryService" />
+		<property name="bkrykzService" ref="bkry_kzService" />
+	</bean>
+	<!--全国在逃简项快照(t_qgztjx_kz)-->
+	<bean id="qgztjx_kzService" class="com.aisino2.basicsystem.service.impl.Qgztjx_kzServiceImpl">
+		<property name="qgztjx_kzDao" ref="qgztjx_kzDao" />
+	</bean>
+	<!--布控人员快照(t_bkry_kz)-->
+	<bean id="bkry_kzService" class="com.aisino2.basicsystem.service.impl.Bkry_kzServiceImpl">
+		<property name="bkry_kzDao" ref="bkry_kzDao" />
+	</bean>
+	<!--关注对象快照(t_gzdx_kz)-->
+	<bean id="gzdx_kzService" class="com.aisino2.basicsystem.service.impl.Gzdx_kzServiceImpl">
+		<property name="gzdx_kzDao" ref="gzdx_kzDao" />
+	</bean>
+	<!--短信报警(t_dxbj)-->
+	<bean id="dxbjService" class="com.aisino2.basicsystem.service.impl.DxbjServiceImpl">
+		<property name="dxbjDao" ref="dxbjDao" />
+	</bean>
+	<!--预警比对条件(t_yjbdtj)-->
+	<bean id="yjbdtjService" class="com.aisino2.basicsystem.service.impl.YjbdtjServiceImpl">
+		<property name="yjbdtjDao" ref="yjbdtjDao" />
+	</bean>
+	<!--预警信息表(t_yjxxb)-->
+	<bean id="yjxxbService" class="com.aisino2.basicsystem.service.impl.YjxxbServiceImpl">
+		<property name="yjxxbDao" ref="yjxxbDao" />
+	</bean>
+	<!--预警规则(t_yjgz)-->
+	<bean id="yjgzService" class="com.aisino2.basicsystem.service.impl.YjgzServiceImpl">
+		<property name="yjgzDao" ref="yjgzDao" />
+	</bean>
+	<!--抓逃信息统计-->
+	<bean id="ztxxService" class="com.aisino2.basicsystem.service.impl.ZtxxServiceImpl">
+		<property name="ztxxDao" ref="ztxxDao" />
+	</bean>
+	<!--处警统计统计-->
+	<bean id="cjtjService" class="com.aisino2.basicsystem.service.impl.CjtjServiceImpl">
+		<property name="cjtjDao" ref="cjtjDao" />
+	</bean>
+	<!--数据表(t_sjb)-->
+	<bean id="sjbService" class="com.aisino2.basicsystem.service.impl.SjbServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sjbDao" ref="sjbDao"/>
+	</bean>
+	<!--数据表结构(t_sjbjg)-->
+	<bean id="sjbjgService" class="com.aisino2.basicsystem.service.impl.SjbjgServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sjbjgDao" ref="sjbjgDao"/>
+	</bean>
+	<!--高级查询方案(t_gjcxfa)-->
+	<bean id="gjcxfaService" class="com.aisino2.basicsystem.service.impl.GjcxfaServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="gjcxfaDao" ref="gjcxfaDao"/>
+		<property name="sjbDao" ref="sjbDao"/>
+		<property name="sjbjgDao" ref="sjbjgDao"/>
+	</bean>
+	<!--动态查询条件(t_dtcxtj)-->
+	<bean id="dtcxtjService" class="com.aisino2.basicsystem.service.impl.DtcxtjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dtcxtjDao" ref="dtcxtjDao"/>
+	</bean>
+	<!--动态查询排序(t_dtcxpx)-->
+	<bean id="dtcxpxService" class="com.aisino2.basicsystem.service.impl.DtcxpxServiceImpl">
+		<property name="dtcxpxDao" ref="dtcxpxDao" />
+	</bean>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<bean id="zdycxtjService" class="com.aisino2.basicsystem.service.impl.ZdycxtjServiceImpl">
+		<property name="zdycxtjDao" ref="zdycxtjDao" />
+	</bean>
+	
+	<!--得到姓名的双拼-->
+	<bean id="dpyService" class="com.aisino2.basicsystem.service.impl.DpyServiceImpl">
+		<property name="dpyDao" ref="dpyDao" />
+	</bean>
+	<!-- 案事件统计 -->
+	<bean id="asjtjService" class="com.aisino2.basicsystem.service.impl.AsjtjServiceImpl">
+		<property name="asjtjDao" ref="asjtjDao" />
+	</bean>
+	<!--被盗抢车辆信息(t_bdqclxx)-->
+	<bean id="bdqclxxService" class="com.aisino2.basicsystem.service.impl.BdqclxxServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bdqclxxDao" ref="bdqclxxDao"/>
+	</bean>
+	<!--被盗抢车辆信息_快照(t_bdqclxxkz)-->
+	<bean id="bdqclxxkzService" class="com.aisino2.basicsystem.service.impl.BdqclxxkzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bdqclxxkzDao" ref="bdqclxxkzDao"/>
+	</bean>
+	<!--布控车辆(t_bkcl)-->
+	<bean id="bkclService" class="com.aisino2.basicsystem.service.impl.BkclServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bkclDao" ref="bkclDao"/>
+	</bean>
+	<!--布控车辆快照(t_bkclkz)-->
+	<bean id="bkclkzService" class="com.aisino2.basicsystem.service.impl.BkclkzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bkclkzDao" ref="bkclkzDao"/>
+	</bean>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<bean id="bdqclxxlsbService" class="com.aisino2.basicsystem.service.impl.BdqclxxlsbServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bdqclxxlsbDao" ref="bdqclxxlsbDao"/>
+	</bean>
+	<!--布控手机快照(t_bksjkz)-->
+	<bean id="bksjkzService" class="com.aisino2.basicsystem.service.impl.BksjkzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bksjkzDao" ref="bksjkzDao"/>
+	</bean>
+	<!--布控手机(t_bksj)-->
+	<bean id="bksjService" class="com.aisino2.basicsystem.service.impl.BksjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bksjDao" ref="bksjDao"/>
+	</bean>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<bean id="bkwpkbxxkzService" class="com.aisino2.basicsystem.service.impl.BkwpkbxxkzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bkwpkbxxkzDao" ref="bkwpkbxxkzDao"/>
+	</bean>
+	<!--布控物品基本信息(t_bkwpkbxx)-->
+	<bean id="bkwpkbxxService" class="com.aisino2.basicsystem.service.impl.BkwpkbxxServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bkwpkbxxDao" ref="bkwpkbxxDao"/>
+		<property name="bksjDao" ref="bksjDao"/>
+		<property name="bkclDao" ref="bkclDao"/>
+	</bean>
+	<!--手机被盗抢信息(t_sjbdqxx)-->
+	<bean id="sjbdqxxService" class="com.aisino2.basicsystem.service.impl.SjbdqxxServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sjbdqxxDao" ref="sjbdqxxDao"/>
+	</bean>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<bean id="sjbdqxxkzService" class="com.aisino2.basicsystem.service.impl.SjbdqxxkzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sjbdqxxkzDao" ref="sjbdqxxkzDao"/>
+	</bean>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<bean id="wpbjbdtjService" class="com.aisino2.basicsystem.service.impl.WpbjbdtjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="wpbjbdtjDao" ref="wpbjbdtjDao"/>
+	</bean>
+	<!--物品报警规则(t_wpbjgz)-->
+	<bean id="wpbjgzService" class="com.aisino2.basicsystem.service.impl.WpbjgzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="wpbjgzDao" ref="wpbjgzDao"/>
+	</bean>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<bean id="wpbjxxbService" class="com.aisino2.basicsystem.service.impl.WpbjxxbServiceImpl">
+		<property name="wpbjxxbDao" ref="wpbjxxbDao" />
+		<property name="wpbjgzService" ref="wpbjgzService" />
+		<property name="wpbjbdtjService" ref="wpbjbdtjService" />
+		<property name="bkclService" ref="bkclService" />
+		<property name="bkwpkbxxService" ref="bkwpkbxxService" />
+		<property name="bkclkzService" ref="bkclkzService" />
+		<property name="bkwpkbxxkzService" ref="bkwpkbxxkzService" />
+		<property name="bdqclxxService" ref="bdqclxxService" />
+		<property name="bdqclxxkzService" ref="bdqclxxkzService" />
+		<property name="bksjService" ref="bksjService" />
+		<property name="bksjkzService" ref="bksjkzService" />
+		<property name="sjbdqxxService" ref="sjbdqxxService" />
+		<property name="sjbdqxxkzService" ref="sjbdqxxkzService" />
+	</bean>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<bean id="wbjkdyczrzService" class="com.aisino2.basicsystem.service.impl.WbjkdyczrzServiceImpl">
+		<property name="wbjkdyczrzDao" ref="wbjkdyczrzDao" />
+	</bean>
+	<!--外部接口操作日志明细(t_wbjkczrzmx)-->
+	<bean id="wbjkczrzmxService" class="com.aisino2.basicsystem.service.impl.WbjkczrzmxServiceImpl">
+		<property name="wbjkczrzmxDao" ref="wbjkczrzmxDao" />
+	</bean>
+	<!--webservice外部接口操作日志记录总和方法(t_wbjkczrzmx)-->
+	<bean id="wbjkdyczrzWsService"
+		class="com.aisino2.basicsystem.service.WbjkdyczrzWsService">
+		<property name="dict_itemDao" ref="dict_itemDao" />
+		<property name="wbjkdyczrzDao" ref="wbjkdyczrzDao" />
+		<property name="wbjkczrzmxDao" ref="wbjkczrzmxDao" />
+	</bean>
+	
+	<!--企业处罚统计表(t_qycftj)-->
+	<bean id="qycftjService" class="com.aisino2.basicsystem.service.impl.QycftjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="qycftjDao" ref="qycftjDao"/>
+	</bean>
+		<!--比对报警统计表(t_bdbjtj)-->
+	<bean id="bdbjtjService" class="com.aisino2.basicsystem.service.impl.BdbjtjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="bdbjtjDao" ref="bdbjtjDao"/>
+	</bean>
+	
+	<bean id="jqhzlgyService" class="com.aisino2.basicsystem.service.impl.JqhzlgyServiceServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="jqhzlgyDao" ref="jqhzlgyDao"/>
+	</bean>
+	
+	<!--通用日常检查(t_wpbjgz)-->
+	<bean id="departAndQiYeService" class="com.aisino2.basicsystem.service.impl.DepartAndQiYeServiceImpl">
+		<property name="departAndQiYeDao" ref="departAndQiYeDao"/>
+	</bean>
+	<!-- 企业认证信息 -->
+	<bean id="qyxxExpImpService" class="com.aisino2.basicsystem.service.impl.QyxxExpImpImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="qyxxExpImpDao" ref="qyxxExpImpDao"/>
+	</bean>
+	
+	<!--车辆预警信息(t_clyjxx)-->
+	<bean id="clyjxxService" class="com.aisino2.basicsystem.service.impl.ClyjxxServiceImpl">
+		<property name="clyjxxDao" ref="clyjxxDao" />
+	</bean>
+	<!--公安通知通报	-->
+	<bean id="gatztbService" class="com.aisino2.basicsystem.service.impl.GatztbServiceImpl">
+		<property name="gatztbDao" ref="gatztbDao" />
+		<property name="gatztb_fjDao" ref="gatztb_fjDao" />
+		<property name="gatztbjsdwDao" ref="gatztbjsdwDao" />
+	</bean>
+	<!--公安通知通报附件	-->
+	<bean id="gatztb_fjService" class="com.aisino2.basicsystem.service.impl.Gatztb_fjServiceImpl">
+		<property name="gatztb_fjDao" ref="gatztb_fjDao" />
+	</bean>
+	<!--公安通知通报回复	-->
+	<bean id="gatztbhfService" class="com.aisino2.basicsystem.service.impl.GatztbhfServiceImpl">
+		<property name="gatztbhfDao" ref="gatztbhfDao" />
+	</bean>
+	<!--公安通知通报接收单位	-->
+	<bean id="gatztbjsdwService" class="com.aisino2.basicsystem.service.impl.GatztbjsdwServiceImpl">
+		<property name="gatztbjsdwDao" ref="gatztbjsdwDao" />
+	</bean>
+</beans>

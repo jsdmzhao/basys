@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ylcsjbxxForTree" type="com.aisino2.basicsystem.domain.YlcsjbxxForTree"/>
+	<typeAlias alias="departmentForTree" type="com.aisino2.sysadmin.domain.Department"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	
+	<!--娱乐场所基本信息(t_ylcsjbxx) 生成娱乐场所树，用于跨工程调用-->
+	<resultMap id="ylcsjbxxTreeResult" class="ylcsjbxxForTree">
+		<result property="csid" column="csid"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+		<result property="hylxbm" column="hylxbm"/>
+		<result property="hylxmc" column="hylxmc"/>
+		<result property="isAllGxdwbm" column="isAllGxdwbm"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	<resultMap id="ylcsjbxxJlTreeResult" class="ylcsjbxxForTree">
+		<result property="csid" column="csid"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	<!--机构(t_department)-->
+	<resultMap id="departmentListResult" class="departmentForTree">
+		<result property="departid" column="departid"/>
+		<result property="departcode" column="departcode"/>
+		<result property="departname" column="departname"/>
+		<result property="departlevel" column="departlevel"/>
+		<result property="parentdepartid" column="parentdepartid"/>
+		<result property="departfullcode" column="departfullcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+		<result property="departsimplepin" column="departsimplepin"/>
+		<result property="departallpin" column="departallpin"/>
+	</resultMap>
+	<!--企业基本基本信息(旅馆业) 用于跨工程调用-->
+	<select id="getQiyeTreeListNoPage" resultMap="ylcsjbxxTreeResult" parameterClass="map">
+		$yuju$
+	</select>
+	<select id="getQiyeJlTreeListNoPage" resultMap="ylcsjbxxJlTreeResult" parameterClass="map">
+		$yuju$
+	</select>
+	 <!-- 获得指定级别的机构下所有子机构，并且该子机构拥有场所 -->
+  	<select id="getChildDepartmentQiyeForTree" resultMap="departmentListResult" parameterClass="departmentForTree">
+	  	 select a.departid        departid,
+		       a.departcode      departcode,
+		       a.departname      departname,
+		       a.departlevel     departlevel,
+		       a.parentdepartid  parentdepartid,
+		       a.departfullcode  departfullcode,
+		       a.nodeorder       nodeorder,
+		       a.isleaf          isleaf,
+		       a.departsimplepin departsimplepin,
+		       a.departallpin    departallpin
+		  from t_department a
+		 where a.parentdepartid = #departid#
+	    <isNotEmpty prepend="and" property="departcode">
+	    	$departcode$
+	    </isNotEmpty>
+    	order by nodeorder
+  	</select>
+</sqlMap>

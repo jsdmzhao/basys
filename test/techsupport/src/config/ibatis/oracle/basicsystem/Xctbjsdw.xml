@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="xctbjsdw" type="com.aisino2.basicsystem.domain.Xctbjsdw"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<resultMap id="xctbjsdwResult" class="xctbjsdw">
+		<result property="tbid" column="tbid" />
+		<result property="jsdwid" column="jsdwid" />
+		<result property="jsdwbm" column="jsdwbm" />
+		<result property="jsdwmc" column="jsdwmc" />
+		<result property="sqsj" column="sqsj" />
+		<result property="hylxdm" column="hylxdm" />
+		<result property="hylx" column="hylx" />
+	</resultMap>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<resultMap id="xctbjsdwListResult" class="xctbjsdw">
+		<result property="tbid" column="tbid"/>
+		<result property="jsdwid" column="jsdwid"/>
+		<result property="jsdwbm" column="jsdwbm"/>
+		<result property="jsdwmc" column="jsdwmc"/>
+		<result property="sqsj" column="sqsj"/>
+		<result property="hylxdm" column="hylxdm" />
+		<result property="hylx" column="hylx" />
+		<result property="bt" column="bt" />
+		<result property="fbsj" column="fbsj" />
+		<result property="fbdwbm" column="fbdwbm" />
+		<result property="fbdw" column="fbdw" />
+	</resultMap>
+		
+	<sql id="t_xctbjsdwWhere">
+			<isNotEmpty prepend="and" property="tbid">
+				a.tbid=#tbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsdwid">
+				a.jsdwid=#jsdwid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_xctbjsdwPageWhere" >
+		<include refid="t_xctbjsdwWhere" />	</sql>
+	<sql id="t_xctbjsdwListWhere" >
+		<include refid="t_xctbjsdwWhere" />	</sql>
+	<sql id="t_xctbjsdwSelectWhere"  >
+		<include refid="t_xctbjsdwWhere" />
+		<isNotEmpty prepend="and" property="jsdwbm">
+				a.jsdwbm=#jsdwbm#
+		</isNotEmpty>	
+	</sql>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<insert id="insertXctbjsdw"  parameterClass="xctbjsdw">
+		insert into t_xctbjsdw (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				tbid
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwid">
+				jsdwid
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwbm">
+				jsdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				jsdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				sqsj
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				hylxdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				hylx
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwbm">
+				gxdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				#tbid#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwid">
+				#jsdwid#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwbm">
+				#jsdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				#jsdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				#sqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				#hylxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				#hylx#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwbm">
+				#gxdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<update id="updateXctbjsdw" parameterClass="xctbjsdw">
+		update t_xctbjsdw a set a.jsdwid=a.jsdwid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="jsdwbm">
+				jsdwbm=#jsdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				jsdwmc=#jsdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				sqsj=#sqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				hylxdm=#hylxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				hylx=#hylx#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwWhere" />
+		</dynamic>
+	</update>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<delete id="deleteXctbjsdw" parameterClass="xctbjsdw">
+		delete from t_xctbjsdw a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwWhere" />
+		</dynamic>
+	</delete>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<select id="getXctbjsdwList" resultMap="xctbjsdwListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.jsdwid jsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,
+		a.hylxdm hylxdm,a.hylx hylx,b.bt bt,b.fbsj fbsj,b.fbdwbm fbdwbm,b.fbdw fbdw
+		from t_xctbjsdw a, t_xctb b
+		where a.tbid = b.tbid 
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<select id="getXctbjsdwListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_xctbjsdw a, t_xctb b
+		where a.tbid = b.tbid 
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwPageWhere" />
+		</dynamic>
+	</select>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<select id="getXctbjsdwListNoPage" resultMap="xctbjsdwListResult" parameterClass="xctbjsdw">
+		select a.tbid tbid,a.jsdwid jsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,a.hylxdm hylxdm,
+		a.hylx hylx,b.bt bt,b.fbsj fbsj,b.fbdwbm fbdwbm,b.fbdw fbdw
+		from t_xctbjsdw a, t_xctb b
+		where  a.tbid = b.tbid
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwListWhere" />
+		</dynamic>
+		order by a.tbid,a.jsdwid
+	</select>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<select id="getXctbjsdw" resultMap="xctbjsdwResult" parameterClass="xctbjsdw">
+		select a.tbid tbid,a.jsdwid jsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,a.hylxdm hylxdm,a.hylx hylx
+		from t_xctbjsdw a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwSelectWhere" />
+		</dynamic>
+		order by a.tbid,a.jsdwid
+	</select>
+	
+	<!--协查通报接收单位(t_xctbjsdw) 回复-->
+	<select id="getXctbjsdwHfList" resultMap="xctbjsdwListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.jsdwid jsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,c.hfsj sqsj,
+		a.hylxdm hylxdm,a.hylx hylx,b.bt bt,b.fbsj fbsj,b.fbdwbm fbdwbm,b.fbdw fbdw
+		from t_xctbjsdw a, t_xctb b, t_xctbhf c   
+		where a.tbid = b.tbid  and a.jsdwid = c.jsdwid
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<select id="getXctbjsdwHfListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_xctbjsdw a, t_xctb b , t_xctbhf c   
+		where a.tbid = b.tbid  and a.jsdwid = c.jsdwid
+		<dynamic prepend="">
+			<include refid="t_xctbjsdwPageWhere" />
+		</dynamic>
+	</select>
+	
+</sqlMap>

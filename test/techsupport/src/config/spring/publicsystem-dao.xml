@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--企业基本信息(t_qyjbxx)-->
+	<bean id="qyjbxxDao" class="com.aisino2.publicsystem.dao.ibatis.QyjbxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业证件表(t_qyzjb)-->
+	<bean id="qyzjbDao" class="com.aisino2.publicsystem.dao.ibatis.QyzjbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--保安服务合同(t_bafwht)-->
+	<bean id="bafwhtDao" class="com.aisino2.publicsystem.dao.ibatis.BafwhtDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员信息(t_qyryxx)-->
+	<bean id="qyryxxDao" class="com.aisino2.publicsystem.dao.ibatis.QyryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<bean id="wgtzrxxDao" class="com.aisino2.publicsystem.dao.ibatis.WgtzrxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<bean id="ryxxczrzDao" class="com.aisino2.publicsystem.dao.ibatis.RyxxczrzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业信息操作日志(t_qyxxczrz)-->
+	<bean id="qyxxczrzDao" class="com.aisino2.publicsystem.dao.ibatis.QyxxczrzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<bean id="qyryxx_lsxxDao" class="com.aisino2.publicsystem.dao.ibatis.Qyryxx_lsxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业副分类(t_qyffl)-->
+	<bean id="qyfflDao" class="com.aisino2.publicsystem.dao.ibatis.QyfflDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业分类统计(t_qyfltj)-->
+	<bean id="qyfltjDao" class="com.aisino2.publicsystem.dao.ibatis.QyfltjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<bean id="qyryxxtjDao" class="com.aisino2.publicsystem.dao.ibatis.QyryxxtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业上传统计表(t_qysctj)-->
+	<bean id="qysctjDao" class="com.aisino2.publicsystem.dao.ibatis.QysctjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--平面图(t_pmt)-->
+	<bean id="pmtDao" class="com.aisino2.publicsystem.dao.ibatis.PmtDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--人员类别统计(t_rylbtj)-->
+	<bean id="rylbtjDao" class="com.aisino2.publicsystem.dao.ibatis.RylbtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<bean id="qyscbcfDao" class="com.aisino2.publicsystem.dao.ibatis.QyscbcfDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--未上传企业(t_wscqy)-->
+	<bean id="wscqyDao" class="com.aisino2.publicsystem.dao.ibatis.WscqyDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<bean id="bldsjksbDao" class="com.aisino2.publicsystem.dao.ibatis.BldsjksbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--安全检查设备(t_aqjcsb)-->
+	<bean id="aqjcsbDao" class="com.aisino2.publicsystem.dao.ibatis.AqjcsbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业基本信息—历史(t_qyjbxx_ls)-->
+	<bean id="qyjbxx_lsDao" class="com.aisino2.publicsystem.dao.ibatis.Qyjbxx_lsDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<bean id="qyry_tjxxDao" class="com.aisino2.publicsystem.dao.ibatis.Qyry_tjxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业奖惩信息(t_qyjcxx)-->
+	<bean id="qyjcxxDao" class="com.aisino2.publicsystem.dao.ibatis.QyjcxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<bean id="ryjcxxDao" class="com.aisino2.publicsystem.dao.ibatis.RyjcxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业备案信息(t_qybaxx)-->
+	<bean id="qybaxxDao" class="com.aisino2.publicsystem.dao.ibatis.QybaxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<bean id="qybcbaxxDao" class="com.aisino2.publicsystem.dao.ibatis.QybcbaxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--提交材料信息(t_tjclxx)-->
+	<bean id="publictjclxxDao" class="com.aisino2.publicsystem.dao.ibatis.TjclxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--证件历史表(t_zjb_ls)-->
+	<bean id="zjb_lsDao" class="com.aisino2.publicsystem.dao.ibatis.Zjb_lsDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员信息核查(t_qyryxxhc)-->
+	<bean id="qyryxxhcDao" class="com.aisino2.publicsystem.dao.ibatis.QyryxxhcDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<bean id="garkktbsjDao" class="com.aisino2.publicsystem.dao.ibatis.GarkktbsjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员奖惩统计表(t_qyryjctj)-->
+	<bean id="qyryjctjDao" class="com.aisino2.publicsystem.dao.ibatis.QyryjctjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业审核(t_qysh)-->
+	<bean id="qyshDao" class="com.aisino2.publicsystem.dao.ibatis.QyshDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员审核(t_qyrysh)-->
+	<bean id="qyryshDao" class="com.aisino2.publicsystem.dao.ibatis.QyryshDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<bean id="wgcyryxxDao" class="com.aisino2.publicsystem.dao.ibatis.WgcyryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<bean id="qyry_zpDao" class="com.aisino2.publicsystem.dao.ibatis.Qyry_zpDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--日常检查(t_rcjc)-->
+	<bean id="publicrcjcDao" class="com.aisino2.publicsystem.dao.ibatis.RcjcDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--可疑情况(t_kyqk)-->
+	<bean id="publickyqkDao" class="com.aisino2.publicsystem.dao.ibatis.KyqkDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--联合检查(t_lhjc)-->
+	<bean id="lhjcDao" class="com.aisino2.publicsystem.dao.ibatis.LhjcDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业账号同步-->
+	<bean id="qyzhtbDao" class="com.aisino2.publicsystem.dao.ibatis.QyzhtbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--客户信息表(t_khxx)-->
+	<bean id="khxxDao" class="com.aisino2.publicsystem.dao.ibatis.KhxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--外国客户信息(t_wgkhxx)-->
+	<bean id="wgkhxxDao" class="com.aisino2.publicsystem.dao.ibatis.WgkhxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+		<!--企业总人数信息(t_wgkhxx)-->
+	<bean id="qyZrsProcDao" class="com.aisino2.publicsystem.dao.ibatis.QyZrsProcDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--车辆基本信息(t_cljbxx)-->
+	<bean id="cljbxxDao" class="com.aisino2.publicsystem.dao.ibatis.CljbxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<bean id="clxx_zpDao" class="com.aisino2.publicsystem.dao.ibatis.Clxx_zpDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--车辆信息人员_照片(t_clxxry_zp)-->
+	<bean id="clxxry_zpDao" class="com.aisino2.publicsystem.dao.ibatis.Clxxry_zpDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<bean id="clxxwgryxxDao" class="com.aisino2.publicsystem.dao.ibatis.ClxxwgryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+		<!--企业人员信息账号用户(t_clxxwgryxx)-->
+	<bean id="ggQyyhDao" class="com.aisino2.publicsystem.dao.ibatis.GgQyyhDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业营业日志(t_qyyyrz)-->
+	<bean id="qyyyrzDao" class="com.aisino2.publicsystem.dao.ibatis.QyyyrzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--企业营业日志统计(t_qyyyrztj)-->
+	<bean id="qyyyrztjDao" class="com.aisino2.publicsystem.dao.ibatis.QyyyrztjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--企业变更信息(t_qybgxx)-->
+	<bean id="qybgxxDao" class="com.aisino2.publicsystem.dao.ibatis.QybgxxDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem"/>
+	</bean>
+	<!--企业人员工作日志(t_qyrygzrz)-->
+	<bean id="qyrygzrzDao" class="com.aisino2.publicsystem.dao.ibatis.QyrygzrzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<bean id="qyyyzttjDao" class="com.aisino2.publicsystem.dao.ibatis.QyyyzttjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--可疑车辆(t_kycl)-->
+	<bean id="kyclDao" class="com.aisino2.publicsystem.dao.ibatis.KyclDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业质量信息(t_qyzlxx)-->
+	<bean id="qyzlxxDao" class="com.aisino2.publicsystem.dao.ibatis.QyzlxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<bean id="qyzlxxfjDao" class="com.aisino2.publicsystem.dao.ibatis.QyzlxxfjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--保安人员信息(t_baryxx)-->
+	<bean id="baryxxDao" class="com.aisino2.publicsystem.dao.ibatis.BaryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--保卫人员信息(t_bwryxx)-->
+	<bean id="bwryxxDao" class="com.aisino2.publicsystem.dao.ibatis.BwryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+	<!--从业人员信息(t_qyryxx)-->
+	<bean id="cyryxxtjDao" class="com.aisino2.publicsystem.dao.ibatis.CyryxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapPublicsystem" />
+	</bean>
+
+	
+</beans>

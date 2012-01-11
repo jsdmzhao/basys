@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyzjb" type="com.aisino2.publicsystem.domain.Qyzjb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业证件表(t_qyzjb)-->
+	<resultMap id="qyzjbResult" class="qyzjb">
+		<result property="zjid" column="zjid" />
+		<result property="qyid" column="qyid" />
+		<result property="zjfl" column="zjfl" />
+		<result property="zjbh" column="zjbh" />
+		<result property="fzjg" column="fzjg" />
+		<result property="qsrq" column="qsrq" />
+		<result property="jzrq" column="jzrq" />
+	</resultMap>
+	<!--企业证件表(t_qyzjb)-->
+	<resultMap id="qyzjbListResult" class="qyzjb">
+		<result property="zjid" column="zjid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="zjfl" column="zjfl"/>
+		<result property="zjbh" column="zjbh"/>
+		<result property="fzjg" column="fzjg"/>
+		<result property="qsrq" column="qsrq"/>
+		<result property="jzrq" column="jzrq"/>
+		<result property="fzjgdm" column="fzjgdm"/>
+	</resultMap>
+	<sql id="t_qyzjbWhere">
+			<isNotEmpty prepend="and" property="zjid">
+				a.zjid=#zjid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyzjbPageWhere" >
+		<include refid="t_qyzjbWhere" />	</sql>
+	<sql id="t_qyzjbListWhere" >
+		<include refid="t_qyzjbWhere" />	</sql>
+	<sql id="t_qyzjbSelectWhere"  >
+		<include refid="t_qyzjbWhere" />	</sql>
+	<!--企业证件表(t_qyzjb)-->
+	<insert id="insertQyzjb"  parameterClass="qyzjb">
+		insert into t_qyzjb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zjid">
+				zjid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="zjfl">
+				zjfl
+			</isNotNull>
+			<isNotNull prepend="," property="zjbh">
+				zjbh
+			</isNotNull>
+			<isNotNull prepend="," property="fzjg">
+				fzjg
+			</isNotNull>
+			<isNotNull prepend="," property="qsrq">
+				qsrq
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgdm">
+				fzjgdm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zjid">
+				#zjid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="zjfl">
+				#zjfl#
+			</isNotNull>
+			<isNotNull prepend="," property="zjbh">
+				#zjbh#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjg">
+				#fzjg#
+			</isNotNull>
+			<isNotNull prepend="," property="qsrq">
+				#qsrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgdm">
+				#fzjgdm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业证件表(t_qyzjb)-->
+	<update id="updateQyzjb" parameterClass="qyzjb">
+		update t_qyzjb a set a.zjid=a.zjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="zjfl">
+				zjfl=#zjfl#
+			</isNotNull>
+			<isNotNull prepend="," property="zjbh">
+				zjbh=#zjbh#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjg">
+				fzjg=#fzjg#
+			</isNotNull>
+			<isNotNull prepend="," property="qsrq">
+				qsrq=#qsrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq=#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgdm">
+				fzjgdm=#fzjgdm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzjbWhere" />
+		</dynamic>
+	</update>
+	<!--企业证件表(t_qyzjb)-->
+	<delete id="deleteQyzjb" parameterClass="qyzjb">
+		delete from t_qyzjb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyzjbWhere" />
+		</dynamic>
+	</delete>
+	<!--企业证件表(t_qyzjb)-->
+	<select id="getQyzjbList" resultMap="qyzjbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.zjid zjid,a.qyid qyid,a.zjfl zjfl,a.zjbh zjbh,a.fzjg fzjg,a.qsrq qsrq,a.jzrq jzrq,a.fzjgdm fzjgdm
+		from t_qyzjb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzjbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业证件表(t_qyzjb)-->
+	<select id="getQyzjbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyzjb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzjbPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业证件表(t_qyzjb)-->
+	<select id="getQyzjbListNoPage" resultMap="qyzjbListResult" parameterClass="qyzjb">
+		select a.zjid zjid,a.qyid qyid,a.zjfl zjfl,a.zjbh zjbh,a.fzjg fzjg,a.qsrq qsrq,a.jzrq jzrq,a.fzjgdm fzjgdm
+		from t_qyzjb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzjbListWhere" />
+		</dynamic>
+		order by a.zjid,a.qyid
+	</select>
+	<!--企业证件表(t_qyzjb)-->
+	<select id="getQyzjb" resultMap="qyzjbResult" parameterClass="qyzjb">
+		select a.zjid zjid,a.qyid qyid,a.zjfl zjfl,a.zjbh zjbh,a.fzjg fzjg,a.qsrq qsrq,a.jzrq jzrq
+		from t_qyzjb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzjbSelectWhere" />
+		</dynamic>
+		order by a.zjid,a.qyid
+	</select>
+</sqlMap>

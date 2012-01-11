@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	<typeAlias alias="Attachment" type="com.aisino2.techsupport.domain.Attachment" />
+	
+	<resultMap class="Attachment" id="AttachmentResult">
+		<result property="attachmentId" column="attachment_Id"/>
+		<result property="attachmentName" column="attachment_Name"/>
+		<result property="attachmentComment" column="attachment_Comment"/>
+		<result property="attachmentSize" column="attachment_Size"/>
+		<result property="stId" column="st_id"/>
+		<result property="attachmentContent" column="attachment_Content"/>
+	</resultMap>
+	
+	<sql id="AttachmentFrom">
+	</sql>
+	<sql id="AttachmentWhere">
+		<isNotNull prepend="and" property="attachmentId">
+			t.attachment_Id = #attachmentId#
+		</isNotNull>
+		<isNotNull prepend="and" property="attachmentName">
+			t.attachment_Name like '$attachmentName$%'
+		</isNotNull>
+		<isNotNull prepend="and" property="attachmentComment">
+			t.attachment_Comment like '%$attachmentComment$%'
+		</isNotNull>
+		<isNotNull prepend="and" property="stId">
+			t.stId = #stId#
+		</isNotNull>
+	</sql>
+	
+	<sql id="AttachmentPageWhere">
+		<include refid="AttachmentWhere"/>
+	</sql>
+<!-- 	插入 -->
+	<insert id="Attachment.insert" parameterClass="Attachment">
+		insert into T_TS_SUPPORT_ATTACHMENT (
+			<dynamic prepend=" ">
+				<isNotNull prepend="," property="attachmentId">
+					attachment_Id
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentName">
+					attachment_Name
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentComment">
+					attachment_Comment
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentSize">
+					attachment_Size
+				</isNotNull>
+				<isNotNull prepend="," property="stId">
+					st_Id
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentContent">
+					attachment_Content
+				</isNotNull>
+			</dynamic>
+		)
+		values(
+			<dynamic prepend=" ">
+				<isNotNull prepend="," property="attachmentId">
+					#attachmentId#
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentName">
+					#attachmentName#
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentComment">
+					#attachmentComment#
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentSize">
+					#attachmentSize#
+				</isNotNull>
+				<isNotNull prepend="," property="stId">
+					#stId#
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentContent">
+					#attachmentContent#
+				</isNotNull>
+			</dynamic>
+		)
+	</insert>
+	
+<!-- 	更新 -->
+	<update id="Attachment.update" parameterClass="Attachment">
+		update T_TS_SUPPORT_ATTACHMENT t set attachment_Id=attachment_Id
+		<dynamic prepend="">
+			<isNotNull prepend="," property="attachmentId">
+				attachment_Id = #attachmentId#
+			</isNotNull>
+			<isNotNull prepend="," property="attachmentName">
+				attachment_Name = #attachmentName#
+			</isNotNull>
+			<isNotNull prepend="," property="attachmentComment">
+				attachment_Comment = #attachmentComment#
+			</isNotNull>
+			<isNotNull prepend="," property="attachmentSize">
+				attachment_Size = #attachmentSize#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				st_Id = #stId#
+			</isNotNull>
+			<isNotNull prepend="," property="attachmentContent">
+				attachment_Content = #attachmentContent#
+			</isNotNull>
+		</dynamic>
+		
+		where 1=1 
+		<dynamic>
+			<include refid="AttachmentWhere"/>
+		</dynamic>
+	</update>
+<!-- 	删除  -->
+	<delete id="Attachment.delete" parameterClass="Attachment">
+		delete from T_TS_SUPPORT_ATTACHMENT t
+		where 1=1
+		<include refid="AttachmentWhere"/>
+	</delete>
+	
+<!-- 	分页查询 -->
+	<select id="Attachment.queryForPage" parameterClass="map" resultMap="AttachmentResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select   t.*
+		 from T_TS_TECH_SUPPORT t 
+		
+		 <dynamic prepend="">
+			<include refid="AttachmentFrom"/>
+		 </dynamic>
+		where 1=1
+		
+		<dynamic prepend="">
+			<include refid="AttachmentPageWhere"/>	
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$
+	</select>
+	
+<!-- 	分页用获取记录数 -->
+	<select id="Attachment.queryForPageCount" parameterClass="map" resultClass="int">
+		select count(1) from T_TS_TECH_SUPPORT t 
+		
+		 <dynamic prepend="">
+			<include refid="AttachmentFrom"/>
+		 </dynamic>
+		where 1=1
+		
+		<dynamic prepend="">
+			<include refid="AttachmentPageWhere"/>	
+		</dynamic>
+	</select>
+	
+<!-- 	获取列表 -->
+	<select id="Attachment.query" parameterClass="Attachment" resultMap="AttachmentResult">
+		select   t.*
+		 from T_TS_TECH_SUPPORT t 
+		
+		 <dynamic prepend="">
+			<include refid="AttachmentFrom"/>
+		 </dynamic>
+		where 1=1
+		
+		<dynamic prepend="">
+			<include refid="AttachmentWhere"/>	
+		</dynamic> 
+	</select>
+	
+<!-- 	获取单一 -->
+	<select id="Attachment.get" parameterClass="Attachment" resultMap="AttachmentResult">
+		select   t.*
+		 from T_TS_TECH_SUPPORT t 
+		where t.attachment_Id = #attachmentId#
+		
+	</select>
+</sqlMap>

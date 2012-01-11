@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="dict_item" type="com.aisino2.sysadmin.domain.Dict_item"/>
+	<typeAlias alias="dict" type="com.aisino2.sysadmin.domain.Dict"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--字典项(t_dict_item)-->
+	<resultMap id="dict_itemResult" class="dict_item">
+		<result property="item_id" column="item_id" />
+		<result property="dict_code" column="dict_code" />
+		<result property="display_name" column="display_name" />
+		<result property="fact_value" column="fact_value" />
+		<result property="append_value" column="append_value" />
+		<result property="super_item_id" column="super_item_id" />
+		<result property="sib_order" column="sib_order" />
+		<result property="leaf_flag" column="leaf_flag" />
+		<result property="display_flag" column="display_flag" />
+		<result property="valid_flag" column="valid_flag" />
+		<result property="item_simplepin" column="item_simplepin" />
+		<result property="item_allpin" column="item_allpin" />
+	</resultMap>
+	<!--字典项(t_dict_item)-->
+	<resultMap id="dict_itemListResult" class="dict_item">
+		<result property="item_id" column="item_id"/>
+		<result property="dict_code" column="dict_code"/>
+		<result property="display_name" column="display_name"/>
+		<result property="fact_value" column="fact_value"/>
+		<result property="append_value" column="append_value"/>
+		<result property="super_item_id" column="super_item_id"/>
+		<result property="sib_order" column="sib_order"/>
+		<result property="leaf_flag" column="leaf_flag"/>
+		<result property="display_flag" column="display_flag"/>
+		<result property="valid_flag" column="valid_flag"/>
+		<result property="item_simplepin" column="item_simplepin"/>
+		<result property="item_allpin" column="item_allpin"/>
+	</resultMap>
+	<!--字典项(t_dict_item) 获得下一个排序号-->
+	<resultMap id="sib_orderResult" class="dict_item">
+		<result property="sib_order" column="sib_order" />
+	</resultMap>
+	<sql id="t_dict_itemWhere">
+			<isNotEmpty prepend="and" property="item_id">
+				a.item_id=#item_id#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_code">
+				a.dict_code=#dict_code#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="display_name">
+				a.display_name=#display_name#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fact_value">
+				a.fact_value=#fact_value#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_dict_itemPageWhere" >
+		<include refid="t_dict_itemWhere" />	
+			<isNotEmpty prepend="" property="display_name">
+			   and a.display_name like '%$display_name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="super_item_id">
+			   and a.super_item_id='$super_item_id$'
+			</isNotEmpty>
+		</sql>
+	<sql id="t_dict_itemListWhere" >
+		<include refid="t_dict_itemWhere" />		
+		
+	</sql>
+	<sql id="t_dict_itemSelectWhere"  >
+		<include refid="t_dict_itemWhere" />	</sql>
+	<!--字典项(t_dict_item)-->
+	<insert id="insertDict_item"  parameterClass="dict_item">
+		insert into t_dict_item (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="item_id">
+				item_id
+			</isNotNull>
+			<isNotNull prepend="," property="dict_code">
+				dict_code
+			</isNotNull>
+			<isNotNull prepend="," property="display_name">
+				display_name
+			</isNotNull>
+			<isNotNull prepend="," property="fact_value">
+				fact_value
+			</isNotNull>
+			<isNotNull prepend="," property="append_value">
+				append_value
+			</isNotNull>
+			<isNotNull prepend="," property="super_item_id">
+				super_item_id
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				sib_order
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				leaf_flag
+			</isNotNull>
+			<isNotNull prepend="," property="display_flag">
+				display_flag
+			</isNotNull>
+			<isNotNull prepend="," property="valid_flag">
+				valid_flag
+			</isNotNull>
+			<isNotNull prepend="," property="item_simplepin">
+				item_simplepin
+			</isNotNull>
+			<isNotNull prepend="," property="item_allpin">
+				item_allpin
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="item_id">
+				#item_id#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_code">
+				#dict_code#
+			</isNotNull>
+			<isNotNull prepend="," property="display_name">
+				#display_name#
+			</isNotNull>
+			<isNotNull prepend="," property="fact_value">
+				#fact_value#
+			</isNotNull>
+			<isNotNull prepend="," property="append_value">
+				#append_value#
+			</isNotNull>
+			<isNotNull prepend="," property="super_item_id">
+				#super_item_id#
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				#sib_order#
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				#leaf_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="display_flag">
+				#display_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="valid_flag">
+				#valid_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="item_simplepin">
+				#item_simplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="item_allpin">
+				#item_allpin#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--字典项(t_dict_item)-->
+	<update id="updateDict_item" parameterClass="dict_item">
+		update t_dict_item a set item_id=item_id
+		<dynamic prepend="">
+			<isNotNull prepend="," property="dict_code">
+				dict_code=#dict_code#
+			</isNotNull>
+			<isNotNull prepend="," property="display_name">
+				display_name=#display_name#
+			</isNotNull>
+			<isNotNull prepend="," property="fact_value">
+				fact_value=#fact_value#
+			</isNotNull>
+			<isNotNull prepend="," property="append_value">
+				append_value=#append_value#
+			</isNotNull>
+			<isNotNull prepend="," property="super_item_id">
+				super_item_id=#super_item_id#
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				sib_order=#sib_order#
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				leaf_flag=#leaf_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="display_flag">
+				display_flag=#display_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="valid_flag">
+				valid_flag=#valid_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="item_simplepin">
+				item_simplepin=#item_simplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="item_allpin">
+				item_allpin=#item_allpin#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dict_itemWhere" />
+		</dynamic>
+	</update>
+	<!--字典项(t_dict_item)-->
+	<delete id="deleteDict_item" parameterClass="dict_item">
+		delete from t_dict_item a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_dict_itemWhere" />
+		</dynamic>
+	</delete>
+	<!--字典项(t_dict_item)-->
+	<select id="getDict_itemList" resultMap="dict_itemListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.item_simplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.item_allpin) like lower('$query_simplepin$')||'%' or
+			 	 a.append_value like '$query_simplepin$%' or
+			 	 a.display_name like '%$query_simplepin$%' or
+			 	 a.fact_value like '$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="like_factValue">
+				a.fact_value like '$like_factValue$%'
+			</isNotEmpty>
+			<include refid="t_dict_itemPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--字典项(t_dict_item)-->
+	<select id="getDict_itemListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_dict_item a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.item_simplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.item_allpin) like lower('$query_simplepin$')||'%' or
+			 	 a.append_value like '$query_simplepin$%' or
+			 	 a.display_name like '%$query_simplepin$%' or
+			 	 a.fact_value like '$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="like_factValue">
+				a.fact_value like '$like_factValue$%'
+			</isNotEmpty>
+			<include refid="t_dict_itemPageWhere" />
+		</dynamic>
+	</select>
+	<!--字典项(t_dict_item),实现按实际值、显示值、简拼、全拼及append_value字段筛选，实现按父节点查询-->
+	<select id="getDict_itemListNoPage" resultMap="dict_itemListResult" parameterClass="dict_item">
+		select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.item_simplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.item_allpin) like lower('$query_simplepin$')||'%' or
+			 	 a.append_value like '$query_simplepin$%' or
+			 	 a.display_name like '%$query_simplepin$%' or
+			 	 a.fact_value like '$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="exclude_factValue">
+				a.fact_value &lt;&gt; #exclude_factValue#
+			</isNotEmpty>
+			<include refid="t_dict_itemListWhere" />
+			<isNotEmpty prepend="" property="orderBySib_order">
+				<isEqual prepend="" property="orderBySib_order" compareValue="1">
+					order by a.dict_code,a.sib_order
+				</isEqual>
+				<isEqual prepend="" property="orderBySib_order" compareValue="0">
+					order by a.dict_code,a.fact_value
+				</isEqual>
+			</isNotEmpty>
+			<isEmpty prepend="" property="orderBySib_order">
+				order by  a.dict_code,a.sib_order
+			</isEmpty>
+		</dynamic>
+		
+	</select>
+	<!--字典项(t_dict_item),实现按实际值、显示值、简拼、全拼及append_value字段筛选，实现按父节点查询-->
+	<select id="getDict_itemListOffline" resultMap="dict_itemListResult" parameterClass="dict">
+		select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a,t_dict b
+		where 1=1 and a.dict_code=b.dict_code
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="dict_id">
+			 	b.dict_id=#dict_id#
+			</isNotEmpty>
+		</dynamic>
+		order by a.fact_value
+	</select>
+	<!--字典项(t_dict_item)-->
+	<select id="getDict_item" resultMap="dict_itemResult" parameterClass="dict_item">
+		select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dict_itemSelectWhere" />
+		</dynamic>
+		order by a.item_id,a.dict_code
+	</select>
+	
+	<!--取子字典项(t_dict_item)-->
+		<select id="getChildDict_itemListByItemIDAndDictCode" resultMap="dict_itemResult" parameterClass="dict_item">
+		select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,'' as append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a
+		where 1=1 and a.dict_code= #dict_code# 
+		<dynamic prepend="">
+			<isNotEmpty prepend="" property="item_id">
+			   <isNotEqual prepend="and" property="item_id" compareValue="9999">
+			      a.super_item_id= #item_id#
+			    </isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fact_value">
+				a.fact_value like '$fact_value$%'
+			</isNotEmpty>
+		</dynamic>
+		order by sib_order
+	</select>
+	
+	<select id="getDictionaryItemByDictCodeAndFactValue" resultMap="dict_itemResult" parameterClass="dict_item">
+		select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a where dict_code= #dict_code# and fact_value= #fact_value#
+	</select>
+	
+	<select id="getParentDictionaryItemBySuperItemID" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a where item_id= #super_item_id#
+	</select>
+	<select id="getParentDictionaryItemListByDictCode" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		from t_dict_item a where dict_code= #dict_code# order by sib_order  
+	</select>
+	<select id="getChildDictionaryItemListByItemID" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		 from t_dict_item  a where dict_code= #dict_code# 
+		<dynamic prepend="">
+			<isNotEmpty prepend="" property="item_id">
+			   <isNotEqual prepend="and" property="item_id" compareValue="9999">
+			      super_item_id= #item_id#
+			    </isNotEqual>
+			</isNotEmpty>
+		</dynamic>
+		order by sib_order
+	</select>
+	
+	<select id="getDictItemNameByDcFv" resultClass="string" parameterClass="dict_item">
+		select display_name  from t_dict_item where fact_value= #fact_value# and  dict_code = #dict_code# 
+	</select>
+	<select id="getDictItemCode" resultClass="string" parameterClass="dict_item">
+		select fact_value  from t_dict_item where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="" property="dict_code">
+			   and dict_code=#dict_code# 
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="display_name">
+			   and display_name=#display_name# 
+			</isNotEmpty>
+		</dynamic>		
+		
+	</select>
+	<select id="getDictionaryItemListByDictID" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		 from t_dict_item  a where dict_code=(select dict_code from t_dict where dict_id = #dict_id#)
+	</select>
+	<select id="getDictItemNameListByDcFv" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		 from t_dict_item a where  fact_value= #fact_value# and  dict_code = #dict_code#
+	</select>
+	<select id="getDictionaryItemByDcAndFvAndSuperII" resultMap="dict_itemResult" parameterClass="dict_item">
+			select a.item_id item_id,a.dict_code dict_code,a.display_name display_name,a.fact_value fact_value,a.append_value append_value,a.super_item_id super_item_id,a.sib_order sib_order,a.leaf_flag leaf_flag,a.display_flag display_flag,a.valid_flag valid_flag,a.item_simplepin item_simplepin,a.item_allpin item_allpin
+		 from t_dict_item a where dict_code= #dict_code# and fact_value= #fact_value# and super_item_id = #super_item_id#
+	</select>
+	<!--  获得所有兄弟节点最大排序号+1  -->
+	<select id="getNextSib_order" resultMap="sib_orderResult" parameterClass="dict_item">
+	    	select nvl((max(a.sib_order) + 1), 0) sib_order
+			  from t_dict_item a
+			 where 1 = 1
+	    	 <isNotEmpty prepend="and" property="super_item_id">
+				a.super_item_id = #super_item_id#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_code">
+				a.dict_code = #dict_code#
+			</isNotEmpty>
+	</select>
+</sqlMap>

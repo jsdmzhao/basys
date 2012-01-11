@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="user" type="com.aisino2.sysadmin.domain.User"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--用户(t_user)-->
+	<resultMap id="userResult" class="user">
+		<result property="userid" column="userid" />
+		<result property="departid" column="departid" />
+		<result property="useraccount" column="useraccount" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="userorder" column="userorder" />
+		<result property="isvalid" column="isvalid" />
+		<result property="usertype" column="usertype" />
+		<result property="idnum" column="idnum" />
+		<result property="mobilephone" column="mobilephone" />
+		<result property="department.departname" column="departname"/>
+        <result property="department.departcode" column="departcode"/>
+        <result property="department.departfullcode" column="departfullcode"/>
+        <result property="department.parentdepartid" column="parentdepartid"/>
+        <result property="jzlbdm" column="jzlbdm" />
+        <result property="jzlbmc" column="jzlbmc" />
+	</resultMap>
+	<resultMap id="CAuserResult" class="user">
+		<result property="userid" column="userid" />
+		<result property="departid" column="departid" />
+		<result property="useraccount" column="useraccount" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="userorder" column="userorder" />
+		<result property="isvalid" column="isvalid" />
+		<result property="usertype" column="usertype" />
+		<result property="idnum" column="idnum" />
+		<result property="mobilephone" column="mobilephone" />
+		<result property="department.departname" column="departname"/>
+        <result property="department.departcode" column="departcode"/>
+        <result property="department.departfullcode" column="departfullcode"/>
+        <result property="department.parentdepartid" column="parentdepartid"/>
+        <result property="jzlbdm" column="jzlbdm" />
+        <result property="jzlbmc" column="jzlbmc" />
+        <result property="zsyxrq" column="zsyxrq" />
+        <result property="zssqrq" column="zssqrq" />
+        <result property="xm_syr" column="xm_syr" />
+        <result property="ukeyid" column="ukeyid" />
+        <result property="ssdwbm" column="ssdwbm" />
+        <result property="ssdwmc" column="ssdwmc" />
+        <result property="cyrybh" column="cyrybh" />
+	</resultMap>
+	
+	<resultMap id="getPasswordByUseraccountResult" class="user">
+		<result property="password" column="password" />
+	</resultMap>
+	<!--用户(t_user)-->
+	<resultMap id="userListResult" class="user">
+		<result property="userid" column="userid"/>
+		<result property="departid" column="departid"/>
+		<result property="useraccount" column="useraccount"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="userorder" column="userorder"/>
+		<result property="isvalid" column="isvalid"/>
+		<result property="usertype" column="usertype"/>
+		<result property="idnum" column="idnum" />
+		<result property="mobilephone" column="mobilephone" />
+		<result property="department.departname" column="departname"/>
+        <result property="department.departcode" column="departcode"/>
+        <result property="department.departfullcode" column="departfullcode"/>
+        <result property="department.parentdepartid" column="parentdepartid"/>
+	</resultMap>
+	
+	<!--用户(t_user) 获得下一个排序号-->
+	<resultMap id="userorderResult" class="user">
+		<result property="userorder" column="userorder" />
+	</resultMap>
+	
+	<resultMap id="getQybmByCyrybhResult" class="user">
+		<result property="ssdwbm" column="ssdwbm" />
+		<result property="ssdwmc" column="ssdwmc" />
+	</resultMap>
+	<sql id="t_userWhere">
+			<isNotEmpty prepend="and" property="userid">
+				a.userid=#userid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departid">
+				a.departid=#departid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_userPageWhere" >
+		<include refid="t_userWhere" />	
+		<isNotEmpty prepend="and" property="username">
+		     a.username like  '%$username$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="useraccount">
+		     a.useraccount like  '%$useraccount$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="usertype">
+		     a.userType =#usertype#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzlbdm">
+		     a.jzlbdm =#jzlbdm#
+		</isNotEmpty>
+		</sql>
+	<sql id="t_userListWhere" >
+		<include refid="t_userWhere" />	</sql>
+	<sql id="t_userSelectWhere"  >
+		<include refid="t_userWhere" />	
+		<isNotEmpty prepend="and" property="usertype">
+		     a.usertype=#usertype#
+		</isNotEmpty>
+	</sql>
+	<!--用户(t_user)-->
+	<insert id="insertUser"  parameterClass="user">
+		insert into t_user (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="userid">
+				userid
+			</isNotNull>
+			<isNotNull prepend="," property="departid">
+				departid
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username
+			</isNotNull>
+			<isNotNull prepend="," property="password">
+				password
+			</isNotNull>
+			<isNotNull prepend="," property="idnum">
+				idnum
+			</isNotNull>
+			<isNotNull prepend="," property="mobilephone">
+				mobilephone
+			</isNotNull>
+			<isNotNull prepend="," property="userorder">
+				userorder
+			</isNotNull>
+			<isNotNull prepend="," property="isvalid">
+				isvalid
+			</isNotNull>
+			<isNotNull prepend="," property="usertype">
+				usertype
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				jzlbdm
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				jzlbmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="userid">
+				#userid#
+			</isNotNull>
+			<isNotNull prepend="," property="departid">
+				#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				#username#
+			</isNotNull>
+			<isNotNull prepend="," property="password">
+				#password#
+			</isNotNull>
+			<isNotNull prepend="," property="idnum">
+				#idnum#
+			</isNotNull>
+			<isNotNull prepend="," property="mobilephone">
+				#mobilephone#
+			</isNotNull>
+			<isNotNull prepend="," property="userorder">
+				#userorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isvalid">
+				#isvalid#
+			</isNotNull>
+			<isNotNull prepend="," property="usertype">
+				#usertype#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				#jzlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				#jzlbmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--用户(t_user)-->
+	<update id="updateUser" parameterClass="user">
+		update t_user a set userid=userid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="departid">
+				departid=#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount=#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username=#username#
+			</isNotNull>
+			<isNotNull prepend="," property="password">
+				password=#password#
+			</isNotNull>
+			<isNotNull prepend="," property="idnum">
+				idnum=#idnum#
+			</isNotNull>
+			<isNotNull prepend="," property="mobilephone">
+				mobilephone=#mobilephone#
+			</isNotNull>
+			<isNotNull prepend="," property="userorder">
+				userorder=#userorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isvalid">
+				isvalid=#isvalid#
+			</isNotNull>
+			<isNotNull prepend="," property="usertype">
+				usertype=#usertype#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				jzlbdm=#jzlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				jzlbmc=#jzlbmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_userWhere" />
+		</dynamic>
+	</update>
+	<!--用户(t_user)-->
+	<delete id="deleteUser" parameterClass="user">
+		delete from t_user a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_userWhere" />
+		</dynamic>
+	</delete>
+	<!--用户(t_user)-->
+	<select id="getUserList" resultMap="userListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		( select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		from t_user a,t_department d 
+		where  d.departid=a.departid
+		<dynamic prepend="">
+			<include refid="t_userPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--用户(t_user)-->
+	<select id="getUserListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_user a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_userPageWhere" />
+		</dynamic>
+	</select>
+	<!--用户(t_user)-->
+	<select id="getUserListNoPage" resultMap="userListResult" parameterClass="user">
+		  select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		from t_user a,t_department d 
+		where  d.departid=a.departid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="departcode">
+				<isNotEqual  prepend="" property="departcode" compareValue="111">
+					d.departcode like '$departcode$%'
+				</isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+				a.username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departname">
+				d.departname like '%$departname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount like '%$useraccount$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="idnum">
+				(a.idnum = #idnum# or a.idnum = #idnum15#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzlbdm">
+		     	a.jzlbdm =#jzlbdm#
+			</isNotEmpty>
+			
+			<include refid="t_userListWhere" />
+		</dynamic>
+		order by a.userorder
+	</select>
+	<!--用户(t_user)-->
+	<select id="getUser" resultMap="userResult" parameterClass="user">
+		select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		,a.jzlbmc,a.jzlbdm	
+		from t_user a,t_department d 
+		where  d.departid=a.departid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="useraccount">
+			a.useraccount = #useraccount#
+		</isNotEmpty>
+			<include refid="t_userSelectWhere" />
+		</dynamic>
+		order by a.userid,a.departid
+	</select>
+	<!--用户(t_user)-->
+	<select id="getPasswordByUseraccount" resultMap="getPasswordByUseraccountResult" parameterClass="user">
+		select a.password password
+		from t_user a
+		where  1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount = #useraccount#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!-- 根据账户取得用户 -->
+ <select id="checkUser" resultMap="userResult" parameterClass="user">
+      select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		,a.jzlbmc,a.jzlbdm		
+		from t_user a,t_department d 
+		where  d.departid=a.departid and  a.useraccount= #useraccount# 
+   </select>
+   <select id="checkCAUser" resultMap="CAuserResult" parameterClass="user">
+      select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		,a.jzlbmc,a.jzlbdm,c.zsyxrq zsyxrq,c.zssqrq zssqrq,c.xm_syr xm_syr,c.ukeyid ukeyid,c.qybm ssdwbm,c.qymc ssdwmc,c.cyrybh cyrybh		
+		from t_user a,t_department d,t_ukey c 
+		where  d.departid=a.departid and  a.userid=c.userid and c.ukeyid=#ukeyid# and c.zt='02'
+   </select>
+	<!--  获得所有兄弟节点最大排序号+1  -->
+  <select id="getNextUserorder" resultMap="userorderResult" parameterClass="user">
+    	select nvl((max(a.userorder)+1),0) userorder from t_user a
+    	 where 1=1 
+    	 <isNotEmpty prepend="and" property="departid">
+			a.departid = #departid#
+		</isNotEmpty>
+  </select>
+  
+  <!--执行sql-->
+ <select id="getQybmByCyrybh" resultMap="getQybmByCyrybhResult" parameterClass="user">
+		$ssdwbm$
+	</select>
+	<select id="getQymcByQybm" resultMap="getQybmByCyrybhResult" parameterClass="user">
+		select  a.qymc ssdwmc,a.qybm ssdwbm from t_qyjbxx a
+    	 where 1=1 
+    	 <isNotEmpty prepend="and" property="ssdwbm">
+			a.qybm = #ssdwbm#
+		</isNotEmpty>
+	</select>
+	<!--用户(t_user)-->
+	<update id="updateUkeyUser" parameterClass="user">
+		update t_user a set userid=userid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="departid">
+				departid=#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount=#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username=#username#
+			</isNotNull>
+			<isNotNull prepend="," property="password">
+				password=#password#
+			</isNotNull>
+			<isNotNull prepend="," property="idnum">
+				idnum=#idnum#
+			</isNotNull>
+			<isNotNull prepend="," property="mobilephone">
+				mobilephone=#mobilephone#
+			</isNotNull>
+			<isNotNull prepend="," property="userorder">
+				userorder=#userorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isvalid">
+				isvalid=#isvalid#
+			</isNotNull>
+			<isNotNull prepend="," property="usertype">
+				usertype=#usertype#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				jzlbdm=#jzlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				jzlbmc=#jzlbmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="userid">
+				a.userid=#userid#
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<sql id="t_userQyPageWhere" >
+		<include refid="t_userWhere" />	
+		<isNotEmpty prepend="and" property="usertype">
+		     $usertype$
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="username">
+		     instr(a.username,#username#)>0
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="useraccount">
+		     instr(a.useraccount,#useraccount#)>0
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzlbdm">
+		     a.jzlbdm =#jzlbdm#
+		</isNotEmpty>
+		</sql>
+	
+	<!--企业用户(t_user)-->
+	<select id="getUserQyOrGaList" resultMap="userListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		from t_user a,t_department d 
+		where  d.departid=a.departid
+		<dynamic prepend="">
+			<include refid="t_userQyPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z 
+		) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业用户(t_user)-->
+	<select id="getUserQyOrGaListCount" resultClass="int" parameterClass="map">
+		select count(1) from t_user a,t_department d 
+		where  d.departid=a.departid
+		<dynamic prepend="">
+			<include refid="t_userQyPageWhere" />
+		</dynamic>
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+    
+    <typeAlias alias="doublepy" type="com.aisino2.basicsystem.domain.DoublePY"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	
+	<resultMap id="doublepyResult" class="doublepy">
+		<result property="doublepy" column="doublepy" />
+	</resultMap>
+	
+	<procedure id="getDoublePY" resultMap="doublepyResult" parameterClass="doublepy">
+		<![CDATA[
+			select getdoublePY('$name$') doublepy from dual
+		]]>
+	</procedure>
+</sqlMap>

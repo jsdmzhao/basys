@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="techsupport1" name="技术支持单" version="4" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="34,16,48,48" name="start1">
+      <transition to="总工审批"/>
+   </start>
+   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="380,133,92,52" name="追踪批复">
+      <transition to="反馈确认"/>
+   </task>
+   <end g="566,416,48,48" name="结束"/>
+   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="565,123,92,52" name="反馈确认">
+      <transition to="归档"/>
+      <transition g="526,38:-85,-25" name="不与反馈" to="追踪批复"/>
+   </task>
+   <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="719,103,92,52" name="归档">
+      <transition to="结束"/>
+   </task>
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/ceApproval/ceApproval.jsp" g="27,146,92,52" name="总工审批">
+      <transition to="是否总工审批通过"/>
+   </task>
+   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/deptApproval/deptApproval.jsp" g="153,140,92,52" name="部门审批">
+      <transition to="部门审批条件"/>
+   </task>
+   <decision name="是否总工审批通过" g="49,300,48,48" expr="#{ceApprovalCode == approvalCodePassed ? '部门审批':'结束'}">
+      <transition name="部门审批" to="部门审批" g="-85,-25"/>
+      <transition name="结束" to="结束" g="-62,-25"/>
+   </decision>
+   <decision name="部门审批条件" g="190,21,48,48" expr="#{ deptApprovalCode == approvalCodePassed  ? '追踪批复' : '总工审批' }">
+      <transition name="总工审批" to="总工审批" g="-85,-25"/>
+      <transition name="追踪批复" to="追踪批复" g="-85,-25"/>
+   </decision>
+</process>

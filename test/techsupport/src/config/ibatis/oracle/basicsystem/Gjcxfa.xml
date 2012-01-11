@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="gjcxfa" type="com.aisino2.basicsystem.domain.Gjcxfa"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--高级查询方案(t_gjcxfa)-->
+	<resultMap id="gjcxfaResult" class="gjcxfa">
+		<result property="gjcxfaid" column="gjcxfaid" />
+		<result property="gjcxfamc" column="gjcxfamc" />
+		<result property="ssyhzh" column="ssyhzh" />
+		<result property="ssgnmc" column="ssgnmc" />
+		<result property="gjcxlx" column="gjcxlx" />
+	</resultMap>
+	<!--高级查询方案(t_gjcxfa)-->
+	<resultMap id="gjcxfaListResult" class="gjcxfa">
+		<result property="gjcxfaid" column="gjcxfaid"/>
+		<result property="gjcxfamc" column="gjcxfamc"/>
+		<result property="ssyhzh" column="ssyhzh"/>
+		<result property="ssgnmc" column="ssgnmc"/>
+		<result property="gjcxlx" column="gjcxlx"/>
+	</resultMap>
+	<sql id="t_gjcxfaWhere">
+			<isNotEmpty prepend="and" property="gjcxfaid">
+				a.gjcxfaid=#gjcxfaid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssyhzh">
+				a.ssyhzh=#ssyhzh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssgnmc">
+				a.ssgnmc=#ssgnmc#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_gjcxfaPageWhere" >
+		<include refid="t_gjcxfaWhere" />	</sql>
+	<sql id="t_gjcxfaListWhere" >
+		<include refid="t_gjcxfaWhere" />	</sql>
+	<sql id="t_gjcxfaSelectWhere"  >
+		<include refid="t_gjcxfaWhere" />	</sql>
+	<!--高级查询方案(t_gjcxfa)-->
+	<insert id="insertGjcxfa"  parameterClass="gjcxfa">
+		insert into t_gjcxfa (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gjcxfaid">
+				gjcxfaid
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfamc">
+				gjcxfamc
+			</isNotNull>
+			<isNotNull prepend="," property="ssyhzh">
+				ssyhzh
+			</isNotNull>
+			<isNotNull prepend="," property="ssgnmc">
+				ssgnmc
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxlx">
+				gjcxlx
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gjcxfaid">
+				#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfamc">
+				#gjcxfamc#
+			</isNotNull>
+			<isNotNull prepend="," property="ssyhzh">
+				#ssyhzh#
+			</isNotNull>
+			<isNotNull prepend="," property="ssgnmc">
+				#ssgnmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxlx">
+				#gjcxlx#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--高级查询方案(t_gjcxfa)-->
+	<update id="updateGjcxfa" parameterClass="gjcxfa">
+		update t_gjcxfa a set a.gjcxfaid=a.gjcxfaid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gjcxfamc">
+				gjcxfamc=#gjcxfamc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gjcxfaWhere" />
+		</dynamic>
+	</update>
+	<!--高级查询方案(t_gjcxfa)-->
+	<delete id="deleteGjcxfa" parameterClass="gjcxfa">
+		delete from t_gjcxfa a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_gjcxfaWhere" />
+		</dynamic>
+	</delete>
+	<!--高级查询方案(t_gjcxfa)-->
+	<select id="getGjcxfaList" resultMap="gjcxfaListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.gjcxfaid gjcxfaid,a.gjcxfamc gjcxfamc,a.ssyhzh ssyhzh,a.ssgnmc ssgnmc,a.gjcxlx gjcxlx
+		from t_gjcxfa a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gjcxfaPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--高级查询方案(t_gjcxfa)-->
+	<select id="getGjcxfaListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_gjcxfa a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gjcxfaPageWhere" />
+		</dynamic>
+	</select>
+	<!--高级查询方案(t_gjcxfa)-->
+	<select id="getGjcxfaListNoPage" resultMap="gjcxfaListResult" parameterClass="gjcxfa">
+		select a.gjcxfaid gjcxfaid,a.gjcxfamc gjcxfamc,a.ssyhzh ssyhzh,a.ssgnmc ssgnmc,a.gjcxlx gjcxlx
+		from t_gjcxfa a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gjcxfaListWhere" />
+		</dynamic>
+		order by a.gjcxfaid
+	</select>
+	<!--高级查询方案(t_gjcxfa)-->
+	<select id="getGjcxfa" resultMap="gjcxfaResult" parameterClass="gjcxfa">
+		select a.gjcxfaid gjcxfaid,a.gjcxfamc gjcxfamc,a.ssyhzh ssyhzh,a.ssgnmc ssgnmc,a.gjcxlx gjcxlx
+		from t_gjcxfa a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gjcxfaSelectWhere" />
+		</dynamic>
+		order by a.gjcxfaid
+	</select>
+</sqlMap>

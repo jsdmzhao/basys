@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="gatztb" type="com.aisino2.basicsystem.domain.Gatztb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--公安通知通报(t_gatztb)-->
+	<resultMap id="gatztbResult" class="gatztb">
+		<result property="gatbid" column="gatbid" />
+		<result property="bt" column="bt" />
+		<result property="fbsj" column="fbsj" />
+		<result property="fbnr" column="fbnr" />
+		<result property="fbr" column="fbr" />
+		<result property="fbdwbm" column="fbdwbm" />
+		<result property="fbdw" column="fbdw" />
+		<result property="jzrq" column="jzrq" />
+		<result property="gqbs" column="gqbs" />
+		<result property="gatblxbm" column="gatblxbm" />
+		<result property="gatblxmc" column="gatblxmc" />
+	</resultMap>
+	<!--公安通知通报(t_gatztb)-->
+	<resultMap id="gatztbListResult" class="gatztb">
+		<result property="gatbid" column="gatbid"/>
+		<result property="bt" column="bt"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="fbnr" column="fbnr"/>
+		<result property="fbr" column="fbr"/>
+		<result property="fbdwbm" column="fbdwbm"/>
+		<result property="fbdw" column="fbdw"/>
+		<result property="jzrq" column="jzrq"/>
+		<result property="gqbs" column="gqbs"/>
+		<result property="gatblxbm" column="gatblxbm"/>
+		<result property="gatblxmc" column="gatblxmc"/>
+		<result property="qssl" column="qssl"/>
+	</resultMap>
+	<sql id="t_gatztbWhere">
+			<isNotEmpty prepend="and" property="gatbid">
+				a.gatbid=#gatbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fbsj">
+				a.fbsj&gt;=#fbsj:TIMESTAMP#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbsjzhi">
+				a.fbsj&lt;=#fbsjzhi:TIMESTAMP#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="bt">
+				a.bt like '%$bt$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbr">
+				a.fbr like '%$fbr$%'
+		</isNotEmpty>
+		<isEmpty prepend="and" property="jsdwbm">
+				a.fbdwbm  like '%$fbdwbm$%'
+		</isEmpty>
+		<isNotEmpty prepend="and" property="jsdwbm">
+				  g.jsdwbm   =#jsdwbm# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gqbs">
+				a.gqbs   =#gqbs#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qsFlg">
+			<isEqual property="qsFlg" compareValue="1"><!-- 1 未签收 -->
+				g.sqsj   is null 
+			</isEqual>
+			<isEqual property="qsFlg" compareValue="2"><!-- 2 已签收 -->
+				g.sqsj   is not null 
+			</isEqual>	 
+		</isNotEmpty>
+	</sql>
+	<sql id="t_gatztbPageWhere" >
+		<include refid="t_gatztbWhere" />	</sql>
+	<sql id="t_gatztbListWhere" >
+		<include refid="t_gatztbWhere" />	</sql>
+	<sql id="t_gatztbSelectWhere"  >
+		<include refid="t_gatztbWhere" />	</sql>
+	<!--公安通知通报(t_gatztb)-->
+	<insert id="insertGatztb"  parameterClass="gatztb">
+		insert into t_gatztb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				gatbid
+			</isNotNull>
+			<isNotNull prepend="," property="bt">
+				bt
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				fbsj
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				fbnr
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				fbdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				fbdw
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				gqbs
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxbm">
+				gatblxbm
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxmc">
+				gatblxmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				#gatbid#
+			</isNotNull>
+			<isNotNull prepend="," property="bt">
+				#bt#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				#fbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				#fbnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				#fbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				#fbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				#gqbs#
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxbm">
+				#gatblxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxmc">
+				#gatblxmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--公安通知通报(t_gatztb)-->
+	<update id="updateGatztb" parameterClass="gatztb">
+		update t_gatztb a set a.gatbid=a.gatbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bt">
+				bt=#bt#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				fbsj=#fbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				fbnr=#fbnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr=#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				fbdwbm=#fbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				fbdw=#fbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq=#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				gqbs=#gqbs#
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxbm">
+				gatblxbm=#gatblxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gatblxmc">
+				gatblxmc=#gatblxmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<isNotEmpty prepend="and" property="gatbid">
+				a.gatbid=#gatbid#
+		</isNotEmpty>
+	</update>
+	<!--公安通知通报(t_gatztb)-->
+	<delete id="deleteGatztb" parameterClass="gatztb">
+		delete from t_gatztb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_gatztbWhere" />
+		</dynamic>
+	</delete>
+	<!--公安通知通报(t_gatztb)-->
+	<select id="getGatztbList" resultMap="gatztbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select  distinct a.gatbid gatbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdwbm fbdwbm,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.gatblxbm gatblxbm,a.gatblxmc gatblxmc
+		,(select count(1) from t_gatztbjsdw w where w.gajsdwid=g.gajsdwid and  g.sqsj is not null ) qssl
+		from t_gatztb a,t_gatztbjsdw g
+		where a.gatbid=g.gatbid 
+		<dynamic prepend="">
+			<include refid="t_gatztbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--公安通知通报(t_gatztb)-->
+	<select id="getGatztbListCount" resultClass="int" parameterClass="map">
+		select count(*) from (select distinct a.gatbid gatbid from t_gatztb a,t_gatztbjsdw g
+		where a.gatbid=g.gatbid 
+		<dynamic prepend="">
+			<include refid="t_gatztbPageWhere" />
+		</dynamic>
+		)
+	</select>
+	<!--公安通知通报(t_gatztb)-->
+	<select id="getGatztbListNoPage" resultMap="gatztbListResult" parameterClass="gatztb">
+		select a.gatbid gatbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdwbm fbdwbm,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.gatblxbm gatblxbm,a.gatblxmc gatblxmc
+		from t_gatztb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbListWhere" />
+		</dynamic>
+		order by a.gatbid
+	</select>
+	<!--公安通知通报(t_gatztb)-->
+	<select id="getGatztb" resultMap="gatztbResult" parameterClass="gatztb">
+		select a.gatbid gatbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdwbm fbdwbm,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.gatblxbm gatblxbm,a.gatblxmc gatblxmc
+		from t_gatztb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbSelectWhere" />
+		</dynamic>
+		order by a.gatbid
+	</select>
+</sqlMap>

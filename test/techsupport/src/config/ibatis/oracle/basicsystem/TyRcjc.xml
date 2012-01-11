@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="tyrcjc" type="com.aisino2.basicsystem.domain.TyRcjc"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--日常检查(t_rcjc)-->
+	<resultMap id="tyrcjcResult" class="tyrcjc">
+		<result property="rcjcid" column="rcjcid" />
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="jcrxm" column="jcrxm" />
+		<result property="jcrzw" column="jcrzw" />
+		<result property="lsdw" column="lsdw" />
+		<result property="jcrq" column="jcrq" />
+		<result property="jcsx" column="jcsx" />
+		<result property="fxwt" column="fxwt" />
+		<result property="cljg" column="cljg" />
+		<result property="sfzdjcjg" column="sfzdjcjg" />
+		<result property="bz" column="bz" />
+		<result property="jcfs" column="jcfs" />
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="rcjcbh" column="rcjcbh"/>
+		<result property="jcrybh" column="jcrybh"/>
+		<result property="jcjgdm" column="jcjgdm"/>
+		<result property="jcjgmc" column="jcjgmc"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+	</resultMap>
+	<!--日常检查(t_rcjc)-->
+	<resultMap id="tyrcjcListResult" class="tyrcjc">
+		<result property="rcjcid" column="rcjcid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="jcrxm" column="jcrxm"/>
+		<result property="jcrq" column="jcrq"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	<sql id="t_tyrcjcWhere">
+			<isNotEmpty prepend="and" property="qybm">
+				a.qiyebianma=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rcjcid">
+				a.rcjcid=#rcjcid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_tyrcjcPageWhere" >
+		<include refid="t_tyrcjcWhere" />	</sql>
+	<sql id="t_tyrcjcListWhere" >
+		<include refid="t_tyrcjcWhere" />	</sql>
+	<sql id="t_tyrcjcSelectWhere"  >
+		<include refid="t_tyrcjcWhere" />	</sql>
+	<!--日常检查(t_rcjc)-->
+	<insert id="insertTyrcjc"  parameterClass="tyrcjc">
+		insert into t_tyrcjc (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rcjcid">
+				rcjcid
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="jcrxm">
+				jcrxm
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				jcrzw
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				lsdw
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				jcrq
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				jcsx
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				sfzdjcjg
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				jcfs
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcbh">
+				rcjcbh
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				jcjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				jcjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				jcrybh
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				zwdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="rcjcid">
+				#rcjcid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrxm">
+				#jcrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				#jcrzw#
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				#lsdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				#jcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				#jcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				#sfzdjcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				#jcfs#
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcbh">
+				#rcjcbh#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				#jcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				#jcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				#jcrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				#zwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--日常检查(t_tyrcjc)-->
+	<update id="updateTyrcjc" parameterClass="tyrcjc">
+		update t_tyrcjc a set a.rcjcbh=a.rcjcbh
+		<dynamic prepend="">
+			<isNotNull prepend="," property="jcrxm">
+				jcrxm=#jcrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				jcrzw=#jcrzw#
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				lsdw=#lsdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				jcrq=#jcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				jcsx=#jcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt=#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg=#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				sfzdjcjg=#sfzdjcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				jcfs=#jcfs#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				jcjgdm=#jcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				jcjgmc=#jcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				jcrybh=#jcrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				zwdm=#zwdm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tyrcjcWhere" />
+		</dynamic>
+	</update>
+	<!--日常检查(t_rcjc)-->
+	<delete id="deleteTyrcjc" parameterClass="tyrcjc">
+		delete from t_tyrcjc a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_tyrcjcWhere" />
+		</dynamic>
+	</delete>
+	<!--日常检查(t_rcjc)-->
+	<select id="getTyrcjcList" resultMap="tyrcjcListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rcjcid rcjcid,a.qiyebianma qybm,a.qiyemc qymc,a.jcrxm jcrxm,a.jcrq jcrq,a.gxdwmc gxdwmc from t_tyrcjc a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				a.qiyemc = #qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqf">
+				a.jcrq &gt;=#jcrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqt">
+				a.jcrq &lt; #jcrqt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				a.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<include refid="t_tyrcjcPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getTyrcjcListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_tyrcjc a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qymc">
+				a.qymc = #qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqf">
+				a.jcrq &gt;=#jcrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqt">
+				a.jcrq &lt; #jcrqt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				a.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<include refid="t_tyrcjcPageWhere" />
+		</dynamic>
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getTyrcjcListNoPage" resultMap="tyrcjcListResult" parameterClass="tyrcjc">
+		select a.qybm qybm,a.rcjcid rcjcid,a.qybm,a.qymc,a.jcrxm jcrxm,a.jcrzw jcrzw,a.lsdw lsdw,a.jcrq jcrq,a.jcsx jcsx,a.fxwt fxwt,a.cljg cljg,a.sfzdjcjg sfzdjcjg,a.bz bz,a.jcfs jcfs
+		from t_tyrcjc a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tyrcjcListWhere" />
+		</dynamic>
+		order by a.rcjcid
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getTyrcjc" resultMap="tyrcjcResult" parameterClass="tyrcjc">
+		select a.qiyebianma qybm,a.qiyemc qymc,a.rcjcbh,a.jcrybh,a.jcjgdm,a.jcjgmc,a.rcjcid rcjcid,a.jcrxm jcrxm,a.jcrzw jcrzw,a.lsdw lsdw,a.jcrq jcrq,a.jcsx jcsx,a.fxwt fxwt,a.cljg cljg,a.sfzdjcjg sfzdjcjg,a.bz bz,a.jcfs jcfs,a.yewulbbm hylbdm,a.yewulb hylb,a.gxdwbm gxdwbm,a.gxdwmc gxdwmc
+		from t_tyrcjc a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tyrcjcSelectWhere" />
+		</dynamic>
+		order by a.rcjcid
+	</select>
+</sqlMap>

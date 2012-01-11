@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="globalpar" type="com.aisino2.sysadmin.domain.Globalpar"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--全局参数(t_globalpar)-->
+	<resultMap id="globalparResult" class="globalpar">
+		<result property="globalparcode" column="globalparcode" />
+		<result property="globalparname" column="globalparname" />
+		<result property="globalparvalue" column="globalparvalue" />
+	</resultMap>
+	<!--全局参数(t_globalpar)-->
+	<resultMap id="globalparListResult" class="globalpar">
+		<result property="globalparcode" column="globalparcode"/>
+		<result property="globalparname" column="globalparname"/>
+		<result property="globalparvalue" column="globalparvalue"/>
+	</resultMap>
+	<sql id="t_globalparWhere">
+			<isNotEmpty prepend="and" property="globalparcode">
+				a.globalparcode=#globalparcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_globalparPageWhere" >
+		<include refid="t_globalparWhere" />	
+		<isNotEmpty prepend="and" property="globalparcode">
+			a.globalparcode like '%$globalparcode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="globalparname">
+		a.globalparname like '%$globalparname$%'
+		</isNotEmpty>
+
+		</sql>
+	<sql id="t_globalparListWhere" >
+		<include refid="t_globalparWhere" />	</sql>
+	<sql id="t_globalparSelectWhere"  >
+		<include refid="t_globalparWhere" />	</sql>
+	<!--全局参数(t_globalpar)-->
+	<insert id="insertGlobalpar"  parameterClass="globalpar">
+		insert into t_globalpar (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="globalparcode">
+				globalparcode
+			</isNotNull>
+			<isNotNull prepend="," property="globalparname">
+				globalparname
+			</isNotNull>
+			<isNotNull prepend="," property="globalparvalue">
+				globalparvalue
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="globalparcode">
+				#globalparcode#
+			</isNotNull>
+			<isNotNull prepend="," property="globalparname">
+				#globalparname#
+			</isNotNull>
+			<isNotNull prepend="," property="globalparvalue">
+				#globalparvalue#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--全局参数(t_globalpar)-->
+	<update id="updateGlobalpar" parameterClass="globalpar">
+		update t_globalpar a set globalparcode=globalparcode
+		<dynamic prepend="">
+			<isNotNull prepend="," property="globalparname">
+				globalparname=#globalparname#
+			</isNotNull>
+			<isNotNull prepend="," property="globalparvalue">
+				globalparvalue=#globalparvalue#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_globalparWhere" />
+		</dynamic>
+	</update>
+	<!--全局参数(t_globalpar)-->
+	<delete id="deleteGlobalpar" parameterClass="globalpar">
+		delete from t_globalpar a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_globalparWhere" />
+		</dynamic>
+	</delete>
+	<!--全局参数(t_globalpar)-->
+	<select id="getGlobalparList" resultMap="globalparListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.globalparcode globalparcode,a.globalparname globalparname,a.globalparvalue globalparvalue
+		from t_globalpar a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_globalparPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--全局参数(t_globalpar)-->
+	<select id="getGlobalparListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_globalpar a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_globalparPageWhere" />
+		</dynamic>
+	</select>
+	<!--全局参数(t_globalpar)-->
+	<select id="getGlobalparListNoPage" resultMap="globalparListResult" parameterClass="globalpar">
+		select a.globalparcode globalparcode,a.globalparname globalparname,a.globalparvalue globalparvalue
+		from t_globalpar a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_globalparListWhere" />
+		</dynamic>
+		order by a.globalparcode
+	</select>
+	<!--全局参数(t_globalpar)-->
+	<select id="getGlobalpar" resultMap="globalparResult" parameterClass="globalpar">
+		select a.globalparcode globalparcode,a.globalparname globalparname,a.globalparvalue globalparvalue
+		from t_globalpar a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_globalparSelectWhere" />
+		</dynamic>
+		order by a.globalparcode
+	</select>
+</sqlMap>

@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyxxExpImp" type="com.aisino2.basicsystem.domain.QyxxExpImp"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!-- 企业认证 查询 -->
+	<resultMap id="qyxxListResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	
+	<!-- 旅馆业 XML查询 -->
+	<resultMap id="lgyXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qylx" column="qylx"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qycplxbm" column="qycplxbm"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zjl" column="zjl"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="babdh" column="babdh"/>
+		<result property="qyzt" column="qyzt"/>
+		<result property="qyztgbrq" column="qyztgbrq"/>
+		<result property="jqbm" column="jqbm"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qyxz" column="qyxz"/>
+		<result property="cyrs" column="cyrs"/>
+		<result property="zbrys" column="zbrys"/>
+		<result property="jpxrs" column="jpxrs"/>
+		<result property="fwksrq" column="fwksrq"/>
+		<result property="fjs" column="fjs"/>
+		<result property="cws" column="cws"/>
+		<result property="bgxj" column="bgxj"/>
+		<result property="bgdj" column="bgdj"/>
+		<result property="zflbm" column="zflbm"/>
+	</resultMap>
+	
+	<!-- 公共模块业 XML查询 -->
+	<resultMap id="pubXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="babdh" column="babdh"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="cyrs" column="cyrs"/>
+		<result property="zbrys" column="zbrys"/>
+		<result property="jpxrs" column="jpxrs"/>
+		<result property="fwksrq" column="fwksrq"/>
+		<result property="bxsl" column="bxsl"/>
+		<result property="cksl" column="cksl"/>
+		<result property="zflbm" column="zflbm"/>
+	</resultMap>
+	
+	<!-- 典当业 XML查询 -->
+	<resultMap id="ddyXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="babdh" column="babdh"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="cyrs" column="cyrs"/>
+		<result property="zbrys" column="zbrys"/>
+		<result property="jpxrs" column="jpxrs"/>
+		<result property="fwksrq" column="fwksrq"/>
+	</resultMap>
+	
+	<!-- 机修业 XML查询 -->
+	<resultMap id="jxyXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="babdh" column="babdh"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="cyrs" column="cyrs"/>
+		<result property="zbrys" column="zbrys"/>
+		<result property="jpxrs" column="jpxrs"/>
+		<result property="fwksrq" column="fwksrq"/>
+		<result property="zflbm" column="zflbm"/>
+	</resultMap>
+	
+	<!-- 印章业 XML查询 -->
+	<resultMap id="yzyXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="babdh" column="babdh"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="fwksrq" column="fwksrq"/>
+	</resultMap>
+	
+	<!-- 出租房屋业 XML查询 -->
+	<resultMap id="czfwyXmlMesResult" class="qyxxExpImp">
+		<result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="frxm" column="frxm"/>
+		<result property="zafzr" column="zafzr"/>
+		<result property="dizhi" column="dizhi"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="fwksrq" column="fwksrq"/>
+	</resultMap>
+
+	
+	<!-- 公共 查询条件 -->
+	<sql id="t_allPageWhere" >
+		<isNotEmpty prepend="and" property="cxtjDcbs">
+			a.dcbs = #cxtjDcbs#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="cxtjDcsj">
+			a.dcsj &gt;=#cxtjDcsj:DATE# and a.dcsj &lt; #cxtjDcsj:DATE#+1
+		</isNotEmpty>
+	</sql>
+	<!-- 公共模块 查询条件 -->
+	<sql id="t_publicPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.qybm like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.qymc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.gxdwbm like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 旅馆业 查询条件 -->
+	<sql id="t_lgyPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.qiyebianma like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.qiyemc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.gxdwbm like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 典当业 查询条件 -->
+	<sql id="t_ddyPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.ddqybm like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.ddqymc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.gxdwbm like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 机修业 查询条件 gxdwdm -->
+	<sql id="t_jxyPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.jxqybm like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.jxqymc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.gxdwdm  like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 印章业 查询条件 -->
+	<sql id="t_yzyPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.zzdwbm like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.zzdwmc like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.gxdwbm  like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 出租房屋业 查询条件 -->
+	<sql id="t_czfwyPageWhere" >
+		<isNotEmpty prepend="and" property="qybm">
+			a.CAIJIDIANBM like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+			a.CAIJIDIANMC like '%$qymc$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+			a.GXDWBM  like '$gxdwbm$%'
+		</isNotEmpty>
+	</sql>
+	<!-- 公用模块 企业信息 -->
+	<select id="getPublicQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.qyid qyid,a.qybm qybm,a.qymc qymc,
+		a.frdb frxm,a.lxdh lxdh,a.jydz dizhi,a.gxdwmc gxdwmc
+		from t_qyjbxx a
+		where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm#
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+		</dynamic>
+		order by a.qyid desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 公用模块 企业信息 -->
+	<select id="getPublicQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyjbxx a
+		where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm#
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 旅馆业 企业信息 -->
+	<select id="getLgyQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.qiyeid qyid,a.qiyebianma qybm,a.qiyemc qymc,
+		a.farenmc frxm,a.lianxidh lxdh,a.xiangxidizhi dizhi,a.gxdwmc gxdwmc 
+		from t_lvguan a 
+		where a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+		</dynamic>
+		order by a.qiyeid desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 旅馆业 企业信息 -->
+	<select id="getLgyQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_lvguan a 
+		where a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 典当业 企业信息 -->
+	<select id="getDdyQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.ddqyid qyid,a.ddqybm qybm,a.ddqymc qymc,
+		a.frdb frxm,a.lxdh lxdh,a.jydz dizhi,a.gxdwmc gxdwmc 
+		from t_ddqyxx a where a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+		</dynamic>
+		order by a.ddqyid desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 典当业 企业信息 -->
+	<select id="getDdyQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ddqyxx a 
+		where a.zxbz = 0 and a.scbz = 0
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 机修业 企业信息 -->
+	<select id="getJxyQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.jxqyid qyid,a.jxqybm qybm,a.jxqymc qymc,
+		a.frdb frxm,a.lxdh lxdh,a.jydz dizhi,a.gxdwmc gxdwmc 
+		from t_jxqyxx a where a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+		</dynamic>
+		order by a.jxqyid desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 机修业 企业信息 -->
+	<select id="getJxyQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_jxqyxx a 
+		where a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 印章业 企业信息 -->
+	<select id="getYzyQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.zzdwid qyid,a.zzdwbm qybm,a.zzdwmc qymc,
+		a.frdb frxm,a.lxdh lxdh,a.jydz dizhi,a.gxdwmc gxdwmc 
+		from t_yzzzdwxx a where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+		</dynamic>
+		order by a.zzdwid desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 印章业 企业信息 -->
+	<select id="getYzyQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_yzzzdwxx a 
+		where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 出租房屋业 企业信息 -->
+	<select id="getCzfwyQyxxList" resultMap="qyxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.WYBZ qyid,a.CAIJIDIANBM qybm,a.CAIJIDIANMC qymc,
+		a.FUZEREN frxm,a.LIANXIDH lxdh,a.XIANGXIDIZHI dizhi,a.GXDWMC gxdwmc 
+		from t_caijidian a where a.ISZHUXIAO = 0
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+		</dynamic>
+		order by a.WYBZ desc )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 出租房屋业 企业信息 -->
+	<select id="getCzfwyQyxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_caijidian a where a.ISZHUXIAO = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 旅馆业 导出标识修改 -->
+	<update id="updateLgyxx" parameterClass="qyxxExpImp">
+		update t_lvguan a set a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<isNotEmpty prepend="," property="qyid">
+				a.qiyeid = #qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.qiyebianma = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs=#dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="wwtbbz">
+				a.waiwangtbbz=#wwtbbz#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="encodestr">
+				a.jiqijiamibh=#encodestr#
+			</isNotEmpty>
+		</dynamic>
+		where 1=1 and a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.qiyeid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.qiyebianma = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 旅馆业 xml数据查询 不分页 -->
+	<select id="getLgyXmlMes" resultMap="lgyXmlMesResult" parameterClass="qyxxExpImp">
+		select a.qiyeid qyid,a.hangyelx qylx,a.qiyebianma qybm,a.qiyemc qymc,
+		a.qitaisblx qycplxbm,a.farenmc frxm,a.zongjingli zjl,
+		a.zhianzrr zafzr,a.xiangxidizhi dizhi,a.lianxidh lxdh,
+		a.baoanbudh babdh,a.zhuangtai qyzt,a.zhuangtaigbrq qyztgbrq,
+		a.jiqijiamibh jqbm,a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		a.qiyexingzhi_dm qyxz,a.congyerenshu cyrs,a.zhibaorenshu zbrys,
+		a.jingpeixunrs jpxrs,a.dengjiriqi fwksrq,a.fangjianshu fjs,
+		a.chuangweishu cws,a.qiyexingji bgxj,a.qiyedengji bgdj,a.yewulbbm zflbm 
+		from t_lvguan a 
+		where a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条查询 -->
+				a.qiyeid = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.qiyeid desc
+	</select>
+	<!-- 旅馆业 xml数据查询 分页 -->
+	<select id="getLgyXmlMesPage" resultMap="lgyXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.qiyeid qyid,a.hangyelx qylx,a.qiyebianma qybm,a.qiyemc qymc,
+		a.qitaisblx qycplxbm,a.farenmc frxm,a.zongjingli zjl,
+		a.zhianzrr zafzr,a.xiangxidizhi dizhi,a.lianxidh lxdh,
+		a.baoanbudh babdh,a.zhuangtai qyzt,a.zhuangtaigbrq qyztgbrq,
+		a.jiqijiamibh jqbm,a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		a.qiyexingzhi_dm qyxz,a.congyerenshu cyrs,a.zhibaorenshu zbrys,
+		a.jingpeixunrs jpxrs,a.dengjiriqi fwksrq,a.fangjianshu fjs,
+		a.chuangweishu cws,a.qiyexingji bgxj,a.qiyedengji bgdj,a.yewulbbm zflbm
+		from t_lvguan a 
+		where a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+		</dynamic>
+		order by a.qiyeid desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 旅馆业 xml数据查询 分页 -->
+	<select id="getLgyXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_lvguan a where a.zhuxiaobz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_lgyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	<!-- 公共模块 导出标识修改 -->
+	<update id="updatePublicQyxx" parameterClass="qyxxExpImp">
+		update t_qyjbxx a set a.scbz = 0
+			<isNotEmpty prepend="," property="qyid">
+				a.qyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.qybm = #qybm# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs = #dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+		where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm#
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.qyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.qybm = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 公共模块 xml数据查询 -->
+	<select id="getPublicQyxxXmlMes" resultMap="pubXmlMesResult" parameterClass="qyxxExpImp">
+		select a.qyid qyid,a.qybm qybm ,a.qymc qymc,
+		a.frdb frxm,a.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,a.bafzrdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		a.zrs cyrs,a.bars zbrys,
+		a.jgpxrs jpxrs,a.lrsj fwksrq,
+		a.bxbjsl bxsl,a.cksl cksl,a.qyzflbm zflbm 
+		from t_qyjbxx a where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm# 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.qyid = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid desc
+	</select>
+	<!-- 公共模块 xml数据查询 分页 -->
+	<select id="getPublicQyxxXmlMesPage" resultMap="pubXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.qyid qyid,a.qybm qybm ,a.qymc qymc,
+		a.frdb frxm,a.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,a.bafzrdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		a.zrs cyrs,a.bars zbrys,
+		a.jgpxrs jpxrs,a.lrsj fwksrq,
+		a.bxbjsl bxsl,a.cksl cksl,a.qyzflbm zflbm 
+		from t_qyjbxx a where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm# 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+		</dynamic>
+		order by a.qyid desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 公共模块 xml数据查询 分页 -->
+	<select id="getPublicQyxxXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyjbxx a 
+		where a.zxbz = 0 and a.scbz = 0 and a.hylbdm = #hylbdm# 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_publicPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 典当业 导出标识修改 -->
+	<update id="updateDdyQyxx" parameterClass="qyxxExpImp">
+		update t_ddqyxx a set a.scbz = 0 
+			<isNotEmpty prepend="," property="qyid">
+				a.ddqyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.ddqybm = #qybm# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs = #dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+		where a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.ddqyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.ddqybm = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 典当业 xml数据查询 -->
+	<select id="getDdyQyxxXmlMes" resultMap="ddyXmlMesResult" parameterClass="qyxxExpImp">
+		select a.ddqyid qyid,a.ddqybm qybm ,a.ddqymc qymc,
+		a.frdb frxm,b.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,b.bafzrdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		b.zrs cyrs,b.bars zbrys,
+		b.jgpxrs jpxrs,a.lrsj fwksrq
+		from t_ddqyxx a , t_ddcdryxx b
+	    where a.ddqyid = b.ddqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.ddqyid = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.ddqyid desc
+	</select>
+	<!-- 典当业 xml数据查询 分页 -->
+	<select id="getDdyQyxxXmlMesPage" resultMap="ddyXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.ddqyid qyid,a.ddqybm qybm ,a.ddqymc qymc,
+		a.frdb frxm,b.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,b.bafzrdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,
+		b.zrs cyrs,b.bars zbrys,
+		b.jgpxrs jpxrs,a.lrsj fwksrq
+		from t_ddqyxx a , t_ddcdryxx b
+	    where a.ddqyid = b.ddqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+		</dynamic>
+		order by a.ddqyid desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 典当业 xml数据查询 分页 -->
+	<select id="getDdyQyxxXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ddqyxx a , t_ddcdryxx b
+	    where a.ddqyid = b.ddqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_ddyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 机修业 导出标识修改 -->
+	<update id="updateJxyQyxx" parameterClass="qyxxExpImp">
+		update t_jxqyxx a set a.scbz = 0 
+			<isNotEmpty prepend="," property="qyid">
+				a.jxqyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.jxqybm = #qybm# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs = #dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+		where a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.jxqyid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.jxqybm = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 机修业 xml数据查询 -->
+	<select id="getJxyQyxxXmlMes" resultMap="jxyXmlMesResult" parameterClass="qyxxExpImp">
+		select a.jxqyid qyid,a.jxqybm qybm ,a.jxqymc qymc,
+		a.frdb frxm,b.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,b.bafzrdh babdh,
+		a.gxdwdm gxdwbm,a.gxdwmc gxdwmc,
+		b.zrs cyrs,b.bars zbrys,
+		b.jgpxrs jpxrs,a.lrsj fwksrq,a.qyflbm zflbm
+		from t_jxqyxx a , t_jxcdryxx b
+	    where a.jxqyid = b.jxqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.jxqyid = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.jxqyid desc
+	</select>
+	<!-- 机修业 xml数据查询 分页 -->
+	<select id="getJxyQyxxXmlMesPage" resultMap="jxyXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.jxqyid qyid,a.jxqybm qybm ,a.jxqymc qymc,
+		a.frdb frxm,b.bafzrxm zafzr,a.jydz dizhi,
+		a.lxdh lxdh,b.bafzrdh babdh,
+		a.gxdwdm gxdwbm,a.gxdwmc gxdwmc,
+		b.zrs cyrs,b.bars zbrys,
+		b.jgpxrs jpxrs,a.lrsj fwksrq,a.qyflbm zflbm
+		from t_jxqyxx a , t_jxcdryxx b
+	    where a.jxqyid = b.jxqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+		</dynamic>
+		order by a.jxqyid desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 机修业 xml数据查询 分页 -->
+	<select id="getJxyQyxxXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_jxqyxx a , t_jxcdryxx b
+	    where a.jxqyid = b.jxqyid
+	    and a.zxbz = 0 and a.scbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_jxyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 印章业 导出标识修改 -->
+	<update id="updateYzyQyxx" parameterClass="qyxxExpImp">
+		update t_yzzzdwxx a set a.zxbz = 0 
+			<isNotEmpty prepend="," property="qyid">
+				a.zzdwid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.zzdwbm = #qybm# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs = #dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+		where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.zzdwid = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.zzdwbm = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 印章业 xml数据查询 -->
+	<select id="getYzyQyxxXmlMes" resultMap="yzyXmlMesResult" parameterClass="qyxxExpImp">
+		select a.zzdwid qyid,a.zzdwbm qybm ,a.zzdwmc qymc,
+		a.frdb frxm,a.zafzr zafzr,a.jydz dizhi,
+		a.lxdh lxdh,a.bwbmdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,a.lrsj fwksrq
+		from t_yzzzdwxx a 
+	    where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.zzdwid = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.zzdwid desc
+	</select>
+	<!-- 印章业 xml数据查询 分页 -->
+	<select id="getYzyQyxxXmlMesPage" resultMap="yzyXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.zzdwid qyid,a.zzdwbm qybm ,a.zzdwmc qymc,
+		a.frdb frxm,a.zafzr zafzr,a.jydz dizhi,
+		a.lxdh lxdh,a.bwbmdh babdh,
+		a.gxdwbm gxdwbm,a.gxdwmc gxdwmc,a.lrsj fwksrq
+		from t_yzzzdwxx a 
+	    where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+		</dynamic>
+		order by a.zzdwid desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 印章业 xml数据查询 分页 -->
+	<select id="getYzyQyxxXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_yzzzdwxx a 
+	    where a.zxbz = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_yzyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 出租房屋业 导出标识修改 -->
+	<update id="updateCzfwyQyxx" parameterClass="qyxxExpImp">
+		update t_caijidian a set a.ISZHUXIAO = 0 
+			<isNotEmpty prepend="," property="qyid">
+				a.WYBZ = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybm">
+				a.CAIJIDIANBM = #qybm# 
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcbs">
+				a.dcbs = #dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dcsj">
+				a.dcsj = #dcsj:DATE#
+			</isNotEmpty>
+		where a.ISZHUXIAO = 0
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.WYBZ = #qyid# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm"><!-- 单条修改 -->
+				a.CAIJIDIANBM = #qybm# 
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!-- 出租房屋业 xml数据查询 -->
+	<select id="getCzfwyQyxxXmlMes" resultMap="czfwyXmlMesResult" parameterClass="qyxxExpImp">
+		select a.WYBZ qyid,a.CAIJIDIANBM qybm ,a.CAIJIDIANMC qymc,
+		a.FUZEREN frxm,a.GUANXIAMINJING zafzr,a.XIANGXIDIZHI dizhi,
+		a.LIANXIDH lxdh,
+		a.GXDWBM gxdwbm,a.GXDWMC gxdwmc,a.DENGJIRQ fwksrq
+		from t_caijidian a where a.ISZHUXIAO = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+			<isNotEmpty prepend="and" property="qyid"><!-- 单条修改 -->
+				a.WYBZ = #qyid# 
+			</isNotEmpty>
+		</dynamic>
+		order by a.WYBZ desc
+	</select>
+	<!-- 出租房屋业 xml数据查询 分页 -->
+	<select id="getCzfwyQyxxXmlMesPage" resultMap="czfwyXmlMesResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from (
+		select a.WYBZ qyid,a.CAIJIDIANBM qybm ,a.CAIJIDIANMC qymc,
+		a.FUZEREN frxm,a.GUANXIAMINJING zafzr,a.XIANGXIDIZHI dizhi,
+		a.LIANXIDH lxdh,
+		a.GXDWBM gxdwbm,a.GXDWMC gxdwmc,a.DENGJIRQ fwksrq
+		from t_caijidian a where a.ISZHUXIAO = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+		</dynamic>
+		order by a.WYBZ desc
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!-- 出租房屋业 xml数据查询 分页 -->
+	<select id="getCzfwyQyxxXmlMesPageCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_caijidian a where a.ISZHUXIAO = 0 
+		<dynamic prepend="">
+			<include refid="t_allPageWhere"/>
+			<include refid="t_czfwyPageWhere"/>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 删除授权信息 -->
+	<delete id="deleteLicense" parameterClass="qyxxExpImp">
+		delete from license a where stationid = #stationid#
+	</delete>
+	<!-- 添加授权信息 -->
+	<insert id="insertLicense"  parameterClass="qyxxExpImp">
+		insert into license (stationid,encodestr) values ( #stationid#,#encodestr# )
+	</insert>
+</sqlMap>

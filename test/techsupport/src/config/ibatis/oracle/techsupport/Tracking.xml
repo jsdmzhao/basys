@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="Tracking" type="com.aisino2.techsupport.domain.Tracking" />
+	<!--<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24" />
+	</cacheModel>-->
+	<!-- 追踪批复结果集 -->
+	<resultMap class="Tracking" id="TrackingResult">
+		<result property="id" column="ID" />
+		<result property="trackingDate" column="TRACKING_DATE" />
+		<result property="newProcess" column="NEW_PROCESS" />
+		<result property="processor.userid" column="PROCESSOR" /><!-- 对应用户user类 -->
+		<result property="processor.username" column="USERNAME" />
+		<result property="stId" column="ST_ID" />
+		<result property="approvalCode" column="APPROVAL_CODE" />
+		<result property="type" column="TYPE" />
+	</resultMap>
+
+
+	
+	<sql id="TrackingWhere">
+			<dynamic prepend=" ">
+				u.userid=t.processor
+			</dynamic>			
+			<isNotNull prepend="and" property="trackingDate">
+				t.TRACKING_DATE=#trackingDate#
+			</isNotNull>
+			<isNotNull prepend="and" property="stId">
+				T.ST_ID = #stId#
+			</isNotNull>
+			<isNotNull prepend="and" property="type">
+				t.TYPE = #type#
+			</isNotNull>
+			<isNotNull prepend="and" property="approvalCode">
+				t.APPROVAL_CODE = #approvalCode#
+			</isNotNull>
+			
+	</sql>
+	<sql id="TrackingPageWhere">
+		<include refid="TrackingWhere" />
+	</sql>
+	<sql id="TrackingListWhere">
+		<include refid="TrackingWhere" />
+	</sql>
+	
+	<select id="tracking.get" resultMap="TrackingResult"
+		parameterClass="Tracking">
+		select t.*,u.username from T_TS_TRACKING t, t_user u  where u.userid=t.processor and  t.ID = #id# 
+	</select>
+	
+	<select id="tracking.getList" resultMap="TrackingResult"
+		parameterClass="Tracking">
+		select t.*,u.username from T_TS_TRACKING t , t_user u 
+		<dynamic prepend="where">
+			<include refid="TrackingListWhere"/>
+		</dynamic>
+	</select>
+	
+	<select id="tracking.getPageCount" parameterClass="map"
+		resultClass="integer">
+		select count(*) from
+		t_ts_tracking t , t_user u
+		<dynamic prepend="where">
+			<include refid="TrackingPageWhere" />
+		</dynamic>
+	</select>
+
+	<select id="tracking.getPage" resultMap="TrackingResult"
+		parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from
+		( select t.*,u.username from
+		t_ts_tracking t, t_user u
+		<dynamic prepend="where">
+			<include refid="TrackingPageWhere" />
+		</dynamic>
+		order by $pageSort$) z) x where rowno &gt;$beginRow$ and rowno &lt;=
+		$endRow$
+	</select>
+
+	<!-- 追踪或者审核信息的插入 -->
+	<insert id="tracking.insert" parameterClass="Tracking">
+		insert
+		into t_ts_tracking (
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="id">
+				ID
+			</isNotNull>
+			<isNotNull prepend="," property="trackingDate">
+				TRACKING_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="newProcess">
+				NEW_PROCESS
+			</isNotNull>
+			<isNotNull prepend="," property="processor.userid">
+				PROCESSOR
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				ST_ID
+			</isNotNull>
+			<isNotNull prepend="," property="type">
+				TYPE
+			</isNotNull>
+			<isNotNull prepend="," property="approvalCode">
+				APPROVAL_CODE
+			</isNotNull>
+
+		</dynamic>
+		)
+		values(
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="id">
+				#id#
+			</isNotNull>
+			<isNotNull prepend="," property="trackingDate">
+				#trackingDate#
+			</isNotNull>
+			<isNotNull prepend="," property="newProcess">
+				#newProcess#
+			</isNotNull>
+			<isNotNull prepend="," property="processor.userid">
+				#processor.userid#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				#stId#
+			</isNotNull>
+			<isNotNull prepend="," property="type">
+				#type#
+			</isNotNull>
+			<isNotNull prepend="," property="approvalCode">
+				#approvalCode#
+			</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+	<!-- 更新修改 -->
+	<update id="tracking.update" parameterClass="Tracking">
+		update t_ts_tracking set
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="trackingDate">
+				tracking_date=#trackingDate#
+			</isNotNull>
+			<isNotNull prepend="," property="newProcess">
+				new_process = #newProcess#
+			</isNotNull>
+			<isNotNull prepend="," property="processor.userid">
+				processor = #processor.userid#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				st_id = #stId#
+			</isNotNull>
+			<isNotNull prepend="," property="type">
+				TYPE = #type#
+			</isNotNull>
+			<isNotNull prepend="," property="approvalCode">
+				APPROVAL_CODE = #approvalCode#
+			</isNotNull>
+		
+		</dynamic>
+
+		where id = #id#
+	</update>
+
+	<delete id="tracking.delete" parameterClass="Tracking">
+		delete from
+		T_TS_TRACKING T where T.ID = #id# 
+	</delete>
+
+
+</sqlMap>

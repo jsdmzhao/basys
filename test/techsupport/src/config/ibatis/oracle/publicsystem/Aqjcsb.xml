@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="aqjcsb" type="com.aisino2.publicsystem.domain.Aqjcsb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--安全检查设备(t_aqjcsb)-->
+	<resultMap id="aqjcsbResult" class="aqjcsb">
+		<result property="qyid" column="qyid" />
+		<result property="anjcsbid" column="anjcsbid" />
+		<result property="aqjcsbzlbm" column="aqjcsbzlbm" />
+		<result property="aqjcsbzlmc" column="aqjcsbzlmc" />
+		<result property="sbxh" column="sbxh" />
+		<result property="ggxh" column="ggxh" />
+		<result property="sbmc" column="sbmc" />
+		<result property="azsl" column="azsl" />
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	<!--安全检查设备(t_aqjcsb)-->
+	<resultMap id="aqjcsbListResult" class="aqjcsb">
+		<result property="qyid" column="qyid"/>
+		<result property="anjcsbid" column="anjcsbid"/>
+		<result property="aqjcsbzlbm" column="aqjcsbzlbm"/>
+		<result property="aqjcsbzlmc" column="aqjcsbzlmc"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="azsl" column="azsl"/>
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	<!--安全检查设备(t_aqjcsb) 公安端安全检查设备信息查询-->
+	<resultMap id="aqjcsbGadListResult" class="aqjcsb">
+		<result property="qyid" column="qyid"/>
+		<result property="anjcsbid" column="anjcsbid"/>
+		<result property="aqjcsbzlbm" column="aqjcsbzlbm"/>
+		<result property="aqjcsbzlmc" column="aqjcsbzlmc"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflbm" column="qyzflbm"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="azsl" column="azsl" />
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	
+	<!--安全检查设备(t_aqjcsb) 公安端安全检查设备信息查询-->
+	<resultMap id="jfsbGadListResult" class="aqjcsb">
+		<result property="qyid" column="qyid"/>
+		<result property="anjcsbid" column="anjcsbid"/>
+		<result property="aqjcsbzlbm" column="aqjcsbzlbm"/>
+		<result property="aqjcsbzlmc" column="aqjcsbzlmc"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="azsl" column="azsl" />
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+		
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflbm" column="qyzflbm"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+	</resultMap>
+	<sql id="t_aqjcsbWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="anjcsbid">
+				a.anjcsbid=#anjcsbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_aqjcsbPageWhere" >
+		<include refid="t_aqjcsbWhere" />	</sql>
+	<sql id="t_aqjcsbListWhere" >
+		<include refid="t_aqjcsbWhere" />	</sql>
+	<sql id="t_aqjcsbSelectWhere"  >
+		<include refid="t_aqjcsbWhere" />	</sql>
+	<!--安全检查设备(t_aqjcsb)-->
+	<insert id="insertAqjcsb"  parameterClass="aqjcsb">
+		insert into t_aqjcsb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="anjcsbid">
+				anjcsbid
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlbm">
+				aqjcsbzlbm
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlmc">
+				aqjcsbzlmc
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				sbxh
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				ggxh
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				sbmc
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				azsl
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				tyyy
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				tysj
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="anjcsbid">
+				#anjcsbid#
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlbm">
+				#aqjcsbzlbm#
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlmc">
+				#aqjcsbzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				#sbxh#
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				#ggxh#
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				#sbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				#azsl#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				#tyyy#
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				#tysj:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--安全检查设备(t_aqjcsb)-->
+	<update id="updateAqjcsb" parameterClass="aqjcsb">
+		update t_aqjcsb a set a.anjcsbid=a.anjcsbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlbm">
+				aqjcsbzlbm=#aqjcsbzlbm#
+			</isNotNull>
+			<isNotNull prepend="," property="aqjcsbzlmc">
+				aqjcsbzlmc=#aqjcsbzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				sbxh=#sbxh#
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				ggxh=#ggxh#
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				sbmc=#sbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				azsl=#azsl#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				tyyy=#tyyy#
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				tysj=#tysj:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr=#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_aqjcsbWhere" />
+		</dynamic>
+	</update>
+	<!--安全检查设备(t_aqjcsb)-->
+	<delete id="deleteAqjcsb" parameterClass="aqjcsb">
+		delete from t_aqjcsb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_aqjcsbWhere" />
+		</dynamic>
+	</delete>
+	<!--安全检查设备(t_aqjcsb)-->
+	<select id="getAqjcsbList" resultMap="jfsbGadListResult" parameterClass="map">
+		select x.* from ( select rownum rowno,z.* from  (
+		select a.qyid qyid,a.anjcsbid anjcsbid,a.aqjcsbzlbm aqjcsbzlbm,a.aqjcsbzlmc aqjcsbzlmc,
+				a.sbxh sbxh,a.ggxh ggxh,a.sbmc sbmc,a.azsl azsl,
+				a.zt zt,a.tyyy tyyy,a.tysj tysj,a.bz bz,a.lrr lrr ,a.lrsj lrsj,
+				b.qybm,b.qymc,b.qyzflbm,b.qyzflmc,b.hylbdm hylbdm,b.hylb hylb
+		from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<include refid="t_aqjcsbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--安全检查设备(t_aqjcsb)-->
+	<select id="getAqjcsbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<include refid="t_aqjcsbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--安全检查设备(t_aqjcsb)-->
+	<select id="getAqjcsbListNoPage" resultMap="aqjcsbListResult" parameterClass="aqjcsb">
+		select a.qyid qyid,a.anjcsbid anjcsbid,a.aqjcsbzlbm aqjcsbzlbm,a.aqjcsbzlmc aqjcsbzlmc,a.sbxh sbxh,a.ggxh ggxh,a.sbmc sbmc,a.azsl azsl
+		,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.bz bz,a.lrr lrr ,a.lrsj lrsj
+		from t_aqjcsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_aqjcsbListWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.anjcsbid
+	</select>
+	<!--安全检查设备(t_aqjcsb)-->
+	<select id="getAqjcsb" resultMap="aqjcsbResult" parameterClass="aqjcsb">
+		select a.qyid qyid,a.anjcsbid anjcsbid,a.aqjcsbzlbm aqjcsbzlbm,a.aqjcsbzlmc aqjcsbzlmc,a.sbxh sbxh,a.ggxh ggxh,a.sbmc sbmc,a.azsl azsl
+		,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.bz bz,a.lrr lrr ,a.lrsj lrsj
+		from t_aqjcsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_aqjcsbSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.anjcsbid
+	</select>
+	<!--安全检查设备(t_aqjcsb) 安全检查设备信息查询-->
+	<select id="getAqjcsbGadList" resultMap="aqjcsbGadListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.anjcsbid anjcsbid,a.aqjcsbzlbm aqjcsbzlbm,a.aqjcsbzlmc aqjcsbzlmc,a.sbxh sbxh,a.ggxh ggxh,a.sbmc sbmc,a.azsl azsl,
+				b.qybm,b.qymc,b.qyzflbm,b.qyzflmc,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.bz bz,a.lrr lrr ,a.lrsj lrsj
+		from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbxh">
+				a.sbxh like '%$sbxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlmc">
+				a.aqjcsbzlmc=#aqjcsbzlmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlbm">
+				a.aqjcsbzlbm=#aqjcsbzlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyx"><!-- 是否有效（公安端是否可见） 0-无效，1-有效 -->
+				<isEqual prepend="" property="sfyx"  compareValue="0">
+					 b.zt = '0'
+				</isEqual>
+				<isEqual prepend="" property="sfyx"  compareValue="1">
+					  b.zt &lt;&gt; '0' and b.zt &lt;&gt; '3'
+				</isEqual>
+     		</isNotEmpty>
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_aqjcsbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--安全检查设备(t_aqjcsb)-->
+	<select id="getAqjcsbGadListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbxh">
+				a.sbxh like '%$sbxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlmc">
+				a.aqjcsbzlmc=#aqjcsbzlmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlbm">
+				a.aqjcsbzlbm=#aqjcsbzlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyx"><!-- 是否有效（公安端是否可见） 0-无效，1-有效 -->
+				<isEqual prepend="" property="sfyx"  compareValue="0">
+					 b.zt = '0'
+				</isEqual>
+				<isEqual prepend="" property="sfyx"  compareValue="1">
+					  b.zt &lt;&gt; '0' and b.zt &lt;&gt; '3'
+				</isEqual>
+     		</isNotEmpty>
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_aqjcsbPageWhere" />
+		</dynamic>
+	</select>
+	
+	<!-- 公共 技防设备 公安端 分页查询 -->
+	<select id="getJfsbGadList" resultMap="jfsbGadListResult" parameterClass="map">
+		select x.* from (　select rownum rowno,z.* from　(
+		select a.qyid qyid,a.anjcsbid anjcsbid,a.aqjcsbzlbm aqjcsbzlbm,a.aqjcsbzlmc aqjcsbzlmc,
+				a.sbxh sbxh,a.ggxh ggxh,a.sbmc sbmc,a.azsl azsl,
+				a.zt zt,a.tyyy tyyy,a.tysj tysj,a.bz bz,a.lrr lrr ,a.lrsj lrsj,
+				b.qybm,b.qymc,b.qyzflbm,b.qyzflmc,b.hylbdm hylbdm,b.hylb hylb
+		from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlbm">
+				a.aqjcsbzlbm=#aqjcsbzlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	
+	<!-- 公共 技防设备 公安端 分页查询 数量 -->
+	<select id="getJfsbGadListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_aqjcsb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcsbzlbm">
+				a.aqjcsbzlbm=#aqjcsbzlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!-- 技防设备数量查询 -->
+	<select id="getJfsbCount" resultClass="int" parameterClass="aqjcsb">
+		select NVL(sum(a.azsl), 0) azsl from t_aqjcsb a
+		where a.zt=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

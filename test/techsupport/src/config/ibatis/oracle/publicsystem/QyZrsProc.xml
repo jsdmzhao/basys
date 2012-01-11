@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!-- 计算场所总人数 -->
+	<parameterMap class="java.util.Map" id="qyidMap">
+		<parameter property="p_oldQyid" jdbcType="NUMBER" javaType="int" mode="IN"/>
+		<parameter property="p_newQyid" jdbcType="NUMBER" javaType="int" mode="IN"/>
+	</parameterMap>
+	
+	<!-- 计算场所总人数 -->
+	<procedure id="updateQyzrs" parameterMap="qyidMap">
+		<![CDATA[
+			{call privisys.gg_qyzrs(?,?)}
+		]]>
+	</procedure>
+</sqlMap>

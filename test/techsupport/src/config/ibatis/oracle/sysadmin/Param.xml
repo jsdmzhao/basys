@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="param" type="com.aisino2.sysadmin.domain.Param"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--参数设置(t_param)-->
+	<resultMap id="paramResult" class="param">
+		<result property="paramcode" column="paramcode" />
+		<result property="paramname" column="paramname" />
+		<result property="paramvalue" column="paramvalue" />
+	</resultMap>
+	<!--参数设置(t_param)-->
+	<resultMap id="paramListResult" class="param">
+		<result property="paramcode" column="paramcode"/>
+		<result property="paramname" column="paramname"/>
+		<result property="paramvalue" column="paramvalue"/>
+	</resultMap>
+	<sql id="t_paramWhere">
+			<isNotEmpty prepend="and" property="paramcode">
+				a.paramcode=#paramcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_paramPageWhere" >
+		<include refid="t_paramWhere" />	</sql>
+	<sql id="t_paramListWhere" >
+		<include refid="t_paramWhere" />	</sql>
+	<sql id="t_paramSelectWhere"  >
+		<include refid="t_paramWhere" />	</sql>
+	<!--参数设置(t_param)-->
+	<insert id="insertParam"  parameterClass="param">
+		insert into t_param (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="paramcode">
+				paramcode
+			</isNotNull>
+			<isNotNull prepend="," property="paramname">
+				paramname
+			</isNotNull>
+			<isNotNull prepend="," property="paramvalue">
+				paramvalue
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="paramcode">
+				#paramcode#
+			</isNotNull>
+			<isNotNull prepend="," property="paramname">
+				#paramname#
+			</isNotNull>
+			<isNotNull prepend="," property="paramvalue">
+				#paramvalue#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--参数设置(t_param)-->
+	<update id="updateParam" parameterClass="param">
+		update t_param a set paramcode=paramcode
+		<dynamic prepend="">
+			
+			<isNotNull prepend="," property="paramname">
+				paramname=#paramname#
+			</isNotNull>
+			<isNotNull prepend="," property="paramvalue">
+				paramvalue=#paramvalue#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_paramWhere" />
+		</dynamic>
+	</update>
+	<!--参数设置(t_param)-->
+	<delete id="deleteParam" parameterClass="param">
+		delete from t_param a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_paramWhere" />
+		</dynamic>
+	</delete>
+	<!--参数设置(t_param)-->
+	<select id="getParamList" resultMap="paramListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.paramcode paramcode,a.paramname paramname,a.paramvalue paramvalue
+		from t_param a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_paramPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--参数设置(t_param)-->
+	<select id="getParamListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_param a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_paramPageWhere" />
+		</dynamic>
+	</select>
+	<!--参数设置(t_param)-->
+	<select id="getParamListNoPage" resultMap="paramListResult" parameterClass="param">
+		select a.paramcode paramcode,a.paramname paramname,a.paramvalue paramvalue
+		from t_param a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	 ( a.paramname like '%$query_simplepin$%' or
+			 	 a.paramvalue like '%$query_simplepin$%' )
+			</isNotEmpty>
+			<include refid="t_paramListWhere" />
+		</dynamic>
+		order by a.paramcode
+	</select>
+	<!--参数设置(t_param)-->
+	<select id="getParam" resultMap="paramResult" parameterClass="param">
+		select a.paramcode paramcode,a.paramname paramname,a.paramvalue paramvalue
+		from t_param a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_paramSelectWhere" />
+		</dynamic>
+		order by a.paramcode
+	</select>
+</sqlMap>

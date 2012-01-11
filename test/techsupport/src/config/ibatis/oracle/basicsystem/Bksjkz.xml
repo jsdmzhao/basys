@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bksjkz" type="com.aisino2.basicsystem.domain.Bksjkz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--布控手机快照(t_bksjkz)-->
+	<resultMap id="bksjkzResult" class="bksjkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2" />
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid" />
+		<result property="bksjkzid" column="bksjkzid" />
+		<result property="sjch" column="sjch" />
+		<result property="pp" column="pp" />
+		<result property="xh" column="xh" />
+		<result property="ys" column="ys" />
+	</resultMap>
+	<!--布控手机快照(t_bksjkz)-->
+	<resultMap id="bksjkzListResult" class="bksjkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2"/>
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid"/>
+		<result property="bksjkzid" column="bksjkzid"/>
+		<result property="sjch" column="sjch"/>
+		<result property="pp" column="pp"/>
+		<result property="xh" column="xh"/>
+		<result property="ys" column="ys"/>
+	</resultMap>
+	<sql id="t_bksjkzWhere">
+			<isNotEmpty prepend="and" property="bjxxid2">
+				a.bjxxid2=#bjxxid2#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bkwpjbxxkzid">
+				a.bkwpjbxxkzid=#bkwpjbxxkzid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bksjkzid">
+				a.bksjkzid=#bksjkzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bksjkzPageWhere" >
+		<include refid="t_bksjkzWhere" />	</sql>
+	<sql id="t_bksjkzListWhere" >
+		<include refid="t_bksjkzWhere" />	</sql>
+	<sql id="t_bksjkzSelectWhere"  >
+		<include refid="t_bksjkzWhere" />	</sql>
+	<!--布控手机快照(t_bksjkz)-->
+	<insert id="insertBksjkz"  parameterClass="bksjkz">
+		insert into t_bksjkz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				bkwpjbxxkzid
+			</isNotNull>
+			<isNotNull prepend="," property="bksjkzid">
+				bksjkzid
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				#bkwpjbxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bksjkzid">
+				#bksjkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				#ys#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--布控手机快照(t_bksjkz)-->
+	<update id="updateBksjkz" parameterClass="bksjkz">
+		update t_bksjkz a set a.bksjkzid=a.bksjkzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				bkwpjbxxkzid=#bkwpjbxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bjxxid2">
+				bjxxid2=#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch=#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp=#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh=#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys=#ys#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjkzWhere" />
+		</dynamic>
+	</update>
+	<!--布控手机快照(t_bksjkz)-->
+	<delete id="deleteBksjkz" parameterClass="bksjkz">
+		delete from t_bksjkz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bksjkzWhere" />
+		</dynamic>
+	</delete>
+	<!--布控手机快照(t_bksjkz)-->
+	<select id="getBksjkzList" resultMap="bksjkzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bksjkzid bksjkzid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksjkz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjkzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--布控手机快照(t_bksjkz)-->
+	<select id="getBksjkzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bksjkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjkzPageWhere" />
+		</dynamic>
+	</select>
+	<!--布控手机快照(t_bksjkz)-->
+	<select id="getBksjkzListNoPage" resultMap="bksjkzListResult" parameterClass="bksjkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bksjkzid bksjkzid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksjkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjkzListWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid,a.bksjkzid
+	</select>
+	<!--布控手机快照(t_bksjkz)-->
+	<select id="getBksjkz" resultMap="bksjkzResult" parameterClass="bksjkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bksjkzid bksjkzid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksjkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjkzSelectWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid,a.bksjkzid
+	</select>
+</sqlMap>

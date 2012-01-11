@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="clxxwgryxx" type="com.aisino2.publicsystem.domain.Clxxwgryxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<resultMap id="clxxwgryxxResult" class="clxxwgryxx">
+		<result property="cljbxxid" column="cljbxxid" />
+		<result property="wgrxxid" column="wgrxxid" />
+		<result property="wgrylb" column="wgrylb" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="qzzldm" column="qzzldm" />
+		<result property="qzzl" column="qzzl" />
+		<result property="qzhm" column="qzhm" />
+		<result property="zatlq" column="zatlq" />
+		<result property="qfjg" column="qfjg" />
+		<result property="rjrq" column="rjrq" />
+		<result property="rjka" column="rjka" />
+	</resultMap>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<resultMap id="clxxwgryxxListResult" class="clxxwgryxx">
+		<result property="cljbxxid" column="cljbxxid"/>
+		<result property="wgrxxid" column="wgrxxid"/>
+		<result property="wgrylb" column="wgrylb"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="qzzldm" column="qzzldm"/>
+		<result property="qzzl" column="qzzl"/>
+		<result property="qzhm" column="qzhm"/>
+		<result property="zatlq" column="zatlq"/>
+		<result property="qfjg" column="qfjg"/>
+		<result property="rjrq" column="rjrq"/>
+		<result property="rjka" column="rjka"/>
+	</resultMap>
+	<sql id="t_clxxwgryxxWhere">
+			<isNotEmpty prepend="and" property="cljbxxid">
+				a.cljbxxid=#cljbxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wgrxxid">
+				a.wgrxxid=#wgrxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_clxxwgryxxPageWhere" >
+		<include refid="t_clxxwgryxxWhere" />	</sql>
+	<sql id="t_clxxwgryxxListWhere" >
+		<include refid="t_clxxwgryxxWhere" />	</sql>
+	<sql id="t_clxxwgryxxSelectWhere"  >
+		<include refid="t_clxxwgryxxWhere" />	</sql>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<insert id="insertClxxwgryxx"  parameterClass="clxxwgryxx">
+		insert into t_clxxwgryxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				cljbxxid
+			</isNotNull>
+			<isNotNull prepend="," property="wgrxxid">
+				wgrxxid
+			</isNotNull>
+			<isNotNull prepend="," property="wgrylb">
+				wgrylb
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				qzzl
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				#cljbxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrxxid">
+				#wgrxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="wgrylb">
+				#wgrylb#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				#qzzl#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				#rjka#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<update id="updateClxxwgryxx" parameterClass="clxxwgryxx">
+		update t_clxxwgryxx a set a.wgrxxid=a.wgrxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wgrylb">
+				wgrylb=#wgrylb#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx=#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm=#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm=#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				qzzl=#qzzl#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm=#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq=#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg=#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq=#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka=#rjka#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxWhere" />
+		</dynamic>
+	</update>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<delete id="deleteClxxwgryxx" parameterClass="clxxwgryxx">
+		delete from t_clxxwgryxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxWhere" />
+		</dynamic>
+	</delete>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<select id="getClxxwgryxxList" resultMap="clxxwgryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.cljbxxid cljbxxid,a.wgrxxid wgrxxid,a.wgrylb wgrylb,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_clxxwgryxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<select id="getClxxwgryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_clxxwgryxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<select id="getClxxwgryxxListNoPage" resultMap="clxxwgryxxListResult" parameterClass="clxxwgryxx">
+		select a.cljbxxid cljbxxid,a.wgrxxid wgrxxid,a.wgrylb wgrylb,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_clxxwgryxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxListWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.wgrxxid
+	</select>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<select id="getClxxwgryxx" resultMap="clxxwgryxxResult" parameterClass="clxxwgryxx">
+		select a.cljbxxid cljbxxid,a.wgrxxid wgrxxid,a.wgrylb wgrylb,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_clxxwgryxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxxwgryxxSelectWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.wgrxxid
+	</select>
+</sqlMap>

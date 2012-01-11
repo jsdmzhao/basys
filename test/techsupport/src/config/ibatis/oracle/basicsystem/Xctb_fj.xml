@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="xctb_fj" type="com.aisino2.basicsystem.domain.Xctb_fj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<resultMap id="xctb_fjResult" class="xctb_fj">
+		<result property="tbid" column="tbid" />
+		<result property="fjid" column="fjid" />
+		<result property="fjmc" column="fjmc" />
+		<result property="fjlx" column="fjlx" />
+		<result property="fjnr" column="fjnr" />
+		<result property="fjxh" column="fjxh" />
+	</resultMap>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<resultMap id="xctb_fjListResult" class="xctb_fj">
+		<result property="tbid" column="tbid"/>
+		<result property="fjid" column="fjid"/>
+		<result property="fjmc" column="fjmc"/>
+		<result property="fjlx" column="fjlx"/>
+		<result property="fjxh" column="fjxh"/>
+	</resultMap>
+	<sql id="t_xctb_fjWhere">
+			<isNotEmpty prepend="and" property="tbid">
+				a.tbid=#tbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fjid">
+				a.fjid=#fjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_xctb_fjPageWhere" >
+		<include refid="t_xctb_fjWhere" />	</sql>
+	<sql id="t_xctb_fjListWhere" >
+		<include refid="t_xctb_fjWhere" />	</sql>
+	<sql id="t_xctb_fjSelectWhere"  >
+		<include refid="t_xctb_fjWhere" />	</sql>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<insert id="insertXctb_fj"  parameterClass="xctb_fj">
+		insert into t_xctb_fj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				tbid
+			</isNotNull>
+			<isNotNull prepend="," property="fjid">
+				fjid
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				fjxh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				#tbid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjid">
+				#fjid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				#fjnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				#fjxh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<update id="updateXctb_fj" parameterClass="xctb_fj">
+		update t_xctb_fj a set a.fjid=a.fjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="fjid">
+				fjid=#fjid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc=#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx=#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr=#fjnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				fjxh=#fjxh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctb_fjWhere" />
+		</dynamic>
+	</update>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<delete id="deleteXctb_fj" parameterClass="xctb_fj">
+		delete from t_xctb_fj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_xctb_fjWhere" />
+		</dynamic>
+	</delete>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<select id="getXctb_fjList" resultMap="xctb_fjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.fjid fjid,a.fjmc fjmc,a.fjlx fjlx,a.fjxh fjxh
+		from t_xctb_fj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctb_fjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<select id="getXctb_fjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_xctb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctb_fjPageWhere" />
+		</dynamic>
+	</select>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<select id="getXctb_fjListNoPage" resultMap="xctb_fjListResult" parameterClass="xctb_fj">
+		select a.tbid tbid,a.fjid fjid,a.fjmc fjmc,a.fjlx fjlx,a.fjxh fjxh
+		from t_xctb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctb_fjListWhere" />
+		</dynamic>
+		order by a.tbid,a.fjid
+	</select>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<select id="getXctb_fj" resultMap="xctb_fjResult" parameterClass="xctb_fj">
+		select a.tbid tbid,a.fjid fjid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr,a.fjxh fjxh
+		from t_xctb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctb_fjSelectWhere" />
+		</dynamic>
+		order by a.tbid,a.fjid
+	</select>
+</sqlMap>

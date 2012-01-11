@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="role_param" type="com.aisino2.sysadmin.domain.Role_param"/>
+	  <typeAlias alias="role" type="com.aisino2.sysadmin.domain.Role"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--角色参数(t_role_param)-->
+	<resultMap id="role_paramResult" class="role_param">
+		<result property="roleid" column="roleid" />
+		<result property="paramcode" column="paramcode" />
+		<result property="paramname" column="paramname" />
+		<result property="paramvalue" column="paramvalue" />
+	</resultMap>
+	<resultMap id="role_paramListNoPageResult" class="role_param">
+		<result property="roleid" column="roleid" />
+		<result property="paramcode" column="paramcode" />
+		<result property="paramname" column="paramname" />
+		<result property="paramvalue" column="paramvalue" />
+	</resultMap>
+			
+	<!--角色参数(t_role_param)-->
+	<resultMap id="role_paramListResult" class="role_param">
+		<result property="roleid" column="roleid"/>
+		<result property="paramcode" column="paramcode"/>
+	</resultMap>
+	<sql id="t_role_paramWhere">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="paramcode">
+				a.paramcode=#paramcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_role_paramPageWhere" >
+		<include refid="t_role_paramWhere" />	</sql>
+	<sql id="t_role_paramListWhere" >
+		<include refid="t_role_paramWhere" />	</sql>
+	<sql id="t_role_paramSelectWhere"  >
+		<include refid="t_role_paramWhere" />	</sql>
+	<!--角色参数(t_role_param)-->
+	<insert id="insertRole_param"  parameterClass="role_param">
+		insert into t_role_param (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				roleid
+			</isNotNull>
+			<isNotNull prepend="," property="paramcode">
+				paramcode
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				#roleid#
+			</isNotNull>
+			<isNotNull prepend="," property="paramcode">
+				#paramcode#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--角色参数(t_role_param)-->
+	<update id="updateRole_param" parameterClass="role_param">
+		update t_role_param a set roleid=roleid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="paramcode">
+				paramcode=#paramcode#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_paramWhere" />
+		</dynamic>
+	</update>
+	<!--角色参数(t_role_param)-->
+	<delete id="deleteRole_param" parameterClass="role_param">
+		delete from t_role_param a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_role_paramWhere" />
+		</dynamic>
+	</delete>
+	<!--角色参数(t_role_param)-->
+	<select id="getRole_paramList" resultMap="role_paramListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.roleid roleid,a.paramcode paramcode
+		from t_role_param a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_paramPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--角色参数(t_role_param)-->
+	<select id="getRole_paramListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_role_param a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_paramPageWhere" />
+		</dynamic>
+	</select>
+	<!--角色参数(t_role_param)-->
+	<select id="getRole_paramListNoPage" resultMap="role_paramListNoPageResult" parameterClass="role_param">
+		select a.roleid roleid,a.paramcode paramcode,paramname paramname,b.paramvalue paramvalue
+		from t_role_param a,t_param b
+		where 1=1 and a.paramcode = b.paramcode
+		<dynamic prepend="">
+			<include refid="t_role_paramListWhere" />
+		</dynamic>
+		order by a.roleid,a.paramcode
+	</select>
+	<!--角色参数(t_role_param)-->
+	<select id="getRole_param" resultMap="role_paramResult" parameterClass="role_param">
+		select a.roleid roleid,a.paramcode paramcode,paramname paramname,b.paramvalue paramvalue
+		from t_role_param a,t_param b
+		where 1=1 and a.paramcode = b.paramcode
+		<dynamic prepend="">
+			<include refid="t_role_paramSelectWhere" />
+		</dynamic>
+		order by a.roleid,a.paramcode
+	</select>
+	
+		<!--删除角色参数(t_role_param)-->
+	<delete id="deleteRoleParamByRole" parameterClass="role">
+		delete from t_role_param a where  roleid=#roleid#
+	</delete>
+</sqlMap>

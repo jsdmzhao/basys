@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="20" maxSessions="10" maxTransactions="50" useStatementNamespaces="true"/>
+	<sqlMap resource="com/aisino2/core/dao/Sequence.xml"/>
+	<!--企业人员刷卡记录(t_qyryskjl)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Qyryskjl.xml"/>
+	<!--物流登记信息(t_wldj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Wldj.xml"/>
+	<!--IC卡受理(t_icksl)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Icksl.xml"/>
+	<!--IC卡组包(t_ickzb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ickzb.xml"/>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ickrzjl.xml"/>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Icksl_ickzb.xml"/>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Icksl_wldj.xml"/>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ickslbg.xml"/>
+	<!--刷卡信息统计明细(t_qyryskxxtj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Qyryskxxtj.xml"/>
+	<!--制卡统计日报(t_zktjrb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zktjrb.xml"/>
+	<!--制卡统计月报(t_zktjyb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zktjyb.xml"/>
+	<!--制卡统计季报(t_zktjjb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zktjjb.xml"/>
+	<!--制卡统计汇总日报(t_zktjhjrb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zktjhjrb.xml"/>
+	<!--IC卡受理统计(t_icksltj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Icksltj.xml"/>
+	<!--IC卡预警(t_ickyj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ickyj.xml"/>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Cjdtjrb.xml"/>
+	<!--制证中心上传(t_zzzxsc)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zzzxsc.xml"/>
+	<!--异常刷卡企业(t_ycskqy)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ycskqy.xml"/>
+	<!--制证中心接口-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Zzzxjk.xml"/>
+	<!--无线终端设备(ST_DEVICE)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/St_device.xml"/>
+	<!--走台人员刷卡信息统计明细(t_ztryskxxtj)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Ztryskxxtj.xml"/>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<sqlMap resource="config/ibatis/oracle/icksystem/Icksl_lsb.xml"/>
+	
+</sqlMapConfig>

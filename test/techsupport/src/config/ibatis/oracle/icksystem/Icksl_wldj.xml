@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="icksl_wldj" type="com.aisino2.icksystem.domain.Icksl_wldj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<resultMap id="icksl_wldjResult" class="icksl_wldj">
+		<result property="ickslid" column="ickslid" />
+		<result property="wlid" column="wlid" />
+		<result property="wlbzkztbs" column="wlbzkztbs" />
+	</resultMap>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<resultMap id="icksl_wldjOneResult" class="icksl_wldj">
+		<result property="ickslid" column="ickslid" />
+		<result property="wlid" column="wlid" />
+	</resultMap>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<resultMap id="icksl_wldjListResult" class="icksl_wldj">
+		<result property="ickslid" column="ickslid"/>
+		<result property="wlid" column="wlid"/>
+		<result property="wlbzkztbs" column="wlbzkztbs" />
+	</resultMap>
+	<sql id="t_icksl_wldjWhere">
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wlid">
+				a.wlid=#wlid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_icksl_wldjPageWhere" >
+		<include refid="t_icksl_wldjWhere" />	</sql>
+	<sql id="t_icksl_wldjListWhere" >
+		<include refid="t_icksl_wldjWhere" />	</sql>
+	<sql id="t_icksl_wldjSelectWhere"  >
+		<include refid="t_icksl_wldjWhere" />	</sql>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<insert id="insertIcksl_wldj"  parameterClass="icksl_wldj">
+		insert into t_icksl_wldj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				ickslid
+			</isNotNull>
+			<isNotNull prepend="," property="wlid">
+				wlid
+			</isNotNull>
+			<isNotNull prepend="," property="wlbzkztbs">
+				wlbzkztbs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlid">
+				#wlid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlbzkztbs">
+				#wlbzkztbs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<update id="updateIcksl_wldj" parameterClass="icksl_wldj">
+		update t_icksl_wldj a set a.wlid=a.wlid , a.ickslid=a.ickslid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wlbzkztbs">
+				wlbzkztbs=#wlbzkztbs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<delete id="deleteIcksl_wldj" parameterClass="icksl_wldj">
+		delete from t_icksl_wldj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<select id="getIcksl_wldjList" resultMap="icksl_wldjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickslid ickslid,a.wlid wlid,a.wlbzkztbs wlbzkztbs
+		from t_icksl_wldj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<select id="getIcksl_wldjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_icksl_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<select id="getIcksl_wldjListNoPage" resultMap="icksl_wldjListResult" parameterClass="icksl_wldj">
+		select a.ickslid ickslid,a.wlid wlid,a.wlbzkztbs wlbzkztbs
+		from t_icksl_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjListWhere" />
+		</dynamic>
+		order by a.ickslid,a.wlid
+	</select>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<select id="getIcksl_wldj" resultMap="icksl_wldjOneResult" parameterClass="icksl_wldj">
+		select a.ickslid ickslid,max(a.wlid) wlid
+		from t_icksl_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_wldjSelectWhere" />
+		</dynamic>
+		group by a.ickslid
+	</select>
+</sqlMap>

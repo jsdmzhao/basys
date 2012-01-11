@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="clxx_zp" type="com.aisino2.publicsystem.domain.Clxx_zp"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<resultMap id="clxx_zpResult" class="clxx_zp">
+		<result property="cljbxxid" column="cljbxxid" />
+		<result property="clxxzpid" column="clxxzpid" />
+		<result property="tpmc" column="tpmc" />
+		<result property="tplx" column="tplx" />
+		<result property="tpnr" column="tpnr" />
+	</resultMap>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<resultMap id="clxx_zpListResult" class="clxx_zp">
+		<result property="cljbxxid" column="cljbxxid"/>
+		<result property="clxxzpid" column="clxxzpid"/>
+		<result property="tpmc" column="tpmc"/>
+		<result property="tplx" column="tplx"/>
+		<result property="tpnr" column="tpnr"/>
+	</resultMap>
+	<sql id="t_clxx_zpWhere">
+			<isNotEmpty prepend="and" property="cljbxxid">
+				a.cljbxxid=#cljbxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="clxxzpid">
+				a.clxxzpid=#clxxzpid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tplx">
+				a.tplx=#tplx#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_clxx_zpPageWhere" >
+		<include refid="t_clxx_zpWhere" />	</sql>
+	<sql id="t_clxx_zpListWhere" >
+		<include refid="t_clxx_zpWhere" />	</sql>
+	<sql id="t_clxx_zpSelectWhere"  >
+		<include refid="t_clxx_zpWhere" />	</sql>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<insert id="insertClxx_zp"  parameterClass="clxx_zp">
+		insert into t_clxx_zp (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				cljbxxid
+			</isNotNull>
+			<isNotNull prepend="," property="clxxzpid">
+				clxxzpid
+			</isNotNull>
+			<isNotNull prepend="," property="tpmc">
+				tpmc
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				tplx
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				tpnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				#cljbxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="clxxzpid">
+				#clxxzpid#
+			</isNotNull>
+			<isNotNull prepend="," property="tpmc">
+				#tpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				#tplx#
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				#tpnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<update id="updateClxx_zp" parameterClass="clxx_zp">
+		update t_clxx_zp a set a.clxxzpid=a.clxxzpid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="tpmc">
+				tpmc=#tpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tplx">
+				tplx=#tplx#
+			</isNotNull>
+			<isNotNull prepend="," property="tpnr">
+				tpnr=#tpnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpWhere" />
+		</dynamic>
+	</update>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<delete id="deleteClxx_zp" parameterClass="clxx_zp">
+		delete from t_clxx_zp a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_clxx_zpWhere" />
+		</dynamic>
+	</delete>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<select id="getClxx_zpList" resultMap="clxx_zpListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.cljbxxid cljbxxid,a.clxxzpid clxxzpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_clxx_zp a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<select id="getClxx_zpListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_clxx_zp a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpPageWhere" />
+		</dynamic>
+	</select>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<select id="getClxx_zpListNoPage" resultMap="clxx_zpListResult" parameterClass="clxx_zp">
+		select a.cljbxxid cljbxxid,a.clxxzpid clxxzpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_clxx_zp a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpListWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.clxxzpid
+	</select>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<select id="getClxx_zpNoTpListNoPage" resultMap="clxx_zpListResult" parameterClass="clxx_zp">
+		select a.cljbxxid cljbxxid,a.clxxzpid clxxzpid,'' tpmc,'' tplx,'' tpnr
+		from t_clxx_zp a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpListWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.clxxzpid
+	</select>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<select id="getClxx_zp" resultMap="clxx_zpResult" parameterClass="clxx_zp">
+		select a.cljbxxid cljbxxid,a.clxxzpid clxxzpid,a.tpmc tpmc,a.tplx tplx,a.tpnr tpnr
+		from t_clxx_zp a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_clxx_zpSelectWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.clxxzpid
+	</select>
+</sqlMap>

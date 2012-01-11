@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+  <bean id="aqjcsbAction" class="com.aisino2.publicsystem.action.AqjcsbAction" scope="prototype">  
+    <property name="aqjcsbService" ref="aqjcsbService"/> 
+  </bean>  
+  <bean id="bafwhtAction" class="com.aisino2.publicsystem.action.BafwhtAction" scope="prototype">  
+    <property name="bafwhtService" ref="bafwhtService"/> 
+  </bean>  
+  <bean id="bldsjksbAction" class="com.aisino2.publicsystem.action.BldsjksbAction" scope="prototype">  
+    <property name="bldsjksbService" ref="bldsjksbService"/> 
+  </bean>  
+  <bean  id="garkktbsjAction" class="com.aisino2.publicsystem.action.GarkktbsjAction" scope="prototype">  
+    <property name="garkktbsjService" ref="garkktbsjService"/> 
+  </bean>  
+  <bean  id="publickyqkAction" class="com.aisino2.publicsystem.action.KyqkAction" scope="prototype">  
+    <property name="kyqkService" ref="publickyqkService"/> 
+    <property name="qyjbxxService" ref="qyjbxxService"/> 
+  </bean>  
+  <bean  id="lhjcAction" class="com.aisino2.publicsystem.action.LhjcAction" scope="prototype">  
+    <property name="lhjcService" ref="lhjcService"/> 
+     <property name="kyqkService" ref="publickyqkService"/> 
+     <property name="qyjbxxService" ref="qyjbxxService"/> 
+  </bean>  
+  <bean  id="pmtAction" class="com.aisino2.publicsystem.action.PmtAction" scope="prototype">  
+    <property name="pmtService" ref="pmtService"/> 
+  </bean>  
+  <bean  id="qybaxxAction" class="com.aisino2.publicsystem.action.QybaxxAction" scope="prototype">  
+    <property name="qybaxxService" ref="qybaxxService"/> 
+    <property name="dict_itemService" ref="dict_itemService"/> 
+    <property name="qybcbaxxService" ref="qybcbaxxService"/> 
+    <property name="tjclxxService" ref="publictjclxxService"/> 
+    
+  </bean>  
+  <bean  id="qybcbaxxAction" class="com.aisino2.publicsystem.action.QybcbaxxAction" scope="prototype">  
+    <property name="qybcbaxxService" ref="qybcbaxxService"/> 
+  </bean>  
+  <bean  id="qyfflAction" class="com.aisino2.publicsystem.action.QyfflAction" scope="prototype">  
+    <property name="qyfflService" ref="qyfflService"/> 
+  </bean>  
+  <bean  id="qyfltjAction" class="com.aisino2.publicsystem.action.QyfltjAction" scope="prototype">  
+    <property name="qyfltjService" ref="qyfltjService"/> 
+    <property name="rylbtjService" ref="rylbtjService"/> 
+  </bean>  
+  <bean  id="qyjbxxAction" class="com.aisino2.publicsystem.action.QyjbxxAction" scope="prototype">  
+    <property name="qyjbxxService" ref="qyjbxxService"/>
+    <property name="qyzjbService" ref="qyzjbService"/>
+    <property name="qyjbxx_lsService" ref="qyjbxx_lsService"/>
+    <property name="zjb_lsService" ref="zjb_lsService"/>
+    <property name="dict_itemService" ref="dict_itemService"/>
+  </bean>  
+  <bean  id="qyjbxx_lsAction" class="com.aisino2.publicsystem.action.Qyjbxx_lsAction" scope="prototype">  
+    <property name="qyjbxx_lsService" ref="qyjbxx_lsService"/> 
+  </bean>  
+  <bean  id="qyjcxxAction" class="com.aisino2.publicsystem.action.QyjcxxAction" scope="prototype">  
+    <property name="qyjcxxService" ref="qyjcxxService"/> 
+    <property name="kyqkService" ref="publickyqkService"/> 
+     <property name="qyjbxxService" ref="qyjbxxService"/> 
+  </bean>  
+  <bean  id="qyry_tjxxAction" class="com.aisino2.publicsystem.action.Qyry_tjxxAction" scope="prototype">  
+    <property name="qyry_tjxxService" ref="qyry_tjxxService"/> 
+  </bean>  
+  <bean  id="qyry_zpAction" class="com.aisino2.publicsystem.action.Qyry_zpAction" scope="prototype">  
+    <property name="qyry_zpService" ref="qyry_zpService"/> 
+  </bean>  
+  <bean  id="qyryjctjAction" class="com.aisino2.publicsystem.action.QyryjctjAction" scope="prototype">  
+    <property name="qyryjctjService" ref="qyryjctjService"/> 
+  </bean>  
+  <bean  id="qyryshAction" class="com.aisino2.publicsystem.action.QyryshAction" scope="prototype">  
+    <property name="qyryshService" ref="qyryshService"/> 
+  </bean>  
+  <bean  id="qyryxxAction" class="com.aisino2.publicsystem.action.QyryxxAction" scope="prototype">  
+    <property name="qyryxxService" ref="qyryxxService"/> 
+    <property name="qyjbxxService" ref="qyjbxxService"/> 
+    <property name="qyry_zpService" ref="qyry_zpService"/> 
+    <property name="qyryxx_lsxxService" ref="qyryxx_lsxxService"/> 
+    <property name="dict_itemService" ref="dict_itemService"/>
+    <property name="qyryxxhcService" ref="qyryxxhcService"/>
+  </bean>  
+  <bean  id="qyryxx_lsxxAction" class="com.aisino2.publicsystem.action.Qyryxx_lsxxAction" scope="prototype">  
+    <property name="qyryxx_lsxxService" ref="qyryxx_lsxxService"/> 
+  </bean>  
+  <bean  id="qyryxxhcAction" class="com.aisino2.publicsystem.action.QyryxxhcAction" scope="prototype">  
+    <property name="qyryxxhcService" ref="qyryxxhcService"/> 
+  </bean>  
+  <bean  id="qyryxxtjAction" class="com.aisino2.publicsystem.action.QyryxxtjAction" scope="prototype">  
+    <property name="qyryxxtjService" ref="qyryxxtjService"/> 
+  </bean>  
+  <bean  id="qyscbcfAction" class="com.aisino2.publicsystem.action.QyscbcfAction" scope="prototype">  
+    <property name="qyscbcfService" ref="qyscbcfService"/> 
+  </bean>  
+  <bean  id="qysctjAction" class="com.aisino2.publicsystem.action.QysctjAction" scope="prototype">  
+    <property name="qysctjService" ref="qysctjService"/> 
+  </bean>  
+  <bean  id="qyshAction" class="com.aisino2.publicsystem.action.QyshAction" scope="prototype">  
+    <property name="qyshService" ref="qyshService"/> 
+  </bean>  
+  <bean  id="qyxxczrzAction" class="com.aisino2.publicsystem.action.QyxxczrzAction" scope="prototype">  
+    <property name="qyxxczrzService" ref="qyxxczrzService"/> 
+  </bean>  
+  <bean  id="qyzjbAction" class="com.aisino2.publicsystem.action.QyzjbAction" scope="prototype">  
+    <property name="qyzjbService" ref="qyzjbService"/> 
+  </bean>  
+  <bean  id="publicrcjcAction" class="com.aisino2.publicsystem.action.RcjcAction" scope="prototype">  
+    <property name="rcjcService" ref="publicrcjcService"/> 
+     <property name="qyjbxxService" ref="qyjbxxService"/> 
+     <property name="kyqkService" ref="publickyqkService"/> 
+  </bean>  
+  <bean  id="ryjcxxAction" class="com.aisino2.publicsystem.action.RyjcxxAction" scope="prototype">  
+    <property name="ryjcxxService" ref="ryjcxxService"/> 
+    <property name="qyryxxService" ref="qyryxxService"/> 
+      <property name="qyjbxxService" ref="qyjbxxService"/> 
+     <property name="qyry_zpService" ref="qyry_zpService"/>
+     <property name="kyqkService" ref="publickyqkService"/>
+  </bean>  
+  <bean  id="rylbtjAction" class="com.aisino2.publicsystem.action.RylbtjAction" scope="prototype">  
+    <property name="rylbtjService" ref="rylbtjService"/> 
+  </bean>  
+  <bean  id="ryxxczrzAction" class="com.aisino2.publicsystem.action.RyxxczrzAction" scope="prototype">  
+    <property name="ryxxczrzService" ref="ryxxczrzService"/> 
+  </bean>  
+  <bean  id="tjclxxAction" class="com.aisino2.publicsystem.action.TjclxxAction" scope="prototype">  
+    <property name="tjclxxService" ref="publictjclxxService"/> 
+  </bean>  
+  <bean  id="publicwgcyryxxAction" class="com.aisino2.publicsystem.action.WgcyryxxAction" scope="prototype">  
+    <property name="wgcyryxxService" ref="wgcyryxxService"/> 
+    <property name="qyryxxService" ref="qyryxxService"/> 
+    <property name="qyjbxxService" ref="qyjbxxService"/> 
+    <property name="qyryxx_lsxxService" ref="qyryxx_lsxxService"/> 
+  </bean>  
+  <bean  id="wgtzrxxAction" class="com.aisino2.publicsystem.action.WgtzrxxAction" scope="prototype">  
+    <property name="wgtzrxxService" ref="wgtzrxxService"/> 
+  </bean>  
+  <bean  id="wscqyAction" class="com.aisino2.publicsystem.action.WscqyAction" scope="prototype">  
+    <property name="wscqyService" ref="wscqyService"/> 
+  </bean>  
+  <bean  id="zjb_lsAction" class="com.aisino2.publicsystem.action.Zjb_lsAction" scope="prototype">
+    <property name="zjb_lsService" ref="zjb_lsService"/>
+  </bean>
+  <bean  id="checkQyryxxAction" class="com.aisino2.publicsystem.action.CheckQyryxxAction" scope="prototype">
+    <property name="qyryxxService" ref="qyryxxService"/>
+    <property name="checkQyryxxService" ref="checkQyryxxService"/>
+  </bean>
+  <bean id="khxxAction" class="com.aisino2.publicsystem.action.KhxxAction" scope="prototype">  
+    <property name="khxxService" ref="khxxService"/> 
+  </bean>  
+  <bean id="wgkhxxAction" class="com.aisino2.publicsystem.action.WgkhxxAction" scope="prototype">
+    <property name="wgkhxxService" ref="wgkhxxService"/>
+  </bean>
+  <bean id="cljbxxAction" class="com.aisino2.publicsystem.action.CljbxxAction" scope="prototype">  
+    <property name="cljbxxService" ref="cljbxxService"/> 
+  </bean>  
+  <bean id="clxx_zpAction" class="com.aisino2.publicsystem.action.Clxx_zpAction" scope="prototype">  
+    <property name="clxx_zpService" ref="clxx_zpService"/> 
+  </bean>  
+  <bean id="clxxry_zpAction" class="com.aisino2.publicsystem.action.Clxxry_zpAction" scope="prototype">  
+    <property name="clxxry_zpService" ref="clxxry_zpService"/> 
+  </bean>  
+  <bean id="clxxwgryxxAction" class="com.aisino2.publicsystem.action.ClxxwgryxxAction" scope="prototype">
+    <property name="clxxwgryxxService" ref="clxxwgryxxService"/>
+  </bean>
+  <bean id="qybgxxAction" class="com.aisino2.publicsystem.action.QybgxxAction" scope="prototype">  
+    <property name="qybgxxService" ref="qybgxxService"/> 
+  </bean>  
+  <bean id="qyrygzrzAction" class="com.aisino2.publicsystem.action.QyrygzrzAction" scope="prototype">  
+    <property name="qyrygzrzService" ref="qyrygzrzService"/> 
+  </bean>  
+  <bean id="qyyyrzAction" class="com.aisino2.publicsystem.action.QyyyrzAction" scope="prototype">  
+    <property name="qyyyrzService" ref="qyyyrzService"/> 
+     <property name="qyjbxxService" ref="qyjbxxService"/> 
+     <property name="qyryxxService" ref="qyryxxService"/>
+  </bean>  
+  <bean id="qyyyrztjAction" class="com.aisino2.publicsystem.action.QyyyrztjAction" scope="prototype">
+    <property name="qyyyrztjService" ref="qyyyrztjService"/>
+    <property name="qyyyrzService" ref="qyyyrzService"/>
+  </bean>
+  <bean id="qyyyzttjAction" class="com.aisino2.publicsystem.action.QyyyzttjAction" scope="prototype">
+    <property name="qyyyzttjService" ref="qyyyzttjService"/>
+  </bean>
+  <bean id="kyclAction" class="com.aisino2.publicsystem.action.KyclAction" scope="prototype">  
+    <property name="kyclService" ref="kyclService"/> 
+  </bean>
+  <!-- 企业质量信息(t_qyzlxx) -->
+  <bean id="qyzlxxAction" class="com.aisino2.publicsystem.action.QyzlxxAction" scope="prototype">  
+    <property name="qyzlxxService" ref="qyzlxxService"/> 
+  </bean>  
+  <!--企业质量信息附件(t_qyzlxxfj)-->
+  <bean id="qyzlxxfjAction" class="com.aisino2.publicsystem.action.QyzlxxfjAction" scope="prototype">
+    <property name="qyzlxxfjService" ref="qyzlxxfjService"/>
+  </bean>
+  <bean id="baryxxAction" class="com.aisino2.publicsystem.action.BaryxxAction" scope="prototype">  
+    <property name="baryxxService" ref="baryxxService"/> 
+  </bean>  
+  <bean id="bwryxxAction" class="com.aisino2.publicsystem.action.BwryxxAction" scope="prototype">
+    <property name="bwryxxService" ref="bwryxxService"/>
+  </bean>
+  <bean id="cyryxxtjAction" class="com.aisino2.publicsystem.action.CyryxxAction" scope="prototype">
+    <property name="cyryxxtjService" ref="cyryxxtjService"/>
+    <property name="qyryxxService" ref="qyryxxService"/>
+    <property name="qyjbxxService" ref="qyjbxxService"/>
+    <property name="qyry_zpService" ref="qyry_zpService"/>
+    <property name="qyryxx_lsxxService" ref="qyryxx_lsxxService"/>
+    <property name="ickslService" ref="ickslService"/>
+    <property name="qyryxxhcService" ref="qyryxxhcService"/>
+    <property name="garkktbsjService" ref="garkktbsjService"/>
+  </bean>
+
+</beans>

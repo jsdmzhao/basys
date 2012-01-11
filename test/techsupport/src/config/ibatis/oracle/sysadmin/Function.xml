@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="function" type="com.aisino2.sysadmin.domain.Function"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--功能(t_function)-->
+	<resultMap id="functionResult" class="function">
+		<result property="funccode" column="funccode" />
+		<result property="systemcode" column="systemcode" />
+		<result property="funcname" column="funcname" />
+		<result property="funcdefine" column="funcdefine" />
+		<result property="functype" column="functype" />
+	</resultMap>
+	<!--功能(t_function)-->
+	<resultMap id="functionListResult" class="function">
+		<result property="funccode" column="funccode"/>
+		<result property="systemcode" column="systemcode"/>
+		<result property="funcname" column="funcname"/>
+		<result property="funcdefine" column="funcdefine"/>
+		<result property="functype" column="functype"/>
+	</resultMap>
+	<sql id="t_functionWhere">
+			<isNotEmpty prepend="and" property="funccode">
+				a.funccode=#funccode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="systemcode">
+				a.systemcode=#systemcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_functionPageWhere" >
+		<include refid="t_functionWhere" />	
+	     <isNotEmpty prepend="and" property="funcname">
+	     a.funcname like  '%$funcname$%'
+	     </isNotEmpty>
+		</sql>
+	<sql id="t_functionListWhere" >
+		<include refid="t_functionWhere" />	</sql>
+	<sql id="t_functionSelectWhere"  >
+		<include refid="t_functionWhere" />	</sql>
+	<!--功能(t_function)-->
+	<insert id="insertFunction"  parameterClass="function">
+		insert into t_function (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="funccode">
+				funccode
+			</isNotNull>
+			<isNotNull prepend="," property="systemcode">
+				systemcode
+			</isNotNull>
+			<isNotNull prepend="," property="funcname">
+				funcname
+			</isNotNull>
+			<isNotNull prepend="," property="funcdefine">
+				funcdefine
+			</isNotNull>
+			<isNotNull prepend="," property="functype">
+				functype
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="funccode">
+				#funccode#
+			</isNotNull>
+			<isNotNull prepend="," property="systemcode">
+				#systemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="funcname">
+				#funcname#
+			</isNotNull>
+			<isNotNull prepend="," property="funcdefine">
+				#funcdefine#
+			</isNotNull>
+			<isNotNull prepend="," property="functype">
+				#functype#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--功能(t_function)-->
+	<update id="updateFunction" parameterClass="function">
+		update t_function a set funccode=funccode
+		<dynamic prepend="">
+			<isNotNull prepend="," property="systemcode">
+				systemcode=#systemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="funcname">
+				funcname=#funcname#
+			</isNotNull>
+			<isNotNull prepend="," property="funcdefine">
+				funcdefine=#funcdefine#
+			</isNotNull>
+			<isNotNull prepend="," property="functype">
+				functype=#functype#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_functionWhere" />
+		</dynamic>
+	</update>
+	<!--功能(t_function)-->
+	<delete id="deleteFunction" parameterClass="function">
+		delete from t_function a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_functionWhere" />
+		</dynamic>
+	</delete>
+	<!--功能(t_function)-->
+	<select id="getFunctionList" resultMap="functionListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.funccode funccode,a.systemcode systemcode,a.funcname funcname,a.funcdefine funcdefine,a.functype functype
+		from t_function a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_functionPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--功能(t_function)-->
+	<select id="getFunctionListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_function a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_functionPageWhere" />
+		</dynamic>
+	</select>
+	<!--功能(t_function)-->
+	<select id="getFunctionListNoPage" resultMap="functionListResult" parameterClass="function">
+		select a.funccode funccode,a.systemcode systemcode,a.funcname funcname,a.funcdefine funcdefine,a.functype functype
+		from t_function a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_functionListWhere" />
+		</dynamic>
+		order by a.funccode,a.systemcode
+	</select>
+	<!--功能(t_function)-->
+	<select id="getFunction" resultMap="functionResult" parameterClass="function">
+		select a.funccode funccode,a.systemcode systemcode,a.funcname funcname,a.funcdefine funcdefine,a.functype functype
+		from t_function a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_functionSelectWhere" />
+		</dynamic>
+		order by a.funccode,a.systemcode
+	</select>
+	<!--取得用户在一个系统下的功能(t_function)-->
+	 <select id="getOwnFunction" resultMap="functionResult" parameterClass="function">
+  select a.funccode funccode,a.systemcode systemcode,a.funcname funcname,a.funcdefine funcdefine,a.functype functype from t_function a where a.funccode in (select trf.funccode from t_role_func trf where trf.roleid in (select roleid from t_user_role where userid=#userid#))
+    <dynamic prepend="and">
+     <isNotEmpty prepend="and" property="systemcode">
+     a.systemcode =#systemcode#
+     </isNotEmpty>
+   </dynamic>
+   </select>
+   
+   <select id="checkFunction" resultClass="int" parameterClass="function">
+      select  count(1) from t_role_func where roleid in (select roleid from t_user_role where userid=#userid#) and funcCode in(select funcCode from t_function where funcdefine like '%$funcdefine$%')
+   </select>
+   
+    <select id="findFuncDefine" resultMap="functionResult" parameterClass="function">
+      select a.funccode funccode,a.systemcode systemcode,a.funcname funcname,a.funcdefine funcdefine,a.functype functype from t_function
+        where funcdefine like '%$funcDefine$%'
+   </select>
+   
+   
+   
+</sqlMap>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ryxxczrz" type="com.aisino2.publicsystem.domain.Ryxxczrz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<resultMap id="ryxxczrzResult" class="ryxxczrz">
+		<result property="ryxxczrzid" column="ryxxczrzid" />
+		<result property="czsj" column="czsj" />
+		<result property="czlx" column="czlx" />
+		<result property="cznr" column="cznr" />
+		<result property="czr" column="czr" />
+		<result property="qybm" column="qybm" />
+		<result property="cyrybh" column="cyrybh" />
+	</resultMap>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<resultMap id="ryxxczrzListResult" class="ryxxczrz">
+		<result property="ryxxczrzid" column="ryxxczrzid"/>
+		<result property="czsj" column="czsj"/>
+		<result property="czlx" column="czlx"/>
+		<result property="cznr" column="cznr"/>
+		<result property="czr" column="czr"/>
+		<result property="qybm" column="qybm"/>
+		<result property="cyrybh" column="cyrybh"/>
+	</resultMap>
+	<sql id="t_ryxxczrzWhere">
+			<isNotEmpty prepend="and" property="ryxxczrzid">
+				a.ryxxczrzid=#ryxxczrzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_ryxxczrzPageWhere" >
+		<include refid="t_ryxxczrzWhere" />	</sql>
+	<sql id="t_ryxxczrzListWhere" >
+		<include refid="t_ryxxczrzWhere" />	</sql>
+	<sql id="t_ryxxczrzSelectWhere"  >
+		<include refid="t_ryxxczrzWhere" />	</sql>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<insert id="insertRyxxczrz"  parameterClass="ryxxczrz">
+		insert into t_ryxxczrz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryxxczrzid">
+				ryxxczrzid
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				czsj
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx
+			</isNotNull>
+			<isNotNull prepend="," property="cznr">
+				cznr
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				czr
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryxxczrzid">
+				#ryxxczrzid#
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				#czsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="cznr">
+				#cznr#
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				#czr#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				#cyrybh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<update id="updateRyxxczrz" parameterClass="ryxxczrz">
+		update t_ryxxczrz a set a.ryxxczrzid=a.ryxxczrzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="czsj">
+				czsj=#czsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx=#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="cznr">
+				cznr=#cznr#
+			</isNotNull>
+			<isNotNull prepend="," property="czr">
+				czr=#czr#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybh">
+				cyrybh=#cyrybh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzWhere" />
+		</dynamic>
+	</update>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<delete id="deleteRyxxczrz" parameterClass="ryxxczrz">
+		delete from t_ryxxczrz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzWhere" />
+		</dynamic>
+	</delete>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<select id="getRyxxczrzList" resultMap="ryxxczrzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryxxczrzid ryxxczrzid,a.czsj czsj,a.czlx czlx,a.cznr cznr,a.czr czr,a.qybm qybm,a.cyrybh cyrybh
+		from t_ryxxczrz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<select id="getRyxxczrzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ryxxczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzPageWhere" />
+		</dynamic>
+	</select>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<select id="getRyxxczrzListNoPage" resultMap="ryxxczrzListResult" parameterClass="ryxxczrz">
+		select a.ryxxczrzid ryxxczrzid,a.czsj czsj,a.czlx czlx,a.cznr cznr,a.czr czr,a.qybm qybm,a.cyrybh cyrybh
+		from t_ryxxczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzListWhere" />
+		</dynamic>
+		order by a.ryxxczrzid
+	</select>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<select id="getRyxxczrz" resultMap="ryxxczrzResult" parameterClass="ryxxczrz">
+		select a.ryxxczrzid ryxxczrzid,a.czsj czsj,a.czlx czlx,a.cznr cznr,a.czr czr,a.qybm qybm,a.cyrybh cyrybh
+		from t_ryxxczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ryxxczrzSelectWhere" />
+		</dynamic>
+		order by a.ryxxczrzid
+	</select>
+</sqlMap>

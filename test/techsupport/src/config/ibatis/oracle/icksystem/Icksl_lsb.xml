@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="icksl_lsb" type="com.aisino2.icksystem.domain.Icksl_lsb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<resultMap id="icksl_lsbResult" class="icksl_lsb">
+		<result property="ickhold" column="ickhold" />
+		<result property="ickhnew" column="ickhnew" />
+		<result property="lrsj" column="lrsj" />
+		<result property="clsj" column="clsj" />
+		<result property="clbz" column="clbz" />
+	</resultMap>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<resultMap id="icksl_lsbListResult" class="icksl_lsb">
+		<result property="ickhold" column="ickhold"/>
+		<result property="ickhnew" column="ickhnew"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="clsj" column="clsj"/>
+		<result property="clbz" column="clbz"/>
+	</resultMap>
+	<sql id="t_icksl_lsbWhere">
+			<isNotEmpty prepend="and" property="clbz">
+				a.clbz=#clbz#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickhnew">
+				a.ickhnew=#ickhnew#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickhold">
+				a.ickhold=#ickhold#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_icksl_lsbPageWhere" >
+		<include refid="t_icksl_lsbWhere" />	</sql>
+	<sql id="t_icksl_lsbListWhere" >
+		<include refid="t_icksl_lsbWhere" />	</sql>
+	<sql id="t_icksl_lsbSelectWhere"  >
+		<include refid="t_icksl_lsbWhere" />	</sql>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<insert id="insertIcksl_lsb"  parameterClass="icksl_lsb">
+		insert into t_icksl_lsb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickhold">
+				ickhold
+			</isNotNull>
+			<isNotNull prepend="," property="ickhnew">
+				ickhnew
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj
+			</isNotNull>
+			<isNotNull prepend="," property="clsj">
+				clsj
+			</isNotNull>
+			<isNotNull prepend="," property="clbz">
+				clbz
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickhold">
+				#ickhold#
+			</isNotNull>
+			<isNotNull prepend="," property="ickhnew">
+				#ickhnew#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="clsj">
+				#clsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="clbz">
+				#clbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<update id="updateIcksl_lsb" parameterClass="icksl_lsb">
+		update t_icksl_lsb a set a.ickhold=a.ickhold
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ickhnew">
+				ickhnew=#ickhnew#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="clsj">
+				clsj=#clsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="clbz">
+				clbz=#clbz#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<delete id="deleteIcksl_lsb" parameterClass="icksl_lsb">
+		delete from t_icksl_lsb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<select id="getIcksl_lsbList" resultMap="icksl_lsbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickhold ickhold,a.ickhnew ickhnew,a.lrsj lrsj,a.clsj clsj,a.clbz clbz
+		from t_icksl_lsb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<select id="getIcksl_lsbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_icksl_lsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<select id="getIcksl_lsbListNoPage" resultMap="icksl_lsbListResult" parameterClass="icksl_lsb">
+		select a.ickhold ickhold,a.ickhnew ickhnew,a.lrsj lrsj,a.clsj clsj,a.clbz clbz
+		from t_icksl_lsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbListWhere" />
+		</dynamic>
+		order by a.ickhold
+	</select>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<select id="getIcksl_lsb" resultMap="icksl_lsbResult" parameterClass="icksl_lsb">
+		select a.ickhold ickhold,a.ickhnew ickhnew,a.lrsj lrsj,a.clsj clsj,a.clbz clbz
+		from t_icksl_lsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_lsbSelectWhere" />
+		</dynamic>
+	</select>
+</sqlMap>

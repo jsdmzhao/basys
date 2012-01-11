@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bldsjksb" type="com.aisino2.publicsystem.domain.Bldsjksb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<resultMap id="bldsjksbResult" class="bldsjksb">
+		<result property="qyid" column="qyid" />
+		<result property="bldsjksbid" column="bldsjksbid" />
+		<result property="wlcslxbm" column="wlcslxbm" />
+		<result property="wlcslxmc" column="wlcslxmc" />
+		<result property="sbjcjgmc" column="sbjcjgmc" />
+		<result property="azsxtsl" column="azsxtsl" />
+		<result property="sbxh" column="sbxh" />
+		<result property="sccsmc" column="sccsmc" />
+		<result property="ggxh" column="ggxh" />
+		<result property="azsl" column="azsl" />
+		<result property="sbmc" column="sbmc" />
+		<result property="sflx" column="sflx" />
+		<result property="ipdz" column="ipdz" />
+		<result property="anwz" column="anwz" />
+		<!-- 公共行业用到 -->
+		<result property="zt" column="zt" /> 
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="jibr" column="jibr" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<resultMap id="bldsjksbListResult" class="bldsjksb">
+		<result property="qyid" column="qyid"/>
+		<result property="bldsjksbid" column="bldsjksbid"/>
+		<result property="wlcslxbm" column="wlcslxbm"/>
+		<result property="wlcslxmc" column="wlcslxmc"/>
+		<result property="sbjcjgmc" column="sbjcjgmc"/>
+		<result property="azsxtsl" column="azsxtsl"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="sccsmc" column="sccsmc"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="azsl" column="azsl"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="sflx" column="sflx"/>
+		<result property="ipdz" column="ipdz"/>
+		<result property="anwz" column="anwz"/>
+		<!-- 公共行业用到 -->
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="jibr" column="jibr" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	<!--闭路电视监控设备(t_bldsjksb)  公安端闭路电视监控设备查询-->
+	<resultMap id="bldsjksbGadListResult" class="bldsjksb">
+		<result property="qyid" column="qyid"/>
+		<result property="bldsjksbid" column="bldsjksbid"/>
+		<result property="wlcslxbm" column="wlcslxbm"/>
+		<result property="wlcslxmc" column="wlcslxmc"/>
+		<result property="sbjcjgmc" column="sbjcjgmc"/>
+		<result property="azsxtsl" column="azsxtsl"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="sccsmc" column="sccsmc"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="azsl" column="azsl"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="sflx" column="sflx"/>
+		<result property="ipdz" column="ipdz"/>
+		<result property="anwz" column="anwz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflbm" column="qyzflbm"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<!-- 公共行业用到 -->
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="jibr" column="jibr" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	
+	<!--公共 视频监控设备 公安端 查询-->
+	<resultMap id="spjksbGadListResult" class="bldsjksb">
+		<result property="qyid" column="qyid"/>
+		<result property="bldsjksbid" column="bldsjksbid"/>
+		<result property="wlcslxbm" column="wlcslxbm"/>
+		<result property="wlcslxmc" column="wlcslxmc"/>
+		<result property="sbjcjgmc" column="sbjcjgmc"/>
+		<result property="azsxtsl" column="azsxtsl"/>
+		<result property="sbxh" column="sbxh"/>
+		<result property="sccsmc" column="sccsmc"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="azsl" column="azsl"/>
+		<result property="sbmc" column="sbmc"/>
+		<result property="sflx" column="sflx"/>
+		<result property="ipdz" column="ipdz"/>
+		<result property="anwz" column="anwz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflbm" column="qyzflbm"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<!-- 公共行业用到 -->
+		<result property="zt" column="zt" />
+		<result property="tyyy" column="tyyy" />
+		<result property="tysj" column="tysj" />
+		<result property="jibr" column="jibr" />
+		<result property="bz" column="bz" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+	</resultMap>
+	<sql id="t_bldsjksbWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bldsjksbid">
+				a.bldsjksbid=#bldsjksbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bldsjksbPageWhere" >
+		<include refid="t_bldsjksbWhere" />	</sql>
+	<sql id="t_bldsjksbListWhere" >
+		<include refid="t_bldsjksbWhere" />	</sql>
+	<sql id="t_bldsjksbSelectWhere"  >
+		<include refid="t_bldsjksbWhere" />	</sql>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<insert id="insertBldsjksb"  parameterClass="bldsjksb">
+		insert into t_bldsjksb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="bldsjksbid">
+				bldsjksbid
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxbm">
+				wlcslxbm
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxmc">
+				wlcslxmc
+			</isNotNull>
+			<isNotNull prepend="," property="sbjcjgmc">
+				sbjcjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="azsxtsl">
+				azsxtsl
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				sbxh
+			</isNotNull>
+			<isNotNull prepend="," property="sccsmc">
+				sccsmc
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				ggxh
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				azsl
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				sbmc
+			</isNotNull>
+			<isNotNull prepend="," property="sflx">
+				sflx
+			</isNotNull>
+			<isNotNull prepend="," property="ipdz">
+				ipdz
+			</isNotNull>
+			<isNotNull prepend="," property="anwz">
+				anwz
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				tyyy
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				tysj
+			</isNotNull>
+			<isNotNull prepend="," property="jibr">
+				jibr
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="bldsjksbid">
+				#bldsjksbid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxbm">
+				#wlcslxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxmc">
+				#wlcslxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sbjcjgmc">
+				#sbjcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="azsxtsl">
+				#azsxtsl#
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				#sbxh#
+			</isNotNull>
+			<isNotNull prepend="," property="sccsmc">
+				#sccsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				#ggxh#
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				#azsl#
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				#sbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sflx">
+				#sflx#
+			</isNotNull>
+			<isNotNull prepend="," property="ipdz">
+				#ipdz#
+			</isNotNull>
+			<isNotNull prepend="," property="anwz">
+				#anwz#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				#tyyy#
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				#tysj:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="jibr">
+				#jibr#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<update id="updateBldsjksb" parameterClass="bldsjksb">
+		update t_bldsjksb a set a.bldsjksbid=a.bldsjksbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxbm">
+				wlcslxbm=#wlcslxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="wlcslxmc">
+				wlcslxmc=#wlcslxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sbjcjgmc">
+				sbjcjgmc=#sbjcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="azsxtsl">
+				azsxtsl=#azsxtsl#
+			</isNotNull>
+			<isNotNull prepend="," property="sbxh">
+				sbxh=#sbxh#
+			</isNotNull>
+			<isNotNull prepend="," property="sccsmc">
+				sccsmc=#sccsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ggxh">
+				ggxh=#ggxh#
+			</isNotNull>
+			<isNotNull prepend="," property="azsl">
+				azsl=#azsl#
+			</isNotNull>
+			<isNotNull prepend="," property="sbmc">
+				sbmc=#sbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sflx">
+				sflx=#sflx#
+			</isNotNull>
+			<isNotNull prepend="," property="ipdz">
+				ipdz=#ipdz#
+			</isNotNull>
+			<isNotNull prepend="," property="anwz">
+				anwz=#anwz#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="tyyy">
+				tyyy=#tyyy#
+			</isNotNull>
+			<isNotNull prepend="," property="tysj">
+				tysj=#tysj:DATE#
+			</isNotNull>
+			<isNotNull prepend="," property="jibr">
+				jibr=#jibr#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr=#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bldsjksbWhere" />
+		</dynamic>
+	</update>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<delete id="deleteBldsjksb" parameterClass="bldsjksb">
+		delete from t_bldsjksb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bldsjksbWhere" />
+		</dynamic>
+	</delete>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<select id="getBldsjksbList" resultMap="bldsjksbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.bldsjksbid bldsjksbid,a.wlcslxbm wlcslxbm,a.wlcslxmc wlcslxmc,a.sbjcjgmc sbjcjgmc,a.azsxtsl azsxtsl,a.sbxh sbxh,a.sccsmc sccsmc,a.ggxh ggxh,a.azsl azsl,a.sbmc sbmc,a.sflx sflx,a.ipdz ipdz,a.anwz anwz
+		,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.jibr jibr,a.bz bz,a.lrr lrr ,a.lrsj lrsj
+		from t_bldsjksb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bldsjksbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<select id="getBldsjksbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bldsjksb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bldsjksbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<select id="getBldsjksbListNoPage" resultMap="spjksbGadListResult" parameterClass="bldsjksb">
+		select a.qyid qyid,a.bldsjksbid bldsjksbid,a.wlcslxbm wlcslxbm,a.wlcslxmc wlcslxmc,
+		a.sbjcjgmc sbjcjgmc,a.azsxtsl azsxtsl,a.sbxh sbxh,a.sccsmc sccsmc,a.ggxh ggxh,
+		a.azsl azsl,a.sbmc sbmc,a.sflx sflx,a.ipdz ipdz,a.anwz anwz,
+		a.zt zt,a.tyyy tyyy,a.tysj tysj,a.jibr jibr,a.bz bz,a.lrr lrr ,a.lrsj lrsj,
+		b.qybm,b.qymc,b.qyzflbm,b.qyzflmc,b.hylbdm hylbdm,b.hylb hylb
+		from t_bldsjksb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<include refid="t_bldsjksbListWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.bldsjksbid
+	</select>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<select id="getBldsjksb" resultMap="bldsjksbResult" parameterClass="bldsjksb">
+		select a.qyid qyid,a.bldsjksbid bldsjksbid,a.wlcslxbm wlcslxbm,a.wlcslxmc wlcslxmc,a.sbjcjgmc sbjcjgmc,a.azsxtsl azsxtsl,a.sbxh sbxh,a.sccsmc sccsmc,a.ggxh ggxh,a.azsl azsl,a.sbmc sbmc,a.sflx sflx,a.ipdz ipdz,a.anwz anwz,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.jibr jibr,a.bz bz,a.lrr lrr ,a.lrsj lrsj
+		from t_bldsjksb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bldsjksbSelectWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.bldsjksbid
+	</select>
+	<!--闭路电视监控设备(t_bldsjksb)公安端闭路电视监控设备查询-->
+	<select id="getBldsjksbGadList" resultMap="bldsjksbGadListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.bldsjksbid bldsjksbid,a.wlcslxbm wlcslxbm,a.wlcslxmc wlcslxmc,
+		a.sbjcjgmc sbjcjgmc,a.azsxtsl azsxtsl,a.sbxh sbxh,a.sccsmc sccsmc,a.ggxh ggxh,
+		a.azsl azsl,a.sbmc sbmc,a.sflx sflx,a.ipdz ipdz,a.anwz anwz,a.zt zt,a.tyyy tyyy,a.tysj tysj,a.jibr jibr,a.bz bz,a.lrr lrr ,a.lrsj lrsj,
+		b.qybm,b.qymc,b.qyzflbm,b.qyzflmc
+		from t_bldsjksb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyx"><!-- 是否有效（公安端是否可见） 0-无效，1-有效 -->
+				<isEqual prepend="" property="sfyx"  compareValue="0">
+					 b.zt = '0'
+				</isEqual>
+				<isEqual prepend="" property="sfyx"  compareValue="1">
+					  b.zt &lt;&gt; '0' and b.zt &lt;&gt; '3'
+				</isEqual>
+     		</isNotEmpty>
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_bldsjksbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--闭路电视监控设备(t_bldsjksb)公安端闭路电视监控设备查询-->
+	<select id="getBldsjksbGadListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bldsjksb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfyx"><!-- 是否有效（公安端是否可见） 0-无效，1-有效 -->
+				<isEqual prepend="" property="sfyx"  compareValue="0">
+					 b.zt = '0'
+				</isEqual>
+				<isEqual prepend="" property="sfyx"  compareValue="1">
+					  b.zt &lt;&gt; '0' and b.zt &lt;&gt; '3'
+				</isEqual>
+     		</isNotEmpty>
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="allhylbdm">
+				b.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_bldsjksbPageWhere" />
+			<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	
+	<!-- 公共 视频监控设备 公安端 分页查询 -->
+	<select id="getSpjksbGadList" resultMap="spjksbGadListResult" parameterClass="map">
+		select x.* from ( select rownum rowno,z.* from (
+		select a.qyid qyid,a.bldsjksbid bldsjksbid,a.wlcslxbm wlcslxbm,a.wlcslxmc wlcslxmc,
+		a.sbjcjgmc sbjcjgmc,a.azsxtsl azsxtsl,a.sbxh sbxh,a.sccsmc sccsmc,a.ggxh ggxh,
+		a.azsl azsl,a.sbmc sbmc,a.sflx sflx,a.ipdz ipdz,a.anwz anwz,
+		a.zt zt,a.tyyy tyyy,a.tysj tysj,a.jibr jibr,a.bz bz,a.lrr lrr ,a.lrsj lrsj,
+		b.qybm,b.qymc,b.qyzflbm,b.qyzflmc,b.hylbdm hylbdm,b.hylb hylb
+		from t_bldsjksb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sccsmc">
+				a.sccsmc like '%$sccsmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ipdz">
+				a.ipdz like '%$ipdz$%'
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+			
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	
+	<!-- 公共 视频监控设备 公安端 分页查询 数量 -->
+	<select id="getSpjksbGadListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bldsjksb a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="sbmc">
+				a.sbmc like '%$sbmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sccsmc">
+				a.sccsmc like '%$sccsmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ggxh">
+				a.ggxh like '%$ggxh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ipdz">
+				a.ipdz like '%$ipdz$%'
+			</isNotEmpty>
+     		<isNotEmpty prepend="and" property="zt">
+				a.zt=#zt#
+			</isNotEmpty>
+			
+     		<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc=#qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!-- 视频监控设备数量 -->
+	<select id="getSpjksbCount" resultClass="int" parameterClass="bldsjksb">
+		select NVL(sum(a.azsxtsl), 0) azsxtsl from t_bldsjksb a
+		where a.zt=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--无线终端设备(ST_DEVICE)-->
+	<bean id="st_deviceService" class="com.aisino2.icksystem.service.impl.St_deviceServiceImpl">
+		<property name="st_deviceDao" ref="st_deviceDao" />
+	</bean>
+	<!--场所人员刷卡记录(t_qyryskjl)-->
+	<bean id="qyryskjlService" class="com.aisino2.icksystem.service.impl.QyryskjlServiceImpl">
+		<property name="qyryskjlDao" ref="qyryskjlDao" />
+		<property name="ickslService" ref="ickslService" />
+		<property name="qyjbxxService" ref="qyjbxxService" />
+	</bean>
+	<!--物流登记信息(t_wldj)-->
+	<bean id="wldjService" class="com.aisino2.icksystem.service.impl.WldjServiceImpl">
+		<property name="wldjDao" ref="wldjDao" />
+		<property name="qyryxxDao" ref="qyryxxDao" />
+		<property name="ickslDao" ref="ickslDao" />
+		<property name="icksl_wldjDao" ref="icksl_wldjDao" />
+		<property name="ickslbgDao" ref="ickslbgDao" />
+		<property name="ickrzjlDao" ref="ickrzjlDao" />
+		<property name="icksl_ickzbDao" ref="icksl_ickzbDao" />
+		<property name="departmentDao" ref="departmentDao" />
+		<property name="ickslService" ref="ickslService" />
+	</bean>
+	<!--IC卡受理(t_icksl)-->
+	<bean id="ickslService" class="com.aisino2.icksystem.service.impl.IckslServiceImpl">
+		<property name="ickslDao" ref="ickslDao" />
+		<property name="ickslbgDao" ref="ickslbgDao" />
+		<property name="ickrzjlDao" ref="ickrzjlDao" />
+		<property name="icksl_wldjDao" ref="icksl_wldjDao" />
+		<property name="wldjDao" ref="wldjDao" />
+		<property name="icksl_ickzbDao" ref="icksl_ickzbDao" />
+		<property name="qyryxxDao" ref="qyryxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+		<property name="qyZrsProcDao" ref="qyZrsProcDao" />
+		<property name="qyry_zpDao" ref="qyry_zpDao" />
+		<property name="wgcyryxxDao" ref="wgcyryxxDao" />
+		<property name="qyryxx_lsxxDao" ref="qyryxx_lsxxDao" />
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+		<property name="ryxxczrzDao" ref="ryxxczrzDao" />
+		<property name="qyryxxService" ref="qyryxxService" />
+		<property name="ickzbDao" ref="ickzbDao" />
+		<property name="qyjbxxService" ref="qyjbxxService" />
+		<property name="icksl_lsbService" ref="icksl_lsbService" />
+	</bean>
+	<!--IC卡组包(t_ickzb)-->
+	<bean id="ickzbService" class="com.aisino2.icksystem.service.impl.IckzbServiceImpl">
+		<property name="ickzbDao" ref="ickzbDao" />
+		<property name="icksl_ickzbDao" ref="icksl_ickzbDao" />
+		<property name="ickslService" ref="ickslService" />
+		<property name="departmentService" ref="departmentService" />
+	</bean>
+	<!--IC卡日志记录(t_ickrzjl)-->
+	<bean id="ickrzjlService" class="com.aisino2.icksystem.service.impl.IckrzjlServiceImpl">
+		<property name="ickrzjlDao" ref="ickrzjlDao" />
+	</bean>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<bean id="icksl_ickzbService" class="com.aisino2.icksystem.service.impl.Icksl_ickzbServiceImpl">
+		<property name="icksl_ickzbDao" ref="icksl_ickzbDao" />
+	</bean>
+	<!--IC卡受理_物流登记信息(t_icksl_wldj)-->
+	<bean id="icksl_wldjService" class="com.aisino2.icksystem.service.impl.Icksl_wldjServiceImpl">
+		<property name="icksl_wldjDao" ref="icksl_wldjDao" />
+	</bean>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<bean id="ickslbgService" class="com.aisino2.icksystem.service.impl.IckslbgServiceImpl">
+		<property name="ickslbgDao" ref="ickslbgDao" />
+	</bean>
+	<!--刷卡信息统计明细(t_qyryskxxtj)-->
+	<bean id="qyryskxxtjService" class="com.aisino2.icksystem.service.impl.QyryskxxtjServiceImpl">
+		<property name="qyryskxxtjDao" ref="qyryskxxtjDao" />
+	</bean>
+	<!--制卡统计日报(t_zktjrb)-->
+	<bean id="zktjrbService" class="com.aisino2.icksystem.service.impl.ZktjrbServiceImpl">
+		<property name="zktjrbDao" ref="zktjrbDao" />
+	</bean>
+	<!--制卡统计月报(t_zktjyb)-->
+	<bean id="zktjybService" class="com.aisino2.icksystem.service.impl.ZktjybServiceImpl">
+		<property name="zktjybDao" ref="zktjybDao" />
+	</bean>
+	<!--制卡统计季报(t_zktjjb)-->
+	<bean id="zktjjbService" class="com.aisino2.icksystem.service.impl.ZktjjbServiceImpl">
+		<property name="zktjjbDao" ref="zktjjbDao" />
+	</bean>
+	<!--制卡统计汇总日报(t_zktjhjrb)-->
+	<bean id="zktjhjrbService" class="com.aisino2.icksystem.service.impl.ZktjhjrbServiceImpl">
+		<property name="zktjhjrbDao" ref="zktjhjrbDao" />
+	</bean>
+	<!--IC卡受理统计(t_icksltj)-->
+	<bean id="icksltjService" class="com.aisino2.icksystem.service.impl.IcksltjServiceImpl">
+		<property name="icksltjDao" ref="icksltjDao" />
+	</bean>
+	<!--IC卡预警(t_ickyj)-->
+	<bean id="ickyjService" class="com.aisino2.icksystem.service.impl.IckyjServiceImpl">
+		<property name="ickyjDao" ref="ickyjDao" />
+	</bean>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<bean id="cjdtjrbService" class="com.aisino2.icksystem.service.impl.CjdtjrbServiceImpl">
+		<property name="cjdtjrbDao" ref="cjdtjrbDao" />
+	</bean>
+	<!--制证中心上传(t_zzzxsc)-->
+	<bean id="zzzxscService" class="com.aisino2.icksystem.service.impl.ZzzxscServiceImpl">
+		<property name="zzzxscDao" ref="zzzxscDao" />
+	</bean>
+	<!--异常刷卡场所-->
+	<bean id="ycskqyService" class="com.aisino2.icksystem.service.impl.YcskqyServiceImpl">
+		<property name="ycskqyDao" ref="ycskqyDao" />
+	</bean>
+	<!--调webservice接收数据的服务-->
+	<bean id="ickAcceptServiceWs" class="com.aisino2.icksystem.service.impl.IckAcceptServiceWsImpl">
+			<property name="ickzbDao" ref="ickzbDao" />
+			<property name="ickslickzbDao" ref="icksl_ickzbDao" />
+			<property name="wldjDao" ref="wldjDao" />
+			<property name="ickslwldjDao" ref="icksl_wldjDao" />
+			<property name="ickslDao" ref="ickslDao" />
+			<property name="zzzxscDao" ref="zzzxscDao" />
+	</bean>
+	<!--调webservice发送数据的服务-->
+	<bean id="ickSendServiceWs" class="com.aisino2.icksystem.service.impl.IckSendServiceWsImpl">
+		<property name="ickSendDaoWs" ref="ickSendDaoWs" />
+		<property name="zzzxscDao" ref="zzzxscDao" />
+	</bean>
+	
+	<!--调webservice接收错误数据的服务-->
+	<bean id="ickAcceptErrorServiceWs" class="com.aisino2.icksystem.service.impl.IckAcceptErrorServiceWsImpl">
+			<property name="ickslDao" ref="ickslDao" />
+			<property name="zzzxscDao" ref="zzzxscDao" />
+	</bean>
+	<!--工作日志统计()-->
+	<bean id="gzrztjService" class="com.aisino2.icksystem.service.impl.GzrztjServiceImpl">
+		<property name="gzrztjDao" ref="gzrztjDao" />
+	</bean>
+	<!--走台人员刷卡信息统计明细(t_ztryskxxtj)-->
+	<bean id="ztryskxxtjService" class="com.aisino2.icksystem.service.impl.ZtryskxxtjServiceImpl">
+		<property name="ztryskxxtjDao" ref="ztryskxxtjDao" />
+	</bean>
+	<!--IC卡受理临时表(t_icksl_lsb)-->
+	<bean id="icksl_lsbService" class="com.aisino2.icksystem.service.impl.Icksl_lsbServiceImpl">
+		<property name="icksl_lsbDao" ref="icksl_lsbDao" />
+	</bean>
+	
+</beans>

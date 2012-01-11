@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyscbcf" type="com.aisino2.publicsystem.domain.Qyscbcf"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<resultMap id="qyscbcfResult" class="qyscbcf">
+		<result property="qyscbcfid" column="qyscbcfid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="wdbrq" column="wdbrq" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="lxdh" column="lxdh" />
+		<result property="zrs" column="zrs" />
+		<result property="sskrs" column="sskrs" />
+		<result property="hdskb" column="hdskb" />
+		<result property="sjsrb" column="sjsrb" />
+		<result property="ztdm" column="ztdm" />
+		<result property="gzrs" column="gzrs" />
+	</resultMap>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<resultMap id="qyscbcfListResult" class="qyscbcf">
+		<result property="qyscbcfid" column="qyscbcfid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="wdbrq" column="wdbrq"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="zrs" column="zrs"/>
+		<result property="sskrs" column="sskrs"/>
+		<result property="hdskb" column="hdskb"/>
+		<result property="sjsrb" column="sjsrb"/>
+		<result property="ztdm" column="ztdm"/>
+		<result property="gzrs" column="gzrs" />
+	</resultMap>
+	
+	<!--企业上传不充分(t_qyscbcf)-->
+	<resultMap id="qyscbcfListResultTwo" class="qyscbcf">
+		<result property="qyscbcfid" column="qyscbcfid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="wdbrq" column="wdbrq"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="zrs" column="zrs"/>
+		<result property="sskrs" column="sskrs"/>
+		<result property="hdskbstring" column="hdskb"/>
+		<result property="sjsrbstring" column="sjsrb"/>
+		<result property="ztdm" column="ztdm"/>
+		<result property="gzrs" column="gzrs" />
+	</resultMap>
+	<sql id="t_qyscbcfWhere">
+			<isNotEmpty prepend="and" property="qyscbcfid">
+				a.qyscbcfid=#qyscbcfid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyscbcfPageWhere" >
+	
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   </isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+		
+		
+		<isNotEmpty prepend="and" property="ztdm">
+				a.ztdm=#ztdm#
+			</isNotEmpty>
+		  <isNotEmpty prepend="and" property="shenheFlagCx">
+				( b.zt='1' or b.zt='2'
+				<isEqual prepend="or" property="sftjyg"  compareValue="1"> <!-- 是否统计异构，1统计，0不统计9-16 添加 -->
+					to_number(b.zt)  &gt;= 90
+				</isEqual>
+				) 
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="scbzFlagCx">
+				b.scbz=0
+		    </isNotEmpty>
+		
+		         <isNotEmpty prepend="and" property="yyzt">
+				b.yyztdm='1'
+		    </isNotEmpty>
+		    	
+		
+			</sql>
+		
+		
+		
+	<sql id="t_qyscbcfListWhere" >
+		<include refid="t_qyscbcfWhere" />	
+		
+		
+		
+		
+		</sql>
+	<sql id="t_qyscbcfSelectWhere"  >
+		<include refid="t_qyscbcfWhere" />	</sql>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<insert id="insertQyscbcf"  parameterClass="qyscbcf">
+		insert into t_qyscbcf (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyscbcfid">
+				qyscbcfid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="wdbrq">
+				wdbrq
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				zrs
+			</isNotNull>
+			<isNotNull prepend="," property="sskrs">
+				sskrs
+			</isNotNull>
+			<isNotNull prepend="," property="hdskb">
+				hdskb
+			</isNotNull>
+			<isNotNull prepend="," property="sjsrb">
+				sjsrb
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				gzrs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyscbcfid">
+				#qyscbcfid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="wdbrq">
+				#wdbrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				#zrs#
+			</isNotNull>
+			<isNotNull prepend="," property="sskrs">
+				#sskrs#
+			</isNotNull>
+			<isNotNull prepend="," property="hdskb">
+				#hdskb#
+			</isNotNull>
+			<isNotNull prepend="," property="sjsrb">
+				#sjsrb#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				#gzrs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<update id="updateQyscbcf" parameterClass="qyscbcf">
+		update t_qyscbcf a set a.qyscbcfid=a.qyscbcfid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="wdbrq">
+				wdbrq=#wdbrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				zrs=#zrs#
+			</isNotNull>
+			<isNotNull prepend="," property="sskrs">
+				sskrs=#sskrs#
+			</isNotNull>
+			<isNotNull prepend="," property="hdskb">
+				hdskb=#hdskb#
+			</isNotNull>
+			<isNotNull prepend="," property="sjsrb">
+				sjsrb=#sjsrb#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm=#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				gzrs=#gzrs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyscbcfWhere" />
+		</dynamic>
+	</update>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<delete id="deleteQyscbcf" parameterClass="qyscbcf">
+		delete from t_qyscbcf a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyscbcfWhere" />
+		</dynamic>
+	</delete>
+	
+	
+	
+		<!--上传不充分统计()-->
+	<resultMap id="qyscbcfListResultPage" class="qyscbcf">
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="wdbts" column="wdbts"/>
+		<result property="yljts" column="yljts"/>
+		<result property="nljts" column="nljts"/>
+	</resultMap>
+	
+	
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getQyscbcfList" resultMap="qyscbcfListResultPage" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+		select 
+		 count(case
+               when 1 = 1 
+               <isNotEmpty prepend="and" property="qsrq">
+ 				 a.wdbrq  &gt;= #qsrq:DATE#
+ 			</isNotEmpty>
+             <isNotEmpty prepend="and" property="jzrq">
+ 			     a.wdbrq  &lt;=  #jzrq:DATE#
+ 			</isNotEmpty>
+               then
+               a.wdbrq
+               else
+                null
+             end) wdbts,
+       count(case
+               when a.wdbrq &gt;= trunc(sysdate, 'mm') and a.wdbrq &lt;= sysdate then
+               a.qybm
+               else
+                null
+             end) yljts,
+       count(case
+               when a.wdbrq &gt;= trunc(sysdate, 'yyyy') and a.wdbrq &lt;= sysdate then
+               a.qybm
+               else
+                 null
+             end) nljts
+
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_qyscbcf a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_qyscbcfPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+	
+		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+		
+		
+		
+	
+		
+		
+	</select>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getQyscbcfListCount" resultClass="int" parameterClass="map">
+			select count(1) a from 
+		(
+	select 
+		 count(case
+               when 1 = 1 
+                   <isNotEmpty prepend="and" property="qsrq">
+ 				 a.wdbrq  &gt;= #qsrq:DATE#
+ 			</isNotEmpty>
+             <isNotEmpty prepend="and" property="jzrq">
+ 			     a.wdbrq  &lt;=  #jzrq:DATE#
+ 			</isNotEmpty>
+               then
+                a.wdbrq
+               else
+               null
+             end) wdbts,
+       count(case
+               when a.wdbrq &gt;= trunc(sysdate, 'mm') and a.wdbrq &lt;= sysdate then
+                a.qybm
+               else
+                null
+             end) yljts,
+       count(case
+               when a.wdbrq &gt;= trunc(sysdate, 'yyyy') and a.wdbrq &lt;= sysdate then
+               a.qybm
+               else
+               null
+             end) nljts
+
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_qyscbcf a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_qyscbcfPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+	
+		
+		  )   where 1=1
+	</select>
+	
+	
+	
+	<!--企业上传不充分(t_qyscbcf)-->
+
+  <select id="getQyscbcfXxList" resultMap="qyscbcfListResultTwo" parameterClass="map">
+		select * from	( select rownum rowno,z.* from 
+		(select a.qyscbcfid qyscbcfid,a.hylbdm hylbdm,a.hylb hylb,a.wdbrq wdbrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.zrs zrs,a.sskrs sskrs,a.hdskb hdskb,a.sjsrb sjsrb,a.ztdm ztdm,a.gzrs gzrs
+		from t_qyscbcf a   ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+		<dynamic prepend="">
+			<include refid="t_qyscbcfPageWhere" />
+		<isNotEmpty prepend="and" property="qsrq">
+				<![CDATA[
+					a.wdbrq>=#qsrq:DATE#
+					]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzrq">
+				<![CDATA[
+					 a.wdbrq <= #jzrq:DATE#
+					]]>
+			</isNotEmpty>
+			
+		</dynamic>
+		order by a.wdbrq desc )  z ) where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+		<!--场所上传不充分(t_csscbcf)-->
+	<select id="getQyscbcfXxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from  t_qyscbcf a   ,t_qyjbxx b
+			where 1=1 and a.qybm=b.qybm
+			<dynamic prepend="">
+			<include refid="t_qyscbcfPageWhere" />
+		     <isNotEmpty prepend="and" property="qsrq">
+				<![CDATA[
+					a.wdbrq>=#qsrq:DATE#
+					]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzrq">
+				<![CDATA[
+					 a.wdbrq <= #jzrq:DATE#
+					]]>
+			</isNotEmpty>
+			
+		</dynamic>
+	</select>
+	
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getQyscbcfListNoPage" resultMap="qyscbcfListResult" parameterClass="qyscbcf">
+		select a.qyscbcfid qyscbcfid,a.hylbdm hylbdm,a.hylb hylb,a.wdbrq wdbrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.zrs zrs,a.sskrs sskrs,a.hdskb hdskb,a.sjsrb sjsrb,a.ztdm ztdm,a.gzrs gzrs
+		from t_qyscbcf a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyscbcfListWhere" />
+		</dynamic>
+		order by a.qyscbcfid
+	</select>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getQyscbcf" resultMap="qyscbcfResult" parameterClass="qyscbcf">
+		select a.qyscbcfid qyscbcfid,a.hylbdm hylbdm,a.hylb hylb,a.wdbrq wdbrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.zrs zrs,a.sskrs sskrs,a.hdskb hdskb,a.sjsrb sjsrb,a.ztdm ztdm,a.gzrs gzrs
+		from t_qyscbcf a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyscbcfSelectWhere" />
+		</dynamic>
+		order by a.qyscbcfid
+	</select>
+</sqlMap>

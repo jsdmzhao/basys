@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="dtcxtj" type="com.aisino2.basicsystem.domain.Dtcxtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--动态查询条件(t_dtcxtj)-->
+	<resultMap id="dtcxtjResult" class="dtcxtj">
+		<result property="dtcxtjid" column="dtcxtjid" />
+		<result property="gjcxfaid" column="gjcxfaid" />
+		<result property="sjbm" column="sjbm" />
+		<result property="zdm" column="zdm" />
+		<result property="zdzwm" column="zdzwm" />
+		<result property="zdlx" column="zdlx" />
+		<result property="zdz" column="zdz" />
+		<result property="xsz" column="xsz" />
+		<result property="ppf" column="ppf" />
+		<result property="kskh" column="kskh" />
+		<result property="jskh" column="jskh" />
+		<result property="gxf" column="gxf" />
+	</resultMap>
+	<!--动态查询条件(t_dtcxtj)-->
+	<resultMap id="dtcxtjListResult" class="dtcxtj">
+		<result property="dtcxtjid" column="dtcxtjid"/>
+		<result property="gjcxfaid" column="gjcxfaid"/>
+		<result property="sjbjgid" column="sjbjgid" />
+		<result property="xlknr" column="xlknr" />
+		<result property="sjbm" column="sjbm"/>
+		<result property="sjbzwm" column="sjbzwm"/>
+		<result property="zdm" column="zdm"/>
+		<result property="zdzwm" column="zdzwm"/>
+		<result property="zdlx" column="zdlx"/>
+		<result property="zdz" column="zdz"/>
+		<result property="xsz" column="xsz"/>
+		<result property="ppf" column="ppf"/>
+		<result property="kskh" column="kskh"/>
+		<result property="jskh" column="jskh"/>
+		<result property="gxf" column="gxf"/>
+	</resultMap>
+	<sql id="t_dtcxtjWhere">
+			<isNotEmpty prepend="and" property="dtcxtjid">
+				a.dtcxtjid=#dtcxtjid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjcxfaid">
+				a.gjcxfaid=#gjcxfaid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_dtcxtjPageWhere" >
+		<include refid="t_dtcxtjWhere" />	</sql>
+	<sql id="t_dtcxtjListWhere" >
+		<include refid="t_dtcxtjWhere" />	</sql>
+	<sql id="t_dtcxtjSelectWhere"  >
+		<include refid="t_dtcxtjWhere" />	</sql>
+	<!--动态查询条件(t_dtcxtj)-->
+	<insert id="insertDtcxtj"  parameterClass="dtcxtj">
+		insert into t_dtcxtj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dtcxtjid">
+				dtcxtjid
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				sjbm
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				zdm
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				zdzwm
+			</isNotNull>
+			<isNotNull prepend="," property="zdlx">
+				zdlx
+			</isNotNull>
+			<isNotNull prepend="," property="zdz">
+				zdz
+			</isNotNull>
+			<isNotNull prepend="," property="xsz">
+				xsz
+			</isNotNull>
+			<isNotNull prepend="," property="ppf">
+				ppf
+			</isNotNull>
+			<isNotNull prepend="," property="kskh">
+				kskh
+			</isNotNull>
+			<isNotNull prepend="," property="jskh">
+				jskh
+			</isNotNull>
+			<isNotNull prepend="," property="gxf">
+				gxf
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dtcxtjid">
+				#dtcxtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				#zdm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				#zdzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdlx">
+				#zdlx#
+			</isNotNull>
+			<isNotNull prepend="," property="zdz">
+				#zdz#
+			</isNotNull>
+			<isNotNull prepend="," property="xsz">
+				#xsz#
+			</isNotNull>
+			<isNotNull prepend="," property="ppf">
+				#ppf#
+			</isNotNull>
+			<isNotNull prepend="," property="kskh">
+				#kskh#
+			</isNotNull>
+			<isNotNull prepend="," property="jskh">
+				#jskh#
+			</isNotNull>
+			<isNotNull prepend="," property="gxf">
+				#gxf#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--动态查询条件(t_dtcxtj)-->
+	<update id="updateDtcxtj" parameterClass="dtcxtj">
+		update t_dtcxtj a set a.gjcxfaid=a.gjcxfaid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid=#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				sjbm=#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				zdm=#zdm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				zdzwm=#zdzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdlx">
+				zdlx=#zdlx#
+			</isNotNull>
+			<isNotNull prepend="," property="zdz">
+				zdz=#zdz#
+			</isNotNull>
+			<isNotNull prepend="," property="xsz">
+				xsz=#xsz#
+			</isNotNull>
+			<isNotNull prepend="," property="ppf">
+				ppf=#ppf#
+			</isNotNull>
+			<isNotNull prepend="," property="kskh">
+				kskh=#kskh#
+			</isNotNull>
+			<isNotNull prepend="," property="jskh">
+				jskh=#jskh#
+			</isNotNull>
+			<isNotNull prepend="," property="gxf">
+				gxf=#gxf#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxtjWhere" />
+		</dynamic>
+	</update>
+	<!--动态查询条件(t_dtcxtj)-->
+	<delete id="deleteDtcxtj" parameterClass="dtcxtj">
+		delete from t_dtcxtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_dtcxtjWhere" />
+		</dynamic>
+	</delete>
+	<!--动态查询条件(t_dtcxtj)-->
+	<select id="getDtcxtjList" resultMap="dtcxtjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.dtcxtjid dtcxtjid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.zdlx zdlx,a.zdz zdz,a.xsz xsz,a.ppf ppf,a.kskh kskh,a.jskh jskh,a.gxf gxf
+		from t_dtcxtj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxtjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--动态查询条件(t_dtcxtj)-->
+	<select id="getDtcxtjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_dtcxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxtjPageWhere" />
+		</dynamic>
+	</select>
+	<!--动态查询条件(t_dtcxtj)-->
+	<select id="getDtcxtjListNoPage" resultMap="dtcxtjListResult" parameterClass="dtcxtj">
+		select s.sjbzwm,g.sjbjgid,g.xlknr,a.dtcxtjid dtcxtjid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.zdlx zdlx,a.zdz zdz,a.xsz xsz,a.ppf ppf,a.kskh kskh,a.jskh jskh,a.gxf gxf
+		from t_dtcxtj a,t_sjb s,t_sjbjg g 
+		where 1=1 and a.sjbm = s.sjbm and g.sjbid = s.sjbid and g.zdm = a.zdm
+		<dynamic prepend="">
+			<include refid="t_dtcxtjListWhere" />
+		</dynamic>
+		order by a.dtcxtjid,a.gjcxfaid
+	</select>
+	<!--动态查询条件(t_dtcxtj)-->
+	<select id="getDtcxtj" resultMap="dtcxtjResult" parameterClass="dtcxtj">
+		select a.dtcxtjid dtcxtjid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.zdlx zdlx,a.zdz zdz,a.xsz xsz,a.ppf ppf,a.kskh kskh,a.jskh jskh,a.gxf gxf
+		from t_dtcxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxtjSelectWhere" />
+		</dynamic>
+		order by a.dtcxtjid,a.gjcxfaid
+	</select>
+</sqlMap>

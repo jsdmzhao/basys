@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+
+	<procedure id="insertPublicsystem">
+        <![CDATA[
+        {call publicsystem.JobTbAll}
+ 		]]>
+    </procedure>
+
+	<procedure id="insertIcksystem">
+        <![CDATA[
+        {call icksystem.JobTbAll}
+ 		]]>
+    </procedure>
+    
+    <procedure id="insertMansys">
+        <![CDATA[
+        {call mansys.JobTbAll}
+ 		]]>
+    </procedure>
+    
+    <procedure id="updateIckh">
+        <![CDATA[
+        {call updateIckh}
+ 		]]>
+    </procedure>
+</sqlMap>
+

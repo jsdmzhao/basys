@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="yjgz" type="com.aisino2.basicsystem.domain.Yjgz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--预警规则(t_yjgz)-->
+	<resultMap id="yjgzResult" class="yjgz">
+		<result property="yjgzid" column="yjgzid" />
+		<result property="ywbm" column="ywbm" />
+		<result property="bdbm" column="bdbm" />
+		<result property="bdlx" column="bdlx" />
+		<result property="sfyx" column="sfyx" />
+		<result property="fbcl" column="fbcl" />
+		<result property="fbfs" column="fbfs" />
+		<result property="txdwzd" column="txdwzd" />
+		<result property="gxdwzd" column="gxdwzd" />
+		<result property="yjjb" column="yjjb" />
+		<result property="yjfs" column="yjfs" />
+		<result property="yjlx" column="yjlx" />
+	</resultMap>
+	<!--预警规则(t_yjgz)-->
+	<resultMap id="yjgzListResult" class="yjgz">
+		<result property="yjgzid" column="yjgzid"/>
+		<result property="ywbm" column="ywbm"/>
+		<result property="bdbm" column="bdbm"/>
+		<result property="bdlx" column="bdlx"/>
+		<result property="sfyx" column="sfyx"/>
+		<result property="fbcl" column="fbcl"/>
+		<result property="fbfs" column="fbfs"/>
+		<result property="txdwzd" column="txdwzd"/>
+		<result property="gxdwzd" column="gxdwzd"/>
+		<result property="yjjb" column="yjjb"/>
+		<result property="yjfs" column="yjfs"/>
+		<result property="yjlx" column="yjlx"/>
+	</resultMap>
+	<sql id="t_yjgzWhere">
+			<isNotEmpty prepend="and" property="yjgzid">
+				a.yjgzid=#yjgzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_yjgzPageWhere" >
+		<include refid="t_yjgzWhere" />	</sql>
+	<sql id="t_yjgzListWhere" >
+		<include refid="t_yjgzWhere" />	</sql>
+	<sql id="t_yjgzSelectWhere"  >
+		<include refid="t_yjgzWhere" />	</sql>
+	<!--预警规则(t_yjgz)-->
+	<insert id="insertYjgz"  parameterClass="yjgz">
+		insert into t_yjgz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="yjgzid">
+				yjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="ywbm">
+				ywbm
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				bdbm
+			</isNotNull>
+			<isNotNull prepend="," property="bdlx">
+				bdlx
+			</isNotNull>
+			<isNotNull prepend="," property="sfyx">
+				sfyx
+			</isNotNull>
+			<isNotNull prepend="," property="fbcl">
+				fbcl
+			</isNotNull>
+			<isNotNull prepend="," property="fbfs">
+				fbfs
+			</isNotNull>
+			<isNotNull prepend="," property="txdwzd">
+				txdwzd
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwzd">
+				gxdwzd
+			</isNotNull>
+			<isNotNull prepend="," property="yjjb">
+				yjjb
+			</isNotNull>
+			<isNotNull prepend="," property="yjfs">
+				yjfs
+			</isNotNull>
+			<isNotNull prepend="," property="yjlx">
+				yjlx
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="yjgzid">
+				#yjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbm">
+				#ywbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				#bdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdlx">
+				#bdlx#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyx">
+				#sfyx#
+			</isNotNull>
+			<isNotNull prepend="," property="fbcl">
+				#fbcl#
+			</isNotNull>
+			<isNotNull prepend="," property="fbfs">
+				#fbfs#
+			</isNotNull>
+			<isNotNull prepend="," property="txdwzd">
+				#txdwzd#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwzd">
+				#gxdwzd#
+			</isNotNull>
+			<isNotNull prepend="," property="yjjb">
+				#yjjb#
+			</isNotNull>
+			<isNotNull prepend="," property="yjfs">
+				#yjfs#
+			</isNotNull>
+			<isNotNull prepend="," property="yjlx">
+				#yjlx#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--预警规则(t_yjgz)-->
+	<update id="updateYjgz" parameterClass="yjgz">
+		update t_yjgz a set a.yjgzid=a.yjgzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ywbm">
+				ywbm=#ywbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbm">
+				bdbm=#bdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdlx">
+				bdlx=#bdlx#
+			</isNotNull>
+			<isNotNull prepend="," property="sfyx">
+				sfyx=#sfyx#
+			</isNotNull>
+			<isNotNull prepend="," property="fbcl">
+				fbcl=#fbcl#
+			</isNotNull>
+			<isNotNull prepend="," property="fbfs">
+				fbfs=#fbfs#
+			</isNotNull>
+			<isNotNull prepend="," property="txdwzd">
+				txdwzd=#txdwzd#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwzd">
+				gxdwzd=#gxdwzd#
+			</isNotNull>
+			<isNotNull prepend="," property="yjjb">
+				yjjb=#yjjb#
+			</isNotNull>
+			<isNotNull prepend="," property="yjfs">
+				yjfs=#yjfs#
+			</isNotNull>
+			<isNotNull prepend="," property="yjlx">
+				yjlx=#yjlx#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_yjgzWhere" />
+		</dynamic>
+	</update>
+	<!--预警规则(t_yjgz)-->
+	<delete id="deleteYjgz" parameterClass="yjgz">
+		delete from t_yjgz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_yjgzWhere" />
+		</dynamic>
+	</delete>
+	<!--预警规则(t_yjgz)-->
+	<select id="getYjgzList" resultMap="yjgzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.yjgzid yjgzid,a.ywbm ywbm,a.bdbm bdbm,a.bdlx bdlx,a.sfyx sfyx,a.fbcl fbcl,a.fbfs fbfs,a.txdwzd txdwzd,a.gxdwzd gxdwzd,a.yjjb yjjb,a.yjfs yjfs,a.yjlx yjlx
+		from t_yjgz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_yjgzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--预警规则(t_yjgz)-->
+	<select id="getYjgzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_yjgz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_yjgzPageWhere" />
+		</dynamic>
+	</select>
+	<!--预警规则(t_yjgz)-->
+	<select id="getYjgzListNoPage" resultMap="yjgzListResult" parameterClass="yjgz">
+		select a.yjgzid yjgzid,a.ywbm ywbm,a.bdbm bdbm,a.bdlx bdlx,a.sfyx sfyx,a.fbcl fbcl,a.fbfs fbfs,a.txdwzd txdwzd,a.gxdwzd gxdwzd,a.yjjb yjjb,a.yjfs yjfs,a.yjlx yjlx
+		from t_yjgz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_yjgzListWhere" />
+		</dynamic>
+		order by a.yjgzid
+	</select>
+	<!--预警规则(t_yjgz)-->
+	<select id="getYjgz" resultMap="yjgzResult" parameterClass="yjgz">
+		select a.yjgzid yjgzid,a.ywbm ywbm,a.bdbm bdbm,a.bdlx bdlx,a.sfyx sfyx,a.fbcl fbcl,a.fbfs fbfs,a.txdwzd txdwzd,a.gxdwzd gxdwzd,a.yjjb yjjb,a.yjfs yjfs,a.yjlx yjlx
+		from t_yjgz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_yjgzSelectWhere" />
+		</dynamic>
+		order by a.yjgzid
+	</select>
+</sqlMap>

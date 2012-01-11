@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyfltj" type="com.aisino2.publicsystem.domain.Qyfltj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业分类统计(t_qyfltj)-->
+	<resultMap id="qyfltjResult" class="qyfltj">
+		<result property="qyfltjid" column="qyfltjid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="gwyl" column="gwyl"/>
+		<result property="yysdzyxt" column="yysdzyxt"/>
+		<result property="qtylcs" column="qtylcs"/>
+		<result property="snxyam" column="snxyam"/>
+		<result property="mrmfzy" column="mrmfzy"/>
+		<result property="qtfwcs" column="qtfwcs"/>
+		<result property="hj" column="hj"/>
+	</resultMap>
+	<!--企业分类统计(t_qyfltj)-->
+	<resultMap id="qyfltjListResult" class="qyfltj">
+		<result property="qyfltjid" column="qyfltjid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gwyl" column="gwyl"/>
+		<result property="yysdzyxt" column="yysdzyxt"/>
+		<result property="qtylcs" column="qtylcs"/>
+		<result property="snxyam" column="snxyam"/>
+		<result property="mrmfzy" column="mrmfzy"/>
+		<result property="qtfwcs" column="qtfwcs"/>
+		<result property="hj" column="hj"/>
+	</resultMap>
+	<resultMap id="qyfltjListResultTJ" class="qyfltj">
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gwyl" column="gwyl"/>
+		<result property="yysdzyxt" column="yysdzyxt"/>
+		<result property="qtylcs" column="qtylcs"/>
+		<result property="snxyam" column="snxyam"/>
+		<result property="mrmfzy" column="mrmfzy"/>
+		<result property="qtfwcs" column="qtfwcs"/>
+		<result property="hj" column="hj"/>
+		<result property="hjT" column="hjT"/>
+		<result property="gwylT" column="gwylT"/>
+		<result property="yysdzyxtT" column="yysdzyxtT"/>
+		<result property="qtylcsT" column="qtylcsT"/>
+		<result property="snxyamT" column="snxyamT"/>
+		<result property="mrmfzyT" column="mrmfzyT"/>
+		<result property="qtfwcsT" column="qtfwcsT"/>
+	</resultMap>
+	<sql id="t_qyfltjWhere">
+			<isNotEmpty prepend="and" property="qyfltjid">
+				a.qyfltjid=#qyfltjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyfltjPageWhere" >
+	        <isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+		    </isNotEmpty>
+    </sql>
+    <sql id="t_qyflzstjPageWhere" >
+	        <isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="qsrq">
+				a.tjrq &gt;= #qsrq:DATE#
+		    </isNotEmpty>
+		    <isNotEmpty prepend="and" property="jzrq">
+				a.tjrq &lt; #jzrq:DATE#+1
+		    </isNotEmpty>
+    </sql>
+    <sql id="t_qyflzstjTjWhere" >
+	        <isNotEmpty prepend="and" property="dsjgdm">
+				dept.departcode like '$dsjgdm%$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				dept.departcode like '$fxjdm%$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+			dept.departcode like '$gxdwdm%$'
+			</isNotEmpty>
+    </sql>
+    <resultMap id="qyfltjzsListResultTJ" class="qyfltj">
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qczlqy" column="qczlqy"/>
+		<result property="escqy" column="escqy"/>
+		<result property="esjqy" column="esjqy"/>
+		<result property="jxqy" column="jxqy"/>
+		<result property="czcqy" column="czcqy"/>
+		<result property="qyhj" column="qyhj"/>
+	</resultMap>
+	<sql id="t_qyfltjListWhere" >
+		<include refid="t_qyfltjWhere" />	</sql>
+	<sql id="t_qyfltjSelectWhere"  >
+		<include refid="t_qyfltjWhere" />	</sql>
+	<!--企业分类统计(t_qyfltj)-->
+	<insert id="insertQyfltj"  parameterClass="qyfltj">
+		insert into t_qyfltj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyfltjid">
+				qyfltjid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="gwyl">
+				gwyl
+			</isNotNull>
+			<isNotNull prepend="," property="yysdzyxt">
+				yysdzyxt
+			</isNotNull>
+			<isNotNull prepend="," property="qtylcs">
+				qtylcs
+			</isNotNull>
+			<isNotNull prepend="," property="snxyam">
+				snxyam
+			</isNotNull>
+			<isNotNull prepend="," property="mrmfzy">
+				mrmfzy
+			</isNotNull>
+			<isNotNull prepend="," property="qtfwcs">
+				qtfwcs
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				hj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyfltjid">
+				#qyfltjid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gwyl">
+				#gwyl#
+			</isNotNull>
+			<isNotNull prepend="," property="yysdzyxt">
+				#yysdzyxt#
+			</isNotNull>
+			<isNotNull prepend="," property="qtylcs">
+				#qtylcs#
+			</isNotNull>
+			<isNotNull prepend="," property="snxyam">
+				#snxyam#
+			</isNotNull>
+			<isNotNull prepend="," property="mrmfzy">
+				#mrmfzy#
+			</isNotNull>
+			<isNotNull prepend="," property="qtfwcs">
+				#qtfwcs#
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				#hj#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业分类统计(t_qyfltj)-->
+	<update id="updateQyfltj" parameterClass="qyfltj">
+		update t_qyfltj a set a.qyfltjid=a.qyfltjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gwyl">
+				gwyl=#gwyl#
+			</isNotNull>
+			<isNotNull prepend="," property="yysdzyxt">
+				yysdzyxt=#yysdzyxt#
+			</isNotNull>
+			<isNotNull prepend="," property="qtylcs">
+				qtylcs=#qtylcs#
+			</isNotNull>
+			<isNotNull prepend="," property="snxyam">
+				snxyam=#snxyam#
+			</isNotNull>
+			<isNotNull prepend="," property="mrmfzy">
+				mrmfzy=#mrmfzy#
+			</isNotNull>
+			<isNotNull prepend="," property="qtfwcs">
+				qtfwcs=#qtfwcs#
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				hj=#hj#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfltjWhere" />
+		</dynamic>
+	</update>
+	<!--企业分类统计(t_qyfltj)-->
+	<delete id="deleteQyfltj" parameterClass="qyfltj">
+		delete from t_qyfltj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyfltjWhere" />
+		</dynamic>
+	</delete>
+	<!--企业分类统计(t_qyfltj)-->
+	<select id="getQyfltjList" resultMap="qyfltjListResultTJ" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+		select NVL(tj.hjT, 0) hjT,
+		       NVL(tj.gwylT, 0) gwylT,
+		       NVL(tj.yysdzyxtT, 0) yysdzyxtT,
+		       NVL(tj.qtylcsT, 0) qtylcsT,
+		       NVL(tj.snxyamT, 0) snxyamT,
+		       NVL(tj.mrmfzyT, 0) mrmfzyT,
+		       NVL(tj.qtfwcsT, 0) qtfwcsT,
+		       NVL(tj.hj, 0) hj,
+		       NVL(tj.gwyl, 0) gwyl,
+		       NVL(tj.yysdzyxt, 0) yysdzyxt,
+		       NVL(tj.qtylcs, 0) qtylcs,
+		       NVL(tj.snxyam, 0) snxyam,
+		       NVL(tj.mrmfzy, 0) mrmfzy,
+		       NVL(tj.qtfwcs, 0) qtfwcs
+		<isNotEmpty prepend="," property="selectTab">
+				$selectTab$
+		</isNotEmpty>
+        from t_department dept,
+		(select 
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.hj end),'0') as hjT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.gwyl end),'0') as gwylT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.yysdzyxt end),'0') as yysdzyxtT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.qtylcs end),'0') as qtylcsT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.snxyam end),'0') as snxyamT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.mrmfzy end),'0') as mrmfzyT,
+		NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.qtfwcs end),'0') as qtfwcsT,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.hj end),'0') as hj,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.gwyl end),'0') as gwyl,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.yysdzyxt end),'0') as yysdzyxt,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.qtylcs end),'0') as qtylcs,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.snxyam end),'0') as snxyam,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.mrmfzy end),'0') as mrmfzy,
+		NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.qtfwcs end),'0') as qtfwcs
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_qyfltj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfltjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$)tj 
+		where 1=1
+		 $whereFlg$ 
+ 		<isNotEmpty prepend="and" property="deptcode">
+			dept.departcode like '$deptcode$%'
+	    </isNotEmpty>
+ 		<isNotEmpty prepend="and" property="deptleave">
+			dept.departlevel=#deptleave#
+	    </isNotEmpty>
+	    order by $pageSort$
+		
+		)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<!--企业分类统计(t_qyfltj)-->
+	<select id="getQyfltjListCount" resultClass="int" parameterClass="map">
+	select count(1) from (
+		select count(1) a from t_qyfltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfltjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	</select>
+	<!--企业分类统计(t_qyfltj)-->
+	<select id="getQyfltjListNoPage" resultMap="qyfltjListResult" parameterClass="qyfltj">
+		select *
+		from t_qyfltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfltjListWhere" />
+		</dynamic>
+		order by a.qyfltjid
+	</select>
+	<!--企业分类统计(t_qyfltj)-->
+	<select id="getQyfltj" resultMap="qyfltjResult" parameterClass="qyfltj">
+		select *
+		from t_qyfltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfltjSelectWhere" />
+		</dynamic>
+		order by a.qyfltjid
+	</select>
+	<!--企业分类统计总数(t_qyfltj)-->
+	<select id="getQyflzstjList" resultMap="qyfltjzsListResultTJ" parameterClass="map">
+		select sum(ry.qczlqy) qczlqy,
+       sum(ry.escqy) escqy,
+       sum(ry.esjqy) esjqy,
+       sum(ry.jxqy) jxqy,
+       sum(ry.czcqy) czcqy,
+       sum(qczlqy+escqy+esjqy+jxqy+czcqy) as qyhj,
+      $selectConditon$
+  from (select
+    	distinct
+        		NVL(tj.qczlqy, 0) qczlqy,
+                NVL(tj.escqy, 0) escqy,
+                NVL(tj.esjqy, 0) esjqy,
+                NVL(tj.jxqy, 0) jxqy,
+                NVL(tj.czcqy, 0) czcqy
+        <isNotEmpty prepend="," property="selectTab">
+				$selectTab$
+		</isNotEmpty>
+        from t_department dept,
+		(select 
+		NVL(sum(case when a.hylbdm='F02' then a.hj end),'0') as qczlqy,
+		NVL(sum(case when a.hylbdm='E01' then a.hj end),'0') as escqy,
+		NVL(sum(case when a.hylbdm='E02' then a.hj end),'0') as esjqy,
+		NVL(sum(case when a.hylbdm='C' then a.hj end),'0') as jxqy,
+		NVL(sum(case when a.hylbdm='F01' then a.hj end),'0') as czcqy
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_qyfltj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyflzstjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$) tj 
+		where 1=1
+		
+		 $whereFlg$ 
+ 		<isNotEmpty prepend="and" property="deptcode">
+			dept.departcode like '$deptcode$%'
+	    </isNotEmpty>
+ 		<isNotEmpty prepend="" property="deptleave">
+			and dept.departlevel=#deptleave#
+	    </isNotEmpty>
+	    ) ry
+	    <isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+	    <isNotEmpty prepend=" " property="groupBy">
+				order by $groupBy$
+		</isNotEmpty>
+ 		
+	</select>
+	<!--企业分类统计总数(t_qyfltj)-->
+	<select id="getQyflzstjListCount" resultClass="int" parameterClass="map">
+	select count(1) from (
+		select count(1) a from t_qyfltj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyflzstjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	</select>
+</sqlMap>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyzhtb" type="com.aisino2.publicsystems.domain.Qyzhtb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<parameterMap id="qyzhtbPar" class="map" > 
+		<parameter property="cwbz" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT" /> 
+		<parameter property="cwxx" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
+		<parameter property="qybm" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+	</parameterMap>
+	<!-- 同步增加企业用户 -->
+	<procedure id="insertQyzhtb" parameterMap="qyzhtbPar">
+        <![CDATA[
+        {call privisys.Tbzjqyyh(?,?,?)}
+ 		]]>
+    </procedure>
+   <!-- 同步删除企业用户 -->
+	<procedure id="deleteQyzhtb" parameterMap="qyzhtbPar">
+        <![CDATA[
+        {call privisys.Tbzxqyyh(?,?,?)}
+ 		]]>
+    </procedure>
+    <!-- 同步修改企业用户 -->
+	<procedure id="updateQyzhtb" parameterMap="qyzhtbPar">
+        <![CDATA[
+        {call privisys.Tbxgqyyh(?,?,?)}
+ 		]]>
+    </procedure>
+</sqlMap>
+
+

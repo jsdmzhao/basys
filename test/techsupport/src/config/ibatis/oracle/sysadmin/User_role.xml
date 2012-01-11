@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="user_role" type="com.aisino2.sysadmin.domain.User_role"/>
+	  <typeAlias alias="role" type="com.aisino2.sysadmin.domain.Role"/>
+  <typeAlias alias="user" type="com.aisino2.sysadmin.domain.User"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--用户角色(t_user_role)-->
+	<resultMap id="user_roleResult" class="user_role">
+		<result property="roleid" column="roleid" />
+		<result property="userid" column="userid" />
+	</resultMap>
+	<!--用户角色(t_user_role)-->
+	<resultMap id="user_roleListResult" class="user_role">
+		<result property="roleid" column="roleid"/>
+		<result property="userid" column="userid"/>
+	</resultMap>
+	<!--用户角色(t_user_role)-->
+	<resultMap id="user_roleListNoPageResult" class="user_role">
+		<result property="roleid" column="roleid"/>
+		<result property="userid" column="userid"/>
+		<result property="useraccount" column="useraccount"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="userorder" column="userorder"/>
+		<result property="isvalid" column="isvalid"/>
+		<result property="usertype" column="usertype"/>
+	</resultMap>
+	<!--用户角色(t_user_role)-->
+	<resultMap id="user_roleByUseridResult" class="user_role">
+		<result property="roleid" column="roleid" />
+		<result property="userid" column="userid" />
+		<result property="rolename" column="rolename" />
+		<result property="departid" column="departid" />
+		<result property="roledescription" column="roledescription" />
+		<result property="roletype" column="roletype" />
+	</resultMap>
+	<sql id="t_user_roleWhere">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userid">
+				a.userid=#userid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_user_rolePageWhere" >
+		<include refid="t_user_roleWhere" />	</sql>
+	<sql id="t_user_roleListWhere" >
+		<include refid="t_user_roleWhere" />	</sql>
+	<sql id="t_user_roleSelectWhere"  >
+		<include refid="t_user_roleWhere" />	</sql>
+	<!--用户角色(t_user_role)-->
+	<insert id="insertUser_role"  parameterClass="user_role">
+		insert into t_user_role (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				roleid
+			</isNotNull>
+			<isNotNull prepend="," property="userid">
+				userid
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				#roleid#
+			</isNotNull>
+			<isNotNull prepend="," property="userid">
+				#userid#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--用户角色(t_user_role)-->
+	<update id="updateUser_role" parameterClass="user_role">
+		update t_user_role a set roleid=roleid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="userid">
+				userid=#userid#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_user_roleWhere" />
+		</dynamic>
+	</update>
+	<!--用户角色(t_user_role)-->
+	<delete id="deleteUser_role" parameterClass="user_role">
+		delete from t_user_role a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_user_roleWhere" />
+		</dynamic>
+	</delete>
+	<!--用户角色(t_user_role)-->
+	<select id="getUser_roleList" resultMap="user_roleListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.roleid roleid,a.userid userid
+		from t_user_role a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_user_rolePageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--用户角色(t_user_role)-->
+	<select id="getUser_roleListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_user_role a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_user_rolePageWhere" />
+		</dynamic>
+	</select>
+	<!--用户角色(t_user_role)-->
+	<select id="getUser_roleListNoPage" resultMap="user_roleListNoPageResult" parameterClass="user_role">
+		select a.roleid roleid,a.userid userid,
+			b.useraccount useraccount,b.username username,b.password password,b.userorder userorder,
+			b.isvalid isvalid,b.usertype usertype
+		from t_user_role a,t_user b
+		where 1=1 and a.userid=b.userid
+		<dynamic prepend="">
+			
+			<include refid="t_user_roleListWhere" />
+		</dynamic>
+		order by a.roleid,a.userid
+	</select>
+	<!--用户角色(t_user_role)-->
+	<select id="getUser_role" resultMap="user_roleResult" parameterClass="user_role">
+		select a.roleid roleid,a.userid userid
+		from t_user_role a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_user_roleSelectWhere" />
+		</dynamic>
+		order by a.roleid,a.userid
+	</select>
+	<!--用户角色(t_user_role)-->
+	<select id="getUser_roleListByUserid" resultMap="user_roleByUseridResult" parameterClass="user_role">
+		select a.roleid roleid,a.userid userid,b.rolename rolename,b.departid,b.roledescription,b.roletype
+		from t_user_role a,t_role b
+		where 1=1 and a.roleid=b.roleid
+		<dynamic prepend="">
+			<include refid="t_user_roleSelectWhere" />
+		</dynamic>
+		order by a.roleid
+	</select>
+	
+	  <delete id="deleteRoleUserByUser" parameterClass="user">
+    delete from t_user_role where userid=#userid#
+  </delete>
+    <delete id="deleteRoleUserByRole" parameterClass="role">
+    delete from t_user_role where roleid=#roleid#
+  </delete>
+</sqlMap>

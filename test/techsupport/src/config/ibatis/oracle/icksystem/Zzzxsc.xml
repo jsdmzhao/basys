@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="zzzxsc" type="com.aisino2.icksystem.domain.Zzzxsc"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--制证中心上传(t_zzzxsc)-->
+	<resultMap id="zzzxscResult" class="zzzxsc">
+		<result property="ickslid" column="ickslid" />
+		<result property="zzzxscid" column="zzzxscid" />
+		<result property="sjscbz" column="sjscbz" />
+		<result property="fssj" column="fssj" />
+		<result property="hksj" column="hksj" />
+		<result property="zzzxjlbh" column="zzzxjlbh" />
+		<result property="zzcwyy" column="zzcwyy" />
+	</resultMap>
+	<!--制证中心上传(t_zzzxsc)-->
+	<resultMap id="zzzxscListResult" class="zzzxsc">
+		<result property="ickslid" column="ickslid"/>
+		<result property="zzzxscid" column="zzzxscid"/>
+		<result property="sjscbz" column="sjscbz"/>
+		<result property="fssj" column="fssj"/>
+		<result property="hksj" column="hksj"/>
+		<result property="zzzxjlbh" column="zzzxjlbh"/>
+		<result property="zzcwyy" column="zzcwyy"/>
+	</resultMap>
+	<sql id="t_zzzxscWhere">
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzzxscid">
+				a.zzzxscid=#zzzxscid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_zzzxscPageWhere" >
+		<include refid="t_zzzxscWhere" />	</sql>
+	<sql id="t_zzzxscListWhere" >
+		<include refid="t_zzzxscWhere" />	</sql>
+	<sql id="t_zzzxscSelectWhere"  >
+		<include refid="t_zzzxscWhere" />	</sql>
+	<!--制证中心上传(t_zzzxsc)-->
+	<insert id="insertZzzxsc"  parameterClass="zzzxsc">
+		insert into t_zzzxsc (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				ickslid
+			</isNotNull>
+			<isNotNull prepend="," property="zzzxscid">
+				zzzxscid
+			</isNotNull>
+			<isNotNull prepend="," property="sjscbz">
+				sjscbz
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				fssj
+			</isNotNull>
+			<isNotNull prepend="," property="hksj">
+				hksj
+			</isNotNull>
+			<isNotNull prepend="," property="zzzxjlbh">
+				zzzxjlbh
+			</isNotNull>
+			<isNotNull prepend="," property="zzcwyy">
+				zzcwyy
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="zzzxscid">
+				#zzzxscid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjscbz">
+				#sjscbz#
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				#fssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hksj">
+				#hksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zzzxjlbh">
+				#zzzxjlbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zzcwyy">
+				#zzcwyy#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--制证中心上传(t_zzzxsc)-->
+	<update id="updateZzzxsc" parameterClass="zzzxsc">
+		update t_zzzxsc a set a.zzzxscid=a.zzzxscid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="zzzxscid">
+				zzzxscid=#zzzxscid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjscbz">
+				sjscbz=#sjscbz#
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				fssj=#fssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hksj">
+				hksj=#hksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zzzxjlbh">
+				zzzxjlbh=#zzzxjlbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zzcwyy">
+				zzcwyy=#zzcwyy#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zzzxscWhere" />
+		</dynamic>
+	</update>
+	<!--制证中心上传(t_zzzxsc)-->
+	<delete id="deleteZzzxsc" parameterClass="zzzxsc">
+		delete from t_zzzxsc a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_zzzxscWhere" />
+		</dynamic>
+	</delete>
+	<!--制证中心上传(t_zzzxsc)-->
+	<select id="getZzzxscList" resultMap="zzzxscListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickslid ickslid,a.zzzxscid zzzxscid,a.sjscbz sjscbz,a.fssj fssj,a.hksj hksj,a.zzzxjlbh zzzxjlbh,a.zzcwyy zzcwyy
+		from t_zzzxsc a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zzzxscPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--制证中心上传(t_zzzxsc)-->
+	<select id="getZzzxscListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_zzzxsc a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zzzxscPageWhere" />
+		</dynamic>
+	</select>
+	<!--制证中心上传(t_zzzxsc)-->
+	<select id="getZzzxscListNoPage" resultMap="zzzxscListResult" parameterClass="zzzxsc">
+		select a.ickslid ickslid,a.zzzxscid zzzxscid,a.sjscbz sjscbz,a.fssj fssj,a.hksj hksj,a.zzzxjlbh zzzxjlbh,a.zzcwyy zzcwyy
+		from t_zzzxsc a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zzzxscListWhere" />
+		</dynamic>
+		order by a.ickslid,a.zzzxscid
+	</select>
+	<!--制证中心上传(t_zzzxsc)-->
+	<select id="getZzzxsc" resultMap="zzzxscResult" parameterClass="zzzxsc">
+		select a.ickslid ickslid,a.zzzxscid zzzxscid,a.sjscbz sjscbz,a.fssj fssj,a.hksj hksj,a.zzzxjlbh zzzxjlbh,a.zzcwyy zzcwyy
+		from t_zzzxsc a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zzzxscSelectWhere" />
+		</dynamic>
+		order by a.ickslid,a.zzzxscid
+	</select>
+</sqlMap>

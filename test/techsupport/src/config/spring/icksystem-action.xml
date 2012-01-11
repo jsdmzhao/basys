@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+    <bean  id="st_deviceAction" class="com.aisino2.icksystem.action.St_deviceAction" scope="prototype">
+    <property name="st_deviceService" ref="st_deviceService"/>
+  </bean>
+  <bean id="ickslAction" class="com.aisino2.icksystem.action.IckslAction" scope="prototype">  
+    <property name="ickslService" ref="ickslService"/> 
+    <property name="qyryxxService" ref="qyryxxService"/> 
+    <property name="wgcyryxxService" ref="wgcyryxxService"/> 
+    <property name="qyry_zpService" ref="qyry_zpService"/> 
+    <property name="dict_itemService" ref="dict_itemService"/>
+    <property name="icksl_ickzbService" ref="icksl_ickzbService"/> 
+    <property name="ickzbService" ref="ickzbService"/> 
+    <property name="icksl_wldjService" ref="icksl_wldjService"/> 
+    <property name="wldjService" ref="wldjService"/> 
+    <property name="zzzxscService" ref="zzzxscService"/>
+    <property name="ickrzjlService" ref="ickrzjlService"/>
+  </bean>  
+  <bean id="icksl_ickzbAction" class="com.aisino2.icksystem.action.Icksl_ickzbAction" scope="prototype">  
+    <property name="icksl_ickzbService" ref="icksl_ickzbService"/> 
+  </bean>  
+  <bean id="icksl_wldjAction" class="com.aisino2.icksystem.action.Icksl_wldjAction" scope="prototype">  
+    <property name="icksl_wldjService" ref="icksl_wldjService"/> 
+  </bean>  
+  <bean id="ickyjAction" class="com.aisino2.icksystem.action.IckyjAction" scope="prototype">  
+    <property name="ickyjService" ref="ickyjService"/> 
+  </bean>  
+  <bean id="ickzbAction" class="com.aisino2.icksystem.action.IckzbAction" scope="prototype">  
+    <property name="ickzbService" ref="ickzbService"/> 
+    <property name="ickslService" ref="ickslService"/> 
+  </bean>
+  <bean id="wldjAction" class="com.aisino2.icksystem.action.WldjAction" scope="prototype">  
+    <property name="wldjService" ref="wldjService"/> 
+    <property name="qyryxxService" ref="qyryxxService"/>
+    <property name="qyjbxxService" ref="qyjbxxService"/>
+    <property name="ickslService" ref="ickslService"/>
+    <property name="wgcyryxxService" ref="wgcyryxxService"/>
+    <property name="qyry_zpService" ref="qyry_zpService"/>
+    <property name="dict_itemService" ref="dict_itemService"/> 
+  </bean>
+  <bean id="cjdtjrbAction" class="com.aisino2.icksystem.action.CjdtjrbAction" scope="prototype">  
+    <property name="cjdtjrbService" ref="cjdtjrbService"/> 
+  </bean>
+  <bean id="qyryskjlAction" class="com.aisino2.icksystem.action.QyryskjlAction" scope="prototype">  
+    <property name="qyryskjlService" ref="qyryskjlService"/> 
+       <property name="qyryxxService" ref="qyryxxService"/>
+       <property name="qyjbxxService" ref="qyjbxxService"/>
+  </bean>    
+  <bean id="kjdyAction" class="com.aisino2.icksystem.action.KongJianDiaoYongAction" scope="prototype">
+    <property name="ickslService" ref="ickslService"/>
+	<property name="dict_itemService" ref="dict_itemService"/>
+	<property name="qyjbxxService" ref="qyjbxxService"/>
+	<property name="qyryskjlService" ref="qyryskjlService"/>
+	<property name="qyryxxService" ref="qyryxxService"/>
+	<property name="xctbService" ref="xctbService"/>
+	<property name="userService" ref="userService"/>
+	<property name="departmentService" ref="departmentService"/>
+	<property name="dictService" ref="dictService"/>
+	<property name="wgcyryxxService" ref="wgcyryxxService"/>
+	<property name="ickyjService" ref="ickyjService"/>
+	<property name="systemService" ref="systemService"/>
+  </bean> 
+  <!--工作日志统计-->
+    <bean  id="gzrztjAction" class="com.aisino2.icksystem.action.GzrztjAction" scope="prototype">
+    <property name="gzrztjService" ref="gzrztjService"/>
+  </bean>
+  <bean id="ztryskxxtjAction" class="com.aisino2.icksystem.action.ZtryskxxtjAction" scope="prototype">
+    <property name="ztryskxxtjService" ref="ztryskxxtjService"/>
+  </bean>
+  <bean id="qyryskxxtjAction" class="com.aisino2.icksystem.action.QyryskxxtjAction" scope="prototype">
+    <property name="qyryskxxtjService" ref="qyryskxxtjService"/>
+  </bean>
+  
+</beans>

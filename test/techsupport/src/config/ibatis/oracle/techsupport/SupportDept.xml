@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="SupportDept" type="com.aisino2.techsupport.domain.SupportDept" />
+
+	<!-- 支持单关联单位结果集 -->
+	<resultMap class="SupportDept" id="SupportDeptResult">
+		<result property="id" column="ID" />
+		<result property="stId" column="ST_ID" />
+		<result property="deptId" column="DEPT_ID" />
+	</resultMap>
+
+
+	<sql id="SupportDeptWhere">
+
+			<isNotNull prepend="and" property="stId">
+				T.ST_ID = #stId#
+			</isNotNull>
+			<isNotNull prepend="and" property="deptId">
+				T.DEPT_ID = #deptId#
+			</isNotNull>
+			<isNotNull prepend="and" property="id">
+				T.ID = #id#
+			</isNotNull>
+	</sql>
+	<sql id="SupportDeptPageWhere">
+		<include refid="SupportDeptWhere" />
+	</sql>
+	<sql id="SupportDeptListWhere">
+		<include refid="SupportDeptWhere" />
+	</sql>
+	
+	
+	<select id="SupportDept.get" resultMap="SupportDeptResult"
+		parameterClass="SupportDept">
+		select t.* from T_TS_STDEPT_MAPPING t where t.ID = #id#
+	</select>
+	
+	<select id="SupportDept.querylist" resultMap="SupportDeptResult"
+		parameterClass="SupportDept">
+		select t.* from T_TS_STDEPT_MAPPING t
+		<dynamic prepend="where">
+			<include refid="SupportDeptWhere"/>
+		</dynamic>
+	</select>
+	
+	<select id="SupportDept.queryDepartmentByStId" resultMap="departmentResult" parameterClass="Integer">
+		select d.* from T_TS_STDEPT_MAPPING t ,T_DEPARTMENT d
+		 where d.departid=t.DEPT_ID and t.ST_ID=#value#
+	</select>
+	
+<!-- 	<select id="SupportDeptWhere.getPageCount" parameterClass="map" -->
+<!-- 		resultClass="integer"> -->
+<!-- 		select count(*) from -->
+<!-- 		t_ts_tracking t -->
+<!-- 		<dynamic prepend="where"> -->
+<!-- 			<include refid="TrackingPageWhere" /> -->
+<!-- 		</dynamic> -->
+<!-- 	</select> -->
+
+<!-- 	<select id="SupportDeptWhere.getPage" resultMap="TrackingResult" -->
+<!-- 		parameterClass="map"> -->
+<!-- 		select x.* from ( -->
+<!-- 		select rownum rowno,z.* from -->
+<!-- 		( select t.* from -->
+<!-- 		t_ts_tracking t -->
+<!-- 		<dynamic prepend="where"> -->
+<!-- 			<include refid="TrackingPageWhere" /> -->
+<!-- 		</dynamic> -->
+<!-- 		order by $pageSort$) z) x where rowno &gt;$beginRow$ and rowno &lt;= -->
+<!-- 		$endRow$ -->
+<!-- 	</select> -->
+
+
+	<!-- 插入 -->
+	<insert id="SupportDept.insert" parameterClass="SupportDept">
+		insert
+		into T_TS_STDEPT_MAPPING (
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="id">
+				ID
+			</isNotNull>
+			<isNotNull prepend="," property="deptId">
+				DEPT_ID
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				ST_ID
+			</isNotNull>
+		</dynamic>
+		)
+		values(
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="id">
+				#id#
+			</isNotNull>
+			<isNotNull prepend="," property="deptId">
+				#deptId#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				#stId#
+			</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+	<!-- 更新修改 -->
+	<update id="SupportDept.update" parameterClass="SupportDept">
+		update T_TS_STDEPT_MAPPING set
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="deptId">
+				DEPT_ID=#deptId#
+			</isNotNull>
+			<isNotNull prepend="," property="stId">
+				ST_ID = #stId#
+			</isNotNull>
+		
+		</dynamic>
+
+		where id = #id#
+	</update>
+
+	<delete id="SupportDept.delete" parameterClass="SupportDept">
+		delete from
+		T_TS_STDEPT_MAPPING T 
+		<dynamic prepend="where">
+			<include refid="SupportDeptWhere"/>
+		</dynamic>
+	</delete>
+
+</sqlMap>
