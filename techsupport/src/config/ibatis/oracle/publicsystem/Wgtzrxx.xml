@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wgtzrxx" type="com.aisino2.publicsystem.domain.Wgtzrxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<resultMap id="wgtzrxxResult" class="wgtzrxx">
+		<result property="wgtzrxxid" column="wgtzrxxid" />
+		<result property="qyid" column="qyid" />
+		<result property="tzzxm" column="tzzxm" />
+		<result property="lxdh" column="lxdh" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="qzzldm" column="qzzldm" />
+		<result property="qzzlmc" column="qzzlmc" />
+		<result property="qzhm" column="qzhm" />
+		<result property="hzzldm" column="hzzldm" />
+		<result property="hzzlmc" column="hzzlmc" />
+		<result property="hzhm" column="hzhm" />
+	</resultMap>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<resultMap id="wgtzrxxListResult" class="wgtzrxx">
+		<result property="wgtzrxxid" column="wgtzrxxid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="tzzxm" column="tzzxm"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="qzzldm" column="qzzldm"/>
+		<result property="qzzlmc" column="qzzlmc"/>
+		<result property="qzhm" column="qzhm"/>
+		<result property="hzzldm" column="hzzldm"/>
+		<result property="hzzlmc" column="hzzlmc"/>
+		<result property="hzhm" column="hzhm"/>
+	</resultMap>
+	<sql id="t_wgtzrxxWhere">
+			<isNotEmpty prepend="and" property="wgtzrxxid">
+				a.wgtzrxxid=#wgtzrxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wgtzrxxPageWhere" >
+		<include refid="t_wgtzrxxWhere" />	</sql>
+	<sql id="t_wgtzrxxListWhere" >
+		<include refid="t_wgtzrxxWhere" />	</sql>
+	<sql id="t_wgtzrxxSelectWhere"  >
+		<include refid="t_wgtzrxxWhere" />	</sql>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<insert id="insertWgtzrxx"  parameterClass="wgtzrxx">
+		insert into t_wgtzrxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wgtzrxxid">
+				wgtzrxxid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="tzzxm">
+				tzzxm
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm
+			</isNotNull>
+			<isNotNull prepend="," property="qzzlmc">
+				qzzlmc
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm
+			</isNotNull>
+			<isNotNull prepend="," property="hzzldm">
+				hzzldm
+			</isNotNull>
+			<isNotNull prepend="," property="hzzlmc">
+				hzzlmc
+			</isNotNull>
+			<isNotNull prepend="," property="hzhm">
+				hzhm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wgtzrxxid">
+				#wgtzrxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="tzzxm">
+				#tzzxm#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzlmc">
+				#qzzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="hzzldm">
+				#hzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hzzlmc">
+				#hzzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="hzhm">
+				#hzhm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<update id="updateWgtzrxx" parameterClass="wgtzrxx">
+		update t_wgtzrxx a set a.qyid=a.qyid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="tzzxm">
+				tzzxm=#tzzxm#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="gjdm">
+				gjdm=#gjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gj">
+				gj=#gj#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm=#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzlmc">
+				qzzlmc=#qzzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm=#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="hzzldm">
+				hzzldm=#hzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hzzlmc">
+				hzzlmc=#hzzlmc#
+			</isNotNull>
+			<isNotNull prepend="," property="hzhm">
+				hzhm=#hzhm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxWhere" />
+		</dynamic>
+	</update>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<delete id="deleteWgtzrxx" parameterClass="wgtzrxx">
+		delete from t_wgtzrxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxWhere" />
+		</dynamic>
+	</delete>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<select id="getWgtzrxxList" resultMap="wgtzrxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.wgtzrxxid wgtzrxxid,a.qyid qyid,a.tzzxm tzzxm,a.lxdh lxdh,a.gjdm gjdm,a.gj gj,a.qzzldm qzzldm,a.qzzlmc qzzlmc,a.qzhm qzhm,a.hzzldm hzzldm,a.hzzlmc hzzlmc,a.hzhm hzhm
+		from t_wgtzrxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<select id="getWgtzrxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wgtzrxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<select id="getWgtzrxxListNoPage" resultMap="wgtzrxxListResult" parameterClass="wgtzrxx">
+		select a.wgtzrxxid wgtzrxxid,a.qyid qyid,a.tzzxm tzzxm,a.lxdh lxdh,a.gjdm gjdm,a.gj gj,a.qzzldm qzzldm,a.qzzlmc qzzlmc,a.qzhm qzhm,a.hzzldm hzzldm,a.hzzlmc hzzlmc,a.hzhm hzhm
+		from t_wgtzrxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxListWhere" />
+		</dynamic>
+		order by a.wgtzrxxid,a.qyid
+	</select>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<select id="getWgtzrxx" resultMap="wgtzrxxResult" parameterClass="wgtzrxx">
+		select a.wgtzrxxid wgtzrxxid,a.qyid qyid,a.tzzxm tzzxm,a.lxdh lxdh,a.gjdm gjdm,a.gj gj,a.qzzldm qzzldm,a.qzzlmc qzzlmc,a.qzhm qzhm,a.hzzldm hzzldm,a.hzzlmc hzzlmc,a.hzhm hzhm
+		from t_wgtzrxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgtzrxxSelectWhere" />
+		</dynamic>
+		order by a.wgtzrxxid,a.qyid
+	</select>
+</sqlMap>

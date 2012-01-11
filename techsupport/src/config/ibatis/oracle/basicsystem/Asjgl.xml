@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="asjgl" type="com.aisino2.basicsystem.domain.Asjgl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--案事件管理(t_asjgl)-->
+	<resultMap id="asjglResult" class="asjgl">
+		<result property="asjglid" column="asjglid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="ajbh" column="ajbh"/>
+		<result property="fasj" column="fasj"/>
+		<result property="fadd" column="fadd"/>
+		<result property="qkms" column="qkms"/>
+		<result property="ssdwbm" column="ssdwbm"/>
+		<result property="ssdwmc" column="ssdwmc"/>
+		<result property="qysalx" column="qysalx"/>
+		<result property="djr" column="djr"/>
+		<result property="djdwbm" column="djdwbm"/>
+		<result property="djdwmc" column="djdwmc"/>
+		<result property="djsj" column="djsj"/>
+		
+		
+		<result property="ajlydm" column="ajlydm"/>
+		<result property="ajly" column="ajly"/>
+		<result property="hylb" column="hylb"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="ajxz" column="ajxz"/>
+		<result property="ajxzdm" column="ajxzdm"/>
+		<result property="ajlb" column="ajlb"/>
+		<result property="ajlbdm" column="ajlbdm"/>
+		<result property="ladw" column="ladw"/>
+		<result property="ladwbm" column="ladwbm"/>
+		<result property="larq" column="larq"/>
+		<result property="parq" column="parq"/>
+		<result property="qyzr" column="qyzr"/>
+		<result property="qyzrdm" column="qyzrdm"/>
+		<result property="qyryjs" column="qyryjs"/>
+		<result property="qyryjsdm" column="qyryjsdm"/>
+		
+	</resultMap>
+	<!--案事件管理(t_asjgl)-->
+	<resultMap id="asjglListResult" class="asjgl">
+		<result property="asjglid" column="asjglid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="ajbh" column="ajbh"/>
+		<result property="fasj" column="fasj"/>
+		<result property="fadd" column="fadd"/>
+		<result property="qkms" column="qkms"/>
+		<result property="ssdwbm" column="ssdwbm"/>
+		<result property="ssdwmc" column="ssdwmc"/>
+		<result property="qysalx" column="qysalx"/>
+		<result property="djr" column="djr"/>
+		<result property="djdwbm" column="djdwbm"/>
+		<result property="djdwmc" column="djdwmc"/>
+		<result property="djsj" column="djsj"/>
+		
+		
+		<result property="ajlydm" column="ajlydm"/>
+		<result property="ajly" column="ajly"/>
+		<result property="hylb" column="hylb"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="ajxz" column="ajxz"/>
+		<result property="ajxzdm" column="ajxzdm"/>
+		<result property="ajlb" column="ajlb"/>
+		<result property="ajlbdm" column="ajlbdm"/>
+		<result property="ladw" column="ladw"/>
+		<result property="ladwbm" column="ladwbm"/>
+		<result property="larq" column="larq"/>
+		<result property="parq" column="parq"/>
+		<result property="qyzr" column="qyzr"/>
+		<result property="qyzrdm" column="qyzrdm"/>
+		<result property="qyryjs" column="qyryjs"/>
+		<result property="qyryjsdm" column="qyryjsdm"/>
+	</resultMap>
+	<sql id="t_asjglWhere">
+			<isNotEmpty prepend="and" property="asjglid">
+				a.asjglid=#asjglid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_asjglQueryWhere">
+			<isNotEmpty prepend="and" property="asjglid">
+				a.asjglid=#asjglid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				a.qymc like '%'||#qymc#||'%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdwbm">
+				a.ssdwbm like  '%'||#ssdwbm#||'%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ajxzdm">
+				a.ajxzdm=#ajxzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ajlbdm">
+				a.ajlbdm=#ajlbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fasj">
+				a.fasj&gt;=#fasj:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fasj2">
+				a.fasj&lt;=#fasj2:TIMESTAMP#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_asjglPageWhere" >
+		<include refid="t_asjglWhere" />	</sql>
+	<sql id="t_asjglListWhere" >
+		<include refid="t_asjglWhere" />	</sql>
+	<sql id="t_asjglSelectWhere"  >
+		<include refid="t_asjglWhere" />	</sql>
+	<!--案事件管理(t_asjgl)-->
+	<insert id="insertAsjgl"  parameterClass="asjgl">
+		insert into t_asjgl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="asjglid">
+				asjglid
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				ajbh
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				ajxz
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb
+			</isNotNull>
+			<isNotNull prepend="," property="fasj">
+				fasj
+			</isNotNull>
+			<isNotNull prepend="," property="fadd">
+				fadd
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				qkms
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwbm">
+				ssdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwmc">
+				ssdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qysalx">
+				qysalx
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr
+			</isNotNull>
+			<isNotNull prepend="," property="djdwbm">
+				djdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="djdwmc">
+				djdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="djsj">
+				djsj
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbdm">
+				ajlbdm
+			</isNotNull>
+			<isNotNull prepend="," property="ajly">
+				ajly
+			</isNotNull>
+			<isNotNull prepend="," property="ajlydm">
+				ajlydm
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				ajxzdm
+			</isNotNull>
+			<isNotNull prepend="," property="ladw">
+				ladw
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm
+			</isNotNull>
+			<isNotNull prepend="," property="qyzr">
+				qyzr
+			</isNotNull>
+			<isNotNull prepend="," property="qyzrdm">
+				qyzrdm
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjs">
+				qyryjs
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjsdm">
+				qyryjsdm
+			</isNotNull>
+			<isNotNull prepend="," property="larq">
+				larq
+			</isNotNull>
+			<isNotNull prepend="," property="parq">
+				parq
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="asjglid">
+				#asjglid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				#ajbh#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				#ajxz#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="fasj">
+				#fasj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fadd">
+				#fadd#
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				#qkms#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwbm">
+				#ssdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwmc">
+				#ssdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qysalx">
+				#qysalx#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="djdwbm">
+				#djdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="djdwmc">
+				#djdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="djsj">
+				#djsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbdm">
+				#ajlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajly">
+				#ajly#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlydm">
+				#ajlydm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				#ajxzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladw">
+				#ladw#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyzr">
+				#qyzr#
+			</isNotNull>
+			<isNotNull prepend="," property="qyzrdm">
+				#qyzrdm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjs">
+				#qyryjs#
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjsdm">
+				#qyryjsdm#
+			</isNotNull>
+			<isNotNull prepend="," property="larq">
+				#larq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="parq">
+				#parq:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--案事件管理(t_asjgl)-->
+	<update id="updateAsjgl" parameterClass="asjgl">
+		update t_asjgl a set a.asjglid=a.asjglid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				ajbh=#ajbh#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				ajxz=#ajxz#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb=#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="fasj">
+				fasj=#fasj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fadd">
+				fadd=#fadd#
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				qkms=#qkms#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwbm">
+				ssdwbm=#ssdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdwmc">
+				ssdwmc=#ssdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qysalx">
+				qysalx=#qysalx#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr=#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="djdwbm">
+				djdwbm=#djdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="djdwmc">
+				djdwmc=#djdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="djsj">
+				djsj=#djsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbdm">
+				ajlbdm=#ajlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajly">
+				ajly=#ajly#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlydm">
+				ajlydm=#ajlydm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				ajxzdm=#ajxzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladw">
+				ladw=#ladw#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm=#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyzr">
+				qyzr=#qyzr#
+			</isNotNull>
+			<isNotNull prepend="," property="qyzrdm">
+				qyzrdm=#qyzrdm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjs">
+				qyryjs=#qyryjs#
+			</isNotNull>
+			<isNotNull prepend="," property="qyryjsdm">
+				qyryjsdm=#qyryjsdm#
+			</isNotNull>
+			<isNotNull prepend="," property="larq">
+				larq=#larq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="parq">
+				parq=#parq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				dcbs=#dcbs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjglWhere" />
+		</dynamic>
+	</update>
+	<!--案事件管理(t_asjgl)-->
+	<delete id="deleteAsjgl" parameterClass="asjgl">
+		delete from t_asjgl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_asjglWhere" />
+		</dynamic>
+	</delete>
+	<!--案事件管理(t_asjgl)-->
+	<select id="getAsjglList" resultMap="asjglListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.asjglid asjglid,a.qybm qybm,a.qymc qymc,a.ajbh ajbh,a.fasj fasj,a.fadd fadd,a.qkms qkms,a.ssdwbm ssdwbm,a.ssdwmc ssdwmc,a.qysalx qysalx,a.djr djr,a.djdwbm djdwbm,a.djdwmc djdwmc,a.djsj djsj,a.ajlydm ajlydm,a.ajly ajly,a.hylb hylb,a.hylbdm hylbdm,a.ajxz ajxz,a.ajxzdm ajxzdm,a.ajlb ajlb,a.ajlbdm ajlbdm,a.ladw ladw,a.ladwbm ladwbm,a.larq larq,a.parq parq, a.qyzr qyzr, a.qyzrdm qyzrdm,a.qyryjs qyryjs, a.qyryjsdm qyryjsdm
+		from t_asjgl a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjglQueryWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--案事件管理(t_asjgl)-->
+	<select id="getAsjglListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_asjgl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjglQueryWhere" />
+		</dynamic>
+	</select>
+	<!--案事件管理(t_asjgl)-->
+	<select id="getAsjglListNoPage" resultMap="asjglListResult" parameterClass="asjgl">
+		select a.asjglid asjglid,a.qybm qybm,a.qymc qymc,a.ajbh ajbh,a.fasj fasj,a.fadd fadd,a.qkms qkms,a.ssdwbm ssdwbm,a.ssdwmc ssdwmc,a.qysalx qysalx,a.djr djr,a.djdwbm djdwbm,a.djdwmc djdwmc,a.djsj djsj,a.ajlydm ajlydm,a.ajly ajly,a.hylb hylb,a.hylbdm hylbdm,a.ajxz ajxz,a.ajxzdm ajxzdm,a.ajlb ajlb,a.ajlbdm ajlbdm,a.ladw ladw,a.ladwbm ladwbm,a.larq larq,a.parq parq, a.qyzr qyzr, a.qyzrdm qyzrdm,a.qyryjs qyryjs, a.qyryjsdm qyryjsdm
+		from t_asjgl a
+		where 1=1
+		<dynamic prepend="">
+		    <isNotEmpty prepend="and" property="dcbs">
+				a.dcbs=#dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ladwbm">
+				a.ladwbm like '%$ladwbm$%'
+			</isNotEmpty>
+			<include refid="t_asjglQueryWhere" />
+		</dynamic>
+		order by a.asjglid
+	</select>
+	<!--案事件管理(t_asjgl)-->
+	<select id="getAsjgl" resultMap="asjglResult" parameterClass="asjgl">
+		select a.asjglid asjglid,a.qybm qybm,a.qymc qymc,a.ajbh ajbh,a.fasj fasj,a.fadd fadd,a.qkms qkms,a.ssdwbm ssdwbm,a.ssdwmc ssdwmc,a.qysalx qysalx,a.djr djr,a.djdwbm djdwbm,a.djdwmc djdwmc,a.djsj djsj,a.ajlydm ajlydm,a.ajly ajly,a.hylb hylb,a.hylbdm hylbdm,a.ajxz ajxz,a.ajxzdm ajxzdm,a.ajlb ajlb,a.ajlbdm ajlbdm,a.ladw ladw,a.ladwbm ladwbm,a.larq larq,a.parq parq, a.qyzr qyzr, a.qyzrdm qyzrdm,a.qyryjs qyryjs, a.qyryjsdm qyryjsdm
+		from t_asjgl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjglQueryWhere" />
+		</dynamic>
+		order by a.asjglid
+	</select>
+	
+	<!--  导出-->
+	<select id="getAsjglListExcel" resultMap="asjglListResult" parameterClass="map">
+		select a.asjglid asjglid,a.qybm qybm,a.qymc qymc,a.ajbh ajbh,a.fasj fasj,a.fadd fadd,a.qkms qkms,a.ssdwbm ssdwbm,a.ssdwmc ssdwmc,a.qysalx qysalx,a.djr djr,a.djdwbm djdwbm,a.djdwmc djdwmc,a.djsj djsj,a.ajlydm ajlydm,a.ajly ajly,a.hylb hylb,a.hylbdm hylbdm,a.ajxz ajxz,a.ajxzdm ajxzdm,a.ajlb ajlb,a.ajlbdm ajlbdm,a.ladw ladw,a.ladwbm ladwbm,a.larq larq,a.parq parq, a.qyzr qyzr, a.qyzrdm qyzrdm,a.qyryjs qyryjs, a.qyryjsdm qyryjsdm
+		from t_asjgl a  
+  		where  rownum &lt;= $endRow$
+		<dynamic prepend="">
+			<include refid="t_asjglQueryWhere" />
+		</dynamic>
+		order by $pageSort$
+	</select>
+</sqlMap>

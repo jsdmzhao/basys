@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="kycl" type="com.aisino2.publicsystem.domain.Kycl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--可疑车辆(t_kycl)-->
+	<resultMap id="kyclResult" class="kycl">
+		<result property="cljbxxid" column="cljbxxid" />
+		<result property="kyqkclid" column="kyqkclid" />
+		<result property="kyqklbbm" column="kyqklbbm" />
+		<result property="kyqklb" column="kyqklb" />
+		<result property="ydxxms" column="ydxxms" />
+		<result property="bgr" column="bgr" />
+		<result property="bgsj" column="bgsj" />
+		<result property="bgfsdm" column="bgfsdm" />
+		<result property="bgfs" column="bgfs" />
+		<result property="bgrlsfs" column="bgrlsfs" />
+		<result property="jbr" column="jbr" />
+	</resultMap>
+	<!--可疑车辆(t_kycl)-->
+	<resultMap id="kyclListResult" class="kycl">
+		<result property="cljbxxid" column="cljbxxid"/>
+		<result property="kyqkclid" column="kyqkclid"/>
+		<result property="kyqklbbm" column="kyqklbbm"/>
+		<result property="kyqklb" column="kyqklb"/>
+		<result property="ydxxms" column="ydxxms"/>
+		<result property="bgr" column="bgr"/>
+		<result property="bgsj" column="bgsj"/>
+	</resultMap>
+	<sql id="t_kyclWhere">
+			<isNotEmpty prepend="and" property="cljbxxid">
+				a.cljbxxid=#cljbxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kyqkclid">
+				a.kyqkclid=#kyqkclid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_kyclPageWhere" >
+		<include refid="t_kyclWhere" />	</sql>
+	<sql id="t_kyclListWhere" >
+		<include refid="t_kyclWhere" />	</sql>
+	<sql id="t_kyclSelectWhere"  >
+		<include refid="t_kyclWhere" />	</sql>
+	<!--可疑车辆(t_kycl)-->
+	<insert id="insertKycl"  parameterClass="kycl">
+		insert into t_kycl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				cljbxxid
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkclid">
+				kyqkclid
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklbbm">
+				kyqklbbm
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklb">
+				kyqklb
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				ydxxms
+			</isNotNull>
+			<isNotNull prepend="," property="bgr">
+				bgr
+			</isNotNull>
+			<isNotNull prepend="," property="bgsj">
+				bgsj
+			</isNotNull>
+			<isNotNull prepend="," property="bgfsdm">
+				bgfsdm
+			</isNotNull>
+			<isNotNull prepend="," property="bgfs">
+				bgfs
+			</isNotNull>
+			<isNotNull prepend="," property="bgrlsfs">
+				bgrlsfs
+			</isNotNull>
+			<isNotNull prepend="," property="jbr">
+				jbr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cljbxxid">
+				#cljbxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkclid">
+				#kyqkclid#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklbbm">
+				#kyqklbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklb">
+				#kyqklb#
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				#ydxxms#
+			</isNotNull>
+			<isNotNull prepend="," property="bgr">
+				#bgr#
+			</isNotNull>
+			<isNotNull prepend="," property="bgsj">
+				#bgsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bgfsdm">
+				#bgfsdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bgfs">
+				#bgfs#
+			</isNotNull>
+			<isNotNull prepend="," property="bgrlsfs">
+				#bgrlsfs#
+			</isNotNull>
+			<isNotNull prepend="," property="jbr">
+				#jbr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--可疑车辆(t_kycl)-->
+	<update id="updateKycl" parameterClass="kycl">
+		update t_kycl a set a.kyqkclid=a.kyqkclid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="kyqkclid">
+				kyqkclid=#kyqkclid#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklbbm">
+				kyqklbbm=#kyqklbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklb">
+				kyqklb=#kyqklb#
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				ydxxms=#ydxxms#
+			</isNotNull>
+			<isNotNull prepend="," property="bgr">
+				bgr=#bgr#
+			</isNotNull>
+			<isNotNull prepend="," property="bgsj">
+				bgsj=#bgsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bgfsdm">
+				bgfsdm=#bgfsdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bgfs">
+				bgfs=#bgfs#
+			</isNotNull>
+			<isNotNull prepend="," property="bgrlsfs">
+				bgrlsfs=#bgrlsfs#
+			</isNotNull>
+			<isNotNull prepend="," property="jbr">
+				jbr=#jbr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyclWhere" />
+		</dynamic>
+	</update>
+	<!--可疑车辆(t_kycl)-->
+	<delete id="deleteKycl" parameterClass="kycl">
+		delete from t_kycl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_kyclWhere" />
+		</dynamic>
+	</delete>
+	<!--可疑车辆(t_kycl)-->
+	<select id="getKyclList" resultMap="kyclListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.cljbxxid cljbxxid,a.kyqkclid kyqkclid,a.kyqklbbm kyqklbbm,a.kyqklb kyqklb,a.ydxxms ydxxms,a.bgr bgr,a.bgsj bgsj
+		from t_kycl a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyclPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--可疑车辆(t_kycl)-->
+	<select id="getKyclListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_kycl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyclPageWhere" />
+		</dynamic>
+	</select>
+	<!--可疑车辆(t_kycl)-->
+	<select id="getKyclListNoPage" resultMap="kyclListResult" parameterClass="kycl">
+		select a.cljbxxid cljbxxid,a.kyqkclid kyqkclid,a.kyqklbbm kyqklbbm,a.kyqklb kyqklb,a.ydxxms ydxxms,a.bgr bgr,a.bgsj bgsj
+		from t_kycl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyclListWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.kyqkclid
+	</select>
+	<!--可疑车辆(t_kycl)-->
+	<select id="getKycl" resultMap="kyclResult" parameterClass="kycl">
+		select a.cljbxxid cljbxxid,a.kyqkclid kyqkclid,a.kyqklbbm kyqklbbm,a.kyqklb kyqklb,a.ydxxms ydxxms,a.bgr bgr,a.bgsj bgsj
+		,a.bgfsdm bgfsdm,a.bgfs bgfs,a.bgrlsfs bgrlsfs,a.jbr jbr
+		from t_kycl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyclSelectWhere" />
+		</dynamic>
+		order by a.cljbxxid,a.kyqkclid
+	</select>
+</sqlMap>

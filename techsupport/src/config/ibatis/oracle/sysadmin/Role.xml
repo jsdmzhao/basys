@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="role" type="com.aisino2.sysadmin.domain.Role"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--角色(t_role)-->
+	<resultMap id="roleResult" class="role">
+		<result property="roleid" column="roleid" />
+		<result property="departid" column="departid" />
+		<result property="rolename" column="rolename" />
+		<result property="roledescription" column="roledescription" />
+		<result property="roletype" column="roletype" />
+		<result property="jzlbdm" column="jzlbdm" />
+        <result property="jzlbmc" column="jzlbmc" />
+	</resultMap>
+	<!--角色(t_role)-->
+	<resultMap id="roleListResult" class="role">
+		<result property="roleid" column="roleid"/>
+		<result property="departid" column="departid"/>
+		<result property="rolename" column="rolename"/>
+		<result property="roledescription" column="roledescription"/>
+		<result property="roletype" column="roletype"/>
+	</resultMap>
+	<!--角色(t_role)-->
+	<resultMap id="roleListNoPageResult" class="role">
+		<result property="roleid" column="roleid"/>
+		<result property="departid" column="departid"/>
+		<result property="rolename" column="rolename"/>
+		<result property="roledescription" column="roledescription"/>
+		<result property="roletype" column="roletype"/>
+		<result property="departname" column="departname"/>
+	</resultMap>
+
+	  <resultMap id="useRoleResult" class="role">
+    <result property="roleid" column="roleid"/>
+    <result property="rolename" column="rolename"/>
+    <result property="departid" column="departid"/>
+    <result property="department.departname" column="departname"/>
+  </resultMap>
+	
+
+	
+	<sql id="t_roleWhere">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departid">
+				a.departid=#departid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzlbdm">
+		    	 a.jzlbdm =#jzlbdm#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_rolePageWhere" >
+		<include refid="t_roleWhere" />	
+			
+		</sql>
+	<sql id="t_roleListWhere" >
+		<include refid="t_roleWhere" />	</sql>
+	<sql id="t_roleSelectWhere"  >
+		<include refid="t_roleWhere" />	</sql>
+	<!--角色(t_role)-->
+	<insert id="insertRole"  parameterClass="role">
+		insert into t_role (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				roleid
+			</isNotNull>
+			<isNotNull prepend="," property="departid">
+				departid
+			</isNotNull>
+			<isNotNull prepend="," property="rolename">
+				rolename
+			</isNotNull>
+			<isNotNull prepend="," property="roledescription">
+				roledescription
+			</isNotNull>
+			<isNotNull prepend="," property="roletype">
+				roletype
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				jzlbdm
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				jzlbmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				#roleid#
+			</isNotNull>
+			<isNotNull prepend="," property="departid">
+				#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="rolename">
+				#rolename#
+			</isNotNull>
+			<isNotNull prepend="," property="roledescription">
+				#roledescription#
+			</isNotNull>
+			<isNotNull prepend="," property="roletype">
+				#roletype#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				#jzlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				#jzlbmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--角色(t_role)-->
+	<update id="updateRole" parameterClass="role">
+		update t_role a set  roleid=roleid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="departid">
+				departid=#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="rolename">
+				rolename=#rolename#
+			</isNotNull>
+			<isNotNull prepend="," property="roledescription">
+				roledescription=#roledescription#
+			</isNotNull>
+			<isNotNull prepend="," property="roletype">
+				roletype=#roletype#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbdm">
+				jzlbdm=#jzlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jzlbmc">
+				jzlbmc=#jzlbmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departid">
+				a.departid=#departid#
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!--角色(t_role)-->
+	<delete id="deleteRole" parameterClass="role">
+		delete from t_role a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_roleWhere" />
+		</dynamic>
+	</delete>
+	<!--角色(t_role)-->
+	<select id="getRoleList" resultMap="roleListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.roleid roleid,a.departid departid,a.rolename rolename,a.roledescription roledescription,a.roletype roletype
+		from t_role a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="rolename">
+				a.rolename like  '%$rolename$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="roletype">
+				a.roletype = #roletype#
+			</isNotEmpty>
+			<include refid="t_rolePageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--角色(t_role)-->
+	<select id="getRoleListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_role a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="rolename">
+				a.rolename like  '%$rolename$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="roletype">
+				a.roletype = #roletype#
+			</isNotEmpty>
+			<include refid="t_rolePageWhere" />
+		</dynamic>
+	</select>
+	<!--角色(t_role)-->
+	<select id="getRoleListNoPage" resultMap="roleListNoPageResult" parameterClass="role">
+		select a.roleid roleid,a.departid departid,a.rolename rolename,a.roledescription roledescription,
+		a.roletype roletype,b.departname departname
+		from t_role a,t_department b
+		where 1=1 and a.departid=b.departid
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	 a.rolename like '%$query_simplepin$%'
+			</isNotEmpty>
+			<isEqual prepend="" property="roleNameType"  compareValue="0">
+				<isNotEmpty prepend="and" property="rolename">
+					a.rolename like  '%$rolename$%'
+				</isNotEmpty>
+ 			</isEqual>
+			<isEqual prepend="" property="roleNameType"  compareValue="1">
+				<isNotEmpty prepend="and" property="rolename">
+					a.rolename = #rolename#
+				</isNotEmpty>
+ 			</isEqual>
+			<isNotEmpty prepend="and" property="departname">
+				b.departname like '%$departname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departcode">
+				<isNotEqual  prepend="" property="departcode" compareValue="111">
+					b.departcode like '$departcode$%'
+				</isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzlbdm">
+			 	 a.jzlbdm = #jzlbdm#
+			</isNotEmpty>
+			<include refid="t_roleListWhere" />
+		</dynamic>
+		order by a.roleid,a.departid
+	</select>
+	<!--角色(t_role)-->
+	<select id="getRole" resultMap="roleResult" parameterClass="role">
+		select a.roleid roleid,a.departid departid,a.rolename rolename,a.roledescription roledescription,a.roletype roletype
+		,a.jzlbmc,a.jzlbdm	
+		from t_role a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_roleSelectWhere" />
+		</dynamic>
+		order by a.roleid,a.departid
+	</select>
+	
+		 <select id="getRolesByUser" resultMap="useRoleResult" parameterClass="user">
+	  select b.roleid,rolename,c.departid,departname  from t_user_role a,t_role b,t_department c
+	  where a.roleid=b.roleid and b.departid=c.departid and a.userid=#userid#
+	  </select>
+	  
+	 <select id="getOptionRolesForUser" resultMap="roleResult" parameterClass="user">
+		select a.roleid roleid,a.departid departid,a.rolename rolename,a.roledescription roledescription,a.roletype roletype
+		,a.jzlbmc,a.jzlbdm	
+		from t_role a
+  		where a.roleid not in(select roleid  from t_user_role where a.roleid=roleid and userid=#userid#)
+		<dynamic prepend="and ">
+		<isNotEqual prepend="and" property="departid" compareValue="0">
+			a.departid=#departid#
+		</isNotEqual>
+		</dynamic>
+	</select>
+
+  
+<select id="getloginUserRoleOutDeptList" resultMap="roleListNoPageResult" parameterClass="user">
+select m.* from 
+  (select tr.roleid  roleid ,#departid# as departid ,tr.rolename rolename ,tr.roledescription  roledescription ,tr.roletype roletype,
+  
+  
+  
+  de.departname from  t_user_role t, t_role tr,t_department de   where  de.departid=tr.departid and t.userid=#userid# and tr.roleid = t.roleid ) m 
+where m.roleid not in
+   (select r.roleid from  t_department d , t_role r  where d.departid=r.departid  and  d.departfullcode like '$departcode$%')  
+	</select>
+	
+	<select id="getDeptRoleList" resultMap="roleListNoPageResult" parameterClass="user">
+select r.roleid  roleid ,r.departid departid ,r.rolename rolename ,r.roledescription  roledescription ,r.roletype roletype,
+  d.departname from 
+    t_department d , t_role r  where d.departid=r.departid   and  d.departfullcode like '$departcode$%' 
+	</select>
+</sqlMap>

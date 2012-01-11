@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <!-- 技术支持单ACTION -->
+  <package name="techsupport" extends="json-default" namespace="/techsupport">
+  	<interceptors>
+			<interceptor-stack name="uploadstack">
+			    <interceptor-ref name="exception"/>
+			    <interceptor-ref name="alias"/>
+			    <interceptor-ref name="servletConfig"/>
+			    <interceptor-ref name="prepare"/>
+			    <interceptor-ref name="i18n"/>
+			    <interceptor-ref name="chain"/>
+			    <interceptor-ref name="debugging"/>
+			    <interceptor-ref name="profiling"/>
+			    <interceptor-ref name="scopedModelDriven"/>
+			    <interceptor-ref name="modelDriven"/>
+			    <!-- 
+			    <interceptor-ref name="fileUpload"/>
+			     -->
+			    <interceptor-ref name="checkbox"/>
+			    <interceptor-ref name="staticParams"/>
+			    <interceptor-ref name="params">
+<!-- 			      <param name="excludeParams">dojo\..*</param> -->
+			    </interceptor-ref>
+			    <interceptor-ref name="conversionError"/>
+			    <interceptor-ref name="validation">
+			        <param name="excludeMethods">input,back,cancel,browse</param>
+			    </interceptor-ref>
+			    <interceptor-ref name="workflow">
+			        <param name="excludeMethods">input,back,cancel,browse</param>
+			    </interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+  	<!-- 填报申请 -->
+  	<action name="*_apply" method="{1}" class="ApplyAction">
+  		<result  type="json">
+  		</result>
+  	</action>
+  	
+<!--   	总工审核 -->
+  	<action name="*_ceApproval" method="{1}" class="CeApprovalAction">
+  		<result type="json"></result>
+  	</action>
+  	
+<!--   	部门审核 -->
+	<action name="*_deptApproval" method="{1}" class="DeptApprovalAction">
+		<result type="json"></result>
+	</action>
+	
+  	<!-- 公用调用 -->
+  	<action name="*_tscommon" class="TSCommonAction" method="{1}">
+<!--   		<interceptor-ref name="uploadstack"></interceptor-ref> -->
+  		<result type="json">
+
+  		</result>
+  	</action>
+  	
+  	<!-- 待办工作单 -->
+  	<action name="*_worksheet" class="WorksheetAction" method="{1}">
+  		<result type="json">
+  			
+  		</result>
+  	</action>
+  	
+  	<!-- 追踪批复 进展信息 -->
+  	<action name="*_tracking" class="TrackingAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+  	
+  	<!-- 反馈确认 -->
+  	<action name="*_feedback" class="FeedbackAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+  	
+  	<!-- 归档 -->
+  	<action name="*_archive" class="ArchiveAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+  	
+<!--   	短信提示 -->
+	<action name="*_smsHint" class="smsHintAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+<!--   	基本支持单视图 -->
+  	<action name="*_supportTicket" class="supportTicketAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+  	
+  </package>
+</struts>

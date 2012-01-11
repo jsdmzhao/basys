@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyryxxtj" type="com.aisino2.publicsystem.domain.Qyryxxtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<resultMap id="qyryxxtjResult" class="qyryxxtj">
+		<result property="qyryxxtj" column="qyryxxtj" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qymc" column="qymc" />
+		<result property="qybm" column="qybm" />
+		<result property="zrs" column="zrs" />
+		<result property="dyzcrs" column="dyzcrs" />
+		<result property="dylzrs" column="dylzrs" />
+		<result property="zjqrzcrs" column="zjqrzcrs" />
+		<result property="zjqrlzrs" column="zjqrlzrs" />
+		<result property="dqzzrs" column="dqzzrs" />
+		<result property="zdskb" column="zdskb" />
+		<result property="qyrsks" column="qyrsks" />
+		<result property="ztdm" column="ztdm" />
+	</resultMap>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<resultMap id="qyryxxtjListResult" class="qyryxxtj">
+		<result property="qyryxxtj" column="qyryxxtj"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="zrs" column="zrs"/>
+		<result property="dyzcrs" column="dyzcrs"/>
+		<result property="dylzrs" column="dylzrs"/>
+		<result property="zjqrzcrs" column="zjqrzcrs"/>
+		<result property="zjqrlzrs" column="zjqrlzrs"/>
+		<result property="dqzzrs" column="dqzzrs"/>
+		<result property="zdskb" column="zdskb"/>
+		<result property="qyrsks" column="qyrsks"/>
+		<result property="ztdm" column="ztdm"/>
+	</resultMap>
+	<sql id="t_qyryxxtjWhere">
+			<isNotEmpty prepend="and" property="qyryxxtj">
+				a.qyryxxtj=#qyryxxtj#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyryxxtjPageWhere" >
+		<include refid="t_qyryxxtjWhere" />	</sql>
+	<sql id="t_qyryxxtjListWhere" >
+		<include refid="t_qyryxxtjWhere" />	</sql>
+	<sql id="t_qyryxxtjSelectWhere"  >
+		<include refid="t_qyryxxtjWhere" />	</sql>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<insert id="insertQyryxxtj"  parameterClass="qyryxxtj">
+		insert into t_qyryxxtj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyryxxtj">
+				qyryxxtj
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				zrs
+			</isNotNull>
+			<isNotNull prepend="," property="dyzcrs">
+				dyzcrs
+			</isNotNull>
+			<isNotNull prepend="," property="dylzrs">
+				dylzrs
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrzcrs">
+				zjqrzcrs
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrlzrs">
+				zjqrlzrs
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				dqzzrs
+			</isNotNull>
+			<isNotNull prepend="," property="zdskb">
+				zdskb
+			</isNotNull>
+			<isNotNull prepend="," property="qyrsks">
+				qyrsks
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyryxxtj">
+				#qyryxxtj#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				#zrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dyzcrs">
+				#dyzcrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dylzrs">
+				#dylzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrzcrs">
+				#zjqrzcrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrlzrs">
+				#zjqrlzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				#dqzzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zdskb">
+				#zdskb#
+			</isNotNull>
+			<isNotNull prepend="," property="qyrsks">
+				#qyrsks#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				#ztdm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<update id="updateQyryxxtj" parameterClass="qyryxxtj">
+		update t_qyryxxtj a set a.qyryxxtj=a.qyryxxtj
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="zrs">
+				zrs=#zrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dyzcrs">
+				dyzcrs=#dyzcrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dylzrs">
+				dylzrs=#dylzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrzcrs">
+				zjqrzcrs=#zjqrzcrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zjqrlzrs">
+				zjqrlzrs=#zjqrlzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="dqzzrs">
+				dqzzrs=#dqzzrs#
+			</isNotNull>
+			<isNotNull prepend="," property="zdskb">
+				zdskb=#zdskb#
+			</isNotNull>
+			<isNotNull prepend="," property="qyrsks">
+				qyrsks=#qyrsks#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm=#ztdm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxxtjWhere" />
+		</dynamic>
+	</update>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<delete id="deleteQyryxxtj" parameterClass="qyryxxtj">
+		delete from t_qyryxxtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyryxxtjWhere" />
+		</dynamic>
+	</delete>
+	
+	
+	<!--企业人员信息统计()-->
+	<resultMap id="qyryxxtjListResultTwo" class="qyryxxtj">
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="zrs" column="zrs"/>
+		<result property="dqzzrs" column="dqzzrs"/>
+		<result property="dyzcrs" column="dyzcrs"/>
+		<result property="zjqrzcrs" column="zjqrzcrs"/>
+	</resultMap>
+	
+	
+	<sql id="t_qyryxxtjWhereTwo">
+		
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   </isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			 
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			
+		  <isNotEmpty prepend="and" property="ztdm">
+				a.ztdm=#ztdm#
+		    </isNotEmpty>
+		
+		  <isNotEmpty prepend="and" property="shenheFlagCx">
+				( b.zt='1' or b.zt='2' 
+				<isEqual prepend="or" property="sftjyg"  compareValue="1"> <!-- 是否统计异构，1统计，0不统计9-16 添加 -->
+				to_number(b.zt)  &gt;= 90
+		   		 </isEqual>
+				) 
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="scbzFlagCx">
+				b.scbz=0
+		    </isNotEmpty>    	
+	</sql>
+	
+	
+		
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<select id="getQyryxxtjList" resultMap="qyryxxtjListResultTwo" parameterClass="map">
+	select x.* from (
+		select rownum rowno,z.* from 
+		(
+		select
+		   sum(a.zrs) zrs,sum(a.dqzzrs) dqzzrs,sum(a.dyzcrs) dyzcrs,sum(a.zjqrzcrs) zjqrzcrs
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_qyryxxtj a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_qyryxxtjWhereTwo" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+
+		  )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	
+	
+	
+	
+	
+	</select>
+	
+	
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<select id="getQyryxxtjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from 
+		(
+	select
+		   sum(a.zrs) zrs,sum(a.dqzzrs) dqzzrs,sum(a.dyzcrs) dyzcrs,sum(a.zjqrzcrs) zjqrzcrs
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_qyryxxtj a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_qyryxxtjWhereTwo" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		  )   where 1=1
+	</select>
+	
+	
+	
+	
+	
+	
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<select id="getQyryxxtjListNoPage" resultMap="qyryxxtjListResult" parameterClass="qyryxxtj">
+		select a.qyryxxtj qyryxxtj,a.hylbdm hylbdm,a.hylb hylb,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.zrs zrs,a.dyzcrs dyzcrs,a.dylzrs dylzrs,a.zjqrzcrs zjqrzcrs,a.zjqrlzrs zjqrlzrs,a.dqzzrs dqzzrs,a.zdskb zdskb,a.qyrsks qyrsks,a.ztdm ztdm
+		from t_qyryxxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxxtjListWhere" />
+		</dynamic>
+		order by a.qyryxxtj
+	</select>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<select id="getQyryxxtj" resultMap="qyryxxtjResult" parameterClass="qyryxxtj">
+		select a.qyryxxtj qyryxxtj,a.hylbdm hylbdm,a.hylb hylb,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qymc qymc,a.qybm qybm,a.zrs zrs,a.dyzcrs dyzcrs,a.dylzrs dylzrs,a.zjqrzcrs zjqrzcrs,a.zjqrlzrs zjqrlzrs,a.dqzzrs dqzzrs,a.zdskb zdskb,a.qyrsks qyrsks,a.ztdm ztdm
+		from t_qyryxxtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryxxtjSelectWhere" />
+		</dynamic>
+		order by a.qyryxxtj
+	</select>
+</sqlMap>

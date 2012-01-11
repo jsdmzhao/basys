@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wscqy" type="com.aisino2.publicsystem.domain.Wscqy"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--未上传企业(t_wscqy)-->
+	<resultMap id="wscqyResult" class="wscqy">
+		<result property="wscqyid" column="wscqyid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="wscrq" column="wscrq" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="lxdh" column="lxdh" />
+		<result property="ztdm" column="ztdm" />
+		<result property="gzrs" column="gzrs" />
+	</resultMap>
+	<!--未上传企业(t_wscqy)-->
+	<resultMap id="wscqyListResult" class="wscqy">
+		<result property="wscqyid" column="wscqyid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="wscrq" column="wscrq"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="ztdm" column="ztdm"/>
+		<result property="gzrs" column="gzrs" />
+	</resultMap>
+	<sql id="t_wscqyWhere">
+			<isNotEmpty prepend="and" property="wscqyid">
+				a.wscqyid=#wscqyid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wscqyPageWhere" >
+		<include refid="t_wscqyWhere" />	</sql>
+	<sql id="t_wscqyListWhere" >
+		<include refid="t_wscqyWhere" />	</sql>
+	<sql id="t_wscqySelectWhere"  >
+		<include refid="t_wscqyWhere" />	</sql>
+	<!--未上传企业(t_wscqy)-->
+	<insert id="insertWscqy"  parameterClass="wscqy">
+		insert into t_wscqy (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wscqyid">
+				wscqyid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="wscrq">
+				wscrq
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				gzrs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wscqyid">
+				#wscqyid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="wscrq">
+				#wscrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				#gzrs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--未上传企业(t_wscqy)-->
+	<update id="updateWscqy" parameterClass="wscqy">
+		update t_wscqy a set a.wscqyid=a.wscqyid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="wscrq">
+				wscrq=#wscrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="qybm">
+				qybm=#qybm#
+			</isNotNull>
+			<isNotNull prepend="," property="qymc">
+				qymc=#qymc#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm=#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gzrs">
+				gzrs=#gzrs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wscqyWhere" />
+		</dynamic>
+	</update>
+	<!--未上传企业(t_wscqy)-->
+	<delete id="deleteWscqy" parameterClass="wscqy">
+		delete from t_wscqy a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wscqyWhere" />
+		</dynamic>
+	</delete>
+	
+	<sql id="t_wscqyPage" >
+		
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   </isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+		
+		
+		<isNotEmpty prepend="and" property="ztdm">
+				a.ztdm=#ztdm#
+			</isNotEmpty>
+		  <isNotEmpty prepend="and" property="shenheFlagCx">
+				( b.zt='1' or b.zt='2'
+				<isEqual prepend="or" property="sftjyg"  compareValue="1"> <!-- 是否统计异构，1统计，0不统计9-16 添加 -->
+					to_number(b.zt)  &gt;= 90
+				</isEqual>
+				) 
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="scbzFlagCx">
+				b.scbz=0
+		    </isNotEmpty>
+		 
+		         <isNotEmpty prepend="and" property="yyzt">
+				b.yyztdm='1'
+		    </isNotEmpty>
+		    	
+	</sql>
+	
+	
+		<!--上传不充分统计()-->
+	<resultMap id="wscqyListResultPage" class="wscqy">
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="wscts" column="wscts"/>
+		<result property="yljts" column="yljts"/>
+		<result property="nljts" column="nljts"/>
+	</resultMap>
+	
+		<!--未上传场所情况-->
+	<resultMap id="wsccsqkListResult" class="wscqy">
+	    <result property="qyid" column="qyid"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="yyztmc" column="yyztmc"/>
+		<result property="zrs" column="zrs"/>
+		<result property="yljts" column="yljts"/>
+		<result property="nljts" column="nljts"/>
+	</resultMap>
+	
+	
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getWscqyList" resultMap="wscqyListResultPage" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+		select 
+		 count(case
+               when 1 = 1 
+               <isNotEmpty prepend="and" property="qsrq">
+ 				 a.wscrq  &gt;= #qsrq:DATE#
+ 			</isNotEmpty>
+             <isNotEmpty prepend="and" property="jzrq">
+ 			     a.wscrq  &lt;=  #jzrq:DATE#
+ 			</isNotEmpty>
+               then
+               a.wscrq
+               else
+                null
+             end) wscts,
+       count(case
+               when a.wscrq &gt;= trunc(sysdate, 'mm') and a.wscrq &lt;= sysdate then
+               a.qybm
+               else
+                null
+             end) yljts,
+       count(case
+               when a.wscrq &gt;= trunc(sysdate, 'yyyy') and a.wscrq &lt;= sysdate then
+               a.qybm
+               else
+                 null
+             end) nljts
+
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_wscqy a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_wscqyPage" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+	
+		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+		
+		
+		
+	
+		
+		
+	</select>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<select id="getWscqyListCount" resultClass="int" parameterClass="map">
+			select count(1) a from 
+		(
+	select 
+		 count(case
+               when 1 = 1 
+                   <isNotEmpty prepend="and" property="qsrq">
+ 				 a.wscrq  &gt;= #qsrq:DATE#
+ 			</isNotEmpty>
+             <isNotEmpty prepend="and" property="jzrq">
+ 			     a.wscrq  &lt;=  #jzrq:DATE#
+ 			</isNotEmpty>
+               then
+                a.wscrq
+               else
+               null
+             end) wscts,
+       count(case
+               when a.wscrq &gt;= trunc(sysdate, 'mm') and a.wscrq &lt;= sysdate then
+                a.qybm
+               else
+                null
+             end) yljts,
+       count(case
+               when a.wscrq &gt;= trunc(sysdate, 'yyyy') and a.wscrq &lt;= sysdate then
+               a.qybm
+               else
+               null
+             end) nljts
+
+		
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		
+	   from t_wscqy a ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+	   <dynamic prepend="">
+			<include refid="t_wscqyPage" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+	
+		
+		  )   where 1=1
+	</select>
+	
+	
+	
+	<!--场所未上传详细(t_qyscbcf)-->
+
+  <select id="getWscqyXxList" resultMap="wscqyListResult" parameterClass="map">
+		select * from	( select rownum rowno,z.* from 
+		(select a.wscqyid wscqyid,a.hylbdm hylbdm,a.hylb hylb,a.wscrq wscrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.ztdm ztdm,a.gzrs gzrs
+		from t_wscqy a   ,t_qyjbxx b
+		where 1=1 and a.qybm=b.qybm
+		<dynamic prepend="">
+			
+		<isNotEmpty prepend="and" property="qsrq">
+				<![CDATA[
+					a.wscrq>=#qsrq:DATE#
+					]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzrq">
+				<![CDATA[
+					 a.wscrq <= #jzrq:DATE#
+					]]>
+			</isNotEmpty>
+		
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   </isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			
+		
+		<isNotEmpty prepend="and" property="ztdm">
+				a.ztdm=#ztdm#
+			</isNotEmpty>
+		  <isNotEmpty prepend="and" property="shenheFlagCx">
+				( b.zt='1' or b.zt='2') 
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="scbzFlagCx">
+				b.scbz=0
+		    </isNotEmpty>
+		
+		         <isNotEmpty prepend="and" property="yyzt">
+				b.yyztdm='1'
+		    </isNotEmpty>
+		    	
+		</dynamic>
+		order by a.wscrq desc )  z ) where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+		<!--场所未上传详细(t_csscbcf)-->
+	<select id="getWscqyXxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from  t_wscqy a   ,t_qyjbxx b
+			where 1=1 and a.qybm=b.qybm
+			<dynamic prepend="">
+		
+		     <isNotEmpty prepend="and" property="qsrq">
+				<![CDATA[
+					a.wscrq>=#qsrq:DATE#
+					]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzrq">
+				<![CDATA[
+					 a.wscrq <= #jzrq:DATE#
+					]]>
+			</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   </isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+		
+		
+		<isNotEmpty prepend="and" property="ztdm">
+				a.ztdm=#ztdm#
+			</isNotEmpty>
+		  <isNotEmpty prepend="and" property="shenheFlagCx">
+				( b.zt='1' or b.zt='2') 
+		    </isNotEmpty>
+		     <isNotEmpty prepend="and" property="scbzFlagCx">
+				b.scbz=0
+		    </isNotEmpty>
+		  
+		         <isNotEmpty prepend="and" property="yyzt">
+				b.yyztdm='1'
+		    </isNotEmpty>
+		    	
+			
+		</dynamic>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!--未上传企业(t_wscqy)-->
+	<select id="getWscqyListNoPage" resultMap="wscqyListResult" parameterClass="wscqy">
+		select a.wscqyid wscqyid,a.hylbdm hylbdm,a.hylb hylb,a.wscrq wscrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.ztdm ztdm,a.gzrs gzrs
+		from t_wscqy a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wscqyListWhere" />
+		</dynamic>
+		order by a.wscqyid
+	</select>
+	<!--未上传企业(t_wscqy)-->
+	<select id="getWscqy" resultMap="wscqyResult" parameterClass="wscqy">
+		select a.wscqyid wscqyid,a.hylbdm hylbdm,a.hylb hylb,a.wscrq wscrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.qybm qybm,a.qymc qymc,a.lxdh lxdh,a.ztdm ztdm,a.gzrs gzrs
+		from t_wscqy a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wscqySelectWhere" />
+		</dynamic>
+		order by a.wscqyid
+	</select>
+	
+	<!--未上传场所情况-->
+	<select id="getWscCsqkList" resultMap="wsccsqkListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+  SELECT
+       Q.QYID    QYID, 
+       Q.QYBM    QYBM,
+       Q.QYMC    QYMC,
+       Q.QYZFLMC QYZFLMC,
+       Q.YYZTMC  YYZTMC,
+       Q.ZRS     ZRS,
+       W.YLJTS   YLJTS,
+       W.NLJTS   NLJTS
+  FROM T_QYJBXX Q,
+       (SELECT A.QYBM QYBM,
+               COUNT(CASE
+                       WHEN A.WSCRQ &gt;= TRUNC(SYSDATE, 'mm') AND A.WSCRQ &lt;= SYSDATE THEN
+                        A.QYBM
+                       ELSE
+                        NULL
+                     END) YLJTS,
+               COUNT(CASE
+                       WHEN A.WSCRQ &gt;= TRUNC(SYSDATE, 'yyyy') AND
+                            A.WSCRQ &lt;= SYSDATE THEN
+                        A.QYBM
+                       ELSE
+                        NULL
+                     END) NLJTS
+        
+          FROM T_WSCQY A
+         GROUP BY A.QYBM) W
+ WHERE W.QYBM = Q.QYBM
+   AND Q.HYLBDM = 'J'
+   AND (Q.ZT = '1' OR Q.ZT = '2')
+   AND Q.SCBZ = 0
+			<isNotEmpty prepend="and" property="deptCode">
+				Q.LRDWBM LIKE '$deptCode$%'
+			</isNotEmpty>
+  ORDER BY W.QYBM
+		)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--未上传场所情况-->
+	<select id="getWscCsqkListCount" resultClass="int" parameterClass="map">
+			select count(1) a from 
+		(
+  SELECT Q.QYBM    QYBM,
+       Q.QYMC    QYMC,
+       Q.QYZFLMC QYZFLMC,
+       Q.YYZTMC  YYZTMC,
+       Q.ZRS     ZRS,
+       W.YLJTS   YLJTS,
+       W.NLJTS   NLJTS
+  FROM T_QYJBXX Q,
+       (SELECT A.QYBM QYBM,
+               COUNT(CASE
+                       WHEN A.WSCRQ &gt;= TRUNC(SYSDATE, 'mm') AND A.WSCRQ &lt;= SYSDATE THEN
+                        A.QYBM
+                       ELSE
+                        NULL
+                     END) YLJTS,
+               COUNT(CASE
+                       WHEN A.WSCRQ &gt;= TRUNC(SYSDATE, 'yyyy') AND
+                            A.WSCRQ &lt;= SYSDATE THEN
+                        A.QYBM
+                       ELSE
+                        NULL
+                     END) NLJTS
+        
+          FROM T_WSCQY A
+         GROUP BY A.QYBM) W
+ WHERE W.QYBM = Q.QYBM
+   AND Q.HYLBDM = 'J'
+   AND (Q.ZT = '1' OR Q.ZT = '2')
+   AND Q.SCBZ = 0
+			<isNotEmpty prepend="and" property="deptCode">
+				Q.LRDWBM LIKE '$deptCode$%'
+			</isNotEmpty>
+		)
+	</select>
+	<!--场所刷卡统计(t_csscbcf)-->
+	<!--上传不充分统计()-->
+	<resultMap id="getSkcstjListResult" class="wscqy">
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="qyzs" column="qyzs"/>
+		<result property="wscqys" column="wscqys"/>
+		<result property="scqys" column="scqys"/>
+	</resultMap>
+	<select id="getSkcstjList" resultMap="getSkcstjListResult" parameterClass="map">
+		select * from	( select rownum rowno,z.* from 
+		(
+		select count(qysctjid) qyzs,count(wscqyid) wscqys,count(qysctjid)-count(wscqyid) scqys,$selectTab$
+		from   t_qysctj a ,t_wscqy b 
+		where a.qybm=b.qybm(+) and a.tjrq=b.wscrq(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qssj">
+				a.tjrq &gt;=#qssj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.tjrq &lt;= #jzsj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   	</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupBy">
+				group by $groupBy$
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="pageSort">
+				order by $pageSort$
+			</isNotEmpty>
+		</dynamic>
+		)  z ) where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getSkcstjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from (
+		select count(qysctjid) qyzs,count(wscqyid) wscqys,count(qysctjid)-count(wscqyid) scqys,$selectTab$
+		from   t_qysctj a ,t_wscqy b 
+		where a.qybm=b.qybm(+) and a.tjrq=b.wscrq(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qssj">
+				a.tjrq &gt;=#qssj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.tjrq &lt;= #jzsj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		   	</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupBy">
+				group by $groupBy$
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="pageSort">
+				order by $pageSort$
+			</isNotEmpty>
+		</dynamic>
+		
+		)z
+	</select>
+	<!--上传不充分统计()-->
+	<resultMap id="getSkwscmxListResult" class="wscqy">
+		<result property="wscqyid" column="wscqyid" />
+		<result property="wscrq" column="wscrq" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="qyzflmc" column="qyzflmc"/>
+		<result property="yyztmc" column="yyztmc"/>
+		<result property="zajbmc" column="zajbmc"/>
+		<result property="zrs" column="zrs"/>
+		<result property="lxdh" column="lxdh"/>
+	</resultMap>
+	<select id="getSkwscmxList" resultMap="getSkwscmxListResult" parameterClass="map">
+		select * from	( select rownum rowno,z.* from 
+		(
+		select b.wscqyid,b.wscrq,b.qybm qybm,b.qymc qymc,c.qyzflmc qyzflmc, c.yyztmc yyztmc, c.zajbmc zajbmc, c.zrs zrs, c.lxdh
+		from   t_wscqy b ,t_qyjbxx c
+		where b.qybm=c.qybm
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qssj">
+				b.wscrq &gt;=#qssj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				b.wscrq &lt;= #jzsj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				b.dsjgdm=#dsjgdm#
+		   	</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				b.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				b.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$
+		)  z ) where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getSkwscmxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from (
+		select b.wscqyid,b.wscrq,b.qybm qybm,b.qymc qymc,c.qyzflmc qyzflmc, c.yyztmc yyztmc, c.zajbmc zajbmc, c.zrs zrs, c.lxdh
+		from   t_wscqy b ,t_qyjbxx c
+		where b.qybm=c.qybm
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qssj">
+				b.wscrq &gt;=#qssj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				b.wscrq &lt;= #jzsj:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				b.dsjgdm=#dsjgdm#
+		   	</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				b.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				b.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$
+		)z
+	</select>
+</sqlMap>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyyyzttj" type="com.aisino2.publicsystem.domain.Qyyyzttj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<resultMap id="qyyyzttjResult" class="qyyyzttj">
+		<result property="qyyyzttjid" column="qyyyzttjid" />
+		<result property="tjrq" column="tjrq" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="yy" column="yy" />
+		<result property="zzty" column="zzty" />
+		<result property="llty" column="llty" />
+		<result property="xy" column="xy" />
+		<result property="zx" column="zx" />
+		<result property="qt" column="qt" />
+		<result property="hj" column="hj" />
+	</resultMap>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<resultMap id="qyyyzttjListResult" class="qyyyzttj">
+		<result property="qyyyzttjid" column="qyyyzttjid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="yyT" column="yyT"/>
+		<result property="zztyT" column="zztyT"/>
+		<result property="lltyT" column="lltyT"/>
+		<result property="xyT" column="xyT"/>
+		<result property="zxT" column="zxT"/>
+		<result property="qtT" column="qtT"/>
+		<result property="hjT" column="hjT"/>
+	</resultMap>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<resultMap id="qyyyzttjListResultTJ" class="qyyyzttj">
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="yyT" column="yyT"/>
+		<result property="zztyT" column="zztyT"/>
+		<result property="lltyT" column="lltyT"/>
+		<result property="xyT" column="xyT"/>
+		<result property="zxT" column="zxT"/>
+		<result property="qtT" column="qtT"/>
+		<result property="hjT" column="hjT"/>
+	</resultMap>
+	<sql id="t_qyyyzttjWhere">
+			<isNotEmpty prepend="and" property="qyyyzttjid">
+				a.qyyyzttjid=#qyyyzttjid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tjrq">
+				a.tjrq &lt; #tjrq:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+		    </isNotEmpty>
+	</sql>
+	<sql id="t_qyyyzttjPageWhere" >
+		<include refid="t_qyyyzttjWhere" />	</sql>
+	<sql id="t_qyyyzttjListWhere" >
+		<include refid="t_qyyyzttjWhere" />	</sql>
+	<sql id="t_qyyyzttjSelectWhere"  >
+		<include refid="t_qyyyzttjWhere" />	</sql>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<insert id="insertQyyyzttj"  parameterClass="qyyyzttj">
+		insert into t_qyyyzttj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyyyzttjid">
+				qyyyzttjid
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				tjrq
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="yy">
+				yy
+			</isNotNull>
+			<isNotNull prepend="," property="zzty">
+				zzty
+			</isNotNull>
+			<isNotNull prepend="," property="llty">
+				llty
+			</isNotNull>
+			<isNotNull prepend="," property="xy">
+				xy
+			</isNotNull>
+			<isNotNull prepend="," property="zx">
+				zx
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				qt
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				hj
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyyyzttjid">
+				#qyyyzttjid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="yy">
+				#yy#
+			</isNotNull>
+			<isNotNull prepend="," property="zzty">
+				#zzty#
+			</isNotNull>
+			<isNotNull prepend="," property="llty">
+				#llty#
+			</isNotNull>
+			<isNotNull prepend="," property="xy">
+				#xy#
+			</isNotNull>
+			<isNotNull prepend="," property="zx">
+				#zx#
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				#qt#
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				#hj#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<update id="updateQyyyzttj" parameterClass="qyyyzttj">
+		update t_qyyyzttj a set a.qyyyzttjid=a.qyyyzttjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="tjrq">
+				tjrq=#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="yy">
+				yy=#yy#
+			</isNotNull>
+			<isNotNull prepend="," property="zzty">
+				zzty=#zzty#
+			</isNotNull>
+			<isNotNull prepend="," property="llty">
+				llty=#llty#
+			</isNotNull>
+			<isNotNull prepend="," property="xy">
+				xy=#xy#
+			</isNotNull>
+			<isNotNull prepend="," property="zx">
+				zx=#zx#
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				qt=#qt#
+			</isNotNull>
+			<isNotNull prepend="," property="hj">
+				hj=#hj#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjWhere" />
+		</dynamic>
+	</update>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<delete id="deleteQyyyzttj" parameterClass="qyyyzttj">
+		delete from t_qyyyzttj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjWhere" />
+		</dynamic>
+	</delete>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<select id="getQyyyzttjList" resultMap="qyyyzttjListResultTJ" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select 
+		        NVL(sum(a.yy),'0') yyT,
+		        NVL(sum(a.zzty),'0') zztyT,
+		        NVL(sum(a.llty),'0') lltyT,
+		        NVL(sum(a.xy),'0') xyT,
+		        NVL(sum(a.zx),'0') zxT,
+		        NVL(sum(a.qt),'0') qtT,
+		        NVL(sum(a.hj),'0') hjT
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_qyyyzttj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<select id="getQyyyzttjListCount" resultClass="int" parameterClass="map">
+	select count(1) from (
+		select count(1) a from t_qyyyzttj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	</select>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<select id="getQyyyzttjListNoPage" resultMap="qyyyzttjListResult" parameterClass="qyyyzttj">
+		select a.qyyyzttjid qyyyzttjid,a.tjrq tjrq,a.hylbdm hylbdm,a.hylb hylb,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.yy yy,a.zzty zzty,a.llty llty,a.xy xy,a.zx zx,a.qt qt,a.hj hj
+		from t_qyyyzttj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjListWhere" />
+		</dynamic>
+		order by a.qyyyzttjid
+	</select>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<select id="getQyyyzttj" resultMap="qyyyzttjResult" parameterClass="qyyyzttj">
+		select a.qyyyzttjid qyyyzttjid,a.tjrq tjrq,a.hylbdm hylbdm,a.hylb hylb,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,a.yy yy,a.zzty zzty,a.llty llty,a.xy xy,a.zx zx,a.qt qt,a.hj hj
+		from t_qyyyzttj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyyyzttjSelectWhere" />
+		</dynamic>
+		order by a.qyyyzttjid
+	</select>
+</sqlMap>

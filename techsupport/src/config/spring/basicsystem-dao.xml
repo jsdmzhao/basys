@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--生成编码 场所总人数存储过程-->
+	<bean id="scbmDao" class="com.aisino2.basicsystem.dao.ibatis.ScbmDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--布控人员(t_bkry)-->
+	<bean id="bkryDao" class="com.aisino2.basicsystem.dao.ibatis.BkryDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--案事件管理(t_asjgl)-->
+	<bean id="asjglDao" class="com.aisino2.basicsystem.dao.ibatis.AsjglDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--企业处罚(t_qycf)-->
+	<bean id="qycfDao" class="com.aisino2.basicsystem.dao.ibatis.QycfDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--协查通报(t_xctb)-->
+	<bean id="xctbDao" class="com.aisino2.basicsystem.dao.ibatis.XctbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<bean id="xctb_fjDao" class="com.aisino2.basicsystem.dao.ibatis.Xctb_fjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<bean id="xctbjsdwDao" class="com.aisino2.basicsystem.dao.ibatis.XctbjsdwDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--协查通报回复(t_xctbhf)-->
+	<bean id="xctbhfDao" class="com.aisino2.basicsystem.dao.ibatis.XctbhfDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--短信预警(t_dxyj)-->
+	<bean id="dxyjDao" class="com.aisino2.basicsystem.dao.ibatis.DxyjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--关注对象(t_gzdx)-->
+	<bean id="gzdxDao" class="com.aisino2.basicsystem.dao.ibatis.GzdxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--报警规则(t_bjgz)-->
+	<bean id="bjgzDao" class="com.aisino2.basicsystem.dao.ibatis.BjgzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--报警比对条件(t_bjbdtj)-->
+	<bean id="bjbdtjDao" class="com.aisino2.basicsystem.dao.ibatis.BjbdtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+	</bean>
+	<!--报警机刷新(t_bjjsx)-->
+	<bean id="bjjsxDao" class="com.aisino2.basicsystem.dao.ibatis.BjjsxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--全国在逃简项(t_qgztjx)-->
+	<bean id="qgztjxDao" class="com.aisino2.basicsystem.dao.ibatis.QgztjxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--报警信息表(t_bjxxb)-->
+	<bean id="bjxxbDao" class="com.aisino2.basicsystem.dao.ibatis.BjxxbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--全国在逃简项快照(t_qgztjx_kz)-->
+	<bean id="qgztjx_kzDao" class="com.aisino2.basicsystem.dao.ibatis.Qgztjx_kzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--布控人员快照(t_bkry_kz)-->
+	<bean id="bkry_kzDao" class="com.aisino2.basicsystem.dao.ibatis.Bkry_kzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--关注对象快照(t_gzdx_kz)-->
+	<bean id="gzdx_kzDao" class="com.aisino2.basicsystem.dao.ibatis.Gzdx_kzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--短信报警(t_dxbj)-->
+	<bean id="dxbjDao" class="com.aisino2.basicsystem.dao.ibatis.DxbjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--预警比对条件(t_yjbdtj)-->
+	<bean id="yjbdtjDao" class="com.aisino2.basicsystem.dao.ibatis.YjbdtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--预警信息表(t_yjxxb)-->
+	<bean id="yjxxbDao" class="com.aisino2.basicsystem.dao.ibatis.YjxxbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--预警规则(t_yjgz)-->
+	<bean id="yjgzDao" class="com.aisino2.basicsystem.dao.ibatis.YjgzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--抓逃信息统计-->
+	<bean id="ztxxDao" class="com.aisino2.basicsystem.dao.ibatis.ZtxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--处警统计-->
+	<bean id="cjtjDao" class="com.aisino2.basicsystem.dao.ibatis.CjtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--数据表(t_sjb)-->
+	<bean id="sjbDao" class="com.aisino2.basicsystem.dao.ibatis.SjbDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--数据表结构(t_sjbjg)-->
+	<bean id="sjbjgDao" class="com.aisino2.basicsystem.dao.ibatis.SjbjgDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--高级查询方案(t_gjcxfa)-->
+	<bean id="gjcxfaDao" class="com.aisino2.basicsystem.dao.ibatis.GjcxfaDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--动态查询条件(t_dtcxtj)-->
+	<bean id="dtcxtjDao" class="com.aisino2.basicsystem.dao.ibatis.DtcxtjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--动态查询排序(t_dtcxpx)-->
+	<bean id="dtcxpxDao" class="com.aisino2.basicsystem.dao.ibatis.DtcxpxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<bean id="zdycxtjDao" class="com.aisino2.basicsystem.dao.ibatis.ZdycxtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--得到姓名的双拼-->
+	<bean id="dpyDao" class="com.aisino2.basicsystem.dao.ibatis.DpyDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!-- 案事件统计 -->
+	<bean id="asjtjDao" class="com.aisino2.basicsystem.dao.ibatis.AsjtjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--被盗抢车辆信息(t_bdqclxx)-->
+	<bean id="bdqclxxDao" class="com.aisino2.basicsystem.dao.ibatis.BdqclxxDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--被盗抢车辆信息_快照(t_bdqclxxkz)-->
+	<bean id="bdqclxxkzDao" class="com.aisino2.basicsystem.dao.ibatis.BdqclxxkzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控车辆(t_bkcl)-->
+	<bean id="bkclDao" class="com.aisino2.basicsystem.dao.ibatis.BkclDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控车辆快照(t_bkclkz)-->
+	<bean id="bkclkzDao" class="com.aisino2.basicsystem.dao.ibatis.BkclkzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<bean id="bdqclxxlsbDao" class="com.aisino2.basicsystem.dao.ibatis.BdqclxxlsbDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控手机快照(t_bksjkz)-->
+	<bean id="bksjkzDao" class="com.aisino2.basicsystem.dao.ibatis.BksjkzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控手机(t_bksj)-->
+	<bean id="bksjDao" class="com.aisino2.basicsystem.dao.ibatis.BksjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<bean id="bkwpkbxxkzDao" class="com.aisino2.basicsystem.dao.ibatis.BkwpkbxxkzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--布控物品基本信息(t_bkwpkbxx)-->
+	<bean id="bkwpkbxxDao" class="com.aisino2.basicsystem.dao.ibatis.BkwpkbxxDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--手机被盗抢信息(t_sjbdqxx)-->
+	<bean id="sjbdqxxDao" class="com.aisino2.basicsystem.dao.ibatis.SjbdqxxDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<bean id="sjbdqxxkzDao" class="com.aisino2.basicsystem.dao.ibatis.SjbdqxxkzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<bean id="wpbjbdtjDao" class="com.aisino2.basicsystem.dao.ibatis.WpbjbdtjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+	</bean>
+	<!--物品报警规则(t_wpbjgz)-->
+	<bean id="wpbjgzDao" class="com.aisino2.basicsystem.dao.ibatis.WpbjgzDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<bean id="wpbjxxbDao" class="com.aisino2.basicsystem.dao.ibatis.WpbjxxbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>	
+		<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<bean id="wbjkdyczrzDao" class="com.aisino2.basicsystem.dao.ibatis.WbjkdyczrzDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<!--外部接口操作日志明细(t_wbjkczrzmx)-->
+	<bean id="wbjkczrzmxDao" class="com.aisino2.basicsystem.dao.ibatis.WbjkczrzmxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	<bean id="departAndQiYeDao" class="com.aisino2.basicsystem.dao.ibatis.DepartAndQiYeDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem" />
+	</bean>
+	
+	<!--企业处罚统计表(t_qycftj)-->
+	<bean id="qycftjDao" class="com.aisino2.basicsystem.dao.ibatis.QycftjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+			<!--比对报警统计表(t_bdbjtj)-->
+	<bean id="bdbjtjDao" class="com.aisino2.basicsystem.dao.ibatis.BdbjtjDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	
+	<!--警情汇总旅馆业-->
+	<bean id="jqhzlgyDao" class="com.aisino2.basicsystem.dao.ibatis.JqhzlgyDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	
+	<!--企业认证信息-->
+	<bean id="qyxxExpImpDao" class="com.aisino2.basicsystem.dao.ibatis.QyxxExpImpDaoImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--车辆预警信息(t_clyjxx)-->
+	<bean id="clyjxxDao" class="com.aisino2.basicsystem.dao.ibatis.ClyjxxDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--公安通知通报	-->
+	<bean id="gatztbDao" class="com.aisino2.basicsystem.dao.ibatis.GatztbDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--公安通知通报附件	-->
+	<bean id="gatztb_fjDao" class="com.aisino2.basicsystem.dao.ibatis.Gatztb_fjDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--公安通知通报回复	-->
+	<bean id="gatztbhfDao" class="com.aisino2.basicsystem.dao.ibatis.GatztbhfDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+	<!--公安通知通报接收单位	-->
+	<bean id="gatztbjsdwDao" class="com.aisino2.basicsystem.dao.ibatis.GatztbjsdwDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapBasicsystem"/>
+	</bean>
+</beans>

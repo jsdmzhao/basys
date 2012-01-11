@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="tjclxx" type="com.aisino2.publicsystem.domain.Tjclxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--提交材料信息(t_tjclxx)-->
+	<resultMap id="tjclxxResult" class="tjclxx">
+		<result property="tjclxxid" column="tjclxxid" />
+		<result property="qyid" column="qyid" />
+		<result property="qybaxxid" column="qybaxxid" />
+		<result property="tjcllxdm" column="tjcllxdm" />
+		<result property="tjcllx" column="tjcllx" />
+		<result property="tijiaorq" column="tijiaorq" />
+		<result property="tjrxm" column="tjrxm" />
+		<result property="tjclnr" column="tjclnr" />
+	</resultMap>
+	<!--提交材料信息(t_tjclxx)-->
+	<resultMap id="tjclxxListResult" class="tjclxx">
+		<result property="tjclxxid" column="tjclxxid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="qybaxxid" column="qybaxxid"/>
+		<result property="tjcllxdm" column="tjcllxdm"/>
+		<result property="tjcllx" column="tjcllx"/>
+		<result property="tijiaorq" column="tijiaorq"/>
+		<result property="tjrxm" column="tjrxm"/>
+		<result property="tjclnr" column="tjclnr"/>
+	</resultMap>
+	<sql id="t_tjclxxWhere">
+			<isNotEmpty prepend="and" property="tjclxxid">
+				a.tjclxxid=#tjclxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybaxxid">
+				a.qybaxxid=#qybaxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_tjclxxPageWhere" >
+		<include refid="t_tjclxxWhere" />	</sql>
+	<sql id="t_tjclxxListWhere" >
+		<include refid="t_tjclxxWhere" />	</sql>
+	<sql id="t_tjclxxSelectWhere"  >
+		<include refid="t_tjclxxWhere" />	</sql>
+	<!--提交材料信息(t_tjclxx)-->
+	<insert id="insertTjclxx"  parameterClass="tjclxx">
+		insert into t_tjclxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tjclxxid">
+				tjclxxid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qybaxxid">
+				qybaxxid
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllxdm">
+				tjcllxdm
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllx">
+				tjcllx
+			</isNotNull>
+			<isNotNull prepend="," property="tijiaorq">
+				tijiaorq
+			</isNotNull>
+			<isNotNull prepend="," property="tjrxm">
+				tjrxm
+			</isNotNull>
+			<isNotNull prepend="," property="tjclnr">
+				tjclnr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tjclxxid">
+				#tjclxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybaxxid">
+				#qybaxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllxdm">
+				#tjcllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllx">
+				#tjcllx#
+			</isNotNull>
+			<isNotNull prepend="," property="tijiaorq">
+				#tijiaorq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrxm">
+				#tjrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="tjclnr">
+				#tjclnr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--提交材料信息(t_tjclxx)-->
+	<update id="updateTjclxx" parameterClass="tjclxx">
+		update t_tjclxx a set a.qybaxxid=a.qybaxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qybaxxid">
+				qybaxxid=#qybaxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllxdm">
+				tjcllxdm=#tjcllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="tjcllx">
+				tjcllx=#tjcllx#
+			</isNotNull>
+			<isNotNull prepend="," property="tijiaorq">
+				tijiaorq=#tijiaorq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrxm">
+				tjrxm=#tjrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="tjclnr">
+				tjclnr=#tjclnr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tjclxxWhere" />
+		</dynamic>
+	</update>
+	<!--提交材料信息(t_tjclxx)-->
+	<delete id="deleteTjclxx" parameterClass="tjclxx">
+		delete from t_tjclxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_tjclxxWhere" />
+		</dynamic>
+	</delete>
+	<!--提交材料信息(t_tjclxx)-->
+	<select id="getTjclxxList" resultMap="tjclxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tjclxxid tjclxxid,a.qyid qyid,a.qybaxxid qybaxxid,a.tjcllxdm tjcllxdm,a.tjcllx tjcllx,a.tijiaorq tijiaorq,a.tjrxm tjrxm,a.tjclnr tjclnr
+		from t_tjclxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tjclxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--提交材料信息(t_tjclxx)-->
+	<select id="getTjclxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_tjclxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tjclxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--提交材料信息(t_tjclxx)-->
+	<select id="getTjclxxListNoPage" resultMap="tjclxxListResult" parameterClass="tjclxx">
+		select a.tjclxxid tjclxxid,a.qyid qyid,a.qybaxxid qybaxxid,a.tjcllxdm tjcllxdm,a.tjcllx tjcllx,a.tijiaorq tijiaorq,a.tjrxm tjrxm,a.tjclnr tjclnr
+		from t_tjclxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tjclxxListWhere" />
+		</dynamic>
+		order by a.tjclxxid,a.qyid,a.qybaxxid
+	</select>
+	<!--提交材料信息(t_tjclxx)-->
+	<select id="getTjclxx" resultMap="tjclxxResult" parameterClass="tjclxx">
+		select a.tjclxxid tjclxxid,a.qyid qyid,a.qybaxxid qybaxxid,a.tjcllxdm tjcllxdm,a.tjcllx tjcllx,a.tijiaorq tijiaorq,a.tjrxm tjrxm,a.tjclnr tjclnr
+		from t_tjclxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_tjclxxSelectWhere" />
+		</dynamic>
+		order by a.tjclxxid,a.qyid,a.qybaxxid
+	</select>
+</sqlMap>

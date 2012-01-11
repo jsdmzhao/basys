@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wldj" type="com.aisino2.icksystem.domain.Wldj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--物流登记信息(t_wldj)-->
+	<resultMap id="wldjResult" class="wldj">
+		<result property="wlid" column="wlid" />
+		<result property="wlpc" column="wlpc" />
+		<result property="djr" column="djr" />
+		<result property="zbsj" column="zbsj" />
+		<result property="mbsldbh" column="mbsldbh" />
+		<result property="mbsldmc" column="mbsldmc" />
+		<result property="ztdm" column="ztdm" />
+		<result property="ztdmmc" column="ztdmmc" />
+		<result property="fkxx" column="fkxx" />
+		<result property="fksj" column="fksj" />
+		<result property="fsr" column="fsr" />
+		<result property="fssj" column="fssj" />
+		<result property="szdsbm" column="szdsbm" />
+		<result property="szds" column="szds" />
+		<result property="jsr" column="jsr" />
+		<result property="jssj" column="jssj" />
+		<result property="bz" column="bz" />
+		<result property="wlgs" column="wlgs" />
+		<result property="ydh" column="ydh"/>
+		<result property="bnksl" column="bnksl" />
+	</resultMap>
+	<!--物流登记信息(t_wldj)-->
+	<resultMap id="wldjListResult" class="wldj">
+		<result property="wlid" column="wlid"/>
+		<result property="wlpc" column="wlpc"/>
+		<result property="djr" column="djr"/>
+		<result property="zbsj" column="zbsj"/>
+		<result property="mbsldbh" column="mbsldbh"/>
+		<result property="mbsldmc" column="mbsldmc"/>
+		<result property="ztdm" column="ztdm"/>
+		<result property="ztdmmc" column="ztdmmc"/>
+		<result property="fkxx" column="fkxx"/>
+		<result property="fksj" column="fksj"/>
+		<result property="fsr" column="fsr"/>
+		<result property="fssj" column="fssj"/>
+		<result property="szdsbm" column="szdsbm"/>
+		<result property="szds" column="szds"/>
+		<result property="jsr" column="jsr"/>
+		<result property="jssj" column="jssj"/>
+		<result property="bz" column="bz"/>
+		<result property="wlgs" column="wlgs"/>
+		<result property="ydh" column="ydh"/>
+		<result property="bnksl" column="bnksl"/>
+	</resultMap>
+	<sql id="t_wldjWhere">
+			<isNotEmpty prepend="and" property="wlid">
+				a.wlid=#wlid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wldjPageWhere" >
+		<include refid="t_wldjWhere" />	</sql>
+	<sql id="t_wldjListWhere" >
+		<include refid="t_wldjWhere" />	</sql>
+	<sql id="t_wldjSelectWhere"  >
+		<include refid="t_wldjWhere" />	</sql>
+	<!--物流登记信息(t_wldj)-->
+	<insert id="insertWldj"  parameterClass="wldj">
+		insert into t_wldj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wlid">
+				wlid
+			</isNotNull>
+			<isNotNull prepend="," property="wlpc">
+				wlpc
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				zbsj
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldbh">
+				mbsldbh
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldmc">
+				mbsldmc
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm
+			</isNotNull>
+			<isNotNull prepend="," property="ztdmmc">
+				ztdmmc
+			</isNotNull>
+			<isNotNull prepend="," property="fkxx">
+				fkxx
+			</isNotNull>
+			<isNotNull prepend="," property="fksj">
+				fksj
+			</isNotNull>
+			<isNotNull prepend="," property="fsr">
+				fsr
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				fssj
+			</isNotNull>
+			<isNotNull prepend="," property="szdsbm">
+				szdsbm
+			</isNotNull>
+			<isNotNull prepend="," property="szds">
+				szds
+			</isNotNull>
+			<isNotNull prepend="," property="jsr">
+				jsr
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="wlgs">
+				wlgs
+			</isNotNull>
+			<isNotNull prepend="," property="ydh">
+				ydh
+			</isNotNull>
+			<isNotNull prepend="," property="bnksl">
+				bnksl
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="wlid">
+				#wlid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlpc">
+				#wlpc#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				#zbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldbh">
+				#mbsldbh#
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldmc">
+				#mbsldmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdmmc">
+				#ztdmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fkxx">
+				#fkxx#
+			</isNotNull>
+			<isNotNull prepend="," property="fksj">
+				#fksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fsr">
+				#fsr#
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				#fssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="szdsbm">
+				#szdsbm#
+			</isNotNull>
+			<isNotNull prepend="," property="szds">
+				#szds#
+			</isNotNull>
+			<isNotNull prepend="," property="jsr">
+				#jsr#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="wlgs">
+				#wlgs#
+			</isNotNull>
+			<isNotNull prepend="," property="ydh">
+				#ydh#
+			</isNotNull>
+			<isNotNull prepend="," property="bnksl">
+				#bnksl#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--物流登记信息(t_wldj)-->
+	<update id="updateWldj" parameterClass="wldj">
+		update t_wldj a set a.wlid=a.wlid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wlpc">
+				wlpc=#wlpc#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr=#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				zbsj=#zbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldbh">
+				mbsldbh=#mbsldbh#
+			</isNotNull>
+			<isNotNull prepend="," property="mbsldmc">
+				mbsldmc=#mbsldmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdm">
+				ztdm=#ztdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ztdmmc">
+				ztdmmc=#ztdmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fkxx">
+				fkxx=#fkxx#
+			</isNotNull>
+			<isNotNull prepend="," property="fksj">
+				fksj=#fksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fsr">
+				fsr=#fsr#
+			</isNotNull>
+			<isNotNull prepend="," property="fssj">
+				fssj=#fssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="szdsbm">
+				szdsbm=#szdsbm#
+			</isNotNull>
+			<isNotNull prepend="," property="szds">
+				szds=#szds#
+			</isNotNull>
+			<isNotNull prepend="," property="jsr">
+				jsr=#jsr#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj=#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="wlgs">
+				wlgs=#wlgs#
+			</isNotNull>
+			<isNotNull prepend="," property="ydh">
+				ydh=#ydh#
+			</isNotNull>
+			<isNotNull prepend="," property="bnksl">
+				bnksl=#bnksl#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wldjWhere" />
+		</dynamic>
+	</update>
+	<!--物流登记信息(t_wldj)-->
+	<delete id="deleteWldj" parameterClass="wldj">
+		delete from t_wldj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wldjWhere" />
+		</dynamic>
+	</delete>
+	<!--物流登记信息(t_wldj)-->
+	<select id="getWldjList" resultMap="wldjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.wlid wlid,a.wlpc wlpc,a.djr djr,a.zbsj zbsj,a.mbsldbh mbsldbh,a.mbsldmc mbsldmc,
+			a.ztdm ztdm,a.ztdmmc ztdmmc,a.fkxx fkxx,a.fksj fksj,a.fsr fsr,a.fssj fssj,a.szdsbm szdsbm,
+			a.szds szds,a.jsr jsr,a.jssj jssj,a.bz bz,a.wlgs wlgs,a.ydh ydh,a.bnksl bnksl
+		from t_wldj a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="joinCyryxxAndIcksl">
+				exists(
+					select t1.xm,t1.cyzjdm,t1.zjhm,t2.kh,t3.wlid 
+			         from t_qyryxx t1,t_icksl t2,t_icksl_wldj t3
+			         where t1.ryid=t2.ryid and t2.ickslid=t3.ickslid
+			         and t1.scbz=0
+			         and t3.wlid=a.wlid
+			         <isNotEmpty prepend="and" property="xm">
+			         	t1.xm like '%$xm$%'
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="cyzjdm">
+			         	t1.cyzjdm=#cyzjdm#
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="hylbdm">
+						t2.hylbdm = #hylbdm#
+					 </isNotEmpty>
+					 <isNotEmpty prepend="and" property="allhylbdm">
+						t2.hylbdm  in ($allhylbdm$)
+					 </isNotEmpty>
+			         <isNotEmpty prepend="and" property="zjhm">
+			         	t1.zjhm=#zjhm#
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="kh">
+			         	t2.kh=#kh#
+			         </isNotEmpty>
+			    )
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsr">
+			    a.jsr like '%$jsr$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="djr">
+			    a.djr like '%$djr$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssjf">
+				a.jssj &gt;=#jssjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssjt">
+				a.jssj &lt; #jssjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fssjf">
+				a.fssj &gt;=#fssjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fssjt">
+				a.fssj &lt; #fssjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="szdsbm">
+			    a.szdsbm=#szdsbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ztdm">
+			  	a.ztdm=#ztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="forCjd"><!-- 用于采集点查询，采集点只能查询已发送及以后的物流包 -->
+			  	a.ztdm &gt;0
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wlpc">
+			    a.wlpc=#wlpc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mbsldbh">
+			    a.mbsldbh=#mbsldbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+			    a.mbsldbh like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssj">
+				a.jssj &gt;=#jssj:DATE#  and a.jssj &lt; #jssj:DATE#+1
+			</isNotEmpty>
+			<include refid="t_wldjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--物流登记信息(t_wldj)-->
+	<select id="getWldjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="joinCyryxxAndIcksl">
+				exists(
+					select t1.xm,t1.cyzjdm,t1.zjhm,t2.kh,t3.wlid 
+			         from t_qyryxx t1,t_icksl t2,t_icksl_wldj t3
+			         where t1.ryid=t2.ryid and t2.ickslid=t3.ickslid
+			         and t1.scbz=0
+			         and t3.wlid=a.wlid
+			         <isNotEmpty prepend="and" property="xm">
+			         	t1.xm like '%$xm$%'
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="cyzjdm">
+			         	t1.cyzjdm=#cyzjdm#
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="hylbdm">
+						t2.hylbdm = #hylbdm#
+					 </isNotEmpty>
+					 <isNotEmpty prepend="and" property="allhylbdm">
+						t2.hylbdm  in ($allhylbdm$)
+					 </isNotEmpty>
+			         <isNotEmpty prepend="and" property="zjhm">
+			         	t1.zjhm=#zjhm#
+			         </isNotEmpty>
+			         <isNotEmpty prepend="and" property="kh">
+			         	t2.kh=#kh#
+			         </isNotEmpty>
+			    )
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsr">
+			    a.jsr like '%$jsr$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="djr">
+			    a.djr like '%$djr$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssjf">
+				a.jssj &gt;=#jssjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssjt">
+				a.jssj &lt; #jssjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fssjf">
+				a.fssj &gt;=#fssjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fssjt">
+				a.fssj &lt; #fssjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="szdsbm">
+			    a.szdsbm=#szdsbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ztdm">
+			  	a.ztdm=#ztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="forCjd"><!-- 用于采集点查询，采集点只能查询已发送及以后的物流包 -->
+			  	a.ztdm &gt;0
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wlpc">
+			    a.wlpc=#wlpc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mbsldbh">
+			    a.mbsldbh=#mbsldbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+			    a.mbsldbh like '%$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssj">
+				a.jssj &gt;=#jssj:DATE#  and a.jssj &lt; #jssj:DATE#+1
+			</isNotEmpty>
+			<include refid="t_wldjPageWhere" />
+		</dynamic>
+	</select>
+	<!--物流登记台账信息(t_wldj)-->
+	<select id="getWldjTzList" resultMap="wldjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.wlid wlid,a.wlpc wlpc,a.djr djr,a.zbsj zbsj,a.mbsldbh mbsldbh,a.mbsldmc mbsldmc,
+			a.ztdm ztdm,a.ztdmmc ztdmmc,a.fkxx fkxx,a.fksj fksj,a.fsr fsr,a.fssj fssj,a.szdsbm szdsbm,
+			a.szds szds,a.jsr jsr,a.jssj jssj,a.bz bz,a.wlgs wlgs,a.ydh ydh,a.bnksl bnksl
+		from t_wldj a 
+		where a.ztdm='2' or a.ztdm='4'
+		<dynamic prepend="">
+			<include refid="t_wldjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--物流登记信息(t_wldj)-->
+	<select id="getWldjTzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wldj a
+		where a.ztdm='2' or a.ztdm='4'
+		<dynamic prepend="">
+			<include refid="t_wldjPageWhere" />
+		</dynamic>
+	</select>
+	<!--物流登记信息(t_wldj)-->
+	<select id="getWldjListNoPage" resultMap="wldjListResult" parameterClass="wldj">
+		select a.wlid wlid,a.wlpc wlpc,a.djr djr,a.zbsj zbsj,a.mbsldbh mbsldbh,a.mbsldmc mbsldmc,a.ztdm ztdm,a.ztdmmc ztdmmc,a.fkxx fkxx,a.fksj fksj,a.fsr fsr,a.fssj fssj,a.szdsbm szdsbm,a.szds szds,a.jsr jsr,a.jssj jssj,a.bz bz,a.wlgs wlgs,a.ydh ydh,a.bnksl bnksl
+		from t_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wldjListWhere" />
+		</dynamic>
+		order by a.wlid
+	</select>
+	<!--物流登记信息(t_wldj)-->
+	<select id="getWldj" resultMap="wldjResult" parameterClass="wldj">
+		select a.wlid wlid,a.wlpc wlpc,a.djr djr,a.zbsj zbsj,a.mbsldbh mbsldbh,a.mbsldmc mbsldmc,a.ztdm ztdm,a.ztdmmc ztdmmc,a.fkxx fkxx,a.fksj fksj,a.fsr fsr,a.fssj fssj,a.szdsbm szdsbm,a.szds szds,a.jsr jsr,a.jssj jssj,a.bz bz,a.wlgs wlgs,a.ydh ydh,a.bnksl bnksl
+		from t_wldj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wldjSelectWhere" />
+		</dynamic>
+		order by a.wlid
+	</select>
+</sqlMap>

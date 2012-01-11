@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="cjdtjrb" type="com.aisino2.icksystem.domain.Cjdtjrb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<resultMap id="cjdtjrbResult" class="cjdtjrb">
+		<result property="ssdsbm" column="ssdsbm" />
+		<result property="ssdsmc" column="ssdsmc" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="lrcss" column="lrcss" />
+		<result property="lrcyrys" column="lrcyrys" />
+		<result property="yslicks" column="yslicks" />
+		<result property="yjss" column="yjss" />
+		<result property="yffs" column="yffs" />
+	</resultMap>
+	<resultMap id="cjdrbResult" class="cjdtjrb">
+	    <result property="cjdtjrq" column="cjdtjrq"/>
+		<result property="lrcss" column="lrcss" />
+		<result property="lrcyrys" column="lrcyrys" />
+		<result property="yslicks" column="yslicks" />
+		<result property="yjss" column="yjss" />
+		<result property="yffs" column="yffs" />
+		<result property="yzxs" column="yzxs" />
+		<result property="bhks" column="bhks" />
+	</resultMap>
+	<!--采集端统计日报-企业端(t_cjdtjrb)-->
+	<resultMap id="cjdtjrbResultQyd" class="cjdtjrb">
+		<result property="lrcyrys" column="lrcyrys" />
+		<result property="yslicks" column="yslicks" />
+		<result property="yjss" column="yjss" />
+		<result property="yffs" column="yffs" />
+	</resultMap>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<resultMap id="cjdtjrbListResult" class="cjdtjrb">
+		<result property="cjdtjrbid" column="cjdtjrbid"/>
+		<result property="cjdtjrq" column="cjdtjrq"/>
+		<result property="ssdsbm" column="ssdsbm"/>
+		<result property="ssdsmc" column="ssdsmc"/>
+		<result property="cjdbm" column="cjdbm"/>
+		<result property="cjdmc" column="cjdmc"/>
+		<result property="lrcss" column="lrcss"/>
+		<result property="lrcyrys" column="lrcyrys"/>
+		<result property="yslicks" column="yslicks"/>
+		<result property="yjss" column="yjss"/>
+		<result property="yffs" column="yffs"/>
+	</resultMap>
+	<sql id="t_cjdtjrbWhere">
+			<isNotEmpty prepend="and" property="cjdtjrbid">
+				a.cjdtjrbid=#cjdtjrbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_cjdtjrbPageWhere">
+			<isNotEmpty prepend="and" property="cjdbm">
+				a.cjdbm like '$cjdbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdsbm">
+				a.ssdsbm like '$ssdsbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qssj">
+				a.cjdtjrq &gt;=TO_DATE(#qssj#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jzsj">
+				a.cjdtjrq &lt;TO_DATE(#jzsj#,'yyyy-mm-dd')+1
+			</isNotEmpty>
+		
+	</sql>
+	<sql id="t_cjdtjrbListWhere" >
+		<include refid="t_cjdtjrbWhere" />	</sql>
+	<sql id="t_cjdtjrbSelectWhere"  >
+		<include refid="t_cjdtjrbWhere" />	</sql>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<insert id="insertCjdtjrb"  parameterClass="cjdtjrb">
+		insert into t_cjdtjrb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cjdtjrbid">
+				cjdtjrbid
+			</isNotNull>
+			<isNotNull prepend="," property="cjdtjrq">
+				cjdtjrq
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsbm">
+				ssdsbm
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsmc">
+				ssdsmc
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc
+			</isNotNull>
+			<isNotNull prepend="," property="lrcss">
+				lrcss
+			</isNotNull>
+			<isNotNull prepend="," property="lrcyrys">
+				lrcyrys
+			</isNotNull>
+			<isNotNull prepend="," property="yslicks">
+				yslicks
+			</isNotNull>
+			<isNotNull prepend="," property="yjss">
+				yjss
+			</isNotNull>
+			<isNotNull prepend="," property="yffs">
+				yffs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="cjdtjrbid">
+				#cjdtjrbid#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdtjrq">
+				#cjdtjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsbm">
+				#ssdsbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsmc">
+				#ssdsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lrcss">
+				#lrcss#
+			</isNotNull>
+			<isNotNull prepend="," property="lrcyrys">
+				#lrcyrys#
+			</isNotNull>
+			<isNotNull prepend="," property="yslicks">
+				#yslicks#
+			</isNotNull>
+			<isNotNull prepend="," property="yjss">
+				#yjss#
+			</isNotNull>
+			<isNotNull prepend="," property="yffs">
+				#yffs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<update id="updateCjdtjrb" parameterClass="cjdtjrb">
+		update t_cjdtjrb a set a.cjdtjrbid=a.cjdtjrbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="cjdtjrq">
+				cjdtjrq=#cjdtjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsbm">
+				ssdsbm=#ssdsbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ssdsmc">
+				ssdsmc=#ssdsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm=#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc=#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lrcss">
+				lrcss=#lrcss#
+			</isNotNull>
+			<isNotNull prepend="," property="lrcyrys">
+				lrcyrys=#lrcyrys#
+			</isNotNull>
+			<isNotNull prepend="," property="yslicks">
+				yslicks=#yslicks#
+			</isNotNull>
+			<isNotNull prepend="," property="yjss">
+				yjss=#yjss#
+			</isNotNull>
+			<isNotNull prepend="," property="yffs">
+				yffs=#yffs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbWhere" />
+		</dynamic>
+	</update>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<delete id="deleteCjdtjrb" parameterClass="cjdtjrb">
+		delete from t_cjdtjrb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbWhere" />
+		</dynamic>
+	</delete>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdtjrbList" resultMap="cjdtjrbResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select sum(a.lrcss) lrcss,sum(a.lrcyrys) lrcyrys,sum(a.yslicks) yslicks,sum(a.yjss) yjss,sum(a.yffs) yffs
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdtjrbListCount" resultClass="int" parameterClass="map">
+		select count(1)  from (select sum(a.lrcss)
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>)
+	</select>
+	<!--采集端统计日报-企业端(t_cjdtjrb)-->
+	<select id="getCjdtjrbListQyd" resultMap="cjdtjrbResultQyd" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select sum(a.lrcyrys) lrcyrys,sum(a.yslicks) yslicks,sum(a.yjss) yjss,sum(a.yffs) yffs
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		group by a.cjdbm
+		)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<!--采集端统计日报-企业端(t_cjdtjrb)-->
+	<select id="getCjdtjrbListQydCount" resultClass="int" parameterClass="map">
+		select count(1)  from (select sum(a.lrcss)
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		group by a.cjdbm
+		)
+	</select>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdtjrbListNoPage" resultMap="cjdtjrbListResult" parameterClass="cjdtjrb">
+		select a.cjdtjrbid cjdtjrbid,a.cjdtjrq cjdtjrq,a.ssdsbm ssdsbm,a.ssdsmc ssdsmc,a.cjdbm cjdbm,a.cjdmc cjdmc,a.lrcss lrcss,a.lrcyrys lrcyrys,a.yslicks yslicks,a.yjss yjss,a.yffs yffs
+		from t_cjdtjrb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbListWhere" />
+		</dynamic>
+		order by a.cjdtjrbid
+	</select>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdtjrb" resultMap="cjdtjrbResult" parameterClass="cjdtjrb">
+		select a.cjdtjrbid cjdtjrbid,a.cjdtjrq cjdtjrq,a.ssdsbm ssdsbm,a.ssdsmc ssdsmc,a.cjdbm cjdbm,a.cjdmc cjdmc,a.lrcss lrcss,a.lrcyrys lrcyrys,a.yslicks yslicks,a.yjss yjss,a.yffs yffs
+		from t_cjdtjrb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbSelectWhere" />
+		</dynamic>
+		order by a.cjdtjrbid
+	</select>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdrbList" resultMap="cjdrbResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.cjdtjrq cjdtjrq,sum(a.lrcss) lrcss,sum(a.lrcyrys) lrcyrys,sum(a.yslicks) yslicks,sum(a.yjss) yjss,sum(a.yffs) yffs,sum(a.yzxs) yzxs,sum(a.bhks) bhks
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		group by a.cjdtjrq
+		order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<!--采集端统计日报(t_cjdtjrb)-->
+	<select id="getCjdrbListCount" resultClass="int" parameterClass="map">
+		select count(1)  from (select sum(a.lrcss) lrcss
+		from t_cjdtjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_cjdtjrbPageWhere" />
+		</dynamic>
+		group by a.cjdtjrq
+		)
+	</select>
+</sqlMap>

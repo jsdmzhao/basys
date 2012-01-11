@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--用户(t_user)-->
+	<bean id="userService" class="com.aisino2.sysadmin.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+		<property name="roleDao" ref="roleDao" />
+			<property name="user_roleDao" ref="user_roleDao" />
+	</bean>
+	<!--菜单(t_menu)-->
+	<bean id="menuService" class="com.aisino2.sysadmin.service.impl.MenuServiceImpl">
+		<property name="menuDao" ref="menuDao" />
+		<property name="systemDao" ref="systemDao" />
+	</bean>
+	<!--角色(t_role)-->
+	<bean id="roleService" class="com.aisino2.sysadmin.service.impl.RoleServiceImpl">
+		<property name="roleDao" ref="roleDao" />
+	 <property name="user_roleDao" ref="user_roleDao"/>
+        <property name="role_funcDao" ref="role_funcDao"/>
+        <property name="role_menuDao" ref="role_menuDao"/>
+        <property name="menuDao" ref="menuDao"/>
+        		<property name="role_paramDao" ref="role_paramDao" />
+	</bean>
+	<!--系统(t_system)-->
+	<bean id="systemService" class="com.aisino2.sysadmin.service.impl.SystemServiceImpl">
+		<property name="systemDao" ref="systemDao" />
+	</bean>
+	<!--机构(t_department)-->
+	<bean id="departmentService" class="com.aisino2.sysadmin.service.impl.DepartmentServiceImpl">
+		<property name="departmentDao" ref="departmentDao" />
+	</bean>
+	<!--功能(t_function)-->
+	<bean id="functionService" class="com.aisino2.sysadmin.service.impl.FunctionServiceImpl">
+		<property name="functionDao" ref="functionDao" />
+	    <property name="role_funcDao" ref="role_funcDao" />
+	</bean>
+	<!--全局参数(t_globalpar)-->
+	<bean id="globalparService" class="com.aisino2.sysadmin.service.impl.GlobalparServiceImpl">
+		<property name="globalparDao" ref="globalparDao" />
+	</bean>
+	<!--登录日志表(t_loginlog)-->
+	<bean id="loginlogService" class="com.aisino2.sysadmin.service.impl.LoginlogServiceImpl">
+		<property name="loginlogDao" ref="loginlogDao" />
+	</bean>
+	<!--参数设置(t_param)-->
+	<bean id="paramService" class="com.aisino2.sysadmin.service.impl.ParamServiceImpl">
+		<property name="paramDao" ref="paramDao" />
+		<property name="role_paramDao" ref="role_paramDao" />
+	</bean>
+	<!--字典项(t_dict_item)-->
+	<bean id="dict_itemService" class="com.aisino2.sysadmin.service.impl.Dict_itemServiceImpl">
+		<property name="dict_itemDao" ref="dict_itemDao" />
+	</bean>
+	<!--字典(t_dict)-->
+	<bean id="dictService" class="com.aisino2.sysadmin.service.impl.DictServiceImpl">
+		<property name="dictDao" ref="dictDao" />
+		<property name="dict_itemService" ref="dict_itemService" />
+	</bean>
+	<!--角色功能(t_role_func)-->
+	<bean id="role_funcService" class="com.aisino2.sysadmin.service.impl.Role_funcServiceImpl">
+		<property name="role_funcDao" ref="role_funcDao" />
+	</bean>
+	<!--角色菜单(t_role_menu)-->
+	<bean id="role_menuService" class="com.aisino2.sysadmin.service.impl.Role_menuServiceImpl">
+		<property name="role_menuDao" ref="role_menuDao" />
+	</bean>
+	<!--用户角色(t_user_role)-->
+	<bean id="user_roleService" class="com.aisino2.sysadmin.service.impl.User_roleServiceImpl">
+		<property name="user_roleDao" ref="user_roleDao" />
+	</bean>
+	<!--角色参数(t_role_param)-->
+	<bean id="role_paramService" class="com.aisino2.sysadmin.service.impl.Role_paramServiceImpl">
+		<property name="role_paramDao" ref="role_paramDao" />
+	</bean>
+	<!--操作日志表(t_operatelog)-->
+	<bean id="operatelogService" class="com.aisino2.sysadmin.service.impl.OperatelogServiceImpl">
+		<property name="operatelogDao" ref="operatelogDao" />
+	</bean>
+	
+</beans>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bjjsx" type="com.aisino2.basicsystem.domain.Bjjsx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--报警机刷新(t_bjjsx)-->
+	<resultMap id="bjjsxResult" class="bjjsx">
+		<result property="bjjxh" column="bjjxh" />
+		<result property="gajgbm" column="gajgbm" />
+		<result property="gajgmc" column="gajgmc" />
+		<result property="bjjipdz" column="bjjipdz" />
+		<result property="bjjsxj" column="bjjsxj" />
+		<result property="yscsxsjdjg" column="yscsxsjdjg" />
+	</resultMap>
+	<!--报警机刷新(t_bjjsx)-->
+	<resultMap id="bjjsxListResult" class="bjjsx">
+		<result property="bjjxh" column="bjjxh"/>
+		<result property="gajgbm" column="gajgbm"/>
+		<result property="gajgmc" column="gajgmc"/>
+		<result property="bjjipdz" column="bjjipdz"/>
+		<result property="bjjsxj" column="bjjsxj"/>
+		<result property="yscsxsjdjg" column="yscsxsjdjg"/>
+	</resultMap>
+	<sql id="t_bjjsxWhere">
+			<isNotEmpty prepend="and" property="bjjxh">
+				a.bjjxh=#bjjxh#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bjjsxPageWhere" >
+		<include refid="t_bjjsxWhere" />	</sql>
+	<sql id="t_bjjsxListWhere" >
+		<include refid="t_bjjsxWhere" />	</sql>
+	<sql id="t_bjjsxSelectWhere"  >
+		<include refid="t_bjjsxWhere" />	</sql>
+	<!--报警机刷新(t_bjjsx)-->
+	<insert id="insertBjjsx"  parameterClass="bjjsx">
+		insert into t_bjjsx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjjxh">
+				bjjxh
+			</isNotNull>
+			<isNotNull prepend="," property="gajgbm">
+				gajgbm
+			</isNotNull>
+			<isNotNull prepend="," property="gajgmc">
+				gajgmc
+			</isNotNull>
+			<isNotNull prepend="," property="bjjipdz">
+				bjjipdz
+			</isNotNull>
+			<isNotNull prepend="," property="bjjsxj">
+				bjjsxj
+			</isNotNull>
+			<isNotNull prepend="," property="yscsxsjdjg">
+				yscsxsjdjg
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjjxh">
+				#bjjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="gajgbm">
+				#gajgbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gajgmc">
+				#gajgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bjjipdz">
+				#bjjipdz#
+			</isNotNull>
+			<isNotNull prepend="," property="bjjsxj">
+				#bjjsxj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yscsxsjdjg">
+				#yscsxsjdjg#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--报警机刷新(t_bjjsx)-->
+	<update id="updateBjjsx" parameterClass="bjjsx">
+		update t_bjjsx a set a.bjjxh=a.bjjxh
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gajgbm">
+				gajgbm=#gajgbm#
+			</isNotNull>
+			<isNotNull prepend="," property="gajgmc">
+				gajgmc=#gajgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bjjipdz">
+				bjjipdz=#bjjipdz#
+			</isNotNull>
+			<isNotNull prepend="," property="bjjsxj">
+				bjjsxj=#bjjsxj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yscsxsjdjg">
+				yscsxsjdjg=#yscsxsjdjg#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjjsxWhere" />
+		</dynamic>
+	</update>
+	<!--报警机刷新(t_bjjsx)-->
+	<delete id="deleteBjjsx" parameterClass="bjjsx">
+		delete from t_bjjsx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bjjsxWhere" />
+		</dynamic>
+	</delete>
+	<!--报警机刷新(t_bjjsx)-->
+	<select id="getBjjsxList" resultMap="bjjsxListResult" parameterClass="map">
+	<![CDATA[ 
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjjxh bjjxh,a.gajgbm gajgbm,a.gajgmc gajgmc,a.bjjipdz bjjipdz,a.bjjsxj bjjsxj,a.yscsxsjdjg yscsxsjdjg
+		from t_bjjsx a 
+		where GAJGBM like #GAJGBM#
+		and YSCSXSJDJG >= #YSCSXSJDJG#
+		order by $pageSort$)  z) x where rowno >$beginRow$ and rowno <= $endRow$
+		]]>
+	</select>
+	<!--报警机刷新(t_bjjsx)-->
+	<select id="getBjjsxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bjjsx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjjsxPageWhere" />
+		</dynamic>
+	</select>
+	<!--报警机刷新(t_bjjsx)-->
+	<select id="getBjjsxListNoPage" resultMap="bjjsxListResult" parameterClass="bjjsx">
+		select a.bjjxh bjjxh,a.gajgbm gajgbm,a.gajgmc gajgmc,a.bjjipdz bjjipdz,a.bjjsxj bjjsxj,a.yscsxsjdjg yscsxsjdjg
+		from t_bjjsx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjjsxListWhere" />
+		</dynamic>
+		order by a.bjjxh
+	</select>
+	<!--报警机刷新(t_bjjsx)-->
+	<select id="getBjjsx" resultMap="bjjsxResult" parameterClass="bjjsx">
+		select a.bjjxh bjjxh,a.gajgbm gajgbm,a.gajgmc gajgmc,a.bjjipdz bjjipdz,a.bjjsxj bjjsxj,a.yscsxsjdjg yscsxsjdjg
+		from t_bjjsx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjjsxSelectWhere" />
+		</dynamic>
+		order by a.bjjxh
+	</select>
+</sqlMap>

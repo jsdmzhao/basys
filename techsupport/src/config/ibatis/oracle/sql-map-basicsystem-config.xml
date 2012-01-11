@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="20" maxSessions="10" maxTransactions="50" useStatementNamespaces="true"/>
+	<sqlMap resource="com/aisino2/core/dao/Sequence.xml"/>
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Operatelog.xml"/>
+	<!-- 生成编码,计算场所总人数存储过程 -->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Scbm.xml"/>
+	<!--全国在逃简项(t_qgztjx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Qgztjx.xml"/>
+	<!--布控人员(t_bkry)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkry.xml"/>
+	<!--案事件管理(t_asjgl)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Asjgl.xml"/>
+	<!--企业处罚(t_qycf)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Qycf.xml"/>
+	<!--协查通报(t_xctb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Xctb.xml"/>
+	<!--协查通报_附件(t_xctb_fj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Xctb_fj.xml"/>
+	<!--协查通报接收单位(t_xctbjsdw)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Xctbjsdw.xml"/>
+	<!--协查通报回复(t_xctbhf)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Xctbhf.xml"/>
+	<!--短信预警(t_dxyj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Dxyj.xml"/>
+	<!--关注对象(t_gzdx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gzdx.xml"/>
+	<!--报警规则(t_bjgz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bjgz.xml"/>
+	<!--报警比对条件(t_bjbdtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bjbdtj.xml"/>
+	<!--报警机刷新(t_bjjsx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bjjsx.xml"/>
+	<!--报警信息表(t_bjxxb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bjxxb.xml"/>
+	<!--全国在逃简项快照(t_qgztjx_kz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Qgztjx_kz.xml"/>
+	<!--布控人员快照(t_bkry_kz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkry_kz.xml"/>
+	<!--关注对象快照(t_gzdx_kz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gzdx_kz.xml"/>
+	<!--短信报警(t_dxbj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Dxbj.xml"/>
+	<!--预警比对条件(t_yjbdtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Yjbdtj.xml"/>
+	<!--预警信息表(t_yjxxb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Yjxxb.xml"/>
+	<!--预警规则(t_yjgz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Yjgz.xml"/>
+	<!--抓逃信息统计-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Ztxx.xml"/>
+	<!--处警统计-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Cjtj.xml"/>
+	<!--数据表(t_sjb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Sjb.xml"/>
+	<!--数据表结构(t_sjbjg)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Sjbjg.xml"/>
+	<!--高级查询方案(t_gjcxfa)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gjcxfa.xml"/>
+	<!--动态查询条件(t_dtcxtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Dtcxtj.xml"/>
+	<!--动态查询排序(t_dtcxpx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Dtcxpx.xml"/>
+	<!--自定义查询条件(t_zdycxtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Zdycxtj.xml"/>
+	<!-- 得到双拼 -->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Dpy.xml"/>
+	<!-- 案事件统计 -->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Asjtj.xml"/>
+	<!--被盗抢车辆信息(t_bdqclxx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bdqclxx.xml"/>
+	<!--被盗抢车辆信息_快照(t_bdqclxxkz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bdqclxxkz.xml"/>
+	<!--布控车辆(t_bkcl)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkcl.xml"/>
+	<!--布控车辆快照(t_bkclkz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkclkz.xml"/>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bdqclxxlsb.xml"/>
+	<!--布控手机快照(t_bksjkz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bksjkz.xml"/>
+	<!--布控手机(t_bksj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bksj.xml"/>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkwpkbxxkz.xml"/>
+	<!--布控物品基本信息(t_bkwpkbxx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bkwpkbxx.xml"/>
+	<!--手机被盗抢信息(t_sjbdqxx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Sjbdqxx.xml"/>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Sjbdqxxkz.xml"/>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Wpbjbdtj.xml"/>
+	<!--物品报警规则(t_wpbjgz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Wpbjgz.xml"/>
+	<!--物品报警信息表(t_wpbjxxb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Wpbjxxb.xml"/>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Wbjkdyczrz.xml"/>
+	<!--外部接口操作日志明细(t_wbjkczrzmx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Wbjkczrzmx.xml"/>
+	
+	<sqlMap resource="config/ibatis/oracle/basicsystem/AllHyForTree.xml"/>
+		<!--企业处罚统计表(t_qycftj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Qycftj.xml"/>
+		<!--比对报警统计表(t_bdbjtj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Bdbjtj.xml"/>
+	<!--警情汇总旅馆业-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Jqhzlgy.xml"/>
+	<!-- 企业认证信息 -->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/QyxxExpImp.xml"/>
+	
+	<!--公安通知通报(t_gatztb)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gatztb.xml"/>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gatztb_fj.xml"/>
+	<!--公安通知通报回复(t_gatztbhf)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gatztbhf.xml"/>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Gatztbjsdw.xml"/>
+	<!--车辆预警信息(t_clyjxx)-->
+	<sqlMap resource="config/ibatis/oracle/basicsystem/Clyjxx.xml"/>
+</sqlMapConfig>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="sjbdqxxkz" type="com.aisino2.basicsystem.domain.Sjbdqxxkz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<resultMap id="sjbdqxxkzResult" class="sjbdqxxkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2" />
+		<result property="sjbdqxxkzid" column="sjbdqxxkzid" />
+		<result property="xzqhbm" column="xzqhbm" />
+		<result property="xzqh" column="xzqh" />
+		<result property="sjch" column="sjch" />
+		<result property="pp" column="pp" />
+		<result property="xh" column="xh" />
+		<result property="ys" column="ys" />
+		<result property="ajjbbm" column="ajjbbm" />
+		<result property="ajjb" column="ajjb" />
+		<result property="ajlbbm" column="ajlbbm" />
+		<result property="ajlb" column="ajlb" />
+		<result property="jyaq" column="jyaq" />
+		<result property="djrq" column="djrq" />
+		<result property="djr" column="djr" />
+		<result property="ladqbm" column="ladqbm" />
+		<result property="ladq" column="ladq" />
+		<result property="badwbm" column="badwbm" />
+		<result property="badw" column="badw" />
+		<result property="tbr" column="tbr" />
+		<result property="lxr" column="lxr" />
+		<result property="lxfs" column="lxfs" />
+		<result property="lxrsfhm" column="lxrsfhm" />
+	</resultMap>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<resultMap id="sjbdqxxkzListResult" class="sjbdqxxkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2"/>
+		<result property="sjbdqxxkzid" column="sjbdqxxkzid"/>
+		<result property="xzqhbm" column="xzqhbm"/>
+		<result property="xzqh" column="xzqh"/>
+		<result property="sjch" column="sjch"/>
+		<result property="pp" column="pp"/>
+		<result property="xh" column="xh"/>
+		<result property="ys" column="ys"/>
+		<result property="ajjbbm" column="ajjbbm"/>
+		<result property="ajjb" column="ajjb"/>
+		<result property="ajlbbm" column="ajlbbm"/>
+		<result property="ajlb" column="ajlb"/>
+		<result property="jyaq" column="jyaq"/>
+		<result property="djrq" column="djrq"/>
+		<result property="djr" column="djr"/>
+		<result property="ladqbm" column="ladqbm"/>
+		<result property="ladq" column="ladq"/>
+		<result property="badwbm" column="badwbm"/>
+		<result property="badw" column="badw"/>
+		<result property="tbr" column="tbr"/>
+		<result property="lxr" column="lxr"/>
+		<result property="lxfs" column="lxfs"/>
+		<result property="lxrsfhm" column="lxrsfhm"/>
+	</resultMap>
+	<sql id="t_sjbdqxxkzWhere">
+			<isNotEmpty prepend="and" property="bjxxid2">
+				a.bjxxid2=#bjxxid2#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjbdqxxkzid">
+				a.sjbdqxxkzid=#sjbdqxxkzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_sjbdqxxkzPageWhere" >
+		<include refid="t_sjbdqxxkzWhere" />	</sql>
+	<sql id="t_sjbdqxxkzListWhere" >
+		<include refid="t_sjbdqxxkzWhere" />	</sql>
+	<sql id="t_sjbdqxxkzSelectWhere"  >
+		<include refid="t_sjbdqxxkzWhere" />	</sql>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<insert id="insertSjbdqxxkz"  parameterClass="sjbdqxxkz">
+		insert into t_sjbdqxxkz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="sjbdqxxkzid">
+				sjbdqxxkzid
+			</isNotNull>
+			<isNotNull prepend="," property="xzqhbm">
+				xzqhbm
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				xzqh
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys
+			</isNotNull>
+			<isNotNull prepend="," property="ajjbbm">
+				ajjbbm
+			</isNotNull>
+			<isNotNull prepend="," property="ajjb">
+				ajjb
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				ajlbbm
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq
+			</isNotNull>
+			<isNotNull prepend="," property="djrq">
+				djrq
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr
+			</isNotNull>
+			<isNotNull prepend="," property="ladqbm">
+				ladqbm
+			</isNotNull>
+			<isNotNull prepend="," property="ladq">
+				ladq
+			</isNotNull>
+			<isNotNull prepend="," property="badwbm">
+				badwbm
+			</isNotNull>
+			<isNotNull prepend="," property="badw">
+				badw
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				tbr
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				lxr
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				lxfs
+			</isNotNull>
+			<isNotNull prepend="," property="lxrsfhm">
+				lxrsfhm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbdqxxkzid">
+				#sjbdqxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqhbm">
+				#xzqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				#xzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				#ys#
+			</isNotNull>
+			<isNotNull prepend="," property="ajjbbm">
+				#ajjbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajjb">
+				#ajjb#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				#ajlbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="djrq">
+				#djrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="ladqbm">
+				#ladqbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladq">
+				#ladq#
+			</isNotNull>
+			<isNotNull prepend="," property="badwbm">
+				#badwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="badw">
+				#badw#
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				#tbr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				#lxr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				#lxfs#
+			</isNotNull>
+			<isNotNull prepend="," property="lxrsfhm">
+				#lxrsfhm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<update id="updateSjbdqxxkz" parameterClass="sjbdqxxkz">
+		update t_sjbdqxxkz a set a.sjbdqxxkzid=a.sjbdqxxkzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bjxxid2">
+				bjxxid2=#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqhbm">
+				xzqhbm=#xzqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				xzqh=#xzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch=#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp=#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh=#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys=#ys#
+			</isNotNull>
+			<isNotNull prepend="," property="ajjbbm">
+				ajjbbm=#ajjbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajjb">
+				ajjb=#ajjb#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				ajlbbm=#ajlbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb=#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq=#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="djrq">
+				djrq=#djrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="djr">
+				djr=#djr#
+			</isNotNull>
+			<isNotNull prepend="," property="ladqbm">
+				ladqbm=#ladqbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladq">
+				ladq=#ladq#
+			</isNotNull>
+			<isNotNull prepend="," property="badwbm">
+				badwbm=#badwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="badw">
+				badw=#badw#
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				tbr=#tbr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				lxr=#lxr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				lxfs=#lxfs#
+			</isNotNull>
+			<isNotNull prepend="," property="lxrsfhm">
+				lxrsfhm=#lxrsfhm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzWhere" />
+		</dynamic>
+	</update>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<delete id="deleteSjbdqxxkz" parameterClass="sjbdqxxkz">
+		delete from t_sjbdqxxkz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzWhere" />
+		</dynamic>
+	</delete>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<select id="getSjbdqxxkzList" resultMap="sjbdqxxkzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.sjbdqxxkzid sjbdqxxkzid,a.xzqhbm xzqhbm,a.xzqh xzqh,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys,a.ajjbbm ajjbbm,a.ajjb ajjb,a.ajlbbm ajlbbm,a.ajlb ajlb,a.jyaq jyaq,a.djrq djrq,a.djr djr,a.ladqbm ladqbm,a.ladq ladq,a.badwbm badwbm,a.badw badw,a.tbr tbr,a.lxr lxr,a.lxfs lxfs,a.lxrsfhm lxrsfhm
+		from t_sjbdqxxkz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<select id="getSjbdqxxkzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_sjbdqxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzPageWhere" />
+		</dynamic>
+	</select>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<select id="getSjbdqxxkzListNoPage" resultMap="sjbdqxxkzListResult" parameterClass="sjbdqxxkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.sjbdqxxkzid sjbdqxxkzid,a.xzqhbm xzqhbm,a.xzqh xzqh,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys,a.ajjbbm ajjbbm,a.ajjb ajjb,a.ajlbbm ajlbbm,a.ajlb ajlb,a.jyaq jyaq,a.djrq djrq,a.djr djr,a.ladqbm ladqbm,a.ladq ladq,a.badwbm badwbm,a.badw badw,a.tbr tbr,a.lxr lxr,a.lxfs lxfs,a.lxrsfhm lxrsfhm
+		from t_sjbdqxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzListWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.sjbdqxxkzid
+	</select>
+	<!--手机被盗抢信息_快照(t_sjbdqxxkz)-->
+	<select id="getSjbdqxxkz" resultMap="sjbdqxxkzResult" parameterClass="sjbdqxxkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.sjbdqxxkzid sjbdqxxkzid,a.xzqhbm xzqhbm,a.xzqh xzqh,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys,a.ajjbbm ajjbbm,a.ajjb ajjb,a.ajlbbm ajlbbm,a.ajlb ajlb,a.jyaq jyaq,a.djrq djrq,a.djr djr,a.ladqbm ladqbm,a.ladq ladq,a.badwbm badwbm,a.badw badw,a.tbr tbr,a.lxr lxr,a.lxfs lxfs,a.lxrsfhm lxrsfhm
+		from t_sjbdqxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_sjbdqxxkzSelectWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.sjbdqxxkzid
+	</select>
+</sqlMap>

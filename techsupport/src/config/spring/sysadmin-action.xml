@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+	<bean id="onlineUsersAction" class="com.aisino2.sysadmin.action.OnlineUsersAction" scope="prototype">    
+	</bean> 
+	<bean id="loginlogAction" class="com.aisino2.sysadmin.action.LoginlogAction" scope="prototype">  
+	  <property name="loginlogService" ref="loginlogService"/> 
+	</bean>  
+	<bean id="departmentAction" class="com.aisino2.sysadmin.action.DepartmentAction" scope="prototype">  
+	  <property name="departmentService" ref="departmentService"/> 
+	  <property name="systemService" ref="systemService"/> 
+	</bean>  
+	<bean id="dictAction" class="com.aisino2.sysadmin.action.DictAction" scope="prototype">  
+	  <property name="dictService" ref="dictService"/> 
+	</bean>  
+	<bean id="dict_itemAction" class="com.aisino2.sysadmin.action.Dict_itemAction" scope="prototype">  
+	  <property name="dict_itemService" ref="dict_itemService"/> 
+	</bean>  
+	<bean id="functionAction" class="com.aisino2.sysadmin.action.FunctionAction" scope="prototype">  
+	  <property name="functionService" ref="functionService"/> 
+	  <property name="systemService" ref="systemService"/> 
+	</bean>  
+	<bean id="globalparAction" class="com.aisino2.sysadmin.action.GlobalparAction" scope="prototype">  
+	  <property name="globalparService" ref="globalparService"/> 
+	</bean>  
+	<bean id="menuAction" class="com.aisino2.sysadmin.action.MenuAction" scope="prototype">  
+	  <property name="menuService" ref="menuService"/> 
+	  <property name="systemService" ref="systemService"/> 
+	</bean>  
+	<bean id="paramAction" class="com.aisino2.sysadmin.action.ParamAction" scope="prototype">  
+	  <property name="paramService" ref="paramService"/> 
+	  <property name="roleService" ref="roleService"/>
+	  <property name="roleParamService" ref="role_paramService"/>
+	</bean>  
+	<bean id="roleAction" class="com.aisino2.sysadmin.action.RoleAction" scope="prototype">  
+	  <property name="roleService" ref="roleService"/>
+	</bean>  
+	<bean id="role_funcAction" class="com.aisino2.sysadmin.action.Role_FuncAction" scope="prototype">  
+	  <property name="role_funcService" ref="role_funcService"/> 
+	</bean>  
+	<bean id="systemAction" class="com.aisino2.sysadmin.action.SystemAction" scope="prototype">  
+	  <property name="systemService" ref="systemService"/> 
+	</bean>  
+	<bean id="userAction" class="com.aisino2.sysadmin.action.UserAction" scope="prototype">
+	  <property name="userService" ref="userService"/>
+	  <property name="systemService" ref="systemService"/> 
+	  <property name="identityAuthorization" ref="identityAuthorization"/>
+	  <property name="roleService" ref="roleService"/>
+	  <property name="userRoleService" ref="user_roleService"/>
+	  <property name="dict_itemService" ref="dict_itemService"/>
+	</bean>
+	<!--系统管理树action-->
+	<bean  id="treeAction" class="com.aisino2.sysadmin.action.TreeAction" scope="prototype">
+	  <property name="systemService" ref="systemService"/>
+	  <property name="departmentService" ref="departmentService"/>
+	  <property name="menuService" ref="menuService"/>
+	  <property name="dict_itemService" ref="dict_itemService"/>
+	  <property name="dictService" ref="dictService"/>
+	  <property name="role_menuService" ref="role_menuService"/>
+	  <property name="paramService" ref="paramService"/>
+	  <property name="roleService" ref="roleService"/>
+	</bean>
+	 <!-- 用户登陆 -->
+	<bean  id="loginAction" class="com.aisino2.sysadmin.action.LoginAction" scope="prototype">
+	 	<property name="departmentService" ref="departmentService"/>
+	 	<property name="loginlogService" ref="loginlogService"/>
+	 	<property name="functionService" ref="functionService"/>
+	 	<property name="identityAuthorization" ref="identityAuthorization"/>
+	 	<property name="userService" ref="userService"/>  
+	</bean>
+	<bean id="operatelogAction" class="com.aisino2.sysadmin.action.OperatelogAction">
+	  <property name="operatelogService" ref="operatelogService"/>
+	</bean>
+</beans>

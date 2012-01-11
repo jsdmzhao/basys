@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bkwpkbxxkz" type="com.aisino2.basicsystem.domain.Bkwpkbxxkz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<resultMap id="bkwpkbxxkzResult" class="bkwpkbxxkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2" />
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="bkwplxdm" column="bkwplxdm" />
+		<result property="bkwplx" column="bkwplx" />
+		<result property="bkwpmc" column="bkwpmc" />
+		<result property="bkwpms" column="bkwpms" />
+		<result property="fwdw" column="fwdw" />
+		<result property="fwdwbm" column="fwdwbm" />
+		<result property="ajlbbm" column="ajlbbm" />
+		<result property="ajlb" column="ajlb" />
+		<result property="tbbh" column="tbbh" />
+		<result property="tbsj2" column="tbsj2" />
+		<result property="jyaq" column="jyaq" />
+		<result property="cljg" column="cljg" />
+		<result property="bkr" column="bkr" />
+		<result property="bkczy" column="bkczy" />
+		<result property="bkczsj" column="bkczsj" />
+		<result property="bkdqsj" column="bkdqsj" />
+		<result property="bkfwbm" column="bkfwbm" />
+		<result property="bkfw" column="bkfw" />
+		<result property="bkspyj" column="bkspyj" />
+		<result property="lxr" column="lxr" />
+		<result property="lxfs" column="lxfs" />
+		<result property="sftyfb" column="sftyfb" />
+		<result property="spdw" column="spdw" />
+		<result property="spr2" column="spr2" />
+		<result property="sprq" column="sprq" />
+		<result property="qqckbs" column="qqckbs" />
+		<result property="ckbs" column="ckbs" />
+		<result property="ckyy" column="ckyy" />
+		<result property="cksj" column="cksj" />
+		<result property="ckr" column="ckr" />
+		<result property="ckczy" column="ckczy" />
+		<result property="ckczsj" column="ckczsj" />
+		<result property="ckbmbm" column="ckbmbm" />
+		<result property="ckbmmc" column="ckbmmc" />
+		<result property="ckspdw" column="ckspdw" />
+		<result property="ckspr" column="ckspr" />
+		<result property="ckspyj" column="ckspyj" />
+		<result property="cksprq" column="cksprq" />
+		<result property="xzqh" column="xzqh" />
+		<result property="fsbs" column="fsbs" />
+		<result property="bkdxzp" column="bkdxzp" />
+		<result property="wpjp" column="wpjp" />
+	</resultMap>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<resultMap id="bkwpkbxxkzListResult" class="bkwpkbxxkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2"/>
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="bkwplxdm" column="bkwplxdm"/>
+		<result property="bkwplx" column="bkwplx"/>
+		<result property="bkwpmc" column="bkwpmc"/>
+		<result property="bkwpms" column="bkwpms"/>
+		<result property="fwdw" column="fwdw"/>
+		<result property="fwdwbm" column="fwdwbm"/>
+		<result property="ajlbbm" column="ajlbbm"/>
+		<result property="ajlb" column="ajlb"/>
+		<result property="tbbh" column="tbbh"/>
+		<result property="tbsj2" column="tbsj2"/>
+		<result property="jyaq" column="jyaq"/>
+		<result property="cljg" column="cljg"/>
+		<result property="bkr" column="bkr"/>
+		<result property="bkczy" column="bkczy"/>
+		<result property="bkczsj" column="bkczsj"/>
+		<result property="bkdqsj" column="bkdqsj"/>
+		<result property="bkfwbm" column="bkfwbm"/>
+		<result property="bkfw" column="bkfw"/>
+		<result property="bkspyj" column="bkspyj"/>
+		<result property="lxr" column="lxr"/>
+		<result property="lxfs" column="lxfs"/>
+		<result property="sftyfb" column="sftyfb"/>
+		<result property="spdw" column="spdw"/>
+		<result property="spr2" column="spr2"/>
+		<result property="sprq" column="sprq"/>
+		<result property="qqckbs" column="qqckbs"/>
+		<result property="ckbs" column="ckbs"/>
+		<result property="ckyy" column="ckyy"/>
+		<result property="cksj" column="cksj"/>
+		<result property="ckr" column="ckr"/>
+		<result property="ckczy" column="ckczy"/>
+		<result property="ckczsj" column="ckczsj"/>
+		<result property="ckbmbm" column="ckbmbm"/>
+		<result property="ckbmmc" column="ckbmmc"/>
+		<result property="ckspdw" column="ckspdw"/>
+		<result property="ckspr" column="ckspr"/>
+		<result property="ckspyj" column="ckspyj"/>
+		<result property="cksprq" column="cksprq"/>
+		<result property="xzqh" column="xzqh"/>
+		<result property="fsbs" column="fsbs"/>
+		<result property="bkdxzp" column="bkdxzp"/>
+		<result property="wpjp" column="wpjp"/>
+	</resultMap>
+	<sql id="t_bkwpkbxxkzWhere">
+			<isNotEmpty prepend="and" property="bjxxid2">
+				a.bjxxid2=#bjxxid2#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bkwpjbxxkzid">
+				a.bkwpjbxxkzid=#bkwpjbxxkzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bkwpkbxxkzPageWhere" >
+		<include refid="t_bkwpkbxxkzWhere" />	</sql>
+	<sql id="t_bkwpkbxxkzListWhere" >
+		<include refid="t_bkwpkbxxkzWhere" />	</sql>
+	<sql id="t_bkwpkbxxkzSelectWhere"  >
+		<include refid="t_bkwpkbxxkzWhere" />	</sql>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<insert id="insertBkwpkbxxkz"  parameterClass="bkwpkbxxkz">
+		insert into t_bkwpjbxxkz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				bkwpjbxxkzid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplxdm">
+				bkwplxdm
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplx">
+				bkwplx
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpmc">
+				bkwpmc
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpms">
+				bkwpms
+			</isNotNull>
+			<isNotNull prepend="," property="fwdw">
+				fwdw
+			</isNotNull>
+			<isNotNull prepend="," property="fwdwbm">
+				fwdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				ajlbbm
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb
+			</isNotNull>
+			<isNotNull prepend="," property="tbbh">
+				tbbh
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj2">
+				tbsj2
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg
+			</isNotNull>
+			<isNotNull prepend="," property="bkr">
+				bkr
+			</isNotNull>
+			<isNotNull prepend="," property="bkczy">
+				bkczy
+			</isNotNull>
+			<isNotNull prepend="," property="bkczsj">
+				bkczsj
+			</isNotNull>
+			<isNotNull prepend="," property="bkdqsj">
+				bkdqsj
+			</isNotNull>
+			<isNotNull prepend="," property="bkfwbm">
+				bkfwbm
+			</isNotNull>
+			<isNotNull prepend="," property="bkfw">
+				bkfw
+			</isNotNull>
+			<isNotNull prepend="," property="bkspyj">
+				bkspyj
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				lxr
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				lxfs
+			</isNotNull>
+			<isNotNull prepend="," property="sftyfb">
+				sftyfb
+			</isNotNull>
+			<isNotNull prepend="," property="spdw">
+				spdw
+			</isNotNull>
+			<isNotNull prepend="," property="spr2">
+				spr2
+			</isNotNull>
+			<isNotNull prepend="," property="sprq">
+				sprq
+			</isNotNull>
+			<isNotNull prepend="," property="qqckbs">
+				qqckbs
+			</isNotNull>
+			<isNotNull prepend="," property="ckbs">
+				ckbs
+			</isNotNull>
+			<isNotNull prepend="," property="ckyy">
+				ckyy
+			</isNotNull>
+			<isNotNull prepend="," property="cksj">
+				cksj
+			</isNotNull>
+			<isNotNull prepend="," property="ckr">
+				ckr
+			</isNotNull>
+			<isNotNull prepend="," property="ckczy">
+				ckczy
+			</isNotNull>
+			<isNotNull prepend="," property="ckczsj">
+				ckczsj
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmbm">
+				ckbmbm
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmmc">
+				ckbmmc
+			</isNotNull>
+			<isNotNull prepend="," property="ckspdw">
+				ckspdw
+			</isNotNull>
+			<isNotNull prepend="," property="ckspr">
+				ckspr
+			</isNotNull>
+			<isNotNull prepend="," property="ckspyj">
+				ckspyj
+			</isNotNull>
+			<isNotNull prepend="," property="cksprq">
+				cksprq
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				xzqh
+			</isNotNull>
+			<isNotNull prepend="," property="fsbs">
+				fsbs
+			</isNotNull>
+			<isNotNull prepend="," property="bkdxzp">
+				bkdxzp
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				wpjp
+			</isNotNull>
+			<isNotNull prepend="," property="shjg">
+				shjg
+			</isNotNull>
+			<isNotNull prepend="," property="shyj">
+				shyj
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				wpqp
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				#bkwpjbxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplxdm">
+				#bkwplxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplx">
+				#bkwplx#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpmc">
+				#bkwpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpms">
+				#bkwpms#
+			</isNotNull>
+			<isNotNull prepend="," property="fwdw">
+				#fwdw#
+			</isNotNull>
+			<isNotNull prepend="," property="fwdwbm">
+				#fwdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				#ajlbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="tbbh">
+				#tbbh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj2">
+				#tbsj2:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="bkr">
+				#bkr#
+			</isNotNull>
+			<isNotNull prepend="," property="bkczy">
+				#bkczy#
+			</isNotNull>
+			<isNotNull prepend="," property="bkczsj">
+				#bkczsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bkdqsj">
+				#bkdqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bkfwbm">
+				#bkfwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bkfw">
+				#bkfw#
+			</isNotNull>
+			<isNotNull prepend="," property="bkspyj">
+				#bkspyj#
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				#lxr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				#lxfs#
+			</isNotNull>
+			<isNotNull prepend="," property="sftyfb">
+				#sftyfb#
+			</isNotNull>
+			<isNotNull prepend="," property="spdw">
+				#spdw#
+			</isNotNull>
+			<isNotNull prepend="," property="spr2">
+				#spr2#
+			</isNotNull>
+			<isNotNull prepend="," property="sprq">
+				#sprq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qqckbs">
+				#qqckbs#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbs">
+				#ckbs#
+			</isNotNull>
+			<isNotNull prepend="," property="ckyy">
+				#ckyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cksj">
+				#cksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ckr">
+				#ckr#
+			</isNotNull>
+			<isNotNull prepend="," property="ckczy">
+				#ckczy#
+			</isNotNull>
+			<isNotNull prepend="," property="ckczsj">
+				#ckczsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmbm">
+				#ckbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmmc">
+				#ckbmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspdw">
+				#ckspdw#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspr">
+				#ckspr#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspyj">
+				#ckspyj#
+			</isNotNull>
+			<isNotNull prepend="," property="cksprq">
+				#cksprq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				#xzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="fsbs">
+				#fsbs#
+			</isNotNull>
+			<isNotNull prepend="," property="bkdxzp">
+				#bkdxzp#
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				#wpjp#
+			</isNotNull>
+			<isNotNull prepend="," property="shjg">
+				#shjg#
+			</isNotNull>
+			<isNotNull prepend="," property="shyj">
+				#shyj#
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				#wpqp#
+			</isNotNull>
+			
+		</dynamic>
+		)
+	</insert>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<update id="updateBkwpkbxxkz" parameterClass="bkwpkbxxkz">
+		update t_bkwpjbxxkz a set a.bkwpjbxxkzid=a.bkwpjbxxkzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2=#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplxdm">
+				bkwplxdm=#bkwplxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwplx">
+				bkwplx=#bkwplx#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpmc">
+				bkwpmc=#bkwpmc#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpms">
+				bkwpms=#bkwpms#
+			</isNotNull>
+			<isNotNull prepend="," property="fwdw">
+				fwdw=#fwdw#
+			</isNotNull>
+			<isNotNull prepend="," property="fwdwbm">
+				fwdwbm=#fwdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlbbm">
+				ajlbbm=#ajlbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajlb">
+				ajlb=#ajlb#
+			</isNotNull>
+			<isNotNull prepend="," property="tbbh">
+				tbbh=#tbbh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj2">
+				tbsj2=#tbsj2:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jyaq">
+				jyaq=#jyaq#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg=#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="bkr">
+				bkr=#bkr#
+			</isNotNull>
+			<isNotNull prepend="," property="bkczy">
+				bkczy=#bkczy#
+			</isNotNull>
+			<isNotNull prepend="," property="bkczsj">
+				bkczsj=#bkczsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bkdqsj">
+				bkdqsj=#bkdqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="bkfwbm">
+				bkfwbm=#bkfwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="bkfw">
+				bkfw=#bkfw#
+			</isNotNull>
+			<isNotNull prepend="," property="bkspyj">
+				bkspyj=#bkspyj#
+			</isNotNull>
+			<isNotNull prepend="," property="lxr">
+				lxr=#lxr#
+			</isNotNull>
+			<isNotNull prepend="," property="lxfs">
+				lxfs=#lxfs#
+			</isNotNull>
+			<isNotNull prepend="," property="sftyfb">
+				sftyfb=#sftyfb#
+			</isNotNull>
+			<isNotNull prepend="," property="spdw">
+				spdw=#spdw#
+			</isNotNull>
+			<isNotNull prepend="," property="spr2">
+				spr2=#spr2#
+			</isNotNull>
+			<isNotNull prepend="," property="sprq">
+				sprq=#sprq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qqckbs">
+				qqckbs=#qqckbs#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbs">
+				ckbs=#ckbs#
+			</isNotNull>
+			<isNotNull prepend="," property="ckyy">
+				ckyy=#ckyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cksj">
+				cksj=#cksj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ckr">
+				ckr=#ckr#
+			</isNotNull>
+			<isNotNull prepend="," property="ckczy">
+				ckczy=#ckczy#
+			</isNotNull>
+			<isNotNull prepend="," property="ckczsj">
+				ckczsj=#ckczsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmbm">
+				ckbmbm=#ckbmbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ckbmmc">
+				ckbmmc=#ckbmmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspdw">
+				ckspdw=#ckspdw#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspr">
+				ckspr=#ckspr#
+			</isNotNull>
+			<isNotNull prepend="," property="ckspyj">
+				ckspyj=#ckspyj#
+			</isNotNull>
+			<isNotNull prepend="," property="cksprq">
+				cksprq=#cksprq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="xzqh">
+				xzqh=#xzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="fsbs">
+				fsbs=#fsbs#
+			</isNotNull>
+			<isNotNull prepend="," property="bkdxzp">
+				bkdxzp=#bkdxzp#
+			</isNotNull>
+			<isNotNull prepend="," property="wpjp">
+				wpjp=#wpjp#
+			</isNotNull>
+			<isNotNull prepend="," property="shjg">
+				shjg=#shjg#
+			</isNotNull>
+			<isNotNull prepend="," property="shyj">
+				shyj=#shyj#
+			</isNotNull>
+			<isNotNull prepend="," property="wpqp">
+				wpqp=#wpqp#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzWhere" />
+		</dynamic>
+	</update>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<delete id="deleteBkwpkbxxkz" parameterClass="bkwpkbxxkz">
+		delete from t_bkwpjbxxkz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzWhere" />
+		</dynamic>
+	</delete>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<select id="getBkwpkbxxkzList" resultMap="bkwpkbxxkzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.hylbdm hylbdm,a.hylb hylb,a.bkwplxdm bkwplxdm,a.bkwplx bkwplx,a.bkwpmc bkwpmc,a.bkwpms bkwpms,a.fwdw fwdw,a.fwdwbm fwdwbm,a.ajlbbm ajlbbm,a.ajlb ajlb,a.tbbh tbbh,a.tbsj2 tbsj2,a.jyaq jyaq,a.cljg cljg,a.bkr bkr,a.bkczy bkczy,a.bkczsj bkczsj,a.bkdqsj bkdqsj,a.bkfwbm bkfwbm,a.bkfw bkfw,a.bkspyj bkspyj,a.lxr lxr,a.lxfs lxfs,a.sftyfb sftyfb,a.spdw spdw,a.spr2 spr2,a.sprq sprq,a.qqckbs qqckbs,a.ckbs ckbs,a.ckyy ckyy,a.cksj cksj,a.ckr ckr,a.ckczy ckczy,a.ckczsj ckczsj,a.ckbmbm ckbmbm,a.ckbmmc ckbmmc,a.ckspdw ckspdw,a.ckspr ckspr,a.ckspyj ckspyj,a.cksprq cksprq,a.xzqh xzqh,a.fsbs fsbs,a.bkdxzp bkdxzp,a.wpjp wpjp
+		from t_bkwpjbxxkz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<select id="getBkwpkbxxkzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bkwpjbxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzPageWhere" />
+		</dynamic>
+	</select>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<select id="getBkwpkbxxkzListNoPage" resultMap="bkwpkbxxkzListResult" parameterClass="bkwpkbxxkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.hylbdm hylbdm,a.hylb hylb,a.bkwplxdm bkwplxdm,a.bkwplx bkwplx,a.bkwpmc bkwpmc,a.bkwpms bkwpms,a.fwdw fwdw,a.fwdwbm fwdwbm,a.ajlbbm ajlbbm,a.ajlb ajlb,a.tbbh tbbh,a.tbsj2 tbsj2,a.jyaq jyaq,a.cljg cljg,a.bkr bkr,a.bkczy bkczy,a.bkczsj bkczsj,a.bkdqsj bkdqsj,a.bkfwbm bkfwbm,a.bkfw bkfw,a.bkspyj bkspyj,a.lxr lxr,a.lxfs lxfs,a.sftyfb sftyfb,a.spdw spdw,a.spr2 spr2,a.sprq sprq,a.qqckbs qqckbs,a.ckbs ckbs,a.ckyy ckyy,a.cksj cksj,a.ckr ckr,a.ckczy ckczy,a.ckczsj ckczsj,a.ckbmbm ckbmbm,a.ckbmmc ckbmmc,a.ckspdw ckspdw,a.ckspr ckspr,a.ckspyj ckspyj,a.cksprq cksprq,a.xzqh xzqh,a.fsbs fsbs,a.bkdxzp bkdxzp,a.wpjp wpjp
+		from t_bkwpjbxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzListWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid
+	</select>
+	<!--布控物品基本信息快照(t_bkwpkbxxkz)-->
+	<select id="getBkwpkbxxkz" resultMap="bkwpkbxxkzResult" parameterClass="bkwpkbxxkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.hylbdm hylbdm,a.hylb hylb,a.bkwplxdm bkwplxdm,a.bkwplx bkwplx,a.bkwpmc bkwpmc,a.bkwpms bkwpms,a.fwdw fwdw,a.fwdwbm fwdwbm,a.ajlbbm ajlbbm,a.ajlb ajlb,a.tbbh tbbh,a.tbsj2 tbsj2,a.jyaq jyaq,a.cljg cljg,a.bkr bkr,a.bkczy bkczy,a.bkczsj bkczsj,a.bkdqsj bkdqsj,a.bkfwbm bkfwbm,a.bkfw bkfw,a.bkspyj bkspyj,a.lxr lxr,a.lxfs lxfs,a.sftyfb sftyfb,a.spdw spdw,a.spr2 spr2,a.sprq sprq,a.qqckbs qqckbs,a.ckbs ckbs,a.ckyy ckyy,a.cksj cksj,a.ckr ckr,a.ckczy ckczy,a.ckczsj ckczsj,a.ckbmbm ckbmbm,a.ckbmmc ckbmmc,a.ckspdw ckspdw,a.ckspr ckspr,a.ckspyj ckspyj,a.cksprq cksprq,a.xzqh xzqh,a.fsbs fsbs,a.bkdxzp bkdxzp,a.wpjp wpjp
+		from t_bkwpjbxxkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkwpkbxxkzSelectWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid
+	</select>
+</sqlMap>

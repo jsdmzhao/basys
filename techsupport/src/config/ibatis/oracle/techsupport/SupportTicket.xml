@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="SupportTicket"
+		type="com.aisino2.techsupport.domain.SupportTicket" />
+	
+	<!-- <resultMap class="SupportTicket" id="SupportTicketResult">
+		<result property="stNo" column="ST_NO" />
+		
+		申请人
+		<result property="applicant.userid" column="APPLICANT" />
+		<result property="applicant.username" column="APPLICANT_NAME"/>
+		<result property="applicant.mobilephone" column="APPLICANT_MOBILEPHONE"/>
+		<result property="applicantName" column="APPLICANT_NAME"/>
+		
+		<result property="supportContent" column="SUPPORT_CONTENT" />
+		技术支持人信息
+		<result property="supportLeader.userid" column="SUPPORT_LEADER" />
+		<result property="supportLeader.username" column="SUPPORT_LEADER_NAME" />
+		<result property="supportLeader.mobilephone" column="SUPPORT_LEADER_MOBILEPHONE"/>
+		 总工审批标识
+		<result property="ceApprovalCode" column="CE_APPROVAL_CODE" />
+		产品方案部审批标识
+		<result property="psgApprovalCode" column="PSG_APPROVAL_CODE" />
+		技术开发部审批标识
+		<result property="devApprovalCode" column="DEV_APPROVAL_CODE" />
+		单位
+		<result property="supportDeptList" column="ID" select="SupportDept.queryDepartmentByStId" />
+		<result property="supportDept.departid" column="SUPPORT_DEPT_ID" />
+		<result property="supportDept.departname" column="SUPPORT_DEPT_NAME" />
+		
+		<result property="devScheDate" column="DEV_SCHE_DATE" />
+		<result property="psgScheDate" column="PSG_SCHE_DATE" />
+		<result property="stStatus" column="ST_STATUS" />
+		<result property="region" column="REGION" />
+		<result property="serialNumber" column="SERIAL_NUMBER" />
+		<result property="id" column="ID" />
+		<result property="devDsScheDate" column="DEV_DS_SCHE_DATE" />
+		<result property="devDdScheDate" column="DEV_DD_SCHE_DATE" />
+		<result property="psgDsScheDate" column="PSG_DS_SCHE_DATE" />
+		<result property="psgIsScheDate" column="PSG_IS_SCHE_DATE" />
+
+		<result property="psgCompDate" column="PSG_COMP_DATE" />
+		<result property="devCompDate" column="DEV_COMP_DATE" />
+		<result property="psgDsCompDate" column="PSG_DS_COMP_DATE" />
+		<result property="psgIsCompDate" column="PSG_IS_COMP_DATE" />
+		<result property="psgIsCompDate" column="DEV_DS_COMP_DATE" />
+		<result property="devDdCompDate" column="DEV_DD_COMP_DATE" />
+		<result property="applyingFeedbackDate" column="APPLYING_FEEDBACK_DATE" />
+
+		<result property="feedbackConfirmDate" column="FEEDBACK_CONFIRM_DATE" />
+
+		<result property="comments" column="COMMENTS" />
+		<result property="archiveDate" column="ARCHIVE_DATE" />
+		<result property="archiveUser.userid" column="ARCHIVE_USERID" />
+		
+	</resultMap> -->
+
+	
+	<resultMap class="SupportTicket" id="SupportTicketResultGetList">
+		<result property="stNo" column="ST_NO" />
+		
+		<!-- 申请人 -->
+		<result property="applicant" column="APPLICANT" select="SupportTicket.getUserById"/>
+		<result property="supportContent" column="SUPPORT_CONTENT" />
+		<!-- 技术支持人信息 -->
+		<result property="lstSupportLeaders" column="ID" select="SupportLeaderRelation.querySupportLeaderByStId"/>
+		<!-- 单位 -->
+		<result property="supportDeptList" column="ID" select="SupportDept.queryDepartmentByStId" />
+		
+		<result property="devScheDate" column="DEV_SCHE_DATE" />
+		<result property="psgScheDate" column="PSG_SCHE_DATE" />
+		<result property="stStatus" column="ST_STATUS" />
+		<result property="region" column="REGION" />
+		<result property="serialNumber" column="SERIAL_NUMBER" />
+		<result property="id" column="ID" />
+		<result property="devDsScheDate" column="DEV_DS_SCHE_DATE" />
+		<result property="devDdScheDate" column="DEV_DD_SCHE_DATE" />
+		<result property="psgDsScheDate" column="PSG_DS_SCHE_DATE" />
+		<result property="psgIsScheDate" column="PSG_IS_SCHE_DATE" />
+
+		<result property="psgCompDate" column="PSG_COMP_DATE" />
+		<result property="devCompDate" column="DEV_COMP_DATE" />
+		<result property="psgDsCompDate" column="PSG_DS_COMP_DATE" />
+		<result property="psgIsCompDate" column="PSG_IS_COMP_DATE" />
+		<result property="psgIsCompDate" column="DEV_DS_COMP_DATE" />
+		<result property="devDdCompDate" column="DEV_DD_COMP_DATE" />
+		<result property="applyingFeedbackDate" column="APPLYING_FEEDBACK_DATE" />
+
+		<result property="feedbackConfirmDate" column="FEEDBACK_CONFIRM_DATE" />
+
+		<result property="comments" column="COMMENTS" />
+		<result property="archiveDate" column="ARCHIVE_DATE" />
+		<result property="archiveUser.userid" column="ARCHIVE_USERID" />
+		
+	</resultMap>
+	
+	
+	<select id="SupportTicket.getUserById" resultMap="userResult" parameterClass="Integer">
+		select a.userid userid,a.departid departid,a.useraccount useraccount,a.username username,a.password password,a.idnum idnum,a.mobilephone mobilephone,a.userorder userorder,a.isvalid isvalid,a.usertype usertype
+		,d.departname as departname,d.departcode as departcode , d.departfullcode as departfullcode,d.parentdepartid as parentdepartid
+		,a.jzlbmc,a.jzlbdm	
+		from t_user a,t_department d 
+		where  d.departid=a.departid
+		and a.userid=#value#
+		order by a.userid,a.departid
+	</select>
+	
+	<!-- 支持单插入 -->
+	<insert id="SupportTicket.insert" parameterClass="SupportTicket">
+		insert into
+		T_TS_TECH_SUPPORT
+		(
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="stNo">
+				ST_NO
+			</isNotNull>
+			<isNotNull prepend="," property="applicant">
+				APPLICANT
+			</isNotNull>
+			<isNotNull prepend="," property="supportContent">
+				SUPPORT_CONTENT
+			</isNotNull>
+			<!-- <isNotNull prepend="," property="supportDept">
+				SUPPORT_DEPT
+			</isNotNull> -->
+			<isNotNull prepend="," property="devScheDate">
+				DEV_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="psgScheDate">
+				PSG_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="stStatus">
+				ST_STATUS
+			</isNotNull>
+			<isNotNull prepend="," property="region">
+				REGION
+			</isNotNull>
+			<isNotNull prepend="," property="serialNumber">
+				SERIAL_NUMBER
+			</isNotNull>
+			<isNotNull prepend="," property="id">
+				ID
+			</isNotNull>
+			<isNotNull prepend="," property="devDsScheDate">
+				DEV_DS_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="devDdScheDate">
+				DEV_DD_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="psgDsScheDate">
+				PSG_DS_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="psgIsScheDate">
+				PSG_IS_SCHE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="comments">
+				COMMENTS
+			</isNotNull>
+			<isNotNull prepend="," property="psgCompDate">
+				PSG_COMP_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="devCompDate">
+				DEV_COMP_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="applyingFeedbackDate">
+				APPLYING_FEEDBACK_DATE
+		</isNotNull>
+			<isNotNull prepend="," property="psgDsCompDate">
+				PSG_DS_COMP_DATE
+</isNotNull>
+			<isNotNull prepend="," property="psgIsCompDate">
+				PSG_IS_COMP_DATE
+</isNotNull>
+			<isNotNull prepend="," property="devDsCompDate">
+				DEV_DS_COMP_DATE
+</isNotNull>
+			<isNotNull prepend="," property="devDdCompDate">
+				DEV_DD_COMP_DATE
+</isNotNull>
+			<isNotNull prepend="," property="feedbackConfirmDate">
+				FEEDBACK_CONFIRM_DATE
+		</isNotNull>
+			<isNotNull prepend="," property="archiveDate">
+				ARCHIVE_DATE
+</isNotNull>
+		</dynamic>
+
+
+		)
+		values (
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="stNo">
+				#stNo#
+			</isNotNull>
+			<isNotNull prepend="," property="applicant">
+				#applicant.userid#
+			</isNotNull>
+			<isNotNull prepend="," property="supportContent">
+				#supportContent#
+			</isNotNull>
+			<isNotNull prepend="," property="devScheDate">
+				#devScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgScheDate">
+				#psgScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="stStatus">
+				#stStatus#
+			</isNotNull>
+			<isNotNull prepend="," property="region">
+				#region#
+			</isNotNull>
+			<isNotNull prepend="," property="serialNumber">
+				#serialNumber#
+			</isNotNull>
+			<isNotNull prepend="," property="id">
+				#id#
+			</isNotNull>
+			<isNotNull prepend="," property="devDsScheDate">
+				#devDsScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devDdScheDate">
+				#devDdScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgDsScheDate">
+				#psgDsScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgIsScheDate">
+				#psgIsScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="comments">
+				#comments#
+			</isNotNull>
+			<isNotNull prepend="," property="psgCompDate">
+				#psgCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devCompDate">
+				#devCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="applyingFeedbackDate">
+				#applyingFeedbackDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgDsCompDate">
+				#psgDsCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgIsCompDate">
+				#psgIsCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devDsCompDate">
+				#devDsCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devDdCompDate">
+				#devDdCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="feedbackConfirmDate">
+				#feedbackConfirmDate#
+			</isNotNull>
+			<isNotNull prepend="," property="archiveDate">
+				#archiveDate#
+			</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+	<!-- 支持单修改 -->
+	<update id="SupportTicket.update" parameterClass="SupportTicket">
+		update
+		T_TS_TECH_SUPPORT set ID=id 
+
+		<dynamic prepend="">
+			<isNotNull prepend="," property="stNo">
+				ST_NO=#stNo#
+			</isNotNull>
+			<isNotNull prepend="," property="applicant">
+				APPLICANT=#applicant.userid#
+			</isNotNull>
+			<isNotNull prepend="," property="supportContent">
+				SUPPORT_CONTENT=#supportContent#
+			</isNotNull>
+			<isNotNull prepend="," property="devScheDate">
+				DEV_SCHE_DATE=#devScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgScheDate">
+				PSG_SCHE_DATE=#psgScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="stStatus">
+				ST_STATUS=#stStatus#
+			</isNotNull>
+			<isNotNull prepend="," property="region">
+				REGION=#region#
+			</isNotNull>
+			<isNotNull prepend="," property="serialNumber">
+				SERIAL_NUMBER=#serialNumber#
+			</isNotNull>
+			<isNotNull prepend="," property="devDsScheDate">
+				DEV_DS_SCHE_DATE=#devDsScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devDdScheDate">
+				DEV_DD_SCHE_DATE=#devDdScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgDsScheDate">
+				PSG_DS_SCHE_DATE=#psgDsScheDate#
+			</isNotNull>
+			<isNotNull prepend="," property="psgIsScheDate">
+				PSG_IS_SCHE_DATE=#psgIsScheDate#
+</isNotNull>
+			<isNotNull prepend="," property="comments">
+				COMMENTS=#comments#
+</isNotNull>
+			<isNotNull prepend="," property="psgCompDate">
+				PSG_COMP_DATE=#psgCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="devCompDate">
+				DEV_COMP_DATE=#devCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="applyingFeedbackDate">
+				APPLYING_FEEDBACK_DATE=#applyingFeedbackDate#
+</isNotNull>
+			<isNotNull prepend="," property="psgDsCompDate">
+				PSG_DS_COMP_DATE=#psgDsCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="psgIsCompDate">
+				PSG_IS_COMP_DATE=#psgIsCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="devDsCompDate">
+				DEV_DS_COMP_DATE=#devDsCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="devDdCompDate">
+				DEV_DD_COMP_DATE=#devDdCompDate#
+</isNotNull>
+			<isNotNull prepend="," property="feedbackConfirmDate">
+				FEEDBACK_CONFIRM_DATE=#feedbackConfirmDate#
+</isNotNull>
+			<isNotNull prepend="," property="archiveDate">
+				ARCHIVE_DATE=#archiveDate#
+</isNotNull>
+			<isNotNull prepend="," property="archiveUser">
+				ARCHIVE_USERID=#archiveUser.userid#
+			</isNotNull>
+
+		</dynamic>
+
+		where ID = #id#
+	</update>
+
+	<!-- 删除单个支持单 -->
+	<delete id="SupportTicket.delete" parameterClass="SupportTicket">
+		delete from
+		T_TS_TECH_SUPPORT where ID = #id#
+	</delete>
+	
+	<sql id="SupportTicketWhere">
+	
+		<isNotNull prepend="and" property="region">
+			t.region=#region#
+		</isNotNull>
+		<isNotNull prepend="and" property="applicant.userid">
+			t.applicant=#applicant.userid#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="stStatus">
+			t.ST_STATUS=#stStatus#
+		</isNotEmpty>
+		<isNotNull prepend="and" property="id">
+			t.id=#id#
+		</isNotNull>
+		<isNotNull prepend="and" property="stNo">
+			t.ST_NO like '$stNo$%'
+		</isNotNull>
+		
+	</sql>
+	<sql id="SupportTicketPageWhere">
+		<include refid="SupportTicketWhere"/>
+		
+<!-- 	 	<isNotEmpty prepend="and" property="supportLeader.userid" > -->
+<!-- 	 		 u.userid = t.SUPPORT_LEADER -->
+<!-- 	 	</isNotEmpty> -->
+	 	 
+<!-- 	 	<isNotEmpty prepend="and" property="applicant.userid"> -->
+<!-- 	 		 a.userid = t.APPLICANT -->
+<!-- 	 	</isNotEmpty> -->
+	 	
+		
+		<isNotNull prepend="and" property="trackingDateFrom">
+			tr.trackingDate >= #trackingDateFrom#
+		</isNotNull>
+		<isNotNull prepend="and" property="trackingDateTo">
+			tr.trackingDate &lt;= #trackingDateTo#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="type">
+			tr.type = #type# and tr.st_id = t.id
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="lstSupportLeaders">
+			ssmap.ST_ID=t.id
+			<isNotEmpty prepend="and"  property="lstSupportLeaders">
+				
+					<iterate prepend="ssmap.SL_ID in " open="(" close=")" property="lstSupportLeaders">
+						#lstSupportLeaders[].userid#
+					</iterate>
+			</isNotEmpty>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="limitUserDeparement">
+			a.userid=ssmap.sl_id
+			and 
+			a.departid=#limitDeparement#
+		</isNotEmpty>
+	</sql>
+
+	<sql id="SupportTicketFrom">
+		<isNotEmpty prepend="," property="type">
+		 		T_TS_TRACKING tr
+		 </isNotEmpty>
+		 
+		 <isNotEmpty prepend="," property="lstSupportLeaders">
+		 	T_TS_STSL_MAP ssmap
+		 </isNotEmpty>
+		 <isNotEmpty prepend="," property="limitUserDeparement">
+		 	t_user a
+	 	<isEmpty prepend="," property="lstSupportLeaders">
+		 	T_TS_STSL_MAP ssmap
+		 </isEmpty>
+		 </isNotEmpty>
+	</sql>
+	<!-- 获取支持单列表 不分页 -->
+	<select id="SupportTicket.getList" parameterClass="SupportTicket"
+		resultMap="SupportTicketResultGetList">
+		select t.*
+		 from T_TS_TECH_SUPPORT t 
+		where 1=1
+		
+		<dynamic prepend="">
+			<include refid="SupportTicketWhere"/>	
+		</dynamic>
+	</select>
+
+	<!-- 获取单个支持单 -->
+	<select id="SupportTicket.get" parameterClass="SupportTicket"
+		resultMap="SupportTicketResultGetList">
+		select t.*
+		 from T_TS_TECH_SUPPORT t
+		  where t.id=#id#
+	</select>
+
+<!-- 	获取支持单列表 分页 -->
+	<select id="SupportTicket.getListForPage" parameterClass="map" resultMap="SupportTicketResultGetList">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select distinct 
+				t.ST_NO,
+
+				t.APPLICANT,
+				
+				dbms_lob.substr(t.SUPPORT_CONTENT,10000) SUPPORT_CONTENT,
+				
+				t.SUPPORT_LEADER,
+				
+				t.DEV_SCHE_DATE,
+				
+				t.PSG_SCHE_DATE,
+				
+				t.ST_STATUS,
+				
+				t.REGION,
+				
+				t.SERIAL_NUMBER,
+				
+				t.ID,
+				
+				t.DEV_DS_SCHE_DATE,
+				
+				t.DEV_DD_SCHE_DATE,
+				
+				t.PSG_DS_SCHE_DATE,
+				
+				t.PSG_IS_SCHE_DATE,
+				
+				t.PSG_COMP_DATE,
+				
+				t.DEV_COMP_DATE,
+				
+				t.APPLYING_FEEDBACK_DATE,
+				
+				t.PSG_DS_COMP_DATE,
+				
+				t.PSG_IS_COMP_DATE,
+				
+				t.DEV_DS_COMP_DATE,
+				
+				t.DEV_DD_COMP_DATE,
+				
+				t.FEEDBACK_CONFIRM_DATE,
+				
+				t.COMMENTS,
+				
+				t.ARCHIVE_DATE,
+				
+				t.ARCHIVE_USERID
+
+
+
+<!-- 		, -->
+<!-- 			<isNotEmpty property="supportLeader.userid"> -->
+<!-- 			u.username  SUPPORT_LEADER_NAME , -->
+<!-- 			u.mobilephone SUPPORT_LEADER_MOBILEPHONE, -->
+<!-- 		</isNotEmpty> -->
+<!-- 		<isEmpty property="supportLeader.userid"> -->
+<!-- 			'' SUPPORT_LEADER_NAME , -->
+<!-- 			'' SUPPORT_LEADER_MOBILEPHONE, -->
+<!-- 		</isEmpty> -->
+<!-- 		<isNotEmpty property="applicant.userid"> -->
+<!-- 			a.username  APPLICANT_NAME, -->
+<!-- 			a.mobilephone APPLICANT_MOBILEPHONE -->
+<!-- 		</isNotEmpty> -->
+<!-- 		<isEmpty property="applicant.userid"> -->
+<!-- 			''  APPLICANT_NAME, -->
+<!-- 			'' APPLICANT_MOBILEPHONE -->
+<!-- 		</isEmpty> -->
+		 from T_TS_TECH_SUPPORT t 
+		
+		 <dynamic prepend="">
+		 	
+<!-- 		 	 <isNotEmpty prepend="," property="supportLeader.userid"> -->
+<!-- 		 	 t_user u -->
+<!-- 			 </isNotEmpty> -->
+<!-- 			 <isNotEmpty prepend="," property="applicant.userid"> -->
+<!-- 			 	t_user a  -->
+<!-- 			 </isNotEmpty> -->
+			<include refid="SupportTicketFrom"/>
+		 </dynamic>
+		where 1=1
+		
+		<dynamic prepend="">
+			<include refid="SupportTicketPageWhere"/>	
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	
+	<select id="SupportTicket.getListForPageCount" parameterClass="map" resultClass="Integer">
+		select count(distinct t.st_no) from T_TS_TECH_SUPPORT t
+		<dynamic prepend="">
+		 	<include refid="SupportTicketFrom"/>
+<!-- 		 	 <isNotEmpty prepend="," property="supportLeader.userid"> -->
+<!-- 		 		 t_user u -->
+<!-- 			 </isNotEmpty> -->
+<!-- 			 <isNotEmpty prepend="," property="applicant.userid"> -->
+<!-- 			 	t_user a  -->
+<!-- 			 </isNotEmpty> -->
+		 </dynamic>
+		where 1=1 
+		<dynamic prepend="">
+			<include refid="SupportTicketPageWhere"/>	
+		</dynamic>
+	</select>
+</sqlMap>

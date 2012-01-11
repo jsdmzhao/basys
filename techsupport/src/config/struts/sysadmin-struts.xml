@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <package name="sysadmin" extends="json-default" namespace="/sysadmin">
+    <action name="*_onlineUsers" method="{1}" class="onlineUsersAction">
+      <result type="json"/>
+    </action>
+    <action name="*_loginlog" method="{1}" class="loginlogAction">
+      <result type="json"/>
+    </action>
+    <action name="*_department" method="{1}" class="departmentAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dict" method="{1}" class="dictAction">
+      <result type="json"/>
+    </action>
+    <action name="*_dict_item" method="{1}" class="dict_itemAction">
+      <result type="json"/>
+    </action>
+    <action name="*_function" method="{1}" class="functionAction">
+      <result type="json"/>
+    </action>
+    <action name="*_globalpar" method="{1}" class="globalparAction">
+      <result type="json"/>
+    </action>
+    <action name="*_menu" method="{1}" class="menuAction">
+      <result type="json"/>
+    </action>
+    <action name="*_param" method="{1}" class="paramAction">
+      <result type="json"/>
+    </action>
+    <action name="*_role" method="{1}" class="roleAction">
+      <result type="json"/>
+    </action>
+    <action name="*_role_func" method="{1}" class="role_funcAction">
+      <result type="json"/>
+    </action>
+    <action name="*_system" method="{1}" class="systemAction">
+      <result type="json"/>
+    </action>
+    <action name="*_user" method="{1}" class="userAction">
+      <result type="json"/>
+    </action>
+    <action name="*_tree" method="{1}" class="treeAction">
+      <result type="json"/>
+    </action>
+       <action name="*_login" method="{1}" class="loginAction">
+      <result type="json"/>
+    </action>
+       <action name="*_operatelog" method="{1}" class="operatelogAction">
+      <result type="json"/>
+    </action>
+      <action name="*" class="com.aisino2.core.web.BaseAction">
+            <result>/login.jsp</result>
+       </action>
+  </package>
+  
+  
+    <package name="sysadminDefault" extends="struts-default" namespace="/sysadminDefault">
+     <action name="*_tree" method="{1}" class="treeAction">
+         <result name="deptTree">/basic/sysadmin/tree/deptTree.jsp</result>
+         <result name="deptTreeUser_role">/basic/sysadmin/tree/deptTreeUser_role.jsp</result>
+         <result name="deptTreeRole">/basic/sysadmin/tree/deptTreeRole.jsp</result>
+         <result name="systemTree">/basic/sysadmin/tree/systemTree.jsp</result>
+         <result name="menuTree">/basic/sysadmin/tree/menuTree.jsp</result>
+         <result name="roleMenuTree">/basic/sysadmin/tree/roleMenuTree.jsp</result>
+         <result name="dictAll">/basic/sysadmin/tree/dictAll.jsp</result>
+         <result name="dictItemTree">/basic/sysadmin/tree/dictItemTree.jsp</result>
+         <result name="paramAll">/basic/sysadmin/tree/paramAll.jsp</result>
+         <result name="roleAll">/basic/sysadmin/tree/roleAll.jsp</result>
+    </action>
+    <action name="*_department" method="{1}" class="departmentAction">
+			<result name="success">/basic/sysadmin/DepartmentMan.jsp</result>
+    </action>
+    <action name="*_dict_item" method="{1}" class="dict_itemAction">
+      <result name="success">/basic/sysadmin/Dict_itemMan.jsp</result>
+    </action>
+      <action name="*_loginlog" method="{1}" class="loginlogAction">
+    </action>
+        <action name="*_function" method="{1}" class="functionAction">
+			<result name="success">/basic/sysadmin/FunctionMan.jsp</result>
+			<result name="roleFunc">/basic/sysadmin/FuncMultiple.jsp</result>
+    </action>
+       <action name="*_globalpar" method="{1}" class="globalparAction">
+    </action>
+     <action name="*_menu" method="{1}" class="menuAction">
+			<result name="success">/basic/sysadmin/MenuMan.jsp</result>
+    </action>
+      <action name="*_param" method="{1}" class="paramAction">
+			<result name="success">/basic/sysadmin/RolecsszMan.jsp</result>
+    </action>
+        <action name="*_role" method="{1}" class="roleAction">
+        <result name="success">/basic/sysadmin/RoleMan.jsp</result>
+    </action>
+       <action name="*_system" method="{1}" class="systemAction">
+			<result name="success">/basic/sysadmin/SystemMan.jsp</result>
+    </action>
+      <action name="*_user" method="{1}" class="userAction">
+			<result name="userMan">/basic/sysadmin/UserMan.jsp</result>
+			<result name="userRole">/basic/sysadmin/UserDeptRole.jsp</result>
+			<result name="roleUser">/basic/sysadmin/RoleDeptUser.jsp</result>
+    </action>
+      <action name="*" class="com.aisino2.core.web.BaseAction">
+            <result>/login.jsp</result>
+       </action>
+    </package>
+    <!-- 暂时注释掉
+  	<package name="sysadmin" extends="json-default" namespace="/sysadmin">
+	    <action name="*_operatelog" method="{1}" class="operatelogAction">
+	      <result type="json"/>
+	    </action>
+  	</package>-->
+  
+</struts>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftps>
+	<ftp name="全国在逃简项">
+		<type>download</type>
+		<ip>localhost</ip>
+		<port>21</port>
+		<user>snake</user>
+		<password>snake</password>
+		<path>/qgzt/</path>
+		<download>qgztjx</download>
+		<downdays>0</downdays>
+		<filepostfix>_简项数据.zip</filepostfix>
+		<filedays>-1</filedays>
+		<filepath>d:\qgzt</filepath>
+	</ftp>
+</ftps>

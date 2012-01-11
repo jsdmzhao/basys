@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="role_func" type="com.aisino2.sysadmin.domain.Role_func"/>
+	  <typeAlias alias="function" type="com.aisino2.sysadmin.domain.Function"/>
+	    <typeAlias alias="role" type="com.aisino2.sysadmin.domain.Role"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--角色功能(t_role_func)-->
+	<resultMap id="role_funcResult" class="role_func">
+		<result property="roleid" column="roleid" />
+		<result property="funccode" column="funccode" />
+		<result property="param" column="param" />
+	</resultMap>
+	<!--角色功能(t_role_func)-->
+	<resultMap id="role_funcListResult" class="role_func">
+		<result property="roleid" column="roleid"/>
+		<result property="funccode" column="funccode"/>
+		<result property="param" column="param"/>
+	</resultMap>
+		<!--功能(t_function)-->
+	<resultMap id="functionResult" class="function">
+		<result property="funccode" column="funccode" />
+		<result property="systemcode" column="systemcode" />
+		<result property="funcname" column="funcname" />
+		<result property="funcdefine" column="funcdefine" />
+		<result property="functype" column="functype" />
+		<result property="systemname" column="systemname" />
+	</resultMap>
+	<!-- list用到 -->
+	  <resultMap id="roleFunctionResult" class="role_func">
+    <result property="roleid" column="roleid"/>
+    <result property="funccode" column="funccode"/>
+    <result property="funcname" column="funcname"/>
+    <result property="functype" column="functype"/>
+    <result property="systemcode" column="systemcode"/>
+    <!--  
+    <result property="param" column="param"/>
+    <result property="function.funcname" column="funcname"/>
+    <result property="function.system.systemname" column="systemname"/>
+    -->
+  </resultMap>
+	<sql id="t_role_funcWhere">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="funccode">
+				a.funccode=#funccode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_role_funcPageWhere" >
+		<include refid="t_role_funcWhere" />	</sql>
+	<sql id="t_role_funcListWhere" >
+		<include refid="t_role_funcWhere" />	</sql>
+	<sql id="t_role_funcSelectWhere"  >
+		<include refid="t_role_funcWhere" />	</sql>
+	<!--角色功能(t_role_func)-->
+	<insert id="insertRole_func"  parameterClass="role_func">
+		insert into t_role_func (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				roleid
+			</isNotNull>
+			<isNotNull prepend="," property="funccode">
+				funccode
+			</isNotNull>
+			<isNotNull prepend="," property="param">
+				param
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="roleid">
+				#roleid#
+			</isNotNull>
+			<isNotNull prepend="," property="funccode">
+				#funccode#
+			</isNotNull>
+			<isNotNull prepend="," property="param">
+				#param#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--角色功能(t_role_func)-->
+	<update id="updateRole_func" parameterClass="role_func">
+		update t_role_func a set roleid=roleid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="funccode">
+				funccode=#funccode#
+			</isNotNull>
+			<isNotNull prepend="," property="param">
+				param=#param#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_funcWhere" />
+		</dynamic>
+	</update>
+	<!--角色功能(t_role_func)-->
+	<delete id="deleteRole_func" parameterClass="role_func">
+		delete from t_role_func a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_role_funcWhere" />
+		</dynamic>
+	</delete>
+	<!--角色功能(t_role_func)-->
+	<select id="getRole_funcList" resultMap="role_funcListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.roleid roleid,a.funccode funccode,a.param param
+		from t_role_func a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_funcPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--角色功能(t_role_func)-->
+	<select id="getRole_funcListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_role_func a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_funcPageWhere" />
+		</dynamic>
+	</select>
+	<!--角色功能(t_role_func)-->
+	<select id="getRole_funcListNoPage" resultMap="role_funcListResult" parameterClass="role_func">
+		select a.roleid roleid,a.funccode funccode,a.param param
+		from t_role_func a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_funcListWhere" />
+		</dynamic>
+		order by a.roleid,a.funccode
+	</select>
+	<!--角色功能(t_role_func)-->
+	<select id="getRole_func" resultMap="role_funcResult" parameterClass="role_func">
+		select a.roleid roleid,a.funccode funccode,a.param param
+		from t_role_func a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_funcSelectWhere" />
+		</dynamic>
+		order by a.roleid,a.funccode
+	</select>
+	
+	  <select id="getRoleFuncParam" resultClass="java.lang.String" parameterClass="role_func">
+   select distinct param from t_role_func rf,t_function f,t_user_role r where rf.roleid=r.roleid and r.userid=#userid# and rf.funccode=f.funccode and f.funcdefine=#funcdefine# 
+   </select>
+	
+ <select id="getFunctionListNotInRole"  resultClass="function" parameterClass="role_func">
+  <![CDATA[select f.funccode as funccode,f.systemcode as systemcode,f.funcname as funcname,
+  f.funcdefine as funcdefine ,f.functype as functype,
+  s.systemName as "systemname" from t_function f ,t_system s
+   where not exists(select funccode from t_role_func rf where  f.funccode=rf.funccode 
+   and rf.roleid=#roleid# ) and f.systemcode=s.systemcode ]]>
+    <dynamic prepend="and">
+     <isNotEmpty prepend="and" property="systemcode">
+      f.systemcode=#systemcode#
+     </isNotEmpty>
+   </dynamic>
+       <dynamic prepend="and">
+     <isNotEmpty prepend="and" property="systemcode">
+     s.systemcode=#systemcode#
+     </isNotEmpty>
+   </dynamic>
+  </select>
+	<delete id="deleteRoleFunctionByFunction" parameterClass="function">
+    delete from t_role_func where funccode=#funccode#
+  </delete>
+  <delete id="deleteRoleFunctionByRole" parameterClass="role">
+    delete from t_role_func where roleid=#roleid#
+  </delete>
+   <update id="updateRoleFunctionParam"  parameterClass="role_func">
+    update  t_role_func set param=#param# where funccode=#funccode# and roleid=#roleid#
+  </update>
+    <select id="getRoleFunctionList" resultMap="roleFunctionResult" parameterClass="map">
+   <![CDATA[select tf.funcCode,roleID,param ,funcName,f.functype,s.systemcode ,systemname from t_role_func tf,t_function f ,T_system s where roleID=#roleid# and tf.funccode=f.funccode and f.systemcode=s.systemcode]]>
+  </select>
+     <select id="getRoleFunctionListCount" resultClass="int" parameterClass="map">
+   select count(1)  from t_role_func where roleID=#roleid#
+   </select>
+</sqlMap>

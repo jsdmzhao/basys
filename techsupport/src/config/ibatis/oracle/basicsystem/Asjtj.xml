@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="asjtj" type="com.aisino2.basicsystem.domain.Asjtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--案事件管理(t_asjgl)-->
+	<resultMap id="asjtjResult" class="asjtj">
+	    <result property="xsajs" column="xsajs"/>
+		<result property="zzajs" column="zzajs"/>
+		<result property="fazs" column="fazs"/>
+		<result property="xsajsT" column="xsajsT"/>
+		<result property="zzajsT" column="zzajsT"/>
+		<result property="fazsT" column="fazsT"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+	</resultMap>
+	
+	<sql id="t_asjtjWhere">
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="qybm">
+				a.qybm=#qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+	</sql>
+	<select id="getAsjtjList" resultMap="asjtjResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select 
+		  NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then (a.xsajs+a.zzajs) end),'0') as fazsT,
+		  NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.xsajs end),'0') as xsajsT,
+		  NVL(sum(case when a.tjrq &lt; #jzrq:DATE#+1 then a.zzajs end),'0') as zzajsT,
+		  NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then (a.xsajs+a.zzajs) end),'0') as fazs,
+		  NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.xsajs end),'0') as xsajs,
+		  NVL(sum(case when a.tjrq &gt;=#qsrq:DATE# and a.tjrq &lt; #jzrq:DATE#+1 then a.zzajs end),'0') as zzajs
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_asjtj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjtjWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<select id="getAsjtjListCount" resultClass="int" parameterClass="map">
+		select count(1) from 
+		(select sum(xsajs) from t_asjtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_asjtjWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>)
+	</select>
+</sqlMap>

@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="st_device" type="com.aisino2.icksystem.domain.St_device"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--无线终端设备(ST_DEVICE)-->
+	<resultMap id="st_deviceResult" class="st_device">
+		<result property="dev_serial" column="dev_serial" />
+		<result property="dev_name" column="dev_name" />
+		<result property="dev_ip" column="dev_ip" />
+		<result property="dev_password" column="dev_password" />
+		<result property="dev_log" column="dev_log" />
+		<result property="dev_devrulezuc" column="dev_devrulezuc" />
+		<result property="dev_devrulezuo" column="dev_devrulezuo" />
+		<result property="gly_no" column="gly_no" />
+		<result property="dev_update" column="dev_update" />
+		<result property="dev_devrulezul" column="dev_devrulezul" />
+		<result property="com" column="com" />
+		<result property="port" column="port" />
+		<result property="btl" column="btl" />
+		<result property="xs" column="xs" />
+		<result property="gly_psw" column="gly_psw" />
+		<result property="dw_sj" column="dw_sj" />
+		<result property="parent" column="parent" />
+		<result property="mac" column="mac" />
+		<result property="tjkq" column="tjkq" />
+		<result property="on_line" column="on_line" />
+		<result property="run_state" column="run_state" />
+		<result property="note_ok" column="note_ok" />
+		<result property="da_update" column="da_update" />
+		<result property="notice_serial" column="notice_serial" />
+		<result property="dev_cpu" column="dev_cpu" />
+		<result property="dev_os" column="dev_os" />
+		<result property="flow_rate" column="flow_rate" />
+		<result property="csbm" column="csbm" />
+		<result property="savetime" column="savetime" />
+		<result property="max_flow_no" column="max_flow_no" />
+		<result property="dev_version" column="dev_version" />
+		<result property="dev_up" column="dev_up" />
+		<result property="qyid" column="qyid" />
+		<result property="parentName" column="parentName" />
+		<result property="qymc" column="qymc" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		
+
+	</resultMap>
+	<!--无线终端设备Page(ST_DEVICE)-->
+	<resultMap id="st_deviceListPageResult" class="st_device">
+		<result property="dev_serial" column="dev_serial"/>
+		<result property="dev_name" column="dev_name"/>
+		<result property="dev_ip" column="dev_ip"/>
+		<result property="dev_password" column="dev_password"/>
+		<result property="dev_log" column="dev_log"/>
+		<result property="dev_devrulezuc" column="dev_devrulezuc"/>
+		<result property="dev_devrulezuo" column="dev_devrulezuo"/>
+		<result property="gly_no" column="gly_no"/>
+		<result property="dev_update" column="dev_update"/>
+		<result property="dev_devrulezul" column="dev_devrulezul"/>
+		<result property="com" column="com"/>
+		<result property="port" column="port"/>
+		<result property="btl" column="btl"/>
+		<result property="xs" column="xs"/>
+		<result property="gly_psw" column="gly_psw"/>
+		<result property="dw_sj" column="dw_sj"/>
+		<result property="parent" column="parent"/>
+		<result property="mac" column="mac"/>
+		<result property="tjkq" column="tjkq"/>
+		<result property="on_line" column="on_line"/>
+		<result property="run_state" column="run_state"/>
+		<result property="note_ok" column="note_ok"/>
+		<result property="da_update" column="da_update"/>
+		<result property="notice_serial" column="notice_serial"/>
+		<result property="dev_cpu" column="dev_cpu"/>
+		<result property="dev_os" column="dev_os"/>
+		<result property="flow_rate" column="flow_rate"/>
+		<result property="csbm" column="csbm"/>
+		<result property="savetime" column="savetime"/>
+		<result property="max_flow_no" column="max_flow_no"/>
+		<result property="dev_version" column="dev_version"/>
+		<result property="dev_up" column="dev_up"/>
+		<result property="qyid" column="qyid"/>
+		<result property="qymc" column="qymc"/>
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+	</resultMap>
+	
+	<!--无线终端设备Page(ST_DEVICE)-->
+	<resultMap id="st_deviceListMoRenPageResult" class="st_device">
+		<result property="dev_serial" column="dev_serial"/>
+		<result property="dev_name" column="dev_name"/>
+	</resultMap>
+	
+	<!--无线终端设备(ST_DEVICE)-->
+	<resultMap id="st_deviceListResult" class="st_device">
+		<result property="dev_serial" column="dev_serial"/>
+		<result property="dev_name" column="dev_name"/>
+		<result property="dev_ip" column="dev_ip"/>
+		<result property="dev_password" column="dev_password"/>
+		<result property="dev_log" column="dev_log"/>
+		<result property="dev_devrulezuc" column="dev_devrulezuc"/>
+		<result property="dev_devrulezuo" column="dev_devrulezuo"/>
+		<result property="gly_no" column="gly_no"/>
+		<result property="dev_update" column="dev_update"/>
+		<result property="dev_devrulezul" column="dev_devrulezul"/>
+		<result property="com" column="com"/>
+		<result property="port" column="port"/>
+		<result property="btl" column="btl"/>
+		<result property="xs" column="xs"/>
+		<result property="gly_psw" column="gly_psw"/>
+		<result property="dw_sj" column="dw_sj"/>
+		<result property="parent" column="parent"/>
+		<result property="mac" column="mac"/>
+		<result property="tjkq" column="tjkq"/>
+		<result property="on_line" column="on_line"/>
+		<result property="run_state" column="run_state"/>
+		<result property="note_ok" column="note_ok"/>
+		<result property="da_update" column="da_update"/>
+		<result property="notice_serial" column="notice_serial"/>
+		<result property="dev_cpu" column="dev_cpu"/>
+		<result property="dev_os" column="dev_os"/>
+		<result property="flow_rate" column="flow_rate"/>
+		<result property="csbm" column="csbm"/>
+		<result property="savetime" column="savetime"/>
+		<result property="max_flow_no" column="max_flow_no"/>
+		<result property="dev_version" column="dev_version"/>
+		<result property="dev_up" column="dev_up"/>
+		<result property="qyid" column="qyid"/>
+	   <result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		
+	</resultMap>
+	<sql id="ST_DEVICEWhere">
+			<isNotEmpty prepend="and" property="dev_serial">
+				a.dev_serial=#dev_serial#
+			</isNotEmpty>
+	</sql>
+	<sql id="ST_DEVICEPageWhere" >
+		<include refid="ST_DEVICEWhere" />
+		<isNotEmpty prepend="and" property="dev_name">
+				a.dev_name like '%$dev_name$%'
+			</isNotEmpty>
+				<isNotEmpty prepend="and" property="mac">
+				a.mac like '%$mac$%'
+			</isNotEmpty>
+				<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc = #qymc#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csbm">
+				a.csbm  = #csbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dev_ip">
+				a.dev_ip  like '%$dev_ip$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm  = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylb">
+				a.hylb   = #hylb#
+			</isNotEmpty>
+			</sql>
+		
+	<sql id="ST_DEVICEListWhere" >
+		<include refid="ST_DEVICEWhere" />	</sql>
+	<sql id="ST_DEVICESelectWhere"  >
+		<include refid="ST_DEVICEWhere" />	</sql>
+	<!--无线终端设备(ST_DEVICE)-->
+	<insert id="insertSt_device"  parameterClass="st_device">
+		insert into ST_DEVICE (
+		<dynamic prepend="">
+		
+				dev_serial
+		
+			<isNotNull prepend="," property="dev_name">
+				dev_name
+			</isNotNull>
+			<isNotNull prepend="," property="dev_ip">
+				dev_ip
+			</isNotNull>
+			<isNotNull prepend="," property="dev_password">
+				dev_password
+			</isNotNull>
+			<isNotNull prepend="," property="dev_log">
+				dev_log
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuc">
+				dev_devrulezuc
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuo">
+				dev_devrulezuo
+			</isNotNull>
+			<isNotNull prepend="," property="gly_no">
+				gly_no
+			</isNotNull>
+			<isNotNull prepend="," property="dev_update">
+				dev_update
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezul">
+				dev_devrulezul
+			</isNotNull>
+			<isNotNull prepend="," property="com">
+				com
+			</isNotNull>
+			<isNotNull prepend="," property="port">
+				port
+			</isNotNull>
+			<isNotNull prepend="," property="btl">
+				btl
+			</isNotNull>
+			<isNotNull prepend="," property="xs">
+				xs
+			</isNotNull>
+			<isNotNull prepend="," property="gly_psw">
+				gly_psw
+			</isNotNull>
+			<isNotNull prepend="," property="dw_sj">
+				dw_sj
+			</isNotNull>
+			<isNotNull prepend="," property="parent">
+				parent
+			</isNotNull>
+			<isNotNull prepend="," property="mac">
+				mac
+			</isNotNull>
+			<isNotNull prepend="," property="tjkq">
+				tjkq
+			</isNotNull>
+			<isNotNull prepend="," property="on_line">
+				on_line
+			</isNotNull>
+			<isNotNull prepend="," property="run_state">
+				run_state
+			</isNotNull>
+			<isNotNull prepend="," property="note_ok">
+				note_ok
+			</isNotNull>
+			<isNotNull prepend="," property="da_update">
+				da_update
+			</isNotNull>
+			<isNotNull prepend="," property="notice_serial">
+				notice_serial
+			</isNotNull>
+			<isNotNull prepend="," property="dev_cpu">
+				dev_cpu
+			</isNotNull>
+			<isNotNull prepend="," property="dev_os">
+				dev_os
+			</isNotNull>
+			<isNotNull prepend="," property="flow_rate">
+				flow_rate
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm
+			</isNotNull>
+			
+				 , savetime
+			
+			<isNotNull prepend="," property="max_flow_no">
+				max_flow_no
+			</isNotNull>
+			<isNotNull prepend="," property="dev_version">
+				dev_version
+			</isNotNull>
+			<isNotNull prepend="," property="dev_up">
+				dev_up
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+		 SEQ_ST_DEVICE.NEXTVAL
+			<isNotNull prepend="," property="dev_name">
+				#dev_name#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_ip">
+				#dev_ip#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_password">
+				#dev_password#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_log">
+				#dev_log#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuc">
+				#dev_devrulezuc#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuo">
+				#dev_devrulezuo#
+			</isNotNull>
+			<isNotNull prepend="," property="gly_no">
+				#gly_no#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_update">
+				#dev_update:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezul">
+				#dev_devrulezul#
+			</isNotNull>
+			<isNotNull prepend="," property="com">
+				#com#
+			</isNotNull>
+			<isNotNull prepend="," property="port">
+				#port#
+			</isNotNull>
+			<isNotNull prepend="," property="btl">
+				#btl#
+			</isNotNull>
+			<isNotNull prepend="," property="xs">
+				#xs#
+			</isNotNull>
+			<isNotNull prepend="," property="gly_psw">
+				#gly_psw#
+			</isNotNull>
+			<isNotNull prepend="," property="dw_sj">
+				#dw_sj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="parent">
+				#parent#
+			</isNotNull>
+			<isNotNull prepend="," property="mac">
+				#mac#
+			</isNotNull>
+			<isNotNull prepend="," property="tjkq">
+				#tjkq#
+			</isNotNull>
+			<isNotNull prepend="," property="on_line">
+				#on_line:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="run_state">
+				#run_state#
+			</isNotNull>
+			<isNotNull prepend="," property="note_ok">
+				#note_ok#
+			</isNotNull>
+			<isNotNull prepend="," property="da_update">
+				#da_update:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="notice_serial">
+				#notice_serial#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_cpu">
+				#dev_cpu#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_os">
+				#dev_os#
+			</isNotNull>
+			<isNotNull prepend="," property="flow_rate">
+				#flow_rate#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				#csbm#
+			</isNotNull>
+			,trunc(sysdate ,'DD')
+			<isNotNull prepend="," property="max_flow_no">
+				#max_flow_no#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_version">
+				#dev_version#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_up">
+				#dev_up#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--无线终端设备(ST_DEVICE)-->
+	<update id="updateSt_device" parameterClass="st_device">
+		update ST_DEVICE a set a.dev_serial=a.dev_serial
+		<dynamic prepend="">
+			<isNotNull prepend="," property="dev_name">
+				dev_name=#dev_name#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_ip">
+				dev_ip=#dev_ip#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_password">
+				dev_password=#dev_password#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_log">
+				dev_log=#dev_log#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuc">
+				dev_devrulezuc=#dev_devrulezuc#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_devrulezuo">
+				dev_devrulezuo=#dev_devrulezuo#
+			</isNotNull>
+			<isNotNull prepend="," property="gly_no">
+				gly_no=#gly_no#
+			</isNotNull>
+			
+				,dev_update= trunc(sysdate ,'DD')
+		
+			<isNotNull prepend="," property="dev_devrulezul">
+				dev_devrulezul=#dev_devrulezul#
+			</isNotNull>
+			<isNotNull prepend="," property="com">
+				com=#com#
+			</isNotNull>
+			<isNotNull prepend="," property="port">
+				port=#port#
+			</isNotNull>
+			<isNotNull prepend="," property="btl">
+				btl=#btl#
+			</isNotNull>
+			<isNotNull prepend="," property="xs">
+				xs=#xs#
+			</isNotNull>
+			<isNotNull prepend="," property="gly_psw">
+				gly_psw=#gly_psw#
+			</isNotNull>
+			<isNotNull prepend="," property="dw_sj">
+				dw_sj=#dw_sj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="parent">
+				parent=#parent#
+			</isNotNull>
+			<isNotNull prepend="," property="mac">
+				mac=#mac#
+			</isNotNull>
+			<isNotNull prepend="," property="tjkq">
+				tjkq=#tjkq#
+			</isNotNull>
+			<isNotNull prepend="," property="on_line">
+				on_line=#on_line:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="run_state">
+				run_state=#run_state#
+			</isNotNull>
+			<isNotNull prepend="," property="note_ok">
+				note_ok=#note_ok#
+			</isNotNull>
+			<isNotNull prepend="," property="da_update">
+				da_update=#da_update:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="notice_serial">
+				notice_serial=#notice_serial#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_cpu">
+				dev_cpu=#dev_cpu#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_os">
+				dev_os=#dev_os#
+			</isNotNull>
+			<isNotNull prepend="," property="flow_rate">
+				flow_rate=#flow_rate#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm=#csbm#
+			</isNotNull>
+			<isNotNull prepend="," property="savetime">
+				savetime=#savetime:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="max_flow_no">
+				max_flow_no=#max_flow_no#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_version">
+				dev_version=#dev_version#
+			</isNotNull>
+			<isNotNull prepend="," property="dev_up">
+				dev_up=#dev_up#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="ST_DEVICEWhere" />
+		</dynamic>
+	</update>
+	<!--无线终端设备(ST_DEVICE)-->
+	<delete id="deleteSt_device" parameterClass="st_device">
+		delete from ST_DEVICE a where 1=1 
+		<dynamic prepend="">
+			<include refid="ST_DEVICEWhere" />
+		</dynamic>
+	</delete>
+	<!--无线终端设备(ST_DEVICE)-->
+	<select id="getSt_deviceList" resultMap="st_deviceListPageResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.dev_serial dev_serial,a.dev_name dev_name,a.dev_ip dev_ip,a.dev_password dev_password,a.dev_log dev_log,a.dev_devrulezuc dev_devrulezuc,a.dev_devrulezuo dev_devrulezuo,a.gly_no gly_no,a.dev_update dev_update,a.dev_devrulezul dev_devrulezul,a.com com,a.port port,a.btl btl,a.xs xs,a.gly_psw gly_psw,a.dw_sj dw_sj,a.parent parent,a.mac mac,a.tjkq tjkq,a.on_line on_line,a.run_state run_state,a.note_ok note_ok,a.da_update da_update,a.notice_serial notice_serial,a.dev_cpu dev_cpu,a.dev_os dev_os,a.flow_rate flow_rate,a.csbm csbm,a.savetime savetime,a.max_flow_no max_flow_no,a.dev_version dev_version,a.dev_up dev_up,a.qyid qyid
+		,b.qymc,a.hylbdm,a.hylb
+		from ST_DEVICE a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid 
+		<dynamic prepend="">
+			<include refid="ST_DEVICEPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--无线终端设备(ST_DEVICE)-->
+	<select id="getSt_deviceListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+			from ST_DEVICE a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid 
+		<dynamic prepend="">
+			<include refid="ST_DEVICEPageWhere" />
+		</dynamic>
+	</select>
+	<!--无线终端设备(ST_DEVICE)-->
+	<select id="getSt_deviceListNoPage" resultMap="st_deviceListResult" parameterClass="st_device">
+		select a.dev_serial dev_serial,a.dev_name dev_name,a.dev_ip dev_ip,a.dev_password dev_password,a.dev_log dev_log,a.dev_devrulezuc dev_devrulezuc,a.dev_devrulezuo dev_devrulezuo,a.gly_no gly_no,a.dev_update dev_update,a.dev_devrulezul dev_devrulezul,a.com com,a.port port,a.btl btl,a.xs xs,a.gly_psw gly_psw,a.dw_sj dw_sj,a.parent parent,a.mac mac,a.tjkq tjkq,a.on_line on_line,a.run_state run_state,a.note_ok note_ok,a.da_update da_update,a.notice_serial notice_serial,a.dev_cpu dev_cpu,a.dev_os dev_os,a.flow_rate flow_rate,a.csbm csbm,a.savetime savetime,a.max_flow_no max_flow_no,a.dev_version dev_version,a.dev_up dev_up,a.qyid qyid
+		,a.hylbdm,a.hylb
+		from ST_DEVICE a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="ST_DEVICEListWhere" />
+			
+		</dynamic>
+		order by a.dev_serial
+	</select>
+	<!--无线终端设备(ST_DEVICE)-->
+	<select id="getSt_device" resultMap="st_deviceResult" parameterClass="st_device">
+		select a.dev_serial dev_serial,a.dev_name dev_name,a.dev_ip dev_ip,a.dev_password dev_password,a.dev_log dev_log,a.dev_devrulezuc dev_devrulezuc,a.dev_devrulezuo dev_devrulezuo,a.gly_no gly_no,a.dev_update dev_update,a.dev_devrulezul dev_devrulezul,a.com com,a.port port,a.btl btl,a.xs xs,a.gly_psw gly_psw,a.dw_sj dw_sj,a.parent parent,a.mac mac,a.tjkq tjkq,a.on_line on_line,a.run_state run_state,a.note_ok note_ok,a.da_update da_update,a.notice_serial notice_serial,a.dev_cpu dev_cpu,a.dev_os dev_os,a.flow_rate flow_rate,a.csbm csbm,a.savetime savetime,a.max_flow_no max_flow_no,a.dev_version dev_version,a.dev_up dev_up,a.qyid qyid
+		,b.dev_name parentName,c.qymc,a.hylbdm,a.hylb
+		from ST_DEVICE a,ST_DEVICE b ,t_qyjbxx c
+		where 1=1 and a.parent =b.dev_serial and a.qyid=c.qyid 
+		<dynamic prepend="">
+			<include refid="ST_DEVICESelectWhere" />
+		</dynamic>
+		order by a.dev_serial
+	</select>
+	
+	
+	<!--无线终端设备默认服务(ST_DEVICE)-->
+	<select id="getSt_deviceMoRenList" resultMap="st_deviceListMoRenPageResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.dev_serial dev_serial,a.dev_name dev_name
+		from ST_DEVICE a 
+		where 1=1    and a.parent=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepinfuwu">
+			 	 (a.dev_serial like '%$query_simplepinfuwu$%' or
+			 	 a.dev_name like '%$query_simplepinfuwu$%')
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm  = #hylbdm#
+			</isNotEmpty>
+			
+			
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--无线终端设备默认服务(ST_DEVICE)-->
+	<select id="getSt_deviceMoRenListCount" resultClass="int" parameterClass="map">
+		select count(1) a 
+			from ST_DEVICE a 
+			where 1=1    and a.parent=0
+		<dynamic prepend="">
+				<isNotEmpty prepend="and" property="query_simplepinfuwu">
+			 	( a.dev_serial like '%$query_simplepinfuwu$%' or
+			 	 a.dev_name like '%$query_simplepinfuwu$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm  = #hylbdm#
+			</isNotEmpty>
+			
+			
+		</dynamic>
+	</select>
+</sqlMap>

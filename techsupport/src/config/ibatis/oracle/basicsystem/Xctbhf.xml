@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="xctbhf" type="com.aisino2.basicsystem.domain.Xctbhf"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--协查通报回复(t_xctbhf)-->
+	<resultMap id="xctbhfResult" class="xctbhf">
+		<result property="tbid" column="tbid" />
+		<result property="jsdwid" column="jsdwid" />
+		<result property="hfid" column="hfid" />
+		<result property="hfsj" column="hfsj" />
+		<result property="hfnr" column="hfnr" />
+		<result property="hfr" column="hfr" />
+	</resultMap>
+	<!--协查通报回复(t_xctbhf)-->
+	<resultMap id="xctbhfListResult" class="xctbhf">
+		<result property="tbid" column="tbid"/>
+		<result property="jsdwid" column="jsdwid"/>
+		<result property="hfid" column="hfid"/>
+		<result property="hfsj" column="hfsj"/>
+		<result property="hfnr" column="hfnr"/>
+		<result property="hfr" column="hfr"/>
+		<result property="jsdwmc" column="jsdwmc"/>
+		
+	</resultMap>
+	<sql id="t_xctbhfWhere">
+			<isNotEmpty prepend="and" property="tbid">
+				a.tbid=#tbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsdwid">
+				a.jsdwid=#jsdwid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hfid">
+				a.hfid=#hfid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_xctbhfPageWhere" >
+		<include refid="t_xctbhfWhere" />	</sql>
+	<sql id="t_xctbhfListWhere" >
+		<include refid="t_xctbhfWhere" />	</sql>
+	<sql id="t_xctbhfSelectWhere"  >
+		<include refid="t_xctbhfWhere" />	</sql>
+	<!--协查通报回复(t_xctbhf)-->
+	<insert id="insertXctbhf"  parameterClass="xctbhf">
+		insert into t_xctbhf (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				tbid
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwid">
+				jsdwid
+			</isNotNull>
+			<isNotNull prepend="," property="hfid">
+				hfid
+			</isNotNull>
+			<isNotNull prepend="," property="hfsj">
+				hfsj
+			</isNotNull>
+			<isNotNull prepend="," property="hfnr">
+				hfnr
+			</isNotNull>
+			<isNotNull prepend="," property="hfr">
+				hfr
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				#tbid#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwid">
+				#jsdwid#
+			</isNotNull>
+			<isNotNull prepend="," property="hfid">
+				#hfid#
+			</isNotNull>
+			<isNotNull prepend="," property="hfsj">
+				#hfsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hfnr">
+				#hfnr#
+			</isNotNull>
+			<isNotNull prepend="," property="hfr">
+				#hfr#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--协查通报回复(t_xctbhf)-->
+	<update id="updateXctbhf" parameterClass="xctbhf">
+		update t_xctbhf a set a.hfid=a.hfid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="jsdwid">
+				jsdwid=#jsdwid#
+			</isNotNull>
+			<isNotNull prepend="," property="hfid">
+				hfid=#hfid#
+			</isNotNull>
+			<isNotNull prepend="," property="hfsj">
+				hfsj=#hfsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hfnr">
+				hfnr=#hfnr#
+			</isNotNull>
+			<isNotNull prepend="," property="hfr">
+				hfr=#hfr#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbhfWhere" />
+		</dynamic>
+	</update>
+	<!--协查通报回复(t_xctbhf)-->
+	<delete id="deleteXctbhf" parameterClass="xctbhf">
+		delete from t_xctbhf a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_xctbhfWhere" />
+		</dynamic>
+	</delete>
+	<!--协查通报回复(t_xctbhf)-->
+	<select id="getXctbhfList" resultMap="xctbhfListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.jsdwid jsdwid,a.hfid hfid,a.hfsj hfsj,a.hfnr hfnr,a.hfr hfr,c.jsdwmc jsdwmc
+		from t_xctbhf a,t_xctbjsdw c
+		where a.tbid = c.tbid and a.jsdwid = c.jsdwid
+		<dynamic prepend="">
+			<include refid="t_xctbhfPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报回复(t_xctbhf)-->
+	<select id="getXctbhfListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_xctbhf a,t_xctbjsdw c
+		where a.tbid = c.tbid and a.jsdwid = c.jsdwid
+		<dynamic prepend="">
+			<include refid="t_xctbhfPageWhere" />
+		</dynamic>
+	</select>
+	<!--协查通报回复(t_xctbhf)-->
+	<select id="getXctbhfListNoPage" resultMap="xctbhfListResult" parameterClass="xctbhf">
+		select a.tbid tbid,a.jsdwid jsdwid,a.hfid hfid,a.hfsj hfsj,a.hfnr hfnr,a.hfr hfr,,c.jsdwmc jsdwmc
+		from t_xctbhf a,t_xctbjsdw c
+		where a.tbid = c.tbid and a.jsdwid = c.jsdwid
+		<dynamic prepend="">
+			<include refid="t_xctbhfListWhere" />
+		</dynamic>
+		order by a.tbid,a.jsdwid,a.hfid
+	</select>
+	<!--协查通报回复(t_xctbhf)-->
+	<select id="getXctbhf" resultMap="xctbhfResult" parameterClass="xctbhf">
+		select a.tbid tbid,a.jsdwid jsdwid,a.hfid hfid,a.hfsj hfsj,a.hfnr hfnr,a.hfr hfr
+		from t_xctbhf a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbhfSelectWhere" />
+		</dynamic>
+		order by a.tbid,a.jsdwid,a.hfid
+	</select>
+</sqlMap>

@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ryjcxx" type="com.aisino2.publicsystem.domain.Ryjcxx"/>
+		<typeAlias alias="qyryxx" type="com.aisino2.publicsystem.domain.Qyryxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<resultMap id="ryjcxxResult" class="ryjcxx">
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="rycfid" column="rycfid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="ryjcrq" column="ryjcrq" />
+		<result property="cfdjxh" column="cfdjxh" />
+		<result property="cflbbm" column="cflbbm" />
+		<result property="cflb" column="cflb" />
+		<result property="jcmxlbdm" column="jcmxlbdm" />
+		<result property="jcmxlb" column="jcmxlb" />
+		<result property="xzcfpzwh" column="xzcfpzwh" />
+		<result property="pzjgdm" column="pzjgdm" />
+		<result property="pzjg" column="pzjg" />
+		<result property="pzrbh" column="pzrbh" />
+		<result property="pzrxm" column="pzrxm" />
+		<result property="pzrq" column="pzrq" />
+		<result property="zxrbh" column="zxrbh" />
+		<result property="zxrxm" column="zxrxm" />
+		<result property="zxrq" column="zxrq" />
+		<result property="qkms" column="qkms" />
+		<result property="yjly" column="yjly" />
+		<result property="jcfd" column="jcfd" />
+		<result property="scbz" column="scbz" />
+		
+		<result property="zjhm" column="zjhm" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="xm" column="xm" />
+		<result property="xb" column="xb" />
+		<result property="cylb" column="cylb" />
+	</resultMap>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<resultMap id="ryjcxxListResult" class="ryjcxx">
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="rycfid" column="rycfid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="ryjcrq" column="ryjcrq"/>
+		<result property="cfdjxh" column="cfdjxh"/>
+		<result property="cflbbm" column="cflbbm"/>
+		<result property="cflb" column="cflb"/>
+		<result property="jcmxlbdm" column="jcmxlbdm"/>
+		<result property="jcmxlb" column="jcmxlb"/>
+		<result property="xzcfpzwh" column="xzcfpzwh"/>
+		<result property="pzjgdm" column="pzjgdm"/>
+		<result property="pzjg" column="pzjg"/>
+		<result property="pzrbh" column="pzrbh"/>
+		<result property="pzrxm" column="pzrxm"/>
+		<result property="pzrq" column="pzrq"/>
+		<result property="zxrbh" column="zxrbh"/>
+		<result property="zxrxm" column="zxrxm"/>
+		<result property="zxrq" column="zxrq"/>
+		<result property="qkms" column="qkms"/>
+		<result property="yjly" column="yjly"/>
+		<result property="jcfd" column="jcfd"/>
+		<result property="scbz" column="scbz" />
+	</resultMap>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<resultMap id="ryjcxxListResults" class="ryjcxx">
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="rycfid" column="rycfid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="ryjcrq" column="ryjcrq"/>
+		<result property="cfdjxh" column="cfdjxh"/>
+		<result property="cflbbm" column="cflbbm"/>
+		<result property="cflb" column="cflb"/>
+		<result property="jcmxlbdm" column="jcmxlbdm"/>
+		<result property="jcmxlb" column="jcmxlb"/>
+		<result property="xzcfpzwh" column="xzcfpzwh"/>
+		<result property="pzjgdm" column="pzjgdm"/>
+		<result property="pzjg" column="pzjg"/>
+		<result property="pzrbh" column="pzrbh"/>
+		<result property="pzrxm" column="pzrxm"/>
+		<result property="pzrq" column="pzrq"/>
+		<result property="zxrbh" column="zxrbh"/>
+		<result property="zxrxm" column="zxrxm"/>
+		<result property="zxrq" column="zxrq"/>
+		<result property="qkms" column="qkms"/>
+		<result property="yjly" column="yjly"/>
+		<result property="jcfd" column="jcfd"/>
+		<result property="scbz" column="scbz" />
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="zjhm" column="zjhm" />
+		<result property="xb" column="xb" />
+		<result property="xm" column="xm" />
+		<result property="cylb" column="cylb" />
+		<result property="cyrybh" column="cyrybh" />
+	</resultMap>
+	
+	<!--企业人员信息(t_qyryxx)-->
+	<resultMap id="qyryxxListResult" class="qyryxx">
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="cyrylbdm" column="cyrylbdm" />
+		<result property="cyrylbmc" column="cyrylbmc" />
+		<result property="xm" column="xm" />
+		<result property="qm" column="qm" />
+		<result property="bm" column="bm" />
+		<result property="xmpy" column="xmpy" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="mzdm" column="mzdm" />
+		<result property="minzu" column="minzu" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="csrq" column="csrq" />
+		<result property="hyzkdm" column="hyzkdm" />
+		<result property="hyzk" column="hyzk" />
+		<result property="shengao" column="shengao" />
+		<result property="tizh" column="tizh" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="zzzhm" column="zzzhm" />
+		<result property="zzdz" column="zzdz" />
+		<result property="gwbh" column="gwbh" />
+		<result property="gwmc" column="gwmc" />
+		<result property="gwzrms" column="gwzrms" />
+		<result property="shouji" column="shouji" />
+		<result property="lxdh" column="lxdh" />
+		<result property="jjlxr" column="jjlxr" />
+		<result property="jjlxrdh" column="jjlxrdh" />
+		<result property="gzdm" column="gzdm" />
+		<result property="gz" column="gz" />
+		<result property="zhiwu" column="zhiwu" />
+		<result property="rzrq" column="rzrq" />
+		<result property="cyryztdm" column="cyryztdm" />
+		<result property="cyryzt" column="cyryzt" />
+		<result property="zxr" column="zxr" />
+		<result property="zxbz" column="zxbz" />
+		<result property="zxsj" column="zxsj" />
+		<result property="lrsj" column="lrsj" />
+		<result property="lrr" column="lrr" />
+		<result property="lrdwbm" column="lrdwbm" />
+		<result property="lrdwmc" column="lrdwmc" />
+		<result property="hcdw" column="hcdw" />
+		<result property="hcr" column="hcr" />
+		<result property="hcsj" column="hcsj" />
+		<result property="zxyy" column="zxyy" />
+		<result property="zkzt" column="zkzt" />
+		<result property="bcsj" column="bcsj" />
+		<result property="dcbs" column="dcbs" />
+		<result property="bz" column="bz" />
+		<result property="scbz" column="scbz" />
+		<result property="biduiflag" column="biduiflag" />
+		<result property="zpwtgyy" column="zpwtgyy" />
+		<result property="zt" column="zt" />
+		
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	
+	
+	<sql id="t_ryjcxxWhere">
+		
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rycfid">
+				a.rycfid=#rycfid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+		
+			
+	</sql>
+	
+	
+	
+		<sql id="t_rycfxxOneWhere">
+			<isNotEmpty prepend="and" property="rycfid">
+				a.rycfid=#rycfid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_rycfxxForRyWhere">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm=#xm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+	</sql>
+	
+	
+	
+	
+	
+	
+	<sql id="t_ryjcxxPageWhere" >
+		<include refid="t_ryjcxxWhere" />	</sql>
+	<sql id="t_ryjcxxListWhere" >
+		<include refid="t_ryjcxxWhere" />	</sql>
+	<sql id="t_ryjcxxSelectWhere"  >
+		<include refid="t_ryjcxxWhere" />	</sql>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<insert id="insertRyjcxx"  parameterClass="ryjcxx">
+		insert into t_ryjcxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="rycfid">
+				rycfid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="ryjcrq">
+				ryjcrq
+			</isNotNull>
+			<isNotNull prepend="," property="cfdjxh">
+				cfdjxh
+			</isNotNull>
+			<isNotNull prepend="," property="cflbbm">
+				cflbbm
+			</isNotNull>
+			<isNotNull prepend="," property="cflb">
+				cflb
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlbdm">
+				jcmxlbdm
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlb">
+				jcmxlb
+			</isNotNull>
+			<isNotNull prepend="," property="xzcfpzwh">
+				xzcfpzwh
+			</isNotNull>
+			<isNotNull prepend="," property="pzjgdm">
+				pzjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="pzjg">
+				pzjg
+			</isNotNull>
+			<isNotNull prepend="," property="pzrbh">
+				pzrbh
+			</isNotNull>
+			<isNotNull prepend="," property="pzrxm">
+				pzrxm
+			</isNotNull>
+			<isNotNull prepend="," property="pzrq">
+				pzrq
+			</isNotNull>
+			<isNotNull prepend="," property="zxrbh">
+				zxrbh
+			</isNotNull>
+			<isNotNull prepend="," property="zxrxm">
+				zxrxm
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				zxrq
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				qkms
+			</isNotNull>
+			<isNotNull prepend="," property="yjly">
+				yjly
+			</isNotNull>
+			<isNotNull prepend="," property="jcfd">
+				jcfd
+			</isNotNull>
+				<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+			
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="rycfid">
+				#rycfid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="ryjcrq">
+				#ryjcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cfdjxh">
+				#cfdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="cflbbm">
+				#cflbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cflb">
+				#cflb#
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlbdm">
+				#jcmxlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlb">
+				#jcmxlb#
+			</isNotNull>
+			<isNotNull prepend="," property="xzcfpzwh">
+				#xzcfpzwh#
+			</isNotNull>
+			<isNotNull prepend="," property="pzjgdm">
+				#pzjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="pzjg">
+				#pzjg#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrbh">
+				#pzrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrxm">
+				#pzrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrq">
+				#pzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrbh">
+				#zxrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrxm">
+				#zxrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				#zxrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				#qkms#
+			</isNotNull>
+			<isNotNull prepend="," property="yjly">
+				#yjly#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfd">
+				#jcfd#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<update id="updateRyjcxx" parameterClass="ryjcxx">
+		update t_ryjcxx a set a.rycfid=a.rycfid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="ryjcrq">
+				ryjcrq=#ryjcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cfdjxh">
+				cfdjxh=#cfdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="cflbbm">
+				cflbbm=#cflbbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cflb">
+				cflb=#cflb#
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlbdm">
+				jcmxlbdm=#jcmxlbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcmxlb">
+				jcmxlb=#jcmxlb#
+			</isNotNull>
+			<isNotNull prepend="," property="xzcfpzwh">
+				xzcfpzwh=#xzcfpzwh#
+			</isNotNull>
+			<isNotNull prepend="," property="pzjgdm">
+				pzjgdm=#pzjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="pzjg">
+				pzjg=#pzjg#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrbh">
+				pzrbh=#pzrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrxm">
+				pzrxm=#pzrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="pzrq">
+				pzrq=#pzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrbh">
+				zxrbh=#zxrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrxm">
+				zxrxm=#zxrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				zxrq=#zxrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qkms">
+				qkms=#qkms#
+			</isNotNull>
+			<isNotNull prepend="," property="yjly">
+				yjly=#yjly#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfd">
+				jcfd=#jcfd#
+			</isNotNull>
+				<isNotNull prepend="," property="scbz">
+				scbz=#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="dcbs">
+				dcbs=#dcbs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+		
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<include refid="t_rycfxxOneWhere" />
+		</dynamic>
+	</update>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<delete id="deleteRyjcxx" parameterClass="ryjcxx">
+		delete from t_ryjcxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_rycfxxOneWhere" />
+		</dynamic>
+	</delete>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<select id="getRyjcxxList" resultMap="ryjcxxListResults" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.ryid ryid,a.rycfid rycfid,a.hylbdm hylbdm,a.hylb hylb,a.ryjcrq ryjcrq,a.cfdjxh cfdjxh,a.cflbbm cflbbm,
+		a.cflb cflb,a.jcmxlbdm jcmxlbdm,a.jcmxlb jcmxlb,a.xzcfpzwh xzcfpzwh,a.pzjgdm pzjgdm,a.pzjg pzjg,a.pzrbh pzrbh,a.pzrxm pzrxm,
+		a.pzrq pzrq,a.zxrbh zxrbh,a.zxrxm zxrxm,a.zxrq zxrq,a.qkms qkms,a.yjly yjly,a.jcfd jcfd,a.scbz,b.qybm,b.qymc,b.gxdwmc,c.xm,c.zjhm,c.xb,c.cylb,c.cyrybh
+		from t_ryjcxx a, t_qyjbxx b, t_qyryxx c
+		where a.qyid=b.qyid and a.ryid=c.ryid and a.scbz=0
+		<dynamic prepend="">
+		    <isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				c.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				c.cylbdm = #cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="xm">
+				c.xm = #xm#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="cflbbm">
+				a.cflbbm = #cflbbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcmxlbdm">
+				a.jcmxlbdm = #jcmxlbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryjcrqf">
+				a.ryjcrq &gt;=#ryjcrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryjcrqt">
+				a.ryjcrq &lt; #ryjcrqt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '%$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				c.zjhm=#zjhm#
+			</isNotEmpty>
+			<include refid="t_ryjcxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<select id="getRyjcxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ryjcxx a, t_qyjbxx b, t_qyryxx c
+			where a.qyid=b.qyid and a.ryid=c.ryid and a.scbz=0
+		<dynamic prepend="">
+		    <isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="xm">
+				c.xm = #xm#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="cflbbm">
+				a.cflbbm = #cflbbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcmxlbdm">
+				a.jcmxlbdm = #jcmxlbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryjcrqf">
+				a.ryjcrq &gt;=#ryjcrqf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryjcrqt">
+				a.ryjcrq &lt; #ryjcrqt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '%$gxdwbm$%'
+			</isNotEmpty>
+			<include refid="t_ryjcxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<select id="getRyjcxxListNoPage" resultMap="ryjcxxListResult" parameterClass="ryjcxx">
+		select a.qyid qyid,a.ryid ryid,a.rycfid rycfid,a.hylbdm hylbdm,a.hylb hylb,a.ryjcrq ryjcrq,a.cfdjxh cfdjxh,a.cflbbm cflbbm,a.cflb cflb,a.jcmxlbdm jcmxlbdm,a.jcmxlb jcmxlb,a.xzcfpzwh xzcfpzwh,a.pzjgdm pzjgdm,a.pzjg pzjg,a.pzrbh pzrbh,a.pzrxm pzrxm,a.pzrq pzrq,a.zxrbh zxrbh,a.zxrxm zxrxm,a.zxrq zxrq,a.qkms qkms,a.yjly yjly,a.jcfd jcfd
+			,a.scbz
+		from t_ryjcxx a
+		where 1=1 and a.scbz=0
+		<dynamic prepend="">
+		    <isNotEmpty prepend="and" property="dcbs">
+				a.dcbs=#dcbs#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pzjgdm">
+				a.pzjgdm like '%$pzjgdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			<include refid="t_ryjcxxListWhere" />
+		</dynamic>
+		order by a.qyid,a.ryid,a.rycfid
+	</select>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<select id="getRyjcxx" resultMap="ryjcxxResult" parameterClass="ryjcxx">
+		select a.qyid qyid,a.ryid ryid,a.rycfid rycfid,a.hylbdm hylbdm,a.hylb hylb,a.ryjcrq ryjcrq,a.cfdjxh cfdjxh,a.cflbbm cflbbm,a.cflb cflb,a.jcmxlbdm jcmxlbdm,a.jcmxlb jcmxlb,a.xzcfpzwh xzcfpzwh,a.pzjgdm pzjgdm,a.pzjg pzjg,a.pzrbh pzrbh,a.pzrxm pzrxm,a.pzrq pzrq,a.zxrbh zxrbh,a.zxrxm zxrxm,a.zxrq zxrq,a.qkms qkms,a.yjly yjly,a.jcfd jcfd
+			,a.scbz,b.qymc,b.qybm,c.xm,c.xb,c.cyrybh,c.zjhm,c.cylb
+		from t_ryjcxx a, t_qyjbxx b, t_qyryxx c
+		where a.qyid=b.qyid and a.ryid=c.ryid and a.scbz=0
+		<dynamic prepend="">
+			<include refid="t_rycfxxOneWhere" />
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.ryid,a.rycfid
+	</select>
+	<!-- 下面是对人员处罚中场所人员的查询 需要跟场所表关联-->
+	
+	<!--人员处罚信息中对场所人员的查询(t_rycfxx)-->
+	<select id="getRycfxxListForRy" resultMap="qyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select
+		a.qyid qyid,a.ryid ryid,a.hylbdm hylbdm,a.hylb hylb,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,
+		a.xm xm,a.qm qm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,
+		a.hyzkdm hyzkdm,a.hyzk hyzk,a.shengao shengao,a.tizh tizh,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,
+		a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.zzzhm zzzhm,a.zzdz zzdz,a.gwbh gwbh,a.gwmc gwmc,a.gwzrms gwzrms,
+		a.shouji shouji,a.lxdh lxdh,a.jjlxr jjlxr,a.jjlxrdh jjlxrdh,a.gzdm gzdm,a.gz gz,
+		a.zhiwu zhiwu,a.rzrq rzrq,a.cyryztdm cyryztdm,a.cyryzt cyryzt,a.zxr zxr,a.zxbz zxbz,a.zxsj zxsj,
+		a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,a.hcdw hcdw,a.hcr hcr,a.hcsj hcsj,a.zxyy zxyy,a.zkzt zkzt,
+		a.bcsj bcsj,a.dcbs dcbs,a.bz bz,a.scbz scbz,a.biduiflag biduiflag,a.zpwtgyy zpwtgyy,a.zt zt
+		,b.qybm qybm,b.qymc qymc,b.gxdwmc gxdwmc
+		from t_qyryxx a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid and a.scbz='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm = #xm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid = #qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm = #qybm#
+			</isNotEmpty>
+				<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh = #cyrybh#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="gwbh">
+				a.gwbh = #gwbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '%$gxdwbm$%'
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--人员处罚信息中对场所人员的查询(t_rycfxx)-->
+	<select id="getRycfxxListForRyCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a from t_qyryxx a ,t_qyjbxx b
+		where 1=1 and a.qyid=b.qyid and a.scbz='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm = #xm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm = #zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm = #qybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid = #qyid#
+			</isNotEmpty>
+				<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh = #cyrybh#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="gwbh">
+				a.gwbh = #gwbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '%$gxdwbm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+</sqlMap>

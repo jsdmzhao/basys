@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bafwht" type="com.aisino2.publicsystem.domain.Bafwht"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--保安服务合同(t_bafwht)-->
+	<resultMap id="bafwhtResult" class="bafwht">
+		<result property="bafwhtid" column="bafwhtid" />
+		<result property="qyid" column="qyid" />
+		<result property="bafwgsmc" column="bafwgsmc" />
+		<result property="baryzgzsmc" column="baryzgzsmc" />
+		<result property="barypxjsrq" column="barypxjsrq" />
+		<result property="htbh" column="htbh" />
+		<result property="qdrq" column="qdrq" />
+		<result property="jsrq" column="jsrq" />
+		<result property="htyxq" column="htyxq" />
+		<result property="barypxnr" column="barypxnr" />
+		
+		<result property="balxdm" column="balxdm" />
+		<result property="balxmc" column="balxmc" />
+		<result property="fzjgmc" column="fzjgmc" />
+	</resultMap>
+	<!--保安服务合同(t_bafwht)-->
+	<resultMap id="bafwhtListResult" class="bafwht">
+		<result property="bafwhtid" column="bafwhtid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="bafwgsmc" column="bafwgsmc"/>
+		<result property="baryzgzsmc" column="baryzgzsmc"/>
+		<result property="barypxjsrq" column="barypxjsrq"/>
+		<result property="htbh" column="htbh"/>
+		<result property="qdrq" column="qdrq"/>
+		<result property="jsrq" column="jsrq"/>
+		<result property="htyxq" column="htyxq" />
+		<result property="barypxnr" column="barypxnr"/>
+		
+		<result property="balxdm" column="balxdm" />
+		<result property="balxmc" column="balxmc" />
+		<result property="fzjgmc" column="fzjgmc" />
+	</resultMap>
+	<sql id="t_bafwhtWhere">
+			<isNotEmpty prepend="and" property="bafwhtid">
+				a.bafwhtid=#bafwhtid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bafwhtPageWhere" >
+		<include refid="t_bafwhtWhere" />	</sql>
+	<sql id="t_bafwhtListWhere" >
+		<include refid="t_bafwhtWhere" />	</sql>
+	<sql id="t_bafwhtSelectWhere"  >
+		<include refid="t_bafwhtWhere" />	</sql>
+	<!--保安服务合同(t_bafwht)-->
+	<insert id="insertBafwht"  parameterClass="bafwht">
+		insert into t_bafwht (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bafwhtid">
+				bafwhtid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="bafwgsmc">
+				bafwgsmc
+			</isNotNull>
+			<isNotNull prepend="," property="baryzgzsmc">
+				baryzgzsmc
+			</isNotNull>
+			<isNotNull prepend="," property="barypxjsrq">
+				barypxjsrq
+			</isNotNull>
+			<isNotNull prepend="," property="htbh">
+				htbh
+			</isNotNull>
+			<isNotNull prepend="," property="qdrq">
+				qdrq
+			</isNotNull>
+			<isNotNull prepend="," property="jsrq">
+				jsrq
+			</isNotNull>
+			<isNotNull prepend="," property="htyxq">
+				htyxq
+			</isNotNull>
+			<isNotNull prepend="," property="barypxnr">
+				barypxnr
+			</isNotNull>
+			
+			<isNotNull prepend="," property="balxdm">
+				balxdm
+			</isNotNull>
+			<isNotNull prepend="," property="balxmc">
+				balxmc
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgmc">
+				fzjgmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bafwhtid">
+				#bafwhtid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="bafwgsmc">
+				#bafwgsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="baryzgzsmc">
+				#baryzgzsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="barypxjsrq">
+				#barypxjsrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="htbh">
+				#htbh#
+			</isNotNull>
+			<isNotNull prepend="," property="qdrq">
+				#qdrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jsrq">
+				#jsrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="htyxq">
+				#htyxq#
+			</isNotNull>
+			<isNotNull prepend="," property="barypxnr">
+				#barypxnr#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="balxdm">
+				#balxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="balxmc">
+				#balxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgmc">
+				#fzjgmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--保安服务合同(t_bafwht)-->
+	<update id="updateBafwht" parameterClass="bafwht">
+		update t_bafwht a set a.bafwhtid=a.bafwhtid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="bafwgsmc">
+				bafwgsmc=#bafwgsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="baryzgzsmc">
+				baryzgzsmc=#baryzgzsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="barypxjsrq">
+				barypxjsrq=#barypxjsrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="htbh">
+				htbh=#htbh#
+			</isNotNull>
+			<isNotNull prepend="," property="qdrq">
+				qdrq=#qdrq:TIMESTAMP#
+			</isNotNull>
+			<isNotEmpty prepend="" property="isJsrqNull">
+				<isEqual prepend="," property="isJsrqNull"  compareValue="1">
+					jsrq=null
+				</isEqual>
+				<isNotEqual prepend="" property="isJsrqNull"  compareValue="1">
+					<isNotNull prepend="," property="jsrq">
+						jsrq=#jsrq:TIMESTAMP#
+					</isNotNull>
+				</isNotEqual>
+			</isNotEmpty>
+			<isEmpty prepend="" property="isJsrqNull">
+				<isNotNull prepend="," property="jsrq">
+					jsrq=#jsrq:TIMESTAMP#
+				</isNotNull>
+			</isEmpty>
+			<isNotNull prepend="," property="htyxq">
+				htyxq=#htyxq#
+			</isNotNull>
+			<isNotNull prepend="," property="barypxnr">
+				barypxnr=#barypxnr#
+			</isNotNull>
+			
+			<isNotNull prepend="," property="balxdm">
+				balxdm=#balxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="balxmc">
+				balxmc=#balxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fzjgmc">
+				fzjgmc=#fzjgmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bafwhtWhere" />
+		</dynamic>
+	</update>
+	<!--保安服务合同(t_bafwht)-->
+	<delete id="deleteBafwht" parameterClass="bafwht">
+		delete from t_bafwht a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bafwhtWhere" />
+		</dynamic>
+	</delete>
+	<!--保安服务合同(t_bafwht)-->
+	<select id="getBafwhtList" resultMap="bafwhtListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bafwhtid bafwhtid,a.qyid qyid,a.bafwgsmc bafwgsmc,a.baryzgzsmc baryzgzsmc,a.barypxjsrq barypxjsrq,a.htbh htbh,a.qdrq qdrq,a.jsrq jsrq,a.htyxq htyxq,a.barypxnr barypxnr,
+		a.balxdm balxdm, a.balxmc balxmc, a.fzjgmc fzjgmc
+		from t_bafwht a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bafwhtPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--保安服务合同(t_bafwht)-->
+	<select id="getBafwhtListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bafwht a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bafwhtPageWhere" />
+		</dynamic>
+	</select>
+	<!--保安服务合同(t_bafwht)-->
+	<select id="getBafwhtListNoPage" resultMap="bafwhtListResult" parameterClass="bafwht">
+		select a.bafwhtid bafwhtid,a.qyid qyid,a.bafwgsmc bafwgsmc,a.baryzgzsmc baryzgzsmc,a.barypxjsrq barypxjsrq,a.htbh htbh,a.qdrq qdrq,a.jsrq jsrq,a.htyxq htyxq,a.barypxnr barypxnr,
+		a.balxdm balxdm, a.balxmc balxmc, a.fzjgmc fzjgmc
+		from t_bafwht a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bafwhtListWhere" />
+		</dynamic>
+		order by a.bafwhtid,a.qyid
+	</select>
+	<!--保安服务合同(t_bafwht)-->
+	<select id="getBafwht" resultMap="bafwhtResult" parameterClass="bafwht">
+		select a.bafwhtid bafwhtid,a.qyid qyid,a.bafwgsmc bafwgsmc,a.baryzgzsmc baryzgzsmc,a.barypxjsrq barypxjsrq,a.htbh htbh,a.qdrq qdrq,a.jsrq jsrq,a.htyxq htyxq,a.barypxnr barypxnr,
+		a.balxdm balxdm, a.balxmc balxmc, a.fzjgmc fzjgmc
+		from t_bafwht a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bafwhtSelectWhere" />
+		</dynamic>
+		order by a.bafwhtid,a.qyid
+	</select>
+</sqlMap>

@@ -1,0 +1,40 @@
+load data
+infile 'importdata.txt'
+into table t_qgztjx_lsb1 truncate
+fields terminated by ','
+TRAILING NULLCOLS
+(QGZTJXID decimal EXTERNAL,
+TBBH     char,
+XZQHBM   char,
+XZQH     char,
+XMPY     char,
+XM       char,
+BM       char,
+XBDM     char,
+XB       char,
+CSRQ     date 'yyyy/mm/dd' NULLIF(CSRQ=BLANKS),        
+GMSFHM   char,
+HJDBM    char,
+HJD      char,
+HJXXDZ   char,
+XZDQBM   char,
+XZDQ     char,
+XZDXXDZ  char,
+QTZJLX   char,
+QTZJHM   char,
+AJJBBM   char,
+AJJB     char,
+AJLBBM   char,
+AJLB     char,
+JYAQ     char,
+DJRQ     date 'yyyy/mm/dd' NULLIF(DJRQ=BLANKS),        
+DJR      char,
+LADQBM   char,
+LADQ     char,
+BADWBM   char,
+BADW     char,
+TBR      char,
+LXR      char,
+LXFS     char,
+SHENGAO  char
+)

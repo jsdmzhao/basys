@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyzlxx" type="com.aisino2.publicsystem.domain.Qyzlxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业质量信息(t_qyzlxx)-->
+	<resultMap id="qyzlxxResult" class="qyzlxx">
+		<result property="qyzlxxid" column="qyzlxxid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="fbdwdm" column="fbdwdm" />
+		<result property="fbdwmc" column="fbdwmc" />
+		<result property="fbr" column="fbr" />
+		<result property="fbsj" column="fbsj" />
+		<result property="scbz" column="scbz" />
+	</resultMap>
+	<!--企业质量信息(t_qyzlxx)-->
+	<resultMap id="qyzlxxListResult" class="qyzlxx">
+		<result property="qyzlxxid" column="qyzlxxid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="fbdwdm" column="fbdwdm"/>
+		<result property="fbdwmc" column="fbdwmc"/>
+		<result property="fbr" column="fbr"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="scbz" column="scbz"/>
+	</resultMap>
+	<sql id="t_qyzlxxWhere">
+			<isNotEmpty prepend="and" property="qyzlxxid">
+				a.qyzlxxid=#qyzlxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyzlxxPageWhere" >
+		<include refid="t_qyzlxxWhere" />	</sql>
+	<sql id="t_qyzlxxListWhere" >
+		<include refid="t_qyzlxxWhere" />	</sql>
+	<sql id="t_qyzlxxSelectWhere"  >
+		<include refid="t_qyzlxxWhere" />	</sql>
+	<!--企业质量信息(t_qyzlxx)-->
+	<insert id="insertQyzlxx"  parameterClass="qyzlxx">
+		insert into t_qyzlxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyzlxxid">
+				qyzlxxid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwdm">
+				fbdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwmc">
+				fbdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				fbsj
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyzlxxid">
+				#qyzlxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwdm">
+				#fbdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwmc">
+				#fbdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				
+					#fbsj#
+			
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业质量信息(t_qyzlxx)-->
+	<update id="updateQyzlxx" parameterClass="qyzlxx">
+		update t_qyzlxx a set a.qyzlxxid=a.qyzlxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwdm">
+				fbdwdm=#fbdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwmc">
+				fbdwmc=#fbdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr=#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">				
+					fbsj=#fbsj#			
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz=#scbz#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxWhere" />
+		</dynamic>
+	</update>
+	<!--企业质量信息(t_qyzlxx)-->
+	<delete id="deleteQyzlxx" parameterClass="qyzlxx">
+		delete from t_qyzlxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyzlxxWhere" />
+		</dynamic>
+	</delete>
+	<!-- 新修改分页查询 -->
+	<resultMap id="qyzlxxListResult2" class="qyzlxx">
+		<result property="qyzlxxid" column="qyzlxxid"/>
+		<result property="fbdwmc" column="fbdwmc"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="fjmc" column="fjmc"/>
+		<result property="qyzlxx_fjid" column="qyzlxx_fjid"/>
+	</resultMap>
+	<!--企业质量信息(t_qyzlxx)-->
+	<select id="getQyzlxxList" resultMap="qyzlxxListResult2" parameterClass="map">
+		<!--  select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyzlxxid qyzlxxid,a.hylbdm hylbdm,a.hylb hylb,a.fbdwdm fbdwdm,a.fbdwmc fbdwmc,a.fbr fbr,a.fbsj fbsj,a.scbz scbz
+		from t_qyzlxx a ,t_qyzlxxfj t -->
+		
+		select x.* from (
+		select rownum rowno,z.* from
+		(select a.qyzlxxid qyzlxxid,a.fbdwmc fbdwmc,a.fbsj fbsj,t.fjmc fjmc,t.qyzlxxfjid qyzlxx_fjid
+		from t_qyzlxx a ,t_qyzlxxfj t
+		where a.qyzlxxid=t.qyzlxxid and a.scbz=0
+		<dynamic prepend="AND">
+			<isNotNull prepend="AND" property="fbdwdm">
+				a.fbdwdm=#fbdwdm#
+			</isNotNull>
+			<isNotNull prepend="AND" property="fjmc">
+				t.fjmc like '$fjmc$%'
+			</isNotNull>
+			<isNotNull prepend="AND" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotNull>
+			
+			<isNotNull prepend="AND" property="fbsj">
+				(a.fbsj>=#fbsj#)
+			</isNotNull>
+			<isNotNull prepend="AND" property="fbsj">
+				( a.fbsj &lt;=#fbjzsj#)
+			</isNotNull>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业质量信息(t_qyzlxx)-->
+	<select id="getQyzlxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyzlxx a ,t_qyzlxxfj t
+		where a.qyzlxxid=t.qyzlxxid and a.scbz=0
+		<dynamic prepend="AND">
+			<isNotNull prepend="AND" property="fbdwdm">
+				a.fbdwdm=#fbdwdm#
+			</isNotNull>
+			<isNotNull prepend="AND" property="fjmc">
+				t.fjmc=#fjmc#
+			</isNotNull>
+			<isNotNull prepend="AND" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotNull>
+			
+			<isNotNull prepend="AND" property="fbsj">
+				(a.fbsj>=#fbsj#)
+			</isNotNull>
+			<isNotNull prepend="AND" property="fbsj">
+				( a.fbsj &lt;=#fbjzsj#)
+			</isNotNull>
+		</dynamic>
+	</select>
+	<!--企业质量信息(t_qyzlxx)-->
+	<select id="getQyzlxxListNoPage" resultMap="qyzlxxListResult" parameterClass="qyzlxx">
+		select a.qyzlxxid qyzlxxid,a.hylbdm hylbdm,a.hylb hylb,a.fbdwdm fbdwdm,a.fbdwmc fbdwmc,a.fbr fbr,a.fbsj fbsj,a.scbz scbz
+		from t_qyzlxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxListWhere" />
+		</dynamic>
+		order by a.qyzlxxid
+	</select>
+	<!--企业质量信息(t_qyzlxx)-->
+	<select id="getQyzlxx" resultMap="qyzlxxResult" parameterClass="qyzlxx">
+		select a.qyzlxxid qyzlxxid,a.hylbdm hylbdm,a.hylb hylb,a.fbdwdm fbdwdm,a.fbdwmc fbdwmc,a.fbr fbr,a.fbsj fbsj,a.scbz scbz
+		from t_qyzlxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyzlxxSelectWhere" />
+		</dynamic>
+		order by a.qyzlxxid
+	</select>
+</sqlMap>

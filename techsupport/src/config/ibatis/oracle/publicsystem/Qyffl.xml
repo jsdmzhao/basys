@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyffl" type="com.aisino2.publicsystem.domain.Qyffl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业副分类(t_qyffl)-->
+	<resultMap id="qyfflResult" class="qyffl">
+		<result property="qyflid" column="qyflid" />
+		<result property="qyid" column="qyid" />
+		<result property="qyflbm" column="qyflbm" />
+		<result property="sjcsflmc" column="sjcsflmc" />
+		<result property="sjcsflbm" column="sjcsflbm" />
+		<result property="qyflmc" column="qyflmc" />
+	</resultMap>
+	<!--企业副分类(t_qyffl)-->
+	<resultMap id="qyfflListResult" class="qyffl">
+		<result property="qyflid" column="qyflid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="qyflbm" column="qyflbm"/>
+		<result property="sjcsflmc" column="sjcsflmc"/>
+		<result property="sjcsflbm" column="sjcsflbm" />
+		<result property="qyflmc" column="qyflmc"/>
+	</resultMap>
+	<sql id="t_qyfflWhere">
+			<isNotEmpty prepend="and" property="qyflid">
+				a.qyflid=#qyflid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyfflPageWhere" >
+		<include refid="t_qyfflWhere" />	</sql>
+	<sql id="t_qyfflListWhere" >
+		<include refid="t_qyfflWhere" />	</sql>
+	<sql id="t_qyfflSelectWhere"  >
+		<include refid="t_qyfflWhere" />	</sql>
+	<!--企业副分类(t_qyffl)-->
+	<insert id="insertQyffl"  parameterClass="qyffl">
+		insert into t_qyffl (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyflid">
+				qyflid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="qyflbm">
+				qyflbm
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflmc">
+				sjcsflmc
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflbm">
+				sjcsflbm
+			</isNotNull>
+			<isNotNull prepend="," property="qyflmc">
+				qyflmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyflid">
+				#qyflid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyflbm">
+				#qyflbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflmc">
+				#sjcsflmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflbm">
+				#sjcsflbm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyflmc">
+				#qyflmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业副分类(t_qyffl)-->
+	<update id="updateQyffl" parameterClass="qyffl">
+		update t_qyffl a set a.qyflid=a.qyflid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyflbm">
+				qyflbm=#qyflbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflmc">
+				sjcsflmc=#sjcsflmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sjcsflbm">
+				sjcsflbm=#sjcsflbm#
+			</isNotNull>
+			<isNotNull prepend="," property="qyflmc">
+				qyflmc=#qyflmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfflWhere" />
+		</dynamic>
+	</update>
+	<!--企业副分类(t_qyffl)-->
+	<delete id="deleteQyffl" parameterClass="qyffl">
+		delete from t_qyffl a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyfflWhere" />
+		</dynamic>
+	</delete>
+	<!--企业副分类(t_qyffl)-->
+	<select id="getQyfflList" resultMap="qyfflListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyflid qyflid,a.qyid qyid,a.qyflbm qyflbm,a.sjcsflbm sjcsflbm,a.sjcsflmc sjcsflmc,a.qyflmc qyflmc
+		from t_qyffl a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfflPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业副分类(t_qyffl)-->
+	<select id="getQyfflListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyffl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfflPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业副分类(t_qyffl)-->
+	<select id="getQyfflListNoPage" resultMap="qyfflListResult" parameterClass="qyffl">
+		select a.qyflid qyflid,a.qyid qyid,a.qyflbm qyflbm,a.sjcsflbm sjcsflbm,a.sjcsflmc sjcsflmc,a.qyflmc qyflmc
+		from t_qyffl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfflListWhere" />
+		</dynamic>
+		order by a.qyflid,a.qyid
+	</select>
+	<!--企业副分类(t_qyffl)-->
+	<select id="getQyffl" resultMap="qyfflResult" parameterClass="qyffl">
+		select a.qyflid qyflid,a.qyid qyid,a.qyflbm qyflbm,a.sjcsflbm sjcsflbm,a.sjcsflmc sjcsflmc,a.qyflmc qyflmc
+		from t_qyffl a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyfflSelectWhere" />
+		</dynamic>
+		order by a.qyflid,a.qyid
+	</select>
+</sqlMap>

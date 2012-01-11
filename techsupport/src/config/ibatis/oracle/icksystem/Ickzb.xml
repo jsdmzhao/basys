@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ickzb" type="com.aisino2.icksystem.domain.Ickzb"/>
+	<typeAlias alias="icksl" type="com.aisino2.icksystem.domain.Icksl"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡组包(t_ickzb)-->
+	<resultMap id="ickzbResult" class="ickzb">
+		<result property="zbid" column="zbid" />
+		<result property="pch" column="pch" />
+		<result property="zbsl" column="zbsl" />
+		<result property="zbr" column="zbr" />
+		<result property="zbsj" column="zbsj" />
+		<result property="slds" column="slds" />
+	</resultMap>
+	<!--IC卡组包(t_ickzb)-->
+	<resultMap id="ickzbListResult" class="ickzb">
+		<result property="zbid" column="zbid"/>
+		<result property="pch" column="pch"/>
+		<result property="zbsl" column="zbsl"/>
+		<result property="zbr" column="zbr"/>
+		<result property="zbsj" column="zbsj"/>
+		<result property="slds" column="slds"/>
+	</resultMap>
+	<!--IC卡组包(t_ickzb) 卡未全部电写入-->
+	<resultMap id="ickzbListWqbdxrResult" class="ickzb">
+		<result property="zbid" column="zbid"/>
+		<result property="pch" column="pch"/>
+		<result property="zbsl" column="zbsl"/>
+		<result property="zbr" column="zbr"/>
+		<result property="zbsj" column="zbsj"/>
+		<result property="slds" column="slds"/>
+		<result property="sfqbys" column="sfqbys"/>
+		<result property="dxrbz" column="dxrbz"/>
+		<result property="yyssl" column="yyssl"/>
+	</resultMap>
+	<!--IC卡组包(t_ickzb)印刷信息查询-->
+	<resultMap id="ickysResult" class="ickzb">
+		<result property="pch" column="pch" />
+		<result property="zbsl" column="zbsl" />
+		<result property="kssxh" column="kssxh" />
+		<result property="bcyssl" column="bcyssl" />
+		<result property="zdsxh" column="zdsxh" />
+		<result property="bcysslByPage" column="bcysslByPage" />
+	</resultMap>
+	<!--IC卡组包(t_ickzb)印刷信息查询-->
+	<resultMap id="ickdxrResult" class="ickzb">
+		<result property="pch" column="pch" />
+		<result property="zbsl" column="zbsl" />
+		<result property="kssxh" column="kssxh" />
+		<result property="bcdxrsl" column="bcdxrsl" />
+		<result property="zdsxh" column="zdsxh" />
+	</resultMap>
+	<!--IC卡组包(t_ickzb)查询包内需打印的卡的信息-->
+	<resultMap id="ickzbYsListResult" class="ickzb">
+		<result property="sxh" column="sxh" />
+		<result property="pch" column="pch" />
+		<result property="ryid" column="ryid" />
+		<result property="ickslid" column="ickslid" />
+		<result property="kh" column="kh" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="gwbh" column="gwbh" />
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb" />
+		<result property="tpnr" column="tpnr" />
+		<result property="zbsl" column="zbsl"/>
+		<result property="zbhsuym" column="zbhsuym"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="xm" column="xm"/>
+		<result property="bm" column="bm"/>
+	</resultMap>
+	<!--IC卡组包(t_ickzb)查询包内需电写入的卡的信息-->
+	<resultMap id="ickzbDxrListResult" class="icksl">
+		<result property="sxh" column="sxh" />
+		<result property="ryid" column="ryid" />
+		<result property="cyrybh" column="cyrybh" />
+		<result property="xm" column="xm" />
+		<result property="zjhm" column="zjhm" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="minzu" column="minzu" />
+		<result property="mzdm" column="mzdm" />
+		<result property="gjdm" column="gjdm" />
+		<result property="gj" column="gj" />
+		<result property="csrq" column="csrq" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hjlbdm" column="hjlbdm" />
+		<result property="hjlbmc" column="hjlbmc" />
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb" />
+		<result property="ickslid" column="ickslid" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="kh" column="kh" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="wgrjyxkz" column="wgrjyxkz" />
+		<result property="hjlbdm" column="hjlbdm" />
+		<result property="hjlbmc" column="hjlbmc" />
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb" />
+		<result property="sfzx" column="sfzx" />
+		<result property="sfzxmc" column="sfzxmc" />
+	</resultMap>
+	<sql id="t_ickzbWhere">
+			<isNotEmpty prepend="and" property="zbid">
+				a.zbid=#zbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_ickzbPageWhere" >
+		<include refid="t_ickzbWhere" />	</sql>
+	<sql id="t_ickzbListWhere" >
+		<include refid="t_ickzbWhere" />	</sql>
+	<sql id="t_ickzbSelectWhere"  >
+		<include refid="t_ickzbWhere" />	</sql>
+	<!--IC卡组包(t_ickzb)-->
+	<insert id="insertIckzb"  parameterClass="ickzb">
+		insert into t_ickzb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zbid">
+				zbid
+			</isNotNull>
+			<isNotNull prepend="," property="pch">
+				pch
+			</isNotNull>
+			<isNotNull prepend="," property="zbsl">
+				zbsl
+			</isNotNull>
+			<isNotNull prepend="," property="zbr">
+				zbr
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				zbsj
+			</isNotNull>
+			<isNotNull prepend="," property="slds">
+				slds
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zbid">
+				#zbid#
+			</isNotNull>
+			<isNotNull prepend="," property="pch">
+				#pch#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsl">
+				#zbsl#
+			</isNotNull>
+			<isNotNull prepend="," property="zbr">
+				#zbr#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				#zbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="slds">
+				#slds#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡组包(t_ickzb)-->
+	<update id="updateIckzb" parameterClass="ickzb">
+		update t_ickzb a set a.zbid=a.zbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="pch">
+				pch=#pch#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsl">
+				zbsl=#zbsl#
+			</isNotNull>
+			<isNotNull prepend="," property="zbr">
+				zbr=#zbr#
+			</isNotNull>
+			<isNotNull prepend="," property="zbsj">
+				zbsj=#zbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="slds">
+				slds=#slds#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickzbWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡组包(t_ickzb)-->
+	<delete id="deleteIckzb" parameterClass="ickzb">
+		delete from t_ickzb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ickzbWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡组包(t_ickzb)-->
+	<select id="getIckzbList" resultMap="ickzbListWqbdxrResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.zbid zbid,a.pch pch,a.zbsl zbsl,a.zbr zbr,a.zbsj zbsj,a.slds slds,
+			(case when b.yyssl&lt;a.zbsl then 0 else 1 end) sfqbys,
+			(case when b.ddxrsl&gt;0 then 1 else 0 end) dxrbz,
+				b.yyssl
+			 from t_ickzb a,
+			(select t.zbid,
+			count(case when to_number(t2.zkztbs)&gt;=4 then t2.ickslid else null end) yyssl ,
+			count(case when to_number(t2.zkztbs)=4 then t2.ickslid else null end) ddxrsl,
+			count(case when to_number(t2.zkztbs)&gt;=5 then t2.ickslid else null end) ydxrsl 
+			from t_ickzb t ,t_icksl_ickzb t1,t_icksl t2
+			where t.zbid=t1.zbid and t1.ickslid=t2.ickslid
+			and to_number(t2.zkztbs) &gt;= 3
+			group by t.zbid
+			)b
+			where a.zbid=b.zbid
+			and b.ydxrsl&lt;a.zbsl
+			and a.zbsl&gt;0
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡组包(t_ickzb)-->
+	<select id="getIckzbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ickzb a,
+			(select t.zbid,
+			count(case when to_number(t2.zkztbs)&gt;=4 then t2.ickslid else null end) yyssl ,
+			count(case when to_number(t2.zkztbs)=4 then t2.ickslid else null end) ddxrsl,
+			count(case when to_number(t2.zkztbs)&gt;=5 then t2.ickslid else null end) ydxrsl 
+			from t_ickzb t ,t_icksl_ickzb t1,t_icksl t2
+			where t.zbid=t1.zbid and t1.ickslid=t2.ickslid
+			and to_number(t2.zkztbs) &gt;= 3
+			group by t.zbid
+			)b
+			where a.zbid=b.zbid
+			and b.ydxrsl&lt;a.zbsl
+			and a.zbsl&gt;0
+	</select>
+	<!--IC卡组包(t_ickzb)-->
+	<select id="getIckzbListNoPage" resultMap="ickzbListResult" parameterClass="ickzb">
+		select a.zbid zbid,a.pch pch,a.zbsl zbsl,a.zbr zbr,a.zbsj zbsj,a.slds slds
+		from t_ickzb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickzbListWhere" />
+		</dynamic>
+		order by a.zbid
+	</select>
+	<!--IC卡组包(t_ickzb)-->
+	<select id="getIckzb" resultMap="ickzbResult" parameterClass="ickzb">
+		select a.zbid zbid,a.pch pch,a.zbsl zbsl,a.zbr zbr,a.zbsj zbsj,a.slds slds
+		from t_ickzb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickzbSelectWhere" />
+		</dynamic>
+		order by a.zbid
+	</select>
+	<!--IC卡组包(t_ickzb) 未印刷信息查询 查询批次号，组包数量，开始顺序号及本次需印刷数量-->
+	<!-- <select id="getIckzbYsxx" resultMap="ickysResult" parameterClass="ickzb">
+		select a.pch, a.zbsl, min(a.sxh) kssxh, count(a.ickslid) bcyssl,
+		(select max(t2.pczdpbh * t2.zbhsuym) zdsxh
+		          from t_ickzb t1, t_icksl_ickzb t2
+		         where t1.zbid = t2.zbid
+		           and t1.pch = #pch#) zdsxh
+		  from (select a.pch, a.zbsl, b.pczdpbh * b.zbhsuym sxh, b.ickslid
+		          from t_ickzb a, t_icksl_ickzb b, t_icksl c
+		         where a.zbid = b.zbid
+		           and b.ickslid = c.ickslid
+		           and c.zkztbs = '3'
+				and a.pch = #pch#     
+		         order by c.ickslid) a
+		 group by a.pch, a.zbsl
+	</select> -->
+	<select id="getIckzbYsxx" resultMap="ickysResult" parameterClass="ickzb">
+		select a.pch, a.zbsl, min(a.sxh) kssxh, count(a.ickslid) bcyssl,
+    (select max(t2.pczdpbh+(t2.zbhsuym-1)*$maxRowsOfPage$) zdsxh
+              from t_ickzb t1, t_icksl_ickzb t2
+             where t1.zbid = t2.zbid
+               and t1.pch = #pch#) zdsxh,
+               count(a.ickslidByPage) bcysslByPage
+      from (select a.pch, a.zbsl,
+           (case when c.zkztbs = '3' then  ($maxRowsOfPage$ * (b.zbhsuym-1)+b.pczdpbh) else null end) sxh,
+           (case when c.zkztbs = '3' then  b.ickslid else null end)  ickslid,
+           (case when c.zkztbs = '3' or c.zkztbs ='4' then  b.ickslid else null end)  ickslidByPage
+              from t_ickzb a, t_icksl_ickzb b, t_icksl c
+             where a.zbid = b.zbid
+               and b.ickslid = c.ickslid
+        and a.pch = #pch#
+             order by c.ickslid) a
+     group by a.pch, a.zbsl
+	</select> 
+	<!--IC卡组包(t_ickzb)查询包内需打印的卡的信息-->
+	<select id="getIckzbYsList" resultMap="ickzbYsListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select (b.pczdpbh+(b.zbhsuym-1)*#maxRowsOfPage#) sxh,
+				a.pch,
+				c.ryid,
+		       b.ickslid,
+		       c.kh,
+		       c.yxsksrq,
+		       c.yxqhzrq,
+		       d.gwbh,
+		       substr(d.cylbdm,0,1) cylbdm,
+		       d.cylbdm cylb,
+		       e.tpnr,
+		       a.zbsl,
+		       b.zbhsuym,
+		       d.cyrybh,
+		       d.xm,
+		       d.bm
+		  from t_ickzb a, t_icksl_ickzb b, t_icksl c,t_qyryxx d,t_qyry_zp e
+		 where a.zbid = b.zbid
+		   and b.ickslid = c.ickslid
+		   and c.ryid=d.ryid
+		   and d.ryid=e.ryid
+		   and e.tplx='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="bcysym">
+				(c.zkztbs = '3' or c.zkztbs = '4' or c.zkztbs = '5') and b.zbhsuym=#bcysym#
+			</isNotEmpty>
+			<isEmpty prepend="and" property="bcysym">
+				c.zkztbs = '3'
+				<isNotEmpty prepend="and" property="kssxh">
+					(b.pczdpbh+(b.zbhsuym-1)*#maxRowsOfPage#)  &gt;=#kssxh#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="bcyssl">
+					rownum &gt;0 and rownum &lt;= $bcyssl$ 
+				</isNotEmpty>
+			</isEmpty>
+			<isNotEmpty prepend="and" property="pch">
+				a.pch = #pch#
+			</isNotEmpty>
+		</dynamic> 
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡组包(t_ickzb)-->
+	<select id="getIckzbYsListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ickzb a, t_icksl_ickzb b, t_icksl c,t_qyryxx d,t_qyry_zp e
+		 where a.zbid = b.zbid
+		   and b.ickslid = c.ickslid
+		   and c.ryid=d.ryid
+		   and d.ryid=e.ryid
+		   and e.tplx='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="bcysym">
+				(c.zkztbs = '3' or c.zkztbs = '4' or c.zkztbs = '5') and b.zbhsuym=#bcysym#
+			</isNotEmpty>
+			<isEmpty prepend="and" property="bcysym">
+				c.zkztbs = '3'
+				<isNotEmpty prepend="and" property="kssxh">
+					(b.pczdpbh+(b.zbhsuym-1)*#maxRowsOfPage#) &gt;=#kssxh#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="bcyssl">
+					rownum &gt;0 and rownum &lt;= $bcyssl$ 
+				</isNotEmpty>
+			</isEmpty>
+			<isNotEmpty prepend="and" property="pch">
+				a.pch = #pch#
+			</isNotEmpty>
+		</dynamic> 
+	</select>
+	
+	<!--IC卡组包(t_ickzb) 未电写入信息查询 查询批次号，组包数量，开始顺序号及本次需电写入数量-->
+	<select id="getIckzbDxrxx" resultMap="ickdxrResult" parameterClass="ickzb">
+		select a.pch, a.zbsl, min(a.sxh) kssxh, count(a.ickslid) bcdxrsl,
+		(select max(t2.pczdpbh+(t2.zbhsuym-1)*$maxRowsOfPage$) zdsxh
+		          from t_ickzb t1, t_icksl_ickzb t2
+		         where t1.zbid = t2.zbid
+		           and t1.pch = #pch#) zdsxh
+		  from (select a.pch, a.zbsl, ($maxRowsOfPage$ * (b.zbhsuym-1)+b.pczdpbh) sxh, b.ickslid
+		          from t_ickzb a, t_icksl_ickzb b, t_icksl c
+		         where a.zbid = b.zbid
+		           and b.ickslid = c.ickslid
+		           and c.zkztbs = '4'
+				   and a.pch = #pch#
+		         order by c.ickslid) a
+		 group by a.pch, a.zbsl
+	</select>
+
+	<!--IC卡组包(t_ickzb)查询包内需电写入的卡的信息-->
+	<select id="getIckzbDxrList" resultMap="ickzbDxrListResult" parameterClass="ickzb">
+		select (b.pczdpbh+(b.zbhsuym-1)*$maxRowsOfPage$) sxh,
+		       d.ryid,
+		       d.cyrybh,
+		       d.xm,
+		       d.zjhm,
+		       d.xbdm,d.xb,
+		       d.minzu,d.mzdm,
+		       d.gjdm,d.gj,
+		       d.csrq,
+		       d.hjdxzqh,d.hjdxzqhdm,d.hjdxz,
+		       c.yxsksrq,c.yxqhzrq,c.kh,c.hylbdm,d.hjlbdm,d.hjlbmc,d.cylbdm,d.cylb,c.ickslid,d.hjlbdm,d.hjlbmc,d.cylbdm,d.cylb,
+		       (case when (c.zkztbs = '7' or c.zkztbs = '8' or c.zkztbs = '9') then '1' else '0' end) sfzx,
+		       (case when (c.zkztbs = '7' or c.zkztbs = '8' or c.zkztbs = '9') then '是' else '否' end) sfzxmc,
+		       e.ywx,e.ywm,e.wgrjyxkz
+		      from t_ickzb a, t_icksl_ickzb b, t_icksl c,t_qyryxx d,t_wgcyryxx e
+		     where a.zbid = b.zbid
+		       and b.ickslid = c.ickslid
+		       and c.ryid=d.ryid
+		       and d.ryid=e.ryid(+)
+		<dynamic prepend="">
+			<isEmpty prepend="" property="sfbx"><!-- 是否补写标志：sfbx。为空或其他值时，表示正常电写入；为1时，表示补写 -->
+				<isNotEmpty prepend="and" property="cyrybh">
+					(c.zkztbs = '4' or c.zkztbs = '5') and cyrybh=#cyrybh#
+				</isNotEmpty>
+			</isEmpty>
+			<isNotEmpty prepend="" property="sfbx">
+				<isEqual prepend="" property="sfbx" compareValue="1">
+					<isNotEmpty prepend="and" property="cyrybh">
+						(c.zkztbs = '5' or c.zkztbs = '25') and cyrybh=#cyrybh#
+					</isNotEmpty>
+				</isEqual>
+			</isNotEmpty>
+			
+			<isEmpty prepend="and" property="cyrybh">
+				c.zkztbs = '4'
+				<isNotEmpty prepend="and" property="kssxh">
+					(b.pczdpbh+(b.zbhsuym-1)*#maxRowsOfPage#)  &gt;=#kssxh#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="bcdxrsl">
+					rownum &gt;0 and rownum &lt;= $bcdxrsl$ 
+				</isNotEmpty>
+			</isEmpty>
+			<isNotEmpty prepend="and" property="pch">
+				a.pch = #pch#
+			</isNotEmpty>
+		</dynamic> 
+		order by sxh
+	</select>
+	<!--IC卡组包(t_ickzb)查询包内IC卡最大顺序号-->
+	<select id="getMaxpbhInIckzb" resultClass="String" parameterClass="ickzb">
+		select nvl(max(b.pczdpbh * b.zbhsuym),0) zdsxh
+		  from t_ickzb a, t_icksl_ickzb b
+		 where a.zbid = b.zbid
+		   and a.pch=#pch#
+	</select>
+	
+	<!--IC卡组包(t_ickzb) 获得下一个pch-->
+	<select id="getNextPch" resultClass="String" parameterClass="map">
+		select (case
+         when tt.nextpch is null then
+          #pch# || '0001'
+         else
+          tt.nextpch
+       end) nextpch
+  from (select to_char(max(to_number(t.pch)) + 1) nextpch
+          from t_ickzb t
+         where t.pch like #likepch#) tt
+	</select>
+</sqlMap>

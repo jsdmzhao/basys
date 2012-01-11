@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 引入XFire预配置信息 -->
+	<import resource="classpath:org/codehaus/xfire/spring/xfire.xml" />
+	<!--定义访问的报警url-->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/baoJingWS.ws">
+					<ref bean="baoJingService" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+		<!--定义访问服务器时间-->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/serverTimeWS.ws">
+					<ref bean="serverTimeService" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+		<bean id="baseWebService"
+		class="org.codehaus.xfire.spring.remoting.XFireExporter"
+		lazy-init="false" abstract="true">
+		<!-- 引用xfire.xml中定义的工厂 -->
+		<property name="serviceFactory" ref="xfire.serviceFactory" />
+		<!-- 引用xfire.xml中的xfire实例 -->
+		<property name="xfire" ref="xfire" />
+		<!-- 指定webservice模式 -->
+		<property name="style" value="rpc" />
+		<property name="use" value="literal" />
+	</bean>
+		<!-- 报警 -->
+	<bean id="baoJingService" parent="baseWebService">
+	
+		<property name="serviceBean" ref="baoJingServiceBean" />
+		<property name="serviceClass"
+			value="com.webService.IBaoJingWebService" />
+	</bean>
+	<bean id="baoJingServiceBean"
+		class="com.webService.impl.BaoJingWebServiceImpl">
+		<property name="bjxxbDao" ref="bjxxbDao" />
+	</bean>
+
+	<!-- 报警服务器时间 -->
+	<bean id="serverTimeService" parent="baseWebService">
+	
+		<property name="serviceBean" ref="serverTimeServiceBean" />
+		<property name="serviceClass"
+			value="com.webService.IServerTimeWebService" />
+	</bean>
+	<bean id="serverTimeServiceBean"
+		class="com.webService.impl.ServerTimeWebServiceImpl">
+	</bean>
+	
+</beans>
+

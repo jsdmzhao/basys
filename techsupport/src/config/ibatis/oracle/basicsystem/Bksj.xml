@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bksj" type="com.aisino2.basicsystem.domain.Bksj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--布控手机(t_bksj)-->
+	<resultMap id="bksjResult" class="bksj">
+		<result property="bkwpjbxxid" column="bkwpjbxxid" />
+		<result property="bksjid" column="bksjid" />
+		<result property="sjch" column="sjch" />
+		<result property="pp" column="pp" />
+		<result property="xh" column="xh" />
+		<result property="ys" column="ys" />
+	</resultMap>
+	<!--布控手机(t_bksj)-->
+	<resultMap id="bksjListResult" class="bksj">
+		<result property="bkwpjbxxid" column="bkwpjbxxid"/>
+		<result property="bksjid" column="bksjid"/>
+		<result property="sjch" column="sjch"/>
+		<result property="pp" column="pp"/>
+		<result property="xh" column="xh"/>
+		<result property="ys" column="ys"/>
+	</resultMap>
+	<sql id="t_bksjWhere">
+			<isNotEmpty prepend="and" property="bkwpjbxxid">
+				a.bkwpjbxxid=#bkwpjbxxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bksjid">
+				a.bksjid=#bksjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bksjPageWhere" >
+		<include refid="t_bksjWhere" />	</sql>
+	<sql id="t_bksjListWhere" >
+		<include refid="t_bksjWhere" />	</sql>
+	<sql id="t_bksjSelectWhere"  >
+		<include refid="t_bksjWhere" />	</sql>
+	<!--布控手机(t_bksj)-->
+	<insert id="insertBksj"  parameterClass="bksj">
+		insert into t_bksj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bkwpjbxxid">
+				bkwpjbxxid
+			</isNotNull>
+			<isNotNull prepend="," property="bksjid">
+				bksjid
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bkwpjbxxid">
+				#bkwpjbxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="bksjid">
+				#bksjid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				#ys#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--布控手机(t_bksj)-->
+	<update id="updateBksj" parameterClass="bksj">
+		update t_bksj a set a.bksjid=a.bksjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bksjid">
+				bksjid=#bksjid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjch">
+				sjch=#sjch#
+			</isNotNull>
+			<isNotNull prepend="," property="pp">
+				pp=#pp#
+			</isNotNull>
+			<isNotNull prepend="," property="xh">
+				xh=#xh#
+			</isNotNull>
+			<isNotNull prepend="," property="ys">
+				ys=#ys#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjWhere" />
+		</dynamic>
+	</update>
+	<!--布控手机(t_bksj)-->
+	<delete id="deleteBksj" parameterClass="bksj">
+		delete from t_bksj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bksjWhere" />
+		</dynamic>
+	</delete>
+	<!--布控手机(t_bksj)-->
+	<select id="getBksjList" resultMap="bksjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bkwpjbxxid bkwpjbxxid,a.bksjid bksjid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--布控手机(t_bksj)-->
+	<select id="getBksjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bksj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjPageWhere" />
+		</dynamic>
+	</select>
+	<!--布控手机(t_bksj)-->
+	<select id="getBksjListNoPage" resultMap="bksjListResult" parameterClass="bksj">
+		select a.bkwpjbxxid bkwpjbxxid,a.bksjid bksjid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjListWhere" />
+		</dynamic>
+		order by a.bkwpjbxxid,a.bksjid
+	</select>
+	<!--布控手机(t_bksj)-->
+	<select id="getBksj" resultMap="bksjResult" parameterClass="bksj">
+		select a.bkwpjbxxid bkwpjbxxid,a.bksjid bksjid,a.sjch sjch,a.pp pp,a.xh xh,a.ys ys
+		from t_bksj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bksjSelectWhere" />
+		</dynamic>
+		order by a.bkwpjbxxid,a.bksjid
+	</select>
+</sqlMap>

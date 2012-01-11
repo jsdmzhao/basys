@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="20" maxSessions="10" maxTransactions="50" useStatementNamespaces="true"/>
+	<sqlMap resource="com/aisino2/core/dao/Sequence.xml"/>
+	<!--用户(t_user)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/User.xml"/>
+	<!--菜单(t_menu)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Menu.xml"/>
+	<!--角色(t_role)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Role.xml"/>
+	<!--系统(t_system)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/System.xml"/>
+	<!--机构(t_department)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Department.xml"/>
+	<!--功能(t_function)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Function.xml"/>
+	<!--全局参数(t_globalpar)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Globalpar.xml"/>
+	<!--登录日志表(t_loginlog)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Loginlog.xml"/>
+	<!--参数设置(t_param)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Param.xml"/>
+	<!--字典项(t_dict_item)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Dict_item.xml"/>
+	<!--字典(t_dict)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Dict.xml"/>
+	<!--角色功能(t_role_func)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Role_func.xml"/>
+	<!--角色菜单(t_role_menu)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Role_menu.xml"/>
+	<!--用户角色(t_user_role)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/User_role.xml"/>
+	<!--角色参数(t_role_param)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Role_param.xml"/>
+	<!--操作日志表(t_operatelog)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Operatelog.xml"/>
+	
+</sqlMapConfig>

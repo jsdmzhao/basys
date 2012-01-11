@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wbjkdyczrz" type="com.aisino2.basicsystem.domain.Wbjkdyczrz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<resultMap id="wbjkdyczrzResult" class="wbjkdyczrz">
+		<result property="czrzid" column="czrzid" />
+		<result property="czzh" column="czzh" />
+		<result property="czgsmc" column="czgsmc" />
+		<result property="czsj" column="czsj" />
+		<result property="dyjkmc" column="dyjkmc" />
+		<result property="czlx" column="czlx" />
+		<result property="zgts" column="zgts" />
+		<result property="czjg" column="czjg" />
+		<result property="cgts" column="cgts" />
+		<result property="sbts" column="sbts" />
+		<result property="hymc" column="hymc" />
+		<result property="hybm" column="hybm" />
+	</resultMap>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<resultMap id="wbjkdyczrzListResult" class="wbjkdyczrz">
+		<result property="czrzid" column="czrzid"/>
+		<result property="czzh" column="czzh"/>
+		<result property="czgsmc" column="czgsmc"/>
+		<result property="czsj" column="czsj"/>
+		<result property="dyjkmc" column="dyjkmc"/>
+		<result property="czlx" column="czlx"/>
+		<result property="zgts" column="zgts"/>
+		<result property="czjg" column="czjg"/>
+		<result property="cgts" column="cgts"/>
+		<result property="sbts" column="sbts"/>
+		<result property="hymc" column="hymc"/>
+		<result property="hybm" column="hybm"/>
+	</resultMap>
+	<sql id="t_wbjkdyczrzWhere">
+			<isNotEmpty prepend="and" property="czrzid">
+				a.czrzid=#czrzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wbjkdyczrzPageWhere" >
+		<include refid="t_wbjkdyczrzWhere" />	</sql>
+	<sql id="t_wbjkdyczrzListWhere" >
+		<include refid="t_wbjkdyczrzWhere" />	</sql>
+	<sql id="t_wbjkdyczrzSelectWhere"  >
+		<include refid="t_wbjkdyczrzWhere" />	</sql>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<insert id="insertWbjkdyczrz"  parameterClass="wbjkdyczrz">
+		insert into t_wbjkdyczrz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="czrzid">
+				czrzid
+			</isNotNull>
+			<isNotNull prepend="," property="czzh">
+				czzh
+			</isNotNull>
+			<isNotNull prepend="," property="czgsmc">
+				czgsmc
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				czsj
+			</isNotNull>
+			<isNotNull prepend="," property="dyjkmc">
+				dyjkmc
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx
+			</isNotNull>
+			<isNotNull prepend="," property="zgts">
+				zgts
+			</isNotNull>
+			<isNotNull prepend="," property="czjg">
+				czjg
+			</isNotNull>
+			<isNotNull prepend="," property="cgts">
+				cgts
+			</isNotNull>
+			<isNotNull prepend="," property="sbts">
+				sbts
+			</isNotNull>
+			<isNotNull prepend="," property="hymc">
+				hymc
+			</isNotNull>
+			<isNotNull prepend="," property="hybm">
+				hybm
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="czrzid">
+				#czrzid#
+			</isNotNull>
+			<isNotNull prepend="," property="czzh">
+				#czzh#
+			</isNotNull>
+			<isNotNull prepend="," property="czgsmc">
+				#czgsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				#czsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dyjkmc">
+				#dyjkmc#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="zgts">
+				#zgts#
+			</isNotNull>
+			<isNotNull prepend="," property="czjg">
+				#czjg#
+			</isNotNull>
+			<isNotNull prepend="," property="cgts">
+				#cgts#
+			</isNotNull>
+			<isNotNull prepend="," property="sbts">
+				#sbts#
+			</isNotNull>
+			<isNotNull prepend="," property="hymc">
+				#hymc#
+			</isNotNull>
+			<isNotNull prepend="," property="hybm">
+				#hybm#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<update id="updateWbjkdyczrz" parameterClass="wbjkdyczrz">
+		update t_wbjkdyczrz a set a.czrzid=a.czrzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="czzh">
+				czzh=#czzh#
+			</isNotNull>
+			<isNotNull prepend="," property="czgsmc">
+				czgsmc=#czgsmc#
+			</isNotNull>
+			<isNotNull prepend="," property="czsj">
+				czsj=#czsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dyjkmc">
+				dyjkmc=#dyjkmc#
+			</isNotNull>
+			<isNotNull prepend="," property="czlx">
+				czlx=#czlx#
+			</isNotNull>
+			<isNotNull prepend="," property="zgts">
+				zgts=#zgts#
+			</isNotNull>
+			<isNotNull prepend="," property="czjg">
+				czjg=#czjg#
+			</isNotNull>
+			<isNotNull prepend="," property="cgts">
+				cgts=#cgts#
+			</isNotNull>
+			<isNotNull prepend="," property="sbts">
+				sbts=#sbts#
+			</isNotNull>
+			<isNotNull prepend="," property="hymc">
+				hymc=#hymc#
+			</isNotNull>
+			<isNotNull prepend="," property="hybm">
+				hybm=#hybm#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzWhere" />
+		</dynamic>
+	</update>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<delete id="deleteWbjkdyczrz" parameterClass="wbjkdyczrz">
+		delete from t_wbjkdyczrz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzWhere" />
+		</dynamic>
+	</delete>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<select id="getWbjkdyczrzList" resultMap="wbjkdyczrzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.czrzid czrzid,a.czzh czzh,a.czgsmc czgsmc,a.czsj czsj,a.dyjkmc dyjkmc,a.czlx czlx,a.zgts zgts,a.czjg czjg,a.cgts cgts,a.sbts sbts,a.hymc hymc,a.hybm hybm
+		from t_wbjkdyczrz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<select id="getWbjkdyczrzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wbjkdyczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzPageWhere" />
+		</dynamic>
+	</select>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<select id="getWbjkdyczrzListNoPage" resultMap="wbjkdyczrzListResult" parameterClass="wbjkdyczrz">
+		select a.czrzid czrzid,a.czzh czzh,a.czgsmc czgsmc,a.czsj czsj,a.dyjkmc dyjkmc,a.czlx czlx,a.zgts zgts,a.czjg czjg,a.cgts cgts,a.sbts sbts,a.hymc hymc,a.hybm hybm
+		from t_wbjkdyczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzListWhere" />
+		</dynamic>
+		order by a.czrzid
+	</select>
+	<!--外部接口调用操作日志(t_wbjkdyczrz)-->
+	<select id="getWbjkdyczrz" resultMap="wbjkdyczrzResult" parameterClass="wbjkdyczrz">
+		select a.czrzid czrzid,a.czzh czzh,a.czgsmc czgsmc,a.czsj czsj,a.dyjkmc dyjkmc,a.czlx czlx,a.zgts zgts,a.czjg czjg,a.cgts cgts,a.sbts sbts,a.hymc hymc,a.hybm hybm
+		from t_wbjkdyczrz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wbjkdyczrzSelectWhere" />
+		</dynamic>
+		order by a.czrzid
+	</select>
+</sqlMap>

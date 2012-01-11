@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wpbjbdtj" type="com.aisino2.basicsystem.domain.Wpbjbdtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<resultMap id="wpbjbdtjResult" class="wpbjbdtj">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="wpbjbdtjid" column="wpbjbdtjid" />
+		<result property="tjlx" column="tjlx" />
+		<result property="ywbzdm" column="ywbzdm" />
+		<result property="bdbzdm" column="bdbzdm" />
+		<result property="bdgx" column="bdgx" />
+		<result property="gxc" column="gxc" />
+		<result property="zxsx" column="zxsx" />
+		<result property="ljgx" column="ljgx" />
+		<result property="jibie" column="jibie" />
+	</resultMap>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<resultMap id="wpbjbdtjListResult" class="wpbjbdtj">
+		<result property="wpbjgzid" column="wpbjgzid"/>
+		<result property="wpbjbdtjid" column="wpbjbdtjid"/>
+		<result property="tjlx" column="tjlx"/>
+		<result property="ywbzdm" column="ywbzdm"/>
+		<result property="bdbzdm" column="bdbzdm"/>
+		<result property="bdgx" column="bdgx"/>
+		<result property="gxc" column="gxc"/>
+		<result property="zxsx" column="zxsx"/>
+		<result property="ljgx" column="ljgx"/>
+		<result property="jibie" column="jibie"/>
+	</resultMap>
+	<sql id="t_wpbjbdtjWhere">
+			<isNotEmpty prepend="and" property="wpbjgzid">
+				a.wpbjgzid=#wpbjgzid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wpbjbdtjid">
+				a.wpbjbdtjid=#wpbjbdtjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_wpbjbdtjPageWhere" >
+		<include refid="t_wpbjbdtjWhere" />	</sql>
+	<sql id="t_wpbjbdtjListWhere" >
+		<include refid="t_wpbjbdtjWhere" />	</sql>
+	<sql id="t_wpbjbdtjSelectWhere"  >
+		<include refid="t_wpbjbdtjWhere" />	</sql>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<insert id="insertWpbjbdtj"  parameterClass="wpbjbdtj">
+		insert into t_wpbjbdtj (
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjbdtjid">
+				wpbjbdtjid
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				tjlx
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				ywbzdm
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				bdbzdm
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				bdgx
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				gxc
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				zxsx
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				ljgx
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				jibie
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjbdtjid">
+				#wpbjbdtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				#tjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				#ywbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				#bdbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				#bdgx#
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				#gxc#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				#zxsx#
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				#ljgx#
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				#jibie#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<update id="updateWpbjbdtj" parameterClass="wpbjbdtj">
+		update t_wpbjbdtj a set a.wpbjbdtjid=a.wpbjbdtjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjbdtjid">
+				wpbjbdtjid=#wpbjbdtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				tjlx=#tjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				ywbzdm=#ywbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				bdbzdm=#bdbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				bdgx=#bdgx#
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				gxc=#gxc#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				zxsx=#zxsx#
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				ljgx=#ljgx#
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				jibie=#jibie#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjWhere" />
+		</dynamic>
+	</update>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<delete id="deleteWpbjbdtj" parameterClass="wpbjbdtj">
+		delete from t_wpbjbdtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjWhere" />
+		</dynamic>
+	</delete>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<select id="getWpbjbdtjList" resultMap="wpbjbdtjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.wpbjgzid wpbjgzid,a.wpbjbdtjid wpbjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_wpbjbdtj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<select id="getWpbjbdtjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wpbjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjPageWhere" />
+		</dynamic>
+	</select>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<select id="getWpbjbdtjListNoPage" resultMap="wpbjbdtjListResult" parameterClass="wpbjbdtj">
+		select a.wpbjgzid wpbjgzid,a.wpbjbdtjid wpbjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_wpbjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjListWhere" />
+		</dynamic>
+		order by a.wpbjgzid,a.wpbjbdtjid
+	</select>
+	<!--物品报警比对条件(t_wpbjbdtj)-->
+	<select id="getWpbjbdtj" resultMap="wpbjbdtjResult" parameterClass="wpbjbdtj">
+		select a.wpbjgzid wpbjgzid,a.wpbjbdtjid wpbjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_wpbjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wpbjbdtjSelectWhere" />
+		</dynamic>
+		order by a.wpbjgzid,a.wpbjbdtjid
+	</select>
+	<select id="getWpbjbdtjListByGzID" resultMap="wpbjbdtjResult" parameterClass="java.lang.Integer">
+		select a.wpbjgzid wpbjgzid,a.wpbjbdtjid wpbjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_wpbjbdtj a
+		where wpbjgzid=#wpbjgzid#
+		order by a.wpbjgzid,a.wpbjbdtjid
+	</select>
+</sqlMap>

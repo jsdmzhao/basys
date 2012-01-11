@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bdqclxxlsb" type="com.aisino2.basicsystem.domain.Bdqclxxlsb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<resultMap id="bdqclxxlsbResult" class="bdqclxxlsb">
+		<result property="bdqclxxid" column="bdqclxxid" />
+		<result property="id" column="id" />
+		<result property="ajbh" column="ajbh" />
+		<result property="ajxzdm" column="ajxzdm" />
+		<result property="ajxz" column="ajxz" />
+		<result property="cllxdm" column="cllxdm" />
+		<result property="cllx" column="cllx" />
+		<result property="clpp" column="clpp" />
+		<result property="clxh" column="clxh" />
+		<result property="hpzldm" column="hpzldm" />
+		<result property="hpzl" column="hpzl" />
+		<result property="hphm" column="hphm" />
+		<result property="csys" column="csys" />
+		<result property="syr" column="syr" />
+		<result property="ccdjrq" column="ccdjrq" />
+		<result property="fdjh" column="fdjh" />
+		<result property="clsbdh" column="clsbdh" />
+		<result property="cjh" column="cjh" />
+		<result property="sfbx" column="sfbx" />
+		<result property="bar" column="bar" />
+		<result property="ladwqhbm" column="ladwqhbm" />
+		<result property="ladwqh" column="ladwqh" />
+		<result property="ladwbm" column="ladwbm" />
+		<result property="ladwmc" column="ladwmc" />
+		<result property="lasj" column="lasj" />
+		<result property="lajbr" column="lajbr" />
+		<result property="ladh" column="ladh" />
+		<result property="sldwqhbm" column="sldwqhbm" />
+		<result property="sldwqh" column="sldwqh" />
+		<result property="sldwbm" column="sldwbm" />
+		<result property="sldwmc" column="sldwmc" />
+		<result property="slsj" column="slsj" />
+		<result property="sljbr" column="sljbr" />
+		<result property="sldh" column="sldh" />
+		<result property="bz" column="bz" />
+		<result property="tbdwqhbm" column="tbdwqhbm" />
+		<result property="tbdwqh" column="tbdwqh" />
+		<result property="tbdwbm" column="tbdwbm" />
+		<result property="tbdwmc" column="tbdwmc" />
+		<result property="tbtbr" column="tbtbr" />
+		<result property="tbsj3" column="tbsj3" />
+		<result property="zt" column="zt" />
+		<result property="scbz" column="scbz" />
+		<result property="lrdwbm" column="lrdwbm" />
+		<result property="lrdw" column="lrdw" />
+		<result property="lrr" column="lrr" />
+		<result property="lrsj" column="lrsj" />
+		<result property="xgdwbm" column="xgdwbm" />
+		<result property="xgdw" column="xgdw" />
+		<result property="xgr" column="xgr" />
+		<result property="xgsj" column="xgsj" />
+		<result property="spr3" column="spr3" />
+		<result property="spyj" column="spyj" />
+		<result property="sydwbm" column="sydwbm" />
+		<result property="sydw" column="sydw" />
+	</resultMap>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<resultMap id="bdqclxxlsbListResult" class="bdqclxxlsb">
+		<result property="bdqclxxid" column="bdqclxxid"/>
+		<result property="id" column="id"/>
+		<result property="ajbh" column="ajbh"/>
+		<result property="ajxzdm" column="ajxzdm"/>
+		<result property="ajxz" column="ajxz"/>
+		<result property="cllxdm" column="cllxdm"/>
+		<result property="cllx" column="cllx"/>
+		<result property="clpp" column="clpp"/>
+		<result property="clxh" column="clxh"/>
+		<result property="hpzldm" column="hpzldm"/>
+		<result property="hpzl" column="hpzl"/>
+		<result property="hphm" column="hphm"/>
+		<result property="csys" column="csys"/>
+		<result property="syr" column="syr"/>
+		<result property="ccdjrq" column="ccdjrq"/>
+		<result property="fdjh" column="fdjh"/>
+		<result property="clsbdh" column="clsbdh"/>
+		<result property="cjh" column="cjh"/>
+		<result property="sfbx" column="sfbx"/>
+		<result property="bar" column="bar"/>
+		<result property="ladwqhbm" column="ladwqhbm"/>
+		<result property="ladwqh" column="ladwqh"/>
+		<result property="ladwbm" column="ladwbm"/>
+		<result property="ladwmc" column="ladwmc"/>
+		<result property="lasj" column="lasj"/>
+		<result property="lajbr" column="lajbr"/>
+		<result property="ladh" column="ladh"/>
+		<result property="sldwqhbm" column="sldwqhbm"/>
+		<result property="sldwqh" column="sldwqh"/>
+		<result property="sldwbm" column="sldwbm"/>
+		<result property="sldwmc" column="sldwmc"/>
+		<result property="slsj" column="slsj"/>
+		<result property="sljbr" column="sljbr"/>
+		<result property="sldh" column="sldh"/>
+		<result property="bz" column="bz"/>
+		<result property="tbdwqhbm" column="tbdwqhbm"/>
+		<result property="tbdwqh" column="tbdwqh"/>
+		<result property="tbdwbm" column="tbdwbm"/>
+		<result property="tbdwmc" column="tbdwmc"/>
+		<result property="tbtbr" column="tbtbr"/>
+		<result property="tbsj3" column="tbsj3"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="lrdwbm" column="lrdwbm"/>
+		<result property="lrdw" column="lrdw"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="xgdwbm" column="xgdwbm"/>
+		<result property="xgdw" column="xgdw"/>
+		<result property="xgr" column="xgr"/>
+		<result property="xgsj" column="xgsj"/>
+		<result property="spr3" column="spr3"/>
+		<result property="spyj" column="spyj"/>
+		<result property="sydwbm" column="sydwbm"/>
+		<result property="sydw" column="sydw"/>
+	</resultMap>
+	<sql id="t_bdqclxxlsbWhere">
+			<isNotEmpty prepend="and" property="bdqclxxid">
+				a.bdqclxxid=#bdqclxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bdqclxxlsbPageWhere" >
+		<include refid="t_bdqclxxlsbWhere" />	</sql>
+	<sql id="t_bdqclxxlsbListWhere" >
+		<include refid="t_bdqclxxlsbWhere" />	</sql>
+	<sql id="t_bdqclxxlsbSelectWhere"  >
+		<include refid="t_bdqclxxlsbWhere" />	</sql>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<insert id="insertBdqclxxlsb"  parameterClass="bdqclxxlsb">
+		insert into t_bdqclxxlsb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bdqclxxid">
+				bdqclxxid
+			</isNotNull>
+			<isNotNull prepend="," property="id">
+				id
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				ajbh
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				ajxzdm
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				ajxz
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				cllxdm
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				cllx
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				clpp
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				clxh
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				hpzldm
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				hpzl
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				hphm
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				csys
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				syr
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				ccdjrq
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				fdjh
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				clsbdh
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				cjh
+			</isNotNull>
+			<isNotNull prepend="," property="sfbx">
+				sfbx
+			</isNotNull>
+			<isNotNull prepend="," property="bar">
+				bar
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqhbm">
+				ladwqhbm
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqh">
+				ladwqh
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				ladwmc
+			</isNotNull>
+			<isNotNull prepend="," property="lasj">
+				lasj
+			</isNotNull>
+			<isNotNull prepend="," property="lajbr">
+				lajbr
+			</isNotNull>
+			<isNotNull prepend="," property="ladh">
+				ladh
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqhbm">
+				sldwqhbm
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqh">
+				sldwqh
+			</isNotNull>
+			<isNotNull prepend="," property="sldwbm">
+				sldwbm
+			</isNotNull>
+			<isNotNull prepend="," property="sldwmc">
+				sldwmc
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj
+			</isNotNull>
+			<isNotNull prepend="," property="sljbr">
+				sljbr
+			</isNotNull>
+			<isNotNull prepend="," property="sldh">
+				sldh
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqhbm">
+				tbdwqhbm
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqh">
+				tbdwqh
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwbm">
+				tbdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwmc">
+				tbdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="tbtbr">
+				tbtbr
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj3">
+				tbsj3
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				lrdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="lrdw">
+				lrdw
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj
+			</isNotNull>
+			<isNotNull prepend="," property="xgdwbm">
+				xgdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="xgdw">
+				xgdw
+			</isNotNull>
+			<isNotNull prepend="," property="xgr">
+				xgr
+			</isNotNull>
+			<isNotNull prepend="," property="xgsj">
+				xgsj
+			</isNotNull>
+			<isNotNull prepend="," property="spr3">
+				spr3
+			</isNotNull>
+			<isNotNull prepend="," property="spyj">
+				spyj
+			</isNotNull>
+			<isNotNull prepend="," property="sydwbm">
+				sydwbm
+			</isNotNull>
+			<isNotNull prepend="," property="sydw">
+				sydw
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bdqclxxid">
+				#bdqclxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="id">
+				#id#
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				#ajbh#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				#ajxzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				#ajxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				#cllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				#cllx#
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				#clpp#
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				#clxh#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				#hpzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				#hpzl#
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				#hphm#
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				#csys#
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				#syr#
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				#ccdjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				#fdjh#
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				#clsbdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				#cjh#
+			</isNotNull>
+			<isNotNull prepend="," property="sfbx">
+				#sfbx#
+			</isNotNull>
+			<isNotNull prepend="," property="bar">
+				#bar#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqhbm">
+				#ladwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqh">
+				#ladwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				#ladwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lasj">
+				#lasj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lajbr">
+				#lajbr#
+			</isNotNull>
+			<isNotNull prepend="," property="ladh">
+				#ladh#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqhbm">
+				#sldwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqh">
+				#sldwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwbm">
+				#sldwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwmc">
+				#sldwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="sljbr">
+				#sljbr#
+			</isNotNull>
+			<isNotNull prepend="," property="sldh">
+				#sldh#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqhbm">
+				#tbdwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqh">
+				#tbdwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwbm">
+				#tbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwmc">
+				#tbdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tbtbr">
+				#tbtbr#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj3">
+				#tbsj3:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				#lrdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdw">
+				#lrdw#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="xgdwbm">
+				#xgdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xgdw">
+				#xgdw#
+			</isNotNull>
+			<isNotNull prepend="," property="xgr">
+				#xgr#
+			</isNotNull>
+			<isNotNull prepend="," property="xgsj">
+				#xgsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="spr3">
+				#spr3#
+			</isNotNull>
+			<isNotNull prepend="," property="spyj">
+				#spyj#
+			</isNotNull>
+			<isNotNull prepend="," property="sydwbm">
+				#sydwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sydw">
+				#sydw#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<update id="updateBdqclxxlsb" parameterClass="bdqclxxlsb">
+		update t_bdqclxxlsb a set a.bdqclxxid=a.bdqclxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="id">
+				id=#id#
+			</isNotNull>
+			<isNotNull prepend="," property="ajbh">
+				ajbh=#ajbh#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxzdm">
+				ajxzdm=#ajxzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="ajxz">
+				ajxz=#ajxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				cllxdm=#cllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				cllx=#cllx#
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				clpp=#clpp#
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				clxh=#clxh#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				hpzldm=#hpzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				hpzl=#hpzl#
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				hphm=#hphm#
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				csys=#csys#
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				syr=#syr#
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				ccdjrq=#ccdjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				fdjh=#fdjh#
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				clsbdh=#clsbdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				cjh=#cjh#
+			</isNotNull>
+			<isNotNull prepend="," property="sfbx">
+				sfbx=#sfbx#
+			</isNotNull>
+			<isNotNull prepend="," property="bar">
+				bar=#bar#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqhbm">
+				ladwqhbm=#ladwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwqh">
+				ladwqh=#ladwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwbm">
+				ladwbm=#ladwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="ladwmc">
+				ladwmc=#ladwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="lasj">
+				lasj=#lasj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lajbr">
+				lajbr=#lajbr#
+			</isNotNull>
+			<isNotNull prepend="," property="ladh">
+				ladh=#ladh#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqhbm">
+				sldwqhbm=#sldwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwqh">
+				sldwqh=#sldwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwbm">
+				sldwbm=#sldwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sldwmc">
+				sldwmc=#sldwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj=#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="sljbr">
+				sljbr=#sljbr#
+			</isNotNull>
+			<isNotNull prepend="," property="sldh">
+				sldh=#sldh#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqhbm">
+				tbdwqhbm=#tbdwqhbm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwqh">
+				tbdwqh=#tbdwqh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwbm">
+				tbdwbm=#tbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdwmc">
+				tbdwmc=#tbdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="tbtbr">
+				tbtbr=#tbtbr#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj3">
+				tbsj3=#tbsj3:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zt">
+				zt=#zt#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz=#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdwbm">
+				lrdwbm=#lrdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="lrdw">
+				lrdw=#lrdw#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr=#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrsj">
+				lrsj=#lrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="xgdwbm">
+				xgdwbm=#xgdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xgdw">
+				xgdw=#xgdw#
+			</isNotNull>
+			<isNotNull prepend="," property="xgr">
+				xgr=#xgr#
+			</isNotNull>
+			<isNotNull prepend="," property="xgsj">
+				xgsj=#xgsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="spr3">
+				spr3=#spr3#
+			</isNotNull>
+			<isNotNull prepend="," property="spyj">
+				spyj=#spyj#
+			</isNotNull>
+			<isNotNull prepend="," property="sydwbm">
+				sydwbm=#sydwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sydw">
+				sydw=#sydw#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbWhere" />
+		</dynamic>
+	</update>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<delete id="deleteBdqclxxlsb" parameterClass="bdqclxxlsb">
+		delete from t_bdqclxxlsb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbWhere" />
+		</dynamic>
+	</delete>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<select id="getBdqclxxlsbList" resultMap="bdqclxxlsbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bdqclxxid bdqclxxid,a.id id,a.ajbh ajbh,a.ajxzdm ajxzdm,a.ajxz ajxz,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh,a.sfbx sfbx,a.bar bar,a.ladwqhbm ladwqhbm,a.ladwqh ladwqh,a.ladwbm ladwbm,a.ladwmc ladwmc,a.lasj lasj,a.lajbr lajbr,a.ladh ladh,a.sldwqhbm sldwqhbm,a.sldwqh sldwqh,a.sldwbm sldwbm,a.sldwmc sldwmc,a.slsj slsj,a.sljbr sljbr,a.sldh sldh,a.bz bz,a.tbdwqhbm tbdwqhbm,a.tbdwqh tbdwqh,a.tbdwbm tbdwbm,a.tbdwmc tbdwmc,a.tbtbr tbtbr,a.tbsj3 tbsj3,a.zt zt,a.scbz scbz,a.lrdwbm lrdwbm,a.lrdw lrdw,a.lrr lrr,a.lrsj lrsj,a.xgdwbm xgdwbm,a.xgdw xgdw,a.xgr xgr,a.xgsj xgsj,a.spr3 spr3,a.spyj spyj,a.sydwbm sydwbm,a.sydw sydw
+		from t_bdqclxxlsb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<select id="getBdqclxxlsbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bdqclxxlsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbPageWhere" />
+		</dynamic>
+	</select>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<select id="getBdqclxxlsbListNoPage" resultMap="bdqclxxlsbListResult" parameterClass="bdqclxxlsb">
+		select a.bdqclxxid bdqclxxid,a.id id,a.ajbh ajbh,a.ajxzdm ajxzdm,a.ajxz ajxz,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh,a.sfbx sfbx,a.bar bar,a.ladwqhbm ladwqhbm,a.ladwqh ladwqh,a.ladwbm ladwbm,a.ladwmc ladwmc,a.lasj lasj,a.lajbr lajbr,a.ladh ladh,a.sldwqhbm sldwqhbm,a.sldwqh sldwqh,a.sldwbm sldwbm,a.sldwmc sldwmc,a.slsj slsj,a.sljbr sljbr,a.sldh sldh,a.bz bz,a.tbdwqhbm tbdwqhbm,a.tbdwqh tbdwqh,a.tbdwbm tbdwbm,a.tbdwmc tbdwmc,a.tbtbr tbtbr,a.tbsj3 tbsj3,a.zt zt,a.scbz scbz,a.lrdwbm lrdwbm,a.lrdw lrdw,a.lrr lrr,a.lrsj lrsj,a.xgdwbm xgdwbm,a.xgdw xgdw,a.xgr xgr,a.xgsj xgsj,a.spr3 spr3,a.spyj spyj,a.sydwbm sydwbm,a.sydw sydw
+		from t_bdqclxxlsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbListWhere" />
+		</dynamic>
+		order by a.bdqclxxid
+	</select>
+	<!--被盗抢车辆信息临时表(t_bdqclxxlsb)-->
+	<select id="getBdqclxxlsb" resultMap="bdqclxxlsbResult" parameterClass="bdqclxxlsb">
+		select a.bdqclxxid bdqclxxid,a.id id,a.ajbh ajbh,a.ajxzdm ajxzdm,a.ajxz ajxz,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh,a.sfbx sfbx,a.bar bar,a.ladwqhbm ladwqhbm,a.ladwqh ladwqh,a.ladwbm ladwbm,a.ladwmc ladwmc,a.lasj lasj,a.lajbr lajbr,a.ladh ladh,a.sldwqhbm sldwqhbm,a.sldwqh sldwqh,a.sldwbm sldwbm,a.sldwmc sldwmc,a.slsj slsj,a.sljbr sljbr,a.sldh sldh,a.bz bz,a.tbdwqhbm tbdwqhbm,a.tbdwqh tbdwqh,a.tbdwbm tbdwbm,a.tbdwmc tbdwmc,a.tbtbr tbtbr,a.tbsj3 tbsj3,a.zt zt,a.scbz scbz,a.lrdwbm lrdwbm,a.lrdw lrdw,a.lrr lrr,a.lrsj lrsj,a.xgdwbm xgdwbm,a.xgdw xgdw,a.xgr xgr,a.xgsj xgsj,a.spr3 spr3,a.spyj spyj,a.sydwbm sydwbm,a.sydw sydw
+		from t_bdqclxxlsb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdqclxxlsbSelectWhere" />
+		</dynamic>
+		order by a.bdqclxxid
+	</select>
+</sqlMap>

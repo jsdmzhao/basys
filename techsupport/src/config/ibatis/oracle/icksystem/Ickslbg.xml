@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="ickslbg" type="com.aisino2.icksystem.domain.Ickslbg"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<resultMap id="ickslbgResult" class="ickslbg">
+		<result property="ickslid" column="ickslid" />
+		<result property="ickslbgid" column="ickslbgid" />
+		<result property="wlid" column="wlid" />
+		<result property="zbid" column="zbid" />
+		<result property="kh" column="kh" />
+		<result property="ickh" column="ickh" />
+		<result property="slyy" column="slyy" />
+		<result property="slr" column="slr" />
+		<result property="slsj" column="slsj" />
+		<result property="yxsksrq" column="yxsksrq" />
+		<result property="yxqhzrq" column="yxqhzrq" />
+		<result property="cjsj" column="cjsj" />
+		<result property="cjr" column="cjr" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="jssj" column="jssj" />
+		<result property="jsbmc" column="jsbmc" />
+		<result property="ffr" column="ffr" />
+		<result property="ffsj" column="ffsj" />
+		<result property="lqr" column="lqr" />
+		<result property="lqsj" column="lqsj" />
+		<result property="lqrzjlx" column="lqrzjlx" />
+		<result property="lqrzjhm" column="lqrzjhm" />
+		<result property="ickzxr" column="ickzxr" />
+		<result property="ickzxsj" column="ickzxsj" />
+		<result property="ickzxyy" column="ickzxyy" />
+		<result property="njr" column="njr" />
+		<result property="njsj" column="njsj" />
+		<result property="zkztbs" column="zkztbs" />
+		<result property="sfqr" column="sfqr" />
+		<result property="ysr" column="ysr" />
+		<result property="yssj" column="yssj" />
+		<result property="dxrr" column="dxrr" />
+		<result property="dxrsj" column="dxrsj" />
+		<result property="cyssj" column="cyssj" />
+		<result property="cysyy" column="cysyy" />
+		<result property="cdxrsj" column="cdxrsj" />
+		<result property="cdxryy" column="cdxryy" />
+		<result property="bhkyy" column="bhkyy" />
+		<result property="yksfsh" column="yksfsh" />
+	</resultMap>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<resultMap id="ickslbgListResult" class="ickslbg">
+		<result property="ickslid" column="ickslid"/>
+		<result property="ickslbgid" column="ickslbgid"/>
+		<result property="wlid" column="wlid"/>
+		<result property="zbid" column="zbid"/>
+		<result property="kh" column="kh"/>
+		<result property="ickh" column="ickh"/>
+		<result property="slyy" column="slyy"/>
+		<result property="slr" column="slr"/>
+		<result property="slsj" column="slsj"/>
+		<result property="yxsksrq" column="yxsksrq"/>
+		<result property="yxqhzrq" column="yxqhzrq"/>
+		<result property="cjsj" column="cjsj"/>
+		<result property="cjr" column="cjr"/>
+		<result property="cjdbm" column="cjdbm"/>
+		<result property="cjdmc" column="cjdmc"/>
+		<result property="jssj" column="jssj"/>
+		<result property="jsbmc" column="jsbmc"/>
+		<result property="ffr" column="ffr"/>
+		<result property="ffsj" column="ffsj"/>
+		<result property="lqr" column="lqr"/>
+		<result property="lqsj" column="lqsj"/>
+		<result property="lqrzjlx" column="lqrzjlx"/>
+		<result property="lqrzjhm" column="lqrzjhm"/>
+		<result property="ickzxr" column="ickzxr"/>
+		<result property="ickzxsj" column="ickzxsj"/>
+		<result property="ickzxyy" column="ickzxyy"/>
+		<result property="njr" column="njr"/>
+		<result property="njsj" column="njsj"/>
+		<result property="zkztbs" column="zkztbs"/>
+		<result property="sfqr" column="sfqr"/>
+		<result property="ysr" column="ysr"/>
+		<result property="yssj" column="yssj"/>
+		<result property="dxrr" column="dxrr"/>
+		<result property="dxrsj" column="dxrsj"/>
+		<result property="cyssj" column="cyssj"/>
+		<result property="cysyy" column="cysyy"/>
+		<result property="cdxrsj" column="cdxrsj"/>
+		<result property="cdxryy" column="cdxryy"/>
+		<result property="bhkyy" column="bhkyy"/>
+		<result property="yksfsh" column="yksfsh"/>
+	</resultMap>
+	<sql id="t_ickslbgWhere">
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ickslbgid">
+				a.ickslbgid=#ickslbgid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wlid">
+				a.wlid=#wlid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zbid">
+				a.zbid=#zbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_ickslbgPageWhere" >
+		<include refid="t_ickslbgWhere" />	</sql>
+	<sql id="t_ickslbgListWhere" >
+		<include refid="t_ickslbgWhere" />	</sql>
+	<sql id="t_ickslbgSelectWhere"  >
+		<include refid="t_ickslbgWhere" />	</sql>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<insert id="insertIckslbg"  parameterClass="ickslbg">
+		insert into t_ickslbg (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				ickslid
+			</isNotNull>
+			<isNotNull prepend="," property="ickslbgid">
+				ickslbgid
+			</isNotNull>
+			<isNotNull prepend="," property="wlid">
+				wlid
+			</isNotNull>
+			<isNotNull prepend="," property="zbid">
+				zbid
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				slyy
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				slr
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				yxsksrq
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				yxqhzrq
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				cjsj
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				cjr
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				jsbmc
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				ffr
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				ffsj
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				lqr
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				lqsj
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				lqrzjlx
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				lqrzjhm
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				ickzxr
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				ickzxsj
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				ickzxyy
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				njr
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				njsj
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				zkztbs
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				sfqr
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				ysr
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				yssj
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				dxrr
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				dxrsj
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				cyssj
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				cysyy
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				cdxrsj
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				cdxryy
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				bhkyy
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				yksfsh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="ickslbgid">
+				#ickslbgid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlid">
+				#wlid#
+			</isNotNull>
+			<isNotNull prepend="," property="zbid">
+				#zbid#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				#slyy#
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				#slr#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				#yxsksrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				#yxqhzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				#cjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				#cjr#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				#jsbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				#ffr#
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				#ffsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				#lqr#
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				#lqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				#lqrzjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				#lqrzjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				#ickzxr#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				#ickzxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				#ickzxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				#njr#
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				#njsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				#zkztbs#
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				#sfqr#
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				#ysr#
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				#yssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				#dxrr#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				#dxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				#cyssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				#cysyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				#cdxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				#cdxryy#
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				#bhkyy#
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				#yksfsh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<update id="updateIckslbg" parameterClass="ickslbg">
+		update t_ickslbg a set a.zbid=a.zbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ickslid">
+				ickslid=#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="ickslbgid">
+				ickslbgid=#ickslbgid#
+			</isNotNull>
+			<isNotNull prepend="," property="wlid">
+				wlid=#wlid#
+			</isNotNull>
+			<isNotNull prepend="," property="zbid">
+				zbid=#zbid#
+			</isNotNull>
+			<isNotNull prepend="," property="kh">
+				kh=#kh#
+			</isNotNull>
+			<isNotNull prepend="," property="ickh">
+				ickh=#ickh#
+			</isNotNull>
+			<isNotNull prepend="," property="slyy">
+				slyy=#slyy#
+			</isNotNull>
+			<isNotNull prepend="," property="slr">
+				slr=#slr#
+			</isNotNull>
+			<isNotNull prepend="," property="slsj">
+				slsj=#slsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxsksrq">
+				yxsksrq=#yxsksrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="yxqhzrq">
+				yxqhzrq=#yxqhzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjsj">
+				cjsj=#cjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjr">
+				cjr=#cjr#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm=#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc=#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jssj">
+				jssj=#jssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jsbmc">
+				jsbmc=#jsbmc#
+			</isNotNull>
+			<isNotNull prepend="," property="ffr">
+				ffr=#ffr#
+			</isNotNull>
+			<isNotNull prepend="," property="ffsj">
+				ffsj=#ffsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqr">
+				lqr=#lqr#
+			</isNotNull>
+			<isNotNull prepend="," property="lqsj">
+				lqsj=#lqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjlx">
+				lqrzjlx=#lqrzjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="lqrzjhm">
+				lqrzjhm=#lqrzjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxr">
+				ickzxr=#ickzxr#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxsj">
+				ickzxsj=#ickzxsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="ickzxyy">
+				ickzxyy=#ickzxyy#
+			</isNotNull>
+			<isNotNull prepend="," property="njr">
+				njr=#njr#
+			</isNotNull>
+			<isNotNull prepend="," property="njsj">
+				njsj=#njsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zkztbs">
+				zkztbs=#zkztbs#
+			</isNotNull>
+			<isNotNull prepend="," property="sfqr">
+				sfqr=#sfqr#
+			</isNotNull>
+			<isNotNull prepend="," property="ysr">
+				ysr=#ysr#
+			</isNotNull>
+			<isNotNull prepend="," property="yssj">
+				yssj=#yssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrr">
+				dxrr=#dxrr#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrsj">
+				dxrsj=#dxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cyssj">
+				cyssj=#cyssj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cysyy">
+				cysyy=#cysyy#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxrsj">
+				cdxrsj=#cdxrsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cdxryy">
+				cdxryy=#cdxryy#
+			</isNotNull>
+			<isNotNull prepend="," property="bhkyy">
+				bhkyy=#bhkyy#
+			</isNotNull>
+			<isNotNull prepend="," property="yksfsh">
+				yksfsh=#yksfsh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslbgWhere" />
+		</dynamic>
+	</update>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<delete id="deleteIckslbg" parameterClass="ickslbg">
+		delete from t_ickslbg a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_ickslbgWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<select id="getIckslbgList" resultMap="ickslbgListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickslid ickslid,a.ickslbgid ickslbgid,a.wlid wlid,a.zbid zbid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_ickslbg a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslbgPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<select id="getIckslbgListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_ickslbg a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslbgPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<select id="getIckslbgListNoPage" resultMap="ickslbgListResult" parameterClass="ickslbg">
+		select a.ickslid ickslid,a.ickslbgid ickslbgid,a.wlid wlid,a.zbid zbid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_ickslbg a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslbgListWhere" />
+		</dynamic>
+		order by a.ickslid,a.ickslbgid,a.wlid,a.zbid
+	</select>
+	<!--IC卡受理变更(t_ickslbg)-->
+	<select id="getIckslbg" resultMap="ickslbgResult" parameterClass="ickslbg">
+		select a.ickslid ickslid,a.ickslbgid ickslbgid,a.wlid wlid,a.zbid zbid,a.kh kh,a.ickh ickh,a.slyy slyy,a.slr slr,a.slsj slsj,a.yxsksrq yxsksrq,a.yxqhzrq yxqhzrq,a.cjsj cjsj,a.cjr cjr,a.cjdbm cjdbm,a.cjdmc cjdmc,a.jssj jssj,a.jsbmc jsbmc,a.ffr ffr,a.ffsj ffsj,a.lqr lqr,a.lqsj lqsj,a.lqrzjlx lqrzjlx,a.lqrzjhm lqrzjhm,a.ickzxr ickzxr,a.ickzxsj ickzxsj,a.ickzxyy ickzxyy,a.njr njr,a.njsj njsj,a.zkztbs zkztbs,a.sfqr sfqr,a.ysr ysr,a.yssj yssj,a.dxrr dxrr,a.dxrsj dxrsj,a.cyssj cyssj,a.cysyy cysyy,a.cdxrsj cdxrsj,a.cdxryy cdxryy,a.bhkyy bhkyy,a.yksfsh yksfsh
+		from t_ickslbg a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_ickslbgSelectWhere" />
+		</dynamic>
+		order by a.ickslid,a.ickslbgid,a.wlid,a.zbid
+	</select>
+</sqlMap>

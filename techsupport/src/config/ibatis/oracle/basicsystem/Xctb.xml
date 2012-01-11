@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="xctb" type="com.aisino2.basicsystem.domain.Xctb"/>
+	<typeAlias alias="gxdwForTree" type="com.aisino2.basicsystem.domain.GxdwForTree"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--协查通报(t_xctb)-->
+	<resultMap id="xctbResult" class="xctb">
+		<result property="tbid" column="tbid" />
+		<result property="bt" column="bt" />
+		<result property="fbsj" column="fbsj" />
+		<result property="fbnr" column="fbnr" />
+		<result property="fbr" column="fbr" />
+		<result property="fbdw" column="fbdw" />
+		<result property="jzrq" column="jzrq" />
+		<result property="gqbs" column="gqbs" />
+		<result property="fbdwbm" column="fbdwbm" />
+		<result property="sxhylbdm" column="sxhylbdm" />
+		<result property="sxhylbmc" column="sxhylbmc" />
+	</resultMap>
+	<!--协查通报(t_xctb)-->
+	<resultMap id="xctbListResult" class="xctb">
+		<result property="tbid" column="tbid"/>
+		<result property="bt" column="bt"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="fbnr" column="fbnr"/>
+		<result property="fbr" column="fbr"/>
+		<result property="fbdw" column="fbdw"/>
+		<result property="jzrq" column="jzrq"/>
+		<result property="gqbs" column="gqbs"/>
+		<result property="fbdwbm" column="fbdwbm" />
+		<result property="sxhylbdm" column="sxhylbdm" />
+		<result property="sxhylbmc" column="sxhylbmc" />
+	</resultMap>
+	
+	<!--协查通报(t_xctb)-->
+	<resultMap id="xctbListResult2" class="xctb">
+	    <result property="rowno" column="rowno"/>
+		<result property="tbid" column="tbid"/>
+		<result property="bt" column="bt"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="fbnr" column="fbnr"/>
+		<result property="fbr" column="fbr"/>
+		<result property="fbdw" column="fbdw"/>
+		<result property="jzrq" column="jzrq"/>
+		<result property="gqbs" column="gqbs"/>
+		<result property="fbdwbm" column="fbdwbm" />
+		<result property="sxhylbdm" column="sxhylbdm" />
+		<result property="sxhylbmc" column="sxhylbmc" />
+	</resultMap>
+	<!--协查通报(t_xctb)-->
+	<resultMap id="xctbWydListResult" class="xctb">
+		<result property="tbid" column="tbid"/>
+		<result property="bt" column="bt"/>
+		<result property="fbsj" column="fbsj"/>
+		<result property="jsdwid" column="jsdwid"/>
+	</resultMap>
+	
+	<sql id="t_xctbWhere">
+			<isNotEmpty prepend="and" property="tbid">
+				a.tbid=#tbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_xctbPageWhere" >
+		<include refid="t_xctbWhere" />
+		<isNotEmpty prepend="and" property="fbkssj">
+				fbsj&gt;=#fbkssj:TIMESTAMP#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbjssj">
+				fbsj&lt;=#fbjssj:TIMESTAMP#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="bt">
+				bt like '%$bt$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbdw">
+				fbdw=#fbdw#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbr">
+				fbr=#fbr#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gqbs">
+				gqbs=#gqbs#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="csid">
+                a.tbid in(select t.tbid from t_csxx_xctb t where csid=#csid#)			
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbdwbm">
+				fbdwbm like '$fbdwbm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fbdwbm2">
+				fbdwbm = #fbdwbm2#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sxhylbdm">
+				sxhylbdm like '%$sxhylbdm$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="sxhylbdms">
+				sxhylbdm in (#sxhylbdm#)
+		</isNotEmpty>
+	</sql>
+	<sql id="t_xctbListWhere" >
+		<include refid="t_xctbWhere" />
+		<isNotEmpty prepend="and" property="jsdwbm">
+				w.jsdwbm = #jsdwbm#
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="fbdwbmforIn">
+				a.fbdwbm in(#fbdwbmforIn#) 
+		</isNotEmpty>
+	</sql>
+	<sql id="t_xctbSelectWhere"  >
+		<include refid="t_xctbWhere" />	</sql>
+	<!--协查通报(t_xctb)-->
+	<insert id="insertXctb"  parameterClass="xctb">
+		insert into t_xctb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				tbid
+			</isNotNull>
+			<isNotNull prepend="," property="bt">
+				bt
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				fbsj
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				fbnr
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				fbdw
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				gqbs
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				fbdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbdm">
+				sxhylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbmc">
+				sxhylbmc
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="tbid">
+				#tbid#
+			</isNotNull>
+			<isNotNull prepend="," property="bt">
+				#bt#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				#fbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				#fbnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				#fbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				#gqbs#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				#fbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbdm">
+				#sxhylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbmc">
+				#sxhylbmc#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--协查通报(t_xctb)-->
+	<update id="updateXctb" parameterClass="xctb">
+		update t_xctb a set a.tbid=a.tbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bt">
+				bt=#bt#
+			</isNotNull>
+			<isNotNull prepend="," property="fbsj">
+				fbsj=#fbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fbnr">
+				fbnr=#fbnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbr">
+				fbr=#fbr#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdw">
+				fbdw=#fbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jzrq">
+				jzrq=#jzrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="gqbs">
+				gqbs=#gqbs#
+			</isNotNull>
+			<isNotNull prepend="," property="fbdwbm">
+				fbdwbm=#fbdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbdm">
+				sxhylbdm=#sxhylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="sxhylbmc">
+				sxhylbmc=#sxhylbmc#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbWhere" />
+			<isNotEmpty prepend="and" property="jzrqauto">
+				to_char(jzrq,'yyyy-MM-dd')&lt;to_char(#jzrqauto:TIMESTAMP#,'yyyy-MM-dd') and gqbs='0'
+		    </isNotEmpty>
+		</dynamic>
+	</update>
+	<!--协查通报(t_xctb)-->
+	<delete id="deleteXctb" parameterClass="xctb">
+		delete from t_xctb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_xctbWhere" />
+		</dynamic>
+	</delete>
+	<!--协查通报(t_xctb)-->
+	<select id="getXctbList" resultMap="xctbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs, a.fbdwbm fbdwbm,a.sxhylbdm sxhylbdm, a.sxhylbmc sxhylbmc
+		from t_xctb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbPageWhere" />
+		</dynamic>
+		union
+        select  a.tbid     tbid,
+                a.bt       bt,
+                a.fbsj     fbsj,
+                a.fbnr     fbnr,
+                a.fbr      fbr,
+                a.fbdw     fbdw,
+                a.jzrq     jzrq,
+                a.gqbs     gqbs,
+                a.fbdwbm   fbdwbm,
+                a.sxhylbdm sxhylbdm,
+                a.sxhylbmc sxhylbmc
+          from t_xctb a, t_xctbjsdw b
+          where a.tbid = b.tbid
+		  <dynamic prepend="">
+			<include refid="t_xctbPageWhere" />
+		  </dynamic>
+		  <isNotEmpty prepend="and" property="fbdwbm">
+				b.gxdwbm like '$fbdwbm$%'
+		  </isNotEmpty>		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报(t_xctb)-->
+	<select id="getXctbListCount" resultClass="int" parameterClass="map">
+		select count(1) a
+  from (select a.tbid     tbid,
+                a.bt       bt,
+                a.fbsj     fbsj,
+                a.fbnr     fbnr,
+                a.fbr      fbr,
+                a.fbdw     fbdw,
+                a.jzrq     jzrq,
+                a.gqbs     gqbs,
+                a.fbdwbm   fbdwbm,
+                a.sxhylbdm sxhylbdm,
+                a.sxhylbmc sxhylbmc
+         from t_xctb a
+         where 1 = 1
+         <dynamic prepend="">
+			    <include refid="t_xctbPageWhere" />
+		 </dynamic>
+         union
+         select a.tbid     tbid,
+                a.bt       bt,
+                a.fbsj     fbsj,
+                a.fbnr     fbnr,
+                a.fbr      fbr,
+                a.fbdw     fbdw,
+                a.jzrq     jzrq,
+                a.gqbs     gqbs,
+                a.fbdwbm   fbdwbm,
+                a.sxhylbdm sxhylbdm,
+                a.sxhylbmc sxhylbmc
+          from t_xctb a, t_xctbjsdw b
+          where a.tbid = b.tbid
+		  <dynamic prepend="">
+			<include refid="t_xctbPageWhere" />
+		  </dynamic>
+          <isNotEmpty prepend="and" property="fbdwbm">
+				b.gxdwbm like '$fbdwbm$%'
+		  </isNotEmpty>	
+	)	
+	</select>
+	<!--协查通报(t_xctb)-->
+	<select id="getXctbListNoPage" resultMap="xctbListResult2" parameterClass="xctb">
+		select  rownum rowno,a.tbid tbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.fbdwbm fbdwbm,a.sxhylbdm sxhylbdm, a.sxhylbmc sxhylbmc
+		from t_xctb a, t_xctbjsdw w
+		where a.tbid = w.tbid 
+		<dynamic prepend="">
+			<include refid="t_xctbListWhere" />
+		</dynamic>
+		order by a.tbid
+	</select>
+	<select id="getXctbListForBt" resultMap="xctbListResult2" parameterClass="map">
+		select  rownum rowno,a.tbid tbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.fbdwbm fbdwbm,a.sxhylbdm sxhylbdm, a.sxhylbmc sxhylbmc
+		from t_xctb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbListWhere" />
+		</dynamic>
+		order by a.FBSJ desc
+	</select>
+	<!--协查通报(t_xctb)-->
+	<select id="getXctb" resultMap="xctbResult" parameterClass="xctb">
+		select a.tbid tbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs,a.fbdwbm fbdwbm,a.sxhylbdm sxhylbdm, a.sxhylbmc sxhylbmc
+		from t_xctb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_xctbSelectWhere" />
+		</dynamic>
+		order by a.tbid
+	</select>
+	
+	<!--协查通报(t_xctb)-->
+	<select id="getXctbcsList" resultMap="xctbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.tbid tbid,a.bt bt,a.fbsj fbsj,a.fbnr fbnr,a.fbr fbr,a.fbdw fbdw,a.jzrq jzrq,a.gqbs gqbs, a.fbdwbm fbdwbm,a.sxhylbdm sxhylbdm, a.sxhylbmc sxhylbmc
+		from t_xctb a, t_xctbjsdw w
+		where a.tbid = w.tbid and w.jsdwbm = #jsdwbm#
+		<dynamic prepend="">
+			<include refid="t_xctbPageWhere" />
+			<isNotEmpty prepend="" property="csck">
+			     <isNotEqual prepend="and" property="csck" compareValue="0">
+					w.sqsj is not null
+				</isNotEqual>
+				<isEqual prepend="and" property="csck" compareValue="0">
+					w.sqsj is null
+				</isEqual>
+		    </isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--协查通报(t_xctb)-->
+	<select id="getXctbcsListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_xctb a, t_xctbjsdw w
+		where  a.tbid = w.tbid and w.jsdwbm = #jsdwbm#
+		<dynamic prepend="">
+			<include refid="t_xctbPageWhere" />
+			<isNotEmpty prepend="" property="csck">
+			    <isNotEqual prepend="and" property="csck" compareValue="0">
+					w.sqsj is not null
+				</isNotEqual>
+				<isEqual prepend="and" property="csck" compareValue="0">
+					w.sqsj is null
+				</isEqual>
+		    </isNotEmpty>
+		</dynamic>
+	</select>
+	<!--查询未阅读的协查通报-->
+	<select id="getXctbWydList" resultMap="xctbWydListResult" parameterClass="xctb">
+		select  a.tbid tbid,a.bt bt,a.fbsj fbsj,b.jsdwid
+		from t_xctb a, t_xctbjsdw b
+		where a.tbid = b.tbid
+		and a.gqbs = '0'
+		and b.sqsj is null and b.jsdwbm=#jsdwbm#
+		order by a.fbsj
+		  
+	</select>
+	<!--协查通报(t_xctb)-->
+	<resultMap id="xctbQydwListResult" class="gxdwForTree">
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>	
+	<!--企业查询-->
+	<select id="getXctbQydwList" resultMap="xctbQydwListResult" parameterClass="map">
+		select x.* from (
+			select rownum rowno,z.* from ( 
+			<isNotEmpty prepend="" property="yuju">
+		 		$yuju$ 
+			</isNotEmpty> 
+			order by $pageSort$) z) x 
+		where rowno &gt;$beginRow$ and rowno &lt;= $endRow$
+	</select>
+	<select id="getXctbQydwListCount" resultClass="int" parameterClass="map">
+		select count(1) a from (
+		<isNotEmpty prepend="" property="yuju">
+		 	$yuju$ 
+		</isNotEmpty>
+		)
+	</select>
+	<!--协查通报(t_xctb)-->
+	<resultMap id="qydwListResult" class="gxdwForTree">
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="hylbbm" column="hylbbm"/>
+		<result property="hylbmc" column="hylbmc"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	<!--企业列表查询-->
+	<select id="getQydwList" resultMap="qydwListResult" parameterClass="map">
+		<isNotEmpty prepend="" property="yuju">
+		 	$yuju$ 
+		</isNotEmpty>
+	</select>
+</sqlMap>

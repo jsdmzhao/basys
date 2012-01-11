@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="gatztbjsdw" type="com.aisino2.basicsystem.domain.Gatztbjsdw"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<resultMap id="gatztbjsdwResult" class="gatztbjsdw">
+		<result property="gatbid" column="gatbid" />
+		<result property="gajsdwid" column="gajsdwid" />
+		<result property="jsdwbm" column="jsdwbm" />
+		<result property="jsdwmc" column="jsdwmc" />
+		<result property="sqsj" column="sqsj" />
+		<result property="hylxdm" column="hylxdm" />
+		<result property="hylx" column="hylx" />
+		<result property="sqip" column="sqip" />
+	</resultMap>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<resultMap id="gatztbjsdwListResult" class="gatztbjsdw">
+		<result property="gatbid" column="gatbid"/>
+		<result property="gajsdwid" column="gajsdwid"/>
+		<result property="jsdwbm" column="jsdwbm"/>
+		<result property="jsdwmc" column="jsdwmc"/>
+		<result property="sqsj" column="sqsj"/>
+		<result property="hylxdm" column="hylxdm"/>
+		<result property="hylx" column="hylx"/>
+		<result property="sqip" column="sqip"/>
+	</resultMap>
+	<sql id="t_gatztbjsdwWhere">
+			<isNotEmpty prepend="and" property="gatbid">
+				a.gatbid=#gatbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsdwbm">
+				a.jsdwbm=#jsdwbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gajsdwid">
+				a.gajsdwid=#gajsdwid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjListflg">
+				a.sqsj is not null 
+			</isNotEmpty>
+	</sql>
+	<sql id="t_gatztbjsdwPageWhere" >
+		<include refid="t_gatztbjsdwWhere" />	</sql>
+	<sql id="t_gatztbjsdwListWhere" >
+		<include refid="t_gatztbjsdwWhere" />	</sql>
+	<sql id="t_gatztbjsdwSelectWhere"  >
+		<include refid="t_gatztbjsdwWhere" />	</sql>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<insert id="insertGatztbjsdw"  parameterClass="gatztbjsdw">
+		insert into t_gatztbjsdw (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				gatbid
+			</isNotNull>
+			<isNotNull prepend="," property="gajsdwid">
+				gajsdwid
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwbm">
+				jsdwbm
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				jsdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				sqsj
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				hylxdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				hylx
+			</isNotNull>
+			<isNotNull prepend="," property="sqip">
+				sqip
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				#gatbid#
+			</isNotNull>
+			<isNotNull prepend="," property="gajsdwid">
+				#gajsdwid#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwbm">
+				#jsdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				#jsdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				#sqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				#hylxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				#hylx#
+			</isNotNull>
+			<isNotNull prepend="," property="sqip">
+				#sqip#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<update id="updateGatztbjsdw" parameterClass="gatztbjsdw">
+		update t_gatztbjsdw a set a.gajsdwid=a.gajsdwid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="jsdwbm">
+				jsdwbm=#jsdwbm#
+			</isNotNull>
+			<isNotNull prepend="," property="jsdwmc">
+				jsdwmc=#jsdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="sqsj">
+				sqsj=#sqsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hylxdm">
+				hylxdm=#hylxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylx">
+				hylx=#hylx#
+			</isNotNull>
+			<isNotNull prepend="," property="sqip">
+				sqip=#sqip#
+			</isNotNull>
+			<isNotNull prepend="," property="qsr">
+				qsr=#qsr#
+			</isNotNull>
+			<isNotNull prepend="," property="qsyj">
+				qsyj=#qsyj#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<isNotEmpty prepend="and" property="gajsdwid">
+				a.gajsdwid=#gajsdwid#
+		</isNotEmpty>
+	</update>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<delete id="deleteGatztbjsdw" parameterClass="gatztbjsdw">
+		delete from t_gatztbjsdw a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_gatztbjsdwWhere" />
+		</dynamic>
+	</delete>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<select id="getGatztbjsdwList" resultMap="gatztbjsdwListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.gatbid gatbid,a.gajsdwid gajsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,a.hylxdm hylxdm,a.hylx hylx,a.sqip sqip
+		from t_gatztbjsdw a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbjsdwPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<select id="getGatztbjsdwListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_gatztbjsdw a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbjsdwPageWhere" />
+		</dynamic>
+	</select>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<select id="getGatztbjsdwListNoPage" resultMap="gatztbjsdwListResult" parameterClass="gatztbjsdw">
+		select a.gatbid gatbid,a.gajsdwid gajsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,a.hylxdm hylxdm,a.hylx hylx,a.sqip sqip
+		from t_gatztbjsdw a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbjsdwListWhere" />
+		</dynamic>
+		order by a.gatbid,a.gajsdwid
+	</select>
+	<!--公安通知通报接收单位(t_gatztbjsdw)-->
+	<select id="getGatztbjsdw" resultClass="gatztbjsdw" parameterClass="gatztbjsdw">
+		select a.gatbid gatbid,a.gajsdwid gajsdwid,a.jsdwbm jsdwbm,a.jsdwmc jsdwmc,a.sqsj sqsj,a.hylxdm hylxdm,a.hylx hylx,a.sqip sqip,a.qsr qsr,a.qsyj qsyj
+		from t_gatztbjsdw a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztbjsdwSelectWhere" />
+		</dynamic>
+		order by a.gatbid,a.gajsdwid
+	</select>
+</sqlMap>

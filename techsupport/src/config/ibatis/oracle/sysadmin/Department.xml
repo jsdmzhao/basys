@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="department" type="com.aisino2.sysadmin.domain.Department"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--机构(t_department)-->
+	<resultMap id="departmentResult" class="department">
+		<result property="departid" column="departid" />
+		<result property="departcode" column="departcode" />
+		<result property="departname" column="departname" />
+		<result property="departlevel" column="departlevel" />
+		<result property="parentdepartid" column="parentdepartid" />
+		<result property="departfullcode" column="departfullcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+		<result property="departsimplepin" column="departsimplepin" />
+		<result property="departallpin" column="departallpin" />
+		<result property="departbrevitycode" column="departbrevitycode" />
+	</resultMap>
+	<!--机构(t_department)-->
+	<resultMap id="departmentResultTran" class="department">
+		<result property="departid" column="departid" />
+		<result property="departcode" column="departcode" />
+		<result property="departname" column="departname" />
+		<result property="departlevel" column="departlevel" />
+		<result property="parentdepartid" column="parentdepartid" />
+		<result property="departfullcode" column="departfullcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+		<result property="departsimplepin" column="departsimplepin" />
+		<result property="departallpin" column="departallpin" />
+		<result property="departbrevitycode" column="departbrevitycode" />
+		<result property="parentdepartname" column="parentdepartname" />
+		<result property="child_count" column="child_count" />
+	</resultMap>
+	<!--机构(t_department)-->
+	<resultMap id="departmentListResult" class="department">
+		<result property="departid" column="departid"/>
+		<result property="departcode" column="departcode"/>
+		<result property="departname" column="departname"/>
+		<result property="departlevel" column="departlevel"/>
+		<result property="parentdepartid" column="parentdepartid"/>
+		<result property="departfullcode" column="departfullcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+		<result property="departsimplepin" column="departsimplepin"/>
+		<result property="departallpin" column="departallpin"/>
+		<result property="departbrevitycode" column="departbrevitycode" />
+	</resultMap>
+	<!--机构(t_department)sql翻译-->
+	<resultMap id="departmentListResultTran" class="department">
+		<result property="departid" column="departid"/>
+		<result property="departcode" column="departcode"/>
+		<result property="departname" column="departname"/>
+		<result property="departlevel" column="departlevel"/>
+		<result property="parentdepartid" column="parentdepartid"/>
+		<result property="departfullcode" column="departfullcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+		<result property="departsimplepin" column="departsimplepin"/>
+		<result property="departallpin" column="departallpin"/>
+		<result property="departbrevitycode" column="departbrevitycode" />
+		<result property="parentdepartname" column="parentdepartname" />
+		<result property="child_count" column="child_count" />
+	</resultMap>
+	
+	<!--机构(t_department) 获得下一个排序号-->
+	<resultMap id="nodeorderResult" class="department">
+		<result property="nodeorder" column="nodeorder" />
+	</resultMap>
+	<sql id="t_departmentWhere">
+			<isNotEmpty prepend="and" property="departid">
+				a.departid=#departid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_departmentPageWhere" >
+		<include refid="t_departmentWhere" />
+			<isNotEmpty prepend="and" property="parentdepartid">
+				a.parentdepartid=#parentdepartid#
+			</isNotEmpty>
+			</sql>
+	<sql id="t_departmentListWhere" >
+		<include refid="t_departmentWhere" />	</sql>
+	<sql id="t_departmentSelectWhere"  >
+		<include refid="t_departmentWhere" />
+			<isNotEmpty prepend="and" property="departcode">
+			     a.departcode=#departcode#
+			</isNotEmpty>
+			</sql>
+		
+	<!--机构(t_department)-->
+	<insert id="insertDepartment"  parameterClass="department">
+		insert into t_department (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="departid">
+				departid
+			</isNotNull>
+			<isNotNull prepend="," property="departcode">
+				departcode
+			</isNotNull>
+			<isNotNull prepend="," property="departname">
+				departname
+			</isNotNull>
+			<isNotNull prepend="," property="departlevel">
+				departlevel
+			</isNotNull>
+			<isNotNull prepend="," property="parentdepartid">
+				parentdepartid
+			</isNotNull>
+			<isNotNull prepend="," property="departfullcode">
+				departfullcode
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf
+			</isNotNull>
+			<isNotNull prepend="," property="departsimplepin">
+				departsimplepin
+			</isNotNull>
+			<isNotNull prepend="," property="departallpin">
+				departallpin
+			</isNotNull>
+			<isNotNull prepend="," property="departbrevitycode">
+				departbrevitycode
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="departid">
+				#departid#
+			</isNotNull>
+			<isNotNull prepend="," property="departcode">
+				#departcode#
+			</isNotNull>
+			<isNotNull prepend="," property="departname">
+				#departname#
+			</isNotNull>
+			<isNotNull prepend="," property="departlevel">
+				#departlevel#
+			</isNotNull>
+			<isNotNull prepend="," property="parentdepartid">
+				#parentdepartid#
+			</isNotNull>
+			<isNotNull prepend="," property="departfullcode">
+				#departfullcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				#isleaf#
+			</isNotNull>
+			<isNotNull prepend="," property="departsimplepin">
+				#departsimplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="departallpin">
+				#departallpin#
+			</isNotNull>
+			<isNotNull prepend="," property="departbrevitycode">
+				#departbrevitycode#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--机构(t_department)-->
+	<update id="updateDepartment" parameterClass="department">
+		update t_department a set departid=departid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="departcode">
+				departcode=#departcode#
+			</isNotNull>
+			<isNotNull prepend="," property="departname">
+				departname=#departname#
+			</isNotNull>
+			<isNotNull prepend="," property="departlevel">
+				departlevel=#departlevel#
+			</isNotNull>
+			<isNotNull prepend="," property="parentdepartid">
+				parentdepartid=#parentdepartid#
+			</isNotNull>
+			<isNotNull prepend="," property="departfullcode">
+				departfullcode=#departfullcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder=#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf=#isleaf#
+			</isNotNull>
+			<isNotNull prepend="," property="departsimplepin">
+				departsimplepin=#departsimplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="departallpin">
+				departallpin=#departallpin#
+			</isNotNull>
+			<isNotNull prepend="," property="departbrevitycode">
+				departbrevitycode=#departbrevitycode#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_departmentWhere" />
+		</dynamic>
+	</update>
+	<!--机构(t_department)-->
+	<delete id="deleteDepartment" parameterClass="department">
+	
+	 <!--  
+      表间关系：与部门表t_department有连带关系的有五张表，分别为用户表t_user,角色表t_role,用户角色表 t_user_role;角色菜单表t_role_menu,
+                角色功能表t_role_Func ；层次关系为 一层t_department,二层t_user,t_role，三层t_role_Func,t_role_menu,t_user_role
+      删除一个部门的过程：
+         删除顺序依次为三层t_role_Func,t_role_menu，t_user_role 二层t_user,t_role，一层t_department
+        注：它的下属部门也要删除
+        根据部门的code及各条记录的字段departFullCode选出部门表中本部门及下属部门的departID
+        然后根据departID删除所有的在各表中对应的记录
+	  begin 
+  delete  from  t_role_menu  trm where trm.roleid in  (select roleid from t_role  where departid in (select departid from t_department where departfullcode like '$departfullcode$%' ));
+    delete from t_role_func trf  where trf.roleid in (select roleid from t_role where  departid in (select departid from t_department where departfullcode like '$departfullcode$%' ));
+     delete from t_user_role tur where tur.roleid in (select roleid from t_role  where departid in (select departid from t_department where departfullcode like '$departfullcode$%' ));
+      delete from t_user_role tur where tur.userid in (select userid from t_user  where departid in (select departid from t_department where departfullcode like '$departfullcode$%' ));
+       delete from t_role  where departid in (select departid from t_department where departfullcode like '$departfullcode$%' );
+       delete from t_user where departid in (select departid from t_department where departfullcode like '$departfullcode$%' );
+    end;
+     -->
+       delete from t_department where departfullcode like '$departfullcode$%'
+	
+    
+
+		
+	</delete>
+	<!--机构(t_department)-->
+	<select id="getDepartmentList" resultMap="departmentListResultTran" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.departid departid,a.departcode departcode,a.departname departname,
+		a.departlevel departlevel,a.parentdepartid parentdepartid,
+		a.departfullcode departfullcode,a.nodeorder nodeorder,
+		a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,
+		a.departbrevitycode departbrevitycode,
+       	nvl(b.departname,'顶级') parentdepartname
+       	,
+        (case when 
+		(select count(1)
+		           from t_user t1
+		          where t1.departid in
+		                (select departid
+		                   from t_department t2
+		                  where t2.departfullcode like trim(a.departfullcode) || '%'
+		                  )) +
+		        (select count(1)
+		           from t_role t1
+		          where t1.departid in
+		                (select departid
+		                   from t_department t2
+		                   where t2.departfullcode like trim(a.departfullcode) || '%'
+		                  )) >0 then 1 else 0 end) child_count
+		from t_department a ,(select t.departid,t.departname from t_department t) b
+		where 1=1 and a.parentdepartid=b.departid(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.departsimplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.departallpin) like lower('$query_simplepin$')||'%' or
+			 	 a.departcode like '$query_simplepin$%' or
+			 	 a.departname like '%$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+			 	a.departcode like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_departmentPageWhere" />
+		</dynamic>
+		order by $pageSort$ )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--机构(t_department)-->
+	<select id="getDepartmentListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_department a ,(select t.departid,t.departname from t_department t) b
+		where 1=1 and a.parentdepartid=b.departid(+)
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.departsimplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.departallpin) like lower('$query_simplepin$')||'%' or
+			 	 a.departcode like '$query_simplepin$%' or
+			 	 a.departname like '%$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+			 	a.departcode like '$deptCode$%'
+			</isNotEmpty>
+			<include refid="t_departmentPageWhere" />
+		</dynamic>
+	</select>
+	<!--机构(t_department)-->
+	<select id="getDepartmentListNoPage" resultMap="departmentListResult" parameterClass="department">
+		select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="isCjd">
+				a.departcode like 'CJD%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="length">
+				length(a.departcode) =#length#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.departsimplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.departallpin) like lower('$query_simplepin$')||'%' or
+			 	 a.departcode like '$query_simplepin$%' or
+			 	 a.departname like '%$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+			 	a.departcode like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="parentdepartid">
+				a.parentdepartid=#parentdepartid#
+			</isNotEmpty>
+			<include refid="t_departmentListWhere" />
+		</dynamic>
+		order by a.departcode
+	</select>
+	<!--机构(t_department)-->
+	<select id="getDepartmentListForCache" resultMap="departmentListResult" parameterClass="department">
+		select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a
+		where a.departcode not like 'CJD%' and a.departcode not like 'ZJD%' and a.departcode not like 'qyd%'
+			 and a.departcode &lt;&gt; '111' and length(a.departcode)=12
+		order by a.departcode
+	</select>
+	<!--机构(t_department)-->
+	<select id="getDepartment" resultMap="departmentResultTran" parameterClass="department">
+		select a.departid departid,a.departcode departcode,a.departname departname,
+			a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,
+			a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,
+			a.departallpin departallpin,a.departbrevitycode departbrevitycode,
+	           nvl(b.departname,'顶级') parentdepartname,(case when 
+				(select count(1)
+				           from t_user t1
+				          where t1.departid in
+				                (select departid
+				                   from t_department t2
+				                  where t2.departfullcode like trim(a.departfullcode) || '%'
+				                  )) +
+				        (select count(1)
+				           from t_role t1
+				          where t1.departid in
+				                (select departid
+				                   from t_department t2
+				                   where t2.departfullcode like trim(a.departfullcode) || '%'
+				                  )) >0 then 1 else 0 end) child_count
+      from t_department a ,(select t.departid,t.departname from t_department t) b
+      where  a.parentdepartid=b.departid(+)
+		<dynamic prepend="">
+			<include refid="t_departmentSelectWhere" />
+		</dynamic>
+		order by a.departid
+	</select>
+	  <select id="getChildDepartment" resultMap="departmentResult" parameterClass="department">
+  select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a
+		where a.parentdepartid = #departid#
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="departfullcode">
+				departcode in ($departfullcode$) and parentdepartid != 0 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departlevel">
+				a.departlevel&lt;=#departlevel#
+			</isNotEmpty>
+		</dynamic>
+    order by nodeorder
+  </select>
+   <select id="getParentDepartment" resultMap="departmentResult" parameterClass="department">
+  select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a  where a.departid= #parentdepartid#
+  </select>
+  
+   <select id="getDepartInfo" resultMap="departmentResult" parameterClass="department">
+      select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a  where 1=1
+      <dynamic prepend="">
+		<isNotEmpty prepend="" property="flag">
+		<isEqual prepend="and" property="flag" compareValue="cjd">
+		           	departCode like '%CJD%' and departCode != 'CJD32' and departLevel=4
+		    </isEqual>
+		      <!-- 江苏 -->
+		    <isEqual prepend="and" property="flag" compareValue="fxj">
+		           	departCode like '32%' and departLevel=4  and departCode not like '32__00'
+		    </isEqual>
+		    <isEqual prepend="and" property="flag" compareValue="ksd">
+		           	departCode like '32%' and departLevel=5 
+		    </isEqual>
+		     <isEqual prepend="and" property="flag" compareValue="ds">
+		           	departCode like '32__00' and departCode!='3200'
+		    </isEqual> 
+		     <isEqual prepend="and" property="flag" compareValue="sonfxj">
+		           	departCode like #departcode# and departCode not like '32__00' and departLevel=4 
+		     </isEqual>
+		     
+		    <!-- 河南 -->
+		     <isEqual prepend="and" property="flag" compareValue="hnfxj">
+		                length(departcode) ='12'  and  departLevel=4  
+		    </isEqual>
+		    <isEqual prepend="and" property="flag" compareValue="hnksd">
+		     length(departcode) ='12'  and  departLevel=5 
+		    </isEqual>
+		     <isEqual prepend="and" property="flag" compareValue="hnds">
+		      length(departcode) ='12'  and  departLevel=3 
+		    </isEqual> 
+		     <isEqual prepend="and" property="flag" compareValue="hnsonfxj">
+		           	parentDepartID=#hndeptId#
+		     </isEqual>
+
+		</isNotEmpty>
+		<isEmpty prepend="and" property="flag">
+					parentDepartID =1  
+		</isEmpty>
+		<isNotEmpty prepend="and" property="departcode">
+					departCode like '$departcode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="departid">
+					departId = #departid#
+		</isNotEmpty>
+		</dynamic>
+		  order by nodeorder 
+  </select>
+  <select id="getAllChildDepartment" resultMap="departmentResult" parameterClass="department">
+  <![CDATA[select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode from t_department a where departfullcode like '%$departfullcode$%' and departid<>#departid# 
+   ]]> 
+   <dynamic prepend="">
+		<isNotEmpty prepend="" property="departlevel">
+			<isEqual prepend="and" property="departlevel" compareValue="999999999">
+		           	a.departlevel=4
+		    </isEqual>
+		</isNotEmpty>
+		</dynamic>
+  order by nodeorder
+  </select>
+  <select id="getAllChildDepartmentByFullCode" resultMap="departmentResult" parameterClass="department">
+  <![CDATA[select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode from t_department a where departcode in ($departfullcode$) and parentdepartid <> 0 
+   ]]> 
+  order by departlevel
+  </select>
+    <!-- child include cs -->
+  <select id="getChildDepartmentCs" resultMap="departmentResult" parameterClass="department">
+    select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a
+    where parentdepartid = #departid#  
+    <isNotEmpty prepend="" property="flag">
+       <isEqual prepend="and" property="flag" compareValue="4">
+	     substr(a.departCode,0,4) in(select substr(t.gxdwbm,0,4) from t_ylcsjbxx t where  t.gxdwbm like CONCAT(substr(a.departCode,0,4),'%'))  
+	   </isEqual>
+       <isEqual prepend="and" property="flag" compareValue="6">
+	      substr(a.departCode,0,6) in(select substr(t.gxdwbm,0,6) from t_ylcsjbxx t where substr(t.gxdwbm,0,6) = substr(a.departCode,0,6))  
+	   </isEqual>
+	   <isEqual prepend="and" property="flag" compareValue="8">
+	     a.departCode in(select t.gxdwbm from t_ylcsjbxx t where t.gxdwbm = a.departCode)  
+	   </isEqual>
+    </isNotEmpty>
+    order by nodeorder
+  </select>
+  
+  
+    <!--  checkChild  -->
+   <select id="checkChild" resultClass="int" parameterClass="department">
+    select  count(1) from t_department  where parentdepartid = #parentdepartid#
+  </select>
+	<!--  获得所有兄弟节点最大排序号+1  -->
+  <select id="getNextNodeorder" resultMap="nodeorderResult" parameterClass="department">
+    	select nvl((max(a.nodeorder)+1),0) nodeorder from t_department a
+    	 where 1=1 
+    	 <isNotEmpty prepend="and" property="parentdepartid">
+			a.parentdepartid = #parentdepartid#
+		</isNotEmpty>
+  </select>
+  
+  <!--机构(t_department)-->
+	<select id="getAllDepartmentListNoPage" resultMap="departmentListResult" parameterClass="department">
+		select a.departid departid,a.departcode departcode,a.departname departname,a.departlevel departlevel,a.parentdepartid parentdepartid,a.departfullcode departfullcode,a.nodeorder nodeorder,a.isleaf isleaf,a.departsimplepin departsimplepin,a.departallpin departallpin,a.departbrevitycode departbrevitycode
+		from t_department a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="deptCode">
+			 	a.departcode like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departcode">
+			 	a.departcode like '$departcode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="departid">
+				a.departid &lt;&gt; #departid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="parentdepartid">
+				a.parentdepartid &lt;&gt; #parentdepartid#
+			</isNotEmpty>
+		</dynamic>
+		order by a.departcode
+	</select>
+  
+</sqlMap>

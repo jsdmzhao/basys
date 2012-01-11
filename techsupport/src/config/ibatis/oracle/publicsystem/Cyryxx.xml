@@ -1,0 +1,2160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="cyryxx" type="com.aisino2.publicsystem.domain.Qyryxx"/>
+	<typeAlias alias="wgcyryxx" type="com.aisino2.publicsystem.domain.Wgcyryxx"/>
+	<typeAlias alias="qyryxx_lsxx" type="com.aisino2.publicsystem.domain.Qyryxx_lsxx"/>
+	<typeAlias alias="cyryxxhc" type="com.aisino2.publicsystem.domain.Qyryxxhc"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<resultMap id="ryidOnly" class="cyryxx">
+		<result property="ryid" column="ryid" />
+	</resultMap>
+	<!--从业人员信息(t_qyryxx)-->
+	<resultMap id="cyryxxListResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="zkztbs" column="zkztbs"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="sjscbz" column="sjscbz"/>
+	</resultMap>
+	<!--从业人员信息(t_qyryxx)-->
+	<resultMap id="dhdCyryxxListResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+	</resultMap>
+	<!--从业人员信息(t_cyryxx)-->
+	<resultMap id="wtjCyryxxListResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="zt" column="zt"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="bz" column="bz"/>
+	</resultMap>
+	<!--已采集从业人员信息(t_cyryxx)-->
+	<resultMap id="ycjCyryxxListResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="zt" column="zt"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="bz" column="bz"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+	</resultMap>
+	<!--从业人员信息(t_qyryxx)公安端-->
+	<resultMap id="cyryxxListGadResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cyrylbmc" column="cyrylbmc"/>
+		<result property="xm" column="xm"/>
+		<result property="bm" column="bm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="zt" column="zt"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxr" column="zxr"/>
+		<result property="zxsj" column="zxsj"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrdwbm" column="lrdwbm"/>
+		<result property="lrdwmc" column="lrdwmc"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="zpid" column="zpid"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+        <result property="yxrys" column="yxrys" />
+	</resultMap>
+	<!--从业人员信息(t_qyryxx)企业端-->
+	<resultMap id="cyryxxListQydResult" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="rzrq" column="rzrq" />
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxsj" column="zxsj"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="kh" column="kh"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+        <result property="lrsj" column="lrsj" />
+	</resultMap>
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<resultMap id="wgcyryxxListResult" class="wgcyryxx">
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="wgrjyxkz" column="wgrjyxkz"/>
+		<result property="qzzldm" column="qzzldm"/>
+		<result property="qzhm" column="qzhm"/>
+		<result property="zatlq" column="zatlq"/>
+		<result property="qfjg" column="qfjg"/>
+		<result property="rjrq" column="rjrq"/>
+		<result property="rjka" column="rjka"/>
+		
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cyrylbmc" column="cyrylbmc"/>
+		<result property="xm" column="xm"/>
+		<result property="bm" column="bm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrdwbm" column="lrdwbm"/>
+		<result property="lrdwmc" column="lrdwmc"/>
+		<result property="zkzt" column="zkzt"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="zkztbs" column="zkztbs"/>
+		<result property="ickslid" column="ickslid"/>
+		<result property="sjscbz" column="sjscbz"/>
+	</resultMap>
+	
+	<!--从业人员信息(t_cyryxx)公安端-->
+	<resultMap id="wgcyryxxListGadResult" class="wgcyryxx">
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="cyrylbmc" column="cyrylbmc"/>
+		<result property="xm" column="xm"/>
+		<result property="bm" column="bm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxr" column="zxr"/>
+		<result property="zxsj" column="zxsj"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrdwbm" column="lrdwbm"/>
+		<result property="lrdwmc" column="lrdwmc"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="zpid" column="zpid"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+        <result property="yxrys" column="yxrys" />
+	</resultMap>
+	
+	<!--从业人员信息(t_cyryxx)企业端-->
+	<resultMap id="wgcyryxxListQydResult" class="wgcyryxx">
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="hylbdm" column="hylbdm" />
+        <result property="hylb" column="hylb" />
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="cyryzt" column="cyryzt"/>
+		<result property="rzrq" column="rzrq"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxsj" column="zxsj"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="zt" column="zt"/>
+		<result property="scbz" column="scbz"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="kh" column="kh"/>
+		<result property="lrsj" column="lrsj"/>
+	</resultMap>
+	<!--从业人员历史信息(t_cyryxx_lsxx) 企业端从业人员历史信息查询-->
+	<resultMap id="cyryxx_lsxxListQydResult" class="qyryxx_lsxx">
+		<result property="rylsid" column="rylsid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="qyid" column="qyid" />
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="xm" column="xm"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="gj" column="gj"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm"/>
+		<result property="cylb" column="cylb"/>
+		<result property="rzrq" column="rzrq"/>
+		<result property="zt" column="zt"/>
+		<result property="bcsj" column="bcsj"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="kh" column="kh"/>
+		<result property="lrsj" column="lrsj"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>
+	<!--从业人员信息核查(t_cyryxxhc)-->
+	<resultMap id="cyryxxhcListResult" class="cyryxxhc">
+		<result property="garkktbsjid" column="garkktbsjid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="hcid" column="hcid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="xm" column="xm"/>
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb"/>
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm"/>
+		<result property="cylbdm" column="cylbdm" />
+		<result property="cylb" column="cylb"/>
+		<result property="bdsj" column="bdsj"/>
+		<result property="hcsj" column="hcsj"/>
+		<result property="hcwt" column="hcwt"/>
+		<result property="hcdw" column="hcdw"/>
+		<result property="hcdwdm" column="hcdwdm"/>
+		<result property="hczt" column="hczt"/>
+	</resultMap>
+	<resultMap id="getQyryxxByOldcyrybh" class="cyryxx">
+		<result property="ryid" column="ryid"/>
+		<result property="cyrybh" column="cyrybh"/>
+		<result property="oldCyrybh" column="oldCyrybh"/>
+		<result property="xm" column="xm"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="zt" column="zt"/>
+		<result property="cylb" column="cylb"/>
+		<result property="xb" column="xb"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="gj" column="gj"/>
+		<result property="gjdm" column="gjdm"/>
+		<result property="cyrylbdm" column="cyrylbdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="gxdwbm" column="gxdwbm"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+	</resultMap>
+	<sql id="t_cyryxxWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh=#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_cyryxxPageWhere" >
+		<include refid="t_cyryxxWhere" />	</sql>
+	<sql id="t_cyryxxListWhere" >
+		<include refid="t_cyryxxWhere" />	</sql>
+	<sql id="t_cyryxxSelectWhere"  >
+		<include refid="t_cyryxxWhere" />	</sql>
+		
+	<sql id="t_wgcyryxxWhere">
+		<isNotEmpty prepend="and" property="ryid">
+			a.ryid=#ryid#
+		</isNotEmpty>
+	</sql>
+	<sql id="t_wgcyryxxPageWhere" >
+		<include refid="t_wgcyryxxWhere" />	</sql>
+	<sql id="t_wgcyryxxListWhere" >
+		<include refid="t_wgcyryxxWhere" />	</sql>
+	<sql id="t_wgcyryxxSelectWhere"  >
+		<include refid="t_wgcyryxxWhere" />	</sql>
+	<!--从业人员信息(t_qyryxx)-->
+	<delete id="deleteCyryxx" parameterClass="cyryxx">
+		delete from t_qyryxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_cyryxxWhere" />
+		</dynamic>
+	</delete>
+	<!--从业人员信息(t_qyryxx)采集点查询-->
+	<select id="getCyryxxList" resultMap="cyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select/*+index(a RELATIONSHIP_7_FK )*/ a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,
+		a.xm xm,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,
+		a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,
+		a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.cyryzt cyryzt,a.hylbdm hylbdm,a.hylb hylb,
+		a.zxbz zxbz,a.lrsj lrsj,
+		a.zt zt,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,c.zkztbs zkztbs,c.ickslid ickslid,c.sjscbz sjscbz
+		from t_qyryxx a ,t_qyjbxx b,
+			(select /*+index(t1 PK_T_ICKSL)*/ t1.ryid, t1.ickslid, t1.zkztbs,t2.sjscbz
+          from t_icksl t1,(select ickslid, sjscbz
+                  from t_zzzxsc where zzzxscid in (select max(zzzxscid) zzzxscid
+                                            from t_zzzxsc
+                                           group by ickslid) ) t2
+         	where t1.ickslid=t2.ickslid(+) and t1.zkztbs &lt;&gt; '7' and 
+													t1.zkztbs &lt;&gt; '8' and 
+													t1.zkztbs &lt;&gt; '9') c
+		where 1=1 and a.qyid=b.qyid and a.ryid=c.ryid(+) and a.scbz=0 and a.zxbz='0' and b.scbz=0
+				and a.cyrylbdm='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<include refid="t_cyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--从业人员信息(t_qyryxx)-->
+	<select id="getCyryxxListCount" resultClass="int" parameterClass="map">
+		select /*+index(a RELATIONSHIP_7_FK )*/ count(1) a from t_qyryxx a ,t_qyjbxx b,
+			(select /*+index(t1 PK_T_ICKSL)*/ t1.ryid, t1.ickslid, t1.zkztbs,t2.sjscbz
+          from t_icksl t1,(select ickslid, sjscbz
+                  from t_zzzxsc where zzzxscid in (select max(zzzxscid) zzzxscid
+                                            from t_zzzxsc
+                                           group by ickslid) ) t2
+         	where t1.ickslid=t2.ickslid(+) and t1.zkztbs &lt;&gt; '7' and 
+													t1.zkztbs &lt;&gt; '8' and 
+													t1.zkztbs &lt;&gt; '9') c
+		where 1=1 and a.qyid=b.qyid and a.ryid=c.ryid(+) and a.scbz=0 and a.zxbz='0' and b.scbz=0
+				and a.cyrylbdm='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<include refid="t_cyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!--从业人员信息(t_cyryxx)采集点提交-->
+	<select id="getWtjCyryxxList" resultMap="wtjCyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid     ryid,
+		       a.qyid     qyid,
+		       a.cyrybh   cyrybh,
+		       a.cyrylbdm cyrylbdm,
+		       a.xm       xm,
+		       a.xbdm     xbdm,
+		       a.xb       xb,
+		       a.zjhm     zjhm,
+		       a.cylb     cylb,
+		       a.cylbdm   cylbdm,
+		       a.zt   zt,
+		       a.lrsj     lrsj,
+		       b.qybm     qybm,
+		       b.qymc     qymc,
+		       b.zt		  bz
+		  from t_qyryxx a,
+		       t_qyjbxx b,
+		       (select ryid
+		          from t_qyry_zp
+		         where tplx = '0'
+		           and tpnr is not null) c,
+		       t_wgcyryxx d
+		 where 1 = 1
+		   and a.qyid = b.qyid
+		   and a.ryid = c.ryid
+		   and a.ryid = d.ryid(+)
+		   and a.scbz = 0
+		   and a.zxbz = '0'
+		   and b.zt !='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				d.ywx like '%$ywx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				d.ywm like '%$ywm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				a.lrsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm =#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<include refid="t_cyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+		</dynamic>
+		and a.zt in ('0','3')
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--从业人员信息(t_cyryxx)-->
+	<select id="getWtjCyryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a  from t_qyryxx a,
+		       t_qyjbxx b,
+		       (select ryid
+		          from t_qyry_zp
+		         where tplx = '0'
+		           and tpnr is not null) c,
+		       t_wgcyryxx d
+		 where 1 = 1
+		   and a.qyid = b.qyid
+		   and a.ryid = c.ryid
+		   and a.ryid = d.ryid(+)
+		   and a.scbz = 0
+		   and a.zxbz = '0'
+		   and b.zt !='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				d.ywx like '%$ywx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				d.ywm like '%$ywm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjsjt">
+				a.lrsj &lt; #cjsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm =#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<include refid="t_cyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+		</dynamic>
+		and a.zt in ('0','3')
+	</select>
+	<!-- 从业人员查询 公安端查询 -->
+	<select id="getCyryxxListGad" parameterClass="java.util.Map" resultMap="cyryxxListGadResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select /*+index(c PK_T_QYRY_ZP)*/ a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,
+		a.xm xm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,
+		a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,
+		a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.zt cyryzt,a.zxr zxr,a.zxsj zxsj,
+		a.zxbz zxbz,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,
+		a.bcsj bcsj,a.zt zt,a.hylbdm hylbdm,a.hylb hylb,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,c.zpid,
+		(select (case when count(ryid)>0 then 1 else 0 end) from t_qyryxx t 
+       where t.ryid &lt;&gt; a.ryid and t.zjhm=a.zjhm  
+       and t.scbz=0 and t.zxbz='0') yxrys/*根据证件号码查出的有效人员数*/
+  			from t_qyryxx a ,t_qyjbxx b,(select ryid,zpid,tpnr from t_qyry_zp where tplx='0') c ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid=c.ryid 
+ 				and a.ryid=d.ryid(+)
+ 				and a.cyrylbdm='0'
+		 		and b.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				a.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				a.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="yjbz">
+ 				a.yjbz=#yjbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ejshbz"><!-- 二级审核标识 0-派出所审核，1-市局审核 -->
+				<isEqual prepend="" property="ejshbz"  compareValue="0">
+					 (a.zt = '6' or a.zt='7' or a.zt='4' or a.zt='5' or a.zt='12' or a.zt='13')
+				</isEqual>
+				<isEqual prepend="" property="ejshbz"  compareValue="1">
+					 a.zt = '10'
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingF"><!-- 年龄段查询 -->
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&gt;=#nianlingF:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingT">
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&lt;=#nianlingT:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="" property="isZhaopianExist"><!-- 有无照片查询 isZhaopianExist：1-有照片，0-无照片-->
+ 				<isEqual prepend="and " property="isZhaopianExist"  compareValue="1">
+					c.tpnr is not null
+				</isEqual>
+				<isEqual prepend="and " property="isZhaopianExist"  compareValue="0">
+					c.tpnr is null
+				</isEqual>
+ 			</isNotEmpty>
+  			<isNotEmpty prepend="and" property="scbz">
+ 				a.scbz =#scbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzzhm">
+				a.zzzhm =#zzzhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mzdm">
+				a.mzdm =#mzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+ 		</dynamic>
+ 		
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	
+	<select id="getCyryxxListGadCount" parameterClass="java.util.Map" resultClass="int">
+		select /*+index(c PK_T_QYRY_ZP)*/ count(1) a
+  			from t_qyryxx a ,t_qyjbxx b,(select ryid,zpid,tpnr from t_qyry_zp where tplx='0') c ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid=c.ryid 
+ 				and a.ryid=d.ryid(+)
+ 				and a.cyrylbdm='0'
+		 		and b.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				a.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				a.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="yjbz">
+ 				a.yjbz=#yjbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ejshbz"><!-- 二级审核标识 0-派出所审核，1-市局审核 -->
+				<isEqual prepend="" property="ejshbz"  compareValue="0">
+					 (a.zt = '6' or a.zt='7' or a.zt='4' or a.zt='5' or a.zt='12' or a.zt='13')
+				</isEqual>
+				<isEqual prepend="" property="ejshbz"  compareValue="1">
+					 a.zt = '10'
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingF"><!-- 年龄段查询 -->
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&gt;=#nianlingF:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingT">
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&lt;=#nianlingT:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="" property="isZhaopianExist"><!-- 有无照片查询 isZhaopianExist：1-有照片，0-无照片-->
+ 				<isEqual prepend="and " property="isZhaopianExist"  compareValue="1">
+					c.tpnr is not null
+				</isEqual>
+				<isEqual prepend="and " property="isZhaopianExist"  compareValue="0">
+					c.tpnr is null
+				</isEqual>
+ 			</isNotEmpty>
+  			<isNotEmpty prepend="and" property="scbz">
+ 				a.scbz =#scbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzzhm">
+				a.zzzhm =#zzzhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mzdm">
+				a.mzdm =#mzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+ 		</dynamic>
+	</select>
+	<!-- 从业人员查询 企业端查询 -->
+	<select id="getCyryxxListQyd" parameterClass="java.util.Map" resultMap="cyryxxListQydResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,
+		a.xm xm,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,
+		a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,
+		a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.zt cyryzt,a.zxsj zxsj,
+		a.zxbz zxbz,a.rzrq rzrq,
+		a.bcsj bcsj,a.zt zt,a.hylbdm hylbdm,a.hylb hylb,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,d.kh kh, a.lrsj lrsj
+  			from t_qyryxx a ,t_qyjbxx b ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid 
+ 				and a.ryid=d.ryid(+)
+ 				and a.cyrylbdm='0'
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc =#qymc#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getCyryxxListQydCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a
+  			from t_qyryxx a ,t_qyjbxx b ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid 
+ 				and a.ryid=d.ryid(+)
+ 				and a.cyrylbdm='0'
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc =#qymc#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+	</select>
+	
+	<!--从业人员信息(t_qyryxx)获得需进行公安人口库比对的人员(只比对国内人员)（20091103修改，由检测cyryzt为0和3的记录变更为检测cyryzt为6和7的记录）-->
+	<select id="getDhdCyryxxList" resultMap="dhdCyryxxListResult" parameterClass="cyryxx">
+		select a.ryid ryid,a.xm xm,a.zjhm zjhm
+		from t_qyryxx a
+		where a.cyrylbdm='0' and a.zt in ('6','7') and a.scbz=0
+		<dynamic>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<select id="getJwcyryxxList" resultMap="wgcyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select d.ywx ywx,d.ywm ywm,d.wgrjyxkz wgrjyxkz,d.qzzldm qzzldm,d.qzhm qzhm,
+				d.zatlq zatlq,d.qfjg qfjg,d.rjrq rjrq,d.rjka rjka,
+				a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,
+		a.xm xm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,
+		a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hylbdm hylbdm,a.hylb hylb,
+		a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.cyryzt cyryzt,
+		a.zxbz zxbz,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,
+		a.zkzt zkzt,a.bcsj bcsj,a.zt zt,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,c.zkztbs zkztbs,c.ickslid ickslid,c.sjscbz sjscbz
+		from  t_qyryxx a ,t_qyjbxx b,
+			(select t1.ryid, t1.ickslid, t1.zkztbs,t2.sjscbz
+          from t_icksl t1,(select ickslid, sjscbz
+                  from t_zzzxsc where zzzxscid in (select max(zzzxscid) zzzxscid
+                                            from t_zzzxsc
+                                           group by ickslid) ) t2
+         	where t1.ickslid=t2.ickslid(+) and t1.zkztbs &lt;&gt; '7' and 
+													t1.zkztbs &lt;&gt; '8' and 
+													t1.zkztbs &lt;&gt; '9')  c,
+													t_wgcyryxx d 
+		where 1=1 and a.qyid=b.qyid and a.ryid=c.ryid(+) and a.ryid=d.ryid
+			and a.cyrylbdm='1'
+			 and a.scbz=0 and a.zxbz='0' and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				d.ywx like '%$ywx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				d.ywm like '%$ywm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm =#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<include refid="t_wgcyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="cyzj">
+				a.cyzj =#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm =#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<select id="getJwcyryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a  from  t_qyryxx a ,t_qyjbxx b,
+			(select t1.ryid, t1.ickslid, t1.zkztbs,t2.sjscbz
+          from t_icksl t1,(select ickslid, sjscbz
+                  from t_zzzxsc where zzzxscid in (select max(zzzxscid) zzzxscid
+                                            from t_zzzxsc
+                                           group by ickslid) ) t2
+         	where t1.ickslid=t2.ickslid(+) and t1.zkztbs &lt;&gt; '7' and 
+													t1.zkztbs &lt;&gt; '8' and 
+													t1.zkztbs &lt;&gt; '9') c,
+													t_wgcyryxx d 
+		where 1=1 and a.qyid=b.qyid and a.ryid=c.ryid(+) and a.ryid=d.ryid
+			and a.cyrylbdm='1'
+			 and a.scbz=0 and a.zxbz='0' and b.scbz=0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="qybm">
+				b.qybm like '%$qybm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qymc">
+				b.qymc like '%$qymc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywx">
+				d.ywx like '%$ywx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm">
+				d.ywm like '%$ywm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm =#gjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh =#cyrybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<include refid="t_wgcyryxxPageWhere" />
+			<isNotEmpty prepend="and" property="cyzj">
+				a.cyzj =#cyzj#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzjdm">
+				a.cyzjdm =#cyzjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in ($allhylbdm$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!-- 从业人员查询 公安端查询 -->
+	<select id="getJwcyryxxListGad" parameterClass="java.util.Map" resultMap="wgcyryxxListGadResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,a.cyrylbmc cyrylbmc,
+		a.xm xm,a.bm bm,a.xmpy xmpy,a.gjdm gjdm,a.gj gj,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,
+		a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,
+		a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.cyryzt cyryzt,a.hylbdm hylbdm,a.hylb hylb,
+		a.zxbz zxbz,a.lrsj lrsj,a.lrr lrr,a.lrdwbm lrdwbm,a.lrdwmc lrdwmc,
+		a.bcsj bcsj,a.zt zt,a.zxr zxr,a.zxsj zxsj,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,c.zpid,e.ywx,e.ywm,
+		0 yxrys/*根据证件号码查出的有效人员数*/
+  			from t_qyryxx a ,t_qyjbxx b,(select ryid,zpid,tpnr from t_qyry_zp where tplx='0') c ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d,
+						t_wgcyryxx e
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid=c.ryid and a.ryid =e.ryid
+ 				and a.ryid=d.ryid(+)
+		 		and b.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				e.ywx=#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				e.ywm=#ywm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gjdm">
+ 				a.gjdm=#gjdm#
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				a.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				a.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ejshbz"><!-- 二级审核标识 0-派出所审核，1-市局审核 -->
+				<isEqual prepend="" property="ejshbz"  compareValue="0">
+					 (a.zt = '6' or a.zt='7' or a.zt='4' or a.zt='5' or a.zt='12' or a.zt='13')
+				</isEqual>
+				<isEqual prepend="" property="ejshbz"  compareValue="1">
+					 a.zt = '10'
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingF"><!-- 年龄段查询 -->
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&gt;=#nianlingF:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingT">
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&lt;=#nianlingT:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="" property="isZhaopianExist"><!-- 有无照片查询 isZhaopianExist：1-有照片，0-无照片-->
+ 				<isEqual prepend="and " property="isZhaopianExist"  compareValue="1">
+					c.tpnr is not null
+				</isEqual>
+				<isEqual prepend="and " property="isZhaopianExist"  compareValue="0">
+					c.tpnr is null
+				</isEqual>
+ 			</isNotEmpty>
+  			<isNotEmpty prepend="and" property="scbz">
+ 				a.scbz =#scbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in($allhylbdm$)
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzzhm">
+				a.zzzhm =#zzzhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wgrjyxkz">
+				e.wgrjyxkz =#wgrjyxkz#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+ 		
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getJwcyryxxListGadCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a
+  			from t_qyryxx a ,t_qyjbxx b,(select ryid,zpid,tpnr from t_qyry_zp where tplx='0') c ,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d,
+						t_wgcyryxx e
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid=c.ryid and a.ryid =e.ryid
+ 				and a.ryid=d.ryid(+)
+		 		and b.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				e.ywx=#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				e.ywm=#ywm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gjdm">
+ 				a.gjdm=#gjdm#
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				a.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				a.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				b.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					 to_number(a.zt)  &lt; 90 and to_number(b.zt)  &lt; 90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ejshbz"><!-- 二级审核标识 0-派出所审核，1-市局审核 -->
+				<isEqual prepend="" property="ejshbz"  compareValue="0">
+					 (a.zt = '6' or a.zt='7' or a.zt='4' or a.zt='5' or a.zt='12' or a.zt='13')
+				</isEqual>
+				<isEqual prepend="" property="ejshbz"  compareValue="1">
+					 a.zt = '10'
+				</isEqual>
+     		</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingF">
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&gt;=#nianlingF:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="nianlingT">
+ 				(to_number(to_char(sysdate,'yyyy'))-to_number(to_char(a.csrq,'yyyy')))&lt;=#nianlingT:DATE#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="" property="isZhaopianExist">
+ 				<isEqual prepend="and " property="isZhaopianExist"  compareValue="1">
+					c.tpnr is not null
+				</isEqual>
+				<isEqual prepend="and " property="isZhaopianExist"  compareValue="0">
+					c.tpnr is null
+				</isEqual>
+ 			</isNotEmpty>
+  			<isNotEmpty prepend="and" property="scbz">
+ 				a.scbz =#scbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="allhylbdm">
+				a.hylbdm in($allhylbdm$)
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="deptCode">
+				b.gxdwbm like '$deptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zt">
+				a.zt =#zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzzhm">
+				a.zzzhm =#zzzhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wgrjyxkz">
+				e.wgrjyxkz =#wgrjyxkz#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+ 		
+	</select>
+	<!-- 从业人员查询 企业端查询 -->
+	<select id="getJwcyryxxListQyd" parameterClass="java.util.Map" resultMap="wgcyryxxListQydResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid ryid,a.qyid qyid,a.cyrybh cyrybh,a.cyrylbdm cyrylbdm,
+		a.xm xm,a.gjdm gjdm,a.gj gj,a.xbdm xbdm,a.xb xb,
+		a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.cylb cylb,a.cylbdm cylbdm,
+		a.cyryzt cyryzt,a.rzrq rzrq,
+		a.zxbz zxbz,a.zxsj zxsj,a.hylbdm hylbdm,a.hylb hylb,
+		a.bcsj bcsj,a.zt zt,
+		a.scbz scbz,b.qybm qybm,b.qymc qymc,d.kh kh,e.ywx,e.ywm, a.lrsj lrsj
+  			from t_qyryxx a ,t_qyjbxx b,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d,
+						t_wgcyryxx e
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid =e.ryid
+ 				and a.ryid=d.ryid(+)
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				e.ywx=#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				e.ywm=#ywm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc =#qymc#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gjdm">
+ 				a.gjdm=#gjdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+ 		
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getJwcyryxxListQydCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a
+  			from t_qyryxx a ,t_qyjbxx b,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d,
+						t_wgcyryxx e
+ 			where 1 = 1
+ 				and a.qyid=b.qyid and a.ryid =e.ryid
+ 				and a.ryid=d.ryid(+)
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				e.ywx=#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				e.ywm=#ywm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				b.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				b.qymc =#qymc#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gjdm">
+ 				a.gjdm=#gjdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyryztdm">
+				a.cyryztdm =#cyryztdm#
+			</isNotEmpty>
+ 		</dynamic>
+	</select>
+	<!-- 从业人员查询 企业端历史人员查询 -->
+	<select id="getCyryxx_lsxxListQyd" parameterClass="java.util.Map" resultMap="cyryxx_lsxxListQydResult">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rylsid rylsid ,a.ryid ryid , a.qyid qyid ,a.cyrybh cyrybh ,
+			    a.cyrylbdm cyrylbdm ,a.xm xm , a.gjdm gjdm , a.gj gj , a.mzdm mzdm ,
+			    a.minzu minzu ,a.xbdm xbdm , a.xb xb ,a.cyzjdm cyzjdm ,a.cyzj cyzj ,
+			    a.zjhm zjhm , a.cylbdm cylbdm ,a.cylb cylb ,a.rzrq rzrq ,a.zt zt ,
+			    a.bcsj bcsj ,a.ywx ywx , a.ywm ywm ,d.kh kh ,a.hylbdm hylbdm,a.hylb hylb,
+          		a.lrsj , b.qymc
+  			from t_qyryxx_lsxx a ,t_qyjbxx b ,
+  			(select max(rylsid) rylsid,qyid, ryid from t_qyryxx_lsxx  group by qyid, ryid )c,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid 
+ 				and a.rylsid=c.rylsid
+ 				and a.ryid=d.ryid(+)
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm =#gjdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				a.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrylbdm"><!-- cyrylbdm：0-国内人员查询，1-境外人员查询 -->
+ 				a.cyrylbdm =#cyrylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				a.hylbdm =#hylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				a.ywx =#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				a.ywm =#ywm#
+ 			</isNotEmpty>
+ 		</dynamic>
+   		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getCyryxx_lsxxListQydCount" parameterClass="java.util.Map" resultClass="int">
+		select count(1) a
+  			from t_qyryxx_lsxx a ,t_qyjbxx b ,
+  			(select max(rylsid) rylsid,qyid, ryid from t_qyryxx_lsxx  group by qyid, ryid )c,
+  			(select t1.ryid, t1.ickslid,t1.kh
+	          from t_icksl t1
+	         	where  t1.zkztbs &lt;&gt; '7' and 
+						t1.zkztbs &lt;&gt; '8' and 
+						t1.zkztbs &lt;&gt; '9') d
+ 			where 1 = 1
+ 				and a.qyid=b.qyid 
+ 				and a.rylsid=c.rylsid
+ 				and a.ryid=d.ryid(+)
+		 		and a.scbz=0
+ 		<dynamic prepend="">
+ 			<isNotEmpty prepend="" property="isTongyin"><!-- 同音查询 isTongyin：1 -进行同音比较 ，0-不进行同音比较-->
+ 				<isEqual prepend="" property="isTongyin"  compareValue="1">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xmpy like '%$xmpy$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 				<isEqual prepend="" property="isTongyin"  compareValue="0">
+ 					<isNotEmpty prepend="and" property="xm">
+ 						a.xm like '%$xm$%'
+ 					</isNotEmpty>
+ 				</isEqual>
+ 			</isNotEmpty>
+ 			<isEmpty prepend="" property="isTongyin">
+ 				<isNotEmpty prepend="and" property="xm">
+ 					a.xm like '%$xm$%'
+ 				</isNotEmpty>
+ 			</isEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="kh">
+ 				d.kh=#kh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				a.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+				a.xbdm =#xbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjdm">
+				a.gjdm =#gjdm#
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qyid">
+ 				a.qyid=#qyid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				b.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm like '$cylbdm$%'
+			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zxbz">
+ 				a.zxbz=#zxbz#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ryid">
+ 				a.ryid =#ryid#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrylbdm"><!-- cyrylbdm：0-国内人员查询，1-境外人员查询 -->
+ 				a.cyrylbdm =#cyrylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				a.hylbdm =#hylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywx">
+ 				a.ywx =#ywx#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="ywm">
+ 				a.ywm =#ywm#
+ 			</isNotEmpty>
+ 		</dynamic>
+	</select>
+	
+	<!--从业人员信息核查(t_cyryxxhc)-->
+	<select id="getCyryxxhcList" resultMap="cyryxxhcListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.garkktbsjid garkktbsjid,a.ryid ryid,a.hcid hcid,
+		a.gxdwdm gxdwdm,a.gxdwmc gxdwmc,b.hylbdm hylbdm,b.hylb hylb,
+		a.qybm qybm,a.qymc qymc,a.xm xm,a.xb xb,a.xbdm xbdm,
+		a.zjhm zjhm,b.cylb cylb,b.cylbdm cylbdm,a.cyzjdm cyzjdm,a.cyzj cyzj,
+		a.bdsj bdsj,a.hcsj hcsj,a.hcwt hcwt,a.hcdw hcdw,
+		a.hcdwdm hcdwdm,a.hczt hczt
+		from t_qyryxxhc a ,t_qyryxx b
+		where 1=1 and a.ryid=b.ryid and b.cyrylbdm='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+ 				a.xm like '%$xm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%' 
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				b.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="mzdm">
+ 				b.mzdm=#mzdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+ 				a.xbdm=#xbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				a.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				a.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				b.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				b.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+ 				b.cylbdm like '$cylbdm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gxdwdm">
+ 				a.gxdwdm like '$gxdwdm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hcwt">
+ 				a.hcwt=#hcwt#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hczt">
+ 				a.hczt=#hczt#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				b.hylbdm=#hylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="deptCode">
+ 				a.gxdwdm like '$deptCode$%'
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--从业人员信息核查(t_qyryxxhc)-->
+	<select id="getCyryxxhcListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyryxxhc a ,t_qyryxx b
+		where 1=1 and a.ryid=b.ryid and b.cyrylbdm='0'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="xm">
+ 				a.xm like '%$xm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="zjhm">
+ 				a.zjhm like '%$zjhm$%' 
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cyrybh">
+ 				b.cyrybh=#cyrybh#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="mzdm">
+ 				b.mzdm=#mzdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="xbdm">
+ 				a.xbdm=#xbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qybm">
+ 				a.qybm=#qybm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="qymc">
+ 				a.qymc like '%$qymc$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hjdxzqhdm">
+ 				b.hjdxzqhdm=#hjdxzqhdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="csrq">
+ 				b.csrq=#csrq#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="cylbdm">
+ 				b.cylbdm like '$cylbdm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="gxdwdm">
+ 				a.gxdwdm like '$gxdwdm$%'
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hcwt">
+ 				a.hcwt=#hcwt#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hczt">
+ 				a.hczt=#hczt#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="hylbdm">
+ 				b.hylbdm=#hylbdm#
+ 			</isNotEmpty>
+ 			<isNotEmpty prepend="and" property="deptCode">
+ 				a.gxdwdm like '$deptCode$%'
+ 			</isNotEmpty>
+			<isNotEmpty prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--从业人员信息(t_cyryxx)采集点已采集-->
+	<select id="getYcjCyryxxList" resultMap="ycjCyryxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid     ryid,
+		       a.qyid     qyid,
+		       a.cyrybh   cyrybh,
+		       a.cyrylbdm cyrylbdm,
+		       a.xm       xm,
+		       a.xbdm     xbdm,
+		       a.xb       xb,
+		       a.zjhm     zjhm,
+		       a.cylb     cylb,
+		       a.cylbdm   cylbdm,
+		       a.zt   zt,
+		       a.lrsj     lrsj,
+		       a.mzdm     mzdm,
+		       a.minzu    minzu,
+		       b.qybm     qybm,
+		       b.qymc     qymc,
+		       b.zt		  bz
+		  from t_qyryxx a,
+		       t_qyjbxx b,
+		       (select ryid from t_qyry_zp where tplx = '0' and tpnr is not null) zp
+		 where a.qyid = b.qyid
+		   and a.ryid = zp.ryid
+		   and a.scbz = 0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsj">
+				a.lrsj &gt;=#lrsj:DATE#  and a.lrsj &lt; #lrsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					to_number(a.zt) &lt;90 and to_number(b.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--从业人员信息(t_cyryxx)已采集数量-->
+	<select id="getYcjCyryxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a  
+		from t_qyryxx a,
+		       t_qyjbxx b,
+		       (select ryid from t_qyry_zp where tplx = '0' and tpnr is not null) zp
+		 where a.qyid = b.qyid
+		   and a.ryid = zp.ryid
+		   and a.scbz = 0
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm =#hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '%$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsj">
+				a.lrsj &gt;=#lrsj:DATE#  and a.lrsj &lt; #lrsj:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglyg"><!-- 是否过滤异构系统，1为过滤，0为不过滤 9-14 添加 -->
+				<isEqual prepend="" property="sfglyg"  compareValue="1">
+					to_number(a.zt) &lt;90 and to_number(b.zt) &lt;90
+				</isEqual>
+				<isEqual prepend="" property="sfglyg"  compareValue="0">
+					1=1
+				</isEqual>
+     		</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!--可以根据老的14位的从业人员编号查询到人员信息 江苏专用 20101104 mds
+	新库通过dblink链接老版数据库，同时在新库中建立老版人员信息表(t_cyrrxx)的同义词，即t_cyrrxx-->
+	<select id="getQyryxxByOldcyrybh" resultMap="getQyryxxByOldcyrybh" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryid, a.cyrybh, b.cyrybh as oldCyrybh, a.xm, a.zjhm,a.mzdm,a.minzu,a.gj,a.gjdm,
+			a.xb,a.xbdm,
+			a.zt,a.cylb, a.cyrylbdm, c.qyid,c.qybm, c.qymc,c.gxdwbm,c.gxdwmc
+		  from t_qyryxx a, t_cyrrxx b, t_qyjbxx c
+		 where a.zjhm = b.zjhm
+		   and a.qyid = c.qyid
+		   and a.scbz = 0
+		 <dynamic prepend="">
+		 	<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm =#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				c.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh like '%$cyrybh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="oldCyrybh">
+				b.cyrybh like '%$oldCyrybh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm in ($hylbdm$)
+			</isNotEmpty>
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<select id="getQyryxxByOldcyrybhCount" resultClass="int" parameterClass="map">
+		select count(1) a
+		  from t_qyryxx a, t_cyrrxx b, t_qyjbxx c
+		 where a.zjhm = b.zjhm
+		   and a.qyid = c.qyid
+		   and a.scbz = 0
+		 <dynamic prepend="">
+		 	<isNotEmpty prepend="and" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cylbdm">
+				a.cylbdm =#cylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjf">
+				a.lrsj &gt;=#lrsjf:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrsjt">
+				a.lrsj &lt; #lrsjt:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gxdwbm">
+				c.gxdwbm like '$gxdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lrdwbm">
+				a.lrdwbm like '$lrdwbm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm like '%$zjhm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyrybh">
+				a.cyrybh like '%$cyrybh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="oldCyrybh">
+				b.cyrybh like '%$oldCyrybh$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm in ($hylbdm$)
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

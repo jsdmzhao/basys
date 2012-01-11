@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--企业基本信息(t_qyjbxx)-->
+	<bean id="qyjbxxService" class="com.aisino2.publicsystem.service.impl.QyjbxxServiceImpl">
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+		<property name="qyzjbDao" ref="qyzjbDao" />
+		<property name="qyfflDao" ref="qyfflDao" />
+		<property name="wgtzrxxDao" ref="wgtzrxxDao" />
+		<property name="bafwhtDao" ref="bafwhtDao" />
+		<property name="bldsjksbDao" ref="bldsjksbDao" />
+		<property name="aqjcsbDao" ref="aqjcsbDao" />
+		<property name="pmtDao" ref="pmtDao" />
+		<property name="qyxxczrzDao" ref="qyxxczrzDao" />
+		<property name="qyjbxx_lsDao" ref="qyjbxx_lsDao" />
+		<property name="zjb_lsDao" ref="zjb_lsDao" />
+		<property name="departmentService" ref="departmentService" />
+		<property name="qyzhtbDao" ref="qyzhtbDao" />
+		<property name="qyryxxService" ref="qyryxxService" />
+		<property name="qyshService" ref="qyshService" />
+		<property name="userService" ref="userService" />
+		<property name="qybgxxDao" ref="qybgxxDao" />
+		<property name="baryxxDao" ref="baryxxDao" />
+		<property name="bwryxxDao" ref="bwryxxDao" />
+	</bean>
+	<!--企业证件表(t_qyzjb)-->
+	<bean id="qyzjbService" class="com.aisino2.publicsystem.service.impl.QyzjbServiceImpl">
+		<property name="qyzjbDao" ref="qyzjbDao" />
+	</bean>
+	<!--保安服务合同(t_bafwht)-->
+	<bean id="bafwhtService" class="com.aisino2.publicsystem.service.impl.BafwhtServiceImpl">
+		<property name="bafwhtDao" ref="bafwhtDao" />
+	</bean>
+	<!--企业人员信息(t_qyryxx)-->
+	<bean id="qyryxxService" class="com.aisino2.publicsystem.service.impl.QyryxxServiceImpl">
+		<property name="qyryxxDao" ref="qyryxxDao" />
+		<property name="qyryxx_lsxxDao" ref="qyryxx_lsxxDao" />
+		<property name="wgcyryxxDao" ref="wgcyryxxDao" />
+		<property name="ryxxczrzDao" ref="ryxxczrzDao" />
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+		<property name="qyZrsProcDao" ref="qyZrsProcDao" />
+		<property name="ryjcxxDao" ref="ryjcxxDao" />
+		<property name="qyry_tjxxDao" ref="qyry_tjxxDao" />
+		<property name="qyryxxhcDao" ref="qyryxxhcDao" />
+		<property name="garkktbsjService" ref="garkktbsjService" />
+		<property name="qyryxxhcService" ref="qyryxxhcService" />
+		<property name="qyry_zpDao" ref="qyry_zpDao" />
+		<property name="ggQyyhDao" ref="ggQyyhDao" />
+		<property name="userDao" ref="userDao" />
+		<property name="qyryshDao" ref="qyryshDao" />
+	</bean>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<bean id="wgtzrxxService" class="com.aisino2.publicsystem.service.impl.WgtzrxxServiceImpl">
+		<property name="wgtzrxxDao" ref="wgtzrxxDao" />
+	</bean>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<bean id="ryxxczrzService" class="com.aisino2.publicsystem.service.impl.RyxxczrzServiceImpl">
+		<property name="ryxxczrzDao" ref="ryxxczrzDao" />
+	</bean>
+	<!--企业信息操作日志(t_qyxxczrz)-->
+	<bean id="qyxxczrzService" class="com.aisino2.publicsystem.service.impl.QyxxczrzServiceImpl">
+		<property name="qyxxczrzDao" ref="qyxxczrzDao" />
+	</bean>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<bean id="qyryxx_lsxxService" class="com.aisino2.publicsystem.service.impl.Qyryxx_lsxxServiceImpl">
+		<property name="qyryxx_lsxxDao" ref="qyryxx_lsxxDao" />
+	</bean>
+	<!--企业副分类(t_qyffl)-->
+	<bean id="qyfflService" class="com.aisino2.publicsystem.service.impl.QyfflServiceImpl">
+		<property name="qyfflDao" ref="qyfflDao" />
+	</bean>
+	<!--企业分类统计(t_qyfltj)-->
+	<bean id="qyfltjService" class="com.aisino2.publicsystem.service.impl.QyfltjServiceImpl">
+		<property name="qyfltjDao" ref="qyfltjDao" />
+	</bean>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<bean id="qyryxxtjService" class="com.aisino2.publicsystem.service.impl.QyryxxtjServiceImpl">
+		<property name="qyryxxtjDao" ref="qyryxxtjDao" />
+	</bean>
+	<!--企业上传统计表(t_qysctj)-->
+	<bean id="qysctjService" class="com.aisino2.publicsystem.service.impl.QysctjServiceImpl">
+		<property name="qysctjDao" ref="qysctjDao" />
+	</bean>
+	<!--平面图(t_pmt)-->
+	<bean id="pmtService" class="com.aisino2.publicsystem.service.impl.PmtServiceImpl">
+		<property name="pmtDao" ref="pmtDao" />
+	</bean>
+	<!--人员类别统计(t_rylbtj)-->
+	<bean id="rylbtjService" class="com.aisino2.publicsystem.service.impl.RylbtjServiceImpl">
+		<property name="rylbtjDao" ref="rylbtjDao" />
+	</bean>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<bean id="qyscbcfService" class="com.aisino2.publicsystem.service.impl.QyscbcfServiceImpl">
+		<property name="qyscbcfDao" ref="qyscbcfDao" />
+	</bean>
+	<!--未上传企业(t_wscqy)-->
+	<bean id="wscqyService" class="com.aisino2.publicsystem.service.impl.WscqyServiceImpl">
+		<property name="wscqyDao" ref="wscqyDao" />
+	</bean>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<bean id="bldsjksbService" class="com.aisino2.publicsystem.service.impl.BldsjksbServiceImpl">
+		<property name="bldsjksbDao" ref="bldsjksbDao" />
+	</bean>
+	<!--安全检查设备(t_aqjcsb)-->
+	<bean id="aqjcsbService" class="com.aisino2.publicsystem.service.impl.AqjcsbServiceImpl">
+		<property name="aqjcsbDao" ref="aqjcsbDao" />
+	</bean>
+	<!--企业基本信息—历史(t_qyjbxx_ls)-->
+	<bean id="qyjbxx_lsService" class="com.aisino2.publicsystem.service.impl.Qyjbxx_lsServiceImpl">
+		<property name="qyjbxx_lsDao" ref="qyjbxx_lsDao" />
+	</bean>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<bean id="qyry_tjxxService" class="com.aisino2.publicsystem.service.impl.Qyry_tjxxServiceImpl">
+		<property name="qyry_tjxxDao" ref="qyry_tjxxDao" />
+	</bean>
+	<!--企业奖惩信息(t_qyjcxx)-->
+	<bean id="qyjcxxService" class="com.aisino2.publicsystem.service.impl.QyjcxxServiceImpl">
+		<property name="qyjcxxDao" ref="qyjcxxDao" />
+	</bean>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<bean id="ryjcxxService" class="com.aisino2.publicsystem.service.impl.RyjcxxServiceImpl">
+		<property name="ryjcxxDao" ref="ryjcxxDao" />
+	</bean>
+	<!--企业备案信息(t_qybaxx)-->
+	<bean id="qybaxxService" class="com.aisino2.publicsystem.service.impl.QybaxxServiceImpl">
+		<property name="qybaxxDao" ref="qybaxxDao" />
+		<property name="tjclxxDao" ref="publictjclxxDao" />
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+	</bean>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<bean id="qybcbaxxService" class="com.aisino2.publicsystem.service.impl.QybcbaxxServiceImpl">
+		<property name="qybcbaxxDao" ref="qybcbaxxDao" />
+		<property name="qybaxxDao" ref="qybaxxDao" />
+		<property name="tjclxxDao" ref="publictjclxxDao" />
+	</bean>
+	<!--提交材料信息(t_tjclxx)-->
+	<bean id="publictjclxxService" class="com.aisino2.publicsystem.service.impl.TjclxxServiceImpl">
+		<property name="tjclxxDao" ref="publictjclxxDao" />
+	</bean>
+	<!--证件历史表(t_zjb_ls)-->
+	<bean id="zjb_lsService" class="com.aisino2.publicsystem.service.impl.Zjb_lsServiceImpl">
+		<property name="zjb_lsDao" ref="zjb_lsDao" />
+	</bean>
+	<!--企业人员信息核查(t_qyryxxhc)-->
+	<bean id="qyryxxhcService" class="com.aisino2.publicsystem.service.impl.QyryxxhcServiceImpl">
+		<property name="qyryxxhcDao" ref="qyryxxhcDao" />
+		<property name="qyryxxService" ref="qyryxxService" />
+		<property name="qyjbxxService" ref="qyjbxxService" />
+		<property name="departmentService" ref="departmentService" />
+	</bean>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<bean id="garkktbsjService" class="com.aisino2.publicsystem.service.impl.GarkktbsjServiceImpl">
+		<property name="garkktbsjDao" ref="garkktbsjDao" />
+	</bean>
+	<!--企业人员奖惩统计表(t_qyryjctj)-->
+	<bean id="qyryjctjService" class="com.aisino2.publicsystem.service.impl.QyryjctjServiceImpl">
+		<property name="qyryjctjDao" ref="qyryjctjDao" />
+	</bean>
+	<!--企业审核(t_qysh)-->
+	<bean id="qyshService" class="com.aisino2.publicsystem.service.impl.QyshServiceImpl">
+		<property name="qyshDao" ref="qyshDao" />
+	</bean>
+	<!--企业人员审核(t_qyrysh)-->
+	<bean id="qyryshService" class="com.aisino2.publicsystem.service.impl.QyryshServiceImpl">
+		<property name="qyryshDao" ref="qyryshDao" />
+	</bean>
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<bean id="wgcyryxxService" class="com.aisino2.publicsystem.service.impl.WgcyryxxServiceImpl">
+		<property name="wgcyryxxDao" ref="wgcyryxxDao" />
+	</bean>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<bean id="qyry_zpService" class="com.aisino2.publicsystem.service.impl.Qyry_zpServiceImpl">
+		<property name="qyry_zpDao" ref="qyry_zpDao" />
+	</bean>
+	<!--日常检查(t_rcjc)-->
+	<bean id="publicrcjcService" class="com.aisino2.publicsystem.service.impl.RcjcServiceImpl">
+		<property name="rcjcDao" ref="publicrcjcDao" />
+	</bean>
+	<!--可疑情况(t_kyqk)-->
+	<bean id="publickyqkService" class="com.aisino2.publicsystem.service.impl.KyqkServiceImpl">
+		<property name="kyqkDao" ref="publickyqkDao" />
+		<property name="scbmDao" ref="scbmDao" />
+	</bean>
+	<!--联合检查(t_lhjc)-->
+	<bean id="lhjcService" class="com.aisino2.publicsystem.service.impl.LhjcServiceImpl">
+		<property name="lhjcDao" ref="lhjcDao" />
+	</bean>
+	<!--从业人员于人口库比对服务-->
+	<bean id="checkQyryxxService" class="com.aisino2.publicsystem.service.impl.CheckQyryxxServiceImpl">
+		<property name="qyryxxDao" ref="qyryxxDao" />
+		<property name="qyryxxService" ref="qyryxxService" />
+		<property name="gabRkhcService" ref="gabRkhcService" />
+		<property name="qyryxxhcService" ref="qyryxxhcService" />
+		<property name="garkktbsjService" ref="garkktbsjService" />
+		<property name="qyjbxxService" ref="qyjbxxService" />
+		<property name="departmentService" ref="departmentService" />
+		<property name="globalparService" ref="globalparService" />
+	</bean>
+	<!--客户信息表(t_khxx)-->
+	<bean id="khxxService" class="com.aisino2.publicsystem.service.impl.KhxxServiceImpl">
+		<property name="khxxDao" ref="khxxDao" />
+		<property name="wgkhxxDao" ref="wgkhxxDao" />
+		<property name="bjxxbService" ref="bjxxbService" />
+        <property name="bjbdtjService" ref="bjbdtjService" /> 
+        <property name="qgztjxService" ref="qgztjxService" /> 
+        <property name="qgztjxkzService" ref="qgztjx_kzService" /> 
+        <property name="bkryService" ref="bkryService" /> 
+        <property name="bkrykzService" ref="bkry_kzService" /> 
+        <property name="bjgzService" ref="bjgzService" /> 
+	</bean>
+	<!--外国客户信息表(t_wgkhxx)-->
+	<bean id="wgkhxxService" class="com.aisino2.publicsystem.service.impl.WgkhxxServiceImpl">
+		<property name="wgkhxxDao" ref="wgkhxxDao" />
+	</bean>
+	<!--车辆基本信息(t_cljbxx)-->
+	<bean id="cljbxxService" class="com.aisino2.publicsystem.service.impl.CljbxxServiceImpl">
+		<property name="cljbxxDao" ref="cljbxxDao"/>
+		<property name="clxx_zpDao" ref="clxx_zpDao"/>
+		<property name="clxxry_zpDao" ref="clxxry_zpDao"/>
+		<property name="clxxwgryxxDao" ref="clxxwgryxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+   	 	<property name="wpbjxxbService" ref="wpbjxxbService"/>
+   	 	<property name="bjxxbService" ref="bjxxbService"/>
+   	 	<property name="khxxService" ref="khxxService"/>
+	</bean>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<bean id="clxx_zpService" class="com.aisino2.publicsystem.service.impl.Clxx_zpServiceImpl">
+		<property name="clxx_zpDao" ref="clxx_zpDao"/>
+	</bean>
+	<!--车辆信息人员_照片(t_clxxry_zp)-->
+	<bean id="clxxry_zpService" class="com.aisino2.publicsystem.service.impl.Clxxry_zpServiceImpl">
+		<property name="clxxry_zpDao" ref="clxxry_zpDao"/>
+	</bean>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<bean id="clxxwgryxxService" class="com.aisino2.publicsystem.service.impl.ClxxwgryxxServiceImpl">
+		<property name="clxxwgryxxDao" ref="clxxwgryxxDao" />
+	</bean>
+	<!--企业人员账号用户信息(t_clxxwgryxx)-->
+	<bean id="ggQyyhService" class="com.aisino2.publicsystem.service.impl.GgQyyhServiceImpl">
+		<property name="ggQyyhDao" ref="ggQyyhDao" />
+	</bean>
+	<!--企业营业日志(t_qyyyrz)-->
+	<bean id="qyyyrzService" class="com.aisino2.publicsystem.service.impl.QyyyrzServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="qyyyrzDao" ref="qyyyrzDao"/>
+	</bean>
+	<!--企业营业日志统计(t_qyyyrztj)-->
+	<bean id="qyyyrztjService" class="com.aisino2.publicsystem.service.impl.QyyyrztjServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="qyyyrztjDao" ref="qyyyrztjDao"/>
+	</bean>
+	<!--企业变更信息(t_qybgxx)-->
+	<bean id="qybgxxService" class="com.aisino2.publicsystem.service.impl.QybgxxServiceImpl" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="qybgxxDao" ref="qybgxxDao"/>
+	</bean>
+	<!--企业人员工作日志(t_qyrygzrz)-->
+	<bean id="qyrygzrzService" class="com.aisino2.publicsystem.service.impl.QyrygzrzServiceImpl">
+		<property name="qyrygzrzDao" ref="qyrygzrzDao" />
+	</bean>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<bean id="qyyyzttjService" class="com.aisino2.publicsystem.service.impl.QyyyzttjServiceImpl">
+		<property name="qyyyzttjDao" ref="qyyyzttjDao" />
+	</bean>
+	<!--可疑车辆(t_kycl)-->
+	<bean id="kyclService" class="com.aisino2.publicsystem.service.impl.KyclServiceImpl">
+		<property name="kyclDao" ref="kyclDao" />
+	</bean>
+	<!--企业质量信息(t_qyzlxx)-->
+	<bean id="qyzlxxService" class="com.aisino2.publicsystem.service.impl.QyzlxxServiceImpl">
+		<property name="qyzlxxDao" ref="qyzlxxDao" />
+		<property name="qyzlxxfjDao" ref="qyzlxxfjDao" />
+	</bean>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<bean id="qyzlxxfjService" class="com.aisino2.publicsystem.service.impl.QyzlxxfjServiceImpl">
+		<property name="qyzlxxfjDao" ref="qyzlxxfjDao" />
+	</bean>
+	<!--保安人员信息(t_baryxx)-->
+	<bean id="baryxxService" class="com.aisino2.publicsystem.service.impl.BaryxxServiceImpl">
+		<property name="baryxxDao" ref="baryxxDao" />
+	</bean>
+	<!--保卫人员信息(t_bwryxx)-->
+	<bean id="bwryxxService" class="com.aisino2.publicsystem.service.impl.BwryxxServiceImpl">
+		<property name="bwryxxDao" ref="bwryxxDao" />
+	</bean>
+	<!--从业人员信息(t_qyryxx)-->
+	<bean id="cyryxxtjService" class="com.aisino2.publicsystem.service.impl.CyryxxServiceImpl">
+		<property name="cyryxxtjDao" ref="cyryxxtjDao" />
+		<property name="qyry_zpDao" ref="qyry_zpDao" />
+		<property name="wgcyryxxDao" ref="wgcyryxxDao" />
+		<property name="ryxxczrzDao" ref="ryxxczrzDao" />
+		<property name="qyryxx_lsxxDao" ref="qyryxx_lsxxDao" />
+		<property name="scbmDao" ref="scbmDao" />
+		<property name="qyZrsProcDao" ref="qyZrsProcDao" />
+		<property name="qyjbxxDao" ref="qyjbxxDao" />
+		<property name="ickslDao" ref="ickslDao" />
+		<property name="zzzxscDao" ref="zzzxscDao" />
+		<property name="ickslService" ref="ickslService" />
+		<property name="qyryxxhcDao" ref="qyryxxhcDao" />
+		<property name="qyry_tjxxDao" ref="qyry_tjxxDao" />
+		<property name="icksl_wldjDao" ref="icksl_wldjDao" />
+		<property name="icksl_ickzbDao" ref="icksl_ickzbDao" />
+		<property name="qyryskxxtjDao" ref="qyryskxxtjDao" />
+		<property name="qyryshService" ref="qyryshService" />
+		<property name="garkktbsjService" ref="garkktbsjService" />
+		<property name="qyryxxhcService" ref="qyryxxhcService" />
+		<property name="qyryxxDao" ref="qyryxxDao" />
+		<property name="qyryxxService" ref="qyryxxService" />
+	</bean>
+	
+</beans>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="role_menu" type="com.aisino2.sysadmin.domain.Role_menu"/>
+	  <typeAlias alias="role" type="com.aisino2.sysadmin.domain.Role"/>
+  <typeAlias alias="menu" type="com.aisino2.sysadmin.domain.Menu"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--角色菜单(t_role_menu)-->
+	<resultMap id="role_menuResult" class="role_menu">
+		<result property="menucode" column="menucode" />
+		<result property="roleid" column="roleid" />
+	</resultMap>
+	<!--角色菜单(t_role_menu)-->
+	<resultMap id="role_menuListResult" class="role_menu">
+		<result property="menucode" column="menucode"/>
+		<result property="roleid" column="roleid"/>
+	</resultMap>
+	<!--菜单(t_menu)-->
+	<resultMap id="role_systemListResult" class="role_menu">
+		<result property="systemcode" column="systemcode"/>
+	</resultMap>
+	<sql id="t_role_menuWhere">
+			<isNotEmpty prepend="and" property="menucode">
+				a.menucode=#menucode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_role_menuPageWhere" >
+		<include refid="t_role_menuWhere" />	</sql>
+	<sql id="t_role_menuListWhere" >
+		<include refid="t_role_menuWhere" />	</sql>
+	<sql id="t_role_menuSelectWhere"  >
+		<include refid="t_role_menuWhere" />	</sql>
+	<!--角色菜单(t_role_menu)-->
+	<insert id="insertRole_menu"  parameterClass="role_menu">
+		insert into t_role_menu (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="menucode">
+				menucode
+			</isNotNull>
+			<isNotNull prepend="," property="roleid">
+				roleid
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="menucode">
+				#menucode#
+			</isNotNull>
+			<isNotNull prepend="," property="roleid">
+				#roleid#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--角色菜单(t_role_menu)-->
+	<update id="updateRole_menu" parameterClass="role_menu">
+		update t_role_menu a set menucode=menucode
+		<dynamic prepend="">
+			
+			<isNotNull prepend="," property="roleid">
+				roleid=#roleid#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_menuWhere" />
+		</dynamic>
+	</update>
+	<!--角色菜单(t_role_menu)-->
+	<delete id="deleteRole_menu" parameterClass="role_menu">
+		delete from t_role_menu a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_role_menuWhere" />
+		</dynamic>
+	</delete>
+	<!--角色菜单(t_role_menu)-->
+	<select id="getRole_menuList" resultMap="role_menuListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.menucode menucode,a.roleid roleid
+		from t_role_menu a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_menuPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--角色菜单(t_role_menu)-->
+	<select id="getRole_menuListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_role_menu a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_menuPageWhere" />
+		</dynamic>
+	</select>
+	<!--角色菜单(t_role_menu)-->
+	<select id="getRole_menuListNoPage" resultMap="role_menuListResult" parameterClass="role_menu">
+		select a.menucode menucode,a.roleid roleid
+		from t_role_menu a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_menuListWhere" />
+		</dynamic>
+		order by a.menucode,a.roleid
+	</select>
+	<!--角色菜单(t_role_menu)-->
+	<select id="getRole_menu" resultMap="role_menuResult" parameterClass="role_menu">
+		select a.menucode menucode,a.roleid roleid
+		from t_role_menu a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_role_menuSelectWhere" />
+		</dynamic>
+		order by a.menucode,a.roleid
+	</select>
+		<!--根据roleid和systemcode取得角色菜单(t_role_menu)-->
+	<select id="getRoleMenusByRoleidAndSystemcode" parameterClass="map" resultMap="role_menuResult">
+       <![CDATA[select a.menucode menucode,a.roleid roleid from t_role_menu a ,t_menu m where a.roleid=#roleid# and m.systemcode=#systemcode# and a.menucode=m.menucode order by m.nodeOrder]]>
+     </select>
+     
+      <delete id="deleteRoleMenuByMenu" parameterClass="menu">
+    delete from t_role_menu where menucode=#menucode#
+  </delete>
+
+  <delete id="deleteRoleMenuByRole" parameterClass="role">
+    delete from t_role_menu where roleid=#roleid#
+  </delete>
+     <select id="getRoleMenus" parameterClass="role" resultMap="role_menuResult">
+<![CDATA[select roleid,menucode from t_role_menu where roleid=#roleid#]]>
+</select>
+	<!--查询指定角色拥有哪个系统下的菜单-->
+	<select id="getRolesystemListNoPage" resultMap="role_systemListResult" parameterClass="role_menu">
+		select distinct b.systemcode from t_role_menu a,t_menu b
+		where a.menucode=b.menucode
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<!--查询指定角色指定系统下的菜单-->
+	<select id="getRolesystemenuListNoPage" resultMap="role_menuListResult" parameterClass="role_menu">
+		select  b.menucode menucode,a.roleid roleid from t_role_menu a,t_menu b
+    	where a.menucode=b.menucode
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="systemcode">
+				b.systemcode=#systemcode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="roleid">
+				a.roleid=#roleid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

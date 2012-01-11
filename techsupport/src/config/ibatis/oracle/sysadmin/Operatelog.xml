@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="operatelog" type="com.aisino2.sysadmin.domain.Operatelog"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--操作日志表(t_operatelog)-->
+	<resultMap id="operatelogResult" class="operatelog">
+		<result property="operatelogid" column="operatelogid" />
+		<result property="operateunitcode" column="operateunitcode" />
+		<result property="operateunitname" column="operateunitname" />
+		<result property="operateuserid" column="operateuserid" />
+		<result property="useraccount" column="useraccount" />
+		<result property="username" column="username" />
+		<result property="operatesystem" column="operatesystem" />
+		<result property="operatemodule" column="operatemodule" />
+		<result property="operatesql" column="operatesql" />
+		<result property="operatetype" column="operatetype" />
+		<result property="operatedate" column="operatedate" />
+	</resultMap>
+	<!--操作日志表(t_operatelog)-->
+	<resultMap id="operatelogListResult" class="operatelog">
+		<result property="operatelogid" column="operatelogid"/>
+		<result property="operateunitcode" column="operateunitcode"/>
+		<result property="operateunitname" column="operateunitname"/>
+		<result property="operateuserid" column="operateuserid"/>
+		<result property="useraccount" column="useraccount"/>
+		<result property="username" column="username"/>
+		<result property="operatesystem" column="operatesystem"/>
+		<result property="operatemodule" column="operatemodule"/>
+		<result property="operatetype" column="operatetype"/>
+		<result property="operatedate" column="operatedate"/>
+	</resultMap>
+	<!--机构(t_department)用户(t_user)-->
+	<resultMap id="userdepartmentResultLog" class="operatelog">
+		<result property="operateunitcode" column="operateunitcode" />
+		<result property="operateunitname" column="operateunitname" />
+		<result property="operateuserid" column="operateuserid" />
+		<result property="useraccount" column="useraccount" />
+		<result property="username" column="username" />
+	</resultMap>
+	
+	<!--菜单(t_menu)系统(t_system)-->
+	<resultMap id="menuSystemResultLog" class="operatelog">
+		<result property="operatesystem" column="operatesystem" />
+		<result property="operatemodule" column="operatemodule" />
+	</resultMap>
+
+	<sql id="t_operatelogWhere">
+			<isNotEmpty prepend="and" property="operatelogid">
+				a.operatelogid=#operatelogid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_operatelogPageWhere" >
+		<include refid="t_operatelogWhere" />	</sql>
+	<sql id="t_operatelogListWhere" >
+		<include refid="t_operatelogWhere" />	</sql>
+	<sql id="t_operatelogSelectWhere"  >
+		<include refid="t_operatelogWhere" />	</sql>
+	<!--操作日志表(t_operatelog)-->
+	<insert id="insertOperatelog"  parameterClass="operatelog">
+		insert into t_operatelog (operatelogid,operatesql
+		<dynamic prepend="">
+			<isNotNull prepend="," property="operateunitcode">
+				operateunitcode
+			</isNotNull>
+			<isNotNull prepend="," property="operateunitname">
+				operateunitname
+			</isNotNull>
+			<isNotNull prepend="," property="operateuserid">
+				operateuserid
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username
+			</isNotNull>
+			<isNotNull prepend="," property="operatesystem">
+				operatesystem
+			</isNotNull>
+			<isNotNull prepend="," property="operatemodule">
+				operatemodule
+			</isNotNull>
+			<isNotNull prepend="," property="operatetype">
+				operatetype
+			</isNotNull>
+			<isNotNull prepend="," property="operatedate">
+				operatedate
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			OPERATELOGID.NEXTVAL,#operatesql#
+			<isNotNull prepend="," property="operateunitcode">
+				#operateunitcode#
+			</isNotNull>
+			<isNotNull prepend="," property="operateunitname">
+				#operateunitname#
+			</isNotNull>
+			<isNotNull prepend="," property="operateuserid">
+				#operateuserid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				#username#
+			</isNotNull>
+			<isNotNull prepend="," property="operatesystem">
+				#operatesystem#
+			</isNotNull>
+			<isNotNull prepend="," property="operatemodule">
+				#operatemodule#
+			</isNotNull>
+			<isNotNull prepend="," property="operatetype">
+				#operatetype#
+			</isNotNull>
+			<isNotNull prepend="," property="operatedate">
+				#operatedate:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--操作日志表(t_operatelog)-->
+	<update id="updateOperatelog" parameterClass="operatelog">
+		update t_operatelog a set a.operatelogid=a.operatelogid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="operateunitcode">
+				operateunitcode=#operateunitcode#
+			</isNotNull>
+			<isNotNull prepend="," property="operateunitname">
+				operateunitname=#operateunitname#
+			</isNotNull>
+			<isNotNull prepend="," property="operateuserid">
+				operateuserid=#operateuserid#
+			</isNotNull>
+			<isNotNull prepend="," property="useraccount">
+				useraccount=#useraccount#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				username=#username#
+			</isNotNull>
+			<isNotNull prepend="," property="operatesystem">
+				operatesystem=#operatesystem#
+			</isNotNull>
+			<isNotNull prepend="," property="operatemodule">
+				operatemodule=#operatemodule#
+			</isNotNull>
+			<isNotNull prepend="," property="operatesql">
+				operatesql=#operatesql#
+			</isNotNull>
+			<isNotNull prepend="," property="operatetype">
+				operatetype=#operatetype#
+			</isNotNull>
+			<isNotNull prepend="," property="operatedate">
+				operatedate=#operatedate:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_operatelogWhere" />
+		</dynamic>
+	</update>
+	<!--操作日志表(t_operatelog)-->
+	<delete id="deleteOperatelog" parameterClass="operatelog">
+		delete from t_operatelog a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_operatelogWhere" />
+		</dynamic>
+	</delete>
+	<!--操作日志表(t_operatelog)-->
+	<select id="getOperatelogList" resultMap="operatelogListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.operatelogid operatelogid,a.operateunitcode operateunitcode,a.operateunitname operateunitname,a.operateuserid operateuserid,a.useraccount useraccount,a.username username,a.operatesystem operatesystem,a.operatemodule operatemodule,a.operatetype operatetype,a.operatedate operatedate
+		from t_operatelog a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="operatesystem">
+				a.operatesystem=#operatesystem#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatemodule">
+				a.operatemodule=#operatemodule#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount=#useraccount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatedatef">
+				a.operatedate &gt;= #operatedatef:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatedatet">
+				a.operatedate &lt; #operatedatet:DATE#+1
+			</isNotEmpty>
+			<include refid="t_operatelogPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z where rownum &lt;= $endRow$) x where rowno &gt;$beginRow$
+	</select>
+	<!--操作日志表(t_operatelog)-->
+	<select id="getOperatelogListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_operatelog a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="operatesystem">
+				a.operatesystem=#operatesystem#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatemodule">
+				a.operatemodule=#operatemodule#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="useraccount">
+				a.useraccount=#useraccount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatedatef">
+				a.operatedate &gt;= #operatedatef:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="operatedatet">
+				a.operatedate &lt; #operatedatet:DATE#+1
+			</isNotEmpty>
+			<include refid="t_operatelogPageWhere" />
+		</dynamic>
+	</select>
+	<!--操作日志表(t_operatelog)-->
+	<select id="getOperatelogListNoPage" resultMap="operatelogListResult" parameterClass="operatelog">
+		select a.operatelogid operatelogid,a.operateunitcode operateunitcode,a.operateunitname operateunitname,a.operateuserid operateuserid,a.useraccount useraccount,a.username username,a.operatesystem operatesystem,a.operatemodule operatemodule,a.operatetype operatetype,a.operatedate operatedate
+		from t_operatelog a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_operatelogListWhere" />
+		</dynamic>
+		order by a.operatelogid
+	</select>
+	<!--操作日志表(t_operatelog)-->
+	<select id="getOperatelog" resultMap="operatelogResult" parameterClass="operatelog">
+		select a.operatelogid operatelogid,a.operateunitcode operateunitcode,a.operateunitname operateunitname,a.operateuserid operateuserid,a.useraccount useraccount,a.username username,a.operatesystem operatesystem,a.operatemodule operatemodule,a.operatesql operatesql,a.operatetype operatetype,a.operatedate operatedate
+		from t_operatelog a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_operatelogSelectWhere" />
+		</dynamic>
+		order by a.operatelogid
+	</select>
+		<sql id="t_userDepartmentSelectWherelog">
+			<isNotEmpty prepend="and" property="useraccount">
+				t.useraccount=#useraccount#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_menuSystemSelectWherelog">
+			<isNotEmpty prepend="and" property="operatemodule">
+				t.menucode=#operatemodule#
+			</isNotEmpty>
+	</sql>
+	
+	<!--系统(t_system)菜单-->
+	<select id="getMenuSystemlog" resultMap="menuSystemResultLog" parameterClass="operatelog">
+		select a.systemname operatesystem, t.menuname  operatemodule
+		from t_system a,t_menu t
+		where 1=1 and a.systemcode = t.systemcode
+		<dynamic prepend="">
+			<include refid="t_menuSystemSelectWherelog" />
+		</dynamic>
+	</select>
+	<!--机构(t_department)用户t_user-->
+	<select id="getUserDepartmentlog" resultMap="userdepartmentResultLog" parameterClass="operatelog">
+		select a.departcode operateunitcode,a.departname operateunitname,t.userid operateuserid,t.useraccount useraccount,t.username username
+		from t_department a ,t_user t 
+		where 1=1 and a.departid=t.departid
+		<dynamic prepend="">
+			<include refid="t_userDepartmentSelectWherelog" />
+		</dynamic>
+	</select>
+	
+
+</sqlMap>

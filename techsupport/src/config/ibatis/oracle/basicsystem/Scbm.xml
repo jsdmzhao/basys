@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!-- 生成编码 -->
+	<parameterMap class="java.util.Map" id="scbmMap">
+		<parameter property="p_ErrMsg" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+		<parameter property="p_scbm" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+		<parameter property="p_bmfl" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="p_xzqh" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="p_sssf" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="p_scgz" jdbcType="NUMBER" javaType="int" mode="IN"/>
+	</parameterMap>
+	<!-- 生成编码 -->
+	<procedure id="getScbm" parameterMap="scbmMap" resultClass="java.util.Map">
+		<![CDATA[
+			{call mansys.scbm(?,?,?,?,?,?)}
+		]]>
+	</procedure>
+</sqlMap>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<select id="worksheet.getlist" parameterClass="hashmap"
+		resultClass="map">
+		select
+		t.DBID_ as dbid,
+		t.DBVERSION_ as dbversion,
+		t.NAME_ as
+		name,
+		t.DESCR_ as descr,
+		t.STATE_ as state,
+		t.SUSPHISTSTATE_ as
+		susphiststate,
+		t.ASSIGNEE_ as assignee,
+		t.FORM_ as form,
+		t.PRIORITY_ as
+		priority,
+		t.CREATE_ as create,
+		t.DUEDATE_ as duedate,
+		t.PROGRESS_ as
+		progress,
+		t.SIGNALLING_ as signalling,
+		t.EXECUTION_ID_ as execution_id,
+		t.ACTIVITY_NAME_ as activity_name,
+		t.HASVARS_ as hasvars,
+		t.SUPERTASK_
+		as supertask,
+		t.EXECUTION_ as execution,
+		t.PROCINST_ as procinst,
+		t.SWIMLANE_ as swimlane,
+		t.TASKDEFNAME_ as taskdefname,
+		s.ST_NO as
+		st_no,
+		s.APPLICANT as applicant,
+		s.SUPPORT_CONTENT as support_content,
+		s.CE_APPROVAL_DATE as ce_approval_date,
+		s.CE_REPLY as ce_reply,
+		s.PM_APPROVAL_DATE as pm_approval_date,
+		s.PM_REPLY as pm_reply,
+		s.SUPPORT_LEADER as support_leader,
+		s.SUPPORT_DEPT as support_dept,
+		s.DEV_SCHE_DATE as dev_sche_date,
+		s.PSG_SCHE_DATE as psg_sche_date,
+		s.ST_STATUS as st_status,
+		s.REGION as region,
+		s.SERIAL_NUMBER as serial_number,
+		s.HDEV_APPROVAL_DATE as hdev_approval_date,
+		s.HDEV_REPLY as hdev_reply,
+		s.ID as id,
+		s.DEV_DS_SCHE_DATE as dev_ds_sche_date,
+		s.DEV_DD_SCHE_DATE as dev_dd_sche_date,
+		s.PSG_DS_SCHE_DATE as psg_ds_sche_date,
+		s.PSG_IS_SCHE_DATE as psg_is_sche_date,
+		s.COMMENTS as comments
+
+		from
+		JBPM4_TASK t,t_ts_techsupport s,JBPM4_VARIABLE v
+		<dynamic prepend="where">
+			t.execution_= v.EXECUTION_
+			and s.id = V.worksheetno
+			<isNotNull prepend="and" property="assignee">
+				t.ASSIGNEE_=#assignee#
+			</isNotNull>
+			
+		</dynamic>
+		order by
+		t.PRIORITY_ desc
+	</select>
+
+
+</sqlMap>

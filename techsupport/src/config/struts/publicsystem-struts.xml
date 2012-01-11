@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <package name="publicsystem" extends="json-default" namespace="/publicsystem">
+    <action name="*_aqjcsb" method="{1}" class="aqjcsbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bafwht" method="{1}" class="bafwhtAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bldsjksb" method="{1}" class="bldsjksbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_garkktbsj" method="{1}" class="garkktbsjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_kyqk" method="{1}" class="publickyqkAction">
+      <result type="json"/>
+    </action>
+    <action name="*_lhjc" method="{1}" class="lhjcAction">
+      <result type="json"/>
+    </action>
+    <action name="*_pmt" method="{1}" class="pmtAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qybaxx" method="{1}" class="qybaxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qybcbaxx" method="{1}" class="qybcbaxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyffl" method="{1}" class="qyfflAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyfltj" method="{1}" class="qyfltjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyjbxx" method="{1}" class="qyjbxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyjbxx_ls" method="{1}" class="qyjbxx_lsAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyjcxx" method="{1}" class="qyjcxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyry_tjxx" method="{1}" class="qyry_tjxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyry_zp" method="{1}" class="qyry_zpAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryjctj" method="{1}" class="qyryjctjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyrysh" method="{1}" class="qyryshAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryxx" method="{1}" class="qyryxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryxx_lsxx" method="{1}" class="qyryxx_lsxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryxxhc" method="{1}" class="qyryxxhcAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyryxxtj" method="{1}" class="qyryxxtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyscbcf" method="{1}" class="qyscbcfAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qysctj" method="{1}" class="qysctjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qysh" method="{1}" class="qyshAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyxxczrz" method="{1}" class="qyxxczrzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyzjb" method="{1}" class="qyzjbAction">
+      <result type="json"/>
+    </action>
+    <action name="*_publicrcjc" method="{1}" class="publicrcjcAction">
+      <result type="json"/>
+    </action>
+    <action name="*_ryjcxx" method="{1}" class="ryjcxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_rylbtj" method="{1}" class="rylbtjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_ryxxczrz" method="{1}" class="ryxxczrzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_tjclxx" method="{1}" class="tjclxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_publicwgcyryxx" method="{1}" class="publicwgcyryxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wgtzrxx" method="{1}" class="wgtzrxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_wscqy" method="{1}" class="wscqyAction">
+      <result type="json"/>
+    </action>
+    <action name="*_zjb_ls" method="{1}" class="zjb_lsAction">
+      <result type="json"/>
+    </action>
+    <action name="*_cljbxx" method="{1}" class="cljbxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_clxx_zp" method="{1}" class="clxx_zpAction">
+      <result type="json"/>
+    </action>
+    <action name="*_clxxry_zp" method="{1}" class="clxxry_zpAction">
+      <result type="json"/>
+    </action>
+    <action name="*_clxxwgryxx" method="{1}" class="clxxwgryxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qybgxx" method="{1}" class="qybgxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyrygzrz" method="{1}" class="qyrygzrzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyyyrz" method="{1}" class="qyyyrzAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyyyrztj" method="{1}" class="qyyyrztjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyyyzttj" method="{1}" class="qyyyzttjAction">
+      <result type="json"/>
+    </action>
+    <action name="*_kycl" method="{1}" class="kyclAction">
+      <result type="json"/>
+    </action>
+ 
+    <action name="*_qyzlxx" method="{1}" class="qyzlxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_qyzlxxfj" method="{1}" class="qyzlxxfjAction">
+      <result type="json"/>
+    </action>
+
+    <action name="*_checkQyryxx" method="{1}" class="checkQyryxxAction">
+      <result type="json"/>
+    </action>
+    
+    <action name="*_baryxx" method="{1}" class="baryxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_bwryxx" method="{1}" class="bwryxxAction">
+      <result type="json"/>
+    </action>
+    <action name="*_cyryxxtj" method="{1}" class="cyryxxtjAction">
+      <result type="json"/>
+    </action>
+    
+  </package>
+</struts>

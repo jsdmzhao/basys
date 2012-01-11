@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="garkktbsj" type="com.aisino2.publicsystem.domain.Garkktbsj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<resultMap id="garkktbsjResult" class="garkktbsj">
+		<result property="garkktbsjid" column="garkktbsjid" />
+		<result property="gmsfzhm" column="gmsfzhm" />
+		<result property="xm" column="xm" />
+		<result property="xb" column="xb" />
+		<result property="mz" column="mz" />
+		<result property="hyzk" column="hyzk" />
+		<result property="hjsx" column="hjsx" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="csrq" column="csrq" />
+		<result property="zp" column="zp" />
+	</resultMap>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<resultMap id="garkktbsjListResult" class="garkktbsj">
+		<result property="garkktbsjid" column="garkktbsjid"/>
+		<result property="gmsfzhm" column="gmsfzhm"/>
+		<result property="xm" column="xm"/>
+		<result property="xb" column="xb"/>
+		<result property="mz" column="mz"/>
+		<result property="hyzk" column="hyzk"/>
+		<result property="hjsx" column="hjsx"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="csrq" column="csrq"/>
+		<result property="zp" column="zp"/>
+	</resultMap>
+	<sql id="t_garkktbsjWhere">
+			<isNotEmpty prepend="and" property="garkktbsjid">
+				a.garkktbsjid=#garkktbsjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_garkktbsjPageWhere" >
+		<include refid="t_garkktbsjWhere" />	</sql>
+	<sql id="t_garkktbsjListWhere" >
+		<include refid="t_garkktbsjWhere" />	</sql>
+	<sql id="t_garkktbsjSelectWhere"  >
+		<include refid="t_garkktbsjWhere" />	</sql>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<insert id="insertGarkktbsj"  parameterClass="garkktbsj">
+		insert into t_garkktbsj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="garkktbsjid">
+				garkktbsjid
+			</isNotNull>
+			<isNotNull prepend="," property="gmsfzhm">
+				gmsfzhm
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb
+			</isNotNull>
+			<isNotNull prepend="," property="mz">
+				mz
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				hyzk
+			</isNotNull>
+			<isNotNull prepend="," property="hjsx">
+				hjsx
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq
+			</isNotNull>
+			<isNotNull prepend="," property="zp">
+				zp
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="garkktbsjid">
+				#garkktbsjid#
+			</isNotNull>
+			<isNotNull prepend="," property="gmsfzhm">
+				#gmsfzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="mz">
+				#mz#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				#hyzk#
+			</isNotNull>
+			<isNotNull prepend="," property="hjsx">
+				#hjsx#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zp">
+				#zp#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<update id="updateGarkktbsj" parameterClass="garkktbsj">
+		update t_garkktbsj a set a.garkktbsjid=a.garkktbsjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gmsfzhm">
+				gmsfzhm=#gmsfzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm=#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb=#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="mz">
+				mz=#mz#
+			</isNotNull>
+			<isNotNull prepend="," property="hyzk">
+				hyzk=#hyzk#
+			</isNotNull>
+			<isNotNull prepend="," property="hjsx">
+				hjsx=#hjsx#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz=#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq=#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zp">
+				zp=#zp#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_garkktbsjWhere" />
+		</dynamic>
+	</update>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<delete id="deleteGarkktbsj" parameterClass="garkktbsj">
+		delete from t_garkktbsj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_garkktbsjWhere" />
+		</dynamic>
+	</delete>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<select id="getGarkktbsjList" resultMap="garkktbsjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.garkktbsjid garkktbsjid,a.gmsfzhm gmsfzhm,a.xm xm,a.xb xb,a.mz mz,a.hyzk hyzk,a.hjsx hjsx,a.hjdxz hjdxz,a.csrq csrq,a.zp zp
+		from t_garkktbsj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_garkktbsjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<select id="getGarkktbsjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_garkktbsj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_garkktbsjPageWhere" />
+		</dynamic>
+	</select>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<select id="getGarkktbsjListNoPage" resultMap="garkktbsjListResult" parameterClass="garkktbsj">
+		select a.garkktbsjid garkktbsjid,a.gmsfzhm gmsfzhm,a.xm xm,a.xb xb,a.mz mz,a.hyzk hyzk,a.hjsx hjsx,a.hjdxz hjdxz,a.csrq csrq,a.zp zp
+		from t_garkktbsj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_garkktbsjListWhere" />
+		</dynamic>
+		order by a.garkktbsjid
+	</select>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<select id="getGarkktbsj" resultMap="garkktbsjResult" parameterClass="garkktbsj">
+		select a.garkktbsjid garkktbsjid,a.gmsfzhm gmsfzhm,a.xm xm,a.xb xb,a.mz mz,a.hyzk hyzk,a.hjsx hjsx,a.hjdxz hjdxz,a.csrq csrq,a.zp zp
+		from t_garkktbsj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_garkktbsjSelectWhere" />
+		</dynamic>
+		order by a.garkktbsjid
+	</select>
+</sqlMap>

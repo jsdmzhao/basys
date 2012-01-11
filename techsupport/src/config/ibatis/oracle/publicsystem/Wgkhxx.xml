@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="wgkhxx" type="com.aisino2.publicsystem.domain.Wgkhxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--外国客户信息(t_wgkhxx)-->
+	<resultMap id="wgkhxxResult" class="wgkhxx">
+		<result property="khxxid" column="khxxid" />
+		<result property="ywx" column="ywx" />
+		<result property="ywm" column="ywm" />
+		<result property="qzzldm" column="qzzldm" />
+		<result property="qzzl" column="qzzl" />
+		<result property="qzhm" column="qzhm" />
+		<result property="zatlq" column="zatlq" />
+		<result property="qfjg" column="qfjg" />
+		<result property="rjrq" column="rjrq" />
+		<result property="rjka" column="rjka" />
+	</resultMap>
+	<!--外国客户信息(t_wgkhxx)-->
+	<resultMap id="wgkhxxListResult" class="wgkhxx">
+		<result property="khxxid" column="khxxid"/>
+		<result property="ywx" column="ywx"/>
+		<result property="ywm" column="ywm"/>
+		<result property="qzzldm" column="qzzldm"/>
+		<result property="qzzl" column="qzzl"/>
+		<result property="qzhm" column="qzhm"/>
+		<result property="zatlq" column="zatlq"/>
+		<result property="qfjg" column="qfjg"/>
+		<result property="rjrq" column="rjrq"/>
+		<result property="rjka" column="rjka"/>
+	</resultMap>
+	<sql id="t_wgkhxxWhere">
+		<isNotEmpty prepend="and" property="khxxid">
+			a.khxxid=#khxxid#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qzhm">
+			a.qzhm=#qzhm#
+		</isNotEmpty>
+	</sql>
+	<sql id="t_wgkhxxPageWhere" >
+		<include refid="t_wgkhxxWhere" />	</sql>
+	<sql id="t_wgkhxxListWhere" >
+		<include refid="t_wgkhxxWhere" />	</sql>
+	<sql id="t_wgkhxxSelectWhere"  >
+		<include refid="t_wgkhxxWhere" />	</sql>
+	<!--外国客户信息(t_wgkhxx)-->
+	<insert id="insertWgkhxx"  parameterClass="wgkhxx">
+		insert into t_wgkhxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="khxxid">
+				khxxid
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				ywx
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				qzzl
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="khxxid">
+				#khxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="ywx">
+				#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				#qzzl#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				#rjka#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--外国客户信息(t_wgkhxx)-->
+	<update id="updateWgkhxx" parameterClass="wgkhxx">
+		update t_wgkhxx a set a.khxxid=a.khxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ywx">
+				ywx=#ywx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywm">
+				ywm=#ywm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzldm">
+				qzzldm=#qzzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="qzzl">
+				qzzl=#qzzl#
+			</isNotNull>
+			<isNotNull prepend="," property="qzhm">
+				qzhm=#qzhm#
+			</isNotNull>
+			<isNotNull prepend="," property="zatlq">
+				zatlq=#zatlq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="qfjg">
+				qfjg=#qfjg#
+			</isNotNull>
+			<isNotNull prepend="," property="rjrq">
+				rjrq=#rjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="rjka">
+				rjka=#rjka#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgkhxxWhere" />
+		</dynamic>
+	</update>
+	<!--外国客户信息(t_wgkhxx)-->
+	<delete id="deleteWgkhxx" parameterClass="wgkhxx">
+		delete from t_wgkhxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_wgkhxxWhere" />
+		</dynamic>
+	</delete>
+	<!--外国客户信息(t_wgkhxx)-->
+	<select id="getWgkhxxList" resultMap="wgkhxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.khxxid khxxid,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_wgkhxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgkhxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--外国客户信息(t_wgkhxx)-->
+	<select id="getWgkhxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_wgkhxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgkhxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--外国客户信息(t_wgkhxx)-->
+	<select id="getWgkhxxListNoPage" resultMap="wgkhxxListResult" parameterClass="wgkhxx">
+		select a.khxxid khxxid,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_wgkhxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgkhxxListWhere" />
+		</dynamic>
+		order by a.khxxid
+	</select>
+	<!--外国客户信息(t_wgkhxx)-->
+	<select id="getWgkhxx" resultMap="wgkhxxResult" parameterClass="wgkhxx">
+		select a.khxxid khxxid,a.ywx ywx,a.ywm ywm,a.qzzldm qzzldm,a.qzzl qzzl,a.qzhm qzhm,a.zatlq zatlq,a.qfjg qfjg,a.rjrq rjrq,a.rjka rjka
+		from t_wgkhxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_wgkhxxSelectWhere" />
+		</dynamic>
+		order by a.khxxid
+	</select>
+</sqlMap>

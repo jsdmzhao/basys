@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="dtcxpx" type="com.aisino2.basicsystem.domain.Dtcxpx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--动态查询排序(t_dtcxpx)-->
+	<resultMap id="dtcxpxResult" class="dtcxpx">
+		<result property="dtcxpxid" column="dtcxpxid" />
+		<result property="gjcxfaid" column="gjcxfaid" />
+		<result property="sjbm" column="sjbm" />
+		<result property="zdm" column="zdm" />
+		<result property="zdzwm" column="zdzwm" />
+		<result property="pxfs" column="pxfs" />
+	</resultMap>
+	<!--动态查询排序(t_dtcxpx)-->
+	<resultMap id="dtcxpxListResult" class="dtcxpx">
+		<result property="dtcxpxid" column="dtcxpxid"/>
+		<result property="gjcxfaid" column="gjcxfaid"/>
+		<result property="sjbjgid" column="sjbjgid" />
+		<result property="sjbzwm" column="sjbzwm"/>
+		<result property="sjbm" column="sjbm"/>
+		<result property="zdm" column="zdm"/>
+		<result property="zdzwm" column="zdzwm"/>
+		<result property="pxfs" column="pxfs"/>
+	</resultMap>
+	<sql id="t_dtcxpxWhere">
+			<isNotEmpty prepend="and" property="dtcxpxid">
+				a.dtcxpxid=#dtcxpxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gjcxfaid">
+				a.gjcxfaid=#gjcxfaid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_dtcxpxPageWhere" >
+		<include refid="t_dtcxpxWhere" />	</sql>
+	<sql id="t_dtcxpxListWhere" >
+		<include refid="t_dtcxpxWhere" />	</sql>
+	<sql id="t_dtcxpxSelectWhere"  >
+		<include refid="t_dtcxpxWhere" />	</sql>
+	<!--动态查询排序(t_dtcxpx)-->
+	<insert id="insertDtcxpx"  parameterClass="dtcxpx">
+		insert into t_dtcxpx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dtcxpxid">
+				dtcxpxid
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				sjbm
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				zdm
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				zdzwm
+			</isNotNull>
+			<isNotNull prepend="," property="pxfs">
+				pxfs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dtcxpxid">
+				#dtcxpxid#
+			</isNotNull>
+			<isNotNull prepend="," property="gjcxfaid">
+				#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				#zdm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				#zdzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="pxfs">
+				#pxfs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--动态查询排序(t_dtcxpx)-->
+	<update id="updateDtcxpx" parameterClass="dtcxpx">
+		update t_dtcxpx a set a.gjcxfaid=a.gjcxfaid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gjcxfaid">
+				gjcxfaid=#gjcxfaid#
+			</isNotNull>
+			<isNotNull prepend="," property="sjbm">
+				sjbm=#sjbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdm">
+				zdm=#zdm#
+			</isNotNull>
+			<isNotNull prepend="," property="zdzwm">
+				zdzwm=#zdzwm#
+			</isNotNull>
+			<isNotNull prepend="," property="pxfs">
+				pxfs=#pxfs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxpxWhere" />
+		</dynamic>
+	</update>
+	<!--动态查询排序(t_dtcxpx)-->
+	<delete id="deleteDtcxpx" parameterClass="dtcxpx">
+		delete from t_dtcxpx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_dtcxpxWhere" />
+		</dynamic>
+	</delete>
+	<!--动态查询排序(t_dtcxpx)-->
+	<select id="getDtcxpxList" resultMap="dtcxpxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.dtcxpxid dtcxpxid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.pxfs pxfs
+		from t_dtcxpx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxpxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--动态查询排序(t_dtcxpx)-->
+	<select id="getDtcxpxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_dtcxpx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxpxPageWhere" />
+		</dynamic>
+	</select>
+	<!--动态查询排序(t_dtcxpx)-->
+	<select id="getDtcxpxListNoPage" resultMap="dtcxpxListResult" parameterClass="dtcxpx">
+		select s.sjbzwm,g.sjbjgid,a.dtcxpxid dtcxpxid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.pxfs pxfs
+		from t_dtcxpx a,t_sjb s,t_sjbjg g
+		where 1=1 and a.sjbm = s.sjbm and g.sjbid = s.sjbid and g.zdm = a.zdm
+		<dynamic prepend="">
+			<include refid="t_dtcxpxListWhere" />
+		</dynamic>
+		order by a.dtcxpxid,a.gjcxfaid
+	</select>
+	<!--动态查询排序(t_dtcxpx)-->
+	<select id="getDtcxpx" resultMap="dtcxpxResult" parameterClass="dtcxpx">
+		select a.dtcxpxid dtcxpxid,a.gjcxfaid gjcxfaid,a.sjbm sjbm,a.zdm zdm,a.zdzwm zdzwm,a.pxfs pxfs
+		from t_dtcxpx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dtcxpxSelectWhere" />
+		</dynamic>
+		order by a.dtcxpxid,a.gjcxfaid
+	</select>
+</sqlMap>

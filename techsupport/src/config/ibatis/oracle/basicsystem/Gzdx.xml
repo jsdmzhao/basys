@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="gzdx" type="com.aisino2.basicsystem.domain.Gzdx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<resultMap id="validateResult" class="gzdx">
+		<result property="num" column="num"/>
+		<result property="flag" column="flag"/>
+	</resultMap>
+	<!--关注对象(t_gzdx)-->
+	<resultMap id="gzdxResult" class="gzdx">
+		<result property="gzdxid" column="gzdxid" />
+		<result property="xm" column="xm" />
+		<result property="bm" column="bm" />
+		<result property="xmpy" column="xmpy" />
+		<result property="mzdm" column="mzdm" />
+		<result property="minzu" column="minzu" />
+		<result property="xbdm" column="xbdm" />
+		<result property="xb" column="xb" />
+		<result property="csrq" column="csrq" />
+		<result property="hjdxzqh" column="hjdxzqh" />
+		<result property="hjdxzqhdm" column="hjdxzqhdm" />
+		<result property="hjdxz" column="hjdxz" />
+		<result property="cyzjdm" column="cyzjdm" />
+		<result property="cyzj" column="cyzj" />
+		<result property="zjhm" column="zjhm" />
+		<result property="whcdbm" column="whcdbm" />
+		<result property="whcd" column="whcd" />
+		<result property="gzdxsf" column="gzdxsf" />
+		<result property="shengao" column="shengao" />
+		<result property="xzdqbm" column="xzdqbm" />
+		<result property="xzdq" column="xzdq" />
+		<result property="xzdqxz" column="xzdqxz" />
+		<result property="zcbm" column="zcbm" />
+		<result property="zc" column="zc" />
+		<result property="tbdabm" column="tbdabm" />
+		<result property="tbdw" column="tbdw" />
+		<result property="tbr" column="tbr" />
+		<result property="tbrq" column="tbrq" />
+		<result property="zxbz" column="zxbz" />
+		<result property="zxrq" column="zxrq" />
+		<result property="zxr" column="zxr" />
+		<result property="bz" column="bz" />
+		<result property="hylb" column="hylb" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="lxdh" column="lxdh" />
+	</resultMap>
+	<!--关注对象(t_gzdx)-->
+	<resultMap id="gzdxListResult" class="gzdx">
+		<result property="gzdxid" column="gzdxid"/>
+		<result property="xm" column="xm"/>
+		<result property="bm" column="bm"/>
+		<result property="xmpy" column="xmpy"/>
+		<result property="mzdm" column="mzdm"/>
+		<result property="minzu" column="minzu"/>
+		<result property="xbdm" column="xbdm"/>
+		<result property="xb" column="xb"/>
+		<result property="csrq" column="csrq"/>
+		<result property="hjdxzqh" column="hjdxzqh"/>
+		<result property="hjdxzqhdm" column="hjdxzqhdm"/>
+		<result property="hjdxz" column="hjdxz"/>
+		<result property="cyzjdm" column="cyzjdm"/>
+		<result property="cyzj" column="cyzj"/>
+		<result property="zjhm" column="zjhm"/>
+		<result property="whcdbm" column="whcdbm"/>
+		<result property="whcd" column="whcd"/>
+		<result property="gzdxsf" column="gzdxsf"/>
+		<result property="shengao" column="shengao"/>
+		<result property="xzdqbm" column="xzdqbm"/>
+		<result property="xzdq" column="xzdq"/>
+		<result property="xzdqxz" column="xzdqxz"/>
+		<result property="zcbm" column="zcbm"/>
+		<result property="zc" column="zc"/>
+		<result property="tbdabm" column="tbdabm"/>
+		<result property="tbdw" column="tbdw"/>
+		<result property="tbr" column="tbr"/>
+		<result property="tbrq" column="tbrq"/>
+		<result property="zxbz" column="zxbz"/>
+		<result property="zxrq" column="zxrq"/>
+		<result property="zxr" column="zxr"/>
+		<result property="bz" column="bz"/>
+		<result property="num" column="num"/>
+	</resultMap>
+	<sql id="t_gzdxWhere">
+			<isNotEmpty prepend="and" property="gzdxid">
+				a.gzdxid=#gzdxid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tbdabm">
+				a.tbdabm like #tbdabm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xm">
+				a.xm=#xm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xb">
+				a.xbdm=#xb#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjhm">
+				a.zjhm=#zjhm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csrq">
+				a.csrq &gt;=#csrq:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csrq2">
+				a.csrq &lt;=#csrq2:TIMESTAMP#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mzdm">
+				a.mzdm=#mzdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hjdxzqhdm">
+				a.hjdxzqhdm=#hjdxzqhdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zxbz">
+				a.zxbz=#zxbz#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="xmpy">
+				a.xmpy=#xmpy#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_gzdxUpdateWhere">
+			<isNotEmpty prepend="and" property="gzdxid">
+				a.gzdxid=#gzdxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_gzdxPageWhere" >
+		<include refid="t_gzdxWhere" />	</sql>
+	<sql id="t_gzdxListWhere" >
+		<include refid="t_gzdxWhere" />	</sql>
+	<sql id="t_gzdxSelectWhere"  >
+		<include refid="t_gzdxWhere" />	</sql>
+	<!--关注对象(t_gzdx)-->
+	<insert id="insertGzdx"  parameterClass="gzdx">
+		insert into t_gzdx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gzdxid">
+				gzdxid
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				xm
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				bm
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm
+			</isNotNull>
+			<isNotNull prepend="," property="whcdbm">
+				whcdbm
+			</isNotNull>
+			<isNotNull prepend="," property="whcd">
+				whcd
+			</isNotNull>
+			<isNotNull prepend="," property="gzdxsf">
+				gzdxsf
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				shengao
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqbm">
+				xzdqbm
+			</isNotNull>
+			<isNotNull prepend="," property="xzdq">
+				xzdq
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqxz">
+				xzdqxz
+			</isNotNull>
+			<isNotNull prepend="," property="zcbm">
+				zcbm
+			</isNotNull>
+			<isNotNull prepend="," property="zc">
+				zc
+			</isNotNull>
+			<isNotNull prepend="," property="tbdabm">
+				tbdabm
+			</isNotNull>
+			<isNotNull prepend="," property="tbdw">
+				tbdw
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				tbr
+			</isNotNull>
+			<isNotNull prepend="," property="tbrq">
+				tbrq
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				zxbz
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				zxrq
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				zxr
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gzdxid">
+				#gzdxid#
+			</isNotNull>
+			<isNotNull prepend="," property="xm">
+				#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				#bm#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="whcdbm">
+				#whcdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="whcd">
+				#whcd#
+			</isNotNull>
+			<isNotNull prepend="," property="gzdxsf">
+				#gzdxsf#
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				#shengao#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqbm">
+				#xzdqbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdq">
+				#xzdq#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqxz">
+				#xzdqxz#
+			</isNotNull>
+			<isNotNull prepend="," property="zcbm">
+				#zcbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zc">
+				#zc#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdabm">
+				#tbdabm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdw">
+				#tbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				#tbr#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrq">
+				#tbrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				#zxbz#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				#zxrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				#zxr#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				#lxdh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--关注对象(t_gzdx)-->
+	<update id="updateGzdx" parameterClass="gzdx">
+		update t_gzdx a set a.gzdxid=a.gzdxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="xm">
+				xm=#xm#
+			</isNotNull>
+			<isNotNull prepend="," property="bm">
+				bm=#bm#
+			</isNotNull>
+			<isNotNull prepend="," property="xmpy">
+				xmpy=#xmpy#
+			</isNotNull>
+			<isNotNull prepend="," property="mzdm">
+				mzdm=#mzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="minzu">
+				minzu=#minzu#
+			</isNotNull>
+			<isNotNull prepend="," property="xbdm">
+				xbdm=#xbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="xb">
+				xb=#xb#
+			</isNotNull>
+			<isNotNull prepend="," property="csrq">
+				csrq=#csrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqh">
+				hjdxzqh=#hjdxzqh#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxzqhdm">
+				hjdxzqhdm=#hjdxzqhdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hjdxz">
+				hjdxz=#hjdxz#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzjdm">
+				cyzjdm=#cyzjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cyzj">
+				cyzj=#cyzj#
+			</isNotNull>
+			<isNotNull prepend="," property="zjhm">
+				zjhm=#zjhm#
+			</isNotNull>
+			<isNotNull prepend="," property="whcdbm">
+				whcdbm=#whcdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="whcd">
+				whcd=#whcd#
+			</isNotNull>
+			<isNotNull prepend="," property="gzdxsf">
+				gzdxsf=#gzdxsf#
+			</isNotNull>
+			<isNotNull prepend="," property="shengao">
+				shengao=#shengao#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqbm">
+				xzdqbm=#xzdqbm#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdq">
+				xzdq=#xzdq#
+			</isNotNull>
+			<isNotNull prepend="," property="xzdqxz">
+				xzdqxz=#xzdqxz#
+			</isNotNull>
+			<isNotNull prepend="," property="zcbm">
+				zcbm=#zcbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zc">
+				zc=#zc#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdabm">
+				tbdabm=#tbdabm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbdw">
+				tbdw=#tbdw#
+			</isNotNull>
+			<isNotNull prepend="," property="tbr">
+				tbr=#tbr#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrq">
+				tbrq=#tbrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxbz">
+				zxbz=#zxbz#
+			</isNotNull>
+			<isNotNull prepend="," property="zxrq">
+				zxrq=#zxrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="zxr">
+				zxr=#zxr#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="lxdh">
+				lxdh=#lxdh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gzdxUpdateWhere" />
+		</dynamic>
+	</update>
+	<!--关注对象(t_gzdx)-->
+	<delete id="deleteGzdx" parameterClass="gzdx">
+		delete from t_gzdx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_gzdxUpdateWhere" />
+		</dynamic>
+	</delete>
+	<!--关注对象(t_gzdx)-->
+	<select id="getGzdxList" resultMap="gzdxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.gzdxid gzdxid,a.xm xm,a.bm bm,a.xmpy xmpy,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.whcdbm whcdbm,a.whcd whcd,a.gzdxsf gzdxsf,a.shengao shengao,a.xzdqbm xzdqbm,a.xzdq xzdq,a.xzdqxz xzdqxz,a.zcbm zcbm,a.zc zc,a.tbdabm tbdabm,a.tbdw tbdw,a.tbr tbr,a.tbrq tbrq,a.zxbz zxbz,a.zxrq zxrq,a.zxr zxr,a.bz bz
+		,decode(a.tbdabm,#dqdwbm#,1,0) num
+		from t_gzdx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gzdxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--关注对象(t_gzdx)-->
+	<select id="getGzdxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_gzdx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gzdxPageWhere" />
+		</dynamic>
+	</select>
+	<!--关注对象(t_gzdx)-->
+	<select id="getGzdxListNoPage" resultMap="gzdxListResult" parameterClass="gzdx">
+		select a.gzdxid gzdxid,a.xm xm,a.bm bm,a.xmpy xmpy,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.whcdbm whcdbm,a.whcd whcd,a.gzdxsf gzdxsf,a.shengao shengao,a.xzdqbm xzdqbm,a.xzdq xzdq,a.xzdqxz xzdqxz,a.zcbm zcbm,a.zc zc,a.tbdabm tbdabm,a.tbdw tbdw,a.tbr tbr,a.tbrq tbrq,a.zxbz zxbz,a.zxrq zxrq,a.zxr zxr,a.bz bz,0 num
+		from t_gzdx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gzdxListWhere" />
+		</dynamic>
+		order by a.gzdxid
+	</select>
+	<!--关注对象(t_gzdx)-->
+	<select id="getGzdx" resultMap="gzdxResult" parameterClass="gzdx">
+		select a.gzdxid gzdxid,a.xm xm,a.bm bm,a.xmpy xmpy,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.whcdbm whcdbm,a.whcd whcd,a.gzdxsf gzdxsf,a.shengao shengao,a.xzdqbm xzdqbm,a.xzdq xzdq,a.xzdqxz xzdqxz,a.zcbm zcbm,a.zc zc,a.tbdabm tbdabm,a.tbdw tbdw,a.tbr tbr,a.tbrq tbrq,a.zxbz zxbz,a.zxrq zxrq,a.zxr zxr,a.bz bz,a.hylb hylb,a.hylbdm hylbdm,lxdh
+		from t_gzdx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gzdxSelectWhere" />
+		</dynamic>
+		order by a.gzdxid
+	</select>
+	<!-- 验证添加关注对象时身份证号码是否在在逃表跟在关注对象中存在 -->
+	<select id="validateZjhm" resultMap="validateResult" parameterClass="gzdx">
+    select count(1) num,0 flag
+          from t_gzdx a
+         where (a.zjhm = LOWER(#zjhm#) or a.zjhm = UPPER(#zjhm#))
+         <isNotEmpty prepend="and" property="gzdxid">
+         	a.gzdxid!=#gzdxid#
+         </isNotEmpty>
+        union all
+        select count(1) num,1 flag from t_qgztjx b where b.gmsfhm = LOWER(#zjhm#) or b.gmsfhm = UPPER(#zjhm#)
+	</select>
+	
+	<!--T_GNLK(T_GNLK)  导出-->
+	<select id="getGzdxListExcel" resultMap="gzdxListResult" parameterClass="map">
+		select a.gzdxid gzdxid,a.xm xm,a.bm bm,a.xmpy xmpy,a.mzdm mzdm,a.minzu minzu,a.xbdm xbdm,a.xb xb,a.csrq csrq,a.hjdxzqh hjdxzqh,a.hjdxzqhdm hjdxzqhdm,a.hjdxz hjdxz,a.cyzjdm cyzjdm,a.cyzj cyzj,a.zjhm zjhm,a.whcdbm whcdbm,a.whcd whcd,a.gzdxsf gzdxsf,a.shengao shengao,a.xzdqbm xzdqbm,a.xzdq xzdq,a.xzdqxz xzdqxz,a.zcbm zcbm,a.zc zc,a.tbdabm tbdabm,a.tbdw tbdw,a.tbr tbr,a.tbrq tbrq,a.zxbz zxbz,a.zxrq zxrq,a.zxr zxr,a.bz bz,0 num
+		from t_gzdx a
+  		where  rownum &lt;= $endRow$
+		<dynamic prepend="">
+			<include refid="t_gzdxSelectWhere" />
+		</dynamic>
+		order by $pageSort$
+	</select>
+</sqlMap>

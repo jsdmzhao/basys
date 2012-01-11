@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bjbdtj" type="com.aisino2.basicsystem.domain.Bjbdtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--报警比对条件(t_bjbdtj)-->
+	<resultMap id="bjbdtjResult" class="bjbdtj">
+		<result property="bjgzid" column="bjgzid" />
+		<result property="bjbdtjid" column="bjbdtjid" />
+		<result property="tjlx" column="tjlx" />
+		<result property="ywbzdm" column="ywbzdm" />
+		<result property="bdbzdm" column="bdbzdm" />
+		<result property="bdgx" column="bdgx" />
+		<result property="gxc" column="gxc" />
+		<result property="zxsx" column="zxsx" />
+		<result property="ljgx" column="ljgx" />
+		<result property="jibie" column="jibie" />
+	</resultMap>
+	<!--报警比对条件(t_bjbdtj)-->
+	<resultMap id="bjbdtjListResult" class="bjbdtj">
+		<result property="bjgzid" column="bjgzid"/>
+		<result property="bjbdtjid" column="bjbdtjid"/>
+		<result property="tjlx" column="tjlx"/>
+		<result property="ywbzdm" column="ywbzdm"/>
+		<result property="bdbzdm" column="bdbzdm"/>
+		<result property="bdgx" column="bdgx"/>
+		<result property="gxc" column="gxc"/>
+		<result property="zxsx" column="zxsx"/>
+		<result property="ljgx" column="ljgx"/>
+		<result property="jibie" column="jibie"/>
+	</resultMap>
+	<sql id="t_bjbdtjWhere">
+			<isNotEmpty prepend="and" property="bjgzid">
+				a.bjgzid=#bjgzid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bjbdtjid">
+				a.bjbdtjid=#bjbdtjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bjbdtjPageWhere" >
+		<include refid="t_bjbdtjWhere" />	</sql>
+	<sql id="t_bjbdtjListWhere" >
+		<include refid="t_bjbdtjWhere" />	</sql>
+	<sql id="t_bjbdtjSelectWhere"  >
+		<include refid="t_bjbdtjWhere" />	</sql>
+	<!--报警比对条件(t_bjbdtj)-->
+	<insert id="insertBjbdtj"  parameterClass="bjbdtj">
+		insert into t_bjbdtj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjgzid">
+				bjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="bjbdtjid">
+				bjbdtjid
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				tjlx
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				ywbzdm
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				bdbzdm
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				bdgx
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				gxc
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				zxsx
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				ljgx
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				jibie
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjgzid">
+				#bjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bjbdtjid">
+				#bjbdtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				#tjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				#ywbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				#bdbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				#bdgx#
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				#gxc#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				#zxsx#
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				#ljgx#
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				#jibie#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--报警比对条件(t_bjbdtj)-->
+	<update id="updateBjbdtj" parameterClass="bjbdtj">
+		update t_bjbdtj a set a.bjbdtjid=a.bjbdtjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bjbdtjid">
+				bjbdtjid=#bjbdtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjlx">
+				tjlx=#tjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="ywbzdm">
+				ywbzdm=#ywbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdbzdm">
+				bdbzdm=#bdbzdm#
+			</isNotNull>
+			<isNotNull prepend="," property="bdgx">
+				bdgx=#bdgx#
+			</isNotNull>
+			<isNotNull prepend="," property="gxc">
+				gxc=#gxc#
+			</isNotNull>
+			<isNotNull prepend="," property="zxsx">
+				zxsx=#zxsx#
+			</isNotNull>
+			<isNotNull prepend="," property="ljgx">
+				ljgx=#ljgx#
+			</isNotNull>
+			<isNotNull prepend="," property="jibie">
+				jibie=#jibie#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjbdtjWhere" />
+		</dynamic>
+	</update>
+	<!--报警比对条件(t_bjbdtj)-->
+	<delete id="deleteBjbdtj" parameterClass="bjbdtj">
+		delete from t_bjbdtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bjbdtjWhere" />
+		</dynamic>
+	</delete>
+	<!--报警比对条件(t_bjbdtj)-->
+	<select id="getBjbdtjList" resultMap="bjbdtjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjgzid bjgzid,a.bjbdtjid bjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_bjbdtj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjbdtjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--报警比对条件(t_bjbdtj)-->
+	<select id="getBjbdtjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjbdtjPageWhere" />
+		</dynamic>
+	</select>
+	<!--报警比对条件(t_bjbdtj)-->
+	<select id="getBjbdtjListNoPage" resultMap="bjbdtjListResult" parameterClass="bjbdtj">
+		select a.bjgzid bjgzid,a.bjbdtjid bjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_bjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjbdtjListWhere" />
+		</dynamic>
+		order by a.bjgzid,a.bjbdtjid
+	</select>
+	<!--报警比对条件(t_bjbdtj)-->
+	<select id="getBjbdtj" resultMap="bjbdtjResult" parameterClass="bjbdtj">
+		select a.bjgzid bjgzid,a.bjbdtjid bjbdtjid,a.tjlx tjlx,a.ywbzdm ywbzdm,a.bdbzdm bdbzdm,a.bdgx bdgx,a.gxc gxc,a.zxsx zxsx,a.ljgx ljgx,a.jibie jibie
+		from t_bjbdtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bjbdtjSelectWhere" />
+		</dynamic>
+		order by a.bjgzid,a.bjbdtjid
+	</select>
+</sqlMap>

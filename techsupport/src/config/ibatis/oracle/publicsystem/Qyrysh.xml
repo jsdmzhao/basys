@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyrysh" type="com.aisino2.publicsystem.domain.Qyrysh"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业人员审核(t_qyrysh)-->
+	<resultMap id="qyryshResult" class="qyrysh">
+		<result property="ryshid" column="ryshid" />
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="shsj" column="shsj" />
+		<result property="shr" column="shr" />
+		<result property="shdwdm" column="shdwdm" />
+		<result property="shdwmc" column="shdwmc" />
+		<result property="shsbyy" column="shsbyy" />
+		<result property="sjshid" column="sjshid" />
+		<result property="shzt" column="shzt" />
+	</resultMap>
+	<!--企业人员审核(t_qyrysh)-->
+	<resultMap id="qyryshListResult" class="qyrysh">
+		<result property="ryshid" column="ryshid"/>
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="shsj" column="shsj"/>
+		<result property="shr" column="shr"/>
+		<result property="shdwdm" column="shdwdm"/>
+		<result property="shdwmc" column="shdwmc"/>
+		<result property="shsbyy" column="shsbyy"/>
+		<result property="sjshid" column="sjshid"/>
+		<result property="shzt" column="shzt"/>
+	</resultMap>
+	<!--从业人员审核信息(t_cyrysh)-->
+	<resultMap id="sjshidResult" class="qyrysh">
+		<result property="sjshid" column="sjshid" />
+	</resultMap>
+	<sql id="t_qyryshWhere">
+			<isNotEmpty prepend="and" property="ryshid">
+				a.ryshid=#ryshid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyryshPageWhere" >
+		<include refid="t_qyryshWhere" />	</sql>
+	<sql id="t_qyryshListWhere" >
+		<include refid="t_qyryshWhere" />	</sql>
+	<sql id="t_qyryshSelectWhere"  >
+		<include refid="t_qyryshWhere" />	</sql>
+	<!--企业人员审核(t_qyrysh)-->
+	<insert id="insertQyrysh"  parameterClass="qyrysh">
+		insert into t_qyrysh (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryshid">
+				ryshid
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="shsj">
+				shsj
+			</isNotNull>
+			<isNotNull prepend="," property="shr">
+				shr
+			</isNotNull>
+			<isNotNull prepend="," property="shdwdm">
+				shdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="shdwmc">
+				shdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="shsbyy">
+				shsbyy
+			</isNotNull>
+			<isNotNull prepend="," property="sjshid">
+				sjshid
+			</isNotNull>
+			<isNotNull prepend="," property="shzt">
+				shzt
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ryshid">
+				#ryshid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="shsj">
+				#shsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="shr">
+				#shr#
+			</isNotNull>
+			<isNotNull prepend="," property="shdwdm">
+				#shdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="shdwmc">
+				#shdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="shsbyy">
+				#shsbyy#
+			</isNotNull>
+			<isNotNull prepend="," property="sjshid">
+				#sjshid#
+			</isNotNull>
+			<isNotNull prepend="," property="shzt">
+				#shzt#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业人员审核(t_qyrysh)-->
+	<update id="updateQyrysh" parameterClass="qyrysh">
+		update t_qyrysh a set a.ryshid=a.ryshid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="shsj">
+				shsj=#shsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="shr">
+				shr=#shr#
+			</isNotNull>
+			<isNotNull prepend="," property="shdwdm">
+				shdwdm=#shdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="shdwmc">
+				shdwmc=#shdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="shsbyy">
+				shsbyy=#shsbyy#
+			</isNotNull>
+			<isNotNull prepend="," property="sjshid">
+				sjshid=#sjshid#
+			</isNotNull>
+			<isNotNull prepend="," property="shzt">
+				shzt=#shzt#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryshWhere" />
+		</dynamic>
+	</update>
+	<!--企业人员审核(t_qyrysh)-->
+	<delete id="deleteQyrysh" parameterClass="qyrysh">
+		delete from t_qyrysh a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyryshWhere" />
+		</dynamic>
+	</delete>
+	<!--企业人员审核(t_qyrysh)-->
+	<select id="getQyryshList" resultMap="qyryshListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ryshid ryshid,a.qyid qyid,a.ryid ryid,a.shsj shsj,a.shr shr,a.shdwdm shdwdm,a.shdwmc shdwmc,a.shsbyy shsbyy,a.sjshid sjshid,a.shzt shzt
+		from t_qyrysh a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryshPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业人员审核(t_qyrysh)-->
+	<select id="getQyryshListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyrysh a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryshPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业人员审核(t_qyrysh)-->
+	<select id="getQyryshListNoPage" resultMap="qyryshListResult" parameterClass="qyrysh">
+		select a.ryshid ryshid,a.qyid qyid,a.ryid ryid,a.shsj shsj,a.shr shr,a.shdwdm shdwdm,a.shdwmc shdwmc,a.shsbyy shsbyy,a.sjshid sjshid,a.shzt shzt
+		from t_qyrysh a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryshListWhere" />
+		</dynamic>
+		order by a.ryshid,a.qyid,a.ryid
+	</select>
+	<!--企业人员审核(t_qyrysh)-->
+	<select id="getQyrysh" resultMap="qyryshResult" parameterClass="qyrysh">
+		select a.ryshid ryshid,a.qyid qyid,a.ryid ryid,a.shsj shsj,a.shr shr,a.shdwdm shdwdm,a.shdwmc shdwmc,a.shsbyy shsbyy,a.sjshid sjshid,a.shzt shzt
+		from t_qyrysh a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyryshSelectWhere" />
+		</dynamic>
+		order by a.ryshid,a.qyid,a.ryid
+	</select>
+	<!--  获得上级审核id，即最后一次审核的ryshid  -->
+	<select id="getSjshid_Qyrysh" resultMap="sjshidResult" parameterClass="qyrysh">
+	    select nvl(max(a.ryshid),0) sjshid from t_qyrysh a
+	    where 1=1 
+	    <isNotEmpty prepend="and" property="ryid">
+			a.ryid = #ryid#
+		</isNotEmpty>
+	</select>
+	
+	<!--企业人员审核(t_qyrysh)-->
+	<update id="updateQyryshByqybg" parameterClass="qyrysh">
+		update t_qyrysh a set a.ryshid=a.ryshid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="qyid">
+				a.qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="newRyid">
+				a.ryid=#newRyid#
+			</isNotNull>
+		</dynamic>
+		where a.ryid=#ryid#
+	
+	</update>
+</sqlMap>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="authorization"
+		class="com.aisino2.sysadmin.authorization.impl.AuthorizationImpl">
+		<property name="functionAuthorization"
+			ref="functionAuthorization" />
+	</bean>
+
+	<bean id="functionAuthorization"
+		class="com.aisino2.sysadmin.authorization.impl.FunctionAuthorizationImpl">
+		<property name="functionService"
+			ref="functionService" />
+	</bean>
+	<bean id="menuAuthorization"
+		class="com.aisino2.sysadmin.authorization.impl.MenuAuthorizationImpl">
+		<property name="menuService"
+			ref="menuService" />
+	</bean>
+	<bean id="identityAuthorization"
+		class="com.aisino2.sysadmin.authorization.impl.IdentityAuthorizationImpl">
+		<property name="userService"
+			ref="userService" />
+	</bean>
+</beans>

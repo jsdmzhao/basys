@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="icksl_ickzb" type="com.aisino2.icksystem.domain.Icksl_ickzb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<resultMap id="icksl_ickzbResult" class="icksl_ickzb">
+		<result property="ickslid" column="ickslid" />
+		<result property="zbid" column="zbid" />
+		<result property="pczdpbh" column="pczdpbh" />
+		<result property="zbhsuym" column="zbhsuym" />
+	</resultMap>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<resultMap id="icksl_ickzbListResult" class="icksl_ickzb">
+		<result property="ickslid" column="ickslid"/>
+		<result property="zbid" column="zbid"/>
+		<result property="pczdpbh" column="pczdpbh"/>
+		<result property="zbhsuym" column="zbhsuym"/>
+	</resultMap>
+	<sql id="t_icksl_ickzbWhere">
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zbid">
+				a.zbid=#zbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_icksl_ickzbPageWhere" >
+		<include refid="t_icksl_ickzbWhere" />	</sql>
+	<sql id="t_icksl_ickzbListWhere" >
+		<include refid="t_icksl_ickzbWhere" />	</sql>
+	<sql id="t_icksl_ickzbSelectWhere"  >
+		<include refid="t_icksl_ickzbWhere" />	</sql>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<insert id="insertIcksl_ickzb"  parameterClass="icksl_ickzb">
+		insert into t_icksl_ickzb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				ickslid
+			</isNotNull>
+			<isNotNull prepend="," property="zbid">
+				zbid
+			</isNotNull>
+			<isNotNull prepend="," property="pczdpbh">
+				pczdpbh
+			</isNotNull>
+			<isNotNull prepend="," property="zbhsuym">
+				zbhsuym
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="ickslid">
+				#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="zbid">
+				#zbid#
+			</isNotNull>
+			<isNotNull prepend="," property="pczdpbh">
+				#pczdpbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zbhsuym">
+				#zbhsuym#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<update id="updateIcksl_ickzb" parameterClass="icksl_ickzb">
+		update t_icksl_ickzb a set a.zbid=a.zbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ickslid">
+				ickslid=#ickslid#
+			</isNotNull>
+			<isNotNull prepend="," property="pczdpbh">
+				pczdpbh=#pczdpbh#
+			</isNotNull>
+			<isNotNull prepend="," property="zbhsuym">
+				zbhsuym=#zbhsuym#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ickslid">
+				a.ickslid=#ickslid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="zbid">
+				a.zbid=#zbid#
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<delete id="deleteIcksl_ickzb" parameterClass="icksl_ickzb">
+		delete from t_icksl_ickzb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_icksl_ickzbWhere" />
+		</dynamic>
+	</delete>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<select id="getIcksl_ickzbList" resultMap="icksl_ickzbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.ickslid ickslid,a.zbid zbid,a.pczdpbh pczdpbh,a.zbhsuym zbhsuym
+		from t_icksl_ickzb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_ickzbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<select id="getIcksl_ickzbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_icksl_ickzb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_ickzbPageWhere" />
+		</dynamic>
+	</select>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<select id="getIcksl_ickzbListNoPage" resultMap="icksl_ickzbListResult" parameterClass="icksl_ickzb">
+		select a.ickslid ickslid,a.zbid zbid,a.pczdpbh pczdpbh,a.zbhsuym zbhsuym
+		from t_icksl_ickzb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_icksl_ickzbListWhere" />
+		</dynamic>
+		order by a.ickslid,a.zbid
+	</select>
+	<!--IC卡受理_IC卡组包(t_icksl_ickzb)-->
+	<select id="getIcksl_ickzb" resultMap="icksl_ickzbResult" parameterClass="icksl_ickzb">
+		select a.ickslid ickslid,a.zbid zbid,a.pczdpbh pczdpbh,a.zbhsuym zbhsuym
+		    from  t_icksl_ickzb a,
+			(select a.ickslid ickslid,max(a.zbid) zbid
+			    from  t_icksl_ickzb a
+			    where 1=1
+			   <dynamic prepend="">
+					<include refid="t_icksl_ickzbSelectWhere" />
+				</dynamic>
+			   group by a.ickslid )b
+		   where 1=1 and  a.ickslid=b.ickslid and a.zbid=b.zbid
+		<dynamic prepend="">
+			<include refid="t_icksl_ickzbSelectWhere" />
+		</dynamic>
+		order by a.ickslid,a.zbid
+	</select>
+</sqlMap>

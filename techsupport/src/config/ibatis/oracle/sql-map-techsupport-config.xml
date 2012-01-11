@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="20" maxSessions="10" maxTransactions="50" useStatementNamespaces="true"/>
+	<sqlMap resource="com/aisino2/core/dao/Sequence.xml"/>
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Operatelog.xml"/>
+	
+	
+		<!--机构(t_department)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Department.xml"/>
+	<sqlMap resource="config/ibatis/oracle/sysadmin/User.xml"/>
+	<!-- 技术支持单 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/SupportTicket.xml"/>
+	<!-- 追踪批复 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/Tracking.xml"/>
+<!-- 	支持单关联单位 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/SupportDept.xml"/>
+<!-- 	短信提示 代发短信-->
+	<sqlMap resource="config/ibatis/oracle/techsupport/SmsBoxSending.xml"/>
+<!-- 	技术负责人关联 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/SupportLeaderRelation.xml"/>
+<!-- 	附件 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/Attachment.xml"/>
+</sqlMapConfig>

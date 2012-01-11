@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="system" type="com.aisino2.sysadmin.domain.System"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--系统(t_system)-->
+	<resultMap id="systemResult" class="system">
+		<result property="systemcode" column="systemcode" />
+		<result property="systemname" column="systemname" />
+		<result property="systemdefine" column="systemdefine" />
+		<result property="picturepath" column="picturepath" />
+		<result property="parentsystemcode" column="parentsystemcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+		<result property="fullcode" column="fullcode" />
+	</resultMap>
+	<!--系统(t_system)sql翻译-->
+	<resultMap id="systemResultTran" class="system">
+		<result property="systemcode" column="systemcode" />
+		<result property="systemname" column="systemname" />
+		<result property="systemdefine" column="systemdefine" />
+		<result property="picturepath" column="picturepath" />
+		<result property="parentsystemcode" column="parentsystemcode" />
+		<result property="nodeorder" column="nodeorder" />
+		<result property="isleaf" column="isleaf" />
+		<result property="fullcode" column="fullcode" />
+		<result property="parentsystemname" column="parentsystemname" />
+	</resultMap>
+	<!--系统(t_system)-->
+	<resultMap id="systemListResult" class="system">
+		<result property="systemcode" column="systemcode"/>
+		<result property="systemname" column="systemname"/>
+		<result property="systemdefine" column="systemdefine"/>
+		<result property="picturepath" column="picturepath"/>
+		<result property="parentsystemcode" column="parentsystemcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+		<result property="fullcode" column="fullcode"/>
+	</resultMap>
+	<!--系统(t_system)sql翻译-->
+	<resultMap id="systemListResultTran" class="system">
+		<result property="systemcode" column="systemcode"/>
+		<result property="systemname" column="systemname"/>
+		<result property="systemdefine" column="systemdefine"/>
+		<result property="picturepath" column="picturepath"/>
+		<result property="parentsystemcode" column="parentsystemcode"/>
+		<result property="nodeorder" column="nodeorder"/>
+		<result property="isleaf" column="isleaf"/>
+		<result property="fullcode" column="fullcode"/>
+		<result property="parentsystemname" column="parentsystemname" />
+	</resultMap>
+	<!--系统(t_system) 获得下一个排序号-->
+	<resultMap id="systemNodeorderResult" class="system">
+		<result property="nodeorder" column="nodeorder" />
+	</resultMap>
+	<sql id="t_systemWhere">
+			<isNotEmpty prepend="and" property="systemcode">
+				a.systemcode=#systemcode#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_systemPageWhere" >
+		<include refid="t_systemWhere" />	
+			<isNotEmpty prepend="and" property="parentsystemcode">
+				a.parentsystemcode=#parentsystemcode#
+			</isNotEmpty>
+		</sql>
+	<sql id="t_systemListWhere" >
+		<include refid="t_systemWhere" />	</sql>
+	<sql id="t_systemSelectWhere"  >
+		<include refid="t_systemWhere" />	</sql>
+	<!--系统(t_system)-->
+	<insert id="insertSystem"  parameterClass="system">
+		insert into t_system (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="systemcode">
+				systemcode
+			</isNotNull>
+			<isNotNull prepend="," property="systemname">
+				systemname
+			</isNotNull>
+			<isNotNull prepend="," property="systemdefine">
+				systemdefine
+			</isNotNull>
+			<isNotNull prepend="," property="picturepath">
+				picturepath
+			</isNotNull>
+			<isNotNull prepend="," property="parentsystemcode">
+				parentsystemcode
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf
+			</isNotNull>
+			<isNotNull prepend="," property="fullcode">
+				fullcode
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="systemcode">
+				#systemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="systemname">
+				#systemname#
+			</isNotNull>
+			<isNotNull prepend="," property="systemdefine">
+				#systemdefine#
+			</isNotNull>
+			<isNotNull prepend="," property="picturepath">
+				#picturepath#
+			</isNotNull>
+			<isNotNull prepend="," property="parentsystemcode">
+				#parentsystemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				#isleaf#
+			</isNotNull>
+			<isNotNull prepend="," property="fullcode">
+				#fullcode#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--系统(t_system)-->
+	<update id="updateSystem" parameterClass="system">
+		update t_system a set systemcode=systemcode
+		<dynamic prepend="">
+			
+			<isNotNull prepend="," property="systemname">
+				systemname=#systemname#
+			</isNotNull>
+			<isNotNull prepend="," property="systemdefine">
+				systemdefine=#systemdefine#
+			</isNotNull>
+			<isNotNull prepend="," property="picturepath">
+				picturepath=#picturepath#
+			</isNotNull>
+			<isNotNull prepend="," property="parentsystemcode">
+				parentsystemcode=#parentsystemcode#
+			</isNotNull>
+			<isNotNull prepend="," property="nodeorder">
+				nodeorder=#nodeorder#
+			</isNotNull>
+			<isNotNull prepend="," property="isleaf">
+				isleaf=#isleaf#
+			</isNotNull>
+			<isNotNull prepend="," property="fullcode">
+				fullcode=#fullcode#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_systemWhere" />
+		</dynamic>
+	</update>
+	<!--系统(t_system)-->
+	<delete id="deleteSystem" parameterClass="system">
+		  begin
+  delete from t_role_menu trm where trm.menuCode in (select MenuCode from t_menu tm where tm.SystemCode in (select systemcode from t_system where fullcode like '$fullcode$%'));
+   delete from t_role_Func trf where trf.funcCode in (select  funccode from t_function tf where tf.systemcode in (select systemcode from t_system where fullcode like '$fullcode$%'));
+    delete from t_menu tm where tm.SystemCode in (select systemcode from t_system where fullcode like '$fullcode$%') ;
+    delete from  t_Function  tf  where tf.systemcode in (select systemcode from t_system where fullcode like '$fullcode$%');
+    delete from t_system where fullCode like '$fullcode$%';
+  end;
+	</delete>
+	<!--系统(t_system)-->
+	<select id="getSystemList" resultMap="systemListResultTran" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,
+		a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,
+		a.isleaf isleaf,a.fullcode fullcode,nvl(b.systemname,'顶级') parentsystemname
+	    from t_system a,(select systemcode ,systemname from t_system )b
+	    where a.parentsystemcode=b.systemcode(+)
+		<dynamic prepend="">
+			<include refid="t_systemPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--系统(t_system)-->
+	<select id="getSystemListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_system a,(select systemcode ,systemname from t_system )b
+	    where a.parentsystemcode=b.systemcode(+)
+		<dynamic prepend="">
+			<include refid="t_systemPageWhere" />
+		</dynamic>
+	</select>
+	<!--系统(t_system)-->
+	<select id="getSystemListNoPage" resultMap="systemListResult" parameterClass="system">
+		select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,a.isleaf isleaf,a.fullcode fullcode
+		from t_system a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_systemListWhere" />
+		</dynamic>
+		order by a.systemcode
+	</select>
+	<!--系统(t_system)-->
+	<select id="getSystem" resultMap="systemResultTran" parameterClass="system">
+		select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,
+		a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,
+		a.isleaf isleaf,a.fullcode fullcode,nvl(b.systemname,'顶级') parentsystemname
+	    from t_system a,(select systemcode ,systemname from t_system )b
+	    where a.parentsystemcode=b.systemcode(+)
+		<dynamic prepend="">
+			<include refid="t_systemSelectWhere" />
+		</dynamic>
+		order by a.systemcode
+	</select>
+		<!--取得树子系统(t_system)-->
+		  <select id="getChildSystem" resultMap="systemResult" parameterClass="system">
+   select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,a.isleaf isleaf,a.fullcode fullcode
+		from t_system a
+		where ParentSystemCode = #systemcode#
+    order by nodeorder
+  </select>
+  <!--取得父系统(t_system)-->
+    <select id="getParentSystem" resultMap="systemResult" parameterClass="system">
+     select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,a.isleaf isleaf,a.fullcode fullcode
+		from t_system a where a.systemcode= #parentsystemcode#
+  </select>
+    <!--取得所有子系统(t_system)-->
+    <select id="getAllChildSystem" resultMap="systemResult" parameterClass="system">
+     select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,a.isleaf isleaf,a.fullcode fullcode
+		from t_system a where a.fullcode like '%#systemcode#%'
+    order by a.nodeorder
+  </select>
+    <!--取得将新增的代码或名字是否存在(t_system)-->
+  
+	 <select id="isExit" resultClass="java.util.HashMap" parameterClass="map">
+    select 1 from  $tableName$  where 1=1  
+      <dynamic prepend="and">
+	      <isEqual prepend="" property="tableName" compareValue="t_menu">
+	      <isNotEmpty prepend="and" property="menucode">
+		       menuCode = #menucode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="menuname">
+		      MenuName = #menuname#
+		     </isNotEmpty>
+	     </isEqual>
+	      <isEqual prepend="" property="tableName" compareValue="t_system">
+		    <isNotEmpty prepend="and" property="systemcode">
+		       systemCode = #systemcode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="systemname">
+		       systemName = #systemname#
+		     </isNotEmpty>
+	     </isEqual>
+	      <isEqual prepend="" property="tableName" compareValue="t_function">
+	       <isNotEmpty prepend="and" property="funccode">
+		       funcCode = #funccode#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="funcname">
+		       funcname = #funcname#
+		     </isNotEmpty>
+	     </isEqual>
+	     <isEqual prepend="" property="tableName" compareValue="t_department">
+	        <isNotEmpty prepend="and" property="departcode">
+	         departCode = #departcode#
+	        </isNotEmpty>
+	      <isNotEmpty prepend="and" property="departname">
+	         departName = #departname#
+	        </isNotEmpty>
+	     </isEqual>
+	      <isEqual prepend="" property="tableName" compareValue="t_user">
+		      <isNotEmpty prepend="and" property="username">
+		         userName = #username#
+		        </isNotEmpty>
+		      <isNotEmpty prepend="and" property="useraccount">
+		         userAccount = #useraccount#
+		        </isNotEmpty>
+	     </isEqual>
+	      <isEqual prepend="and" property="tableName" compareValue="t_role">
+	       roleName = #rolename#
+	     </isEqual>
+	     <isEqual prepend="" property="tableName" compareValue="t_mjjczsl">
+	      	 <isNotEmpty prepend="and" property="mjjczbh">
+		       mjjczbh = #mjjczbh#
+		     </isNotEmpty>
+		     <isNotEmpty prepend="and" property="zkztbs">
+		       zkztbs = #zkztbs#
+		     </isNotEmpty>
+	     </isEqual>
+	  </dynamic>
+  </select>
+  
+  
+ <select id="getSystemByUserID" resultMap="systemResult" parameterClass="system">
+ select m.*  from(
+    select d.*
+	  from t_system d
+	 where 1 = 1
+	   and d.systemcode in
+	       (select distinct c.systemcode
+	          from t_menu c
+	         where c.menucode in
+	               (select distinct b.menucode
+	                  from t_role_menu b
+	                 where b.roleid in (select distinct a.roleid
+	                                      from t_user_role a
+	                                     where a.userid = #userid#)))
+	 order by d.nodeorder asc) m where m.parentsystemcode='zkdxt' or m.parentsystemcode='0'
+	 
+  </select>
+  
+    <!--  checkChildSystem  -->
+   <select id="checkChildSystem" resultClass="int" parameterClass="system">
+    select  count(1) from t_system  where parentsystemcode = #parentsystemcode#
+  </select>
+  <!--  获得所有兄弟节点最大排序号+1  -->
+  <select id="getNextSystemNodeorder" resultMap="systemNodeorderResult" parameterClass="system">
+    	select nvl((max(a.nodeorder)+1),0) nodeorder from t_system a
+    	 where 1=1 
+    	 <isNotEmpty prepend="and" property="parentsystemcode">
+			a.parentsystemcode = #parentsystemcode#
+		</isNotEmpty>
+  </select>
+  
+	<!-- 当前用户所拥有的菜单 -->
+	<select id="getTheUserChildSystem" resultMap="systemResult" parameterClass="system">
+		select a.systemcode systemcode,a.systemname systemname,a.systemdefine systemdefine,a.picturepath picturepath,a.parentsystemcode parentsystemcode,a.nodeorder nodeorder,a.isleaf isleaf,a.fullcode fullcode
+		from t_system a
+		where ParentSystemCode = #systemcode#
+		and systemcode in (
+			select distinct a.systemcode systemcode      
+			from t_menu a,t_user b,t_user_role c,t_role_menu d
+			where b.userid = c.userid
+			and c.roleid = d.roleid
+			and a.menucode = d.menucode
+			and b.userid = #userid# )
+		order by nodeorder
+	</select>
+</sqlMap>

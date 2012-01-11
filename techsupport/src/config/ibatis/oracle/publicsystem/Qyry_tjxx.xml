@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="qyry_tjxx" type="com.aisino2.publicsystem.domain.Qyry_tjxx"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<resultMap id="qyry_tjxxResult" class="qyry_tjxx">
+		<result property="qyid" column="qyid" />
+		<result property="ryid" column="ryid" />
+		<result property="tjxxid" column="tjxxid" />
+		<result property="tijianrq" column="tijianrq" />
+		<result property="tjzkjms" column="tjzkjms" />
+		<result property="lrr" column="lrr" />
+		<result property="lrrq" column="lrrq" />
+	</resultMap>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<resultMap id="qyry_tjxxListResult" class="qyry_tjxx">
+		<result property="qyid" column="qyid"/>
+		<result property="ryid" column="ryid"/>
+		<result property="tjxxid" column="tjxxid"/>
+		<result property="tijianrq" column="tijianrq"/>
+		<result property="tjzkjms" column="tjzkjms"/>
+		<result property="lrr" column="lrr"/>
+		<result property="lrrq" column="lrrq"/>
+	</resultMap>
+	<sql id="t_qyry_tjxxWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tjxxid">
+				a.tjxxid=#tjxxid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_qyry_tjxxPageWhere" >
+		<include refid="t_qyry_tjxxWhere" />	</sql>
+	<sql id="t_qyry_tjxxListWhere" >
+		<include refid="t_qyry_tjxxWhere" />	</sql>
+	<sql id="t_qyry_tjxxSelectWhere"  >
+		<include refid="t_qyry_tjxxWhere" />	</sql>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<insert id="insertQyry_tjxx"  parameterClass="qyry_tjxx">
+		insert into t_qyry_tjxx (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				ryid
+			</isNotNull>
+			<isNotNull prepend="," property="tjxxid">
+				tjxxid
+			</isNotNull>
+			<isNotNull prepend="," property="tijianrq">
+				tijianrq
+			</isNotNull>
+			<isNotNull prepend="," property="tjzkjms">
+				tjzkjms
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr
+			</isNotNull>
+			<isNotNull prepend="," property="lrrq">
+				lrrq
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="ryid">
+				#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="tjxxid">
+				#tjxxid#
+			</isNotNull>
+			<isNotNull prepend="," property="tijianrq">
+				#tijianrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="tjzkjms">
+				#tjzkjms#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrrq">
+				#lrrq:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<update id="updateQyry_tjxx" parameterClass="qyry_tjxx">
+		update t_qyry_tjxx a set a.tjxxid=a.tjxxid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="ryid">
+				ryid=#ryid#
+			</isNotNull>
+			<isNotNull prepend="," property="qyid">
+				qyid=#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="tijianrq">
+				tijianrq=#tijianrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="tjzkjms">
+				tjzkjms=#tjzkjms#
+			</isNotNull>
+			<isNotNull prepend="," property="lrr">
+				lrr=#lrr#
+			</isNotNull>
+			<isNotNull prepend="," property="lrrq">
+				lrrq=#lrrq:TIMESTAMP#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="ryid">
+				a.ryid=#ryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tjxxid">
+				a.tjxxid=#tjxxid#
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<delete id="deleteQyry_tjxx" parameterClass="qyry_tjxx">
+		delete from t_qyry_tjxx a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_qyry_tjxxWhere" />
+		</dynamic>
+	</delete>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<select id="getQyry_tjxxList" resultMap="qyry_tjxxListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.qyid qyid,a.ryid ryid,a.tjxxid tjxxid,a.tijianrq tijianrq,a.tjzkjms tjzkjms,a.lrr lrr,a.lrrq lrrq
+		from t_qyry_tjxx a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_tjxxPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<select id="getQyry_tjxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_qyry_tjxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_tjxxPageWhere" />
+		</dynamic>
+	</select>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<select id="getQyry_tjxxListNoPage" resultMap="qyry_tjxxListResult" parameterClass="qyry_tjxx">
+		select a.qyid qyid,a.ryid ryid,a.tjxxid tjxxid,a.tijianrq tijianrq,a.tjzkjms tjzkjms,a.lrr lrr,a.lrrq lrrq
+		from t_qyry_tjxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_tjxxListWhere" />
+		</dynamic>
+		order by a.qyid,a.ryid,a.tjxxid
+	</select>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<select id="getQyry_tjxx" resultMap="qyry_tjxxResult" parameterClass="qyry_tjxx">
+		select a.qyid qyid,a.ryid ryid,a.tjxxid tjxxid,a.tijianrq tijianrq,a.tjzkjms tjzkjms,a.lrr lrr,a.lrrq lrrq
+		from t_qyry_tjxx a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_qyry_tjxxSelectWhere" />
+		</dynamic>
+		order by a.qyid,a.ryid,a.tjxxid
+	</select>
+</sqlMap>

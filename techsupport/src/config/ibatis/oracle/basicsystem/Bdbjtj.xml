@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bdbjtj" type="com.aisino2.basicsystem.domain.Bdbjtj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<resultMap id="bdbjtjResult" class="bdbjtj">
+		<result property="bdbjtjid" column="bdbjtjid" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="tjrq" column="tjrq" />
+		<result property="dsjgdm" column="dsjgdm" />
+		<result property="dsjgmc" column="dsjgmc" />
+		<result property="fxjdm" column="fxjdm" />
+		<result property="fxjmc" column="fxjmc" />
+		<result property="gxdwmc" column="gxdwmc" />
+		<result property="gxdwdm" column="gxdwdm" />
+		<result property="csbm" column="csbm" />
+		<result property="csmc" column="csmc" />
+		<result property="clbjcs" column="clbjcs" />
+		<result property="cyrybjcs" column="cyrybjcs" />
+		<result property="scrybjcs" column="scrybjcs" />
+		<result property="kyclbjcs" column="kyclbjcs" />
+	</resultMap>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<resultMap id="bdbjtjListResult" class="bdbjtj">
+		<result property="bdbjtjid" column="bdbjtjid"/>
+		<result property="hylbdm" column="hylbdm"/>
+		<result property="hylb" column="hylb"/>
+		<result property="tjrq" column="tjrq"/>
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+		<result property="clbjcs" column="clbjcs"/>
+		<result property="cyrybjcs" column="cyrybjcs"/>
+		<result property="scrybjcs" column="scrybjcs"/>
+		<result property="kyclbjcs" column="kyclbjcs"/>
+	</resultMap>
+	
+	
+	
+	<!--比对报警统计表(t_bdbjtj)-->
+	<resultMap id="bdbjtjListResultTj" class="bdbjtj">
+	
+     	<result property="clbjcs" column="clbjcs"/>
+		<result property="cyrybjcs" column="cyrybjcs"/>
+		<result property="scrybjcs" column="scrybjcs"/>
+		<result property="kyclbjcs" column="kyclbjcs"/>
+		<result property="xiaoji" column="xiaoji"/>
+	
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="csbm" column="csbm"/>
+		<result property="csmc" column="csmc"/>
+		
+	</resultMap>
+	
+	<sql id="t_bdbjtjTongjiPageWhere">
+			<isNotEmpty prepend="and" property="gxdwdm">
+				a.gxdwdm=#gxdwdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="csbm">
+				a.csbm=#csbm#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="tjrq">
+				a.tjrq &gt;=#tjrq:DATE#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tjrqzhi">
+				a.tjrq &lt; #tjrqzhi:DATE#+1
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="hylbdm">
+				a.hylbdm=#hylbdm#
+			</isNotEmpty>
+			
+	</sql>
+	
+	
+	
+	
+	
+	<sql id="t_bdbjtjWhere">
+			<isNotEmpty prepend="and" property="bdbjtjid">
+				a.bdbjtjid=#bdbjtjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bdbjtjPageWhere" >
+		<include refid="t_bdbjtjWhere" />	</sql>
+	<sql id="t_bdbjtjListWhere" >
+		<include refid="t_bdbjtjWhere" />	</sql>
+	<sql id="t_bdbjtjSelectWhere"  >
+		<include refid="t_bdbjtjWhere" />	</sql>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<insert id="insertBdbjtj"  parameterClass="bdbjtj">
+		insert into t_bdbjtj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bdbjtjid">
+				bdbjtjid
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				tjrq
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				csmc
+			</isNotNull>
+			<isNotNull prepend="," property="clbjcs">
+				clbjcs
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybjcs">
+				cyrybjcs
+			</isNotNull>
+			<isNotNull prepend="," property="scrybjcs">
+				scrybjcs
+			</isNotNull>
+			<isNotNull prepend="," property="kyclbjcs">
+				kyclbjcs
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bdbjtjid">
+				#bdbjtjid#
+			</isNotNull>
+			<isNotNull prepend="," property="hylbdm">
+				#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				#csbm#
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				#csmc#
+			</isNotNull>
+			<isNotNull prepend="," property="clbjcs">
+				#clbjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybjcs">
+				#cyrybjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="scrybjcs">
+				#scrybjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="kyclbjcs">
+				#kyclbjcs#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<update id="updateBdbjtj" parameterClass="bdbjtj">
+		update t_bdbjtj a set a.bdbjtjid=a.bdbjtjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="hylbdm">
+				hylbdm=#hylbdm#
+			</isNotNull>
+			<isNotNull prepend="," property="hylb">
+				hylb=#hylb#
+			</isNotNull>
+			<isNotNull prepend="," property="tjrq">
+				tjrq=#tjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgdm">
+				dsjgdm=#dsjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="dsjgmc">
+				dsjgmc=#dsjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjdm">
+				fxjdm=#fxjdm#
+			</isNotNull>
+			<isNotNull prepend="," property="fxjmc">
+				fxjmc=#fxjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwmc">
+				gxdwmc=#gxdwmc#
+			</isNotNull>
+			<isNotNull prepend="," property="gxdwdm">
+				gxdwdm=#gxdwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="csbm">
+				csbm=#csbm#
+			</isNotNull>
+			<isNotNull prepend="," property="csmc">
+				csmc=#csmc#
+			</isNotNull>
+			<isNotNull prepend="," property="clbjcs">
+				clbjcs=#clbjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="cyrybjcs">
+				cyrybjcs=#cyrybjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="scrybjcs">
+				scrybjcs=#scrybjcs#
+			</isNotNull>
+			<isNotNull prepend="," property="kyclbjcs">
+				kyclbjcs=#kyclbjcs#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdbjtjWhere" />
+		</dynamic>
+	</update>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<delete id="deleteBdbjtj" parameterClass="bdbjtj">
+		delete from t_bdbjtj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bdbjtjWhere" />
+		</dynamic>
+	</delete>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<select id="getBdbjtjList" resultMap="bdbjtjListResultTj" parameterClass="map">
+		select m.* from (select rownum rowno, x.* from (
+		select z.* from 
+		(select 
+		  sum(a.clbjcs) clbjcs,
+	      sum(a.cyrybjcs) cyrybjcs,
+	        sum(a.scrybjcs) scrybjcs,
+		    sum(a.kyclbjcs) kyclbjcs,
+		         sum(a.clbjcs+a.cyrybjcs+a.scrybjcs+a.kyclbjcs) xiaoji
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty>
+		from t_bdbjtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdbjtjTongjiPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)  z order by $pageSort$ ) x ) m where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<select id="getBdbjtjListCount" resultClass="int" parameterClass="map">
+			select count(1) from (
+		select count(1)  from t_bdbjtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdbjtjTongjiPageWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		)
+	</select>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<select id="getBdbjtjListNoPage" resultMap="bdbjtjListResult" parameterClass="bdbjtj">
+		select a.bdbjtjid bdbjtjid,a.hylbdm hylbdm,a.hylb hylb,a.tjrq tjrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwmc gxdwmc,a.gxdwdm gxdwdm,a.csbm csbm,a.csmc csmc,a.clbjcs clbjcs,a.cyrybjcs cyrybjcs,a.scrybjcs scrybjcs,a.kyclbjcs kyclbjcs
+		from t_bdbjtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdbjtjListWhere" />
+		</dynamic>
+		order by a.bdbjtjid
+	</select>
+	<!--比对报警统计表(t_bdbjtj)-->
+	<select id="getBdbjtj" resultMap="bdbjtjResult" parameterClass="bdbjtj">
+		select a.bdbjtjid bdbjtjid,a.hylbdm hylbdm,a.hylb hylb,a.tjrq tjrq,a.dsjgdm dsjgdm,a.dsjgmc dsjgmc,a.fxjdm fxjdm,a.fxjmc fxjmc,a.gxdwmc gxdwmc,a.gxdwdm gxdwdm,a.csbm csbm,a.csmc csmc,a.clbjcs clbjcs,a.cyrybjcs cyrybjcs,a.scrybjcs scrybjcs,a.kyclbjcs kyclbjcs
+		from t_bdbjtj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bdbjtjSelectWhere" />
+		</dynamic>
+		order by a.bdbjtjid
+	</select>
+</sqlMap>

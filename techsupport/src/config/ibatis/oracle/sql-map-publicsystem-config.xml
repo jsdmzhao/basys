@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="20" maxSessions="10" maxTransactions="50" useStatementNamespaces="true"/>
+	<sqlMap resource="com/aisino2/core/dao/Sequence.xml"/>
+	<!--企业基本信息(t_qyjbxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyjbxx.xml"/>
+	<!--企业证件表(t_qyzjb)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyzjb.xml"/>
+	<!--保安服务合同(t_bafwht)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Bafwht.xml"/>
+	<!--企业人员信息(t_qyryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyryxx.xml"/>
+	<!--外国投资人信息(t_wgtzrxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Wgtzrxx.xml"/>
+	<!--人员信息操作日志(t_ryxxczrz)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Ryxxczrz.xml"/>
+	<!--企业信息操作日志(t_qyxxczrz)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyxxczrz.xml"/>
+	<!--企业人员历史信息(t_qyryxx_lsxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyryxx_lsxx.xml"/>
+	<!--企业副分类(t_qyffl)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyffl.xml"/>
+	<!--企业分类统计(t_qyfltj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyfltj.xml"/>
+	<!--企业人员信息统计表(t_qyryxxtj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyryxxtj.xml"/>
+	<!--企业上传统计表(t_qysctj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qysctj.xml"/>
+	<!--平面图(t_pmt)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Pmt.xml"/>
+	<!--人员类别统计(t_rylbtj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Rylbtj.xml"/>
+	<!--企业上传不充分(t_qyscbcf)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyscbcf.xml"/>
+	<!--未上传企业(t_wscqy)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Wscqy.xml"/>
+	<!--闭路电视监控设备(t_bldsjksb)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Bldsjksb.xml"/>
+	<!--安全检查设备(t_aqjcsb)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Aqjcsb.xml"/>
+	<!--企业基本信息—历史(t_qyjbxx_ls)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyjbxx_ls.xml"/>
+	<!--企业人员体检信息(t_qyry_tjxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyry_tjxx.xml"/>
+	<!--企业奖惩信息(t_qyjcxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyjcxx.xml"/>
+	<!--人员奖惩信息(t_ryjcxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Ryjcxx.xml"/>
+	<!--企业备案信息(t_qybaxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qybaxx.xml"/>
+	<!--企业补充备案信息(t_qybcbaxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qybcbaxx.xml"/>
+	<!--提交材料信息(t_tjclxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Tjclxx.xml"/>
+	<!--证件历史表(t_zjb_ls)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Zjb_ls.xml"/>
+	<!--企业人员信息核查(t_qyryxxhc)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyryxxhc.xml"/>
+	<!--公安人口库同步数据(t_garkktbsj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Garkktbsj.xml"/>
+	<!--企业人员奖惩统计表(t_qyryjctj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyryjctj.xml"/>
+	<!--企业审核(t_qysh)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qysh.xml"/>
+	<!--企业人员审核(t_qyrysh)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyrysh.xml"/>
+	<!--外国从业人员信息(t_wgcyryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Wgcyryxx.xml"/>
+	<!--企业人员_照片(t_qyry_zp)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyry_zp.xml"/>
+	<!--日常检查(t_rcjc)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Rcjc.xml"/>
+	<!--可疑情况(t_kyqk)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Kyqk.xml"/>
+	<!--联合检查(t_lhjc)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Lhjc.xml"/>
+	<!--企业账号同步-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyzhtb.xml"/>
+	<!--客户信息表(t_khxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Khxx.xml"/>
+	<!--外国客户信息表(t_wgkhxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Wgkhxx.xml"/>
+	<!--企业总人数信息表()-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/QyZrsProc.xml"/>
+	<!--车辆基本信息(t_cljbxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Cljbxx.xml"/>
+	<!--车辆信息_照片(t_clxx_zp)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Clxx_zp.xml"/>
+	<!--车辆信息人员_照片(t_clxxry_zp)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Clxxry_zp.xml"/>
+	<!--车辆信息外国人员信息(t_clxxwgryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Clxxwgryxx.xml"/>
+	<!--企业人员账号(t_clxxwgryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/GgQyyh.xml"/>
+	<!--企业营业日志(t_qyyyrz)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyyyrz.xml"/>
+	<!--企业营业日志统计(t_qyyyrztj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyyyrztj.xml"/>
+	<!--企业变更信息(t_qybgxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qybgxx.xml"/>
+	<!--企业人员工作日志(t_qyrygzrz)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyrygzrz.xml"/>
+	<!--企业营业状态统计(t_qyyyzttj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyyyzttj.xml"/>
+	<!--统计汇总程序-->
+	<sqlMap resource="config/ibatis/oracle/tjfx/Tjfx.xml"/>
+	<!--可疑车辆(t_kycl)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Kycl.xml"/>
+	<!--企业质量信息(t_qyzlxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyzlxx.xml"/>
+	<!--企业质量信息附件(t_qyzlxxfj)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Qyzlxxfj.xml"/>
+	<!--保安人员信息(t_baryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Baryxx.xml"/>
+	<!--保卫人员信息(t_bwryxx)-->
+	<sqlMap resource="config/ibatis/oracle/publicsystem/Bwryxx.xml"/>
+
+	
+</sqlMapConfig>

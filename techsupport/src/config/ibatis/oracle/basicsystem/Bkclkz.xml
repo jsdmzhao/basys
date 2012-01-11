@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="bkclkz" type="com.aisino2.basicsystem.domain.Bkclkz"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--布控车辆快照(t_bkclkz)-->
+	<resultMap id="bkclkzResult" class="bkclkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2" />
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid" />
+		<result property="bkclkzid" column="bkclkzid" />
+		<result property="cllxdm" column="cllxdm" />
+		<result property="cllx" column="cllx" />
+		<result property="clpp" column="clpp" />
+		<result property="clxh" column="clxh" />
+		<result property="hpzldm" column="hpzldm" />
+		<result property="hpzl" column="hpzl" />
+		<result property="hphm" column="hphm" />
+		<result property="csys" column="csys" />
+		<result property="syr" column="syr" />
+		<result property="ccdjrq" column="ccdjrq" />
+		<result property="fdjh" column="fdjh" />
+		<result property="clsbdh" column="clsbdh" />
+		<result property="cjh" column="cjh" />
+	</resultMap>
+	<!--布控车辆快照(t_bkclkz)-->
+	<resultMap id="bkclkzListResult" class="bkclkz">
+		<result property="wpbjgzid" column="wpbjgzid" />
+		<result property="bjxxid2" column="bjxxid2"/>
+		<result property="bkwpjbxxkzid" column="bkwpjbxxkzid"/>
+		<result property="bkclkzid" column="bkclkzid"/>
+		<result property="cllxdm" column="cllxdm"/>
+		<result property="cllx" column="cllx"/>
+		<result property="clpp" column="clpp"/>
+		<result property="clxh" column="clxh"/>
+		<result property="hpzldm" column="hpzldm"/>
+		<result property="hpzl" column="hpzl"/>
+		<result property="hphm" column="hphm"/>
+		<result property="csys" column="csys"/>
+		<result property="syr" column="syr"/>
+		<result property="ccdjrq" column="ccdjrq"/>
+		<result property="fdjh" column="fdjh"/>
+		<result property="clsbdh" column="clsbdh"/>
+		<result property="cjh" column="cjh"/>
+	</resultMap>
+	<sql id="t_bkclkzWhere">
+			<isNotEmpty prepend="and" property="bjxxid2">
+				a.bjxxid2=#bjxxid2#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bkwpjbxxkzid">
+				a.bkwpjbxxkzid=#bkwpjbxxkzid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="bkclkzid">
+				a.bkclkzid=#bkclkzid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_bkclkzPageWhere" >
+		<include refid="t_bkclkzWhere" />	</sql>
+	<sql id="t_bkclkzListWhere" >
+		<include refid="t_bkclkzWhere" />	</sql>
+	<sql id="t_bkclkzSelectWhere"  >
+		<include refid="t_bkclkzWhere" />	</sql>
+	<!--布控车辆快照(t_bkclkz)-->
+	<insert id="insertBkclkz"  parameterClass="bkclkz">
+		insert into t_bkclkz (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				bjxxid2
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				bkwpjbxxkzid
+			</isNotNull>
+			<isNotNull prepend="," property="bkclkzid">
+				bkclkzid
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				cllxdm
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				cllx
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				clpp
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				clxh
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				hpzldm
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				hpzl
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				hphm
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				csys
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				syr
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				ccdjrq
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				fdjh
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				clsbdh
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				cjh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="bjxxid2">
+				#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				#bkwpjbxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bkclkzid">
+				#bkclkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				#cllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				#cllx#
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				#clpp#
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				#clxh#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				#hpzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				#hpzl#
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				#hphm#
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				#csys#
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				#syr#
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				#ccdjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				#fdjh#
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				#clsbdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				#cjh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--布控车辆快照(t_bkclkz)-->
+	<update id="updateBkclkz" parameterClass="bkclkz">
+		update t_bkclkz a set a.bkclkzid=a.bkclkzid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="bkwpjbxxkzid">
+				bkwpjbxxkzid=#bkwpjbxxkzid#
+			</isNotNull>
+			<isNotNull prepend="," property="wpbjgzid">
+				wpbjgzid=#wpbjgzid#
+			</isNotNull>
+			<isNotNull prepend="," property="bjxxid2">
+				bjxxid2=#bjxxid2#
+			</isNotNull>
+			<isNotNull prepend="," property="cllxdm">
+				cllxdm=#cllxdm#
+			</isNotNull>
+			<isNotNull prepend="," property="cllx">
+				cllx=#cllx#
+			</isNotNull>
+			<isNotNull prepend="," property="clpp">
+				clpp=#clpp#
+			</isNotNull>
+			<isNotNull prepend="," property="clxh">
+				clxh=#clxh#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzldm">
+				hpzldm=#hpzldm#
+			</isNotNull>
+			<isNotNull prepend="," property="hpzl">
+				hpzl=#hpzl#
+			</isNotNull>
+			<isNotNull prepend="," property="hphm">
+				hphm=#hphm#
+			</isNotNull>
+			<isNotNull prepend="," property="csys">
+				csys=#csys#
+			</isNotNull>
+			<isNotNull prepend="," property="syr">
+				syr=#syr#
+			</isNotNull>
+			<isNotNull prepend="," property="ccdjrq">
+				ccdjrq=#ccdjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="fdjh">
+				fdjh=#fdjh#
+			</isNotNull>
+			<isNotNull prepend="," property="clsbdh">
+				clsbdh=#clsbdh#
+			</isNotNull>
+			<isNotNull prepend="," property="cjh">
+				cjh=#cjh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkclkzWhere" />
+		</dynamic>
+	</update>
+	<!--布控车辆快照(t_bkclkz)-->
+	<delete id="deleteBkclkz" parameterClass="bkclkz">
+		delete from t_bkclkz a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_bkclkzWhere" />
+		</dynamic>
+	</delete>
+	<!--布控车辆快照(t_bkclkz)-->
+	<select id="getBkclkzList" resultMap="bkclkzListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bkclkzid bkclkzid,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh
+		from t_bkclkz a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkclkzPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--布控车辆快照(t_bkclkz)-->
+	<select id="getBkclkzListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_bkclkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkclkzPageWhere" />
+		</dynamic>
+	</select>
+	<!--布控车辆快照(t_bkclkz)-->
+	<select id="getBkclkzListNoPage" resultMap="bkclkzListResult" parameterClass="bkclkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bkclkzid bkclkzid,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh
+		from t_bkclkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkclkzListWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid,a.bkclkzid
+	</select>
+	<!--布控车辆快照(t_bkclkz)-->
+	<select id="getBkclkz" resultMap="bkclkzResult" parameterClass="bkclkz">
+		select a.bjxxid2 bjxxid2,a.wpbjgzid wpbjgzid,a.bkwpjbxxkzid bkwpjbxxkzid,a.bkclkzid bkclkzid,a.cllxdm cllxdm,a.cllx cllx,a.clpp clpp,a.clxh clxh,a.hpzldm hpzldm,a.hpzl hpzl,a.hphm hphm,a.csys csys,a.syr syr,a.ccdjrq ccdjrq,a.fdjh fdjh,a.clsbdh clsbdh,a.cjh cjh
+		from t_bkclkz a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_bkclkzSelectWhere" />
+		</dynamic>
+		order by a.bjxxid2,a.bkwpjbxxkzid,a.bkclkzid
+	</select>
+</sqlMap>

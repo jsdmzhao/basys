@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="zktjrb" type="com.aisino2.icksystem.domain.Zktjrb"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--制卡统计日报(t_zktjrb)-->
+	<resultMap id="zktjrbResult" class="zktjrb">
+		<result property="zktjrbid" column="zktjrbid" />
+		<result property="cjdtjrq" column="cjdtjrq" />
+		<result property="cjdbm" column="cjdbm" />
+		<result property="cjdmc" column="cjdmc" />
+		<result property="zkzxbm" column="zkzxbm" />
+		<result property="zkzxmc" column="zkzxmc" />
+		<result property="zks" column="zks" />
+		<result property="yss" column="yss" />
+		<result property="cys" column="cys" />
+		<result property="dycws" column="dycws" />
+		<result property="sfcws" column="sfcws" />
+		<result property="ckcws" column="ckcws" />
+		<result property="kpshs" column="kpshs" />
+		<result property="wnjss" column="wnjss" />
+		<result property="qt" column="qt" />
+		<result property="dxrcws" column="dxrcws" />
+		<result property="pjzkl" column="pjzkl" />
+		<result property="pjfkl" column="pjfkl" />
+		<result property="fkl" column="fkl" />
+	</resultMap>
+	<!--制卡统计日报(t_zktjrb)-->
+	<resultMap id="zktjrbListResult" class="zktjrb">
+		<result property="zktjrbid" column="zktjrbid"/>
+		<result property="cjdtjrq" column="cjdtjrq"/>
+		<result property="cjdbm" column="cjdbm"/>
+		<result property="cjdmc" column="cjdmc"/>
+		<result property="zkzxbm" column="zkzxbm"/>
+		<result property="zkzxmc" column="zkzxmc"/>
+		<result property="zks" column="zks"/>
+		<result property="yss" column="yss"/>
+		<result property="cys" column="cys"/>
+		<result property="dycws" column="dycws"/>
+		<result property="sfcws" column="sfcws"/>
+		<result property="ckcws" column="ckcws"/>
+		<result property="kpshs" column="kpshs"/>
+		<result property="wnjss" column="wnjss"/>
+		<result property="qt" column="qt"/>
+		<result property="dxrcws" column="dxrcws"/>
+		<result property="pjzkl" column="pjzkl"/>
+		<result property="pjfkl" column="pjfkl"/>
+		<result property="fkl" column="fkl"/>
+	</resultMap>
+	<sql id="t_zktjrbWhere">
+			<isNotEmpty prepend="and" property="zktjrbid">
+				a.zktjrbid=#zktjrbid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_zktjrbPageWhere" >
+		<include refid="t_zktjrbWhere" />	</sql>
+	<sql id="t_zktjrbListWhere" >
+		<include refid="t_zktjrbWhere" />	</sql>
+	<sql id="t_zktjrbSelectWhere"  >
+		<include refid="t_zktjrbWhere" />	</sql>
+	<!--制卡统计日报(t_zktjrb)-->
+	<insert id="insertZktjrb"  parameterClass="zktjrb">
+		insert into t_zktjrb (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zktjrbid">
+				zktjrbid
+			</isNotNull>
+			<isNotNull prepend="," property="cjdtjrq">
+				cjdtjrq
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxbm">
+				zkzxbm
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxmc">
+				zkzxmc
+			</isNotNull>
+			<isNotNull prepend="," property="zks">
+				zks
+			</isNotNull>
+			<isNotNull prepend="," property="yss">
+				yss
+			</isNotNull>
+			<isNotNull prepend="," property="cys">
+				cys
+			</isNotNull>
+			<isNotNull prepend="," property="dycws">
+				dycws
+			</isNotNull>
+			<isNotNull prepend="," property="sfcws">
+				sfcws
+			</isNotNull>
+			<isNotNull prepend="," property="ckcws">
+				ckcws
+			</isNotNull>
+			<isNotNull prepend="," property="kpshs">
+				kpshs
+			</isNotNull>
+			<isNotNull prepend="," property="wnjss">
+				wnjss
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				qt
+			</isNotNull>
+			<isNotNull prepend="," property="dxrcws">
+				dxrcws
+			</isNotNull>
+			<isNotNull prepend="," property="pjzkl">
+				pjzkl
+			</isNotNull>
+			<isNotNull prepend="," property="pjfkl">
+				pjfkl
+			</isNotNull>
+			<isNotNull prepend="," property="fkl">
+				fkl
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="zktjrbid">
+				#zktjrbid#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdtjrq">
+				#cjdtjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxbm">
+				#zkzxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxmc">
+				#zkzxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="zks">
+				#zks#
+			</isNotNull>
+			<isNotNull prepend="," property="yss">
+				#yss#
+			</isNotNull>
+			<isNotNull prepend="," property="cys">
+				#cys#
+			</isNotNull>
+			<isNotNull prepend="," property="dycws">
+				#dycws#
+			</isNotNull>
+			<isNotNull prepend="," property="sfcws">
+				#sfcws#
+			</isNotNull>
+			<isNotNull prepend="," property="ckcws">
+				#ckcws#
+			</isNotNull>
+			<isNotNull prepend="," property="kpshs">
+				#kpshs#
+			</isNotNull>
+			<isNotNull prepend="," property="wnjss">
+				#wnjss#
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				#qt#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrcws">
+				#dxrcws#
+			</isNotNull>
+			<isNotNull prepend="," property="pjzkl">
+				#pjzkl#
+			</isNotNull>
+			<isNotNull prepend="," property="pjfkl">
+				#pjfkl#
+			</isNotNull>
+			<isNotNull prepend="," property="fkl">
+				#fkl#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--制卡统计日报(t_zktjrb)-->
+	<update id="updateZktjrb" parameterClass="zktjrb">
+		update t_zktjrb a set a.zktjrbid=a.zktjrbid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="cjdtjrq">
+				cjdtjrq=#cjdtjrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdbm">
+				cjdbm=#cjdbm#
+			</isNotNull>
+			<isNotNull prepend="," property="cjdmc">
+				cjdmc=#cjdmc#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxbm">
+				zkzxbm=#zkzxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="zkzxmc">
+				zkzxmc=#zkzxmc#
+			</isNotNull>
+			<isNotNull prepend="," property="zks">
+				zks=#zks#
+			</isNotNull>
+			<isNotNull prepend="," property="yss">
+				yss=#yss#
+			</isNotNull>
+			<isNotNull prepend="," property="cys">
+				cys=#cys#
+			</isNotNull>
+			<isNotNull prepend="," property="dycws">
+				dycws=#dycws#
+			</isNotNull>
+			<isNotNull prepend="," property="sfcws">
+				sfcws=#sfcws#
+			</isNotNull>
+			<isNotNull prepend="," property="ckcws">
+				ckcws=#ckcws#
+			</isNotNull>
+			<isNotNull prepend="," property="kpshs">
+				kpshs=#kpshs#
+			</isNotNull>
+			<isNotNull prepend="," property="wnjss">
+				wnjss=#wnjss#
+			</isNotNull>
+			<isNotNull prepend="," property="qt">
+				qt=#qt#
+			</isNotNull>
+			<isNotNull prepend="," property="dxrcws">
+				dxrcws=#dxrcws#
+			</isNotNull>
+			<isNotNull prepend="," property="pjzkl">
+				pjzkl=#pjzkl#
+			</isNotNull>
+			<isNotNull prepend="," property="pjfkl">
+				pjfkl=#pjfkl#
+			</isNotNull>
+			<isNotNull prepend="," property="fkl">
+				fkl=#fkl#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zktjrbWhere" />
+		</dynamic>
+	</update>
+	<!--制卡统计日报(t_zktjrb)-->
+	<delete id="deleteZktjrb" parameterClass="zktjrb">
+		delete from t_zktjrb a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_zktjrbWhere" />
+		</dynamic>
+	</delete>
+	<!--制卡统计日报(t_zktjrb)-->
+	<select id="getZktjrbList" resultMap="zktjrbListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.zktjrbid zktjrbid,a.cjdtjrq cjdtjrq,a.cjdbm cjdbm,a.cjdmc cjdmc,a.zkzxbm zkzxbm,a.zkzxmc zkzxmc,a.zks zks,a.yss yss,a.cys cys,a.dycws dycws,a.sfcws sfcws,a.ckcws ckcws,a.kpshs kpshs,a.wnjss wnjss,a.qt qt,a.dxrcws dxrcws,a.pjzkl pjzkl,a.pjfkl pjfkl,a.fkl fkl
+		from t_zktjrb a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zktjrbPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--制卡统计日报(t_zktjrb)-->
+	<select id="getZktjrbListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_zktjrb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zktjrbPageWhere" />
+		</dynamic>
+	</select>
+	<!--制卡统计日报(t_zktjrb)-->
+	<select id="getZktjrbListNoPage" resultMap="zktjrbListResult" parameterClass="zktjrb">
+		select a.zktjrbid zktjrbid,a.cjdtjrq cjdtjrq,a.cjdbm cjdbm,a.cjdmc cjdmc,a.zkzxbm zkzxbm,a.zkzxmc zkzxmc,a.zks zks,a.yss yss,a.cys cys,a.dycws dycws,a.sfcws sfcws,a.ckcws ckcws,a.kpshs kpshs,a.wnjss wnjss,a.qt qt,a.dxrcws dxrcws,a.pjzkl pjzkl,a.pjfkl pjfkl,a.fkl fkl
+		from t_zktjrb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zktjrbListWhere" />
+		</dynamic>
+		order by a.zktjrbid
+	</select>
+	<!--制卡统计日报(t_zktjrb)-->
+	<select id="getZktjrb" resultMap="zktjrbResult" parameterClass="zktjrb">
+		select a.zktjrbid zktjrbid,a.cjdtjrq cjdtjrq,a.cjdbm cjdbm,a.cjdmc cjdmc,a.zkzxbm zkzxbm,a.zkzxmc zkzxmc,a.zks zks,a.yss yss,a.cys cys,a.dycws dycws,a.sfcws sfcws,a.ckcws ckcws,a.kpshs kpshs,a.wnjss wnjss,a.qt qt,a.dxrcws dxrcws,a.pjzkl pjzkl,a.pjfkl pjfkl,a.fkl fkl
+		from t_zktjrb a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_zktjrbSelectWhere" />
+		</dynamic>
+		order by a.zktjrbid
+	</select>
+</sqlMap>

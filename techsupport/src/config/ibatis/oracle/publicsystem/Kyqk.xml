@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="kyqk" type="com.aisino2.publicsystem.domain.Kyqk"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--可疑情况(t_kyqk)-->
+	<resultMap id="kyqkResult" class="kyqk">
+		<result property="qyid" column="qyid" />
+		<result property="kyqkid" column="kyqkid" />
+		<result property="kyqkdjxh" column="kyqkdjxh" />
+		<result property="kyqklxbm" column="kyqklxbm" />
+		<result property="kyqklx" column="kyqklx" />
+		<result property="ydxxms" column="ydxxms" />
+		<result property="tbrbh" column="tbrbh" />
+		<result property="tbrxm" column="tbrxm" />
+		<result property="tbsj" column="tbsj" />
+		<result property="jjsj" column="jjsj" />
+		<result property="jjrxm" column="jjrxm" />
+		<result property="jjcljg" column="jjcljg" />
+	</resultMap>
+	<!--可疑情况(t_kyqk)-->
+	<resultMap id="kyqkListResult" class="kyqk">
+		<result property="qyid" column="qyid"/>
+		<result property="qymc" column="qymc"/>
+		<result property="kyqkid" column="kyqkid"/>
+		<result property="kyqkdjxh" column="kyqkdjxh"/>
+		<result property="kyqklxbm" column="kyqklxbm"/>
+		<result property="kyqklx" column="kyqklx"/>
+		<result property="ydxxms" column="ydxxms"/>
+		<result property="tbrbh" column="tbrbh"/>
+		<result property="tbrxm" column="tbrxm"/>
+		<result property="tbsj" column="tbsj"/>
+		<result property="jjsj" column="jjsj"/>
+		<result property="jjrxm" column="jjrxm"/>
+		<result property="jjcljg" column="jjcljg"/>
+	</resultMap>
+	<sql id="t_kyqkWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="kyqkid">
+				a.kyqkid=#kyqkid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_kyqkPageWhere" >
+		<include refid="t_kyqkWhere" />	
+		<isNotEmpty prepend="and" property="tbrxm">
+				a.tbrxm like '%$tbrxm$%'
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="tbsj">
+				to_char(a.tbsj,'yyyy-MM-dd') &gt;=to_char(#tbsj:TIMESTAMP#,'yyyy-MM-dd')		
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="tbsjzhi">
+			to_char(a.tbsj,'yyyy-MM-dd') &lt;=to_char(#tbsjzhi:TIMESTAMP#,'yyyy-MM-dd')||' 23:59:59'
+		</isNotEmpty>	
+	    <isNotEmpty prepend="and" property="kyqklxbm">
+				a.kyqklxbm=#kyqklxbm#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="gxdwbh">
+				t.gxdwbm like '%$gxdwbh$%'
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="qymc">
+				t.qymc like '%$qymc$%'
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="hylbdm">
+				t.hylbdm=#hylbdm#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="qybm">
+				t.qybm like '%$qybm$%'
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="jjrxm">
+				a.jjrxm is null
+	    </isNotEmpty>
+	</sql>
+	<sql id="t_kyqkListWhere" >
+		<include refid="t_kyqkWhere" />	</sql>
+	<sql id="t_kyqkSelectWhere"  >
+		<include refid="t_kyqkWhere" />	</sql>
+	<!--可疑情况(t_kyqk)-->
+	<insert id="insertKyqk"  parameterClass="kyqk">
+		insert into t_kyqk (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkid">
+				kyqkid
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkdjxh">
+				kyqkdjxh
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklxbm">
+				kyqklxbm
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklx">
+				kyqklx
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				ydxxms
+			</isNotNull>
+			<isNotNull prepend="," property="tbrbh">
+				tbrbh
+			</isNotNull>
+			<isNotNull prepend="," property="tbrxm">
+				tbrxm
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj">
+				tbsj
+			</isNotNull>
+			<isNotNull prepend="," property="jjsj">
+				jjsj
+			</isNotNull>
+			<isNotNull prepend="," property="jjrxm">
+				jjrxm
+			</isNotNull>
+			<isNotNull prepend="," property="jjcljg">
+				jjcljg
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+			
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkid">
+				#kyqkid#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqkdjxh">
+				#kyqkdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklxbm">
+				#kyqklxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklx">
+				#kyqklx#
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				#ydxxms#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrbh">
+				#tbrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrxm">
+				#tbrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj">
+				#tbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jjsj">
+				#jjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jjrxm">
+				#jjrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="jjcljg">
+				#jjcljg#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--可疑情况(t_kyqk)-->
+	<update id="updateKyqk" parameterClass="kyqk">
+		update t_kyqk a set a.kyqkid=a.kyqkid
+		<dynamic prepend="">
+		<!--  
+			<isNotNull prepend="," property="kyqkid">
+				kyqkid=#kyqkid#
+			</isNotNull>
+		-->
+			<isNotNull prepend="," property="kyqkdjxh">
+				kyqkdjxh=#kyqkdjxh#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklxbm">
+				kyqklxbm=#kyqklxbm#
+			</isNotNull>
+			<isNotNull prepend="," property="kyqklx">
+				kyqklx=#kyqklx#
+			</isNotNull>
+			<isNotNull prepend="," property="ydxxms">
+				ydxxms=#ydxxms#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrbh">
+				tbrbh=#tbrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="tbrxm">
+				tbrxm=#tbrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="tbsj">
+				tbsj=#tbsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jjsj">
+				jjsj=#jjsj:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jjrxm">
+				jjrxm=#jjrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="jjcljg">
+				jjcljg=#jjcljg#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyqkWhere" />
+		</dynamic>
+	</update>
+	<!--可疑情况(t_kyqk)-->
+	<delete id="deleteKyqk" parameterClass="kyqk">
+		update t_kyqk a set a.scbz=1 where 1=1 
+		<dynamic prepend="">
+			<include refid="t_kyqkWhere" />
+		</dynamic>
+	</delete>
+	<!--可疑情况(t_kyqk)-->
+	<select id="getKyqkList" resultMap="kyqkListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select t.qymc qymc,a.qyid qyid,a.kyqkid kyqkid,a.kyqkdjxh kyqkdjxh,a.kyqklxbm kyqklxbm,a.kyqklx kyqklx,a.ydxxms ydxxms,a.tbrbh tbrbh,a.tbrxm tbrxm,a.tbsj tbsj,a.jjsj jjsj,a.jjrxm jjrxm,a.jjcljg jjcljg
+		from t_kyqk a ,t_qyjbxx t
+		where a.scbz=0 and a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_kyqkPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--可疑情况(t_kyqk)-->
+	<select id="getKyqkListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_kyqk a ,t_qyjbxx t
+		where a.scbz=0  and a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_kyqkPageWhere" />
+		</dynamic>
+	</select>
+	<!--可疑情况(t_kyqk)-->
+	<select id="getKyqkListNoPage" resultMap="kyqkListResult" parameterClass="kyqk">
+		select t.qymc qymc,a.qyid qyid,a.kyqkid kyqkid,a.kyqkdjxh kyqkdjxh,a.kyqklxbm kyqklxbm,a.kyqklx kyqklx,a.ydxxms ydxxms,a.tbrbh tbrbh,a.tbrxm tbrxm,a.tbsj tbsj,a.jjsj jjsj,a.jjrxm jjrxm,a.jjcljg jjcljg
+		from t_kyqk a
+		where a.scbz=0
+		<dynamic prepend="">
+			<include refid="t_kyqkListWhere" />
+		</dynamic>
+		order by a.qyid,a.kyqkid
+	</select>
+	<!--可疑情况(t_kyqk)-->
+	<select id="getKyqk" resultMap="kyqkResult" parameterClass="kyqk">
+		select a.qyid qyid,a.kyqkid kyqkid,a.kyqkdjxh kyqkdjxh,a.kyqklxbm kyqklxbm,a.kyqklx kyqklx,a.ydxxms ydxxms,a.tbrbh tbrbh,a.tbrxm tbrxm,a.tbsj tbsj,a.jjsj jjsj,a.jjrxm jjrxm,a.jjcljg jjcljg
+		from t_kyqk a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_kyqkSelectWhere" />
+			<isNotEmpty prepend="and" property="kyqkdjxh"><!-- 娱乐业接口 根据登记序号判断唯一 防止多次上传 -->
+				a.kyqkdjxh=#kyqkdjxh#
+	    	</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.kyqkid
+	</select>
+	<!--待处理可疑情况(t_kyqk)-->
+	<select id="getDCLKyqkListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_kyqk a ,t_qyjbxx t
+		where a.qyid=t.qyid and a.scbz=0  and a.jjrxm is null
+		<dynamic prepend="">
+			<include refid="t_kyqkPageWhere" />
+		</dynamic>
+	</select>
+</sqlMap>

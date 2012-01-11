@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="rcjc" type="com.aisino2.publicsystem.domain.Rcjc"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--日常检查(t_rcjc)-->
+	<resultMap id="rcjcResult" class="rcjc">
+		<result property="qyid" column="qyid" />
+		<result property="qybm" column="qybm" />
+		<result property="qymc" column="qymc" />
+		<result property="hylb" column="hylb" />
+		<result property="rcjcid" column="rcjcid" />
+		<result property="rcjcbh" column="rcjcbh" />
+		<result property="jcjgdm" column="jcjgdm" />
+		<result property="jcjgmc" column="jcjgmc" />
+		<result property="jcrybh" column="jcrybh" />
+		<result property="jcrxm" column="jcrxm" />
+		<result property="zwdm" column="zwdm" />
+		<result property="jcrzw" column="jcrzw" />
+		<result property="jcfs" column="jcfs" />
+		<result property="lsdw" column="lsdw" />
+		<result property="jcrq" column="jcrq" />
+		<result property="jcsx" column="jcsx" />
+		<result property="fxwt" column="fxwt" />
+		<result property="cljg" column="cljg" />
+		<result property="csfzr" column="csfzr" />
+		<result property="csfzrbh" column="csfzrbh" />
+		<result property="sfzdjcjg" column="sfzdjcjg" />
+		<result property="bz" column="bz" />
+		<result property="scbz" column="scbz" />
+		<result property="hylbdm" column="hylbdm" />
+		<result property="mjjczbh" column="mjjczbh"/>
+	</resultMap>
+	<!--日常检查(t_rcjc)-->
+	<resultMap id="rcjcListResult" class="rcjc">
+		<result property="qyid" column="qyid"/>
+		<result property="qymc" column="qymc"/>
+		<result property="rcjcid" column="rcjcid"/>
+		<result property="rcjcbh" column="rcjcbh"/>
+		<result property="jcjgdm" column="jcjgdm"/>
+		<result property="jcjgmc" column="jcjgmc"/>
+		<result property="jcrybh" column="jcrybh"/>
+		<result property="jcrxm" column="jcrxm"/>
+		<result property="zwdm" column="zwdm"/>
+		<result property="jcrzw" column="jcrzw"/>
+		<result property="jcfs" column="jcfs"/>
+		<result property="lsdw" column="lsdw"/>
+		<result property="jcrq" column="jcrq"/>
+		<result property="jcsx" column="jcsx"/>
+		<result property="fxwt" column="fxwt"/>
+		<result property="cljg" column="cljg"/>
+		<result property="csfzr" column="csfzr"/>
+		<result property="sfzdjcjg" column="sfzdjcjg"/>
+		<result property="bz" column="bz"/>
+		<result property="scbz" column="scbz" />
+		<result property="mjjczbh" column="mjjczbh"/>
+		<result property="nwwbz" column="nwwbz"/>
+	</resultMap>
+	<resultMap class="rcjc" id="rcjcyjListResult">
+		<result property="rcjcid" column="rcjcid"/>
+		<result property="jcjgdm" column="jcjgdm" />
+		<result property="jcjgmc" column="jcjgmc" />
+		<result property="mjjczbh" column="mjjczbh" />
+		<result property="jcrq" column="jcrq" />
+		<result property="jcrybh" column="jcrybh" />
+		<result property="jcrxm" column="jcrxm" />
+		<result property="jcrzw" column="jcrzw" />
+	</resultMap>
+	<sql id="t_rcjcWhere">
+			<isNotEmpty prepend="and" property="qyid">
+				a.qyid=#qyid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rcjcid">
+				a.rcjcid=#rcjcid#
+			</isNotEmpty>
+			
+	</sql>
+	<sql id="t_rcjcPageWhere" >
+		<include refid="t_rcjcWhere" />	
+		<isNotEmpty prepend="and" property="cljg">
+				a.cljg like '%$cljg$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jcrqf">
+				to_char(a.jcrq,'yyyy-MM-dd') &gt;=to_char(#jcrqf:TIMESTAMP#,'yyyy-MM-dd')		
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jcrqt">
+			to_char(a.jcrq,'yyyy-MM-dd') &lt;=to_char(#jcrqt:TIMESTAMP#,'yyyy-MM-dd')||' 23:59:59'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qymc">
+				t.qymc=#qymc#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="qybm">
+				t.qybm like '%$qybm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hylbdm">
+				t.hylbdm=#hylbdm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwbm">
+				t.gxdwbm like '$gxdwbm$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="jcjgdm">
+				a.jcjgdm like '$jcjgdm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jcfs">
+				a.jcfs=#jcfs#
+		</isNotEmpty>	
+	</sql>
+	<sql id="t_rcjcListWhere" >
+		<include refid="t_rcjcWhere" />	</sql>
+	<sql id="t_rcjcSelectWhere"  >
+		<include refid="t_rcjcWhere" />	</sql>
+	<!--日常检查(t_rcjc)-->
+	<insert id="insertRcjc"  parameterClass="rcjc">
+		insert into t_rcjc (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				qyid
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcid">
+				rcjcid
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcbh">
+				rcjcbh
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				jcjgdm
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				jcjgmc
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				jcrybh
+			</isNotNull>
+			<isNotNull prepend="," property="jcrxm">
+				jcrxm
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				zwdm
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				jcrzw
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				jcfs
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				lsdw
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				jcrq
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				jcsx
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg
+			</isNotNull>
+			<isNotNull prepend="," property="csfzr">
+				csfzr
+			</isNotNull>
+			<isNotNull prepend="," property="csfzrbh">
+				csfzrbh
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				sfzdjcjg
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				scbz
+			</isNotNull>
+			<isNotNull prepend="," property="mjjczbh">
+				mjjczbh
+			</isNotNull>
+			<isNotNull prepend="," property="nwwbz">
+				nwwbz
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="qyid">
+				#qyid#
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcid">
+				#rcjcid#
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcbh">
+				#rcjcbh#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				#jcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				#jcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				#jcrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrxm">
+				#jcrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				#zwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				#jcrzw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				#jcfs#
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				#lsdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				#jcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				#jcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="csfzr">
+				#csfzr#
+			</isNotNull>
+			<isNotNull prepend="," property="csfzrbh">
+				#csfzrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				#sfzdjcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				#bz#
+			</isNotNull>
+			<isNotNull prepend="," property="scbz">
+				#scbz#
+			</isNotNull>
+			<isNotNull prepend="," property="mjjczbh">
+				#mjjczbh#
+			</isNotNull>
+			<isNotNull prepend="," property="nwwbz">
+				#nwwbz#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--日常检查(t_rcjc)-->
+	<update id="updateRcjc" parameterClass="rcjc">
+		update t_rcjc a set 
+		<dynamic prepend="">
+			<isNotNull prepend=" " property="rcjcid">
+				rcjcid=#rcjcid#
+			</isNotNull>
+			<isNotNull prepend="," property="rcjcbh">
+				rcjcbh=#rcjcbh#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgdm">
+				jcjgdm=#jcjgdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcjgmc">
+				jcjgmc=#jcjgmc#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrybh">
+				jcrybh=#jcrybh#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrxm">
+				jcrxm=#jcrxm#
+			</isNotNull>
+			<isNotNull prepend="," property="zwdm">
+				zwdm=#zwdm#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrzw">
+				jcrzw=#jcrzw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcfs">
+				jcfs=#jcfs#
+			</isNotNull>
+			<isNotNull prepend="," property="lsdw">
+				lsdw=#lsdw#
+			</isNotNull>
+			<isNotNull prepend="," property="jcrq">
+				jcrq=#jcrq:TIMESTAMP#
+			</isNotNull>
+			<isNotNull prepend="," property="jcsx">
+				jcsx=#jcsx#
+			</isNotNull>
+			<isNotNull prepend="," property="fxwt">
+				fxwt=#fxwt#
+			</isNotNull>
+			<isNotNull prepend="," property="cljg">
+				cljg=#cljg#
+			</isNotNull>
+			<isNotNull prepend="," property="csfzr">
+				csfzr=#csfzr#
+			</isNotNull>
+			<isNotNull prepend="," property="csfzrbh">
+				csfzrbh=#csfzrbh#
+			</isNotNull>
+			<isNotNull prepend="," property="sfzdjcjg">
+				sfzdjcjg=#sfzdjcjg#
+			</isNotNull>
+			<isNotNull prepend="," property="bz">
+				bz=#bz#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_rcjcWhere" />
+		</dynamic>
+	</update>
+	<!--日常检查(t_rcjc)-->
+	<delete id="deleteRcjc" parameterClass="rcjc">
+		update t_rcjc a set a.scbz=1 where 1=1
+		<dynamic prepend="">
+			<include refid="t_rcjcWhere" />
+		</dynamic>
+	</delete>
+	<!--日常检查(t_rcjc)-->
+	<select id="getRcjcList" resultMap="rcjcListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.nwwbz nwwbz,a.qyid qyid,a.scbz scbz,a.rcjcid rcjcid,a.rcjcbh rcjcbh,a.jcjgdm jcjgdm,a.jcjgmc jcjgmc,a.jcrybh jcrybh,a.jcrxm jcrxm,a.zwdm zwdm,a.jcrzw jcrzw,a.jcfs jcfs,a.lsdw lsdw,a.jcrq jcrq,a.jcsx jcsx,a.fxwt fxwt,a.cljg cljg,a.csfzr csfzr,a.sfzdjcjg sfzdjcjg,a.bz bz,t.qymc qymc,a.mjjczbh
+		from t_rcjc a ,t_qyjbxx t
+		where a.qyid=t.qyid and a.scbz=0
+		
+		<dynamic prepend="">
+			<include refid="t_rcjcPageWhere" />
+		</dynamic>
+		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getRcjcListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_rcjc a ,t_qyjbxx t
+		where a.qyid=t.qyid and a.scbz=0
+		<dynamic prepend="">
+			<include refid="t_rcjcPageWhere" />
+		</dynamic>
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getRcjcListNoPage" resultMap="rcjcListResult" parameterClass="rcjc">
+		select a.qyid qyid,a.rcjcid rcjcid,a.rcjcbh rcjcbh,a.jcjgdm jcjgdm,a.jcjgmc jcjgmc,a.jcrybh jcrybh,a.jcrxm jcrxm,a.zwdm zwdm,a.jcrzw jcrzw,a.jcfs jcfs,a.lsdw lsdw,a.jcrq jcrq,a.jcsx jcsx,a.fxwt fxwt,a.cljg cljg,a.csfzr csfzr,a.sfzdjcjg sfzdjcjg,a.bz bz
+		from t_rcjc a ,t_qyjbxx t
+		where a.qyid=t.qyid and a.scbz=0
+		<dynamic prepend="">
+			<include refid="t_rcjcListWhere" />
+		</dynamic>
+		order by a.qyid,a.rcjcid
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getRcjc" resultMap="rcjcResult" parameterClass="rcjc">
+		select a.scbz scbz,t.qymc qymc,t.qybm qybm,t.hylb hylb,t.hylbdm hylbdm,a.qyid qyid,a.rcjcid rcjcid,a.rcjcbh rcjcbh,a.jcjgdm jcjgdm,a.jcjgmc jcjgmc,a.jcrybh jcrybh,a.jcrxm jcrxm,a.zwdm zwdm,a.jcrzw jcrzw,a.jcfs jcfs,a.lsdw lsdw,a.jcrq jcrq,a.jcsx jcsx,a.fxwt fxwt,a.cljg cljg,a.csfzr csfzr,a.csfzrbh csfzrbh,a.sfzdjcjg sfzdjcjg,a.bz bz,a.mjjczbh 
+		from t_rcjc a,t_qyjbxx t
+		where a.qyid=t.qyid
+		<dynamic prepend="">
+			<include refid="t_rcjcSelectWhere" />
+			<isNotEmpty prepend="and" property="rcjcbh"><!-- 娱乐业接口 根据登记序号判断唯一 防止多次上传 -->
+				a.rcjcbh=#rcjcbh#
+	    	</isNotEmpty>
+		</dynamic>
+		order by a.qyid,a.rcjcid
+	</select>
+	
+	
+	
+	
+	<!--日常检查统计(t_rcjc)-->
+	<resultMap id="rcjcListTjResult" class="rcjc">
+	    <result property="hylbdm" column="hylbdm" />
+		<result property="hylb" column="hylb" />
+		<result property="dsjgdm" column="dsjgdm"/>
+		<result property="dsjgmc" column="dsjgmc"/>
+		<result property="fxjdm" column="fxjdm"/>
+		<result property="fxjmc" column="fxjmc"/>
+		<result property="gxdwmc" column="gxdwmc"/>
+		<result property="gxdwdm" column="gxdwdm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+		<result property="rcjccs" column="rcjccs"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	<sql id="t_rcjcTjWhere">
+		<isNotEmpty prepend="and" property="dsjgdm">
+				a.dsjgdm=#dsjgdm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fxjdm">
+				a.fxjdm=#fxjdm#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="gxdwdm">
+			a.gxdwdm=#gxdwdm#
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="qybm">
+			b.qybm=#qybm#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="hylbdm">
+			b.hylbdm=#hylbdm#
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="qsrq">
+			<![CDATA[
+ 				a.jcrq >= #qsrq:DATE#
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzrq">
+			<![CDATA[
+ 				a.jcrq <= #jzrq:DATE#
+ 			]]>
+		</isNotEmpty>
+	    <isNotEmpty prepend="and" property="shenheFlagCx">
+			( b.zt='1' or b.zt='2') 
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="scbzFlagCx">
+			b.scbz=0
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="yyzt">
+			b.zjztdm='1'
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="qyyyzt">
+			b.yyztdm='1'
+	    </isNotEmpty>
+	</sql>
+	
+	<!--日常检查统计(t_rcjc)-->
+	<select id="getRcjcTjList" resultMap="rcjcListTjResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+		
+		select   count(1) as  rcjccs 
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty> from  
+		
+		(select t.* ,
+		
+		substr(t.jcjgdm, 0, 8)||'0000' as gxdwdm,
+   (select d.departname as gxdwmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 8)||'0000'=d.departcode) as gxdwmc,
+		
+		substr(t.jcjgdm, 0, 6)||'000000' as fxjdm,
+   (select d.departname as fxjmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 6)||'000000'=d.departcode) as fxjmc,
+                 
+              substr(t.jcjgdm, 0, 4)||'00000000' as dsjgdm,
+               (select d.departname as dsjgmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 4)||'00000000'=d.departcode) as dsjgmc
+              
+          from t_rcjc  t,   t_department d
+        
+                where  t.jcjgdm = d.departcode
+                
+                <isNotEmpty prepend="and" property="qsrq">
+			<![CDATA[
+ 				t.jcrq >= #qsrq:DATE#
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzrq">
+			<![CDATA[
+ 				t.jcrq <= #jzrq:DATE#
+ 			]]>
+		</isNotEmpty>
+                 )a ,
+		
+		
+		t_qyjbxx b
+		where a.qyid=b.qyid 
+		
+	<dynamic prepend="">
+			<include refid="t_rcjcTjWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		
+		 )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--日常检查统计(t_rcjc)-->
+	<select id="getRcjcTjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from (
+		
+		select   count(1) as  rcjccs 
+		<isNotEmpty prepend="," property="selectConditon">
+				$selectConditon$
+		</isNotEmpty> from  
+		
+		(select t.* ,
+		
+		substr(t.jcjgdm, 0, 8)||'0000' as gxdwdm,
+   (select d.departname as gxdwmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 8)||'0000'=d.departcode) as gxdwmc,
+		
+		substr(t.jcjgdm, 0, 6)||'000000' as fxjdm,
+   (select d.departname as fxjmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 6)||'000000'=d.departcode) as fxjmc,
+                 
+              substr(t.jcjgdm, 0, 4)||'00000000' as dsjgdm,
+               (select d.departname as dsjgmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 4)||'00000000'=d.departcode) as dsjgmc
+              
+          from t_rcjc  t,   t_department d
+        
+                where  t.jcjgdm = d.departcode
+                
+                <isNotEmpty prepend="and" property="qsrq">
+			<![CDATA[
+ 				t.jcrq >= #qsrq:DATE#
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzrq">
+			<![CDATA[
+ 				t.jcrq <= #jzrq:DATE#
+ 			]]>
+		</isNotEmpty>
+                 )a ,
+		
+		
+		t_qyjbxx b
+		where a.qyid=b.qyid 
+		
+	<dynamic prepend="">
+			<include refid="t_rcjcTjWhere" />
+		</dynamic>
+		<isNotEmpty prepend=" " property="groupBy">
+				group by $groupBy$
+		</isNotEmpty>
+		) where 1=1
+	</select>
+	
+	
+	
+	
+		<!--日常检查统计(t_rcjc)-->
+	<resultMap id="rcjcListTjxxResult" class="rcjc">
+	    <result property="qyid" column="qyid" />
+		<result property="jcrq" column="jcrq" />
+		<result property="rcjcid" column="rcjcid"/>
+		<result property="cljg" column="cljg"/>
+		<result property="jcrxm" column="jcrxm"/>
+		<result property="qybm" column="qybm"/>
+		<result property="qymc" column="qymc"/>
+	</resultMap>
+	
+	<!--日常检查统计(t_rcjc)-->
+	<select id="getRcjcTjxxList" resultMap="rcjcListTjxxResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(
+		select a.qyid as qyid,a.jcrq as jcrq,a.rcjcid as rcjcid,a.cljg as cljg,a.jcrxm as jcrxm,b.qybm,b.qymc
+	from  
+		
+		(select t.* ,
+		
+		substr(t.jcjgdm, 0, 8)||'0000' as gxdwdm,
+   (select d.departname as gxdwmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 8)||'0000'=d.departcode) as gxdwmc,
+		
+		substr(t.jcjgdm, 0, 6)||'000000' as fxjdm,
+   (select d.departname as fxjmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 6)||'000000'=d.departcode) as fxjmc,
+                 
+              substr(t.jcjgdm, 0, 4)||'00000000' as dsjgdm,
+               (select d.departname as dsjgmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 4)||'00000000'=d.departcode) as dsjgmc
+              
+          from t_rcjc  t,   t_department d
+        
+                where  t.jcjgdm = d.departcode
+                
+                <isNotEmpty prepend="and" property="qsrq">
+			<![CDATA[
+ 				t.jcrq >=  #qsrq:DATE#
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzrq">
+			<![CDATA[
+ 				t.jcrq <=  #jzrq:DATE#
+ 			]]>
+		</isNotEmpty>
+                 )a ,
+		
+		
+		t_qyjbxx b
+		where a.qyid=b.qyid 
+		
+	<dynamic prepend="">
+			<include refid="t_rcjcTjWhere" />
+		</dynamic>
+		 order by  a.jcrq desc  )  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--日常检查统计详细(t_rcjc)-->
+	<select id="getRcjcTjxxListCount" resultClass="int" parameterClass="map">
+		select count(1) a from (
+		select a.qyid as qyid,a.jcrq as jcrq,a.rcjcid as rcjcid,a.cljg as cljg,a.jcrxm as jcrxm,b.qybm,b.qymc
+	from  
+		
+		(select t.* ,
+		
+		substr(t.jcjgdm, 0, 8)||'0000' as gxdwdm,
+   (select d.departname as gxdwmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 8)||'0000'=d.departcode) as gxdwmc,
+		
+		substr(t.jcjgdm, 0, 6)||'000000' as fxjdm,
+   (select d.departname as fxjmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 6)||'000000'=d.departcode) as fxjmc,
+                 
+              substr(t.jcjgdm, 0, 4)||'00000000' as dsjgdm,
+               (select d.departname as dsjgmc from
+                
+                 t_department d where substr(t.jcjgdm, 0, 4)||'00000000'=d.departcode) as dsjgmc
+              
+          from t_rcjc  t,   t_department d
+        
+                where  t.jcjgdm = d.departcode
+                
+                <isNotEmpty prepend="and" property="qsrq">
+			<![CDATA[
+ 				t.jcrq >= #qsrq:DATE#
+ 			]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="jzrq">
+			<![CDATA[
+ 				t.jcrq <= #jzrq:DATE#
+ 			]]>
+		</isNotEmpty>
+                 )a ,
+		
+		
+		t_qyjbxx b
+		where a.qyid=b.qyid 
+		
+	<dynamic prepend="">
+			<include refid="t_rcjcTjWhere" />
+		</dynamic>
+		 order by  a.jcrq desc
+		) where 1=1
+	</select>
+	
+	<!--日常检查(t_rcjc)异常预警 查询同一张检查证对同一个企业检查时间间隔小于rcjcjgsj小时的记录，rcjcjgsj由全局参数来定-->
+	<select id="getRcjcyjList" resultMap="rcjcyjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.rcjcid,a.jcjgdm,a.jcjgmc,a.mjjczbh,a.jcrq,a.jcrybh,a.jcrxm,a.jcrzw
+		  from t_rcjc a, t_qyjbxx b
+		 where a.qyid = b.qyid
+		   and exists
+		 (select *
+		          from t_rcjc b
+		         where abs((b.jcrq - a.jcrq)) * 24 &lt;= #rcjcjgsj#
+		           and b.rcjcid &lt;&gt; a.rcjcid
+		           and b.qyid = a.qyid
+		           and b.mjjczbh = a.mjjczbh)
+		   and a.jcrq is not null
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcjgdm_jx">
+				a.jcjgdm like '$jcjgdm_jx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcjgdm">
+				a.jcjgdm &lt;&gt; #jcjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqf">
+				a.jcrq &gt;= trunc(#jcrqf:TIMESTAMP#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqt">
+				a.jcrq &lt; trunc(#jcrqt:TIMESTAMP#)+1
+			</isNotEmpty>
+		</dynamic>
+		
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--日常检查(t_rcjc)-->
+	<select id="getRcjcyjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_rcjc a, t_qyjbxx b
+		 where a.qyid = b.qyid
+		   and exists
+		 (select *
+		          from t_rcjc b
+		         where abs((b.jcrq - a.jcrq)) * 24 &lt;= #rcjcjgsj#
+		           and b.rcjcid &lt;&gt; a.rcjcid
+		           and b.qyid = a.qyid
+		           and b.mjjczbh = a.mjjczbh)
+		   and a.jcrq is not null
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="hylbdm">
+				b.hylbdm = #hylbdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcjgdm_jx">
+				a.jcjgdm like '$jcjgdm_jx$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcjgdm">
+				a.jcjgdm &lt;&gt; #jcjgdm#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqf">
+				a.jcrq &gt;= trunc(#jcrqf:TIMESTAMP#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcrqt">
+				a.jcrq &lt; trunc(#jcrqt:TIMESTAMP#)+1
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</sqlMap>

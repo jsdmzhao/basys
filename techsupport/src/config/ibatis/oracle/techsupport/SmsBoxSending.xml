@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="SmsBoxSending"
+		type="com.aisino2.techsupport.domain.SmsBoxSending" />
+
+	<sql id="SmsBoxSendingWhere">
+
+		<isNotNull prepend="and" property="stId">
+			T.ST_ID = #stId#
+		</isNotNull>
+		<isNotNull prepend="and" property="deptId">
+			T.DEPT_ID = #deptId#
+		</isNotNull>
+		<isNotNull prepend="and" property="id">
+			T.ID = #id#
+			</isNotNull>
+	</sql>
+	<sql id="SmsBoxSendingPageWhere">
+		<include refid="SmsBoxSendingWhere" />
+	</sql>
+	<sql id="SmsBoxSendingListWhere">
+		<include refid="SmsBoxSendingWhere" />
+	</sql>
+
+	<!-- 插入 -->
+	<insert id="SmsBoxSending.insert" parameterClass="SmsBoxSending">
+		insert
+		into SMS_BOXSENDING (
+		<dynamic prepend=" ">
+		<isNotNull property="id" prepend="," >
+			ID
+		</isNotNull>
+
+			<isNotNull property="appid" prepend="," >
+			APPID
+		</isNotNull>
+
+			<isNotNull property="sender" prepend="," >
+			SENDER
+		</isNotNull>
+
+			<isNotNull property="receiver" prepend="," >
+			RECEIVER
+		</isNotNull>
+
+			<isNotNull property="content" prepend="," >
+			CONTENT
+		</isNotNull>
+
+			<isNotNull property="sendtime" prepend="," >
+			SENDTIME
+		</isNotNull>
+
+			<isNotNull property="inserttime" prepend="," >
+			INSERTTIME
+		</isNotNull>
+
+			<isNotNull property="retrytimes" prepend="," >
+			RETRYTIMES
+		</isNotNull>
+
+			<isNotNull property="pri" prepend="," >
+			PRI
+		</isNotNull>
+
+			<isNotNull property="inpool" prepend="," >
+			INPOOL
+		</isNotNull>
+
+			<isNotNull property="inpooltime" prepend="," >
+			INPOOLTIME
+		</isNotNull>
+
+			<isNotNull property="task_batchname" prepend="," >
+			TASK_BATCHNAME
+		</isNotNull>
+
+			<isNotNull property="addtion1" prepend="," >
+			ADDTION1
+		</isNotNull>
+
+			<isNotNull property="addtion2" prepend="," >
+			ADDTION2
+		</isNotNull>
+
+			<isNotNull property="addtion3" prepend="," >
+			ADDTION3
+		</isNotNull>
+
+			<isNotNull property="moduleid" prepend="," >
+			MODULEID
+		</isNotNull>
+
+			<isNotNull property="sendmode" prepend="," >
+			SENDMODE
+		</isNotNull>
+
+			<isNotNull property="configid" prepend="," >
+			CONFIGID
+		</isNotNull>
+
+			<isNotNull property="linkid1" prepend="," >
+			LINKID1
+		</isNotNull>
+
+			<isNotNull property="linkid2" prepend="," >
+			LINKID2
+		</isNotNull>
+
+			<isNotNull property="ifreceipt" prepend="," >
+			IFRECEIPT
+		</isNotNull>
+
+			<isNotNull property="validityperiod" prepend="," >
+			VALIDITYPERIOD
+		</isNotNull>
+
+			<isNotNull property="outteruser" prepend="," >
+			OUTTERUSER
+		</isNotNull>
+		</dynamic>
+		)
+		values(
+		<dynamic prepend=" ">
+			<isNotNull property="id" prepend="," >
+			#id#
+		</isNotNull>
+
+			<isNotNull property="appid" prepend="," >
+			#appid#
+		</isNotNull>
+
+			<isNotNull property="sender" prepend="," >
+			#sender#
+		</isNotNull>
+
+			<isNotNull property="receiver" prepend="," >
+			#receiver#
+		</isNotNull>
+
+			<isNotNull property="content" prepend="," >
+			#content#
+		</isNotNull>
+
+			<isNotNull property="sendtime" prepend="," >
+			#sendtime#
+		</isNotNull>
+
+			<isNotNull property="inserttime" prepend="," >
+			#inserttime#
+		</isNotNull>
+
+			<isNotNull property="retrytimes" prepend="," >
+			#retrytimes#
+		</isNotNull>
+
+			<isNotNull property="pri" prepend="," >
+			#pri#
+		</isNotNull>
+
+			<isNotNull property="inpool" prepend="," >
+			#inpool#
+		</isNotNull>
+
+			<isNotNull property="inpooltime" prepend="," >
+			#inpooltime#
+		</isNotNull>
+
+			<isNotNull property="task_batchname" prepend="," >
+			#task_batchname#
+		</isNotNull>
+
+			<isNotNull property="addtion1" prepend="," >
+			#addtion1#
+		</isNotNull>
+
+			<isNotNull property="addtion2" prepend="," >
+			#addtion2#
+		</isNotNull>
+
+			<isNotNull property="addtion3" prepend="," >
+			#addtion3#
+		</isNotNull>
+
+			<isNotNull property="moduleid" prepend="," >
+			#moduleid#
+		</isNotNull>
+
+			<isNotNull property="sendmode" prepend="," >
+			#sendmode#
+		</isNotNull>
+
+			<isNotNull property="configid" prepend="," >
+			#configid#
+		</isNotNull>
+
+			<isNotNull property="linkid1" prepend="," >
+			#linkid1#
+		</isNotNull>
+
+			<isNotNull property="linkid2" prepend="," >
+			#linkid2#
+		</isNotNull>
+
+			<isNotNull property="ifreceipt" prepend="," >
+			#ifreceipt#
+		</isNotNull>
+
+			<isNotNull property="validityperiod" prepend="," >
+			#validityperiod#
+		</isNotNull>
+
+			<isNotNull property="outteruser" prepend="," >
+			#outteruser#
+		</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+</sqlMap>

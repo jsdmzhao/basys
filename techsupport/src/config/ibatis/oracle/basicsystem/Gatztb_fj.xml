@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="gatztb_fj" type="com.aisino2.basicsystem.domain.Gatztb_fj"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<resultMap id="gatztb_fjResult" class="gatztb_fj">
+		<result property="gatbid" column="gatbid" />
+		<result property="gafjid" column="gafjid" />
+		<result property="fjmc" column="fjmc" />
+		<result property="fjlx" column="fjlx" />
+		<result property="fjnr" column="fjnr" />
+		<result property="fjxh" column="fjxh" />
+	</resultMap>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<resultMap id="gatztb_fjListResult" class="gatztb_fj">
+		<result property="gatbid" column="gatbid"/>
+		<result property="gafjid" column="gafjid"/>
+		<result property="fjmc" column="fjmc"/>
+		<result property="fjlx" column="fjlx"/>
+		<result property="fjxh" column="fjxh"/>
+	</resultMap>
+	<sql id="t_gatztb_fjWhere">
+			<isNotEmpty prepend="and" property="gatbid">
+				a.gatbid=#gatbid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gafjid">
+				a.gafjid=#gafjid#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_gatztb_fjPageWhere" >
+		<include refid="t_gatztb_fjWhere" />	</sql>
+	<sql id="t_gatztb_fjListWhere" >
+		<include refid="t_gatztb_fjWhere" />	</sql>
+	<sql id="t_gatztb_fjSelectWhere"  >
+		<include refid="t_gatztb_fjWhere" />	</sql>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<insert id="insertGatztb_fj"  parameterClass="gatztb_fj">
+		insert into t_gatztb_fj (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				gatbid
+			</isNotNull>
+			<isNotNull prepend="," property="gafjid">
+				gafjid
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				fjxh
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="gatbid">
+				#gatbid#
+			</isNotNull>
+			<isNotNull prepend="," property="gafjid">
+				#gafjid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				#fjnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				#fjxh#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<update id="updateGatztb_fj" parameterClass="gatztb_fj">
+		update t_gatztb_fj a set a.gafjid=a.gafjid
+		<dynamic prepend="">
+			<isNotNull prepend="," property="gafjid">
+				gafjid=#gafjid#
+			</isNotNull>
+			<isNotNull prepend="," property="fjmc">
+				fjmc=#fjmc#
+			</isNotNull>
+			<isNotNull prepend="," property="fjlx">
+				fjlx=#fjlx#
+			</isNotNull>
+			<isNotNull prepend="," property="fjnr">
+				fjnr=#fjnr#
+			</isNotNull>
+			<isNotNull prepend="," property="fjxh">
+				fjxh=#fjxh#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjWhere" />
+		</dynamic>
+	</update>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<delete id="deleteGatztb_fj" parameterClass="gatztb_fj">
+		delete from t_gatztb_fj a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjWhere" />
+		</dynamic>
+	</delete>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<select id="getGatztb_fjList" resultMap="gatztb_fjListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.gatbid gatbid,a.gafjid gafjid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr,a.fjxh fjxh
+		from t_gatztb_fj a 
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<select id="getGatztb_fjListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_gatztb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjPageWhere" />
+		</dynamic>
+	</select>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<select id="getGatztb_fjListNoPage" resultMap="gatztb_fjListResult" parameterClass="gatztb_fj">
+		select a.gatbid gatbid,a.gafjid gafjid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr,a.fjxh fjxh
+		from t_gatztb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjListWhere" />
+		</dynamic>
+		order by a.gatbid,a.gafjid
+	</select>
+	<!--公安通知通报_附件(t_gatztb_fj)-->
+	<select id="getGatztb_fj" resultMap="gatztb_fjResult" parameterClass="gatztb_fj">
+		select a.gatbid gatbid,a.gafjid gafjid,a.fjmc fjmc,a.fjlx fjlx,a.fjnr fjnr,a.fjxh fjxh
+		from t_gatztb_fj a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_gatztb_fjSelectWhere" />
+		</dynamic>
+		order by a.gatbid,a.gafjid
+	</select>
+</sqlMap>

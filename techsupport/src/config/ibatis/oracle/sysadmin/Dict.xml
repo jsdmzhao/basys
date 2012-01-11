@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="dict" type="com.aisino2.sysadmin.domain.Dict"/>
+	<cacheModel id="oneDayCategory" type="LRU">
+		<flushInterval hours="24"/>
+	</cacheModel>
+	<!--字典(t_dict)-->
+	<resultMap id="dictResult" class="dict">
+		<result property="dict_code" column="dict_code" />
+		<result property="dict_name" column="dict_name" />
+		<result property="super_dict_code" column="super_dict_code" />
+		<result property="sib_order" column="sib_order" />
+		<result property="leaf_flag" column="leaf_flag" />
+		<result property="maint_flag" column="maint_flag" />
+		<result property="dict_type" column="dict_type" />
+		<result property="dict_simplepin" column="dict_simplepin" />
+		<result property="dict_allpin" column="dict_allpin" />
+		<result property="dict_itemtablename" column="dict_itemtablename" />
+		<result property="dict_versionid" column="dict_versionid" />
+		<result property="dict_id" column="dict_id" />
+	</resultMap>
+	<!--字典(t_dict)-->
+	<resultMap id="dictListResult" class="dict">
+		<result property="dict_code" column="dict_code"/>
+		<result property="dict_name" column="dict_name"/>
+		<result property="super_dict_code" column="super_dict_code"/>
+		<result property="sib_order" column="sib_order"/>
+		<result property="leaf_flag" column="leaf_flag"/>
+		<result property="maint_flag" column="maint_flag"/>
+		<result property="dict_type" column="dict_type"/>
+		<result property="dict_simplepin" column="dict_simplepin"/>
+		<result property="dict_allpin" column="dict_allpin"/>
+		<result property="dict_itemtablename" column="dict_itemtablename"/>
+		<result property="dict_versionid" column="dict_versionid"/>
+		<result property="dict_id" column="dict_id"/>
+	</resultMap>
+	<sql id="t_dictWhere">
+			<isNotEmpty prepend="and" property="dict_code">
+				a.dict_code=#dict_code#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_id">
+				a.dict_id=#dict_id#
+			</isNotEmpty>
+	</sql>
+	<sql id="t_dictPageWhere" >
+		<include refid="t_dictWhere" />	
+	</sql>
+	<sql id="t_dictListWhere" >
+		<include refid="t_dictWhere" />	</sql>
+	<sql id="t_dictSelectWhere"  >
+		<include refid="t_dictWhere" />	</sql>
+	<!--字典(t_dict)-->
+	<insert id="insertDict"  parameterClass="dict">
+		insert into t_dict (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dict_code">
+				dict_code
+			</isNotNull>
+			<isNotNull prepend="," property="dict_name">
+				dict_name
+			</isNotNull>
+			<isNotNull prepend="," property="super_dict_code">
+				super_dict_code
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				sib_order
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				leaf_flag
+			</isNotNull>
+			<isNotNull prepend="," property="maint_flag">
+				maint_flag
+			</isNotNull>
+			<isNotNull prepend="," property="dict_type">
+				dict_type
+			</isNotNull>
+			<isNotNull prepend="," property="dict_simplepin">
+				dict_simplepin
+			</isNotNull>
+			<isNotNull prepend="," property="dict_allpin">
+				dict_allpin
+			</isNotNull>
+			<isNotNull prepend="," property="dict_itemtablename">
+				dict_itemtablename
+			</isNotNull>
+			<isNotNull prepend="," property="dict_versionid">
+				dict_versionid
+			</isNotNull>
+			<isNotNull prepend="," property="dict_id">
+				dict_id
+			</isNotNull>
+		</dynamic>
+		) values (
+		<dynamic prepend="">
+			<isNotNull prepend="" property="dict_code">
+				#dict_code#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_name">
+				#dict_name#
+			</isNotNull>
+			<isNotNull prepend="," property="super_dict_code">
+				#super_dict_code#
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				#sib_order#
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				#leaf_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="maint_flag">
+				#maint_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_type">
+				#dict_type#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_simplepin">
+				#dict_simplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_allpin">
+				#dict_allpin#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_itemtablename">
+				#dict_itemtablename#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_versionid">
+				#dict_versionid#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_id">
+				#dict_id#
+			</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	<!--字典(t_dict)-->
+	<update id="updateDict" parameterClass="dict">
+		update t_dict a set dict_code=dict_code
+		<dynamic prepend="">
+			<isNotNull prepend="," property="dict_name">
+				dict_name=#dict_name#
+			</isNotNull>
+			<isNotNull prepend="," property="super_dict_code">
+				super_dict_code=#super_dict_code#
+			</isNotNull>
+			<isNotNull prepend="," property="sib_order">
+				sib_order=#sib_order#
+			</isNotNull>
+			<isNotNull prepend="," property="leaf_flag">
+				leaf_flag=#leaf_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="maint_flag">
+				maint_flag=#maint_flag#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_type">
+				dict_type=#dict_type#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_simplepin">
+				dict_simplepin=#dict_simplepin#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_allpin">
+				dict_allpin=#dict_allpin#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_itemtablename">
+				dict_itemtablename=#dict_itemtablename#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_versionid">
+				dict_versionid=#dict_versionid#
+			</isNotNull>
+			<isNotNull prepend="," property="dict_id">
+				dict_id=#dict_id#
+			</isNotNull>
+		</dynamic>
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dictWhere" />
+		</dynamic>
+	</update>
+	<!--字典(t_dict)-->
+	<delete id="deleteDict" parameterClass="dict">
+		delete from t_dict a where 1=1 
+		<dynamic prepend="">
+			<include refid="t_dictWhere" />
+		</dynamic>
+	</delete>
+	<!--字典(t_dict)-->
+	<select id="getDictList" resultMap="dictListResult" parameterClass="map">
+		select x.* from (
+		select rownum rowno,z.* from 
+		(select a.dict_code dict_code,a.dict_name dict_name,a.super_dict_code super_dict_code,a.sib_order sib_order,a.leaf_flag leaf_flag,a.maint_flag maint_flag,a.dict_type dict_type,a.dict_simplepin dict_simplepin,a.dict_allpin dict_allpin,a.dict_itemtablename dict_itemtablename,a.dict_versionid dict_versionid,a.dict_id dict_id
+		from t_dict a 
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.dict_simplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.dict_allpin) like lower('$query_simplepin$')||'%' or
+			 	 a.dict_code like '$query_simplepin$%' or
+			 	 a.dict_name like '%$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_name">
+				a.dict_name like '%$dict_name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="super_dict_code">
+				a.super_dict_code=#super_dict_code#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_type">
+				a.dict_type=#dict_type#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_versionid">
+				a.dict_versionid=#dict_versionid#
+			</isNotEmpty>
+			<include refid="t_dictPageWhere" />
+		</dynamic>
+		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$ 
+	</select>
+	<!--字典(t_dict)-->
+	<select id="getDictListCount" resultClass="int" parameterClass="map">
+		select count(1) a from t_dict a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	(upper(a.dict_simplepin) like upper('$query_simplepin$')||'%' or
+			 	 lower(a.dict_allpin) like lower('$query_simplepin$')||'%' or
+			 	 a.dict_code like '$query_simplepin$%' or
+			 	 a.dict_name like '%$query_simplepin$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_name">
+				a.dict_name like '%$dict_name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="super_dict_code">
+				a.super_dict_code=#super_dict_code#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_type">
+				a.dict_type=#dict_type#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dict_versionid">
+				a.dict_versionid=#dict_versionid#
+			</isNotEmpty>
+			<include refid="t_dictPageWhere" />
+		</dynamic>
+	</select>
+	<!--字典(t_dict)-->
+	<select id="getDictListNoPage" resultMap="dictListResult" parameterClass="dict">
+		select a.dict_code dict_code,a.dict_name dict_name,a.super_dict_code super_dict_code,a.sib_order sib_order,a.leaf_flag leaf_flag,a.maint_flag maint_flag,a.dict_type dict_type,a.dict_simplepin dict_simplepin,a.dict_allpin dict_allpin,a.dict_itemtablename dict_itemtablename,a.dict_versionid dict_versionid,a.dict_id dict_id
+		from t_dict a
+		where 1=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="kongjianDicts"><!-- 离线控件用查询条件，一次查出多个字典 -->
+				a.dict_code in ($kongjianDicts$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="query_simplepin">
+			 	 ( a.dict_name like '%$query_simplepin$%'or
+			 	 a.dict_code = #query_simplepin#)
+			</isNotEmpty>
+			<include refid="t_dictListWhere" />
+		</dynamic>
+		order by a.dict_code
+	</select>
+	<!--字典(t_dict)-->
+	<select id="getDict" resultMap="dictResult" parameterClass="dict">
+		select a.dict_code dict_code,a.dict_name dict_name,a.super_dict_code super_dict_code,a.sib_order sib_order,a.leaf_flag leaf_flag,a.maint_flag maint_flag,a.dict_type dict_type,a.dict_simplepin dict_simplepin,a.dict_allpin dict_allpin,a.dict_itemtablename dict_itemtablename,a.dict_versionid dict_versionid,a.dict_id dict_id
+		from t_dict a
+		where 1=1
+		<dynamic prepend="">
+			<include refid="t_dictSelectWhere" />
+		</dynamic>
+		order by a.dict_code
+	</select>
+	
+	
+	<select id="getDictionaryAll" resultMap="dictResult" parameterClass="dict">
+	select a.dict_code dict_code,a.dict_name dict_name,a.super_dict_code super_dict_code,a.sib_order sib_order,a.leaf_flag leaf_flag,a.maint_flag maint_flag,a.dict_type dict_type,a.dict_simplepin dict_simplepin,a.dict_allpin dict_allpin,a.dict_itemtablename dict_itemtablename,a.dict_versionid dict_versionid,a.dict_id dict_id
+		from t_dict a
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="maint_flag">
+				a.maint_flag = '$maint_flag$'
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="dict_code">
+				<isEqual prepend="and" property="dict_code" compareValue="mzgjxzqh9">
+					a.dict_code in ('dm_mz','dm_gj(lgy)','dm_xzqh')
+				</isEqual>
+			</isNotEmpty>
+		</dynamic>
+		order by sib_order 
+	</select>
+	<delete id="deleteDictionaryItemByDictionary" parameterClass="dict">
+		delete from t_dict_item where dict_code = #dict_code# 
+	</delete>
+	<select id="getChildrenDictionary" resultMap="dictResult" parameterClass="dict">
+			select a.dict_code dict_code,a.dict_name dict_name,a.super_dict_code super_dict_code,a.sib_order sib_order,a.leaf_flag leaf_flag,a.maint_flag maint_flag,a.dict_type dict_type,a.dict_simplepin dict_simplepin,a.dict_allpin dict_allpin,a.dict_itemtablename dict_itemtablename,a.dict_versionid dict_versionid,a.dict_id dict_id
+		from t_dict a where  a.super_dict_code= #dict_code# 
+	</select>
+	
+	
+</sqlMap>
