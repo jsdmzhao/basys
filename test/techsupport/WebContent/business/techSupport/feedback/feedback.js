@@ -36,7 +36,7 @@ $(function(){
 	//只读化控件
 	$('.ro').attr('readOnly',true);
 	//设置时间控件
-	$('.date').each(function(){
+	$('.datero').each(function(){
 		$(this).datepicker();
 		$(this).attr('readOnly',true);
 	});

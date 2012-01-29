@@ -129,10 +129,18 @@ function submitVerity(){
 		jAlert('总工审批 必须选择','提示');
 		return false;
 	}
-	if($('#deptApprovalPanel input:checked').length==0){
-		jAlert('技术支持部门必须至少选择一个','提示');
-		return false;
+	// fixed bug 在选择不通过的时候，也要选择指派的单位
+	if($("#ceApprovalRadioPanel > input").eq(0).attr("checked")){
+		if($('#deptApprovalPanel input:checked').length==0){
+			jAlert('技术支持部门必须至少选择一个','提示');
+			return false;
+		}
 	}
 	
+	
+	//总工意见
+	if(!checkControlValue("ceReply","String",1,4000,null,1,"总工意见"))
+		return false;
+		
 	return true;
 }
