@@ -46,7 +46,7 @@
 		  <div class="row" >
             <div class="column " >
                 <label class="label red">总工审批日期:</label>
-                <input type="text" class=" item datero inputstyle" name="ceApprovalSt.trackList[0].trackingDate" id="ceApprovalDate" value="<%=dateNow%>">
+                <input type="text" class=" item ro inputstyle" name="ceApprovalSt.trackList[0].trackingDate" id="ceApprovalDate" value="<%=dateNow%>">
                 <div class="clear-column"></div>
                 
                 <div class="row" >
@@ -73,7 +73,7 @@
             </div>
             
             <div class="column " style="width: 600px;">
-                <label class="label">总工意见:</label>
+                <label class="label red">总工意见:</label>
                 <textarea class=" item inputstyle" style="width:349px !important;height: 77px;" name="ceApprovalSt.trackList[0].newProcess" id="ceReply"></textarea>
                 <input type="hidden" name="ceApprovalSt.trackList[0].type" value="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_CEREPLY%>">
                 <div class="clear-column"></div>

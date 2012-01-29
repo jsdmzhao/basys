@@ -147,7 +147,23 @@
 				</div>
 				<div class="clear-row"></div>
 			</div>
+			
+			<%-- ++ 新需求 技术开发部添加阶段测试 --%>
+			<div class="row">
+				<div class="column">
+					<div class="devstage">
+						<label class="label label-80" >测试:</label>
+						<input type="text" class="devstage item inputstyle label-100 ro" name="st.devDtScheDate" id="p_devDtScheDate">
+					</div>
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>
+		
+		<%-- -- 新需求 技术开发部添加阶段测试 --%>
 		</div>
+		
+		
 		<div class="clear-row"></div>
 	</div>
 	
@@ -286,6 +302,18 @@
 				<div class="clear-row"></div>
 			</div>
 			
+			<%-- ++ 新需求 技术开发部添加阶段测试 --%>
+			<div class="row">
+				<div class="column">
+					<div class="devcpstage">
+						<label class="label label-80" >测试:</label>
+						<input type="text" class=" item inputstyle date " name="trSt.devDtCompDate" id="p_devDtCompDate">
+					</div>
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>
+			<%-- -- 新需求 技术开发部添加阶段测试 --%>
 		</div>
 		<div class="clear-row"></div>
 	</div>

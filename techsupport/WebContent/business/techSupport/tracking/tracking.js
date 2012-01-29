@@ -23,6 +23,14 @@ function toFeedbackVerify(){
 	if($('#p_deptName').val().indexOf('方案部') > -1){
 		if (!checkControlValue("p_psgCompDate","Date",null,null,null,1,"产品方案部实际完成时间"))
 			return false;
+		// ++ bug 在阶段选项打开的时候，内容为必填
+		if($('#psgcpstage').attr("checked")){
+			if (!checkControlValue("p_psgDsCompDate","Date",null,null,null,1,"产品方案部实际需求完成时间"))
+				return false;
+			if (!checkControlValue("p_psgIsCompDate","Date",null,null,null,1,"产品方案部实际实施完成时间"))
+				return false;
+		}
+		// -- bug 在阶段选项打开的时候，内容为必填	
 	}
 	if($('#p_deptName').val().indexOf('开发部') > -1){
 		if (!checkControlValue("p_devCompDate","Date",null,null,null,1,"技术研发部实际完成时间"))
@@ -32,8 +40,16 @@ function toFeedbackVerify(){
 			return false;
 		if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
 			return false;
-		
-		
+		// ++ bug 在阶段选项打开的时候，内容为必填
+		if($('#devcpstage').attr("checked")){
+			if (!checkControlValue("p_devDsCompDate","Date",null,null,null,1,"技术研发部实际设计完成时间"))
+				return false;
+			if (!checkControlValue("p_devDdCompDate","Date",null,null,null,1,"技术研发部实际开发完成时间"))
+				return false;
+			if (!checkControlValue("p_devDtCompDate","Date",null,null,null,1,"技术研发部实际测试完成时间"))
+				return false;
+		}
+		// -- bug 在阶段选项打开的时候，内容为必填	
 		return true;
 	}
 	
@@ -210,7 +226,7 @@ function loadData(){
 		//非阶段性隐藏
 		relateHide('devstage');
 		relateHide('psgstage');
-		
+				
 		//非阶段性隐藏
 		relateHide('devcpstage');
 		relateHide('psgcpstage');
@@ -232,10 +248,27 @@ function loadData(){
 		$('#p_slName').val(sSlNames);
 		
 		//	初始化提请反馈必填项颜色信息
-		if($('#p_deptName').val().indexOf('方案部') > -1)
+		if($('#p_deptName').val().indexOf('方案部') > -1){
 			$('#p_psgCompDate').prev('label').addClass('blue');
+			// 修正bug 添加必要的颜色信息
+			$("#psgcpstage").blur(function() {
+				if ($(this).attr('checked')) {
+					$('.' + this.id).addClass('blue');
+				} else {
+					$('.' + this.id).removeClass("blue");
+				}
+			});
+		}
 		if($('#p_deptName').val().indexOf('开发部') > -1){
 			$('#p_devCompDate').prev('label').addClass('blue');
+			// 修正bug 添加必要的颜色信息
+			$("#devcpstage").blur(function() {
+				if ($(this).attr('checked')) {
+					$('.' + this.id).addClass('blue');
+				} else {
+					$('.' + this.id).removeClass("blue");
+				}
+			});
 		}
 		
 		$('#p_region').val(getDictitem({dictcode:ST_REGION_DICT_CODE,value:$('#p_region').val()})[0].display_name);

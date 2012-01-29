@@ -109,10 +109,9 @@ $(function(){
 function loadData(){
 	var paramsss = {'taskId':$('#p_taskId').val()};
 	$.post(processUrl2,paramsss,function(data){
-		
 		data = eval("("+data+")");
 		$('input:text[name^=st.]').each(function(){
-			try{
+			try{ 
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
 			}catch(e){
 				
@@ -155,9 +154,9 @@ function loadData(){
 			for(i in trackinglist){
 				var t=trackinglist[i];
 				if(t.type==TRACKING_TYPE_CEREPLY){
-					$('#ceApprovalDate').val(t.trackingDate);
-					$('#ceReply').val(t.newProcess);
-					$('#ceName').val(t.processor.username);
+					$('#ceApprovalDate').val(setNull(t.trackingDate));
+					$('#ceReply').val(setNull(t.newProcess));
+					$('#ceName').val(setNull(t.processor.username));
 					dictitem=getDictitem({dictcode:ST_APPR_TYPE_DICT_CODE , value : t.approvalCode});
 					$('#ceApprovalRadioPanel span').text(dictitem[0].display_name);
 				}
@@ -176,29 +175,46 @@ function submitVerity() {
 		return false;
 	if (!checkControlValue("deptName","String",1,50,null,1,"经理名称"))
 		return false;
-	if (!checkControlValue("supportLeaderName","String",1,100,null,1,"技术负责人"))
+
+	//在部门审批通过的时候验证。
+	if ($('#deptRadioPanel > input').eq(0).attr('checked')) {
+		
+		if (!checkControlValue("supportLeaderName","String",1,100,null,1,"技术负责人"))
+			return false;
+		
+		if (gxdwmc == '产品方案部') {
+
+			if (!checkControlValue("psgScheDate", "Date", 1, 100, null, 1,
+					"计划完成时间"))
+				return false;
+			if ($('#psgstage').attr('checked')) {
+				if (!checkControlValue("psgDsScheDate", "Date", 1, 100, null,
+						1, "计划需求时间"))
+					return false;
+				if (!checkControlValue("psgIsScheDate", "Date", 1, 100, null,
+						1, "计划实施时间"))
+					return false;
+			}
+		} else if (gxdwmc == '技术开发部') {
+			if (!checkControlValue("devScheDate", "Date", 1, 100, null, 1,
+					"计划完成时间"))
+				return false;
+			if ($('#devstage').attr('checked')) {
+				if (!checkControlValue("devDsScheDate", "Date", 1, 100, null,
+						1, "计划设计时间"))
+					return false;
+				if (!checkControlValue("devDdScheDate", "Date", 1, 100, null,
+						1, "计划开发时间"))
+					return false;
+			}
+		}
+	}
+	  
+	
+	//部门意见
+	if(!checkControlValue("deptReply","String",1,4000,null,1,"部门意见"))
 		return false;
 		
-	if(gxdwmc=='产品方案部'){
-		
-		if (!checkControlValue("psgScheDate","Date",1,100,null,1,"计划完成时间"))
-			return false;
-		if($('#psgstage').attr('checked')){
-			if (!checkControlValue("psgDsScheDate","Date",1,100,null,1,"计划需求时间"))
-				return false;
-			if (!checkControlValue("psgIsScheDate","Date",1,100,null,1,"计划实施时间"))
-				return false;
-		}
-	}
-	else if(gxdwmc=='技术开发部'){
-		if (!checkControlValue("devScheDate","Date",1,100,null,1,"计划完成时间"))
-			return false;
-		if($('#devstage').attr('checked')){
-			if (!checkControlValue("devDsScheDate","Date",1,100,null,1,"计划设计时间"))
-				return false;
-			if (!checkControlValue("devDsScheDate","Date",1,100,null,1,"计划开发时间"))
-				return false;
-		}
-	}
+	
 	return true;
 }
