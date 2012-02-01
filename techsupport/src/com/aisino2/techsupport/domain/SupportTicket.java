@@ -25,8 +25,12 @@ public class SupportTicket {
 	private Integer id;
 	private Date devDsScheDate;
 	private Date devDdScheDate;
+	//新需求 技术开发部需要阶段时间，需要添加测试计划阶段
+	private Date devDtScheDate;
+	
 	private Date psgDsScheDate;
 	private Date psgIsScheDate;
+
 	//
 //	private String ceApprovalCode;
 //	private String psgApprovalCode;
@@ -38,12 +42,14 @@ public class SupportTicket {
 	private Date psgIsCompDate;
 	private Date devDsCompDate;
 	private Date devDdCompDate;
+	//新需求 技术开发部需要阶段时间，需要添加测试完成阶段
+	private Date devDtCompDate;
 	private Date applyingFeedbackDate;
 	
 	//反馈确认
 	private Date feedbackConfirmDate;
 	
-	//归档例外
+	//归档例外<旧舍弃>
 	private String comments;
 	private Date archiveDate;
 	private User archiveUser;
@@ -315,6 +321,18 @@ public class SupportTicket {
 	}
 	public void setAttachment_list(List<Attachment> attachment_list) {
 		this.attachment_list = attachment_list;
+	}
+	public Date getDevDtScheDate() {
+		return devDtScheDate;
+	}
+	public void setDevDtScheDate(Date devDtScheDate) {
+		this.devDtScheDate = devDtScheDate;
+	}
+	public Date getDevDtCompDate() {
+		return devDtCompDate;
+	}
+	public void setDevDtCompDate(Date devDtCompDate) {
+		this.devDtCompDate = devDtCompDate;
 	}
 	
 	

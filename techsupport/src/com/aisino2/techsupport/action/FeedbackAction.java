@@ -58,7 +58,7 @@ public class FeedbackAction extends BaseAction {
 	 */
 	public String save() throws Exception{
 		try {
-			User currentUser = (User) this.getRequest().getAttribute(Constants.userKey);
+			User currentUser = (User) this.getRequest().getSession().getAttribute(Constants.userKey);
 			tracking.setProcessor(currentUser);
 			tracking.setProcessorId(currentUser.getUserid());
 			feedbackService.insertFeedbackAndGo(taskId, feedbackSt, tracking);
@@ -79,7 +79,7 @@ public class FeedbackAction extends BaseAction {
 	 */
 	public String noFeedback() throws Exception{
 		try {
-			User currentUser = (User) this.getRequest().getAttribute(Constants.userKey);
+			User currentUser = (User) this.getRequest().getSession().getAttribute(Constants.userKey);
 			tracking.setProcessor(currentUser);
 			tracking.setProcessorId(currentUser.getUserid());
 			feedbackService.insertFeedbackAndGoback(taskId, feedbackSt, tracking);

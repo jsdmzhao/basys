@@ -218,13 +218,17 @@ public class WorkflowUtil {
 			List<Department> asssigneeDeptList) {
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		if(asssigneeDeptList==null)
-			throw new RuntimeException("需要指派的单位列表为空");
+		// ++ fixed bug 总工审批在不同意的时候，也必须指派部门
+//		if(asssigneeDeptList==null)
+//			throw new RuntimeException("需要指派的单位列表为空");
 		params.put("deptApprovalUsers", "");
 		try {
 
 			// 通过选定的单位找到拥有部门经理角色的用户 来做指派
 			String assigneeDeptUsersId = "";
+			
+			if(asssigneeDeptList != null)
+			// -- fixed bug 总工审批在不同意的时候，也必须指派部门
 			for (Department dept : asssigneeDeptList) {
 				if(dept==null)
 					continue;
