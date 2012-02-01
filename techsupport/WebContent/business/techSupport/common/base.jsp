@@ -77,5 +77,11 @@
 	var ST_ROLE_NAME_STLEADER="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_STLEADER%>";
 //	质量管理员
 	var ST_ROLE_NAME_QC="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_QC%>";
-	
+
+	var ST_ROLE_NAME_FEEDBACKER="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_FEEDBACKER%>";
+	var ST_ROLE_NAME_SUPERVISION="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_SUPERVISION%>";
+	var ST_ROLE_NAME_TRACKING_PROMPT="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_TRACKING_PROMPT%>";
+	var ST_ROLE_NAME_APPROVAL_PROMPT="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_APPROVAL_PROMPT%>";
+	var ST_ROLE_NAME_FEEDBACK_PROMPT="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_FEEDBACK_PROMPT%>";
+	var ST_ROLE_NAME_DM="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_DM%>";
 </script>
