@@ -1,7 +1,10 @@
 package com.aisino2.techsupport.common;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.codehaus.xfire.spring.SpringUtils;
 
 
@@ -63,9 +66,9 @@ public class Constants {
 //	技术支持单角色信息
 //	填报人
 	public static String ST_ROLE_NAME_APPLICANT="ts_填报人";
-//	总工
+//	总工 公司审批人
 	public static String ST_ROLE_NAME_CE="ts_总工";
-//	部门经理
+//	部门经理 技术部门审批人
 	public static String ST_ROLE_NAME_DEPTMANAGE="ts_部门经理";
 //	重庆区总
 	public static String ST_ROLE_NAME_RGM_CQ="ts_重庆区总";
@@ -75,6 +78,39 @@ public class Constants {
 	public static String ST_ROLE_NAME_STLEADER="ts_技术负责人";
 //	质量管理员
 	public static String ST_ROLE_NAME_QC="ts_技术质量员";
+	//反馈人
+	public static String ST_ROLE_NAME_FEEDBACKER;
+	//督办
+	public static String ST_ROLE_NAME_SUPERVISION;
+	//进展提醒
+	public static String ST_ROLE_NAME_TRACKING_PROMPT;
+	// 审批提醒 
+	public static String ST_ROLE_NAME_APPROVAL_PROMPT;
+	//	反馈提醒
+	public static String ST_ROLE_NAME_FEEDBACK_PROMPT;
+//	 0 数据管理 
+	public static String ST_ROLE_NAME_DM;
+	public static CommonUtil util;
+	private static Logger log=Logger.getLogger(Constants.class);
 	
-	
+	static {
+		util = new CommonUtil();
+		try {
+			ST_ROLE_NAME_APPLICANT = util.getTechSupportEnvConfig("techsupport.role.tech_support_leader_approve");
+			ST_ROLE_NAME_CE = util.getTechSupportEnvConfig("techsupport.role.tech_ce_approve");
+			ST_ROLE_NAME_DEPTMANAGE = util.getTechSupportEnvConfig("techsupport.role.tech_department_approve");
+			ST_ROLE_NAME_STLEADER = util.getTechSupportEnvConfig("techsupport.role.tech_support_leader_approve");
+			ST_ROLE_NAME_FEEDBACKER = util.getTechSupportEnvConfig("techsupport.role.tech_feedback");
+			ST_ROLE_NAME_SUPERVISION = util.getTechSupportEnvConfig("techsupport.role.tech_supervision");
+			ST_ROLE_NAME_TRACKING_PROMPT = util.getTechSupportEnvConfig("techsupport.role.tech_tracking_prompt");
+			ST_ROLE_NAME_APPROVAL_PROMPT = util.getTechSupportEnvConfig("techsupport.role.tech_approval_prompt");
+			ST_ROLE_NAME_FEEDBACK_PROMPT = util.getTechSupportEnvConfig("techsupport.role.tech_feedback_prompt");
+			ST_ROLE_NAME_DM = util.getTechSupportEnvConfig("techsupport.role.tech_data_manager");
+			
+		} catch (IOException e) {
+			log.error(e);
+			log.debug(e,e.fillInStackTrace());
+		}
+		
+	}
 }
