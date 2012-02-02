@@ -12,6 +12,10 @@ import org.codehaus.xfire.spring.SpringUtils;
 public class Constants {
 	//进行中
 	public static String ST_STATUS_GOING="going";
+	//带公司审批
+	public static String ST_STATUS_WAIT_COMPANY_APPRAVAL="wait_company_appraval";
+	//带部门审批
+	public static String ST_STATUS_WAIT_DEPARTMENT_APPRAVAL="wait_department_appraval";
 	//例外终止
 	public static String ST_STATUS_STOP="stop";
 	//已完成
@@ -30,6 +34,8 @@ public class Constants {
 	//区总区域映射字典代码
 	public static String ST_RGM_RG_MAP_DICT_CODE="dm_ts_rm_map";
 	
+	//地区代码与机构映射
+	public static String ST_RG_TO_DEPT_MAP="dm_ts_rd_map";
 	
 	//普通进展批复
 	public static String TRACKING_TYPE_TRACKING = "0";
@@ -46,7 +52,7 @@ public class Constants {
 	public static String TRACKING_TYPE_ARCHIVE = "50";
 	
 	//流程名称
-	public static final String workflowName = "技术支持单";
+	public static final String workflowName = "techsupport";
 	
 	//公司代码
 	public static String HTJD_DEPT_CODE="htdj";
