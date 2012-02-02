@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process key="techsupport1" name="技术支持单" version="5" xmlns="http://jbpm.org/4.4/jpdl">
+<process key="techsupport1" name="techsupport" version="1" xmlns="http://jbpm.org/4.4/jpdl">
    <start g="34,16,48,48" name="start1">
-      <transition to="总工审批"/>
+      <transition to="ce_appr"/>
    </start>
-   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="361,124,92,52" name="追踪批复">
-      <transition to="结束例外处理分支"/>
+   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="361,124,144,52" name="tracking_appr">
+      <description>追踪批复</description>
+      <transition to="exception_proc_end"/>
    </task>
-   <end g="566,416,48,48" name="结束"/>
-   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="565,123,92,52" name="反馈确认">
-      <transition to="归档"/>
-      <transition g="526,38:-85,-25" name="不与反馈" to="追踪批复"/>
+   <end g="566,416,48,48" name="end"/>
+   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="565,123,92,52" name="feedback">
+   	  <description>反馈确认</description>
+      <transition to="archive"/>
+      <transition g="526,38:-85,-25" name="no_feedback" to="tracking_appr"/>
    </task>
-   <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="719,103,92,52" name="归档">
-      <transition to="结束"/>
+   <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="719,103,92,52" name="archive">
+   	  <description>归档</description>
+      <transition to="end"/>
    </task>
-   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/ceApproval/ceApproval.jsp" g="12,99,92,52" name="总工审批">
-      <transition to="是否总工审批通过"/>
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/ceApproval/ceApproval.jsp" g="12,99,112,51" name="ce_appr">
+   	  <description>公司审批/总工审批</description>
+      <transition to="ce_appr_condition"/>
    </task>
-   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/deptApproval/deptApproval.jsp" g="108,187,92,52" name="部门审批">
-      <transition to="部门审批条件"/>
+   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/deptApproval/deptApproval.jsp" g="76,187,157,52" name="department_appr">
+      <description>部门审批</description>
+      <transition to="department_appr_condition"/>
    </task>
-   <decision expr="#{ceApprovalCode == approvalCodePassed ? '部门审批':'结束'}" g="49,300,48,48" name="是否总工审批通过">
-      <transition g="-85,-25" name="部门审批" to="部门审批"/>
-      <transition g="-62,-25" name="结束" to="结束"/>
+   <decision expr="#{ceApprovalCode == approvalCodePassed ? 'department_appr':'end'}" g="49,300,48,48" name="ce_appr_condition">
+      <description>公司审批条件/总工审批条件</description>
+      <transition g="-85,-25" name="department_appr" to="department_appr"/>
+      <transition g="-62,-25" name="end" to="end"/>
    </decision>
-   <decision expr="#{ deptApprovalCode == approvalCodePassed  ? '追踪批复' : '总工审批' }" g="168,69,48,48" name="部门审批条件">
-      <transition g="-53,-15" name="总工审批" to="总工审批"/>
-      <transition g="-65,-69" name="追踪批复" to="例外追踪分支"/>
+   <decision expr="#{ deptApprovalCode == approvalCodePassed  ? 'tracking_appr' : 'ce_appr' }" g="179,62,48,48" name="department_appr_condition">
+   	  <description>部门审批条件</description>
+      <transition g="-53,-15" name="ce_appr" to="ce_appr"/>
+      <transition g="-65,-69" name="tracking_appr" to="exception_tracking_fork"/>
    </decision>
    
-   <fork g="248,86,100,60" name="例外追踪分支">
-   	<transition to="追踪批复"/>
-   	<transition to="例外处理"/>
+   <fork g="248,86,100,60" name="exception_tracking_fork">
+   	<description>例外追踪处理分支</description>
+   	<transition to="tracking_appr"/>
+   	<transition to="exception_process"/>
    </fork>
-   <task candidate-users="#{exceptionHandlingUsers}" form="/business/techSupport/exception/exception.jsp" g="234,180,80,40" name="例外处理">
-   	<transition to="结束"/>
+   <task candidate-users="#{exceptionHandlingUsers}" form="/business/techSupport/exception/exception.jsp" g="250,204,171,46" name="exception_process">
+   	<transition to="end"/>
    </task>
-   <join name="结束例外处理分支" g="483,204,48,48" multiplicity="1">
-      <transition to="反馈确认"/>
+   <join g="483,204,48,48" multiplicity="1" name="exception_proc_end">
+      <transition to="feedback"/>
    </join>
 </process>
