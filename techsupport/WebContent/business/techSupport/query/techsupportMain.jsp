@@ -93,7 +93,18 @@ function lazyLoad(){
  					//设置申请人
  					$('#applicantName').val('<%=username%>');
  					$('#p_applicantId').val('<%=user.getUserid()%>');
-					continue; 					
+
+ 				/*
+ 					
+ 				*/
+ 					$("#slName").click(function(){
+						userDropDownBoxWithRole('slName','p_supportLeaderId',[ST_ROLE_NAME_STLEADER])
+	 	 			});
+	 	 			$('#rgName').click(function(){
+	 	 				getRegionWithRole('rgName','p_region');
+		 	 		});
+	 	 			$('#rgName').click();
+ 					
  				}
 //  				质量监督员 角色 控制
  				else if(ST_ROLE_NAME_QC == data.userRoleList[i].rolename){
@@ -105,7 +116,6 @@ function lazyLoad(){
  	 				$('#rgName').click(function(){
  	 					getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
  	 				});
- 	 				continue;
  	 			}
 //  	 			部门经理 角色控制
  				else if(ST_ROLE_NAME_DEPTMANAGE == data.userRoleList[i].rolename){
@@ -115,22 +125,24 @@ function lazyLoad(){
  						getUserofDept('slName','p_supportLeaderId',gxdwbm);
  					});
  					
- 					continue;
  				}
+ 				else{
 //  	 			区总角色控制
- 				for(j=0;j<rgm_mapping_dictitems.length;j++){
- 					if(data.userRoleList[i].rolename == rgm_mapping_dictitems[j].display_name){
- 						//设置申请人
- 						$('#applicantName').click(function(){
- 	 	 					getUserofDept('applicantName','p_applicantId',gxdwbm);
- 	 	 				});
- 						//设置大区
- 						var dictItem=getDictitem({dictcode:ST_REGION_DICT_CODE,value:rgm_mapping_dictitems[j].fact_value});
- 						$('#rgName').val(dictItem[0].display_name);
- 						$('#p_region').val(dictItem[0].fact_value);
- 						break;
- 					}
- 				}
+ 	 				for(j=0;j<rgm_mapping_dictitems.length;j++){
+ 	 					if(data.userRoleList[i].rolename == rgm_mapping_dictitems[j].display_name){
+ 	 						//设置申请人
+ 	 						$('#applicantName').click(function(){
+ 	 	 	 					getUserofDept('applicantName','p_applicantId',gxdwbm);
+ 	 	 	 				});
+ 	 						//设置大区
+ 	 						var dictItem=getDictitem({dictcode:ST_REGION_DICT_CODE,value:rgm_mapping_dictitems[j].fact_value});
+ 	 						$('#rgName').val(dictItem[0].display_name);
+ 	 						$('#p_region').val(dictItem[0].fact_value);
+ 	 						break;
+ 	 					}
+ 	 				}
+ 	 			}
+
  				
  			}
  			
