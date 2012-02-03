@@ -3,6 +3,20 @@
  * 
  */
 
+//设置DIV层内嵌jsp，覆盖setUrl()方法
+function setDictUrl(divid,url,data,func)
+{
+	$("#"+divid).empty();
+	$("#"+divid).load(url,data,func);
+}
+
+//弹出DIV层，覆盖setAddPage()方法
+function setDictPage(data,func)
+{
+	setDictWidth(detailidDict,addWidthDict);
+	setDictUrl(detailidDict,addHtmlDict,data,func);
+}
+
 function getUserofDept(mcId, dmId, gxdwbm) {
 	gmcId = mcId;
 	gdmId = dmId;
@@ -255,7 +269,11 @@ function selectBoxOption(selectboxEl, options, callbackFunc) {
 	}
 
 }
-
+/**
+ * 载入等待遮罩
+ * @param {} visable
+ * @param {} msg
+ */
 function showloading(visable,msg) {
 	var loaddiv;
 	var _visable=true;
@@ -333,3 +351,41 @@ function showloading(visable,msg) {
 	loaddiv.innerHTML = "<img width='32' height='32' src='business/techSupport/common/image/loading.gif'><h>"+_msg+"</h>";
 }
 
+
+function userDropDownBoxWithRole(mcId, dmId,rolename_list,gxdwbm){
+	gmcId = mcId;
+	gdmId = dmId;
+	gGxdwbm = gxdwbm;
+	if ($("#divs_" + mcId).length > 0) {
+		return;
+	} // yangbo 4.29 add:偶尔筛选不好用
+	shuaiXuanKuangComm(mcId, dmId);
+	detailidDict = "divs_" + gmcId;// DIV层的ID
+	addHtmlDict = "business/techSupport/common/UserofDeptDropDown.jsp";// DIV层内嵌的jsp页面
+	addWidthDict = "400"; // DIV层的宽度
+	
+	var s_rolename_list = "";
+	if (Object.prototype.toString.call(rolename_list) == "[object Array]"){
+		s_rolename_list = rolename_list.join(",");
+	}
+	else if (typeof(rolename_list) == "string"){
+		s_rolename_list = rolename_list;	
+	}
+	setDictPage({pageurl:'techsupport/querylistUserByRole_tscommon.action',rolename_list:s_rolename_list});
+
+}
+
+/** 获取更具当前用户的角色信息获取地区 mcId-字典显示值控件ID,dmId-字典实际值控件ID,dictCode-字典编码*/
+function getRegionWithRole(mcId,dmId,codeValue)
+{	
+	gmcId=mcId;
+	gdmId=dmId;
+	gdictCode=ST_REGION_DICT_CODE;
+	if($("#divs_"+mcId).length>0){return;} //yangbo 4.29 add:偶尔筛选不好用
+	shuaiXuanKuangComm(mcId,dmId);
+ 	detailidDict="divs_"+mcId;//DIV层的ID
+ 	
+    addHtmlDict="business/techSupport/common/dictDropDown.jsp";//DIV层内嵌的jsp页面
+	addWidthDict="420";	//DIV层的宽度
+	setDictPage({pageurl:'techsupport/querylistRegionByRole_tscommon.action'});
+}

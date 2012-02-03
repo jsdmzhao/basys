@@ -34,7 +34,7 @@
 	
 	//区总区域映射字典代码
 	var ST_RGM_RG_MAP_DICT_CODE="<%=com.aisino2.techsupport.common.Constants.ST_RGM_RG_MAP_DICT_CODE%>";
-	
+	var ST_RD_MAP_DICT_CODE = "<%=com.aisino2.techsupport.common.Constants.ST_RD_MAP_DICT_CODE%>";
 	
 	//普通进展批复
 	var TRACKING_TYPE_TRACKING="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_TRACKING%>";

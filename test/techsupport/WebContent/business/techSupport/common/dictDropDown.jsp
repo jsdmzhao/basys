@@ -4,13 +4,12 @@
 <html>
 <head>
 <script type="text/javascript">
-var parentDiv = $("#mybody_userofdeptDrop").parent();
 var detailidTopOffset,detailidLeftOffset;
-var userofdeptjbxx_detailidOffset = $("#divs_" + gmcId).offset();		
-detailidTopOffset=userofdeptjbxx_detailidOffset.top;
-detailidLeftOffset=userofdeptjbxx_detailidOffset.left;
+var ylcsjbxx_detailidOffset = $("#divs_" + gmcId).offset();		
+detailidTopOffset=ylcsjbxx_detailidOffset.top;
+detailidLeftOffset=ylcsjbxx_detailidOffset.left;
 
-pageUrld="techsupport/querylistUserofDept_tscommon.action";
+pageUrld="<%=request.getContextPath() %>/sysadmin/queryForDict_dict_item.action";
 divnidd="tabledatt";
 //tableidd="dictTable";
 //loadPage("tabledatt");
@@ -35,59 +34,49 @@ function setList1(pageno,url){
 }	
 
 $(document).ready(function() {
-	//设置提交路径
-	if($("#pageurl").val())
-		pageUrld=$("#pageurl").val();
-	//gdictCode=="kcyzx"，可以筛选已注销的场所
+	if($('#pageurl').val())
+		pageUrld = $('#pageurl').val();
 	
-	if(gdictCode!=null && gdictCode=="kcyzx"){
-		$("#t_depatname").val(0);
+	if(gcodeValue!=null && gcodeValue!=""){
+		$("#t_query_simplepin").val(gcodeValue);
 	}
+	if(gtreeParentId!=null && gtreeParentId!="")
+		$("#t_super_item_id").val(gtreeParentId);
+	setPageList1(1);	
 
-	$('#t_hylbdm').val(dataid);
-	if(gGxdwbm!=null && gGxdwbm!=""){
-		$("#t_username").before("<input type='hidden' id='t_departcode' value='"+gGxdwbm+"' />");
-	}
-	$("#t_username").focus();
-
-	setPageList1(1);
-	
 	//点击清除按钮，清除调用框及相应隐藏框的值
-
 	$("#b_clear").click(function(){
         mcId = gmcId;
 		dmId = gdmId;
-		if($("#" + mcId).length>0)
+		if($("#" + mcId).attr("id")!=null&&$("#" + mcId).attr("id")!=undefined )
  		{
  			$("#" + mcId).val("");
  		}
- 		if($("#" + dmId).length>0)
+ 		if($("#" + dmId).attr("id")!=null&&$("#" + dmId).attr("id")!=undefined )
  		{
  			$("#" + dmId).val("");
  		}
- 			
+ 				
     });
-	  
+    
     //回车键查询，选项上下移动
     var trIndex = 0;
     var keydownCode = 0;
     var tableIsFocus = 0;
-	$("#mybody_userofdeptDrop").keydown(function(event){
-   		 var trList = $("#userofdeptDropTable").find("tbody").find("tr");
+	$("#mybody_dictItemDrop").keydown(function(event){
+   		 var trList = $("#dictItemTable").find("tbody").find("tr");
 		if(event.keyCode == 13){//回车键
-
-			if($("#userofdeptDropTable").find("tbody").find("tr[sel='true']").length>0){
-				xuanzhongzhi($("#userofdeptDropTable").find("tbody").find("tr[sel='true']"));
+			if($("#dictItemTable").find("tbody").find("tr[sel='true']").length>0){
+				xuanzhongzhi($("#dictItemTable").find("tbody").find("tr[sel='true']"));
 				$("#divs_" + mcId).remove();
 			}else{
-				if($("#t_username").val()!="")
+				//if($("#t_query_simplepin").val()!="")
 					setPageList1(1);
 			}
 			event.stopPropagation();
 		}else if(event.keyCode == 38){//向上键
-
 			if(tableIsFocus == 0){
-				$("#userofdeptDropTable").focus();
+				$("#dictItemTable").focus();
 				tableIsFocus = 1;
 			}
 				if(keydownCode ==40)
@@ -102,16 +91,15 @@ $(document).ready(function() {
 				if(trIndex>0){
 					trIndex--;
 				}else if(trIndex==0){
-					$("#t_username").focus();
+					$("#t_query_simplepin").focus();
 					tableIsFocus = 0;
 					trIndex--;
 				}
 				
 		}else if(event.keyCode == 40){//向下键
-
 			
 			if(tableIsFocus == 0){
-				$("#userofdeptDropTable").focus();
+				$("#dictItemTable").focus();
 				tableIsFocus = 1;
 			}
 				if(keydownCode ==38)
@@ -130,44 +118,48 @@ $(document).ready(function() {
 var mygrid1d;
 function setPageList1(pageno,url){	
 		url=setList1(pageno,url);
+		$("#t_dict_code").val(gdictCode);
 		createXML("t_");
-		mygrid1d = $("#userofdeptTable").ingrid({ 
+		mygrid1d = $("#dictTable").ingrid({ 
 										ingridPageParams:sXML, 
-										tableid:"userofdeptDropTable",
+										tableid:"dictItemTable",
 										prefix:"t_",
-										ingridPageWidth:375,
-										ingridPageWidth: parentDiv.width(),
+										ingridPageWidth:420,
+										barTopOffset:-(detailidTopOffset),
+										barLeftOffset:-(detailidLeftOffset),
 										url:url,	
 										height: 250,
+										sorting: false,
 										pageNumber: pageno,
+										isPlayResultNull:false,//查询结果为空时不提示
 										onRowSelect:function(tr){
 											xuanzhongzhi(tr);
 											$("#divs_" + mcId).remove();
 										},
 										changeHref:function(table){
+											$("#t_query_simplepin").focus();
 											var trLength = table.find("tr").length;
 											if(trLength==1){
 												xuanzhongzhi(table.find("tr"));
 											}
 										},
-										colWidths: ["20%","35%","45%"]									
+										colWidths: ["36%","18%","36%","10%"]
 									});		
 }	
 
 //选中值
-
 function xuanzhongzhi(tr){
 	mcId = gmcId;
 	dmId = gdmId;
-	var mcva=$(tr).find("td").eq(0).text();
-	var dmva;
-			dmva=$(tr).find("td").eq(1).text();
+	mcva=$(tr).find("td").eq(0).text();
+	dmva=$(tr).find("td").eq(3).text();
 	$("#" + mcId).attr("value",mcva);
 	$("#" + dmId).attr("value",dmva);
-	}
+}
 </script>
 </head>
 <body>
+<div id="mybody_dictItemDrop">
 <%
 //提交路径
 String pageurl = request.getParameter("pageurl");
@@ -179,28 +171,21 @@ if(user_rolename_list == null)
 	user_rolename_list = "";
 %>
 <input type="hidden" id="pageurl" value="<%=pageurl%>"/>
-<%-- //++ 注意这不是表示的USERID，表示的角色名称，用“,”连接的字符串 --%>
-<input type="hidden" id="t_useridSet" value="<%=user_rolename_list %>"/>
-<%-- //-- 注意这不是表示的USERID，表示的角色名称，用“,”连接的字符串 --%>
-<div id="mybody_userofdeptDrop">
-<table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/toolbar.gif">
-  <tr>
-    	<td width="85%"  style="text-align:left">
-    	<input id='t_username' class="inputstyle3" type='text' style="width:98%" />
-    	<input id='t_depatname' type='hidden' />
-    	<input type="hidden" id="t_hylbdm"/>
-    	</td>
+<input id='t_super_item_id' type='hidden' />
+<table width="100%" border="0" cellpadding="0" cellspacing="0"  background="images/toolbar.gif">
+    <tr>
+    	<td width="85%"  style="text-align:left"><input id='t_query_simplepin' class="inputstyle3" type='text' style="width:98%" /></td>
     	<td width="15%" style="text-align:center"><img src="images/clear.gif" width="16" height="16" /><a href="#" id='b_clear' class="fontbutton1">[清除]</a></td>
    	</tr>
 </table> 
 <div id="tabledatt" style="width:100%;">
-
-	<table id="userofdeptTable" width="100%" border="1">
+	<table id="dictTable" width="100%" border="1">
 	  <thead>
 	    <tr>       
-	     	<th name="l_username">姓名</th>
-	     	<th name="l_userid">编号</th>
-	     	<th name="l_departname">岗位</th>
+	     	<th name="">名称</th>
+	     	<th name="">简拼</th>
+	     	<th name="">全拼</th>
+	     	<th name="">代码</th>
 	    </tr>
 	  </thead>
 	  
