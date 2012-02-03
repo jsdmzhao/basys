@@ -102,6 +102,13 @@
 		<isNotEmpty prepend="and" property="jzlbdm">
 		     a.jzlbdm =#jzlbdm#
 		</isNotEmpty>
+		<!-- 角色名称筛选 -->
+		<isNotEmpty prepend="and" property="userRoles">
+			exists (select ur.userid from t_user_role ur,t_role r 
+			where ur.userid = a.userid and r.roleid = ur.roleid and r.rolename in <iterate open="(" close=")" property="userRoles" conjunction=",">
+				#userRoles[]#
+			</iterate>)
+		</isNotEmpty>
 		</sql>
 	<sql id="t_userListWhere" >
 		<include refid="t_userWhere" />	</sql>

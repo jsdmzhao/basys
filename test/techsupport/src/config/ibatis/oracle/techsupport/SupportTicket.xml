@@ -76,6 +76,7 @@
 		<result property="id" column="ID" />
 		<result property="devDsScheDate" column="DEV_DS_SCHE_DATE" />
 		<result property="devDdScheDate" column="DEV_DD_SCHE_DATE" />
+		<result property="devDtScheDate" column="DEV_DT_SCHE_DATE"/>
 		<result property="psgDsScheDate" column="PSG_DS_SCHE_DATE" />
 		<result property="psgIsScheDate" column="PSG_IS_SCHE_DATE" />
 
@@ -85,6 +86,7 @@
 		<result property="psgIsCompDate" column="PSG_IS_COMP_DATE" />
 		<result property="psgIsCompDate" column="DEV_DS_COMP_DATE" />
 		<result property="devDdCompDate" column="DEV_DD_COMP_DATE" />
+		<result property="devDtCompDate" column="DEV_DT_COMP_DATE" />
 		<result property="applyingFeedbackDate" column="APPLYING_FEEDBACK_DATE" />
 
 		<result property="feedbackConfirmDate" column="FEEDBACK_CONFIRM_DATE" />
@@ -339,7 +341,12 @@
 			<isNotNull prepend="," property="archiveUser">
 				ARCHIVE_USERID=#archiveUser.userid#
 			</isNotNull>
-
+			<isNotNull prepend="," property="devDtCompDate">
+				DEV_DT_COMP_DATE=#devDtCompDate#
+			</isNotNull>
+			<isNotNull prepend="," property="devDtScheDate">
+				DEV_DT_SCHE_DATE=#devDtScheDate#
+			</isNotNull>
 		</dynamic>
 
 		where ID = #id#
@@ -353,21 +360,29 @@
 	
 	<sql id="SupportTicketWhere">
 	
-		<isNotNull prepend="and" property="region">
+		<isNotEmpty prepend="and" property="region">
 			t.region=#region#
-		</isNotNull>
-		<isNotNull prepend="and" property="applicant.userid">
+		</isNotEmpty>
+		<!-- 默认地区范围 -->
+		<isEmpty prepend="and" property="region">
+			<isNotEmpty prepend="user_region_list">
+				t.region in <iterate open="(" close=")" property="user_region_list" conjunction=",">
+					#user_region_list[].fact_value#
+				</iterate>
+			</isNotEmpty>
+		</isEmpty>
+		<isNotEmpty prepend="and" property="applicant.userid">
 			t.applicant=#applicant.userid#
-		</isNotNull>
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="stStatus">
 			t.ST_STATUS=#stStatus#
 		</isNotEmpty>
-		<isNotNull prepend="and" property="id">
+		<isNotEmpty prepend="and" property="id">
 			t.id=#id#
-		</isNotNull>
-		<isNotNull prepend="and" property="stNo">
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="stNo">
 			t.ST_NO like '$stNo$%'
-		</isNotNull>
+		</isNotEmpty>
 		
 	</sql>
 	<sql id="SupportTicketPageWhere">
@@ -471,6 +486,7 @@
 				t.DEV_DS_SCHE_DATE,
 				
 				t.DEV_DD_SCHE_DATE,
+				t.DEV_DT_SCHE_DATE,
 				
 				t.PSG_DS_SCHE_DATE,
 				
@@ -479,6 +495,7 @@
 				t.PSG_COMP_DATE,
 				
 				t.DEV_COMP_DATE,
+				
 				
 				t.APPLYING_FEEDBACK_DATE,
 				
@@ -489,7 +506,7 @@
 				t.DEV_DS_COMP_DATE,
 				
 				t.DEV_DD_COMP_DATE,
-				
+				t.DEV_DT_COMP_DATE, 
 				t.FEEDBACK_CONFIRM_DATE,
 				
 				t.COMMENTS,
