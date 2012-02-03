@@ -35,7 +35,7 @@ public class Constants {
 	public static String ST_RGM_RG_MAP_DICT_CODE="dm_ts_rm_map";
 	
 	//地区代码与机构映射
-	public static String ST_RG_TO_DEPT_MAP="dm_ts_rd_map";
+	public static String ST_RD_MAP_DICT_CODE="dm_ts_rd_map";
 	
 	//普通进展批复
 	public static String TRACKING_TYPE_TRACKING = "0";
@@ -102,7 +102,7 @@ public class Constants {
 	static {
 		util = new CommonUtil();
 		try {
-			ST_ROLE_NAME_APPLICANT = util.getTechSupportEnvConfig("techsupport.role.tech_support_leader_approve");
+			ST_ROLE_NAME_APPLICANT = util.getTechSupportEnvConfig("techsupport.role.tech_apply_reporter");
 			ST_ROLE_NAME_CE = util.getTechSupportEnvConfig("techsupport.role.tech_ce_approve");
 			ST_ROLE_NAME_DEPTMANAGE = util.getTechSupportEnvConfig("techsupport.role.tech_department_approve");
 			ST_ROLE_NAME_STLEADER = util.getTechSupportEnvConfig("techsupport.role.tech_support_leader_approve");

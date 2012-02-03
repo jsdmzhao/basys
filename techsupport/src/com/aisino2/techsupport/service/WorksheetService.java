@@ -1,8 +1,10 @@
 package com.aisino2.techsupport.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.aisino2.core.dao.Page;
+import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.techsupport.domain.Worksheet;
 
 public interface WorksheetService {
@@ -53,5 +55,8 @@ public interface WorksheetService {
 	 * @return 工作单
 	 */
 	Worksheet getWorksheetTask(String taskId);
+	
+	List<Dict_item> get_region_with_userrole(Map map);
+	Page get_region_with_userrole_for_page(Map map);
 	
 }
