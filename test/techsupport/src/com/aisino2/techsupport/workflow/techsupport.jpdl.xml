@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process key="techsupport1" name="techsupport" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+<process key="techsupport2" name="techsupport" version="1" xmlns="http://jbpm.org/4.4/jpdl">
    <start g="34,16,48,48" name="start1">
       <transition to="ce_appr"/>
    </start>
    <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="361,124,144,52" name="tracking_appr">
       <description>追踪批复</description>
-      <transition to="exception_proc_end"/>
+      <transition to="terminate_exception_proc"/>
    </task>
    <end g="566,416,48,48" name="end"/>
    <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="565,123,92,52" name="feedback">
@@ -42,10 +42,12 @@
    	<transition to="tracking_appr"/>
    	<transition to="exception_process"/>
    </fork>
-   <task candidate-users="#{exceptionHandlingUsers}" form="/business/techSupport/exception/exception.jsp" g="250,204,171,46" name="exception_process">
+   <task candidate-users="#{exception_handling_users}" form="/business/techSupport/exception/exception.jsp" g="250,204,171,46" name="exception_process">
+   	<description>例外处理</description>
    	<transition to="end"/>
    </task>
-   <join g="483,204,48,48" multiplicity="1" name="exception_proc_end">
+   <join g="483,204,48,48" multiplicity="1" name="terminate_exception_proc">
+      <description>结束例外处理分支</description>
       <transition to="feedback"/>
    </join>
 </process>

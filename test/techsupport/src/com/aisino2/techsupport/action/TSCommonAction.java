@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -21,12 +22,15 @@ import org.springframework.stereotype.Component;
 
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
+import com.aisino2.sysadmin.Constants;
 import com.aisino2.sysadmin.domain.Department;
+import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDepartmentService;
 import com.aisino2.sysadmin.service.IUserService;
 import com.aisino2.techsupport.domain.Attachment;
 import com.aisino2.techsupport.service.IAttachmentService;
+import com.aisino2.techsupport.service.WorksheetService;
 
 /**
  * 
@@ -38,6 +42,7 @@ import com.aisino2.techsupport.service.IAttachmentService;
 public class TSCommonAction extends PageAction {
 	private IDepartmentService departmentService;
 	private IUserService userService;
+	private WorksheetService sheet_service;
 	private List<User> userList;
 	private User user;
 	private Department dept;
@@ -256,7 +261,63 @@ public class TSCommonAction extends PageAction {
 	public String deleteFile() throws Exception {
 		return SUCCESS;
 	}
+	// ++ 通过角色筛选用户
+	/**
+	 * 通过角色筛选用户
+	 * @return
+	 * @throws Exception
+	 */
+	public String querylistUserByRole() throws Exception{
+		
+		User setUser = new User();
+		user = (User) this.setClass(setUser, null);
 
+		dept = new Department();
+		if(user.getDepartcode()!=null && !"".equals(user.getDepartcode())){
+			dept.setDepartcode(user.getDepartcode());
+			dept = departmentService.getDepartment(dept);
+		}
+		
+		Map map = new HashMap();
+
+		map.put("username", user.getUsername());
+		map.put("departid", dept.getDepartid());
+		//++设置角色名称列表
+		List<String> rolename_list = new ArrayList<String>();
+		rolename_list.addAll(Arrays.asList(user.getUseridSet().split(",")));
+		map.put("userRoles", rolename_list);
+		//--设置角色名称列表
+		Page userpageList = userService.getListForPage(map, pagesize, pagerow,
+				null, "desc");
+
+		userList = userpageList.getData();
+		for (User user : userList) {
+			user.setDepartname(user.getDepartment().getDepartname());
+		}
+		totalpage = userpageList.getTotalPages();
+		totalrows = userpageList.getTotalRows();
+
+		setTabledata(userList);
+		this.result = "success";
+		return SUCCESS;
+	}
+	
+	// -- 通过角色筛选用户 
+	
+	// ++ 通过角色筛选地区字典
+	
+	public String querylistRegionByRole() throws Exception{
+		User current_user = (User) this.getRequest().getSession().getAttribute(Constants.userKey);
+		Dict_item item = new Dict_item();
+		item = (Dict_item)this.setClass(item, null);
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("userid", current_user.getUserid());
+		
+		this.result = SUCCESS;
+		return SUCCESS;
+	}
+	// -- 通过角色筛选地区字典
 	public List<User> getUserList() {
 		return userList;
 	}
@@ -343,6 +404,11 @@ public class TSCommonAction extends PageAction {
 	@Resource(name="attachmentServiceImpl")
 	public void setAttachmentService(IAttachmentService attachmentService) {
 		this.attachmentService = attachmentService;
+	}
+
+	@Resource(name="WorksheetServiceImpl")
+	public void setSheet_service(WorksheetService sheet_service) {
+		this.sheet_service = sheet_service;
 	}
 
 //	public File getUpload() {
