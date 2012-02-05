@@ -365,7 +365,7 @@
 		</isNotEmpty>
 		<!-- 默认地区范围 -->
 		<isEmpty prepend="and" property="region">
-			<isNotEmpty prepend="user_region_list">
+			<isNotEmpty property="user_region_list">
 				t.region in <iterate open="(" close=")" property="user_region_list" conjunction=",">
 					#user_region_list[].fact_value#
 				</iterate>
@@ -421,10 +421,17 @@
 			and 
 			a.departid=#limitDeparement#
 		</isNotEmpty>
+		
+		<!-- ++ 意见回复人 -->
+		<isNotEmpty prepend="and" property="tracking_person">
+			tr.processor = #tracking_person#
+		</isNotEmpty>
+		<!-- __ 意见回复人 -->
+		
 	</sql>
 
 	<sql id="SupportTicketFrom">
-		<isNotEmpty prepend="," property="type">
+		<isNotEmpty prepend="," property="join_tracking">
 		 		T_TS_TRACKING tr
 		 </isNotEmpty>
 		 

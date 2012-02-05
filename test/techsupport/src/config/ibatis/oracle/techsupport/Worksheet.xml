@@ -95,28 +95,28 @@
 	</select>
 	
 	<select id="get_region_with_deptcode" parameterClass="map" resultClass="dict_item">
-		select t.* from t_dict_item t,t_dict_item b,t_department d where t.dict_code = 'dm_ts_regin'
-	    and t.fact_value = b.fact_value 
-	    and b.dict_code = 'dm_ts_rd_map' 
-	    and d.departcode = #departcode#
+		select t.* from t_dict_item t,t_dict_item b,t_department ur,t_role r where t.dict_code = 'dm_ts_regin'
+		    and t.fact_value = b.fact_value and ur.departid=r.departid
+		    and b.dict_code = 'dm_ts_rm_map' and r.rolename = b.display_name
+		    and ur.departcode=#departcode#
 	</select>
 	
 	<select id="get_region_with_deptcode_for_page"  parameterClass="map" resultClass="dict_item">
 		select x.* from (
 		select rownum rowno,z.* from 
 		(
-			select t.* from t_dict_item t,t_dict_item b,t_department d where t.dict_code = 'dm_ts_regin'
-		    and t.fact_value = b.fact_value 
-		    and b.dict_code = 'dm_ts_rd_map' 
-		    and d.departcode = #departcode#
+			select t.* from t_dict_item t,t_dict_item b,t_department ur,t_role r where t.dict_code = 'dm_ts_regin'
+		    and t.fact_value = b.fact_value and ur.departid=r.departid
+		    and b.dict_code = 'dm_ts_rm_map' and r.rolename = b.display_name
+		    and ur.departcode=#departcode#
 		order by $pageSort$)  z 
 		) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$
 	</select>
 	
 	<select id="get_region_with_deptcode_for_pageCount" parameterClass="map" resultClass="int">
-		select count(1) from t_dict_item t,t_dict_item b,t_department d where t.dict_code = 'dm_ts_regin'
-		    and t.fact_value = b.fact_value 
-		    and b.dict_code = 'dm_ts_rd_map' 
-		    and d.departcode = #departcode#
+		select count(1) from t_dict_item t,t_dict_item b,t_department ur,t_role r where t.dict_code = 'dm_ts_regin'
+		    and t.fact_value = b.fact_value and ur.departid=r.departid
+		    and b.dict_code = 'dm_ts_rm_map' and r.rolename = b.display_name
+		    and ur.departcode=#departcode#
 	</select>
 </sqlMap>

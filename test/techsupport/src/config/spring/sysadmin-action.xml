@@ -49,7 +49,7 @@
 	  <property name="userRoleService" ref="user_roleService"/>
 	  <property name="dict_itemService" ref="dict_itemService"/>
 	</bean>
-	<!--系统管理树action-->
+	<!-- 系统管理树action -->
 	<bean  id="treeAction" class="com.aisino2.sysadmin.action.TreeAction" scope="prototype">
 	  <property name="systemService" ref="systemService"/>
 	  <property name="departmentService" ref="departmentService"/>
