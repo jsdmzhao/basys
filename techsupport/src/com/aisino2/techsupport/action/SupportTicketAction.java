@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.sound.midi.Track;
 
 import org.drools.lang.dsl.DSLMapParser.mapping_file_return;
+import org.eclipse.jdt.core.IWorkingCopy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ import com.aisino2.techsupport.domain.Tracking;
 import com.aisino2.techsupport.domain.Worksheet;
 import com.aisino2.techsupport.service.SupportTicketService;
 import com.aisino2.techsupport.service.TrackingService;
+import com.aisino2.techsupport.service.WorksheetService;
 
 @Component
 @Scope("prototype")
@@ -44,6 +46,13 @@ public class SupportTicketAction extends PageAction {
 	private String tabledata;
 	private String result;
 	private int totalrows = 0;
+
+	private WorksheetService worksheet_service;
+	
+	@Resource(name="WorksheetServiceImpl")
+	public void setWorksheet_service(WorksheetService worksheet_service) {
+		this.worksheet_service = worksheet_service;
+	}
 
 	/**
 	 * 支持单查询
@@ -82,6 +91,20 @@ public class SupportTicketAction extends PageAction {
 		params.put("trackDateTo", tracking.getTrackingDateTo());
 		params.put("limitDeparement", limitDeparement.getDepartid());
 		
+//		++ 意见回复人 
+		params.put("tracking_person",tracking.getProcessorId());
+//		-- 意见回复人 
+		// ++ 默认用户管辖范围
+		User current_user  = (User)this.getRequest().getSession().getAttribute(com.aisino2.sysadmin.Constants.userKey);
+		Map map = new HashMap();
+		map.put("userid", current_user.getUserid());
+		map.put("departcode", current_user.getDepartcode());
+		List region_list = worksheet_service.get_region_with_userrole(map);
+		params.put("user_region_list", region_list);
+		// -- 默认用户管辖范围
+		//设置TRACKING关联标识
+		if(params.get("type")!=null || params.get("tracking_person") != null)
+			params.put("join_tracking", true);
 		Page page = stService.getListSupportTicketForPage(params,
 				this.pagesize, this.pagerow, this.sort, this.dir);
 		totalpage = page.getTotalPages();

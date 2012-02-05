@@ -2,6 +2,7 @@ package com.aisino2.techsupport.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDict_itemService;
 import com.aisino2.techsupport.common.Constants;
+import com.aisino2.techsupport.dao.WorksheetDao;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Worksheet;
 import com.aisino2.techsupport.service.SupportTicketService;
@@ -27,12 +29,18 @@ public class WorksheetServiceImpl extends BaseService implements
 		WorksheetService {
 	private IDict_itemService dicItemService;
 	private SupportTicketService stService;
+	private WorksheetDao worksheet_dao;
+
 
 	/**
 	 * 流程服务
 	 */
 	private WorkflowUtil workflow;
 
+	@Resource(name="WorksheetDaoImpl")
+	public void setWorksheet_dao(WorksheetDao worksheet_dao) {
+		this.worksheet_dao = worksheet_dao;
+	}
 	public List<Worksheet> getWorksheetTaskList(String assignee,
 			String activity, String candidateUser, String slNo, String region) {
 		TaskService taskService = workflow.getTaskService();
@@ -316,5 +324,26 @@ public class WorksheetServiceImpl extends BaseService implements
 	@Resource(name = "WorkflowUtil")
 	public void setWorkflow(WorkflowUtil workflow) {
 		this.workflow = workflow;
+	}
+
+	@Override
+	public List<Dict_item> get_region_with_userrole(Map map) {
+		List<Dict_item> result_list = this.worksheet_dao.get_region_with_userrole(map);
+		if(!result_list.isEmpty()){
+			return result_list;
+		}
+		else{
+			result_list = this.worksheet_dao.get_region_with_deptcode(map);
+			return result_list;
+		}
+			
+	}
+
+	@Override
+	public Page get_region_with_userrole_for_page(Map map,int pageno,int pagesize,String dir, String sort) {
+		Page result = this.worksheet_dao.get_region_with_userrole_for_page(map, pageno, pagesize, dir, sort);
+		if(result.getData().isEmpty())
+			result = this.worksheet_dao.get_region_with_deptcode_for_page(map, pageno, pagesize, dir, sort);
+		return result;
 	}
 }

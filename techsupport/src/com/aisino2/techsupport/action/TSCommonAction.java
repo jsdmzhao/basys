@@ -19,15 +19,19 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.Constants;
+import com.aisino2.sysadmin.action.Dict_itemAction;
+import com.aisino2.sysadmin.dao.IUser_roleDao;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDepartmentService;
 import com.aisino2.sysadmin.service.IUserService;
+import com.aisino2.sysadmin.service.IUser_roleService;
 import com.aisino2.techsupport.domain.Attachment;
 import com.aisino2.techsupport.service.IAttachmentService;
 import com.aisino2.techsupport.service.WorksheetService;
@@ -59,19 +63,57 @@ public class TSCommonAction extends PageAction {
 	private String uploadId;
 	
 	private IAttachmentService attachmentService;
+	//机构代码列表
+	private List departcode_list;
+	private IUser_roleService userrole_service;
 	
+	@Resource(name="user_roleService")
+	public void setUserrole_service(IUser_roleService userrole_service) {
+		this.userrole_service = userrole_service;
+	}
+
+	public List getDepartcode_list() {
+		return departcode_list;
+	}
+
+	public void setDepartcode_list(List departcode_list) {
+		this.departcode_list = departcode_list;
+	}
+
 	public String querylistUserofDept() throws Exception {
 
 		User setUser = new User();
 		user = (User) this.setClass(setUser, null);
-
-		dept = new Department();
-		dept.setDepartcode(user.getDepartcode());
-
+		
 		Map map = new HashMap();
+		//是否递归,用user对象里面checkbox字段来存放递归标识
+		map.put("is_recursive", Boolean.parseBoolean(user.getCheckbox()));
+		departcode_list = new ArrayList<String>();
+		dept = new Department();
+		if(user.getDepartcode()!=null && !"".equals(user.getDepartcode())){
+			for(String departcode : user.getDepartcode().split(",")){
+				dept.setDepartcode(departcode);
+				dept = departmentService.getDepartment(dept);
+				if(map.get("is_recursive") == Boolean.FALSE)
+					departcode_list.add(dept.getDepartcode());
+				else
+					departcode_list.add(dept.getDepartfullcode());
+			}
+			
+		}
+		
+		
 
 		map.put("username", user.getUsername());
-		map.put("departid", departmentService.getDepartment(dept).getDepartid());
+		//多个机构
+		map.put("departcodes", departcode_list);
+		
+		
+		//++设置角色名称列表
+		List<String> rolename_list = new ArrayList<String>();
+		rolename_list.addAll(Arrays.asList(user.getUseridSet().split(",")));
+		map.put("userRoles", rolename_list);
+		//--设置角色名称列表
 
 		Page userpageList = userService.getListForPage(map, pagesize, pagerow,
 				null, "desc");
@@ -88,6 +130,18 @@ public class TSCommonAction extends PageAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 获取用户管辖地区的机构代码
+	 * @return
+	 * @throws Exception
+	 */
+	public String find_departcode_of_userrole() throws Exception{
+		if(user == null || user.getUserid() == null)
+			throw new RuntimeException("需要获取用户管辖地区机构代码的用户ID为空");
+		
+		return SUCCESS;
+	}
+	
 	public void setTabledata(List lData) throws Exception {
 		List lPro = new ArrayList();
 		lPro.add("userid");
@@ -313,11 +367,32 @@ public class TSCommonAction extends PageAction {
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		map.put("userid", current_user.getUserid());
-		
+		Page page = sheet_service.get_region_with_userrole_for_page(map,pagesize,pagerow,dir,sort);
+		totalpage = page.getTotalPages();
+		totalrows = page.getTotalRows();
+		setTabledataDict(page.getData());
 		this.result = SUCCESS;
 		return SUCCESS;
 	}
+	
+	public void setTabledataDict(List lData) throws Exception{
+		List lPro=new ArrayList();
+		lPro.add("item_id");
+		
+		lPro.add("display_name");
+		lPro.add("item_simplepin");
+		lPro.add("item_allpin");
+		lPro.add("fact_value");
+    	
+    	Dict_item getDict_item=new Dict_item();
+    	
+        this.setData(getDict_item,lData,lPro,null);
+        this.tabledata=this.getData();
+        totalrows=this.getTotalrows();
+	}
 	// -- 通过角色筛选地区字典
+	
+	
 	public List<User> getUserList() {
 		return userList;
 	}

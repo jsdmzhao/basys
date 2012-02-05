@@ -3,12 +3,15 @@ package com.aisino2.techsupport.dao.ibatis;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.aisino2.core.dao.BaseDao;
 import com.aisino2.core.dao.Page;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.techsupport.dao.WorksheetDao;
 
-public class WorksheetDaoImpl extends BaseDao implements WorksheetDao {
+@Component("WorksheetDaoImpl")
+public class WorksheetDaoImpl extends TechSupportBaseDao  implements WorksheetDao {
 
 	public List<Dict_item> get_region_with_userrole(Map user) {
 		return this.queryForList("get_region_with_userrole", user);

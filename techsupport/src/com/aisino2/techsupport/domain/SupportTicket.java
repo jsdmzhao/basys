@@ -75,7 +75,16 @@ public class SupportTicket {
 	
 	//附件信息
 	private List<Attachment> attachment_list;
+
+	//督办
+	private List<Supervision> supervision_list;
 	
+	public List<Supervision> getSupervision_list() {
+		return supervision_list;
+	}
+	public void setSupervision_list(List<Supervision> supervision_list) {
+		this.supervision_list = supervision_list;
+	}
 	public String getStNo() {
 		return stNo;
 	}

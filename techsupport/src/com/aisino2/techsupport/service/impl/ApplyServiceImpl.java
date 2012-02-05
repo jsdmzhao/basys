@@ -38,8 +38,9 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 	
 	public void insertApplyAndGo(SupportTicket st) {
 		SupportTicket supportTicket = null;
-		
-		st.setStStatus(Constants.ST_STATUS_GOING);
+		//设置支持单流程状态 为 待公司审批
+//		st.setStStatus(Constants.ST_STATUS_GOING);
+		st.setStStatus(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL);
 		try{
 			
 			supportTicket=this.stService.insertSupportTicket(st);
@@ -55,12 +56,12 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 //				candidateUsers.put("trackingUsers", "");
 //			总工审核
 			Role cerole=new Role();
-			cerole.setRolename(util.getTechSupportEnvConfig("techsupport.role.tech_ce_approve"));
+			cerole.setRolename(Constants.ST_ROLE_NAME_CE);
 			try{
 				cerole=(Role) roleService.getListRole(cerole).get(0);
 			}catch (IndexOutOfBoundsException e) {
 				
-				RuntimeException a= new RuntimeException("角色["+util.getTechSupportEnvConfig("techsupport.role.tech_quality_control")+"] 未创建..");
+				RuntimeException a= new RuntimeException("角色["+Constants.ST_ROLE_NAME_CE+"] 未创建..");
 				log.error(a,a.fillInStackTrace());
 				throw a;
 			}
