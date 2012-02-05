@@ -9,6 +9,8 @@
 		<!--机构(t_department)-->
 	<sqlMap resource="config/ibatis/oracle/sysadmin/Department.xml"/>
 	<sqlMap resource="config/ibatis/oracle/sysadmin/User.xml"/>
+	<!--字典项(t_dict_item)-->
+	<sqlMap resource="config/ibatis/oracle/sysadmin/Dict_item.xml"/>
 	<!-- 技术支持单 -->
 	<sqlMap resource="config/ibatis/oracle/techsupport/SupportTicket.xml"/>
 	<!-- 追踪批复 -->
@@ -19,6 +21,9 @@
 	<sqlMap resource="config/ibatis/oracle/techsupport/SmsBoxSending.xml"/>
 <!-- 	技术负责人关联 -->
 	<sqlMap resource="config/ibatis/oracle/techsupport/SupportLeaderRelation.xml"/>
+	<!-- 	公共 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/Worksheet.xml"/>
 <!-- 	附件 -->
 	<sqlMap resource="config/ibatis/oracle/techsupport/Attachment.xml"/>
+
 </sqlMapConfig>

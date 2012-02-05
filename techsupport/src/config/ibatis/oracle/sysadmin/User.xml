@@ -109,6 +109,22 @@
 				#userRoles[]#
 			</iterate>)
 		</isNotEmpty>
+		
+		<!-- ++ 按照多个单位代码筛选 -->
+		<isNotEmpty prepend="and" open="(" close=")" property="departcodes">
+			<isEqual prepend="" property="is_recursive" compareValue="true">
+				<iterate conjunction="or" property="departcodes">
+					d.departfullcode like '$departcodes[]$%'
+				</iterate>
+			</isEqual>
+			
+			<isEqual prepend="" property="is_recursive" compareValue="false">
+				<iterate prepend="" property="departcodes">
+					d.departcode = #departcodes[]#
+				</iterate>
+			</isEqual>
+		</isNotEmpty>
+		<!-- __ 按照多个单位代码筛选  -->
 		</sql>
 	<sql id="t_userListWhere" >
 		<include refid="t_userWhere" />	</sql>
@@ -265,8 +281,8 @@
 	</select>
 	<!--用户(t_user)-->
 	<select id="getUserListCount" resultClass="int" parameterClass="map">
-		select count(1) a from t_user a
-		where 1=1
+		select count(1) a from t_user a,t_department d 
+		where 1=1 and d.departid=a.departid
 		<dynamic prepend="">
 			<include refid="t_userPageWhere" />
 		</dynamic>
