@@ -23,7 +23,7 @@
 <div id="feedback">
 	<div class="row">
 		<div class="column">
-			<label class="label">技术支持单编码:</label>
+			<label class="label">技术支持单编号:</label>
 			<input type="text" class="item ro inputstyle" id="p_stNo" name="st.stNo">
 			<div class="clear-column"></div>
 		</div>
@@ -326,7 +326,7 @@
 	
 		<div class="column" style="width: 530px;">
 			<div>
-				<label class="label label-80 red">进展填写:</label>
+				<label class="label label-80 red">反馈确认填写:</label>
 				<input type="hidden" name="tracking.type" value="<%=Constants.TRACKING_TYPE_FEEDBACK%>">
 				<textarea class="item inputstyle" style="width:400px ! important;height: 78px;" name="tracking.newProcess" id="p_newProcess"></textarea>
 			</div>

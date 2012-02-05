@@ -20,7 +20,7 @@ $(function(){
 	$('.ro').attr('readonly',true);
 //	设置申请人
 	$('#applicantName').click(function(){
-		getUserofDept('applicantName','applicantId',gxdwbm);
+		getUserofDept('applicantName','applicantId',gxdwbm,ST_ROLE_NAME_APPLICANT);
 	});
 	//设置大区
 	$('#regionName').click(function(){

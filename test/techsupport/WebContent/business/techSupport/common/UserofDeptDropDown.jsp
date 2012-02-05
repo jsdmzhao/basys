@@ -177,11 +177,17 @@ if(pageurl==null)
 String user_rolename_list = request.getParameter("rolename_list");
 if(user_rolename_list == null)
 	user_rolename_list = "";
+//递归标识
+String is_recursive = request.getParameter("is_recursive");
+if(is_recursive == null)
+	is_recursive = "false";
 %>
 <input type="hidden" id="pageurl" value="<%=pageurl%>"/>
 <%-- //++ 注意这不是表示的USERID，表示的角色名称，用“,”连接的字符串 --%>
 <input type="hidden" id="t_useridSet" value="<%=user_rolename_list %>"/>
 <%-- //-- 注意这不是表示的USERID，表示的角色名称，用“,”连接的字符串 --%>
+<%-- 递归标识 --%>
+<input type="hidden" id="t_checkbox" value="<%=is_recursive%>">
 <div id="mybody_userofdeptDrop">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/toolbar.gif">
   <tr>
