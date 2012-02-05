@@ -54,7 +54,7 @@
 		<div id="queryPanel">
 			<div class="row">
 				<div class="column pagedistd">
-					<label class="label pagedistd">技术支持单编码:</label>
+					<label class="label pagedistd">技术支持单编号:</label>
 					<input type="text" class="item inputstyle" name="p_stNo" id="p_stNo">
 					<div class="clear-column"></div>
 				</div>
@@ -111,7 +111,7 @@
 			     	<th name="l_region">区域</th>
 			     	<th name="l_applicant">申请人</th>
 			     	<th name="l_supportLeader">技术支持人</th>
-			     	<th name="l_supportDept">技术支持单位</th>
+			     	<th name="l_supportDept">技术支持部门</th>
 			     	<th name="l_stStatus">状态</th>
 			     	<th name="l_taskName">环节</th>
 			     	<th name="">操作</th>

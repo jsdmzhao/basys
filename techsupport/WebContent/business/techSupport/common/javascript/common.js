@@ -17,7 +17,7 @@ function setDictPage(data,func)
 	setDictUrl(detailidDict,addHtmlDict,data,func);
 }
 
-function getUserofDept(mcId, dmId, gxdwbm) {
+function getUserofDept(mcId, dmId, gxdwbm,rolename_list,is_recursive) {
 	gmcId = mcId;
 	gdmId = dmId;
 	gGxdwbm = gxdwbm;
@@ -28,7 +28,17 @@ function getUserofDept(mcId, dmId, gxdwbm) {
 	detailidDict = "divs_" + gmcId;// DIV层的ID
 	addHtmlDict = "business/techSupport/common/UserofDeptDropDown.jsp";// DIV层内嵌的jsp页面
 	addWidthDict = "400"; // DIV层的宽度
-	setDictPage();
+
+	var s_rolename_list = "";
+	if (Object.prototype.toString.call(rolename_list) == "[object Array]"){
+		s_rolename_list = rolename_list.join(",");
+	}
+	else if (typeof(rolename_list) == "string"){
+		s_rolename_list = rolename_list;	
+	}
+	if(!is_recursive)
+		is_recursive = null;
+	setDictPage({rolename_list:s_rolename_list,is_recursive:is_recursive});
 }
 
 /**

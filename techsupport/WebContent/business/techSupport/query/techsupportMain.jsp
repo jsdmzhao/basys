@@ -80,14 +80,16 @@ function lazyLoad(){
 			$(this).attr('readOnly',true);
 			$(this).datepicker();
 		});
+
 		
 		$('.ro').attr('readOnly',true);
-		
+
+ 		
 		var roleURL="sysadmin/queryUsreRoleList_user.action"
 		setParams('t_');
  		$.post(roleURL,params,function(data){
  			var rgm_mapping_dictitems=getDictitem({dictcode:ST_RGM_RG_MAP_DICT_CODE});
- 			for(i=0;i<data.userRoleList.length;i++){
+ 			for(var i=0;i<data.userRoleList.length;i++){
 //  				申请人角色 申请人选择框控制
  				if(ST_ROLE_NAME_APPLICANT == data.userRoleList[i].rolename){
  					//设置申请人
@@ -98,12 +100,8 @@ function lazyLoad(){
  					
  				*/
  					$("#slName").click(function(){
-						userDropDownBoxWithRole('slName','p_supportLeaderId',[ST_ROLE_NAME_STLEADER])
+ 						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
 	 	 			});
-	 	 			$('#rgName').click(function(){
-	 	 				getRegionWithRole('rgName','p_region');
-		 	 		});
-	 	 			$('#rgName').click();
  					
  				}
 //  				质量监督员 角色 控制
@@ -116,31 +114,20 @@ function lazyLoad(){
  	 				$('#rgName').click(function(){
  	 					getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
  	 				});
+ 	 				
  	 			}
 //  	 			部门经理 角色控制
  				else if(ST_ROLE_NAME_DEPTMANAGE == data.userRoleList[i].rolename){
  					$('#p_departid').val('<%=user.getDepartid()%>');
  					//设置技术负责人
  					$('#slName').click(function(){
- 						getUserofDept('slName','p_supportLeaderId',gxdwbm);
+ 						getUserofDept('slName','p_supportLeaderId',gxdwbm,ST_ROLE_NAME_DEPTMANAGE);
  					});
  					
  				}
- 				else{
-//  	 			区总角色控制
- 	 				for(j=0;j<rgm_mapping_dictitems.length;j++){
- 	 					if(data.userRoleList[i].rolename == rgm_mapping_dictitems[j].display_name){
- 	 						//设置申请人
- 	 						$('#applicantName').click(function(){
- 	 	 	 					getUserofDept('applicantName','p_applicantId',gxdwbm);
- 	 	 	 				});
- 	 						//设置大区
- 	 						var dictItem=getDictitem({dictcode:ST_REGION_DICT_CODE,value:rgm_mapping_dictitems[j].fact_value});
- 	 						$('#rgName').val(dictItem[0].display_name);
- 	 						$('#p_region').val(dictItem[0].fact_value);
- 	 						break;
- 	 					}
- 	 				}
+ 				else if(ST_ROLE_NAME_FEEDBACKER == data.userRoleList[i].rolename){
+					//设置反馈人ID
+					$('#p_processorId').val($('#t_userid').val());
  	 			}
 
  				
@@ -221,6 +208,7 @@ function lazyLoad(){
 <input type="hidden" id="p_tag" value="">
 <input type="hidden" id="t_userid" value="<%=user.getUserid() %>">
 <input type="hidden" id="p_departid" value="">
+<input type="hidden" id="p_processorId" value=""/>
 <div id="tsworksheet" class="bnbody">
 	<div id="title" class="queryfont">
 		技术支持单查询
@@ -307,7 +295,7 @@ function lazyLoad(){
 			     	<th name="l_region">区域</th>
 			     	<th name="l_applicant">申请人</th>
 			     	<th name="l_supportLeader">技术负责人</th>
-			     	<th name="l_supportDept">技术支持单位</th>
+			     	<th name="l_supportDept">技术支持部门</th>
 			     	<th name="l_supportStatus">状态</th>
 			     	<th name="">操作</th>
 			    </tr>

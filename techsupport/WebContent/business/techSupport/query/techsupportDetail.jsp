@@ -25,7 +25,7 @@
 <div id="techsupportDetail" style="margin-left:auto; margin-right:auto; margin-top:auto; width: 840px;">
 	<div class="row">
 		<div class="column">
-			<label class="label">技术支持单编码:</label>
+			<label class="label">技术支持单编号:</label>
 			<input type="text" class="item ro inputstyle" id="stNo" name="st.stNo">
 			<div class="clear-column"></div>
 		</div>

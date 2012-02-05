@@ -258,7 +258,7 @@ function SupportTicketQuery(pageno,url){
 			     	<th name="l_region">区域</th>
 			     	<th name="l_applicant">申请人</th>
 			     	<th name="l_supportLeader">技术负责人</th>
-			     	<th name="l_supportDept">技术支持单位</th>
+			     	<th name="l_supportDept">技术支持部门</th>
 			     	<th name="l_supportContent">支持单内容</th>
 			     	<th name="l_trackingProcess">当前进展</th>
 			    </tr>
