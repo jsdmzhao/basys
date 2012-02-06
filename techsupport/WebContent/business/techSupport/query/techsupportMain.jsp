@@ -96,38 +96,47 @@ function lazyLoad(){
  					$('#applicantName').val('<%=username%>');
  					$('#p_applicantId').val('<%=user.getUserid()%>');
 
- 				/*
- 					
- 				*/
+ 					//支持单负责人选择器
  					$("#slName").click(function(){
  						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
 	 	 			});
  					
  				}
-//  				质量监督员 角色 控制
- 				else if(ST_ROLE_NAME_QC == data.userRoleList[i].rolename){
- 	 				$('#applicantName').click(function(){
- 	 					getUserofDept('applicantName','p_applicantId',gxdwbm);
+//  	 			督办 角色控制
+ 				else if(ST_ROLE_NAME_SUPERVISION == data.userRoleList[i].rolename){
+ 					//$('#p_departid').val('<%=user.getDepartid()%>');
+ 					$('#applicantName').click(function(){
+ 	 					getUserofDept('applicantName','p_applicantId',null,[ST_ROLE_NAME_APPLICANT]);
  	 				});
- 	 				
- 	 				//设置大区
+ 					//设置技术负责人
+ 					$('#slName').click(function(){
+ 						getUserofDept('slName','p_supportLeaderId',null,ST_ROLE_NAME_STLEADER);
+ 					});
+ 					//设置大区
  	 				$('#rgName').click(function(){
  	 					getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
  	 				});
- 	 				
- 	 			}
-//  	 			部门经理 角色控制
- 				else if(ST_ROLE_NAME_DEPTMANAGE == data.userRoleList[i].rolename){
- 					$('#p_departid').val('<%=user.getDepartid()%>');
- 					//设置技术负责人
- 					$('#slName').click(function(){
- 						getUserofDept('slName','p_supportLeaderId',gxdwbm,ST_ROLE_NAME_DEPTMANAGE);
- 					});
- 					
+
+ 					break;
  				}
+ 				//反馈人 控制
  				else if(ST_ROLE_NAME_FEEDBACKER == data.userRoleList[i].rolename){
 					//设置反馈人ID
 					$('#p_processorId').val($('#t_userid').val());
+					//设置大区智能选择器
+					$('#rgName').click(function(){
+						getRegionWithRole('rgName','p_region');
+					});
+ 	 			}
+ 	 			//支持单负责人 控制
+ 				else if(ST_ROLE_NAME_STLEADER == data.userRoleList[i].rolename){
+ 	 				//设置支持单负责人为本人
+					$('#slName').val("<%=username%>");
+					$('#p_supportLeaderId').val("<%=user.getUserid()%>");
+					//设置大区智能选择器
+					$('#rgName').click(function(){
+						getRegionWithRole('rgName','p_region');
+					});
  	 			}
 
  				
