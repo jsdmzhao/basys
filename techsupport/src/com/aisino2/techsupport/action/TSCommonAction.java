@@ -80,6 +80,8 @@ public class TSCommonAction extends PageAction {
 		this.departcode_list = departcode_list;
 	}
 
+	// ++ 通过角色筛选用户
+	
 	public String querylistUserofDept() throws Exception {
 
 		User setUser = new User();
@@ -130,6 +132,7 @@ public class TSCommonAction extends PageAction {
 		return SUCCESS;
 	}
 
+	// -- 通过角色筛选用户
 	/**
 	 * 获取用户管辖地区的机构代码
 	 * @return
@@ -315,48 +318,7 @@ public class TSCommonAction extends PageAction {
 	public String deleteFile() throws Exception {
 		return SUCCESS;
 	}
-	// ++ 通过角色筛选用户
-	/**
-	 * 通过角色筛选用户
-	 * @return
-	 * @throws Exception
-	 */
-	public String querylistUserByRole() throws Exception{
-		
-		User setUser = new User();
-		user = (User) this.setClass(setUser, null);
-
-		dept = new Department();
-		if(user.getDepartcode()!=null && !"".equals(user.getDepartcode())){
-			dept.setDepartcode(user.getDepartcode());
-			dept = departmentService.getDepartment(dept);
-		}
-		
-		Map map = new HashMap();
-
-		map.put("username", user.getUsername());
-		map.put("departid", dept.getDepartid());
-		//++设置角色名称列表
-		List<String> rolename_list = new ArrayList<String>();
-		rolename_list.addAll(Arrays.asList(user.getUseridSet().split(",")));
-		map.put("userRoles", rolename_list);
-		//--设置角色名称列表
-		Page userpageList = userService.getListForPage(map, pagesize, pagerow,
-				null, "desc");
-
-		userList = userpageList.getData();
-		for (User user : userList) {
-			user.setDepartname(user.getDepartment().getDepartname());
-		}
-		totalpage = userpageList.getTotalPages();
-		totalrows = userpageList.getTotalRows();
-
-		setTabledata(userList);
-		this.result = "success";
-		return SUCCESS;
-	}
 	
-	// -- 通过角色筛选用户 
 	
 	// ++ 通过角色筛选地区字典
 	
@@ -367,6 +329,8 @@ public class TSCommonAction extends PageAction {
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		map.put("userid", current_user.getUserid());
+		map.put("departcode", current_user.getDepartcode());
+		
 		Page page = sheet_service.get_region_with_userrole_for_page(map,pagesize,pagerow,dir,sort);
 		totalpage = page.getTotalPages();
 		totalrows = page.getTotalRows();

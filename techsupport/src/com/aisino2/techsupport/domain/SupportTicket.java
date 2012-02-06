@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.aisino2.core.domain.BaseObject;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.User;
 
