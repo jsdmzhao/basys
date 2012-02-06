@@ -87,6 +87,10 @@
   	<action name="*_supportTicket" class="supportTicketAction" method="{1}">
   		<result type="json"></result>
   	</action>
+  	<!--   	发送邮件 -->
+  	<action name="*_mail" class="mailAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
   	
   </package>
 </struts>
