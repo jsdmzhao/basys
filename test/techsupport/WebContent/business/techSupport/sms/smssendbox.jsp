@@ -49,7 +49,7 @@
 
 <script type="text/javascript">
 var ingridHeight=200;
-
+var toNames =new Array();
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
 		ingridHeight=pageHeight-queryPanelHeight
@@ -103,6 +103,8 @@ function SupportTicketQuery(pageno,url){
 //初始化加载
 	$(function(){
 		//延迟加载
+		$("#email_detail").hide();
+		daggleDiv('email_detail');
 		setTimeout(lazyLoad,5);
 		var sendSmsURL=BUSNEISS_PATH + "/sendSms_smsHint.action";
 		divnid="queryContent";//查询内容容器ID
@@ -164,13 +166,13 @@ function SupportTicketQuery(pageno,url){
 			});
 // 			设置发送短信按钮
 			$('#sendSmsBtn').click(function(){
-				
 				var paramss={};
 				var fields=$('input:checked[name^=lSt]');
 				for(i=0;i<fields.length;i++){
+					alert(fields.eq(i).attr('name'));
 					paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
 				}
-				
+				alert(paramss);
 				$.post(sendSmsURL,paramss,function(data){
 					
 					if(data.returnNO==0){
@@ -180,7 +182,24 @@ function SupportTicketQuery(pageno,url){
 						jAlert(data.returnMsg,"提示");
 				},'json');
 			});
+			$("#sendEmail").click(function(){
+				var checkboxs=$("input[type='checkbox']");
+				$(checkboxs).each(function(i){
+					if($(this).attr('checked')){
+						var td=$(this).parents('tr').eq(0).find('td');
+						toNames.push($(td[4]).text());
+					}
+				});
+				if(toNames.length==0){
+					jAlert('请先选择发送邮件的对象','提示信息');
+					return;
+				}
+				setWidth('email_detail','800');
+				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');
+				bindDocument('email_detail');
+			});
 			$('#sendSmsBtn').attr('disabled',false);
+			$('#sendEmail').attr('disabled',false);
 			
 		},'json');
 		
@@ -267,8 +286,14 @@ function SupportTicketQuery(pageno,url){
 			
 		</div>
 	</div>
+	<div id="email_detail" class="page-layout" src="#"
+		style="top:180px; left:160px;">
+</div>
 	<div id="footerCt">
 		<center >
-			<input type="button" id="sendSmsBtn" class="searchbutton" value="短信提示" disabled="disabled">
+			<span>
+				<input type="button" id="sendSmsBtn" class="searchbutton" value="短信提示" disabled="disabled">
+				<input type="button" id="sendEmail" class="searchbutton" value="发送邮件" disabled="disabled">
+			</span>
 		</center>
-</div>
+	</div>
