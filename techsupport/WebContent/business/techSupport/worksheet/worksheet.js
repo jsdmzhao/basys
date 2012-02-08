@@ -66,7 +66,6 @@ function lazyLoad() {
  
  function loadPageWorksheetQuery(divpageid){
 	tables=$("#"+divpageid).html();
-	$("#"+detailid).hide(); 	
 	worksheetQuery(1,'#');
 }	
 

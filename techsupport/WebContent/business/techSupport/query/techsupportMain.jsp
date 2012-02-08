@@ -16,10 +16,6 @@
 	line-height: 25px;
 }
 
-.column{
-	width: 300px;
-}
-
 .item{
 	margin-right: 10px;
 }
@@ -51,6 +47,19 @@
 <script type="text/javascript">
 var ingridHeight=180;
 var detailWindow;
+//督办容器
+var supervision_div = "supervision_div";
+//督办页面路径
+var supervision_page = "business/techSupport/query/supervision.jsp";
+//督办操作路径
+var supervision_url = BUSNEISS_PATH + "/save_supervision.action";
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
+//督办详情路径
+var supervision_detail_url = BUSNEISS_PATH +"/query_supervision.action";
+
+var supervision_width = 690;
+
 // 延迟加载
 function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
@@ -112,11 +121,11 @@ function lazyLoad(){
  					$('#slName').click(function(){
  						getUserofDept('slName','p_supportLeaderId',null,ST_ROLE_NAME_STLEADER);
  					});
+ 					
  					//设置大区
  	 				$('#rgName').click(function(){
  	 					getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
  	 				});
-
  					break;
  				}
  				//反馈人 控制
@@ -133,9 +142,10 @@ function lazyLoad(){
  	 				//设置支持单负责人为本人
 					$('#slName').val("<%=username%>");
 					$('#p_supportLeaderId').val("<%=user.getUserid()%>");
+					
 					//设置大区智能选择器
 					$('#rgName').click(function(){
-						getRegionWithRole('rgName','p_region');
+						getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
 					});
  	 			}
 
@@ -207,11 +217,22 @@ function lazyLoad(){
 										});				
 			}
 	}
-	 
+	/**
+		详情展示
+		
+	*/ 
 	function setDetail(id){
 		dataid=id;
 		detailDialog(detailid,detailWidth,detailURL);
 	}
+
+	/**
+		督办
+	*/
+	function set_supervision(id){
+		dataid=id;
+		detailDialog(supervision_div,supervision_width,supervision_page);
+	}	
 </script>
 
 <input type="hidden" id="p_tag" value="">
@@ -314,3 +335,4 @@ function lazyLoad(){
 		</div>
 	</div>
 <div id="detailCt" style="position: absolute; z-index: 1000; top:0px; left:160px; display: none;" class="page-layout"></div>
+<div id="supervision_div" style="position: absolute; z-index: 1000; top:0px; left:160px; display: none;" class="page-layout"></div>

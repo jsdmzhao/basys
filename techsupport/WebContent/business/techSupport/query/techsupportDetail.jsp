@@ -15,7 +15,7 @@
 <input type="hidden" id="id">
 <input type="hidden" name="st.id">
 <input type="hidden" id="track_stId">
-
+<input type="hidden" id="sv_st_id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">支持单详情</td>
@@ -288,7 +288,26 @@
 		</div>
 		<div class="clear-row"></div>
 	</div>
-			
+	
+	<div class="row" style="width: 90%; margin: 0 auto; ">
+		<div class="column" style="width: 100%;">
+			<div id="supervision_list_div" style="margin-left: auto;margin-right: auto;text-align: center;">
+				<table id="supervision_list_table" >
+					<thead>
+						<tr>
+							<th>督办人</th>
+							<th>督办进展</th>
+							<th>督办时间</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="clear-column"></div>
+		</div>
+		<div class="clear-row"></div>
+	</div>		
+	
+	
 	<div class="row">
 		<div class="column" style="width: 800px;">
 			<div>
