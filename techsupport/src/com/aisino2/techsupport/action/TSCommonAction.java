@@ -52,7 +52,6 @@ public class TSCommonAction extends PageAction {
 	private Department dept;
 	private String result;
 	private String tabledata = "";
-	
 	// 文件上传部分
 //	private File upload;
 //	private String uploadContentType;
@@ -67,6 +66,17 @@ public class TSCommonAction extends PageAction {
 	private List departcode_list;
 	private IUser_roleService userrole_service;
 	
+	private int totalrows;
+	
+
+	public int getTotalrows() {
+		return totalrows;
+	}
+
+	public void setTotalrows(int totalrows) {
+		this.totalrows = totalrows;
+	}
+
 	@Resource(name="user_roleService")
 	public void setUserrole_service(IUser_roleService userrole_service) {
 		this.userrole_service = userrole_service;
@@ -329,7 +339,7 @@ public class TSCommonAction extends PageAction {
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		map.put("userid", current_user.getUserid());
-		map.put("departcode", current_user.getDepartcode());
+		map.put("departcode", current_user.getDepartment().getDepartcode());
 		
 		Page page = sheet_service.get_region_with_userrole_for_page(map,pagesize,pagerow,dir,sort);
 		totalpage = page.getTotalPages();

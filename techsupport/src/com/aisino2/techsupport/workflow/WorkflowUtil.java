@@ -245,16 +245,11 @@ public class WorkflowUtil {
 					
 					List<User_role> userrolelist = userroleService.getUser_roleListByUserid(deptUserRole);
 					for (User_role userRole : userrolelist) {
-						try {
-							if (userRole
-									.getRolename()
-									.equals(util
-											.getTechSupportEnvConfig("techsupport.role.tech_department_approve"))) {
-								assigneeDeptUsersId += userRole.getUserid()
-										+ ",";
-							}
-						} catch (IOException e) {
-							log.error(e, e.fillInStackTrace());
+						if (userRole
+								.getRolename()
+								.equals(Constants.ST_ROLE_NAME_DEPTMANAGE)) {
+							assigneeDeptUsersId += userRole.getUserid()
+									+ ",";
 						}
 					}
 				}

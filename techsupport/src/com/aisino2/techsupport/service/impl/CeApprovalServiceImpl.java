@@ -1,6 +1,6 @@
 package com.aisino2.techsupport.service.impl;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,15 +8,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.mvel2.ast.WithNode.ParmValuePair;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.service.BaseService;
 import com.aisino2.sysadmin.domain.Department;
-import com.aisino2.sysadmin.domain.User;
-import com.aisino2.sysadmin.domain.User_role;
-import com.aisino2.sysadmin.service.IUserService;
-import com.aisino2.techsupport.common.CommonUtil;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
@@ -44,11 +39,14 @@ public class CeApprovalServiceImpl extends BaseService implements
 //		如果不通过，设置状态为终止
 		if(tracking.getApprovalCode().equals(Constants.ST_APPR_TYPE_APPR_NOPASS))
 			st.setStStatus(Constants.ST_STATUS_STOP);
+		else
+			st.setStStatus(Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL);
 //		保存支持单信息
 		stService.updateSupportTicket(st);
 //		保存审核意见信息
 		trackingService.insertTracking(tracking);
-		
+		//设置最后更新时间
+		st.setLastUpdateDate(new Date());
 //		流程控制
 //		当提交的技术支持单，在本环节重新对单位做出了指派的时候，那么主要更新指派信息
 		Map<String, Object> candidate_users=new HashMap<String, Object>();

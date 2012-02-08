@@ -19,6 +19,8 @@ import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.User;
+import com.aisino2.sysadmin.domain.User_role;
+import com.aisino2.sysadmin.service.IUser_roleService;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
@@ -48,7 +50,13 @@ public class SupportTicketAction extends PageAction {
 	private int totalrows = 0;
 
 	private WorksheetService worksheet_service;
+	private IUser_roleService user_role_service;
 	
+	@Resource(name="user_roleService")
+	public void setUser_role_service(IUser_roleService user_role_service) {
+		this.user_role_service = user_role_service;
+	}
+
 	@Resource(name="WorksheetServiceImpl")
 	public void setWorksheet_service(WorksheetService worksheet_service) {
 		this.worksheet_service = worksheet_service;
@@ -90,6 +98,10 @@ public class SupportTicketAction extends PageAction {
 		params.put("trackDateFrom", tracking.getTrackingDateFrom());
 		params.put("trackDateTo", tracking.getTrackingDateTo());
 		params.put("limitDeparement", limitDeparement.getDepartid());
+		// ++ 最后更改时间天数
+		params.put("last_update_day", Constants.LAST_UPDATE_DAY);
+		params.put("use_last_update_day", supportTicket.getUseLastUpdateDate() );
+		// -- 最后更改时间天数
 		
 //		++ 意见回复人 
 		params.put("tracking_person",tracking.getProcessorId());
@@ -168,12 +180,32 @@ public class SupportTicketAction extends PageAction {
 		lPro.add("supportDeptName");
 		lPro.add("stStatusName");
 
+		
 		List lCol = new ArrayList();
 		List lDetail = new ArrayList();
 		lDetail.add("setDetail");
 		lDetail.add("详情");
 		lCol.add(lDetail);
 
+		
+		// ++ 督办角色的操作
+		User current_user = (User)this.getRequest().getSession().getAttribute(com.aisino2.sysadmin.Constants.userKey);
+		User_role ur = new User_role();
+		ur.setUserid(current_user.getUserid());
+		List<User_role> user_role_list = this.user_role_service.getUser_roleListByUserid(ur);
+		for(User_role user_role : user_role_list){
+			
+			if(user_role.getRolename().equals(Constants.ST_ROLE_NAME_SUPERVISION)){
+				List supervision_list = new ArrayList();
+				supervision_list.add("set_supervision");
+				supervision_list.add("督办");
+				lCol.add(supervision_list);
+				
+				break;
+			}
+		}
+		
+		// -- 督办角色的操作
 		for (SupportTicket st : (List<SupportTicket>) ldata) {
 			st.setStStatusName(ItemChange.codeChange(
 					Constants.ST_STATUS_DICT_CODE, st.getStStatus()));
@@ -221,7 +253,7 @@ public class SupportTicketAction extends PageAction {
 		lPro.add("supportDeptName");
 		lPro.add("supportContent");
 		lPro.add("trackingProcess");
-
+		lPro.add("lastUpdateDate");
 		// List lCol = new ArrayList();
 
 		for (int i = 0; i < ldata.size(); i++) {

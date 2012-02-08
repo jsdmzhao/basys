@@ -75,7 +75,10 @@ public class WorksheetServiceImpl extends BaseService implements
 						sheet.setSt(st);
 
 						sheet.setTaskId(sheet.getTask().getId());
-						sheet.setActivityName(sheet.getTask().getActivityName());
+						Dict_item tempDictI = new Dict_item();
+						tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
+						tempDictI.setFact_value(sheet.getTask().getActivityName());
+						sheet.setActivityName(tempDictI.getDisplay_name());
 
 						sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
 								.getSt().getApplicant().getUsername()
@@ -100,7 +103,6 @@ public class WorksheetServiceImpl extends BaseService implements
 						sheet.setSupportDeptName(supportDeptName);
 						sheet.setStNo(sheet.getSt().getStNo());
 
-						Dict_item tempDictI = new Dict_item();
 						tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
 						tempDictI.setFact_value(sheet.getSt().getRegion());
 						sheet.setRegionName(dicItemService
@@ -176,8 +178,11 @@ public class WorksheetServiceImpl extends BaseService implements
 					sheet.setSt(st);
 
 					sheet.setTaskId(sheet.getTask().getId());
-					sheet.setActivityName(sheet.getTask().getActivityName());
-
+					
+					Dict_item tempDictI = new Dict_item();
+					tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
+					tempDictI.setFact_value(sheet.getTask().getActivityName());
+					sheet.setActivityName(tempDictI.getDisplay_name());
 					sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
 							.getSt().getApplicant().getUsername()
 							: "");
@@ -203,7 +208,6 @@ public class WorksheetServiceImpl extends BaseService implements
 					// .getDepartcode());
 					sheet.setStNo(sheet.getSt().getStNo());
 
-					Dict_item tempDictI = new Dict_item();
 					tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
 					tempDictI.setFact_value(sheet.getSt().getRegion());
 					sheet.setRegionName(dicItemService
@@ -267,12 +271,14 @@ public class WorksheetServiceImpl extends BaseService implements
 
 				worksheet = new Worksheet();
 				worksheet.setTask(task);
-				worksheet.setActivityName(task.getActivityName());
+				Dict_item tempDictI = new Dict_item();
+				tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
+				tempDictI.setFact_value(worksheet.getTask().getActivityName());
+				worksheet.setActivityName(tempDictI.getDisplay_name());
 				worksheet.setTaskId(task.getId());
 				worksheet.setFormResourceName(task.getFormResourceName());
 
 				worksheet.setSt(st);
-				Dict_item tempDictI = new Dict_item();
 				tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
 				tempDictI.setFact_value(worksheet.getSt().getRegion());
 				worksheet.setRegionCode(st.getRegion());
