@@ -1,6 +1,6 @@
 package com.aisino2.techsupport.service.impl;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,6 @@ import com.aisino2.sysadmin.domain.User_role;
 import com.aisino2.sysadmin.service.IDict_itemService;
 import com.aisino2.sysadmin.service.IRoleService;
 import com.aisino2.sysadmin.service.IUser_roleService;
-import com.aisino2.sysadmin.service.impl.RoleServiceImpl;
 import com.aisino2.techsupport.common.CommonUtil;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
@@ -41,6 +40,8 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 		//设置支持单流程状态 为 待公司审批
 //		st.setStStatus(Constants.ST_STATUS_GOING);
 		st.setStStatus(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL);
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 		try{
 			
 			supportTicket=this.stService.insertSupportTicket(st);
@@ -54,7 +55,7 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 //			//指派追踪批复用户
 //			if(supportTicket.getSupportLeader()!=null)
 //				candidateUsers.put("trackingUsers", "");
-//			总工审核
+//			公司审核
 			Role cerole=new Role();
 			cerole.setRolename(Constants.ST_ROLE_NAME_CE);
 			try{
@@ -83,6 +84,7 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 			if(supportTicket.getSupportDeptList()!=null && supportTicket.getSupportDeptList().size()>0)
 				candidateUsers.putAll(workflow.setDeptAssigneeVariable(supportTicket.getSupportDeptList()));
 //			指派反馈确认用户
+			//具有反馈人角色的，并且关联了区总角色的
 //			字典映射的各区总角色
 			Dict_item dictitem = new Dict_item();
 			dictitem.setDict_code(Constants.ST_RGM_RG_MAP_DICT_CODE);
@@ -93,27 +95,45 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 				throw new RuntimeException("该区域没有指定区总");
 			String feedbackUsersStr=""	;
 			Role rgmRole=new Role();
+			Role feedback_role = new Role();
 			rgmRole.setRolename(dictitem.getDisplay_name());
 			List<Role> rgmRoleList=roleService.getListRole(rgmRole);
+			feedback_role.setRolename(Constants.ST_ROLE_NAME_FEEDBACKER);
+			try{
+				feedback_role = (Role) roleService.getListRole(feedback_role).get(0);
+			}catch (Exception e) {
+				throw new RuntimeException("角色["+Constants.ST_ROLE_NAME_FEEDBACKER+"]不存在");
+			}
+			
 			if(rgmRoleList!=null && rgmRoleList.size()>0){
 				rgmRole=rgmRoleList.get(0);
 				
 				User_role userrole=new User_role();
 				userrole.setRoleid(rgmRole.getRoleid());
 				List<User_role> lstUserRole = userRoleService.getListUser_role(userrole);
-				for(User_role userRole : lstUserRole)
-					feedbackUsersStr+=","+userRole.getUserid();
+				for(User_role userRole : lstUserRole){
+					//验证改用户是否具有反馈人角色，只有具有反馈人角色的用户才可以执行反馈。
+					userrole=new User_role();
+					userrole.setRoleid(feedback_role.getRoleid());
+					userrole.setUserid(userrole.getUserid());
+					userrole = userRoleService.getUser_role(userrole);
+					if(userrole != null)
+						feedbackUsersStr+=","+userRole.getUserid();
+				}
+					
 			}
+			if(feedbackUsersStr.length()==0)
+				throw new RuntimeException("所关联的地区区总，不具有反馈人角色");
 			feedbackUsersStr=feedbackUsersStr.substring(1);
 			candidateUsers.put("feedbackUsers", feedbackUsersStr);
 //			指派归档用户
 //			指派 技术质量管理员
 			Role role=new Role();
-			role.setRolename(util.getTechSupportEnvConfig("techsupport.role.tech_quality_control"));
+			role.setRolename(Constants.ST_ROLE_NAME_QC);
 			try{
 				role=(Role) roleService.getListRole(role).get(0);
 			}catch (IndexOutOfBoundsException e) {
-				throw new RuntimeException("角色["+util.getTechSupportEnvConfig("techsupport.role.tech_quality_control")+"] 未创建..");
+				throw new RuntimeException("角色["+Constants.ST_ROLE_NAME_QC+"] 未创建..");
 			}
 			
 			User_role userRole = new User_role();
@@ -141,11 +161,7 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 		}catch (RuntimeException e) {
 			log.error(e);
 			throw e;
-		} catch (IOException e) {
-			log.error(e);
-			throw new RuntimeException(e);
-		}
-		
+		} 
 
 	}
 	

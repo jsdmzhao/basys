@@ -78,6 +78,22 @@ public class SupportTicket {
 	//督办
 	private List<Supervision> supervision_list;
 	
+	//最后改动时间
+	private Date lastUpdateDate;
+	private String useLastUpdateDate;
+	
+	public String getUseLastUpdateDate() {
+		return useLastUpdateDate;
+	}
+	public void setUseLastUpdateDate(String useLastUpdateDate) {
+		this.useLastUpdateDate = useLastUpdateDate;
+	}
+	public Date getLastUpdateDate() {
+		return lastUpdateDate;
+	}
+	public void setLastUpdateDate(Date lastUpdateDate) {
+		this.lastUpdateDate = lastUpdateDate;
+	}
 	public List<Supervision> getSupervision_list() {
 		return supervision_list;
 	}

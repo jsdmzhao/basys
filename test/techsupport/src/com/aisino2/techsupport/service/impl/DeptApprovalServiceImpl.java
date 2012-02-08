@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.aisino2.core.service.BaseService;
 import com.aisino2.sysadmin.domain.User;
+import com.aisino2.sysadmin.service.IUserService;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
@@ -36,9 +37,18 @@ public class DeptApprovalServiceImpl extends BaseService implements
 	 */
 	private WorkflowUtil workflow;
 	
+	private IUserService user_service;
+	
+	@Resource(name="userService")
+	public void setUser_service(IUserService user_service) {
+		this.user_service = user_service;
+	}
+
 	public void insertDeptApproval(String taskId, SupportTicket st,Tracking tracking) {
 //		保存技术支持单信息
 		stService.updateSupportTicket(st);
+		//设置状态为进行中
+		st.setStStatus(Constants.ST_STATUS_GOING);
 //		保存部门审核意见信息
 		trackingService.insertTracking(tracking);
 		
@@ -52,7 +62,10 @@ public class DeptApprovalServiceImpl extends BaseService implements
 //		移除已经批复过的单位经理
 		String newDeptApprrovalUsers="";
 		for(String deptUserId : oldDeptApprovalUsers){
-			if (!tracking.getProcessor().getUserid().toString().equals(deptUserId)){
+			User user = new User();
+			user.setUserid(Integer.parseInt(deptUserId));
+			tracking.setProcessor(user_service.getUser(tracking.getProcessor()));
+			if (!tracking.getProcessor().getDepartcode().equals(user_service.getUser(user).getDepartcode())){
 				newDeptApprrovalUsers+=deptUserId+",";
 			}
 		}

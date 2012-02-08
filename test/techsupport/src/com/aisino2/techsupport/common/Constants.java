@@ -68,10 +68,11 @@ public class Constants {
 	
 //	技术支持单短息发送角色对应状态 字典
 	public static String ST_SMS_ROLE_STATUS_DICT_CODE="dm_ts_role_status";
-	
+	//流程环节字典
+	public static String ST_WORKFLOW_NAME_DICT_CODE = "dm_ts_proc";
 //	技术支持单角色信息
 //	填报人
-	public static String ST_ROLE_NAME_APPLICANT="ts_填报人";
+	public static String ST_ROLE_NAME_APPLICANT;
 //	总工 公司审批人
 	public static String ST_ROLE_NAME_CE="ts_总工";
 //	部门经理 技术部门审批人
@@ -96,6 +97,9 @@ public class Constants {
 	public static String ST_ROLE_NAME_FEEDBACK_PROMPT;
 //	 0 数据管理 
 	public static String ST_ROLE_NAME_DM;
+	//最后更新日期后X天
+	public static Integer LAST_UPDATE_DAY = 7;
+	
 	public static CommonUtil util;
 	private static Logger log=Logger.getLogger(Constants.class);
 	
@@ -112,7 +116,7 @@ public class Constants {
 			ST_ROLE_NAME_APPROVAL_PROMPT = util.getTechSupportEnvConfig("techsupport.role.tech_approval_prompt");
 			ST_ROLE_NAME_FEEDBACK_PROMPT = util.getTechSupportEnvConfig("techsupport.role.tech_feedback_prompt");
 			ST_ROLE_NAME_DM = util.getTechSupportEnvConfig("techsupport.role.tech_data_manager");
-			
+			ST_ROLE_NAME_QC = util.getTechSupportEnvConfig("techsupport.role.tech_quality_control");
 		} catch (IOException e) {
 			log.error(e);
 			log.debug(e,e.fillInStackTrace());
