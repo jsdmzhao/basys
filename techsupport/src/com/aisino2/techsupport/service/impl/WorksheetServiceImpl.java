@@ -78,7 +78,7 @@ public class WorksheetServiceImpl extends BaseService implements
 						Dict_item tempDictI = new Dict_item();
 						tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
 						tempDictI.setFact_value(sheet.getTask().getActivityName());
-						sheet.setActivityName(tempDictI.getDisplay_name());
+						sheet.setActivityName(dicItemService.getDictItemNameByDcFv(tempDictI));
 
 						sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
 								.getSt().getApplicant().getUsername()
@@ -182,7 +182,7 @@ public class WorksheetServiceImpl extends BaseService implements
 					Dict_item tempDictI = new Dict_item();
 					tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
 					tempDictI.setFact_value(sheet.getTask().getActivityName());
-					sheet.setActivityName(tempDictI.getDisplay_name());
+					sheet.setActivityName(dicItemService.getDictItemNameByDcFv(tempDictI));
 					sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
 							.getSt().getApplicant().getUsername()
 							: "");
@@ -274,7 +274,7 @@ public class WorksheetServiceImpl extends BaseService implements
 				Dict_item tempDictI = new Dict_item();
 				tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
 				tempDictI.setFact_value(worksheet.getTask().getActivityName());
-				worksheet.setActivityName(tempDictI.getDisplay_name());
+				worksheet.setActivityName(dicItemService.getDictItemNameByDcFv(tempDictI));
 				worksheet.setTaskId(task.getId());
 				worksheet.setFormResourceName(task.getFormResourceName());
 
@@ -282,8 +282,7 @@ public class WorksheetServiceImpl extends BaseService implements
 				tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
 				tempDictI.setFact_value(worksheet.getSt().getRegion());
 				worksheet.setRegionCode(st.getRegion());
-				worksheet.setRegionName(dicItemService
-						.getDictItemNameByDcFv(tempDictI));
+				worksheet.setRegionName(dicItemService.getDictItemNameByDcFv(tempDictI));
 				worksheet
 						.setApplicantName(worksheet.getSt().getApplicant() != null ? worksheet
 								.getSt().getApplicant().getUsername()
