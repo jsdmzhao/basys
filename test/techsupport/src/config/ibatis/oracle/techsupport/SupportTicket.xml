@@ -94,7 +94,7 @@
 		<result property="comments" column="COMMENTS" />
 		<result property="archiveDate" column="ARCHIVE_DATE" />
 		<result property="archiveUser.userid" column="ARCHIVE_USERID" />
-		
+		<result property="lastUpdateDate" column="last_update_date"/>
 	</resultMap>
 	
 	
@@ -186,6 +186,9 @@
 			<isNotNull prepend="," property="archiveDate">
 				ARCHIVE_DATE
 </isNotNull>
+			<isNotEmpty prepend="," property="lastUpdateDate">
+				last_update_date
+			</isNotEmpty>
 		</dynamic>
 
 
@@ -261,6 +264,9 @@
 			<isNotNull prepend="," property="archiveDate">
 				#archiveDate#
 			</isNotNull>
+			<isNotEmpty prepend="," property="lastUpdateDate">
+				#lastUpdateDate#
+			</isNotEmpty>
 		</dynamic>
 
 		)
@@ -347,6 +353,10 @@
 			<isNotNull prepend="," property="devDtScheDate">
 				DEV_DT_SCHE_DATE=#devDtScheDate#
 			</isNotNull>
+			<!-- 最后修改时间 -->
+			<isNotEmpty prepend="," property="lastUpdateDate">
+				last_update_date = #lastUpdateDate#
+			</isNotEmpty>
 		</dynamic>
 
 		where ID = #id#
@@ -397,12 +407,12 @@
 <!-- 	 	</isNotEmpty> -->
 	 	
 		
-		<isNotNull prepend="and" property="trackingDateFrom">
+		<isNotEmpty prepend="and" property="trackDateFrom">
 			tr.trackingDate >= #trackingDateFrom#
-		</isNotNull>
-		<isNotNull prepend="and" property="trackingDateTo">
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="trackDateTo">
 			tr.trackingDate &lt;= #trackingDateTo#
-		</isNotNull>
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="type">
 			tr.type = #type# and tr.st_id = t.id
 		</isNotEmpty>
@@ -427,7 +437,13 @@
 			tr.processor = #tracking_person#
 		</isNotEmpty>
 		<!-- __ 意见回复人 -->
-		
+		<!-- ++ 使用最后修改时间 -->
+		<isNotEmpty prepend="and" property="use_last_update_day">
+			<isNotEmpty property="last_update_day">
+				t.last_update_date &lt; sysdate - #last_update_day#
+			</isNotEmpty>
+		</isNotEmpty>
+		<!-- __ 使用最后修改时间 -->
 	</sql>
 
 	<sql id="SupportTicketFrom">
@@ -520,7 +536,8 @@
 				
 				t.ARCHIVE_DATE,
 				
-				t.ARCHIVE_USERID
+				t.ARCHIVE_USERID,
+				t.last_update_date
 
 
 

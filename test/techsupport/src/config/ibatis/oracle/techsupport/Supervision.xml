@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="Supervision" type="com.aisino2.techsupport.domain.Supervision"/>
+	
+	<resultMap class="Supervision" id="Supervision_result_for_page">
+		<result property="supervision_suggestion" column="supervision_suggestion"/>
+		<result property="supervision_person.userid" column="supervision_person"/>
+		<result property="supervision_person.username" column="username"/>
+		<result property="supervision_date" column="supervision_date"/>
+		<result property="st_id" column="st_id"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap class="Supervision" id="Supervision_result">
+		<result property="supervision_suggestion" column="supervision_suggestion"/>
+		<result property="supervision_person.userid" column="supervision_person"/>
+		<result property="supervision_person.username" column="username"/>
+		<result property="supervision_date" column="supervision_date"/>
+		<result property="st_id" column="st_id"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<sql id="Supervision_where">
+		<isNotEmpty prepend="and" property="st_id">
+			t.st_id = #st_id#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="supervision_person.userid">
+			t.supervision_person = #supervision_person.userid#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="id">
+			t.id = #id#
+		</isNotEmpty>
+	</sql>
+	
+	<sql id="Supervision_where_page">
+		<include refid="Supervision_where"/>
+		<isNotEmpty prepend="and" property="supervision_person.username">
+			u.username = #supervision_person.username#
+		</isNotEmpty>
+	</sql>
+	
+	<select id="supervision.get" parameterClass="Supervision" resultMap="Supervision_result">
+		select t.*,u.username from t_ts_supervision t , t_user u where u.userid = t.supervision_person
+		<include refid="Supervision_where"/>
+	</select>
+	
+	<select id="supervision.query_for_page" parameterClass="map" resultMap="Supervision_result_for_page">
+		select x.* from (
+		select rownum rowno,z.* from
+		( select t.*,u.username from
+		t_ts_supervision t, t_user u
+		where u.userid = t.supervision_person
+			<include refid="Supervision_where_page" />
+		order by $pageSort$) z) x 
+		where rowno &gt;$beginRow$ and rowno &lt;= $endRow$
+	</select>
+	
+	<select id="supervision.query_for_pageCount" parameterClass="map" resultClass="int">
+		select count(1) from
+		t_ts_supervision t, t_user u
+		where u.userid = t.supervision_person
+			<include refid="Supervision_where_page" />
+	</select>
+	
+	<insert id="supervision.insert" parameterClass="Supervision">
+		insert into t_ts_supervision(
+			ID,
+			ST_ID,
+			SUPERVISION_DATE,
+			SUPERVISION_PERSON,
+			SUPERVISION_SUGGESTION
+		)
+		
+		values(
+			#id#,
+			#st_id#,
+			#supervision_date#,
+			#supervision_person.userid#,
+			#supervision_suggestion#
+		)
+	</insert>
+</sqlMap>
