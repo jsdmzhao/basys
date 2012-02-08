@@ -49,10 +49,10 @@ function lazyLoad() {
 	});
 	//设置技术负责人 ###修妖修改角色下拉菜单
 	$('#slName').click(function(){
-		getUserofDept('slName','p_supportLeaderId',HTJD_DEPT_CODE);
+		getUserofDept('slName','p_supportLeaderId',gxdwbm,ST_ROLE_NAME_STLEADER);
 	});
 //	 ++添加流程筛选
-	$('#p_activityName').selectBox({code:ST_RD_MAP_DICT_CODE});
+	$('#p_activityName').selectBox({code:ST_WORKFLOW_NAME_DICT_CODE});
 //	 --添加流程筛选 
 	daggleDiv(detailid);
  });

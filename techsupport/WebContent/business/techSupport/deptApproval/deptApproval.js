@@ -37,7 +37,7 @@ $(function(){
 //	});
 	//设置技术负责人
 	$('#supportLeaderName').click(function(){
-		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm);
+		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm,[ST_ROLE_NAME_STLEADER]);
 	});
 	
 	//按钮动作
@@ -194,6 +194,13 @@ function submitVerity() {
 				if (!checkControlValue("psgIsScheDate", "Date", 1, 100, null,
 						1, "计划实施时间"))
 					return false;
+					
+				if(!($('#psgDsScheDate').val() < $('#psgIsScheDate').val()
+				&& $('#psgIsScheDate').val() == $('#psgScheDate').val())){
+				
+					jAlert('提示','计划需求时间必须小于计划实施时间,计划实施时间必须等于计划完成时间');
+					return false;
+				}
 			}
 		} else if (gxdwmc == '技术开发部') {
 			if (!checkControlValue("devScheDate", "Date", 1, 100, null, 1,
@@ -206,6 +213,16 @@ function submitVerity() {
 				if (!checkControlValue("devDdScheDate", "Date", 1, 100, null,
 						1, "计划开发时间"))
 					return false;
+				if (!checkControlValue("devDtScheDate", "Date", 1, 100, null,
+					1, "计划测试时间"))
+					return false;
+					
+				if(!($('#devDsScheDate').val() < $('#devDdScheDate').val() &&
+					$('#devDdScheDate').val() < $('#devDtScheDate').val() && 
+					$('#devScheDate').val() == $('#devDtScheDate').val())){
+					jAlert('提示','计划设计时间必须小于计划开发时间必须小于计划测试时间，测试时间必须等于计划完成时间');
+					return false
+				}
 			}
 		}
 	}

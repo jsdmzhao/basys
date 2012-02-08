@@ -26,4 +26,6 @@
 <!-- 	附件 -->
 	<sqlMap resource="config/ibatis/oracle/techsupport/Attachment.xml"/>
 
+<!-- 	督办 -->
+	<sqlMap resource="config/ibatis/oracle/techsupport/Supervision.xml"/>
 </sqlMapConfig>
