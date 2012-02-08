@@ -15,9 +15,6 @@
 	line-height: 25px;
 }
 
-.column{
-	width: 300px;
-}
 
 .item{
 	margin-right: 10px;
@@ -96,8 +93,9 @@ function SupportTicketQuery(pageno,url){
                                       	ingridPageParams:sXML,
                                       	onRowSelect:null,
                                       	noSortColIndex:[0],
+                                      	hideColIndex:[8],
 										pageNumber: pageno,
-										colWidths: ["4%","14%","6%","12%","12%","12%","18%","18%"]				
+										colWidths: ["4%","14%","6%","12%","12%","12%","18%","18%","10%"]				
 									});				
 		}
 }
@@ -213,6 +211,8 @@ function SupportTicketQuery(pageno,url){
 </script>
 
 <div id="tsworksheet" class="bnbody">
+	<%-- 使用最后更新时间查询 --%>
+	<input type="hidden" id="p_use_last_update_day" value="1">
 	<input type="hidden" id="p_tag" value="dxts">
 	<div id="title" class="queryfont">
 		短信提示
