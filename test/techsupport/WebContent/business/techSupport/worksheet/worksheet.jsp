@@ -14,9 +14,6 @@
 	line-height: 25px;
 }
 
-.column{
-	width: 300px;
-}
 
 .item{
 	margin-right: 10px;
