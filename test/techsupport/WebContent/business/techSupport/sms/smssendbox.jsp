@@ -49,7 +49,9 @@
 
 <script type="text/javascript">
 var ingridHeight=200;
-var toNames =new Array();
+var toNames;
+var stNumber;
+var editTime;
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
 		ingridHeight=pageHeight-queryPanelHeight
@@ -169,10 +171,8 @@ function SupportTicketQuery(pageno,url){
 				var paramss={};
 				var fields=$('input:checked[name^=lSt]');
 				for(i=0;i<fields.length;i++){
-					alert(fields.eq(i).attr('name'));
 					paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
 				}
-				alert(paramss);
 				$.post(sendSmsURL,paramss,function(data){
 					
 					if(data.returnNO==0){
@@ -184,10 +184,15 @@ function SupportTicketQuery(pageno,url){
 			});
 			$("#sendEmail").click(function(){
 				var checkboxs=$("input[type='checkbox']");
+				toNames =new Array();
+				stNumber =new Array();
+				editTime=new Array();
 				$(checkboxs).each(function(i){
 					if($(this).attr('checked')){
 						var td=$(this).parents('tr').eq(0).find('td');
 						toNames.push($(td[4]).text());
+						stNumber.push($(td[1]).text());
+						editTime.push($(td[7]).text())
 					}
 				});
 				if(toNames.length==0){
