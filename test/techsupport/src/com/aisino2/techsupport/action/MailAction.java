@@ -24,6 +24,7 @@ import com.aisino2.techsupport.domain.Recipient;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.service.MailService;
 import com.aisino2.techsupport.service.SupportTicketService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @Component
 @Scope("prototype")
@@ -117,12 +118,12 @@ public class MailAction extends BaseAction {
 			String subject=new String(properties.getProperty("mailSubject").getBytes("ISO8859-1"),"UTF-8");
 			for(Recipient recipient:mail.getRecipients()){
 				if(recipient.getLastEditTime()!=null&&!"".equals(recipient.getLastEditTime())){
-					//DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					Date editTime=recipient.getLastEditTime();
-					Date now=new Date();
+					DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+					Date editTime=format.parse(format.format(recipient.getLastEditTime()));
+					Date now=format.parse(format.format(new Date()));
 					long diff=now.getTime()-editTime.getTime();
 					long days=diff/(1000 * 60 * 60 * 24);
-					Object template[]={recipient.getrName(),recipient.getSt_NO(),editTime,days};
+					Object template[]={recipient.getrName(),recipient.getSt_NO(),format.format(recipient.getLastEditTime()),days};
 					content=MessageFormat.format(content, template);
 					mailService.send(mail, subject, recipient.getrAddress(), null, content, false);
 				}
