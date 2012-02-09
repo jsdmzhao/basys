@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
+import javax.mail.internet.AddressException;
 
 import com.aisino2.techsupport.domain.Mail;
 
@@ -20,7 +21,7 @@ public interface MailService {
 	 * @param html 是否为HTML邮件
 	 * @return 是否发送成功
 	 */
-	public Boolean send(Mail mail,String subject,String to,String cc,Boolean pgp,Boolean signature,String text,String attach,Boolean html);
+	public Boolean send(Mail mail,String subject,String to,String cc,Boolean pgp,Boolean signature,String text,String attach,Boolean html) throws Exception;
 	
 	
 	/**
@@ -32,7 +33,7 @@ public interface MailService {
 	 * @param html 是否为HTML邮件
 	 * @return 是否发送成功
 	 */
-	public boolean send(Mail mail,String subject, String to, String cc, String text,boolean html);
+	public boolean send(Mail mail,String subject, String to, String cc, String text,boolean html) throws Exception;
 	
 	/**
 	 * 连接邮件服务器

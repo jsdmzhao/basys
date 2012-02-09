@@ -21,8 +21,7 @@ public class Mail {
 	private String host;
 	//收件人
 	private List<Recipient> recipients;
-	//抄送人
-	private List<CarbonCopy> carbonCopys;
+	
 	//用户-发件人
 	private String user;
 	//密码
@@ -131,12 +130,6 @@ public class Mail {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public List<CarbonCopy> getCarbonCopys() {
-		return carbonCopys;
-	}
-	public void setCarbonCopys(List<CarbonCopy> carbonCopys) {
-		this.carbonCopys = carbonCopys;
 	}
 	
 	
