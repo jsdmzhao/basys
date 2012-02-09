@@ -84,5 +84,6 @@
 //	质量管理员
 	var ST_ROLE_NAME_QC="<%=com.aisino2.techsupport.common.Constants.ST_ROLE_NAME_QC%>";
 
-	
+	//流程环节字典
+	var ST_WORKFLOW_NAME_DICT_CODE = "<%=com.aisino2.techsupport.common.Constants.ST_WORKFLOW_NAME_DICT_CODE%>"
 </script>
