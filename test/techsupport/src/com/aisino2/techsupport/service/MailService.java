@@ -40,7 +40,7 @@ public interface MailService {
 	 * @param mail
 	 * @return 是否连接成功
 	 */
-	public Boolean connect(Mail mail,Boolean sendAuth,Boolean debug,Boolean ssl);
+	public Boolean connect(Mail mail,Boolean sendAuth,Boolean debug,Boolean ssl) throws Exception;
 	
 	/**
 	 * 判断是否连接
