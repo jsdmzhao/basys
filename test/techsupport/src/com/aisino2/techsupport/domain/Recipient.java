@@ -1,12 +1,15 @@
 package com.aisino2.techsupport.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Recipient {
 	//收件人姓名
 	private String rName;
 	//收件人地址
 	private String rAddress;
+	//抄送人
+	private List<CarbonCopy> carbonCopys;
 	//技术支持单编号
 	private String st_NO;
 	//最后操作时间
@@ -35,6 +38,12 @@ public class Recipient {
 	}
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
+	}
+	public List<CarbonCopy> getCarbonCopys() {
+		return carbonCopys;
+	}
+	public void setCarbonCopys(List<CarbonCopy> carbonCopys) {
+		this.carbonCopys = carbonCopys;
 	}
 	
 

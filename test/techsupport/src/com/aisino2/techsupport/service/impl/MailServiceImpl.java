@@ -16,6 +16,7 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.URLName;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeMessage;
@@ -42,80 +43,75 @@ public class MailServiceImpl implements MailService {
 	 * @param attach 附件
 	 * @param html 是否为HTML邮件
 	 * @return 是否发送成功
+	 * @throws AddressException 
 	 */
 	public Boolean send(Mail mail, String subject, String to, String cc,
 			Boolean pgp, Boolean signature, String text, String attach,
-			Boolean html) {
+			Boolean html) throws Exception {
 		// TODO Auto-generated method stub
 		Boolean isSend = false;
 		if(isConnected()){
 			Multipart mp = new MimeMultipart();
 			// 创建消息
 			Message message = new MimeMessage(session);
-			try {
-				// 设置收件人地址
-				if(to!=null&&!"".equals(to)){
-					InternetAddress[] toAddress = InternetAddress.parse(to, false);
-					message.setRecipients(Message.RecipientType.TO, toAddress);
-				}
-				// 设置抄送人地址
-				if (cc != null&&!cc.equals("")) {
-					InternetAddress[] ccAddress = InternetAddress.parse(cc,
-							false);
-					message.setRecipients(Message.RecipientType.CC, ccAddress);
-				}
-				// 设置主题
-				if(subject == null || "".equals(subject) ){
-					message.setSubject("没有主题");
-				}else{
-					message.setSubject(subject);
-				}
-				// 设置发件人
-				message.setFrom(new InternetAddress(
-						mail.getUser().indexOf("@") > 0 ? mail.getUser() : mail
-								.getUser() + "@" + mail.getHost()));
-				// 邮件类型
-				if (html) {
-					MimeBodyPart mBody = new MimeBodyPart();
-					mBody.setContent(
-							"<meta http-equiv='Content-Type' content='text/html;charset=utf-8'>"
-									+ text, "text/html;charset=utf-8");
-					mp.addBodyPart(mBody);
-
-				} else {
-					message.setText(text);
-				}
-				// 设置附件
-				if (attach != null) {
-					String[] temp = attach.split(",");
-					for (String filepath : temp) {
-						MimeBodyPart mBody = new MimeBodyPart();
-						DataSource dataSource = new FileDataSource(filepath);
-						mBody.setDataHandler(new DataHandler(dataSource));
-						mBody.setFileName(filepath);
-						mp.addBodyPart(mBody);
-					}
-				}
-				// 使用pgp加密 //###
-				if (pgp) {
-					usePGP();
-				}
-				// 使用签名 //###
-				if (signature) {
-					useSignature();
-				}
-
-				if (mp.getCount() != 0)
-					message.setContent(mp);
-				message.setSentDate(new Date());
-				// 发送
-				Transport.send(message);
-				isSend=true;
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new RuntimeException("发送邮件失败");
+			// 设置收件人地址
+			if(to!=null&&!"".equals(to)){
+				InternetAddress[] toAddress = InternetAddress.parse(to, false);
+				message.setRecipients(Message.RecipientType.TO, toAddress);
 			}
+			// 设置抄送人地址
+			if (cc != null&&!cc.equals("")) {
+				InternetAddress[] ccAddress = InternetAddress.parse(cc,
+						false);
+				message.setRecipients(Message.RecipientType.CC, ccAddress);
+			}
+			// 设置主题
+			if(subject == null || "".equals(subject) ){
+				message.setSubject("没有主题");
+			}else{
+				message.setSubject(subject);
+			}
+			// 设置发件人
+			message.setFrom(new InternetAddress(
+					mail.getEmail().indexOf("@") > 0 ? mail.getEmail() : mail
+							.getEmail() + "@" + mail.getHost()));
+			// 邮件类型
+			if (html) {
+				MimeBodyPart mBody = new MimeBodyPart();
+				mBody.setContent(
+						"<meta http-equiv='Content-Type' content='text/html;charset=utf-8'>"
+								+ text, "text/html;charset=utf-8");
+				mp.addBodyPart(mBody);
+
+			} else {
+				message.setText(text);
+			}
+			// 设置附件
+			if (attach != null) {
+				String[] temp = attach.split(",");
+				for (String filepath : temp) {
+					MimeBodyPart mBody = new MimeBodyPart();
+					DataSource dataSource = new FileDataSource(filepath);
+					mBody.setDataHandler(new DataHandler(dataSource));
+					mBody.setFileName(filepath);
+					mp.addBodyPart(mBody);
+				}
+			}
+			// 使用pgp加密 //###
+			if (pgp) {
+				usePGP();
+			}
+			// 使用签名 //###
+			if (signature) {
+				useSignature();
+			}
+
+			if (mp.getCount() != 0)
+				message.setContent(mp);
+			message.setSentDate(new Date());
+			// 发送
+			Transport.send(message);
+			isSend=true;
 		}else{
 			throw new RuntimeException("连接邮件服务器失败");
 		}
@@ -131,9 +127,10 @@ public class MailServiceImpl implements MailService {
 	 * @param text 正文
 	 * @param html 是否为HTML邮件
 	 * @return 是否发送成功
+	 * @throws Exception 
 	 */
 	public boolean send(Mail mail,String subject, String to, String cc, String text,
-			boolean html) {
+			boolean html) throws Exception {
 		return send(mail,subject, to, cc, false, false, text, null, html);
 	}
 
