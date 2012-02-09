@@ -46,9 +46,7 @@
 
 <script type="text/javascript">
 var ingridHeight=200;
-var toNames;
-var stNumber;
-var editTime;
+var stNoList;
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
 		ingridHeight=pageHeight-queryPanelHeight
@@ -180,20 +178,19 @@ function SupportTicketQuery(pageno,url){
 						jAlert(data.returnMsg,"提示");
 				},'json');
 			});
+			//发送邮件
 			$("#sendEmail").click(function(){
 				var checkboxs=$("input[type='checkbox']");
-				toNames =new Array();
-				stNumber =new Array();
-				editTime=new Array();
+				var fields=$('input:checked[name^=lSt]');
+				stNoList=new Array();
 				$(checkboxs).each(function(i){
 					if($(this).attr('checked')){
-						var td=$(this).parents('tr').eq(0).find('td');
-						toNames.push($(td[4]).text());
-						stNumber.push($(td[1]).text());
-						editTime.push($(td[7]).text())
+						for(i=0;i<fields.length;i++){
+							stNoList.push(fields.eq(i).val());
+						}
 					}
 				});
-				if(toNames.length==0){
+				if(stNoList.length==0){
 					jAlert('请先选择发送邮件的对象','提示信息');
 					return;
 				}
