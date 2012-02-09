@@ -1,14 +1,12 @@
 package com.aisino2.techsupport.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.jbpm.api.task.Participation;
-import org.jbpm.api.task.Task;
-import org.jbpm.pvm.internal.task.TaskImpl;
-import org.mvel2.ast.WithNode.ParmValuePair;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.service.BaseService;
@@ -57,43 +55,53 @@ public class DeptApprovalServiceImpl extends BaseService implements
 //		流程控制
 //		当当前单位审批后，不允许再次看到本环节信息，故此，在这里对 指派候选人里面的当前用户单位ID做移除。
 //		当全部指派单位审批后，提交流程到下一个环节
-		String oldDeptApprovalUsersStr= (String) workflow.getTaskService().getVariable(taskId, "deptApprovalUsers");
-		String[] oldDeptApprovalUsers= oldDeptApprovalUsersStr.split(",");
-//		移除已经批复过的单位经理
-		String newDeptApprrovalUsers="";
-		for(String deptUserId : oldDeptApprovalUsers){
+		
+		//指派的部门候选列表
+		List<Participation> candidate_department_list = workflow.getTaskService().getTaskParticipations(taskId);
+		
+//		移除已经批复过的技术部门
+		for(Participation participation : candidate_department_list){
 			User user = new User();
-			user.setUserid(Integer.parseInt(deptUserId));
+			user.setUserid(Integer.parseInt(participation.getUserId()));
 			tracking.setProcessor(user_service.getUser(tracking.getProcessor()));
-			if (!tracking.getProcessor().getDepartcode().equals(user_service.getUser(user).getDepartcode())){
-				newDeptApprrovalUsers+=deptUserId+",";
+			if (tracking.getProcessor().getDepartid().equals(user_service.getUser(user).getDepartid())){
+				//移除候选列表
+				workflow.getTaskService().removeTaskParticipatingUser(taskId, participation.getUserId(), Participation.CANDIDATE);
 			}
 		}
 		
-		newDeptApprrovalUsers=newDeptApprrovalUsers.length()>0 ? newDeptApprrovalUsers.substring(0,newDeptApprrovalUsers.length()-1) : newDeptApprrovalUsers ;	
+		//指派人参数
 		Map<String, Object> candidateUsers=new HashMap<String, Object>();
-		candidateUsers.put("deptApprovalUsers", newDeptApprrovalUsers);
-		workflow.getTaskService().removeTaskParticipatingUser(taskId, tracking.getProcessor().getUserid().toString(), Participation.CANDIDATE);
-		//指派追踪批复用户
-//		@fixed 技术负责人变成多个指派
-		String supportLeaderIds = "";
-		for (User sl : st.getLstSupportLeaders())
-			supportLeaderIds = "," + sl.getUserid();
-		supportLeaderIds = supportLeaderIds.length() > 0 ? supportLeaderIds
-				.substring(1) : supportLeaderIds;
-		candidateUsers.put("trackingUsers", supportLeaderIds);
 		
-//		设置总的审批结果，及只要有一个部门审批未通过，那么就未通过，上报给总工，再定夺。
-		Map<String, Object> paramsMap=new HashMap<String, Object>();
-		paramsMap.put("deptApprovalCode", tracking.getApprovalCode());
-		String deptApprovalCode=(String) workflow.getTaskService().getVariable(taskId, "params.deptApprovalCode");
-		if(deptApprovalCode!= null && deptApprovalCode.equals(Constants.ST_APPR_TYPE_APPR_NOPASS))
-			paramsMap.clear();
-//		流程提交以后不能查看，另外确保所有 经理 都审核了
-		if(candidateUsers.get("deptApprovalUsers").toString().equals(""))
-			workflow.workflowNext(workflow.setVariable(taskId, null, candidateUsers, paramsMap));
-		else{
-			workflow.getTaskService().setVariables(taskId, workflow.setVariable(taskId, null, candidateUsers, paramsMap));
+		try{
+			//指派追踪批复用户
+//			@fixed 技术负责人变成多个指派
+			String supportLeaderIds = "";
+			for (User sl : st.getLstSupportLeaders())
+				supportLeaderIds = "," + sl.getUserid();
+			supportLeaderIds = supportLeaderIds.length() > 0 ? supportLeaderIds
+					.substring(1) : supportLeaderIds;
+			candidateUsers.put("trackingUsers", supportLeaderIds);
+			
+//			设置总的审批结果，及只要有一个部门审批未通过，那么就未通过，上报给总工，再定夺。
+			Map<String, Object> paramsMap=new HashMap<String, Object>();
+			paramsMap.put("deptApprovalCode", tracking.getApprovalCode());
+//			流程提交以后不能查看，另外确保所有 经理 都审核了
+			candidate_department_list = workflow.getTaskService().getTaskParticipations(taskId);
+			if(candidate_department_list.isEmpty())
+				workflow.workflowNext(workflow.setVariable(taskId, null, candidateUsers, paramsMap));
+			else{
+				workflow.getTaskService().setVariables(taskId, workflow.setVariable(taskId, null, candidateUsers, paramsMap));
+			}
+		}catch (Exception e) {
+			//得到初始部门指派时候的部门审批人
+			String oldDeptApprovalUsersStr= (String) workflow.getTaskService().getVariable(taskId, "deptApprovalUsers");
+			String[] dept_appr_users = oldDeptApprovalUsersStr.split(",");
+			for(int i=0;i<dept_appr_users.length;i++)
+				workflow.getTaskService().addTaskParticipatingUser(taskId, dept_appr_users[i], Participation.CANDIDATE);
+			log.error(e);
+			log.debug(e,e.fillInStackTrace());
+			throw new RuntimeException("流程提交出现错误");
 		}
 	}
 

@@ -7,7 +7,14 @@ package com.aisino2.techsupport.domain;
 public class SupportLeaderRelation {
 	private Integer stId;
 	private Integer supportLeaderId;
+	private Integer departid;
 	
+	public Integer getDepartid() {
+		return departid;
+	}
+	public void setDepartid(Integer departid) {
+		this.departid = departid;
+	}
 	public Integer getStId() {
 		return stId;
 	}

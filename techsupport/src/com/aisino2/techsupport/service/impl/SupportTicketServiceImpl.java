@@ -151,16 +151,27 @@ public class SupportTicketServiceImpl extends BaseService implements
 				SupportDept supportDept = new SupportDept();
 				supportDept.setStId(st.getId());
 				this.supportDeptDao.removeSupportDept(supportDept);
+				
 				for (Department dept : st.getSupportDeptList()) {
 					if (dept == null)
 						continue;
+					
 					SupportDept sdept = new SupportDept();
 					Department department=new Department();
 					department.setDepartcode(dept.getDepartcode());
 					department=departmentService.getDepartment(department);
 					sdept.setDeptId(department.getDepartid());
 					sdept.setStId(st.getId());
-					this.supportDeptDao.insertSupportDept(sdept);
+//					//检查是不是已有该部门了，如果没有在执行插入操作
+//					SupportDept check_supportDept = null;
+//					try{
+//						check_supportDept = supportDeptDao.getListSupportDepts(sdept).get(0);
+//					}catch (Exception e) {
+//						log.debug(e,e.fillInStackTrace());
+//					}
+//					
+//					if(check_supportDept!=null)
+						this.supportDeptDao.insertSupportDept(sdept);
 
 				}
 
@@ -168,11 +179,25 @@ public class SupportTicketServiceImpl extends BaseService implements
 //			添加 技术负责人关联信息
 			if(st.getLstSupportLeaders() != null
 					&& st.getLstSupportLeaders().size() > 0){
+				
 				for(User sl : st.getLstSupportLeaders()){
+					//先删除以前的再添加新的负责人
+					SupportLeaderRelation check_slrelation = new SupportLeaderRelation();
+					check_slrelation.setDepartid(sl.getDepartid());
+					check_slrelation.setStId(st.getId());
+					this.supportLeaderRelationDao.delete(check_slrelation);
+					
 					SupportLeaderRelation slrelation=new SupportLeaderRelation();
 					slrelation.setStId(st.getId());
 					slrelation.setSupportLeaderId(sl.getUserid());
-					this.supportLeaderRelationDao.insert(slrelation);
+//					SupportLeaderRelation check_slrelation=null;
+//					try{
+//						check_slrelation = this.supportLeaderRelationDao.query(slrelation).get(0);
+//					}catch (Exception e) {
+//						log.debug(e,e.fillInStackTrace());
+//					}
+//					if(check_slrelation==null)
+						this.supportLeaderRelationDao.insert(slrelation);
 				}
 			}
 			
