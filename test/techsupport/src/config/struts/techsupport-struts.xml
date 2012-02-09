@@ -91,6 +91,9 @@
   	<action name="*_mail" class="mailAction" method="{1}">
   		<result type="json"></result>
   	</action>
-  	
+  	<!--   	督办进展 -->
+  	<action name="*_supervision" class="SupervisionAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
   </package>
 </struts>
