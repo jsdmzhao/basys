@@ -11,6 +11,7 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
@@ -136,11 +137,12 @@ public class MailServiceImpl implements MailService {
 
 	/**
 	 * 连接邮件服务器
+	 * @throws Exception 
 	 * 
 	 * @throws Exception
 	 */
 	public Boolean connect(final Mail mail, Boolean sendAuth, Boolean debug,
-			Boolean ssl) {
+			Boolean ssl) throws Exception {
 		Boolean isSuccess = false;
 		Properties props = System.getProperties();
 		props.put("mail.smtp.host", mail.getSmtphost());// 发送主机
@@ -179,15 +181,10 @@ public class MailServiceImpl implements MailService {
 		});
 		session.setDebug(debug);
 		URLName url = new URLName(mail.getProtocol(), mail.getHost(), -1,
-				Mail.BOX_IN, mail.getUser(), mail.getPassword());
-		try {
-			store = session.getStore(url);
-			store.connect();
-			isSuccess = true;
-		} catch (Exception e) {
-			mail.setError(e.getMessage());
-			e.printStackTrace();
-		}
+				Mail.BOX_IN, mail.getEmail(), mail.getPassword());
+		store = session.getStore(url);
+		store.connect();
+		isSuccess = true;
 		return isSuccess;
 	}
 
