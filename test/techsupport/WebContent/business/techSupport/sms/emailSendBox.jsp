@@ -20,7 +20,6 @@
 			for(var i=0;i<stNoList.length;i++){
 				params['lSt['+i+'].id']=stNoList[i];
 			}
-			alert(params);
 			$.post(BUSNEISS_PATH+'/send_mail.action',params,function(json){
 				alert(json.result);
 				$("#email_detail").hideAndRemove("show");
