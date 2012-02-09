@@ -100,19 +100,19 @@ public class MailAction extends BaseAction {
 		mail.setProtocol(Mail.PROTOCOL_POP);
 		mail.setSmtphost("smtp.aisino.com");
 		mail.setHost("pop3.aisino.com");
-		mailService.connect(mail, true, true, false);
-		for(SupportTicket st: lSt){
-			for(User user:st.getLstSupportLeaders()){
-				Recipient recipient=new Recipient();
-				recipient.setLastEditTime(st.getLastUpdateDate());
-				recipient.setrAddress(getAdressByName(user.getUsername()));
-				recipient.setrName(user.getUsername());
-				recipient.setSt_NO(st.getStNo());
-				recipients.add(recipient);
-			}
-		}
-		mail.setRecipients(recipients);
 		try{
+			mailService.connect(mail, true, true, false);
+			for(SupportTicket st: lSt){
+				for(User user:st.getLstSupportLeaders()){
+					Recipient recipient=new Recipient();
+					recipient.setLastEditTime(st.getLastUpdateDate());
+					recipient.setrAddress(getAdressByName(user.getUsername()));
+					recipient.setrName(user.getUsername());
+					recipient.setSt_NO(st.getStNo());
+					recipients.add(recipient);
+				}
+			}
+			mail.setRecipients(recipients);
 			properties.load(in);
 			String content=new String(properties.getProperty("mailContent").getBytes("ISO8859-1"),"UTF-8");
 			String subject=new String(properties.getProperty("mailSubject").getBytes("ISO8859-1"),"UTF-8");
@@ -126,6 +126,7 @@ public class MailAction extends BaseAction {
 					Object template[]={recipient.getrName(),recipient.getSt_NO(),format.format(recipient.getLastEditTime()),days};
 					content=MessageFormat.format(content, template);
 					mailService.send(mail, subject, recipient.getrAddress(), null, content, false);
+					mailService.close();
 				}
 			}
 			this.result="发送邮件成功";
