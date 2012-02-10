@@ -7,7 +7,7 @@
 	<resultMap class="SupportLeaderRelation" id="SupportLeaderRelationResult">
 		<result property="stId" column="ST_ID" />
 		<result property="supportLeaderId" column="SL_ID" />
-		<result property="departid" column="departid" />
+		<result property="departid" column="sl_departid" />
 	</resultMap>
 
 
@@ -20,7 +20,7 @@
 				T.SL_ID = #supportLeaderId#
 			</isNotNull>
 			<isNotNull prepend="and" property="departid">
-				T.departid = #departid#
+				T.sl_departid = #departid#
 			</isNotNull>
 	</sql>
 	<sql id="SupportLeaderRelationPageWhere">
@@ -82,7 +82,7 @@
 				ST_ID
 			</isNotNull>
 			<isNotNull prepend="," property="departid">
-				departid
+				sl_departid
 			</isNotNull>
 		</dynamic>
 		)
