@@ -36,7 +36,6 @@ public class MailAction extends BaseAction {
 	private MailService mailService;
 	private IDict_itemService dict_itemService;
 	private String EmailAddress;
-	private IUserService userService;
 	private Mail mail;
 	private List<Mail> lMailList=new ArrayList<Mail>();
 	private List<Recipient> lRecipient=new ArrayList<Recipient>();
@@ -79,6 +78,8 @@ public class MailAction extends BaseAction {
 	
 	public String send(){
 		String email="";
+		String content="";
+		String subject="";
 		InputStream in=this.getClass().getClassLoader().getResourceAsStream("mailContent.properties");
 		Properties properties=new Properties();
 		List<Recipient> recipients=new ArrayList<Recipient>();
@@ -114,10 +115,24 @@ public class MailAction extends BaseAction {
 			}
 			mail.setRecipients(recipients);
 			properties.load(in);
-			String content=new String(properties.getProperty("mailContent").getBytes("ISO8859-1"),"UTF-8");
-			String subject=new String(properties.getProperty("mailSubject").getBytes("ISO8859-1"),"UTF-8");
+			//判断状态选择相应的邮件主题和内容
+			//进行中
+			if(mail.getStatus()!=null&&mail.getStatus().equals("going")){
+				content=new String(properties.getProperty("Going_Content").getBytes("ISO8859-1"),"UTF-8");
+				subject=new String(properties.getProperty("Going_Subject").getBytes("ISO8859-1"),"UTF-8");
+			}
+			//待反馈
+			if(mail.getStatus()!=null&&mail.getStatus().equals("wait_feedback")){
+				content=new String(properties.getProperty("Feedback_Content").getBytes("ISO8859-1"),"UTF-8");
+				subject=new String(properties.getProperty("Feedback_Subject").getBytes("ISO8859-1"),"UTF-8");
+			}
+			//待审批
+			if(mail.getStatus()!=null&&(mail.getStatus().equals("wait_company_appraval")||mail.getStatus().equals("wait_department_appraval"))){
+				content=new String(properties.getProperty("Approval_Content").getBytes("ISO8859-1"),"UTF-8");
+				subject=new String(properties.getProperty("Approval_Subject").getBytes("ISO8859-1"),"UTF-8");
+			}
 			for(Recipient recipient:mail.getRecipients()){
-				if(recipient.getLastEditTime()!=null&&!"".equals(recipient.getLastEditTime())){
+				if(recipient.getLastEditTime()!=null&&!"".equals(recipient.getLastEditTime())&&!content.equals("")&&!subject.equals("")){
 					DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 					Date editTime=format.parse(format.format(recipient.getLastEditTime()));
 					Date now=format.parse(format.format(new Date()));
