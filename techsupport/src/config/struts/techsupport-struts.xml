@@ -95,5 +95,9 @@
   	<action name="*_supervision" class="SupervisionAction" method="{1}">
   		<result type="json"></result>
   	</action>
+<!--   	支持变更 -->
+  	<action name="*_supportchange" class="SupportChangeAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
   </package>
 </struts>
