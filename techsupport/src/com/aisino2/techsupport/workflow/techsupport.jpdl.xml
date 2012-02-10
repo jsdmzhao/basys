@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process key="techsupport2" name="techsupport" version="2" xmlns="http://jbpm.org/4.4/jpdl">
+<process key="techsupport2" name="techsupport" version="3" xmlns="http://jbpm.org/4.4/jpdl">
    <start g="34,16,48,48" name="start1">
       <transition to="ce_appr"/>
    </start>
-   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="374,168,144,52" name="tracking_appr">
+   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="367,208,144,52" name="tracking_appr">
       <description>追踪批复</description>
       <transition to="terminate_exception_proc"/>
    </task>
    <end g="732,402,48,48" name="end"/>
-   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="665,127,92,52" name="feedback">
+   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="617,177,92,52" name="feedback">
    	  <description>反馈确认</description>
       <transition to="archive"/>
-      <transition g="587,152:-85,-25" name="no_feedback" to="tracking_appr"/>
+      <transition g="556,170:-85,-25" name="no_feedback" to="tracking_appr"/>
    </task>
    <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="737,219,92,52" name="archive">
    	  <description>归档</description>
@@ -44,24 +44,25 @@
       <transition to="reassign_depart"/>
       <transition to="reassgin_stleader"/>
    </fork>
-   <task candidate-users="#{exception_handling_users}" form="/business/techSupport/exception/exception.jsp" g="225,235,171,46" name="exception_process">
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/exception/exception.jsp" g="202,273,171,46" name="exception_process">
    	<description>例外处理</description>
    	<transition to="end"/>
    </task>
-   <join g="493,259,48,48" multiplicity="1" name="terminate_exception_proc">
+   <join g="586,297,48,48" multiplicity="1" name="terminate_exception_proc">
       <description>结束例外处理分支</description>
       <transition to="feedback"/>
    </join>
-   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/reassign_depart/reassgin_depart.jsp" g="274,20,155,52" name="reassign_depart">
-   	  <description>重新指派部门</description>
-      <transition to="reassgin_stleader"/>
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/reassign_depart/reassgin_depart.jsp" g="278,2,155,52" name="reassign_depart">
+      <transition to="reassign_depart_condition"/>
    </task>
-   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/reassign_stleader/reassign_stleader.jsp" g="507,27,150,52" name="reassgin_stleader">
+   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/reassign_stleader/reassign_stleader.jsp" g="390,92,150,52" name="reassgin_stleader">
    	  <description>重新指派支持单负责人</description>
-      <transition to="reassign_repeat_condition"/>
+      <transition to="reassign_stleader_condition"/>
    </task>
-   <decision expr="#{repeat}" g="733,25,48,48" name="reassign_repeat_condition">
-      <transition g="613,0:-5,-25" name="to_reassign_depart" to="reassign_depart"/>
-      <transition g="713,112:-151,-25" name="to_reassgin_stleader" to="reassgin_stleader"/>
+   <decision expr="#{reassign_stleader_repeat}" g="731,57,48,48" name="reassign_stleader_condition">
+      <transition g="762,146:-151,-25" name="to_reassgin_stleader" to="reassgin_stleader"/>
+   </decision>
+   <decision g="571,7,48,48" name="reassign_depart_condition" expr="#{reassign_depart_repeat}">
+      <transition g="520,77:-141,-25" name="to reassign_depart" to="reassign_depart"/>
    </decision>
 </process>
