@@ -198,7 +198,7 @@ function submitVerity() {
 				if(!($('#psgDsScheDate').val() < $('#psgIsScheDate').val()
 				&& $('#psgIsScheDate').val() == $('#psgScheDate').val())){
 				
-					jAlert('提示','计划需求时间必须小于计划实施时间,计划实施时间必须等于计划完成时间');
+					jAlert('计划需求时间必须小于计划实施时间,计划实施时间必须等于计划完成时间','提示');
 					return false;
 				}
 			}
@@ -220,8 +220,8 @@ function submitVerity() {
 				if(!($('#devDsScheDate').val() < $('#devDdScheDate').val() &&
 					$('#devDdScheDate').val() < $('#devDtScheDate').val() && 
 					$('#devScheDate').val() == $('#devDtScheDate').val())){
-					jAlert('提示','计划设计时间必须小于计划开发时间必须小于计划测试时间，测试时间必须等于计划完成时间');
-					return false
+					jAlert('计划设计时间必须小于计划开发时间必须小于计划测试时间，测试时间必须等于计划完成时间','提示');
+					return false;
 				}
 			}
 		}
