@@ -78,7 +78,7 @@ public class DeptApprovalAction extends BaseAction {
 			returnMsg="部门审核 保存成功";
 		} catch (RuntimeException e) {
 			returnNo=1;
-			returnMsg="部门审核 保存失败";
+			returnMsg=e.getMessage();
 			throw e;
 		}
 		return SUCCESS;
