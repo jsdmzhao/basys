@@ -43,10 +43,11 @@ public class DeptApprovalServiceImpl extends BaseService implements
 	}
 
 	public void insertDeptApproval(String taskId, SupportTicket st,Tracking tracking) {
-//		保存技术支持单信息
-		stService.updateSupportTicket(st);
 		//设置状态为进行中
 		st.setStStatus(Constants.ST_STATUS_GOING);
+//		保存技术支持单信息
+		stService.updateSupportTicket(st);
+		
 //		保存部门审核意见信息
 		trackingService.insertTracking(tracking);
 		
