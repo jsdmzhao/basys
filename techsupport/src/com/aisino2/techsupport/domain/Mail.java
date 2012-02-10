@@ -44,6 +44,8 @@ public class Mail {
 	private String attach;
 	//邮件内容
 	private String content;
+	//当前状态-判断什么阶段，不同阶段发送短信的内容主题不同
+	private String status;
 	
 	public String getProtocol() {
 		return protocol;
@@ -130,6 +132,12 @@ public class Mail {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	
