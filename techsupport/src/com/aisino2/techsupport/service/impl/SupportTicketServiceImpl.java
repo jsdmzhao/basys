@@ -13,6 +13,7 @@ import com.aisino2.core.service.BaseService;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDepartmentService;
+import com.aisino2.sysadmin.service.IUserService;
 import com.aisino2.techsupport.dao.ISupportDeptDao;
 import com.aisino2.techsupport.dao.ISupportLeaderRelationDao;
 import com.aisino2.techsupport.dao.SupportTicketDao;
@@ -48,6 +49,13 @@ public class SupportTicketServiceImpl extends BaseService implements
 	//附件服务, 这里是把关联的附件信息和技术支持单一起保存在数据库里面
 	private IAttachmentService attachmentService;
 	
+	private IUserService user_service;
+	
+	@Resource(name="userService")
+	public void setUser_service(IUserService user_service) {
+		this.user_service = user_service;
+	}
+
 	public SupportTicketDao getSupportTicketDao() {
 		return supportTicketDao;
 	}
@@ -150,7 +158,11 @@ public class SupportTicketServiceImpl extends BaseService implements
 				// 删除以前的指派单位记录，并且重新设置指派单位记录
 				SupportDept supportDept = new SupportDept();
 				supportDept.setStId(st.getId());
+				SupportLeaderRelation slr = new SupportLeaderRelation();
+				slr.setStId(st.getId());
 				this.supportDeptDao.removeSupportDept(supportDept);
+				//并且删除以前指派的支持单负责人
+				this.supportLeaderRelationDao.delete(slr);
 				
 				for (Department dept : st.getSupportDeptList()) {
 					if (dept == null)
@@ -182,7 +194,10 @@ public class SupportTicketServiceImpl extends BaseService implements
 				
 				for(User sl : st.getLstSupportLeaders()){
 					//先删除以前的再添加新的负责人
+					
 					SupportLeaderRelation check_slrelation = new SupportLeaderRelation();
+					sl = user_service.getUser(sl);
+					
 					check_slrelation.setDepartid(sl.getDepartid());
 					check_slrelation.setStId(st.getId());
 					this.supportLeaderRelationDao.delete(check_slrelation);
@@ -190,6 +205,9 @@ public class SupportTicketServiceImpl extends BaseService implements
 					SupportLeaderRelation slrelation=new SupportLeaderRelation();
 					slrelation.setStId(st.getId());
 					slrelation.setSupportLeaderId(sl.getUserid());
+					//添加部门ID
+					slrelation.setDepartid(sl.getDepartid());
+					
 //					SupportLeaderRelation check_slrelation=null;
 //					try{
 //						check_slrelation = this.supportLeaderRelationDao.query(slrelation).get(0);
