@@ -15,29 +15,32 @@ var archiveDetailWidth=trackingDetailWidth;
 var usingDetailWidth;
 //弹出窗口
 var detailWindow;
+var worksheet_tables;
+var worksheet_div_id;
+var worksheet_table_id;
+var worksheet_page_url;
 function lazyLoad() {
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
 		-$('#mainDIV > table').eq(0).height()-23;
-	loadPageWorksheetQuery(divnid);
+	loadPageWorksheetQuery(worksheet_div_id);
 	worksheetQuery(1);
 }
  $(document).ready(function(){
 
  	//设置自动高度
- 	setTimeout(lazyLoad,5);
+ 	setTimeout(lazyLoad,10);
  	
- 	divnid="queryContent";//查询内容容器ID
-	tableid="queryContentTable";//查询内容格式表格ID
-	pageUrl=BUSNEISS_PATH +"/querylist_worksheet.action";//查询待办工作单
+ 	worksheet_div_id="queryContent";//查询内容容器ID
+	worksheet_table_id="queryContentTable";//查询内容格式表格ID
+	worksheet_page_url=BUSNEISS_PATH +"/querylist_worksheet.action";//查询待办工作单
 	workSheetUrl=BUSNEISS_PATH+"/worksheet_worksheet.action";//查询单个工作单
 	detailWidth=950;
 	detailid = "detailCt";
 	
 	detailWindow=$('#'+detailid).get(0);
-	queryTable=$("#"+tableid);
-	lazyLoad();
+	
 	//查询按钮动作
 	$('#queryBtn').click(function(){
 		worksheetQuery(1);
@@ -65,25 +68,28 @@ function lazyLoad() {
  }
  
  function loadPageWorksheetQuery(divpageid){
-	tables=$("#"+divpageid).html();
+	worksheet_tables=$("#"+divpageid).html();
 	worksheetQuery(1,'#');
 }	
-
+ function worksheetQueryList(pageno,url){
+ 	$("#"+worksheet_div_id).html(worksheet_tables);
+	createXML("p_");
+	if (url==null || url=="undefined"){
+		url=worksheet_page_url;
+	}
+	return url;
+ }
  /**
   * 查询函数
   * */
  function worksheetQuery(pageno,url){
 
  	if (validate()){
-		url=setList(pageno,url);
+		url=worksheetQueryList(pageno,url);
 		// create the grid
 		// returns a jQ object with a 'g' property - that's ingrid
-		if($('#'+tableid).length == 0){
-			$('#'+divnid).html($(queryTable));
-		}
 		
-		var mygrid1 = $("#"+tableid).ingrid({ 
-//										tableid:tableid,
+		var mygrid1 = $("#"+worksheet_table_id).ingrid({
 										url: url,	
 										height:ingridHeight,
 										ingridPageWidth:1000,

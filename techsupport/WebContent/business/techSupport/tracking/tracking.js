@@ -150,12 +150,6 @@ $(function(){
 			if(data.returnNo == 0){
 //				alert(data.returnMsg);
 				
-
-				divnid="queryContent";//查询内容容器ID
-				tableid="queryContentTable";//查询内容格式表格ID
-				
-				loadPageWorksheetQuery(divnid);
-				
 				worksheetQuery(1);
 				
 				$(detailWindow).hideAndRemove("show");
@@ -171,7 +165,6 @@ $(function(){
 
 function loadPageTrackingQuery(divpageid){
 	tables=$("#"+divpageid).html();
-	$("#"+detailid).hide(); 	
 	trackingQuery(1,'#');
 }	
 
@@ -274,9 +267,6 @@ function loadData(){
 		$('#p_region').val(getDictitem({dictcode:ST_REGION_DICT_CODE,value:$('#p_region').val()})[0].display_name);
 		
 		trackingQuery(1,ingridUrl);
-		
-		divnid="queryContent";//查询内容容器ID
-		tableid="queryContentTable";//查询内容格式表格ID
 		
 	});
 	
