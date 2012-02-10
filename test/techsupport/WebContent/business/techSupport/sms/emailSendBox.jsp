@@ -17,6 +17,7 @@
 			var params={};
 			params['mail.user']=user;
 			params['mail.password']=$("#password").val();
+			params['mail.status']=$('#p_stStatus').val();
 			for(var i=0;i<stNoList.length;i++){
 				params['lSt['+i+'].id']=stNoList[i];
 			}
