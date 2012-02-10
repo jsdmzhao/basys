@@ -2,7 +2,6 @@ package com.aisino2.techsupport.service.impl;
 
 import javax.annotation.Resource;
 
-import org.eclipse.jdt.core.IWorkingCopy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +28,7 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		support_ticket_service.updateSupportTicket(st);
 		
 		//流程部分
-		workflow.getTaskService().createTaskQuery().activityName(arg0)
+//		workflow.getTaskService().createTaskQuery().activityName(arg0)
 	}
 
 	public void change_support_leader(String taskId,SupportTicket st,Tracking tracking) {
