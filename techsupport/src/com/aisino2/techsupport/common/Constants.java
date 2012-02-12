@@ -103,6 +103,26 @@ public class Constants {
 	public static CommonUtil util;
 	private static Logger log=Logger.getLogger(Constants.class);
 	
+	//流程环节
+	//填报
+	public static final String ST_PROCESS_APPLY="apply";
+	//总工审批或者公司审批
+	public static final String ST_PROCESS_CE_APPROVAL="ce_appr";
+	//部门审批或者公司二级审批
+	public static final String ST_PROCESS_DEPARTMENT_APPROVAL="department_appr";
+	//追踪批复
+	public static final String ST_PROCESS_TRACKING="tracking_appr";
+	//反馈确认
+	public static final String ST_PROCESS_FEEDBACK = "feedback";
+	//归档
+	public static final String ST_PROCESS_ARCHIVE = "archive";
+	//例外处理
+	public static final String ST_PROCESS_EXCEPTION = "exception_process";
+	//重指派部门
+	public static final String ST_PROCESS_REASSIGN_DEPART = "reassign_depart";
+	//重指派支持单负责人
+	public static final String ST_PROCESS_REASSGIN_STLEADER = "reassgin_stleader";
+	
 	static {
 		util = new CommonUtil();
 		try {
