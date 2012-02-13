@@ -74,6 +74,8 @@ public class SupportChangeAction extends PageAction {
 	public String change_department() throws Exception{
 		if(change_st == null)
 			throw new RuntimeException("更变部门参数为空");
+		if(taskId == null)
+			throw new RuntimeException("任务编号为空");
 		try{
 			support_change_service.change_support_department(taskId, change_st,track);
 			returnNo=0;
@@ -94,6 +96,8 @@ public class SupportChangeAction extends PageAction {
 	public String change_support_leader() throws Exception{
 		if(change_st == null)
 			throw new RuntimeException("更变支持单负责人参数为空");
+		if(taskId == null)
+			throw new RuntimeException("任务编号为空");
 		try{
 			support_change_service.change_support_leader(taskId, change_st,track);
 			returnNo=0;

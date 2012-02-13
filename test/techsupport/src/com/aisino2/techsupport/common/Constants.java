@@ -50,6 +50,12 @@ public class Constants {
 	public static String TRACKING_TYPE_FEEDBACK = "40";
 	//归档意见或者注释
 	public static String TRACKING_TYPE_ARCHIVE = "50";
+	//异常处理
+	public static String TRACKING_TYPE_EXCEPTION = "60";
+	//重新指派部门原因
+	public static String TRACKING_TYPE_REASSIGN_DEPARTMENT = "70";
+	//重新指派支持单负责人原因
+	public static String TRACKING_TYPE_REASSIGN_SUPPORT_LEADER = "80";
 	
 	//流程名称
 	public static final String workflowName = "techsupport";
