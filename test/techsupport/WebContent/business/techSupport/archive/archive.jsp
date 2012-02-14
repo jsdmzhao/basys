@@ -350,7 +350,7 @@
 		<div class="column">
 			<div>
 				<label class="label red">备注:</label>
-				<textarea class="item inputstyle" style="width:600px ! important;height: 78px;" name="archiveSt.comments" id="p_comments"></textarea>
+				<textarea class="item inputstyle" style="width:70% ! important;height: 78px;" name="archiveSt.comments" id="p_comments"></textarea>
 			</div>
 			<div class="clear-column"></div>
 		</div>

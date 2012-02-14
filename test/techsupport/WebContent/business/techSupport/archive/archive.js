@@ -51,6 +51,10 @@ function supervision_query(pageno,url){
 }	
 /**保存验证*/
 function saveVerify() {
+	if (!checkControlValue("p_comments","String",1,3000,null,1,"备注"))
+		return false;
+	if (!checkControlValue("p_archive_code","String",1,100,null,1,"归档号"))
+		return false;
 	return true;
 }
 
@@ -121,7 +125,6 @@ $(function(){
 
 function loadPageTrackingQuery(divpageid){
 	tables=$("#"+divpageid).html();
-	$(detailWindow).hide(); 	
 	trackingQuery(1,'#');
 }	
 
