@@ -82,6 +82,15 @@ public class SupportTicket {
 	private Date lastUpdateDate;
 	private String useLastUpdateDate;
 	
+	//归档号
+	private String archive_code;
+	
+	public String getArchive_code() {
+		return archive_code;
+	}
+	public void setArchive_code(String archive_code) {
+		this.archive_code = archive_code;
+	}
 	public String getUseLastUpdateDate() {
 		return useLastUpdateDate;
 	}
