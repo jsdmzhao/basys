@@ -123,7 +123,9 @@ function setProcess(taskId){
 
 		if(worksheet.activityName=="追踪批复")
 			usingDetailWidth=trackingDetailWidth;
-		else if(worksheet.activityName=='反馈确认')
+		else if(worksheet.activityName=='反馈确认' 
+				|| worksheet.activityName=='重指派部门' 
+				|| worksheet.activityName=='重指派支持单负责人')
 			usingDetailWidth=feedbackDetailWidth;
 		else if(worksheet.activityName=='归档')
 			usingDetailWidth=archiveDetailWidth;

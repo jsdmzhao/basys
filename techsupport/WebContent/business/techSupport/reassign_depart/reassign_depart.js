@@ -8,7 +8,12 @@ var processUrl2;
 var ingridUrl;
 var ingridWidth=750;
 var trackingWindowWidth=850;
-
+//督办
+var supervision_div_id="supervision_list_div";
+var supervision_table_id="supervision_list_table";
+var supervision_tables;
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
 /**保存验证*/
 function saveVerify() {
 	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
@@ -17,14 +22,48 @@ function saveVerify() {
 		return false;
 	return true;
 }
+
+function load_page_supervision_query(divpageid){
+	supervision_tables=$("#"+divpageid).html();
+	supervision_query(1,'#');
+}
+
+function set_supervision_list(pageno,url){	
+	$("#"+supervision_div_id).html(supervision_tables);
+	createXML("sv_");
+	if (url==null || url=="undefined"){
+		url=supervision_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function supervision_query(pageno,url){
 	
+	if (true){
+		url=set_supervision_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+supervision_table_id).ingrid({ 
+										url: url,	
+										height:70,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});
+		}
+}	
 /** onload */
 $(function(){
 
 	//保存连接
-	var saveURL = getContextPath()+"/techsupport/save_tracking.action";
-	//反馈链接
-	var toFeedbackURL = getContextPath() + "/techsupport/applyFeedback_tracking.action";
+	var saveURL = getContextPath()+"/techsupport/change_department_supportchange.action";
 	
 	//只读化控件
 	$('.ro').attr('readOnly',true);
@@ -59,17 +98,19 @@ $(function(){
 		if(!saveVerify()){
 			return;
 		}
-		if(!prompt("您确认变更技术支持部门吗？"))
+		if(!confirm("您确认变更技术支持部门吗？"))
 			return;
 		
 		var params = {};
 		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
+		
+		params = getSubmitParams("[name^=track.]");
+		params = $.extend(params,getSubmitParams("[name^=change_st.]"));
 		
 		//设置当前的track.stId
 		params['track.stId']=$('input:hidden[name=st.id]').val();
+		params['change_st.id']=$('input:hidden[name=st.id]').val();
+		params['taskId']=$('#p_taskId').val();
 		
 		$.post(saveURL,params,function(data){
 			if(!data){
@@ -193,7 +234,10 @@ function loadData(){
 		$('#p_region').val(getDictitem({dictcode:ST_REGION_DICT_CODE,value:$('#p_region').val()})[0].display_name);
 		
 		trackingQuery(1,ingridUrl);
-		
+		//督办
+		$('#sv_st_id').val(data.st.id);
+		load_page_supervision_query(supervision_div_id);
+		supervision_query(1);
 	});
 	
 	
