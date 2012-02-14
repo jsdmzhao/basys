@@ -39,6 +39,11 @@
 				<input type="text" class="item ro inputstyle" id="deptName" name="st.supportDeptList.departname">
 				<div class="clear-column"></div>
 			</div>
+			<div class="column column-250">
+				<label class="label label-80">归档号:</label>
+				<input type="text" class="item ro inputstyle" id="archive_code" name="st.archive_code">
+				<div class="clear-column"></div>
+			</div>
 			<div class="clear-row"></div>
 		</div>
 		
