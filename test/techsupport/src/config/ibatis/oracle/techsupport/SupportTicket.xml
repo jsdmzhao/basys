@@ -95,6 +95,8 @@
 		<result property="archiveDate" column="ARCHIVE_DATE" />
 		<result property="archiveUser.userid" column="ARCHIVE_USERID" />
 		<result property="lastUpdateDate" column="last_update_date"/>
+		<result property="archive_code" column="archive_code"/>
+		
 	</resultMap>
 	
 	
@@ -357,6 +359,11 @@
 			<isNotEmpty prepend="," property="lastUpdateDate">
 				last_update_date = #lastUpdateDate#
 			</isNotEmpty>
+			<!-- 归档号 -->
+			<isNotEmpty prepend="," property="archive_code">
+				archive_code = #archive_code#
+			</isNotEmpty>
+			
 		</dynamic>
 
 		where ID = #id#
@@ -537,8 +544,8 @@
 				t.ARCHIVE_DATE,
 				
 				t.ARCHIVE_USERID,
-				t.last_update_date
-
+				t.last_update_date,
+				t.archive_code
 
 
 <!-- 		, -->
