@@ -391,7 +391,7 @@ function getSubmitParams(expr){
 	//过滤单选复选
 	fields = $(expr).filter(':checked');
 	for(var i=0;i<fields.length;i++){
-		allfields.push(feilds.eq(i));
+		allfields.push(fields.eq(i));
 	}
 	//设置对象
 	var params = {};

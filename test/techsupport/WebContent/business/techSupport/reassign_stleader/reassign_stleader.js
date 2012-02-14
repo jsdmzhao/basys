@@ -8,58 +8,63 @@ var processUrl2;
 var ingridUrl;
 var ingridWidth=750;
 var trackingWindowWidth=850;
-
+//督办
+var supervision_div_id="supervision_list_div";
+var supervision_table_id="supervision_list_table";
+var supervision_tables;
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
 /**保存验证*/
 function saveVerify() {
-	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
+	if (!checkControlValue("p_newProcess","String",1,4000,null,1,"变更原因"))
 		return false;
-	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
+	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"变更日期"))
+		return false;
+	if (!checkControlValue("p_processor","String",1,100,null,1,"新支持单负责人"))
 		return false;
 	return true;
 }
+function load_page_supervision_query(divpageid){
+	supervision_tables=$("#"+divpageid).html();
+	supervision_query(1,'#');
+}
 
-/** 提请反馈验证 */
-function toFeedbackVerify(){
-	if($('#p_deptName').val().indexOf('方案部') > -1){
-		if (!checkControlValue("p_psgCompDate","Date",null,null,null,1,"产品方案部实际完成时间"))
-			return false;
-		// ++ bug 在阶段选项打开的时候，内容为必填
-		if($('#psgcpstage').attr("checked")){
-			if (!checkControlValue("p_psgDsCompDate","Date",null,null,null,1,"产品方案部实际需求完成时间"))
-				return false;
-			if (!checkControlValue("p_psgIsCompDate","Date",null,null,null,1,"产品方案部实际实施完成时间"))
-				return false;
-		}
-		// -- bug 在阶段选项打开的时候，内容为必填	
+function set_supervision_list(pageno,url){	
+	$("#"+supervision_div_id).html(supervision_tables);
+	createXML("sv_");
+	if (url==null || url=="undefined"){
+		url=supervision_query_url;
 	}
-	if($('#p_deptName').val().indexOf('开发部') > -1){
-		if (!checkControlValue("p_devCompDate","Date",null,null,null,1,"技术研发部实际完成时间"))
-				return false;
-	}
-		if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
-			return false;
-		if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
-			return false;
-		// ++ bug 在阶段选项打开的时候，内容为必填
-		if($('#devcpstage').attr("checked")){
-			if (!checkControlValue("p_devDsCompDate","Date",null,null,null,1,"技术研发部实际设计完成时间"))
-				return false;
-			if (!checkControlValue("p_devDdCompDate","Date",null,null,null,1,"技术研发部实际开发完成时间"))
-				return false;
-			if (!checkControlValue("p_devDtCompDate","Date",null,null,null,1,"技术研发部实际测试完成时间"))
-				return false;
-		}
-		// -- bug 在阶段选项打开的时候，内容为必填	
-		return true;
-	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function supervision_query(pageno,url){
 	
+	if (true){
+		url=set_supervision_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+supervision_table_id).ingrid({ 
+										url: url,	
+										height:70,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});
+		}
+}
 /** onload */
 $(function(){
 
 	//保存连接
-	var saveURL = getContextPath()+"/techsupport/save_tracking.action";
-	//反馈链接
-	var toFeedbackURL = getContextPath() + "/techsupport/applyFeedback_tracking.action";
+	var saveURL = getContextPath()+"/techsupport/change_support_leader_supportchange.action";
 	
 	//只读化控件
 	$('.ro').attr('readOnly',true);
@@ -88,21 +93,28 @@ $(function(){
 	
 	loadData();
 	
+	//重新指派支持单负责人
+	$('#p_processor').click(function(){
+	
+		getUserofDept('p_processor','p_processorId',gxdwbm,ST_ROLE_NAME_STLEADER);
+	});
 	
 	//设置保存按钮
 	$('#saveBtn').click(function(){
 		if(!saveVerify()){
 			return;
 		}
-		
+		if(!confirm("您确认变更支持单负责人吗？"))
+			return;
 		var params = {};
 		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
+		params = getSubmitParams("[name^=track.]");
+		params = $.extend(params,getSubmitParams("[name^=change_st.]"));
 		
 		//设置当前的track.stId
 		params['track.stId']=$('input:hidden[name=st.id]').val();
+		params['change_st.id']=$('input:hidden[name=st.id]').val();
+		params['taskId']=$('#p_taskId').val();
 		
 		$.post(saveURL,params,function(data){
 			if(!data){
@@ -113,52 +125,12 @@ $(function(){
 			if(data.returnNo == 0){
 				$(detailWindow).hideAndRemove("show");
 				
+				worksheetQuery(1);
 			}
 			else
 				jAlert(data.returnMsg,"提示")
 		});
 		
-	});
-	//设置反馈按钮
-	$('#toFeedbackBtn').click(function(){
-		if(!toFeedbackVerify()){
-			return;
-		}
-		var params = {};
-		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		
-		//设置当前的track.stId
-		params['track.stId']=$('input:hidden[name=st.id]').val();
-		//设置trSt,保存环节信息
-		$('[name^=trSt.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		params['trSt.id']=$('input:hidden[name=st.id]').val();
-		
-		//设置任务号
-		params.taskId = $('#p_taskId').val();
-		
-		$.post(toFeedbackURL,params,function(data){
-			if(!data){
-				alert("传输错误，管理人员");
-			}
-			data = eval("("+data+")");
-			
-			if(data.returnNo == 0){
-//				alert(data.returnMsg);
-				
-				worksheetQuery(1);
-				
-				$(detailWindow).hideAndRemove("show");
-				
-			}
-			else{
-				alert(data.returnMsg);
-			}
-		});
 	});
 });
 
@@ -268,7 +240,10 @@ function loadData(){
 		$('#p_region').val(getDictitem({dictcode:ST_REGION_DICT_CODE,value:$('#p_region').val()})[0].display_name);
 		
 		trackingQuery(1,ingridUrl);
-		
+		//督办
+		$('#sv_st_id').val(data.st.id);
+		load_page_supervision_query(supervision_div_id);
+		supervision_query(1);
 	});
 	
 	

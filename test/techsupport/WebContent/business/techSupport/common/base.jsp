@@ -49,6 +49,9 @@
 	var TRACKING_TYPE_FEEDBACK="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_FEEDBACK%>";
 	//归档意见或者注释
 	var TRACKING_TYPE_ARCHIVE="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_ARCHIVE%>";
+	var TRACKING_TYPE_EXCEPTION="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_EXCEPTION%>";
+	var TRACKING_TYPE_REASSIGN_DEPARTMENT="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_REASSIGN_DEPARTMENT%>";
+	var TRACKING_TYPE_REASSIGN_SUPPORT_LEADER="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_REASSIGN_SUPPORT_LEADER%>";
 	//航天金盾公司 代码
 	var HTJD_DEPT_CODE="<%=com.aisino2.techsupport.common.Constants.HTJD_DEPT_CODE%>";
 	
