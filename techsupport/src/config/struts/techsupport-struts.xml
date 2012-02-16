@@ -99,5 +99,9 @@
   	<action name="*_supportchange" class="SupportChangeAction" method="{1}">
   		<result type="json"></result>
   	</action>
+  	<!--导出数据并发送邮件 -->
+  	<action name="*_word" class="wordAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
   </package>
 </struts>
