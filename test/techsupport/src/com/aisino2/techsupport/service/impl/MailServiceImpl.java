@@ -11,7 +11,6 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
@@ -23,7 +22,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeMessage;
 
 import com.aisino2.techsupport.domain.Mail;
-import com.aisino2.techsupport.domain.Recipient;
 import com.aisino2.techsupport.service.MailService;
 import javax.mail.internet.MimeBodyPart;
 
