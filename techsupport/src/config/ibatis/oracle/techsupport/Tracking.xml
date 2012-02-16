@@ -55,6 +55,7 @@
 		<dynamic prepend="where">
 			<include refid="TrackingListWhere"/>
 		</dynamic>
+		order by t.id desc
 	</select>
 	
 	<select id="tracking.getPageCount" parameterClass="map"
