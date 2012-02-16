@@ -198,9 +198,22 @@ function SupportTicketQuery(pageno,url){
 				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');
 				bindDocument('email_detail');
 			});
+			//导出数据并发送邮件
+			$("#sendWord").click(function(){
+				var paramss={};
+				var fields=$('input:checked[name^=lSt]');
+				for(i=0;i<fields.length;i++){
+					paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
+				}
+				paramss['word.status']=$("#p_stStatus").val();
+				$.post(BUSNEISS_PATH+'/createWord_word.action',paramss,function(data){
+					alert(data.result);
+				},'json');
+			});
+			
 			$('#sendSmsBtn').attr('disabled',false);
 			$('#sendEmail').attr('disabled',false);
-			
+			$("#sendWord").attr('disabled',false);
 		},'json');
 		
 		
@@ -296,6 +309,7 @@ function SupportTicketQuery(pageno,url){
 			<span>
 				<input type="button" id="sendSmsBtn" class="searchbutton" value="短信提示" disabled="disabled">
 				<input type="button" id="sendEmail" class="searchbutton" value="发送邮件" disabled="disabled">
+				<input type="button" id="sendWord" class="searchbutton" value="导出并发送" disabled="disabled">
 			</span>
 		</center>
 	</div>
