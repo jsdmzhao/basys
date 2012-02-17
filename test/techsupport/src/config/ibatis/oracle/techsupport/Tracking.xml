@@ -35,6 +35,9 @@
 			<isNotNull prepend="and" property="approvalCode">
 				t.APPROVAL_CODE = #approvalCode#
 			</isNotNull>
+			<isNotNull prepend="and" property="processorId">
+				t.processor = #processorId#
+			</isNotNull>
 			
 	</sql>
 	<sql id="TrackingPageWhere">
