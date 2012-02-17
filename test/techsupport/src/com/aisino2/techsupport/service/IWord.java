@@ -15,4 +15,9 @@ public interface IWord {
 	 */
 	public void CreateWord(Word word) throws DocumentException,
 			IOException, ParseException;
+	
+	/**
+	 * 关闭文档
+	 */
+	public void close();
 }

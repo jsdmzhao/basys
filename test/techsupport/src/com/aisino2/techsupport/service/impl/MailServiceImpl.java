@@ -87,14 +87,23 @@ public class MailServiceImpl implements MailService {
 			}
 			// 设置附件
 			if (attach != null) {
-				String[] temp = attach.split(",");
-				for (String filepath : temp) {
+				if(attach.indexOf(",")>0){
+					String[] temp = attach.split(",");
+					for (String filepath : temp) {
+						MimeBodyPart mBody = new MimeBodyPart();
+						DataSource dataSource = new FileDataSource(filepath);
+						mBody.setDataHandler(new DataHandler(dataSource));
+						mBody.setFileName(filepath);
+						mp.addBodyPart(mBody);
+					}
+				}else{
 					MimeBodyPart mBody = new MimeBodyPart();
-					DataSource dataSource = new FileDataSource(filepath);
+					DataSource dataSource = new FileDataSource(attach);
 					mBody.setDataHandler(new DataHandler(dataSource));
-					mBody.setFileName(filepath);
+					mBody.setFileName(attach);
 					mp.addBodyPart(mBody);
 				}
+				
 			}
 			// 使用pgp加密 //###
 			if (pgp) {
@@ -132,6 +141,24 @@ public class MailServiceImpl implements MailService {
 			boolean html) throws Exception {
 		return send(mail,subject, to, cc, false, false, text, null, html);
 	}
+	
+	
+	/**
+	 * 发送邮件带有发送附件的短版
+	 * @param mail
+	 * @param subject 主题
+	 * @param to 收件人
+	 * @param cc 抄送
+	 * @param text 正文
+	 * @param attach 附件
+	 * @param html 是否发送html邮件
+	 * @return 是否发送成功
+	 */
+	public boolean send(Mail mail, String subject, String to, String cc,
+			String text, String attach, boolean html) throws Exception{
+		return send(mail,subject, to, cc, false, false, text, attach, html);
+	}
+
 
 	/**
 	 * 连接邮件服务器

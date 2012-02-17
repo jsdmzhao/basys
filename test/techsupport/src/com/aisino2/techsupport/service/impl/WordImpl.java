@@ -47,10 +47,12 @@ public class WordImpl implements IWord {
 	
 	private IDepartmentService departmentService;
 	
+	private Document document;
+	
 	public void CreateWord(Word word) throws DocumentException,
 			IOException, ParseException {
 		//创建文档并且设置纸张大小
-		Document document = new Document(PageSize.A4);
+		document = new Document(PageSize.A4);
 		// 建立一个书写器(Writer)与document对象关联，通过书写器(Writer)可以将文档写入到磁盘中
 		RtfWriter2.getInstance(document, new FileOutputStream(word.getPath()));
 		document.open();
@@ -150,16 +152,18 @@ public class WordImpl implements IWord {
 					newLst.add(st);
 				}
 			}
-			for(int i=1;i<=newLst.size();i++){
+			for(int i=0;i<newLst.size();i++){
 				Tracking tracking=new Tracking();
-				tracking.setStId(newLst.get(i-1).getId());
+				tracking.setStId(newLst.get(i).getId());
+				User user=newLst.get(i).getLstSupportLeaders().get(0);
+				tracking.setProcessorId(user.getUserid());
+				tracking.setType("0");
 				List<Tracking> trackList=TrackingServiceImpl.getTrackingList(tracking);
 				//技术支持单编号
-				table.addCell(new Cell(newLst.get(i-1).getStNo()));
+				table.addCell(new Cell(newLst.get(i).getStNo()));
 				//技术支持单内容
-				table.addCell(new Cell(newLst.get(i-1).getSupportContent()));
+				table.addCell(new Cell(newLst.get(i).getSupportContent()));
 				//支持单负责人
-				User user=newLst.get(i-1).getLstSupportLeaders().get(0);
 				table.addCell(new Cell(user.getUsername()));
 				//负责人所在部门
 				Department department=new Department();
@@ -167,11 +171,11 @@ public class WordImpl implements IWord {
 				department=departmentService.getDepartment(department);
 				table.addCell(new Cell(department.getDepartname()));
 				//上次填报时间
-				table.addCell(new Cell(format.format(newLst.get(i-1).getLastUpdateDate())));
+				table.addCell(new Cell(format.format(trackList.get(0).getTrackingDate())));
 				//上次填报内容
 				table.addCell(new Cell(trackList.get(0).getNewProcess()));
 				//逾期时间
-				Date editTime=format.parse(format.format(newLst.get(i-1).getLastUpdateDate()));
+				Date editTime=format.parse(format.format(trackList.get(0).getTrackingDate()));
 				Date now=format.parse(format.format(new Date()));
 				long diff=now.getTime()-editTime.getTime();
 				long days=diff/(1000 * 60 * 60 * 24);
@@ -203,15 +207,66 @@ public class WordImpl implements IWord {
 			//设置第二行第六列
 			Cell sRow_sixthColumn=new Cell(word.getsRow_sixthColumn());
 			table.addCell(sRow_sixthColumn);
-			//未完待续
+			// 如果技术支持单负责人跨区域有多个，将一张支持单拆分为多N张
+			List<SupportTicket> lst=word.getlSupportTicket();
+			List<SupportTicket> newLst=new ArrayList<SupportTicket>();
+			List<User> newUser=new ArrayList<User>();
+			List<User> userList=new ArrayList<User>();
+			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+			for(int i=0;i<lst.size();i++){
+				userList=lst.get(i).getLstSupportLeaders();
+				for(int j=0;j<userList.size();j++){
+					SupportTicket st=new SupportTicket();
+					User user=new User();
+					user=userList.get(j);
+					newUser.add(user);
+					st=lst.get(i);
+					st.setLstSupportLeaders(newUser);
+					newLst.add(st);
+				}
+			}
+			for(int i=0;i<newLst.size();i++){
+				User getUser=new User();
+				Tracking tracking=new Tracking();
+				tracking.setStId(newLst.get(i).getId());
+				//技术支持单编号
+				table.addCell(new Cell(newLst.get(i).getStNo()));
+				//技术支持单内容
+				table.addCell(new Cell(newLst.get(i).getSupportContent()));
+				//支持单填报人
+				getUser.setUserid(newLst.get(i).getApplicantId());
+				getUser=userService.getUser(getUser);
+				table.addCell(new Cell(getUser.getUsername()));
+				//支持单负责人
+				User user=newLst.get(i).getLstSupportLeaders().get(0);
+				table.addCell(new Cell(user.getUsername()));
+				//提请反馈时间
+				tracking.setProcessorId(user.getUserid());
+				tracking.setType("40");
+				List<Tracking> trackingList=TrackingServiceImpl.getTrackingList(tracking);
+				table.addCell(new Cell(format.format(trackingList.get(0).getTrackingDate())));
+				//逾期时间
+				Date editTime=format.parse(format.format(trackingList.get(0).getTrackingDate()));
+				Date now=format.parse(format.format(new Date()));
+				long diff=now.getTime()-editTime.getTime();
+				long days=diff/(1000 * 60 * 60 * 24);
+				table.addCell(new Cell(String.valueOf(days)));
+			}
 		}else if(word.getStatus().equals("wait_company_appraval")){//审批状态
 			
 		}
-		
-		
 		document.add(table);
-		document.close();
 	}
+	
+	
+	//关闭文档
+	public void close() {
+		if(document!=null){
+			document.close();
+		}
+	}
+
+
 
 	public TrackingService getTrackingServiceImpl() {
 		return TrackingServiceImpl;

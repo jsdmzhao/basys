@@ -36,6 +36,19 @@ public interface MailService {
 	public boolean send(Mail mail,String subject, String to, String cc, String text,boolean html) throws Exception;
 	
 	/**
+	 * 发送邮件带有发送附件的短版
+	 * @param mail
+	 * @param subject 主题
+	 * @param to 收件人
+	 * @param cc 抄送
+	 * @param text 正文
+	 * @param attach 附件
+	 * @param html 是否发送html邮件
+	 * @return 是否发送成功
+	 */
+	public boolean send(Mail mail,String subject, String to, String cc, String text,String attach,boolean html) throws Exception;
+	
+	/**
 	 * 连接邮件服务器
 	 * @param mail
 	 * @return 是否连接成功
