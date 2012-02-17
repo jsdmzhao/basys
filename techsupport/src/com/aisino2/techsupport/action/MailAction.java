@@ -18,13 +18,11 @@ import com.aisino2.core.web.BaseAction;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDict_itemService;
-import com.aisino2.sysadmin.service.IUserService;
 import com.aisino2.techsupport.domain.Mail;
 import com.aisino2.techsupport.domain.Recipient;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.service.MailService;
 import com.aisino2.techsupport.service.SupportTicketService;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @Component
 @Scope("prototype")
@@ -141,14 +139,20 @@ public class MailAction extends BaseAction {
 					Object template[]={recipient.getrName(),recipient.getSt_NO(),format.format(recipient.getLastEditTime()),days};
 					content=MessageFormat.format(content, template);
 					mailService.send(mail, subject, recipient.getrAddress(), null, content, false);
-					mailService.close();
 				}
 			}
 			this.result="发送邮件成功";
-		}catch(Exception e){
+		}catch(Exception e){ 
 			this.result=e.getMessage();
 			e.printStackTrace();
+		}finally{
+			mailService.close();
 		}
+		return "success";
+	}
+	
+	public String sendAndExport(){
+		
 		return "success";
 	}
 	
