@@ -95,11 +95,17 @@ public class MailAction extends BaseAction {
 			throw new RuntimeException("没有发件人不能发送邮件");
 		}
 		email=getAdressByName(mail.getUser());
-		mail.setEmail(email);
-		mail.setProtocol(Mail.PROTOCOL_POP);
-		mail.setSmtphost("smtp.aisino.com");
-		mail.setHost("pop3.aisino.com");
 		try{
+			//读取邮件配置信息
+			Properties mailConfig=new Properties();
+			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
+			mailConfig.load(config);
+			mail.setEmail(email);
+			//mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));以后会改成这种方式
+			//mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));以后会改成这种方式
+			mail.setProtocol(mailConfig.getProperty("protocol"));
+			mail.setSmtphost(mailConfig.getProperty("smtphost"));
+			mail.setHost(mailConfig.getProperty("host"));
 			mailService.connect(mail, true, true, false);
 			for(SupportTicket st: lSt){
 				for(User user:st.getLstSupportLeaders()){
