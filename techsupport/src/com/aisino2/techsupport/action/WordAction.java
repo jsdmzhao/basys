@@ -90,6 +90,11 @@ public class WordAction extends BaseAction {
 				word.setsRow_fifthColumn(new String(properties.getProperty("feedback_sRow_fifthColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setsRow_sixthColumn(new String(properties.getProperty("feedback_sRow_sixthColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("feedback_tableCloumnSize").getBytes("ISO8859-1"),"UTF-8")));
+				Object[] temp={new SimpleDateFormat("yyyy年MM月dd日").format(new Date())};
+				subject=new String(properties.getProperty("feedback_maiSubject").getBytes("ISO8859-1"),"UTF-8");
+				subject=MessageFormat.format(subject, temp);
+				text=subject;
+				to=new String(properties.getProperty("feedback_recipient").getBytes("ISO8859-1"),"UTF-8");
 			}else if(status!=null&&status.equals("wait_company_appraval")){//审批状态
 				
 			}
@@ -97,6 +102,7 @@ public class WordAction extends BaseAction {
 			word.setlSupportTicket(lSt);
 			word.setPath(file);
 			wordService.CreateWord(word);
+			wordService.close();
 			Mail mail=new Mail();
 			mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));
 			mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));
@@ -126,7 +132,6 @@ public class WordAction extends BaseAction {
 			this.result=e.getMessage();
 			e.printStackTrace();
 		}finally{
-			wordService.close();
 			mailService.close();
 		}
 		return "success";
