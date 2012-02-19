@@ -171,15 +171,15 @@ function loadData(){
  * 提交验证
  */
 function submitVerity() {
-	if (!checkControlValue("deptApprovalDate","Date",1,100,null,1,"经理审批日期"))
+	if (!checkControlValue("deptApprovalDate","Date",1,100,null,1,"部门审批日期"))
 		return false;
-	if (!checkControlValue("deptName","String",1,50,null,1,"经理名称"))
+	if (!checkControlValue("deptName","String",1,50,null,1,"部门审批人"))
 		return false;
 
 	//在部门审批通过的时候验证。
 	if ($('#deptRadioPanel > input').eq(0).attr('checked')) {
 		
-		if (!checkControlValue("supportLeaderName","String",1,100,null,1,"技术负责人"))
+		if (!checkControlValue("supportLeaderName","String",1,100,null,1,"支持单负责人"))
 			return false;
 		
 		if (gxdwmc == '产品方案部') {
@@ -229,7 +229,7 @@ function submitVerity() {
 	  
 	
 	//部门意见
-	if(!checkControlValue("deptReply","String",1,4000,null,1,"部门意见"))
+	if(!checkControlValue("deptReply","String",1,4000,null,1,"部门审批意见"))
 		return false;
 		
 	

@@ -10,6 +10,11 @@ var ingridWidth=750;
 var supervision_div_id="supervision_list_div";
 var supervision_table_id="supervision_list_table";
 var supervision_tables;
+
+//进展
+var tracking_div_id;
+var tracking_tables;
+var tracking_table_id;
 /**保存验证*/
 function saveVerify() {
 	return true;
@@ -42,11 +47,11 @@ $(function(){
 	//追踪批复查询URL
 	ingridUrl=getContextPath() + "/techsupport/querylistOnlyTracking_tracking.action";
 	
-	divnid="trackingTableDiv";//查询内容容器ID
-	tableid="trackingTable";//查询内容格式表格ID
+	tracking_div_id="trackingTableDiv";//查询内容容器ID
+	tracking_table_id="trackingTable";//查询内容格式表格ID
 	
 	
-	loadPageTrackingQuery(divnid);
+	loadPageTrackingQuery(tracking_div_id);
 	
 	
 	loadData();
@@ -54,12 +59,11 @@ $(function(){
 });
 
 function loadPageTrackingQuery(divpageid){
-	tables=$("#"+divpageid).html();
-	$(detailWindow).hide(); 	
+	tracking_tables=$("#"+divpageid).html();
 	trackingQuery(1,'#');
 }	
 function setTrackingList(pageno,url){	
-	$("#"+divnid).html(tables);	
+	$("#"+tracking_div_id).html(tracking_tables);	
 	createXML("track_");
 	if (url==null || url=="undefined"){
 		url=pageUrl;
@@ -76,7 +80,7 @@ function trackingQuery(pageno,url){
 		url=setTrackingList(pageno,url);
 		// create the grid
 		// returns a jQ object with a 'g' property - that's ingrid
-		var mygrid2 = $("#"+tableid).ingrid({ 
+		var mygrid2 = $("#"+tracking_table_id).ingrid({ 
 										url: url,	
 										height:70,
 										ingridPageWidth:ingridWidth,
@@ -97,6 +101,7 @@ function loadData(){
 	var paramsss = {'supportTicket.id':$('#id').val()};
 	
 	$.post(processUrl2,paramsss,function(data){
+		
 		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
@@ -158,8 +163,6 @@ function loadData(){
 		load_page_supervision_query(supervision_div_id);
 		supervision_query(1);
 		
-		divnid="queryContent";//查询内容容器ID
-		tableid="queryContentTable";//查询内容格式表格ID
 	});
 	
 	
