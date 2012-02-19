@@ -11,55 +11,18 @@ var trackingWindowWidth=850;
 
 /**保存验证*/
 function saveVerify() {
-	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
+	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"终止原因"))
 		return false;
-	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
+	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"终止日期"))
 		return false;
 	return true;
 }
-
-/** 提请反馈验证 */
-function toFeedbackVerify(){
-	if(gxdwmc.indexOf('方案部') > -1){
-		if (!checkControlValue("p_psgCompDate","Date",null,null,null,1,"产品方案部实际完成时间"))
-			return false;
-		// ++ bug 在阶段选项打开的时候，内容为必填
-		if($('#psgcpstage').attr("checked")){
-			if (!checkControlValue("p_psgDsCompDate","Date",null,null,null,1,"产品方案部实际需求完成时间"))
-				return false;
-			if (!checkControlValue("p_psgIsCompDate","Date",null,null,null,1,"产品方案部实际实施完成时间"))
-				return false;
-		}
-		// -- bug 在阶段选项打开的时候，内容为必填	
-	}
-	if(gxdwmc.indexOf('开发部') > -1){
-		if (!checkControlValue("p_devCompDate","Date",null,null,null,1,"技术研发部实际完成时间"))
-				return false;
-	}
-		if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
-			return false;
-		if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
-			return false;
-		// ++ bug 在阶段选项打开的时候，内容为必填
-		if($('#devcpstage').attr("checked")){
-			if (!checkControlValue("p_devDsCompDate","Date",null,null,null,1,"技术研发部实际设计完成时间"))
-				return false;
-			if (!checkControlValue("p_devDdCompDate","Date",null,null,null,1,"技术研发部实际开发完成时间"))
-				return false;
-			if (!checkControlValue("p_devDtCompDate","Date",null,null,null,1,"技术研发部实际测试完成时间"))
-				return false;
-		}
-		// -- bug 在阶段选项打开的时候，内容为必填	
-		return true;
-	}
 	
 /** onload */
 $(function(){
 
 	//保存连接
-	var saveURL = getContextPath()+"/techsupport/save_tracking.action";
-	//反馈链接
-	var toFeedbackURL = getContextPath() + "/techsupport/applyFeedback_tracking.action";
+	var saveURL = getContextPath()+"/techsupport/save_exception.action";
 	
 	//只读化控件
 	$('.ro').attr('readOnly',true);
@@ -112,53 +75,12 @@ $(function(){
 			
 			if(data.returnNo == 0){
 				$(detailWindow).hideAndRemove("show");
-				
+				worksheetQuery(1);
 			}
 			else
-				jAlert(data.returnMsg,"提示")
+				jAlert(data.returnMsg,"提示");
 		});
 		
-	});
-	//设置反馈按钮
-	$('#toFeedbackBtn').click(function(){
-		if(!toFeedbackVerify()){
-			return;
-		}
-		var params = {};
-		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		
-		//设置当前的track.stId
-		params['track.stId']=$('input:hidden[name=st.id]').val();
-		//设置trSt,保存环节信息
-		$('[name^=trSt.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		params['trSt.id']=$('input:hidden[name=st.id]').val();
-		
-		//设置任务号
-		params.taskId = $('#p_taskId').val();
-		
-		$.post(toFeedbackURL,params,function(data){
-			if(!data){
-				alert("传输错误，管理人员");
-			}
-			data = eval("("+data+")");
-			
-			if(data.returnNo == 0){
-//				alert(data.returnMsg);
-				
-				worksheetQuery(1);
-				
-				$(detailWindow).hideAndRemove("show");
-				
-			}
-			else{
-				alert(data.returnMsg);
-			}
-		});
 	});
 });
 
@@ -241,8 +163,7 @@ function loadData(){
 		$('#p_slName').val(sSlNames);
 		
 		//	初始化提请反馈必填项颜色信息
-//		if($('#p_deptName').val().indexOf('方案部') > -1){
-		if(	gxdwmc.indexOf('方案部') > -1){
+		if($('#p_deptName').val().indexOf('方案部') > -1){
 			$('#p_psgCompDate').prev('label').addClass('blue');
 			// 修正bug 添加必要的颜色信息
 			$("#psgcpstage").blur(function() {
@@ -253,7 +174,7 @@ function loadData(){
 				}
 			});
 		}
-		if(gxdwmc.indexOf('开发部') > -1){
+		if($('#p_deptName').val().indexOf('开发部') > -1){
 			$('#p_devCompDate').prev('label').addClass('blue');
 			// 修正bug 添加必要的颜色信息
 			$("#devcpstage").blur(function() {

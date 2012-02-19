@@ -40,7 +40,7 @@
 				<div class="clear-column"></div>
 			</div>
 			<div class="column column-250">
-				<label class="label label-80">归档号:</label>
+				<label class="label label-80">版本出库领用单编号:</label>
 				<input type="text" class="item ro inputstyle" id="archive_code" name="st.archive_code">
 				<div class="clear-column"></div>
 			</div>

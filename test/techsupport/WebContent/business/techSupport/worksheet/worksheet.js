@@ -11,6 +11,7 @@ var ingridHeight = 180;
 var trackingDetailWidth=850;
 var feedbackDetailWidth=trackingDetailWidth;
 var archiveDetailWidth=trackingDetailWidth;
+var ce_appr_detail_width = 800;
 
 var usingDetailWidth;
 //弹出窗口
@@ -56,6 +57,8 @@ function lazyLoad() {
 	});
 //	 ++添加流程筛选
 	$('#p_activityName').selectBox({code:ST_WORKFLOW_NAME_DICT_CODE});
+	//控制宽度
+//	$('#div_p_activeName ul').width($('#p_activityName').width());
 //	 --添加流程筛选 
 	daggleDiv(detailid);
  });
@@ -96,6 +99,7 @@ function lazyLoad() {
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
                                        	ingridPageParams:sXML,
+                                       	noSortColIndex:[6],
                                        	onRowSelect:null,
 										pageNumber: pageno,
 										colWidths: ["14%","10%","12%","12%","12%","12%","12%","12%"]				
@@ -120,7 +124,6 @@ function setProcess(taskId){
 		
 		processURL=getContextPath()+worksheet.formResourceName;
 		dataid=taskId;
-
 		if(worksheet.activityName=="追踪批复")
 			usingDetailWidth=trackingDetailWidth;
 		else if(worksheet.activityName=='反馈确认' 

@@ -342,8 +342,8 @@
 	<div class="row">
 		<div class="column">
 			<div>
-				<label class="label red">归档号:</label>
-				<input type="text" class=" item inputstyle" name="st.archive_code" id="p_archive_code" >
+				<label class="label red">版本出库领用单编号:</label>
+				<input type="text" class=" item inputstyle" name="archiveSt.archive_code" id="p_archive_code" >
 			</div>
 			<div class="clear-column"></div>
 		</div>

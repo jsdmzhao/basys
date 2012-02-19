@@ -38,10 +38,16 @@
       <td align="right"><a href="#" id="closeDiv" onclick='$("#detailCt").hideAndRemove("show");' class="close"></a></td>
     </tr>
 </table>
-<div id="deptApprovalCt" class="bnbody">
+<div id="deptApprovalCt" style="padding: 5 5 5 5;">
+	
 	<div id="contentCt" class="tdbg scrollbarface">
 		<div id="detailFieldPanel">
-		<%@ include file="../common/template/support_ticket_detail_template.jsp" %>
+		<fieldset>
+			<legend>支持单信息</legend>
+			<%@ include file="../common/template/support_ticket_detail_template.jsp" %>
+		</fieldset>
+		<fieldset>
+			<legend>公司审批信息</legend>
 			<div id="ceApproval">
 				  <div class="row" >
 		            <div class="column " >
@@ -76,17 +82,21 @@
 		            </div>
 		            <div class="clear-row"></div>
 		        </div>
-			</div>			
+			</div>
+		</fieldset>
+						
 		</div>
 		<!-- content start -->
 		
 		
 		<div id="deptApproval">
-		<input type="hidden" name="st.trackList[0].stId" value="" id="tracklist_stId">
+		<fieldset>
+			<legend>公司二级审批</legend>
+			<input type="hidden" name="st.trackList[0].stId" value="" id="tracklist_stId">
 		<input type="hidden" name="st.id" id="stId">
 		  <div class="row" >
             <div class="column " >
-                <label class="label red">经理审批日期:</label> 
+                <label class="label red">部门审批日期:</label> 
                 <input type="text" class=" item ro inputstyle" name="st.trackList[0].trackingDate" id="deptApprovalDate" value="<%=dateNow%>">
                 <input type="hidden" name="st.trackList[0].processor.userid" value="<%=user.getUserid()%>">
                 <input type="hidden" name="st.trackList[0].processor.departid" value="<%=user.getDepartid()%>">
@@ -94,7 +104,7 @@
                 
                 <div class="row" >
                     <div class="column " >
-                        <label class="label red">经理审批:</label>
+                        <label class="label red">部门审批:</label>
                          <div id="deptRadioPanel">
                          </div>
                         <div class="clear-column"></div>
@@ -103,7 +113,7 @@
                 
                 <div class="row" >
                     <div class="column " >
-                        <label class="label red">经理名称:</label>
+                        <label class="label red">部门审批人:</label>
                          <div>
                             <input type="text" class=" item ro inputstyle" name="st.trackList[0].processor.username" id="deptName" value="<%=username%>">
                          </div>
@@ -112,7 +122,7 @@
                 </div>
             </div>
             <div class="column " style="width:600px;">
-                <label class="label red">经理意见:</label>
+                <label class="label red">部门审批意见:</label>
                 <textarea class=" item inputstyle" style="width:389px !important;height: 77px;" name="st.trackList[0].newProcess" id="deptReply"></textarea>
                 <div class="clear-column"></div>
             </div>
@@ -197,13 +207,15 @@
 		</div>
 		<div class="row">
 			<div class="column " >
-				<label class="label red">技术负责人:</label>
+				<label class="label red">支持单负责人:</label>
 				<input type="text" class="item ro inputstyle" id="supportLeaderName">
 				<input type="hidden" class=" item" name="st.lstSupportLeaders[0].userid" id="supportLeaderCode">
 				<div class="clear-column"></div>
 			</div>
 			<div class="clear-row"></div>
 		</div>
+		</fieldset>
+		
 		</div>
 		
 		<!-- content end -->

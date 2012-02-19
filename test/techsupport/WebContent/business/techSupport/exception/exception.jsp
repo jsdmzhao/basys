@@ -1,8 +1,9 @@
+<%@page import="com.aisino2.techsupport.common.Constants"%>
 <%@ page language="java"   pageEncoding="UTF-8"%>
 <%@include file="../../../public/common.jsp"%>
 <%@include file="../common/base.jsp" %>
 
-<script type="text/javascript" src="<%=tsBase %>/tracking/tracking.js"></script>
+<script type="text/javascript" src="<%=tsBase %>/exception/exception.js"></script>
 <link href="<%=tsBase %>/common/css/basets.css" type="text/css" rel="stylesheet"></link>
 <style type="text/css">
 .date {
@@ -14,11 +15,11 @@
 <input type="hidden" name="st.id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
-      <td align="left" class="title1">追踪批复</td>
+      <td align="left" class="title1">例外终止</td>
       <td align="right"><a href="#" id="closeDiv" onclick='$("#detailCt").hideAndRemove("show");' class="close"></a></td>
     </tr>
 </table>
-<div id="tracking">
+<div id="tracking" style="padding: 5 5 5 5">
 	<fieldset>
 		<legend>支持单信息</legend>
 		<div class="row">
@@ -191,141 +192,42 @@
 			<div class="clear-row"></div>
 		</div>
 	</fieldset>
-	
 	<fieldset>
-		<legend>新进展信息</legend>
+		<legend>终止信息</legend>
 		<div class="row">
-			<div class="column column-block">
+			<div class="column">
 				<div>
-					<label class="label red">进展填写:</label>
-					<textarea class="item  inputstyle" style="width:250px ! important;height: 124px;" name="track.newProcess" id="p_newProcess"></textarea>
+					<label class="label red">终止原因:</label>
+					<textarea class="item  inputstyle" style="width:450px ! important;height: 70px;" name="track.newProcess" id="p_newProcess"></textarea>
 				</div>
 				<div class="clear-column"></div>
 				<div class="row">
 					<div class="column">
 						<div>
-							<label class="label red">日期:</label>
+							<label class="label red">终止日期:</label>
 							<input type="text" class="date  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
 						</div>
 						<div class="clear-column"></div>
 					</div>
 					<div class="clear-row"></div>
 				</div>
+				<div class="row">
+					<div class="column">
+						<div>
+							<label class="label red">终止人:</label>
+							<input type="text" class="ro  item  inputstyle" name="track.processor.username" id="p_tracking_person_name" value="<%=username%>">
+							<input type="hidden" name="track.processor.userid" value="<%=user.getUserid()%>">
+							<input type="hidden" name="track.type" value="<%=Constants.TRACKING_TYPE_EXCEPTION%>">
+						</div>
+						<div class="clear-column"></div>
+					</div>
+					<div class="clear-row"></div>
+				</div>
 			</div>
 			
-			<div class="column column-block2">
-				<div>
-					<label class="label label-80">产品方案部:</label>
-				</div>
-				<div class="clear-column"></div>
-				
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">实际完成时间:</label>
-						<input type="text" class=" item inputstyle  date" name="trSt.psgCompDate" id="p_psgCompDate">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">阶段:</label>
-						<input type="checkbox" class=" item" id="psgcpstage">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="psgcpstage">
-							<label class="label label-80" >需求:</label>
-							<input type="text" class=" item inputstyle date  " name="trSt.psgDsCompDate" id="p_psgDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="psgcpstage">
-							<label class="label label-80" >实施:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.psgIsCompDate" id="p_psgIsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="clear-column"></div>
-			</div>
-			
-			<div class="column column-block2">
-				<div>
-					<label class="label label-80">技术研发部:</label>
-				</div>
-				<div class="clear-column"></div>
-				
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">实际完成时间:</label>
-						<input type="text" class=" item inputstyle date" name="trSt.devCompDate" id="p_devCompDate">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">阶段:</label>
-						<input type="checkbox" class=" item" id="devcpstage">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >设计:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDsCompDate" id="p_devDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-			
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >开发:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDsCompDate" id="p_devDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<%-- ++ 新需求 技术开发部添加阶段测试 --%>
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >测试:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDtCompDate" id="p_devDtCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				<%-- -- 新需求 技术开发部添加阶段测试 --%>
-			</div>
 			<div class="clear-row"></div>
 		</div>
 	</fieldset>
-	
 	
 	
 	<div class="row">
@@ -333,11 +235,7 @@
 			<div class="clear-column"></div>
 		</div>
 		<div class="column" style="width: 120px;">
-			<a class="item submitbutton" id="saveBtn" href="#">保存</a>
-			<div class="clear-column"></div>
-		</div>
-		<div class="column" style="width: 120px;">
-			<a style="width: 70px; " class="item submitbutton" id="toFeedbackBtn" href="#">提请反馈</a>
+			<a class="item submitbutton" id="saveBtn" href="#">终止</a>
 			<div class="clear-column"></div>
 		</div>
 		<div class="clear-row"></div>

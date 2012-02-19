@@ -71,7 +71,7 @@ function lazyLoad(){
 }
 //初始化加载
 	$(function(){
-		setTimeout(lazyLoad,5);
+		setTimeout(lazyLoad,10);
 		divnid="queryContent";//查询内容容器ID
 		tableid="queryContentTable";//查询内容格式表格ID
 		pageUrl=BUSNEISS_PATH+ "/querylist_supportTicket.action";
@@ -83,6 +83,10 @@ function lazyLoad(){
 		lazyLoad();
 		
 		daggleDiv(detailid);
+// 		设置状态下拉条
+		$('#p_stStatus').selectBox({code:ST_STATUS_DICT_CODE});
+		var p_stStatus_width = $('#p_stStatus').width();
+		$('#div_p_stStatus ul').width(p_stStatus_width);
 		
 // 		时间选择器设置
 		$('.date').each(function(){
@@ -155,9 +159,6 @@ function lazyLoad(){
  		},'json');
 		
 		
-		 
-// 		设置状态下拉条
-		$('#p_stStatus').selectBox({code:ST_STATUS_DICT_CODE});
 		
 // 		初始化查询动作
 		$('#queryBtn').click(function(){
@@ -205,6 +206,7 @@ function lazyLoad(){
 	                                       	ingridPageParams:sXML,
 	                                       	onRowSelect:null,
 											pageNumber: pageno,
+											noSortColIndex:[6],
 											colWidths: function(){
 												var a_col_widths=[];
 												var ths = $('#queryContentTable th');
@@ -264,7 +266,7 @@ function lazyLoad(){
 					<div class="clear-column"></div>
 				</div>
 				<div class="column pagedistd">
-					<label class="label">到</label>
+					<label class="label">到:</label>
 					<div class="item">
 						<input type="text" class="date  inputstyle" id="p_trackingDateTo"></select>
 					</div>

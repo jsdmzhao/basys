@@ -72,7 +72,7 @@
 					<div class="clear-column"></div>
 				</div>
 				
-				<div class="column pagedistd">
+				<div class="column">
 					<label class="label">支持单环节:</label>
 <!--					<input type="text" class="item inputstyle" name="p_activityName" id="p_activityName">-->
 					<%-- ++添加流程筛选 --%>
