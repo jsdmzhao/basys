@@ -152,7 +152,39 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		List<Participation> tracking_candidate_users = workflow
 				.getTaskService().getTaskParticipations(tracking_task.getId());
 
-		st = support_ticket_service.getSupportTicket(st);
+		SupportTicket comm_st = support_ticket_service.getSupportTicket(st);
+		
+		if(tracking_candidate_users.isEmpty()){
+			try {
+				
+				workflow.getTaskService().addTaskParticipatingUser(
+						tracking_task.getId(), st.getLstSupportLeaders().get(0).getUserid().toString(),
+						Participation.CANDIDATE);
+
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("reassign_stleader_repeat",
+						"to_reassgin_stleader");
+				// 完成本流程跳转到下一个流程
+				workflow.getTaskService().completeTask(taskId,params);
+				return;
+			} catch (Exception e) {
+				List<Participation> new_tracking_candidate_users = workflow
+						.getTaskService().getTaskParticipations(
+								tracking_task.getId());
+				// 当添加出错的时候，滚回以前的状态
+				for(Participation new_p : new_tracking_candidate_users){
+					if (Integer.parseInt(new_p.getUserId()) == st.getLstSupportLeaders().get(0).getUserid()) {
+						workflow.getTaskService().addTaskParticipatingUser(
+								tracking_task.getId(), st.getLstSupportLeaders().get(0).getUserid().toString(),
+								Participation.CANDIDATE);
+					}
+				}
+				
+				
+				throw new RuntimeException("流程控制 追踪批复 候选人发生错误",
+						e.fillInStackTrace());
+			}
+		}
 		
 		for (Participation p : tracking_candidate_users) {
 			User old_tracking_user = new User();
@@ -161,8 +193,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			User sl = user_service.getUser(st.getLstSupportLeaders().get(0));
 			boolean is_support_department = false;
 			//验证以往的 追踪批复候选人是不是在支持部门里面,如果在就移除支持单候选
-			for(Department d : st.getSupportDeptList()){
-				if(d.getDepartid() == old_tracking_user.getDepartid()){
+			for(Department d : comm_st.getSupportDeptList()){
+				if(d.getDepartid().equals( old_tracking_user.getDepartid())){
 					is_support_department=true;
 					break;
 				}
@@ -173,12 +205,12 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 						tracking_task.getId(), p.getUserId(),
 						Participation.CANDIDATE);
 			//因为一个部门只允许指派一个
-			else if (sl.getDepartid() == old_tracking_user.getDepartid())
+			else if (sl.getDepartid().equals(old_tracking_user.getDepartid()))
 				workflow.getTaskService().removeTaskParticipatingUser(
 						tracking_task.getId(), p.getUserId(),
 						Participation.CANDIDATE);
 			
-			if (sl.getUserid() != old_tracking_user.getUserid()) {
+			if (!sl.getUserid().equals(old_tracking_user.getUserid())) {
 				try {
 					
 					workflow.getTaskService().addTaskParticipatingUser(

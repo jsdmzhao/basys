@@ -43,11 +43,10 @@ public class DeptApprovalServiceImpl extends BaseService implements
 	}
 
 	public void insertDeptApproval(String taskId, SupportTicket st,Tracking tracking) {
-		//设置状态为进行中
-		st.setStStatus(Constants.ST_STATUS_GOING);
+		
+
 //		保存技术支持单信息
 		stService.updateSupportTicket(st);
-		
 //		保存部门审核意见信息
 		trackingService.insertTracking(tracking);
 		
@@ -76,21 +75,39 @@ public class DeptApprovalServiceImpl extends BaseService implements
 		
 		try{
 			//指派追踪批复用户
+//			设置总的审批结果，及只要有一个部门审批未通过，那么就未通过，上报给总工，再定夺。
+			Map<String, Object> paramsMap=new HashMap<String, Object>();
+			paramsMap.put("deptApprovalCode", tracking.getApprovalCode());
+			//当任意一个审批不通过，则退回到上一步，总工审批（公司一级审批）
+			if(Constants.ST_APPR_TYPE_APPR_NOPASS.equals(tracking.getApprovalCode()) ){
+				workflow.workflowNext(workflow.setVariable(taskId, null, candidateUsers, paramsMap));
+				return;
+			}
+			
 //			@fixed 技术负责人变成多个指派
 			String supportLeaderIds = "";
-			for (User sl : st.getLstSupportLeaders())
-				supportLeaderIds = "," + sl.getUserid();
+			SupportTicket comm_st = stService.getSupportTicket(st);
+			for (User sl : comm_st.getLstSupportLeaders())
+				supportLeaderIds += "," + sl.getUserid();
 			supportLeaderIds = supportLeaderIds.length() > 0 ? supportLeaderIds
 					.substring(1) : supportLeaderIds;
 			candidateUsers.put("trackingUsers", supportLeaderIds);
 			
-//			设置总的审批结果，及只要有一个部门审批未通过，那么就未通过，上报给总工，再定夺。
-			Map<String, Object> paramsMap=new HashMap<String, Object>();
-			paramsMap.put("deptApprovalCode", tracking.getApprovalCode());
-//			流程提交以后不能查看，另外确保所有 经理 都审核了
+//			流程提交以后不能查看，另外确保所有 经理 都审核了 
 			candidate_department_list = workflow.getTaskService().getTaskParticipations(taskId);
-			if(candidate_department_list.isEmpty())
-				workflow.workflowNext(workflow.setVariable(taskId, null, candidateUsers, paramsMap));
+				
+			//在一致同意的情况下（同一个部门只能有一个审批人对支持单进行审批）,进入下一个环节，否则等待其他部门审批完成
+			if(candidate_department_list.isEmpty()){
+				//设置状态为进行中
+				st = new SupportTicket();
+				st.setId(comm_st.getId());
+				st.setStStatus(Constants.ST_STATUS_GOING);
+				st.setLstSupportLeaders(null);
+//				保存技术支持单信息
+				stService.updateSupportTicket(st);
+				paramsMap.putAll(candidateUsers);
+				workflow.getTaskService().completeTask(taskId, paramsMap);
+			}
 			else{
 				workflow.getTaskService().setVariables(taskId, workflow.setVariable(taskId, null, candidateUsers, paramsMap));
 			}

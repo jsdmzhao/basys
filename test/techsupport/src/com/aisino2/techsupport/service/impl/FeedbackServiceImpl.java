@@ -51,7 +51,7 @@ public class FeedbackServiceImpl extends BaseService implements FeedbackService 
 			trackService.insertTracking(tracking);
 			
 			//流程回退(流程支线 不与反馈)
-			workflow.workflowNext(workflow.setVariable(taskId, "不与反馈", null));
+			workflow.workflowNext(workflow.setVariable(taskId, "no_feedback", null));
 		} catch (RuntimeException e) {
 			log.error(e);
 			throw e;

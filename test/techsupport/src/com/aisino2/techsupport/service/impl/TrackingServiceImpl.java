@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.jbpm.api.task.Participation;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.dao.Page;
@@ -171,14 +172,35 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 			if(tracking.getType()==null || tracking.getType().trim().length() == 0)
 				tracking.setType(Constants.TRACKING_TYPE_TRACKING);
 			track = trackDao.insertTracking(tracking);
-			//设置提请反馈时间
-			st.setApplyingFeedbackDate(new Date());
-			//设置状态
-			st.setStStatus(Constants.ST_STATUS_WAIT_FEEDBACK);
 			
-			stService.updateSupportTicket(st);
-			//流程开始
-			workflow.workflowNext(workflow.setVariable(taskId, null));
+			
+			List<Participation> tracking_users = workflow.getTaskService().getTaskParticipations(taskId);
+			for(Participation p : tracking_users){
+				if(tracking.getProcessor().getUserid() == Integer.parseInt(p.getUserId()))
+				{
+					workflow.getTaskService().removeTaskParticipatingUser(taskId, p.getUserId(), Participation.CANDIDATE);
+					tracking_users.remove(p);
+					break;
+				}
+			}
+			//当所有部门的支持单负责人都提请反馈后，才真正的提请反馈。。
+			if(tracking_users.isEmpty()){
+				try{
+					//流程开始
+					workflow.workflowNext(workflow.setVariable(taskId, null));
+				}catch (Exception e) {
+					workflow.getTaskService().addTaskParticipatingUser(taskId, tracking.getProcessor().getUserid().toString(), Participation.CANDIDATE);
+					
+				}
+				
+				//设置提请反馈时间
+				st.setApplyingFeedbackDate(new Date());
+				//设置状态
+				st.setStStatus(Constants.ST_STATUS_WAIT_FEEDBACK);
+				
+				stService.updateSupportTicket(st);
+			}
+			
 		} catch (RuntimeException e) {
 			logger.error(e,e.fillInStackTrace());
 			throw e ;
