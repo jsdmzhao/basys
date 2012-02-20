@@ -110,6 +110,15 @@ function SupportTicketQuery(pageno,url){
 		pageUrl=BUSNEISS_PATH+ "/querylist_supportTicket.action";
 		queryTable=$("#"+tableid);
 
+		 $("#div_send").css({
+				position: 'absolute',
+				zIndex: 99999999,
+				padding: 0,
+				margin: 0,
+				top: (pageHeight/2+20) + 'px',
+				left: (pageWidth/2-120) + 'px'
+			});
+		$("#div_send").hide();
 // 		lazyLoad();
 // 		SupportTicketQuery(1);
 
@@ -201,14 +210,38 @@ function SupportTicketQuery(pageno,url){
 			//导出数据并发送邮件
 			$("#sendWord").click(function(){
 				var paramss={};
+				var checkboxs=$("input[type='checkbox']");
 				var fields=$('input:checked[name^=lSt]');
-				for(i=0;i<fields.length;i++){
-					paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
+				var paramObject=new Array();
+				$(checkboxs).each(function(i){
+					if($(this).attr('checked')){
+						for(var i=0;i<fields.length;i++){
+							//paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
+							paramObject.push(fields.eq(i).val());
+						}
+					}
+				});
+				for(var i=0;i<paramObject.length;i++){
+					paramss['lSt['+i+'].id']=paramObject[i];
 				}
 				paramss['word.status']=$("#p_stStatus").val();
-				$.post(BUSNEISS_PATH+'/createWord_word.action',paramss,function(data){
+				/* $.post(BUSNEISS_PATH+'/createWord_word.action',paramss,function(data){
 					alert(data.result);
-				},'json');
+				},'json'); */
+				$("#div_send").show(); //打开 AJAX 等待动画
+          		jQuery.ajax({
+					type: 'POST',
+					url: BUSNEISS_PATH+'/createWord_word.action',
+					data: paramss,
+					async: true,
+					dataType: 'json',
+					success: function(data){
+						alert(data.result);
+					},
+					complete: function(){
+						$("#div_send").hide(); //关闭 AJAX 等待动画
+					}
+				});
 			});
 			
 			$('#sendSmsBtn').attr('disabled',false);
@@ -312,4 +345,13 @@ function SupportTicketQuery(pageno,url){
 				<input type="button" id="sendWord" class="searchbutton" value="导出并发送" disabled="disabled">
 			</span>
 		</center>
+	</div>
+	<div id=div_send style="position:absolute; background:url(images/loadingbg.gif); width:243px; height:55px;font-size:13px; font-weight:bold; color:#666666;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr><td height="17px;"></td></tr>
+		<tr><td width="15"></td>
+		    <td><img src="images/loading.gif"/></td>
+		    <td>发送中，请稍候......</td>
+		</tr>
+		</table>
 	</div>
