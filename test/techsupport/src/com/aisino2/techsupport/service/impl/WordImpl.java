@@ -156,8 +156,8 @@ public class WordImpl implements IWord {
 				Tracking tracking=new Tracking();
 				tracking.setStId(newLst.get(i).getId());
 				User user=newLst.get(i).getLstSupportLeaders().get(0);
-				tracking.setProcessorId(user.getUserid());
-				//tracking.setType("0");
+				//tracking.setProcessorId(user.getUserid());
+				tracking.setType("30");
 				List<Tracking> trackList=TrackingServiceImpl.getTrackingList(tracking);
 				//技术支持单编号
 				table.addCell(new Cell(newLst.get(i).getStNo()));
