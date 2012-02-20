@@ -38,7 +38,7 @@
 		
 		<div class="row">
 			<div class="column">
-				<label class="label">技术负责人:</label>
+				<label class="label">技术支持单负责人:</label>
 				<input type="text" class="item inputstyle ro" id="p_slName">
 				<div class="clear-column"></div>
 			</div>
@@ -205,7 +205,7 @@
 					<div class="column">
 						<div>
 							<label class="label red">日期:</label>
-							<input type="text" class="date  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
+							<input type="text" class="ro  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
 						</div>
 						<div class="clear-column"></div>
 					</div>
