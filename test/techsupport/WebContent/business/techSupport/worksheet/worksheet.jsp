@@ -59,7 +59,7 @@
 			</div>
 			<div class="row">
 				<div class="column pagedistd">
-					<label class="label">技术负责人:</label>
+					<label class="label">技术支持单负责人:</label>
 					<input type="text" class="item inputstyle" id="slName">
 					<input type="hidden" id="p_supportLeaderId" name="p_supportLeaderId">
 					<div class="clear-column"></div>
@@ -105,7 +105,7 @@
 			  <thead>
 			    <tr>       
 			     	<th name="l_stNo">支持单编号</th>
-			     	<th name="l_region">区域</th>
+			     	<th name="l_region">大区/区域</th>
 			     	<th name="l_applicant">申请人</th>
 			     	<th name="l_supportLeader">技术支持人</th>
 			     	<th name="l_supportDept">技术支持部门</th>
