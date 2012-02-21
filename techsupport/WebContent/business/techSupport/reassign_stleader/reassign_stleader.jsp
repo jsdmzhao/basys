@@ -40,7 +40,7 @@
 		
 		<div class="row">
 			<div class="column">
-				<label class="label">技术负责人:</label>
+				<label class="label">技术支持单负责人:</label>
 				<input type="text" class="item inputstyle ro" id="p_slName">
 				<div class="clear-column"></div>
 			</div>

@@ -322,9 +322,9 @@ function SupportTicketQuery(pageno,url){
 			    <tr>       
 			    	<th name="l_checkbox"><input type="checkbox" id="selectAll"></th>
 			     	<th name="l_stNo">支持单编号</th>
-			     	<th name="l_region">区域</th>
+			     	<th name="l_region">大区/区域</th>
 			     	<th name="l_applicant">申请人</th>
-			     	<th name="l_supportLeader">技术负责人</th>
+			     	<th name="l_supportLeader">技术支持单负责人</th>
 			     	<th name="l_supportDept">技术支持部门</th>
 			     	<th name="l_supportContent">支持单内容</th>
 			     	<th name="l_trackingProcess">当前进展</th>

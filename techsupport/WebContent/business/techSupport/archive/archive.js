@@ -103,6 +103,8 @@ $(function(){
 		params['archiveSt.comments']=$('#p_comments').val();
 		//设置任务号
 		params.taskId = $('#p_taskId').val();
+		//设置归档领取编号
+		params['archiveSt.archive_code'] = $('#p_archive_code').val();
 		
 		$.post(saveURL,params,function(data){
 			if(!data){
