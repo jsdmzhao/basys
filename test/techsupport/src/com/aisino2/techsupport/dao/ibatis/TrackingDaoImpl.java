@@ -48,7 +48,7 @@ public class TrackingDaoImpl extends TechSupportBaseDao implements TrackingDao {
 		String sCol="";
 		
 		if(desc == null)
-			desc = "";
+			desc = " desc ";
 		else if(!desc.equals("asc") && !desc.equals("desc"))
 			desc = " asc ";
 		if (sort!=null){
@@ -63,7 +63,7 @@ public class TrackingDaoImpl extends TechSupportBaseDao implements TrackingDao {
 			else
 				sCol = " t.id " + desc;
 		}else{
-			sCol=" t.id ";
+			sCol=" t.id " + desc;
 		}
 		
 		if(tracking!=null){

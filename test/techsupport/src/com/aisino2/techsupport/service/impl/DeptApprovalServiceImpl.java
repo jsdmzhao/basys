@@ -44,7 +44,9 @@ public class DeptApprovalServiceImpl extends BaseService implements
 
 	public void insertDeptApproval(String taskId, SupportTicket st,Tracking tracking) {
 		
-
+		if(Constants.ST_APPR_TYPE_APPR_NOPASS.equals(tracking.getApprovalCode()) ){
+			st.setStStatus(Constants.ST_STATUS_DEPARTMENT_APPRAVAL_NOPASS);
+		}
 //		保存技术支持单信息
 		stService.updateSupportTicket(st);
 //		保存部门审核意见信息

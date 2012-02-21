@@ -36,9 +36,9 @@ public class CeApprovalServiceImpl extends BaseService implements
 	private static Logger log=Logger.getLogger(CeApprovalServiceImpl.class);
 	
 	public void insertCeApproval(String taskId, SupportTicket st,Tracking tracking) {
-//		如果不通过，设置状态为终止
+//		如果不通过，设置状态为公司审批未通过
 		if(tracking.getApprovalCode().equals(Constants.ST_APPR_TYPE_APPR_NOPASS))
-			st.setStStatus(Constants.ST_STATUS_STOP);
+			st.setStStatus(Constants.ST_STATUS_COMPANY_APPRAVAL_NOPASS);
 		else
 			st.setStStatus(Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL);
 //		保存支持单信息

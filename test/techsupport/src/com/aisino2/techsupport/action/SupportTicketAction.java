@@ -89,6 +89,7 @@ public class SupportTicketAction extends PageAction {
 			supportTicket.getLstSupportLeaders().add(user);
 		}
 
+		
 		params.put("applicant", supportTicket.getApplicant());
 		params.put("lstSupportLeaders", supportTicket.getLstSupportLeaders());
 		params.put("stStatus", supportTicket.getStStatus());
@@ -97,7 +98,12 @@ public class SupportTicketAction extends PageAction {
 		params.put("type", tracking.getType());
 		params.put("trackDateFrom", tracking.getTrackingDateFrom());
 		params.put("trackDateTo", tracking.getTrackingDateTo());
-		params.put("limitDeparement", limitDeparement.getDepartid());
+		if(limitDeparement.getDepartid()!=null){
+			//单位筛选
+			params.put("limitUserDeparement", 1);
+			params.put("limitDeparement", limitDeparement.getDepartid());
+		}
+		
 		// ++ 最后更改时间天数
 		params.put("last_update_day", Constants.LAST_UPDATE_DAY);
 		params.put("use_last_update_day", supportTicket.getUseLastUpdateDate() );
@@ -281,6 +287,10 @@ public class SupportTicketAction extends PageAction {
 			st.setSupportDeptName(deptNames);
 			st.setRegionName(ItemChange.codeChange(
 					Constants.ST_REGION_DICT_CODE, st.getRegion()));
+			
+			String applicantNames = "";
+			applicantNames=st.getApplicant()!=null ? st.getApplicant().getUsername() : applicantNames;
+			st.setApplicantName(applicantNames);
 		}
 		SupportTicket supportTicket = new SupportTicket();
 		this.setData(supportTicket, ldata, lPro, null);

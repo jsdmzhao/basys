@@ -115,7 +115,7 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 					//验证改用户是否具有反馈人角色，只有具有反馈人角色的用户才可以执行反馈。
 					userrole=new User_role();
 					userrole.setRoleid(feedback_role.getRoleid());
-					userrole.setUserid(userrole.getUserid());
+					userrole.setUserid(userRole.getUserid());
 					userrole = userRoleService.getUser_role(userrole);
 					if(userrole != null)
 						feedbackUsersStr+=","+userRole.getUserid();
