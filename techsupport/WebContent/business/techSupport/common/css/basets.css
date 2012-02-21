@@ -101,4 +101,7 @@
 .ro {
 	 background-color:#f6f6f6; blueidea:expression(this.readOnly=true); width:150px; font-size:12px;  height:14px; border-bottom:solid #CCCCCC 1px; border-top:solid #CCCCCC 1px; border-left:solid #CCCCCC 1px; border-right:solid #CCCCCC 1px;
 }
-	
+
+.column-width-default {
+	width: 300px;
+}
