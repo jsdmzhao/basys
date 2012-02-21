@@ -146,11 +146,13 @@ function loadData(){
 		//		初始化技术负责人
 		if(data.lSupportTicket[0].lstSupportLeaders){
 			var sSlNames="";
-		
-			for(i=0;i<data.lSupportTicket[0].lstSupportLeaders.length;i++)
+			
+			for(i=0;i<data.lSupportTicket[0].lstSupportLeaders.length;i++){
 				sSlNames+=","+data.lSupportTicket[0].lstSupportLeaders[i].username;
+			}
+				
 			sSlNames=sSlNames.length > 0? sSlNames.substring(1) : sSlNames;
-			$('#slName').val(sSlNames);
+			$('#q_slName').val(sSlNames);
 		}
 		
 		var regionCode = $('#region').val();

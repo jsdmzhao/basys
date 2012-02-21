@@ -50,8 +50,8 @@
 		
 		<div class="row">
 			<div class="column">
-				<label class="label">技术负责人:</label>
-				<input type="text" class="item ro inputstyle" name="st.supportLeader.username" id="slName">
+				<label class="label">技术支持单负责人:</label>
+				<input type="text" class="item ro inputstyle" name="st.supportLeader.username" id="q_slName"> 
 				<div class="clear-column"></div>
 			</div>
 			<div class="column column-250">

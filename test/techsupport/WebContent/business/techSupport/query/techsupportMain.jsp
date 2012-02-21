@@ -30,11 +30,6 @@
 	margin-bottom: 2px;
 }
 
-.row{
-	margin-top: 2px;
-	margin-bottom: 2px;
-}
-
 #contentCt {
 	padding-left:2px;
  	padding-right:2px;
@@ -85,9 +80,9 @@ function lazyLoad(){
 		daggleDiv(detailid);
 // 		设置状态下拉条
 		$('#p_stStatus').selectBox({code:ST_STATUS_DICT_CODE});
-		var p_stStatus_width = $('#p_stStatus').width();
-		$('#div_p_stStatus ul').width(p_stStatus_width);
+		//设置部门选择器
 		
+		$('#p_departid').selectBox({code:"dm_ts_depart_list"});
 // 		时间选择器设置
 		$('.date').each(function(){
 			$(this).attr('readOnly',true);
@@ -123,7 +118,7 @@ function lazyLoad(){
  	 				});
  					//设置技术负责人
  					$('#slName').click(function(){
- 						getUserofDept('slName','p_supportLeaderId',null,ST_ROLE_NAME_STLEADER);
+ 						getUserofDept('slName','p_supportLeaderId',$('#p_departid').val(),ST_ROLE_NAME_STLEADER);
  					});
  					
  					//设置大区
@@ -239,7 +234,6 @@ function lazyLoad(){
 
 <input type="hidden" id="p_tag" value="">
 <input type="hidden" id="t_userid" value="<%=user.getUserid() %>">
-<input type="hidden" id="p_departid" value="">
 <input type="hidden" id="p_processorId" value=""/>
 <div id="tsworksheet" class="bnbody">
 	<div id="title" class="queryfont">
@@ -248,53 +242,43 @@ function lazyLoad(){
 	<div id="contentCt">
 		<div id="queryPanel">
 			<div class="row">
-				<div class="column pagedistd">
+				<div class="column column-width-default">
 					<label class="label">支持单状态:</label>
-					<div class="item">
-						<select class="item" name="st.stStatus" id="p_stStatus">
-							<option></option>
-						</select>
-					</div>
+					<select class="item" name="st.stStatus" id="p_stStatus">
+						<option></option>
+					</select>
 					<div class="clear-column"></div>
 				</div>
-				<div class="column pagedistd">
+				<div class="column column-width-default">
 					<label class="label">进展时间:</label>
-					<div class="item">
-						<input type="text" class="date  inputstyle" id="p_trackingDateFrom"></select>
+						<input type="text" class="item date  inputstyle" id="p_trackingDateFrom"></select>
 						<input type="hidden" value="" id="p_type">
-					</div>
 					<div class="clear-column"></div>
 				</div>
-				<div class="column pagedistd">
+				<div class="column column-width-default">
 					<label class="label">到:</label>
-					<div class="item">
-						<input type="text" class="date  inputstyle" id="p_trackingDateTo"></select>
-					</div>
+						<input type="text" class="item date  inputstyle" id="p_trackingDateTo"></select>
 					<div class="clear-column"></div>
 				</div>
 				
 				<div class="clear-row"></div>
 			</div>
 			<div class="row">
-				<div class="column pagedistd">
-					<div>
+				<div class="column column-width-default">
 						<label class="label">申请人:</label>
 						<input type="text" class="item inputstyle ro" id="applicantName">
 						<input type="hidden" id="p_applicantId" name="st.applicant.userid">
-					</div>
 					<div class="clear-column"></div>
 				</div>
 				
-				<div class="column pagedistd">
-					<div>
-						<label class="label">技术负责人:</label>
-						<input type="text" class="item inputstyle ro" id="slName">
+				<div class="column column-width-default">
+						<label class="label">技术支持单负责人:</label>
+						<input type="text" class="item inputstyle ro readOnly" id="slName">
 						<input type="hidden" id="p_supportLeaderId" name="p_supportLeaderId">
-					</div>
 					<div class="clear-column"></div>
 				</div>
 				
-				<div class="column pagedistd">
+				<div class="column column-width-default">
 					<label class="label">大区/区域:</label>
 					<input type="text" class="item inputstyle ro" id="rgName">
 					<input type="hidden" id="p_region" name="p_regionCode">
@@ -304,6 +288,17 @@ function lazyLoad(){
 				<div class="clear-row"></div>
 			</div>
 			
+			<div class="row">
+				<div class="column column-width-default">
+					<label class="label">技术支持部门:</label>
+					<select class="item" id="p_departid" >
+						<option></option>
+					</select>
+					
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>
 			<div class="row">
 				<div class="column" style="width: 80%;">
 					<div class="clear-column"></div>
@@ -324,9 +319,9 @@ function lazyLoad(){
 			  <thead>
 			    <tr>       
 			     	<th name="l_stNo">支持单编号</th>
-			     	<th name="l_region">区域</th>
+			     	<th name="l_region">大区/区域</th>
 			     	<th name="l_applicant">申请人</th>
-			     	<th name="l_supportLeader">技术负责人</th>
+			     	<th name="l_supportLeader">技术支持单负责人</th>
 			     	<th name="l_supportDept">技术支持部门</th>
 			     	<th name="l_supportStatus">状态</th>
 			     	<th name="">操作</th>
