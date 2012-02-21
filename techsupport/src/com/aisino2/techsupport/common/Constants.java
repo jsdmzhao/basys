@@ -14,8 +14,12 @@ public class Constants {
 	public static String ST_STATUS_GOING="going";
 	//带公司审批
 	public static String ST_STATUS_WAIT_COMPANY_APPRAVAL="wait_company_appraval";
+	//公司审批未通过
+	public static String ST_STATUS_COMPANY_APPRAVAL_NOPASS="company_appraval_nopass";
 	//带部门审批
 	public static String ST_STATUS_WAIT_DEPARTMENT_APPRAVAL="wait_department_appraval";
+	//部门审批未通过
+	public static String ST_STATUS_DEPARTMENT_APPRAVAL_NOPASS="department_appraval_nopass";
 	//例外终止
 	public static String ST_STATUS_STOP="stop";
 	//已完成

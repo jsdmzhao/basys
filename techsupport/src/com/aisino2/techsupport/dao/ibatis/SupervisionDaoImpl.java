@@ -22,7 +22,7 @@ public class SupervisionDaoImpl extends TechSupportBaseDao implements
 		
 		String sCol="";
 		if(sort == null)
-			sort = "";
+			sort = " desc ";
 		else if(!sort.equals("asc") && !sort.equals("desc"))
 			sort = " asc ";
 		if (dir!=null){
@@ -35,7 +35,7 @@ public class SupervisionDaoImpl extends TechSupportBaseDao implements
 			else
 				sCol = " u.username ";
 		}else{
-			sCol=" u.username ";
+			sCol=" t.id "+ sort;
 		}
 		map.put("pageSort", sCol);
 		

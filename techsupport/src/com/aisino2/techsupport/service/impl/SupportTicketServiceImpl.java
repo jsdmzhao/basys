@@ -193,6 +193,9 @@ public class SupportTicketServiceImpl extends BaseService implements
 					&& st.getLstSupportLeaders().size() > 0){
 				
 				for(User sl : st.getLstSupportLeaders()){
+					if(sl.getUserid() == null || sl.getUserid()==0)
+						continue;
+						
 					//先删除以前的再添加新的负责人
 					
 					SupportLeaderRelation check_slrelation = new SupportLeaderRelation();

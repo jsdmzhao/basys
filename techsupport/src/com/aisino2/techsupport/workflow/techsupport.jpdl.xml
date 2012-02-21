@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process key="techsupport2" name="techsupport" version="4" xmlns="http://jbpm.org/4.4/jpdl">
+<process key="techsupport2" name="techsupport" version="5" xmlns="http://jbpm.org/4.4/jpdl">
    <start g="34,16,48,48" name="start1">
       <transition to="ce_appr"/>
    </start>
@@ -52,7 +52,7 @@
       <description>结束例外处理分支</description>
       <transition to="feedback"/>
    </join>
-   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/reassign_depart/reassgin_depart.jsp" g="278,2,155,52" name="reassign_depart">
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/reassign_depart/reassign_depart.jsp" g="278,2,155,52" name="reassign_depart">
       <transition to="reassign_depart_condition"/>
    </task>
    <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/reassign_stleader/reassign_stleader.jsp" g="390,92,150,52" name="reassgin_stleader">
