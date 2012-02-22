@@ -12,6 +12,7 @@
 </style>
 <input type="hidden" id="p_taskId">
 <input type="hidden" name="st.id">
+<input type="hidden" id="sv_st_id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">追踪批复</td>
@@ -58,7 +59,7 @@
 		<div class="row">
 			<div class=" column-block column" >
 				<label class="label">技术支持单内容:</label>
-				<textarea style="width:250px ! important;height: 124px;" class="ro item  inputstyle" name="st.supportContent" id="p_supportContent"></textarea>
+				<textarea style="width:250px ! important;height: 80px;" class="ro item  inputstyle" name="st.supportContent" id="p_supportContent"></textarea>
 				<div class="clear-column"></div>
 			</div>
 			<div class="column-block2 column">
@@ -191,136 +192,42 @@
 			<div class="clear-row"></div>
 		</div>
 	</fieldset>
-	
+	<fieldset>
+		<legend>督办进展</legend>
+		<div class="row" style="width: 90%; margin: 0 auto; ">
+			<div class="column" style="width: 100%;">
+				<div id="supervision_list_div" style="margin-left: auto;margin-right: auto;text-align: center;">
+					<table id="supervision_list_table" >
+						<thead>
+							<tr>
+								<th>督办人</th>
+								<th>督办进展</th>
+								<th>督办时间</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="clear-column"></div>
+			</div>
+			<div class="clear-row"></div>
+		</div>				
+	</fieldset>
 	<fieldset>
 		<legend>新进展信息</legend>
 		<div class="row">
 			<div class="column column-block">
 				<div>
 					<label class="label red">进展填写:</label>
-					<textarea class="item  inputstyle" style="width:250px ! important;height: 124px;" name="track.newProcess" id="p_newProcess"></textarea>
+					<textarea class="item  inputstyle" style="width:250px ! important;height: 80px;" name="track.newProcess" id="p_newProcess"></textarea>
 				</div>
-				<div class="clear-column"></div>
-				<div class="row">
-					<div class="column">
-						<div>
-							<label class="label red">日期:</label>
-							<input type="text" class="ro  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-			</div>
-			
-			<div class="column column-block2">
-				<div>
-					<label class="label label-80">产品方案部:</label>
-				</div>
-				<div class="clear-column"></div>
-				
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">实际完成时间:</label>
-						<input type="text" class=" item inputstyle  date" name="trSt.psgCompDate" id="p_psgCompDate">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">阶段:</label>
-						<input type="checkbox" class=" item" id="psgcpstage">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="psgcpstage">
-							<label class="label label-80" >需求:</label>
-							<input type="text" class=" item inputstyle date  " name="trSt.psgDsCompDate" id="p_psgDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="psgcpstage">
-							<label class="label label-80" >实施:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.psgIsCompDate" id="p_psgIsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
 				<div class="clear-column"></div>
 			</div>
-			
-			<div class="column column-block2">
+			<div class="column">
 				<div>
-					<label class="label label-80">技术研发部:</label>
+					<label class="label red">日期:</label>
+					<input type="text" class="ro  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
 				</div>
 				<div class="clear-column"></div>
-				
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">实际完成时间:</label>
-						<input type="text" class=" item inputstyle date" name="trSt.devCompDate" id="p_devCompDate">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<label class="label label-80">阶段:</label>
-						<input type="checkbox" class=" item" id="devcpstage">
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >设计:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDsCompDate" id="p_devDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-			
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >开发:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDsCompDate" id="p_devDsCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				
-				<%-- ++ 新需求 技术开发部添加阶段测试 --%>
-				<div class="row">
-					<div class="column">
-						<div class="devcpstage">
-							<label class="label label-80" >测试:</label>
-							<input type="text" class=" item inputstyle date " name="trSt.devDtCompDate" id="p_devDtCompDate">
-						</div>
-						<div class="clear-column"></div>
-					</div>
-					<div class="clear-row"></div>
-				</div>
-				<%-- -- 新需求 技术开发部添加阶段测试 --%>
 			</div>
 			<div class="clear-row"></div>
 		</div>
@@ -343,4 +250,5 @@
 		<div class="clear-row"></div>
 	</div>
 </div>
-
+<%-- 实际完成时间 --%>
+<div id="comp_time_div" style="position: absolute; z-index: 1001; top:0px; left:160px; display: none;" class="page-layout"></div>
