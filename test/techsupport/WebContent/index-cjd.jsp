@@ -130,7 +130,7 @@
       </tr>
       <tr>
         <td width="9%"></td>
-        <td width="91%" valign="bottom" class="titlefont" >社会信息采集平台</td>
+        <td width="91%" valign="bottom" class="titlefont" >技术支持单系统</td>
       </tr>
       <tr>
         <td></td>
