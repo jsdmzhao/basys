@@ -53,7 +53,7 @@
 <script src="javascript/md5.js" type="text/javascript"></script>
 <script src="javascript/valdate.js" type="text/javascript"></script>	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>社会信息采集平台</title>
+<title>技术支持单系统</title>
 <script type="text/javascript">
 var sessionout="<%=sessionout%>";
  //如果session过期，直接打开
