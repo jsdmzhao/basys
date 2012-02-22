@@ -19,12 +19,15 @@ $(function(){
 	//设置只读
 	$('.ro').attr('readonly',true);
 //	设置申请人
-	$('#applicantName').click(function(){
-		getUserofDept('applicantName','applicantId',gxdwbm,ST_ROLE_NAME_APPLICANT);
-	});
+//	$('#applicantName').click(function(){
+//		getUserofDept('applicantName','applicantId',gxdwbm,ST_ROLE_NAME_APPLICANT);
+//	});
+	$('#applicantName').val(username);
+	$('#applicantId').val(userid);
 	//设置大区
 	$('#regionName').click(function(){
-		getDict_item('regionName','regionCode',ST_REGION_DICT_CODE);
+		//getDict_item('regionName','regionCode',ST_REGION_DICT_CODE);
+		getRegionWithRole('regionName','regionCode');
 	});
 	
 	//按钮动作

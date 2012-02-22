@@ -6,9 +6,85 @@
 var processUrl2=BUSNEISS_PATH +"/init_deptApproval.action";
 var saveURL=BUSNEISS_PATH+'/save_deptApproval.action';
 var trackingInfoURL=BUSNEISS_PATH+"/querylistNoPage_tracking.action";
+var ingridWidth=400;
+//进展
+//追踪批复查询URL
+var	ingridUrl=getContextPath() + "/techsupport/querylist_tracking.action";
+function loadPageTrackingQuery(divpageid){
+	tables=$("#"+divpageid).html();
+	trackingQuery(1,'#');
+}	
 
+/**
+ * 查询函数
+ * */
+function trackingQuery(pageno,url){
+	
+	if (true){
+		url=setList(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+tableid).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});				
+		}
+}
+//督办
+var supervision_div_id="supervision_list_div";
+var supervision_table_id="supervision_list_table";
+var supervision_tables;
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
+
+function load_page_supervision_query(divpageid){
+	supervision_tables=$("#"+divpageid).html();
+	supervision_query(1,'#');
+}
+
+function set_supervision_list(pageno,url){	
+	$("#"+supervision_div_id).html(supervision_tables);
+	createXML("sv_");
+	if (url==null || url=="undefined"){
+		url=supervision_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function supervision_query(pageno,url){
+	
+	if (true){
+		url=set_supervision_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+supervision_table_id).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});
+		}
+}	
 $(function(){
 	
+	divnid="trackingTableDiv";//查询内容容器ID
+	tableid="trackingTable";//查询内容格式表格ID
+	loadPageTrackingQuery(divnid);
 	
 	//初始化该页面值
 	$('#p_taskId').val(dataid);
@@ -45,31 +121,16 @@ $(function(){
 		if(!submitVerity())
 			return;
 		
-		var allfields=[];
-		
-		fields=$('#deptApproval input:text[name^=st.]');
-		for(i=0;i<fields.length;i++){
-			allfields.push(fields.get(i));
-		}
-		fields=$('#deptApproval input:checked[name^=st.]');
-		for(i=0;i<fields.length;i++){
-			allfields.push(fields.get(i));
-		}
-		fields=$('#deptApproval textarea[name^=st.]');
-		for(i=0;i<fields.length;i++){
-			allfields.push(fields.get(i));
-		}
-		fields=$('#deptApproval input:hidden[name^=st.]');
-		for(i=0;i<fields.length;i++){
-			allfields.push(fields.get(i));
-		}
-		
 		var params={};
 		
-		for(i=0;i<allfields.length;i++){
-			params[$(allfields[i]).attr('name')]=$(allfields[i]).val();
+		params = getSubmitParams('.deptApproval input,textarea',params);
+		var test = "{";
+		for(var i in params){
+			test+=i+':'+params[i]+","
 		}
-
+		test=test.substring(0,test.length-1);
+		test+="}";
+		alert(test);
 //		设置任务号
 		params['taskId']=$('#p_taskId').val();
 
@@ -163,7 +224,12 @@ function loadData(){
 			}
 			
 		},'json');
+		//督办
+		$('#sv_st_id').val(data.st.id);
 		
+		supervision_query(1);
+		//进展
+		trackingQuery(1,ingridUrl);
 	});
 }
 

@@ -14,6 +14,7 @@
 </style>
 <input type="hidden" id="p_taskId">
 <input type="hidden" name="st.id">
+<input type="hidden" id="sv_st_id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">归档</td>

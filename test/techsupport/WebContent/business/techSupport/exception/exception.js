@@ -101,7 +101,7 @@ function trackingQuery(pageno,url){
 		// returns a jQ object with a 'g' property - that's ingrid
 		var mygrid2 = $("#"+tableid).ingrid({ 
 										url: url,	
-										height:70,
+										height:60,
 										ingridPageWidth:ingridWidth,
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
