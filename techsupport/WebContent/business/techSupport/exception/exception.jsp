@@ -59,7 +59,7 @@
 		<div class="row">
 			<div class=" column-block column" >
 				<label class="label">技术支持单内容:</label>
-				<textarea style="width:250px ! important;height: 124px;" class="ro item  inputstyle" name="st.supportContent" id="p_supportContent"></textarea>
+				<textarea style="width:250px ! important;height: 80px;" class="ro item  inputstyle" name="st.supportContent" id="p_supportContent"></textarea>
 				<div class="clear-column"></div>
 			</div>
 			<div class="column-block2 column">

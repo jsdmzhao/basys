@@ -380,21 +380,23 @@ function getRegionWithRole(mcId,dmId)
  * 获取一个用于提交的对象 
  * @param {} expr
  */
-function getSubmitParams(expr){
+function getSubmitParams(expr,params){
 	var allfields=[];
 	var fields;
 	// 过滤非单选复选
-	fields=$(expr).filter('[type!=checkbox]').filter('[type!=radio]');
+	fields=$(expr).filter(function(idx){ return $(this).attr("name") != null }).filter('[type!=checkbox],[type!=radio]');
+
 	for(var i=0;i<fields.length;i++){
 		allfields.push(fields.eq(i));
 	}
 	//过滤单选复选
-	fields = $(expr).filter(':checked');
+	fields = $(expr).filter(function(idx){ return $(this).attr("name") != null }).filter(':checked');
 	for(var i=0;i<fields.length;i++){
 		allfields.push(fields.eq(i));
 	}
 	//设置对象
-	var params = {};
+	if(!params)
+		var params = {};
 	for(var i=0;i<allfields.length;i++){
 		params[allfields[i].attr('name')] = allfields[i].val();
 	}

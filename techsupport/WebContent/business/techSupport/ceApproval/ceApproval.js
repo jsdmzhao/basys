@@ -6,7 +6,87 @@
 //onload
 var processUrl2=BUSNEISS_PATH+"/init_ceApproval.action";
 var saveURL=BUSNEISS_PATH+'/save_ceApproval.action';
+var ingridWidth=400;
+//进展
+//追踪批复查询URL
+var	ingridUrl=getContextPath() + "/techsupport/querylist_tracking.action";
+function loadPageTrackingQuery(divpageid){
+	tables=$("#"+divpageid).html();
+	trackingQuery(1,'#');
+}	
+
+/**
+ * 查询函数
+ * */
+function trackingQuery(pageno,url){
+	
+	if (true){
+		url=setList(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+tableid).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});				
+		}
+}
+//督办
+var supervision_div_id="supervision_list_div";
+var supervision_table_id="supervision_list_table";
+var supervision_tables;
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
+
+function load_page_supervision_query(divpageid){
+	supervision_tables=$("#"+divpageid).html();
+	supervision_query(1,'#');
+}
+
+function set_supervision_list(pageno,url){	
+	$("#"+supervision_div_id).html(supervision_tables);
+	createXML("sv_");
+	if (url==null || url=="undefined"){
+		url=supervision_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function supervision_query(pageno,url){
+	
+	if (true){
+		url=set_supervision_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+supervision_table_id).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});
+		}
+}	
+
 $(function(){
+	
+	divnid="trackingTableDiv";//查询内容容器ID
+	tableid="trackingTable";//查询内容格式表格ID
+	loadPageTrackingQuery(divnid);
+	
 	//初始化该页面值
 	$('#p_taskId').val(dataid);
 	
@@ -111,6 +191,12 @@ function loadData(){
 		
 		$('input:hidden[name=ceApprovalSt.id]').val(data['st']['id']);
 		$('#tracklist_stId').val(data['st']['id']);
+		//督办
+		$('#sv_st_id').val(data.st.id);
+		
+		supervision_query(1);
+		//进展
+		trackingQuery(1,ingridUrl);
 	});
 }
 
@@ -130,8 +216,8 @@ function submitVerity(){
 		return false;
 	}
 	// fixed bug 在选择不通过的时候，也要选择指派的单位
-	if($("#ceApprovalRadioPanel > input").eq(0).attr("checked")){
-		if($('#deptApprovalPanel input:checked').length==0){
+	if($("#ceApprovalRadioPanel  input").eq(0).attr("checked")){
+		if($('#deptApprovalPanel input:checked').length == 0){
 			jAlert('技术支持部门必须至少选择一个','提示');
 			return false;
 		}
@@ -142,5 +228,6 @@ function submitVerity(){
 	if(!checkControlValue("ceReply","String",1,4000,null,1,"总工意见"))
 		return false;
 		
+	
 	return true;
 }

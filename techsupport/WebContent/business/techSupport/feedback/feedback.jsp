@@ -14,6 +14,7 @@
 </style>
 <input type="hidden" id="p_taskId">
 <input type="hidden" name="st.id">
+<input type="hidden" id="sv_st_id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">反馈确认</td>
@@ -348,7 +349,7 @@
 			<div>
 				<label class="label label-80 red">反馈确认填写:</label>
 				<input type="hidden" name="tracking.type" value="<%=Constants.TRACKING_TYPE_FEEDBACK%>">
-				<textarea class="item inputstyle" style="width:400px ! important;height: 78px;" name="tracking.newProcess" id="p_newProcess"></textarea>
+				<textarea class="item inputstyle" style="width:400px ! important;height: 60px;" name="tracking.newProcess" id="p_newProcess"></textarea>
 			</div>
 			<div class="clear-column"></div>
 		</div>
