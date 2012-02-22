@@ -8,7 +8,49 @@ var processUrl2;
 var ingridUrl;
 var ingridWidth=750;
 var trackingWindowWidth=850;
+//督办
+var supervision_div_id="supervision_list_div";
+var supervision_table_id="supervision_list_table";
+var supervision_tables;
+//督办查询路径
+var supervision_query_url = BUSNEISS_PATH +"/querylist_supervision.action";
 
+function load_page_supervision_query(divpageid){
+	supervision_tables=$("#"+divpageid).html();
+	supervision_query(1,'#');
+}
+
+function set_supervision_list(pageno,url){	
+	$("#"+supervision_div_id).html(supervision_tables);
+	createXML("sv_");
+	if (url==null || url=="undefined"){
+		url=supervision_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function supervision_query(pageno,url){
+	
+	if (true){
+		url=set_supervision_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+supervision_table_id).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["14%","70%","16%"]				
+									});
+		}
+}
 /**保存验证*/
 function saveVerify() {
 	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
@@ -53,13 +95,14 @@ function toFeedbackVerify(){
 		return true;
 	}
 	
-/** onload */
-$(function(){
-
+	var comp_time_div_id='comp_time_div';
 	//保存连接
 	var saveURL = getContextPath()+"/techsupport/save_tracking.action";
 	//反馈链接
 	var toFeedbackURL = getContextPath() + "/techsupport/applyFeedback_tracking.action";
+/** onload */
+$(function(){
+	
 	
 	//只读化控件
 	$('.ro').attr('readOnly',true);
@@ -115,51 +158,18 @@ $(function(){
 				
 			}
 			else
-				jAlert(data.returnMsg,"提示")
+				jAlert(data.returnMsg,"提示");
 		});
 		
 	});
 	//设置反馈按钮
 	$('#toFeedbackBtn').click(function(){
-		if(!toFeedbackVerify()){
-			return;
-		}
-		var params = {};
 		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		
-		//设置当前的track.stId
-		params['track.stId']=$('input:hidden[name=st.id]').val();
-		//设置trSt,保存环节信息
-		$('[name^=trSt.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		params['trSt.id']=$('input:hidden[name=st.id]').val();
-		
-		//设置任务号
-		params.taskId = $('#p_taskId').val();
-		
-		$.post(toFeedbackURL,params,function(data){
-			if(!data){
-				alert("传输错误，管理人员");
-			}
-			data = eval("("+data+")");
-			
-			if(data.returnNo == 0){
-//				alert(data.returnMsg);
-				
-				worksheetQuery(1);
-				
-				$(detailWindow).hideAndRemove("show");
-				
-			}
-			else{
-				alert(data.returnMsg);
-			}
-		});
+		detailDialog(comp_time_div_id,400,'business/techSupport/tracking/tracking_comp_time.jsp');
 	});
+	
+	daggleDiv(comp_time_div_id);
+	
 });
 
 
@@ -220,9 +230,6 @@ function loadData(){
 		relateHide('devstage');
 		relateHide('psgstage');
 				
-		//非阶段性隐藏
-		relateHide('devcpstage');
-		relateHide('psgcpstage');
 		
 //		初始化单位信息
 		var deptNameStr="";
@@ -240,35 +247,14 @@ function loadData(){
 		sSlNames=sSlNames.length > 0? sSlNames.substring(1) : sSlNames;
 		$('#p_slName').val(sSlNames);
 		
-		//	初始化提请反馈必填项颜色信息
-//		if($('#p_deptName').val().indexOf('方案部') > -1){
-		if(	gxdwmc.indexOf('方案部') > -1){
-			$('#p_psgCompDate').prev('label').addClass('blue');
-			// 修正bug 添加必要的颜色信息
-			$("#psgcpstage").blur(function() {
-				if ($(this).attr('checked')) {
-					$('.' + this.id).addClass('blue');
-				} else {
-					$('.' + this.id).removeClass("blue");
-				}
-			});
-		}
-		if(gxdwmc.indexOf('开发部') > -1){
-			$('#p_devCompDate').prev('label').addClass('blue');
-			// 修正bug 添加必要的颜色信息
-			$("#devcpstage").blur(function() {
-				if ($(this).attr('checked')) {
-					$('.' + this.id).addClass('blue');
-				} else {
-					$('.' + this.id).removeClass("blue");
-				}
-			});
-		}
 		
 		$('#p_region').val(getDictitem({dictcode:ST_REGION_DICT_CODE,value:$('#p_region').val()})[0].display_name);
 		
 		trackingQuery(1,ingridUrl);
+		//督办
+		$('#sv_st_id').val(data.st.id);
 		
+		supervision_query(1);
 	});
 	
 	
