@@ -104,8 +104,7 @@ $(function(){
 		var params = {};
 		
 		
-		params = getSubmitParams("[name^=track.]");
-		params = $.extend(params,getSubmitParams("[name^=change_st.]"));
+		params = getSubmitParams("[name^=track.],[name^=change_st.]");
 		
 		//设置当前的track.stId
 		params['track.stId']=$('input:hidden[name=st.id]').val();

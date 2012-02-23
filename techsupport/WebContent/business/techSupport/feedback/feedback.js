@@ -52,7 +52,7 @@ function supervision_query(pageno,url){
 
 /**保存验证*/
 function saveVerify() {
-	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
+	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"反馈意见"))
 		return false;
 	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
 		return false;
@@ -61,7 +61,7 @@ function saveVerify() {
 
 /**不与反馈验证*/
 function noFeedbackVerify() {
-	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"进展填写"))
+	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"反馈意见"))
 		return false;
 	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
 		return false;

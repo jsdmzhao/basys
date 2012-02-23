@@ -15,7 +15,7 @@
 <input type="hidden" name="st.id">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
-      <td align="left" class="title1">例外终止</td>
+      <td align="left" class="title1">支持单中止</td>
       <td align="right"><a href="#" id="closeDiv" onclick='$("#detailCt").hideAndRemove("show");' class="close"></a></td>
     </tr>
 </table>
@@ -193,19 +193,19 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>终止信息</legend>
+		<legend>中止信息</legend>
 		<div class="row">
 			<div class="column">
 				<div>
-					<label class="label red">终止原因:</label>
-					<textarea class="item  inputstyle" style="width:450px ! important;height: 70px;" name="track.newProcess" id="p_newProcess"></textarea>
+					<label class="label red">中止原因:</label>
+					<textarea class="item  inputstyle" style="width:450px ! important;height: 70px;" name="tracking.newProcess" id="p_newProcess"></textarea>
 				</div>
 				<div class="clear-column"></div>
 				<div class="row">
 					<div class="column">
 						<div>
-							<label class="label red">终止日期:</label>
-							<input type="text" class="date  item  inputstyle" name="track.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
+							<label class="label red">中止日期:</label>
+							<input type="text" class="date  item  inputstyle" name="tracking.trackingDate" id="p_trackingDate" value="<%=dateNow%>">
 						</div>
 						<div class="clear-column"></div>
 					</div>
@@ -214,10 +214,10 @@
 				<div class="row">
 					<div class="column">
 						<div>
-							<label class="label red">终止人:</label>
-							<input type="text" class="ro  item  inputstyle" name="track.processor.username" id="p_tracking_person_name" value="<%=username%>">
-							<input type="hidden" name="track.processor.userid" value="<%=user.getUserid()%>">
-							<input type="hidden" name="track.type" value="<%=Constants.TRACKING_TYPE_EXCEPTION%>">
+							<label class="label red">中止人:</label>
+							<input type="text" class="ro  item  inputstyle" name="tracking.processor.username" id="p_tracking_person_name" value="<%=username%>">
+							<input type="hidden" name="tracking.processor.userid" value="<%=user.getUserid()%>">
+							<input type="hidden" name="tracking.type" value="<%=Constants.TRACKING_TYPE_EXCEPTION%>">
 						</div>
 						<div class="clear-column"></div>
 					</div>
@@ -235,7 +235,7 @@
 			<div class="clear-column"></div>
 		</div>
 		<div class="column" style="width: 120px;">
-			<a class="item submitbutton" id="saveBtn" href="#">终止</a>
+			<a class="item submitbutton" id="saveBtn" href="#">中止</a>
 			<div class="clear-column"></div>
 		</div>
 		<div class="clear-row"></div>

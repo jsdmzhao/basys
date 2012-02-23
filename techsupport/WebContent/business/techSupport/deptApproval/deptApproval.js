@@ -33,7 +33,7 @@ function trackingQuery(pageno,url){
                                       	ingridPageParams:sXML,
                                       	onRowSelect:null,
 										pageNumber: pageno,
-										colWidths: ["14%","70%","16%"]				
+										colWidths: ["15%","69%","16%"]				
 									});				
 		}
 }
@@ -120,17 +120,12 @@ $(function(){
 	$('#savebtn').click(function(){
 		if(!submitVerity())
 			return;
-		
+		if($("#deptRadioPanel  input").eq(1).attr("checked"))
+			if(!confirm("您确认本支持单不通过审批吗？"))
+				return;
 		var params={};
 		
 		params = getSubmitParams('.deptApproval input,textarea',params);
-		var test = "{";
-		for(var i in params){
-			test+=i+':'+params[i]+","
-		}
-		test=test.substring(0,test.length-1);
-		test+="}";
-		alert(test);
 //		设置任务号
 		params['taskId']=$('#p_taskId').val();
 

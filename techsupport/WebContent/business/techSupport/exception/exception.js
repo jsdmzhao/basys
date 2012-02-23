@@ -11,9 +11,9 @@ var trackingWindowWidth=850;
 
 /**保存验证*/
 function saveVerify() {
-	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"终止原因"))
+	if (!checkControlValue("p_newProcess","String",1,3000,null,1,"中止原因"))
 		return false;
-	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"终止日期"))
+	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"中止日期"))
 		return false;
 	return true;
 }
@@ -57,15 +57,15 @@ $(function(){
 		if(!saveVerify()){
 			return;
 		}
-		
+		if(!confirm("您确认本本支持单中止吗？"))
+			return;
 		var params = {};
 		
-		$('[name^=track.]').each(function(){
-			params[$(this).attr('name')]=$(this).val();
-		});
-		
+		params = getSubmitParams('[name^=tracking.]');		
 		//设置当前的track.stId
-		params['track.stId']=$('input:hidden[name=st.id]').val();
+		params['tracking.stId']=$('input:hidden[name=st.id]').val();
+		params['exception_st.id'] = $('input:hidden[name=st.id]').val();
+		params['taskId'] = $('#p_taskId').val();
 		
 		$.post(saveURL,params,function(data){
 			if(!data){
