@@ -106,7 +106,9 @@ $(function(){
 	$('#savebtn').click(function(){
 		if(!submitVerity())
 			return;
-		
+		if($("#ceApprovalRadioPanel  input").eq(1).attr("checked"))
+			if(!confirm("您确认本支持单不通过审批吗？"))
+				return;
 		var allfields=[];
 		
 		fields=$('#ceApprovalCt input:text[name^=ceApprovalSt.]');

@@ -202,6 +202,23 @@ function lazyLoad(){
 	                                       	onRowSelect:null,
 											pageNumber: pageno,
 											noSortColIndex:[6],
+											changeHref:function(table){
+												$("tr",table).each(function(){
+													__tr = $(this);
+													$(this).find("a[title=督办]").each(function(){
+														var text = __tr.find('td').eq(5).text();
+														if(text == '已完成' || text == '已终止'){
+															/*
+															$(this).removeAttr('href').css('color','gray');
+															$(this).unbind('click');
+															this.onclick=null;
+															*/
+															$(this).remove();
+														}
+															
+													});
+												});
+											},
 											colWidths: function(){
 												var a_col_widths=[];
 												var ths = $('#queryContentTable th');

@@ -128,7 +128,7 @@
 
 							<div class="column " style="width: 600px;">
 								<label class="label">总工意见:</label>
-								<textarea class=" item inputstyle"
+								<textarea class="ro item inputstyle"
 									style="width: 320px !important; height: 66px;"
 									name="st.trackList[0].newProcess" id="ceReply"></textarea>
 								<div class="clear-column"></div>
@@ -139,7 +139,7 @@
 
 				<div class="column " style="width: 49%;float: right;">
 					<fieldset>
-						<legend>公司二级审批</legend>
+						<legend>部门审批信息</legend>
 						<div class="deptApproval">
 
 							<input type="hidden" name="st.trackList[0].stId" value=""
