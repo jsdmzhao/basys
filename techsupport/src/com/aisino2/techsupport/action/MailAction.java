@@ -78,8 +78,6 @@ public class MailAction extends BaseAction {
 		String email="";
 		String content="";
 		String subject="";
-		InputStream in=this.getClass().getClassLoader().getResourceAsStream("mailContent.properties");
-		Properties properties=new Properties();
 		List<Recipient> recipients=new ArrayList<Recipient>();
 		if (lSt == null || lSt.size() == 0){
 			this.result="没有选择技术支持单,不能发送邮件";
@@ -92,11 +90,14 @@ public class MailAction extends BaseAction {
 			lSt.add(i,st);
 		}
 		if(mail==null){
-			this.result="没有发件人不能发送邮件";
-			throw new RuntimeException("没有发件人不能发送邮件");
+			mail=new Mail();
 		}
 		email=getAdressByName(mail.getUser());
 		try{
+			//读取邮件内容信息
+			InputStream in=this.getClass().getClassLoader().getResourceAsStream("mailContent.properties");
+			Properties properties=new Properties();
+			properties.load(in);
 			//读取邮件配置信息
 			Properties mailConfig=new Properties();
 			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
