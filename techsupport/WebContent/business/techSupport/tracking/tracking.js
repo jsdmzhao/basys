@@ -6,7 +6,7 @@
 
 var processUrl2;
 var ingridUrl;
-var ingridWidth=750;
+var ingridWidth=400;
 var trackingWindowWidth=850;
 //督办
 var supervision_div_id="supervision_list_div";
@@ -189,14 +189,14 @@ function trackingQuery(pageno,url){
 		// returns a jQ object with a 'g' property - that's ingrid
 		var mygrid2 = $("#"+tableid).ingrid({ 
 										url: url,	
-										height:70,
+										height:60,
 										ingridPageWidth:ingridWidth,
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
                                       	ingridPageParams:sXML,
                                       	onRowSelect:null,
 										pageNumber: pageno,
-										colWidths: ["14%","70%","16%"]				
+										colWidths: ["15%","69%","16%"]				
 									});				
 		}
 }

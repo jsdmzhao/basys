@@ -135,8 +135,7 @@ $(function(){
 function autoHeight(){
 	//设置内容自动高度
 	$('#applyReportedCt').height(windowClientHeight
-		-$('#mainDIV > table').eq(0).height()
-		-($('#applyReportedCt').outerHeight(true)-$('#applyReportedCt').height()));
+		-$('#allDiv').height());
 	$('#contentCt').height($('#applyReportedCt').height()
 		-$('#title').outerHeight(true)-$('#footerCt').outerHeight(true));
 }

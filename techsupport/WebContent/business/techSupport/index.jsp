@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="../../public/common.jsp" %>
-<%@include file="../../public/user-info.jsp" %>
-
+<%@include file="../../public/user-info.jsp" %>  
 <script type="text/javascript">
     $(document).ready(function (){
     	
@@ -41,9 +40,14 @@
 </script>
 
 <body style="margin:0px;">
-<table width="1020" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1020" border="0"  align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="144" valign="top" background="images/logo.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <td>
+      <div id="allDiv" align="center">
+        <div id="antiFooter">
+		  <div id="header">
+            <div id="logo">
+             <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td height="43" colspan="2" valign="top"><table width="96%" border="0" align="center" cellpadding="3" cellspacing="0">
           <tr>
@@ -66,7 +70,7 @@
                 <img src="images/ioc_02.jpg" width="16" height="18" id='login_img'/>        
                     <a class="headlink" href="#" id='login' onclick='fnloginSy();'>首页</a>
                  <img src="images/lightbulb.gif" width="16" height="18" id='sytz_img'/>
-                <a class="headlink" href="#" id='sytz_button' onclick="loadXtgl();">台帐</a>   
+                <a class="headlink" href="#" id='sytz_button' onClick="loadXtgl();">台帐</a>   
             <img src="images/ioc_04.jpg" width="17" height="18" id="pwd_img"/>                   
                     <a class="headlink" href="#" id='modifypassword' onclick='fnmodifypassword();'>修改密码</a>
                 <img src="images/ioc_06.jpg" width="20" height="18" />              
@@ -78,16 +82,22 @@
       </tr>
       <tr>
         <td width="9%"></td>
-        <td width="91%" valign="bottom" class="titlefont" >技术支持单系统</td>
+        <td width="91%" valign="bottom" class="titlefont" ></td>
       </tr>
       <tr>
         <td></td>
         <td valign="top" class="smalltitlefont" >&nbsp;</td>
       </tr>
-    </table></td>
+    </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="div_moveMenu" style="float:right;margin-top: -21" ></div>
+<div id="div_menumain" style="margin-top: -28"><ul id='menumain' class='jd_menu jd_menu_jdsharp'></ul></div>
+<div id=iframes onload='$("iframes").show("slow");' style="top:128px; width:1020px; background:url(images/zh.gif) no-repeat center;  padding: 0px; "></div>
+<div id="password_modify" class="page-layout" src="#" style="display: none; top: 110px; left: 350px; width: 300px;"></div>
+
+    </td>
   </tr>
 </table>
-<div id="div_moveMenu" style="float:right;margin-top: -35" ></div>
-<div id="div_menumain" style="margin-top: -38"><ul id='menumain' class='jd_menu jd_menu_jdsharp'></ul></div>
-<div id=iframes onload='$("iframes").show("slow");' style="top: 150px; background-color: #ffffff;  padding: 0px; "></div>
-<div id="password_modify" class="page-layout" src="#" style="display: none; top: 110px; left: 350px; width: 300px;"></div>

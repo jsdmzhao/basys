@@ -5,7 +5,7 @@
 
 var processUrl2;
 var ingridUrl;
-var ingridWidth=750;
+var ingridWidth=400;
 //督办
 var supervision_div_id="supervision_list_div";
 var supervision_table_id="supervision_list_table";
@@ -89,7 +89,7 @@ function trackingQuery(pageno,url){
                                       	ingridPageParams:sXML,
                                       	onRowSelect:null,
 										pageNumber: pageno,
-										colWidths: ["14%","70%","16%"]				
+										colWidths: ["15%","69%","16%"]				
 									});				
 		}
 }
