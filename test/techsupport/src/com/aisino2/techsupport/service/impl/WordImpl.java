@@ -69,7 +69,7 @@ public class WordImpl implements IWord {
 		// 设置正文字体的颜色
 		bodyFont.setColor(56, 94, 15);
 		// 创建主题的Phrases对象
-		Paragraph theme = new Paragraph("主标题");
+		Paragraph theme = new Paragraph(word.getTheme());
 		// 将设置好的字体添加到主题的短句上
 		theme.setAlignment(Element.ALIGN_CENTER);
 		// 将Phrases添加到document文档中
@@ -181,7 +181,7 @@ public class WordImpl implements IWord {
 				long days=diff/(1000 * 60 * 60 * 24);
 				table.addCell(new Cell(String.valueOf(days)));
 			}
-		}else if(word.getStatus().equals("wait_feedback")){//反馈状态
+		}else if(word.getStatus().equals("wait_feedback")){//待反馈状态
 			//设置第一行第一列
 			Cell fRow_firstColumn=new Cell(word.getfRow_firstColumn());//创建但单元格
 			table.addCell(fRow_firstColumn);
@@ -234,7 +234,7 @@ public class WordImpl implements IWord {
 				//技术支持单内容
 				table.addCell(new Cell(newLst.get(i).getSupportContent()));
 				//支持单填报人
-				getUser.setUserid(newLst.get(i).getApplicantId());
+				getUser.setUserid(newLst.get(i).getApplicant().getUserid());
 				getUser=userService.getUser(getUser);
 				table.addCell(new Cell(getUser.getUsername()));
 				//支持单负责人
@@ -242,7 +242,8 @@ public class WordImpl implements IWord {
 				table.addCell(new Cell(user.getUsername()));
 				//提请反馈时间
 				tracking.setProcessorId(user.getUserid());
-				tracking.setType("40");
+				tracking.setSuperbWhere(" (t.type=0 or t.type=10 or t.type=30) ");//设置查询追踪单子的状态，0-30之间都是处于待反馈状态
+				//tracking.setType("40");
 				List<Tracking> trackingList=TrackingServiceImpl.getTrackingList(tracking);
 				table.addCell(new Cell(format.format(trackingList.get(0).getTrackingDate())));
 				//逾期时间
