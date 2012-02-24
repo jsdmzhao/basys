@@ -194,18 +194,34 @@ function SupportTicketQuery(pageno,url){
 				stNoList=new Array();
 				$(checkboxs).each(function(i){
 					if($(this).attr('checked')){
-						for(i=0;i<fields.length;i++){
-							stNoList.push(fields.eq(i).val());
-						}
+						stNoList.push(fields.eq(i).val());
 					}
 				});
 				if(stNoList.length==0){
 					jAlert('请先选择发送邮件的对象','提示信息');
 					return;
 				}
-				setWidth('email_detail','800');
-				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');
-				bindDocument('email_detail');
+				/* setWidth('email_detail','800');
+				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');取消这种弹出页面的形式改为直接发送的方式
+				bindDocument('email_detail'); */
+				$("#div_send").show(); //打开 AJAX 等待动画
+          		jQuery.ajax({
+					type: 'POST',
+					url: BUSNEISS_PATH+'/send_mail.action',
+					data: paramss,
+					async: true,
+					dataType: 'json',
+					success: function(data){
+						if(data.result=='success'){
+							alert('导出并发送成功','提示信息');
+						}else{
+							alert('导出并发送失败,请与管理员联系','提示信息');
+						}
+					},
+					complete: function(){
+						$("#div_send").hide(); //关闭 AJAX 等待动画
+					}
+				});
 			});
 			//导出数据并发送邮件
 			$("#sendWord").click(function(){
@@ -215,12 +231,13 @@ function SupportTicketQuery(pageno,url){
 				var paramObject=new Array();
 				$(checkboxs).each(function(i){
 					if($(this).attr('checked')){
-						for(var i=0;i<fields.length;i++){
-							//paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
-							paramObject.push(fields.eq(i).val());
-						}
+						paramObject.push(fields.eq(i).val());
 					}
 				});
+				if(paramObject.length==0){
+					jAlert("没有选择支持单","提示信息");
+					return;
+				}
 				for(var i=0;i<paramObject.length;i++){
 					paramss['lSt['+i+'].id']=paramObject[i];
 				}
@@ -236,7 +253,11 @@ function SupportTicketQuery(pageno,url){
 					async: true,
 					dataType: 'json',
 					success: function(data){
-						alert(data.result);
+						if(data.result=='success'){
+							alert('导出并发送成功','提示信息');
+						}else{
+							alert('导出并发送失败,请与管理员联系','提示信息');
+						}
 					},
 					complete: function(){
 						$("#div_send").hide(); //关闭 AJAX 等待动画
