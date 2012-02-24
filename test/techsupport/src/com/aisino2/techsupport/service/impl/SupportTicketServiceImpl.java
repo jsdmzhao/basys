@@ -158,11 +158,7 @@ public class SupportTicketServiceImpl extends BaseService implements
 				// 删除以前的指派单位记录，并且重新设置指派单位记录
 				SupportDept supportDept = new SupportDept();
 				supportDept.setStId(st.getId());
-				SupportLeaderRelation slr = new SupportLeaderRelation();
-				slr.setStId(st.getId());
 				this.supportDeptDao.removeSupportDept(supportDept);
-				//并且删除以前指派的支持单负责人
-				this.supportLeaderRelationDao.delete(slr);
 				
 				for (Department dept : st.getSupportDeptList()) {
 					if (dept == null)

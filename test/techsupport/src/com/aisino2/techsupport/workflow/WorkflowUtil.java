@@ -13,6 +13,7 @@ import org.jbpm.api.Deployment;
 import org.jbpm.api.ExecutionService;
 import org.jbpm.api.IdentityService;
 import org.jbpm.api.ProcessDefinition;
+import org.jbpm.api.ProcessDefinitionQuery;
 import org.jbpm.api.ProcessEngine;
 import org.jbpm.api.RepositoryService;
 import org.jbpm.api.TaskService;
@@ -86,7 +87,7 @@ public class WorkflowUtil {
 
 		List<ProcessDefinition> pdList = getRepositoryService()
 				.createProcessDefinitionQuery()
-				.processDefinitionName(Constants.workflowName).list();
+				.processDefinitionName(Constants.workflowName).orderDesc(ProcessDefinitionQuery.PROPERTY_VERSION).list();
 		String deployid = null;
 //		if (pdList.size() >= 0 ) {
 //			deployid = workflowDeploy();
@@ -102,7 +103,7 @@ public class WorkflowUtil {
 					getRepositoryService().createProcessDefinitionQuery()
 							.deploymentId(deployid).list().get(0).getId(), var);
 		}catch (org.jbpm.api.JbpmException e) {
-			ProcessDefinition pd = pdList.get(pdList.size() - 1);
+			ProcessDefinition pd = pdList.get(0);
 			getExecutionService().startProcessInstanceById(pd.getId(), var);
 		}
 //		else {
