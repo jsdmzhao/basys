@@ -1,5 +1,7 @@
 package com.aisino2.techsupport.domain;
 
+import java.util.List;
+
 /**
  * 技术负责人关联
  *
@@ -9,6 +11,14 @@ public class SupportLeaderRelation {
 	private Integer supportLeaderId;
 	private Integer departid;
 	
+	private List<Integer> deleteNotDepartid;
+	
+	public List<Integer> getDeleteNotDepartid() {
+		return deleteNotDepartid;
+	}
+	public void setDeleteNotDepartid(List<Integer> deleteNotDepartid) {
+		this.deleteNotDepartid = deleteNotDepartid;
+	}
 	public Integer getDepartid() {
 		return departid;
 	}

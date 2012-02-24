@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.aisino2.sysadmin.domain.User;
 import com.aisino2.techsupport.dao.ISupportLeaderRelationDao;
 import com.aisino2.techsupport.domain.SupportLeaderRelation;
 
@@ -28,6 +29,10 @@ public class SupportLeaderDaoImpl extends TechSupportBaseDao implements
 	public List<SupportLeaderRelation> query(
 			SupportLeaderRelation supportLeaderRelation) {
 		return this.queryForList("SupportLeaderRelation.querylist", supportLeaderRelation);
+	}
+
+	public List<User> query_by_stid(Integer stid) {
+		return this.queryForList("SupportLeaderRelation.querySupportLeaderByStId",stid);
 	}
 
 }

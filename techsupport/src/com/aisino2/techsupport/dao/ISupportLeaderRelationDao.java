@@ -2,6 +2,7 @@ package com.aisino2.techsupport.dao;
 
 import java.util.List;
 
+import com.aisino2.sysadmin.domain.User;
 import com.aisino2.techsupport.domain.SupportLeaderRelation;
 
 
@@ -26,4 +27,6 @@ public interface ISupportLeaderRelationDao {
 	 * @return
 	 */
 	List<SupportLeaderRelation> query(SupportLeaderRelation supportLeaderRelation);
+	
+	List<User> query_by_stid(Integer stid);
 }
