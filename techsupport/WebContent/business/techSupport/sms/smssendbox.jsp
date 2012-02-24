@@ -189,10 +189,9 @@ function SupportTicketQuery(pageno,url){
 			});
 			//发送邮件
 			$("#sendEmail").click(function(){
-				var checkboxs=$("input[type='checkbox']");
 				var fields=$('input:checked[name^=lSt]');
 				stNoList=new Array();
-				$(checkboxs).each(function(i){
+				$(fields).each(function(i){
 					if($(this).attr('checked')){
 						stNoList.push(fields.eq(i).val());
 					}
@@ -204,11 +203,15 @@ function SupportTicketQuery(pageno,url){
 				/* setWidth('email_detail','800');
 				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');取消这种弹出页面的形式改为直接发送的方式
 				bindDocument('email_detail'); */
+				var params={};
+				for(var i=0;i<stNoList.length;i++){
+					params['lSt['+i+'].id']=stNoList[i];
+				}
 				$("#div_send").show(); //打开 AJAX 等待动画
           		jQuery.ajax({
 					type: 'POST',
 					url: BUSNEISS_PATH+'/send_mail.action',
-					data: paramss,
+					data: params,
 					async: true,
 					dataType: 'json',
 					success: function(data){
@@ -226,10 +229,9 @@ function SupportTicketQuery(pageno,url){
 			//导出数据并发送邮件
 			$("#sendWord").click(function(){
 				var paramss={};
-				var checkboxs=$("input[type='checkbox']");
 				var fields=$('input:checked[name^=lSt]');
 				var paramObject=new Array();
-				$(checkboxs).each(function(i){
+				$(fields).each(function(i){
 					if($(this).attr('checked')){
 						paramObject.push(fields.eq(i).val());
 					}
