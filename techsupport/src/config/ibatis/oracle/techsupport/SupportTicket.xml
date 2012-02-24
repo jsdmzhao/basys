@@ -388,9 +388,7 @@
 				</iterate>
 			</isNotEmpty>
 		</isEmpty>
-		<isNotEmpty prepend="and" property="applicant.userid">
-			t.applicant=#applicant.userid#
-		</isNotEmpty>
+		
 		<isNotEmpty prepend="and" property="stStatus">
 			t.ST_STATUS=#stStatus#
 		</isNotEmpty>
@@ -438,10 +436,18 @@
 			and 
 			a.departid=#limitDeparement#
 		</isNotEmpty>
-		
+		<isNotEmpty prepend="and" property="applicant.userid" open="(" close=")">
+			t.applicant=#applicant.userid#
+			<isNotEmpty prepend=" or" property="tracking_person">
+				tr.processor = #tracking_person#
+			</isNotEmpty>
+		</isNotEmpty>
 		<!-- ++ 意见回复人 -->
-		<isNotEmpty prepend="and" property="tracking_person">
+		<isNotEmpty prepend="and" property="tracking_person" open="(" close=")">
 			tr.processor = #tracking_person#
+			<isNotEmpty prepend=" or" property="applicant.userid">
+				t.applicant=#applicant.userid#
+			</isNotEmpty>
 		</isNotEmpty>
 		<!-- __ 意见回复人 -->
 		<!-- ++ 使用最后修改时间 -->
