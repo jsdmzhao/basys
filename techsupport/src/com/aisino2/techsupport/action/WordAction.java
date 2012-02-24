@@ -41,10 +41,16 @@ public class WordAction extends BaseAction {
 			this.result="没有选择技术支持单不能导出并发送邮件";
 			throw new RuntimeException("没有选择技术支持单不能导出并发送邮件");
 		}
-		for(SupportTicket st:lSt){
-			lSt.remove(st);
+		/*for(SupportTicket supportTicket:lSt){
+			lSt.remove(supportTicket);
+			supportTicket=supportTicketService.getSupportTicket(supportTicket);
+			lSt.add(supportTicket);
+		}*/
+		for(int i=0;i<lSt.size();i++){
+			SupportTicket st=lSt.get(i);
+			lSt.remove(i);
 			st=supportTicketService.getSupportTicket(st);
-			lSt.add(st);
+			lSt.add(i,st);
 		}
 		if(word==null){
 			word=new Word();
@@ -75,12 +81,13 @@ public class WordAction extends BaseAction {
 				word.setsRow_sixthColumn(new String(properties.getProperty("going_sRow_sixthColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setsRow_seventhColumn(new String(properties.getProperty("going_sRow_seventhColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("going_tableCloumnSize").getBytes("ISO8859-1"),"UTF-8")));
+				word.setTheme(new String(properties.getProperty("going_theam").getBytes("ISO8859-1"),"UTF-8"));
 				Object[] temp={new SimpleDateFormat("yyyy年MM月dd日").format(new Date())};
 				subject=new String(properties.getProperty("going_maiSubject").getBytes("ISO8859-1"),"UTF-8");
 				subject=MessageFormat.format(subject, temp);
 				text=subject;
 				to=new String(properties.getProperty("going_recipient").getBytes("ISO8859-1"),"UTF-8");
-			}else if(status!=null&&status.equals("wait_feedback")){//反馈状态
+			}else if(status!=null&&status.equals("wait_feedback")){//待反馈状态
 				word.setfRow_firstColumn(new String(properties.getProperty("feedback_fRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setfRow_secondColumn(new SimpleDateFormat("yyyy年MM月dd日 ").format(new Date()));
 				word.setsRow_firstColumn(new String(properties.getProperty("feedback_sRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
@@ -90,6 +97,7 @@ public class WordAction extends BaseAction {
 				word.setsRow_fifthColumn(new String(properties.getProperty("feedback_sRow_fifthColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setsRow_sixthColumn(new String(properties.getProperty("feedback_sRow_sixthColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("feedback_tableCloumnSize").getBytes("ISO8859-1"),"UTF-8")));
+				word.setTheme(new String(properties.getProperty("feedback_theam").getBytes("ISO8859-1"),"UTF-8"));
 				Object[] temp={new SimpleDateFormat("yyyy年MM月dd日").format(new Date())};
 				subject=new String(properties.getProperty("feedback_maiSubject").getBytes("ISO8859-1"),"UTF-8");
 				subject=MessageFormat.format(subject, temp);
@@ -118,6 +126,7 @@ public class WordAction extends BaseAction {
 			}else{
 				mailService.send(mail, subject, to, null, text,file, false);
 			}
+			this.result="success";
 			
 		} catch (DocumentException e) {
 			this.result=e.getMessage();

@@ -5,7 +5,7 @@ import java.util.Date;
 import com.aisino2.core.domain.BaseObject;
 import com.aisino2.sysadmin.domain.User;
 
-public class Tracking  {
+public class Tracking  extends BaseObject{
 	private Integer id;
 	private Date trackingDate;
 	private String newProcess;

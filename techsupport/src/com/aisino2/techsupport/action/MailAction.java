@@ -85,10 +85,11 @@ public class MailAction extends BaseAction {
 			this.result="没有选择技术支持单,不能发送邮件";
 			throw new RuntimeException("没有技术支持单被选中");
 		}
-		for (SupportTicket st : lSt) {
-			lSt.remove(st);
-			st = stService.getSupportTicket(st);
-			lSt.add(st);
+		for(int i=0;i<lSt.size();i++){
+			SupportTicket st=lSt.get(i);
+			lSt.remove(i);
+			st=stService.getSupportTicket(st);
+			lSt.add(i,st);
 		}
 		if(mail==null){
 			this.result="没有发件人不能发送邮件";
@@ -100,9 +101,8 @@ public class MailAction extends BaseAction {
 			Properties mailConfig=new Properties();
 			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
 			mailConfig.load(config);
-			mail.setEmail(email);
-			//mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));以后会改成这种方式
-			//mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));以后会改成这种方式
+			mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));
+			mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));
