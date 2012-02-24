@@ -137,7 +137,6 @@ $(function(){
 
 function loadPageTrackingQuery(divpageid){
 	tables=$("#"+divpageid).html();
-	$("#"+detailid).hide(); 	
 	trackingQuery(1,'#');
 }	
 

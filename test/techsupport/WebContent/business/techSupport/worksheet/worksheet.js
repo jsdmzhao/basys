@@ -24,7 +24,7 @@ function lazyLoad() {
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#mainDIV > table').eq(0).height()-23;
+		-$('#allDiv').height()-23;
 	loadPageWorksheetQuery(worksheet_div_id);
 	worksheetQuery(1);
 }
@@ -39,7 +39,6 @@ function lazyLoad() {
 	workSheetUrl=BUSNEISS_PATH+"/worksheet_worksheet.action";//查询单个工作单
 	detailWidth=950;
 	detailid = "detailCt";
-	
 	detailWindow=$('#'+detailid).get(0);
 	
 	//查询按钮动作
@@ -99,7 +98,7 @@ function lazyLoad() {
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
                                        	ingridPageParams:sXML,
-                                       	noSortColIndex:[6],
+                                       	noSortColIndex:[7],
                                        	onRowSelect:null,
 										pageNumber: pageno,
 										colWidths: ["14%","10%","12%","12%","12%","12%","12%","12%"]				

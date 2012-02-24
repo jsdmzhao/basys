@@ -60,7 +60,7 @@ function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#mainDIV > table').eq(0).height()-25;
+		-$('#allDiv').height()-25;
 	loadPageSupportTicketQuery(divnid);
 	
 }
