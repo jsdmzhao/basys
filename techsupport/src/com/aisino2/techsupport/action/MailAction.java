@@ -18,6 +18,7 @@ import com.aisino2.core.web.BaseAction;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDict_itemService;
+import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.Mail;
 import com.aisino2.techsupport.domain.Recipient;
 import com.aisino2.techsupport.domain.SupportTicket;
@@ -122,17 +123,17 @@ public class MailAction extends BaseAction {
 			properties.load(in);
 			//判断状态选择相应的邮件主题和内容
 			//进行中
-			if(mail.getStatus()!=null&&mail.getStatus().equals("going")){
+			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_GOING)){
 				content=new String(properties.getProperty("Going_Content").getBytes("ISO8859-1"),"UTF-8");
 				subject=new String(properties.getProperty("Going_Subject").getBytes("ISO8859-1"),"UTF-8");
 			}
 			//待反馈
-			if(mail.getStatus()!=null&&mail.getStatus().equals("wait_feedback")){
+			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_FEEDBACK)){
 				content=new String(properties.getProperty("Feedback_Content").getBytes("ISO8859-1"),"UTF-8");
 				subject=new String(properties.getProperty("Feedback_Subject").getBytes("ISO8859-1"),"UTF-8");
 			}
 			//待审批
-			if(mail.getStatus()!=null&&(mail.getStatus().equals("wait_company_appraval")||mail.getStatus().equals("wait_department_appraval"))){
+			if(mail.getStatus()!=null&&(mail.getStatus().equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)||mail.getStatus().equals("wait_department_appraval"))){
 				content=new String(properties.getProperty("Approval_Content").getBytes("ISO8859-1"),"UTF-8");
 				subject=new String(properties.getProperty("Approval_Subject").getBytes("ISO8859-1"),"UTF-8");
 			}
@@ -148,7 +149,7 @@ public class MailAction extends BaseAction {
 					mailService.send(mail, subject, recipient.getrAddress(), null, content, false);
 				}
 			}
-			this.result="发送邮件成功";
+			this.result=SUCCESS;
 		}catch(Exception e){ 
 			this.result=e.getMessage();
 			e.printStackTrace();
