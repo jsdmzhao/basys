@@ -38,6 +38,9 @@
 			<isNotNull prepend="and" property="processorId">
 				t.processor = #processorId#
 			</isNotNull>
+			<isNotNull prepend="and" property="superbWhere">
+				$superbWhere$
+			</isNotNull>
 			
 	</sql>
 	<sql id="TrackingPageWhere">
