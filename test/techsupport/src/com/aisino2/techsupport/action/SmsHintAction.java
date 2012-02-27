@@ -44,10 +44,16 @@ public class SmsHintAction extends BaseAction {
 			if (lSt == null || lSt.size() == 0)
 				throw new RuntimeException("没有技术支持单被选中");
 
-			for (SupportTicket st : lSt) {
+			for (int i=0; i<lSt.size(); i++){
+				SupportTicket st = lSt.get(i);
+				if(st == null)
+					lSt.remove(i);
+			}
+			for (int i=0 ;i< lSt.size();i++) {
+				SupportTicket st = lSt.get(i);
 				lSt.remove(st);
 				st = stService.getSupportTicket(st);
-				lSt.add(st);
+				lSt.add(i,st);
 			}
 
 			String receivePhone = null;

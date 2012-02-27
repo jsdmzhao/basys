@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.web.BaseAction;
+import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.Mail;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Word;
@@ -70,7 +71,7 @@ public class WordAction extends BaseAction {
 			String to=null;//收件人
 			String cc=null;//抄送人
 			String text=null;//内容
-			if(status!=null&&status.equals("going")){//进展状态
+			if(status!=null&&status.equals(Constants.ST_STATUS_GOING)){//进展状态
 				word.setfRow_firstColumn(new String(properties.getProperty("going_fRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setfRow_secondColumn(new SimpleDateFormat("yyyy年MM月dd日 ").format(new Date()));
 				word.setsRow_firstColumn(new String(properties.getProperty("going_sRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
@@ -87,7 +88,7 @@ public class WordAction extends BaseAction {
 				subject=MessageFormat.format(subject, temp);
 				text=subject;
 				to=new String(properties.getProperty("going_recipient").getBytes("ISO8859-1"),"UTF-8");
-			}else if(status!=null&&status.equals("wait_feedback")){//待反馈状态
+			}else if(status!=null&&status.equals(Constants.ST_STATUS_WAIT_FEEDBACK)){//待反馈状态
 				word.setfRow_firstColumn(new String(properties.getProperty("feedback_fRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
 				word.setfRow_secondColumn(new SimpleDateFormat("yyyy年MM月dd日 ").format(new Date()));
 				word.setsRow_firstColumn(new String(properties.getProperty("feedback_sRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
@@ -103,7 +104,7 @@ public class WordAction extends BaseAction {
 				subject=MessageFormat.format(subject, temp);
 				text=subject;
 				to=new String(properties.getProperty("feedback_recipient").getBytes("ISO8859-1"),"UTF-8");
-			}else if(status!=null&&status.equals("wait_company_appraval")){//审批状态
+			}else if(status!=null&&status.equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)){//审批状态
 				
 			}
 			String file=new String(properties.getProperty("filePath").getBytes("ISO8859-1"),"UTF-8")+fileName+".doc";
