@@ -49,9 +49,10 @@ var ingridHeight=200;
 var stNoList;
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
+		
 		ingridHeight=pageHeight-queryPanelHeight
-			-$('#title').outerHeight(true)
-			-$('#mainDIV > table').eq(0).height()-58;
+		-$('#title').outerHeight(true)
+		-$('#allDiv').height()-56;
 		loadPageSupportTicketQuery(divnid);
 	
 }
@@ -140,11 +141,13 @@ function SupportTicketQuery(pageno,url){
 		 
 // 		全选
 		$('#selectAll').click(function(){
+			alert(0);
 			if($(this).attr('checked')){
-				$('input:checkbox[name=lSt.]').attr('checked',true);
+				alert(1);
+				$('input[name^=lSt.][type=checkbox]').attr('checked',true);
 			}
 			else {
-				$('input:checkbox[name=lSt.]').attr('checked',false);
+				$('input[name^=lSt.][type=checkbox]').attr('checked',false);
 			}
 		});
 		
@@ -207,6 +210,8 @@ function SupportTicketQuery(pageno,url){
 				for(var i=0;i<stNoList.length;i++){
 					params['lSt['+i+'].id']=stNoList[i];
 				}
+
+				params['mail.status']=$('#p_stStatus').val();
 				$("#div_send").show(); //打开 AJAX 等待动画
           		jQuery.ajax({
 					type: 'POST',
@@ -286,7 +291,7 @@ function SupportTicketQuery(pageno,url){
 	<div id="contentCt">
 		<div id="queryPanel">
 			<div class="row">
-				<div class="column pagedistd">
+				<div class="column">
 					<label class="label">支持单状态:</label>
 					<div class="item">
 						<select class="item inputstyle" name="st.stStatus" id="p_stStatus"></select>
