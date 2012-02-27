@@ -1,8 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-
-body{font-size:12px;}
-.logofont{font-size:12px; color:#FFFFFF}
-.btsmall{background-image:url(../images/btsmall.jpg); background-repeat:no-repeat;  width:166px; height:24px; font-size:13px;color:#015ab4; font-weight:bold; padding-left:33px; padding-top:3px;}
-a.btsmallfont{font-size:13px;color:#015ab4; font-weight:bold; text-decoration:none}
-a.btsmallfont:hover{font-size:13px;color:#8d0000; font-weight:bold;}
