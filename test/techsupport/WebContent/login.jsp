@@ -4,7 +4,6 @@
 <%@page import="java.security.cert.X509Certificate,java.util.Vector,com.jit.attr.GAACInfo"%>
 <%@page import="com.ibatis.common.resources.Resources"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%
 	Properties loginProp = Resources.getResourceAsProperties("DisplayerStrings.properties");
 	String loginBbh = loginProp.getProperty("loginBbh"); //登陆页右下角显示版本号内容
@@ -41,9 +40,16 @@
 	//	mac= "";
 	
 %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 <head>
-<link href="<%=request.getContextPath()%>/css/ingrid.css" rel="stylesheet"  type="text/css"/>
+<title>login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+.STYLE1 {color: #FFFFFF}
+-->
+</style>
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <script  src="javascript/jquery.js" type="text/javascript"></script>
 <script src="javascript/jquery.ui.draggable.js" type="text/javascript"></script>
@@ -52,8 +58,6 @@
 <script src="javascript/htmlConfig.js" type="text/javascript"></script>
 <script src="javascript/md5.js" type="text/javascript"></script>
 <script src="javascript/valdate.js" type="text/javascript"></script>	
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>技术支持单系统</title>
 <script type="text/javascript">
 var sessionout="<%=sessionout%>";
  //如果session过期，直接打开
@@ -206,75 +210,45 @@ creatSessionForCsbmCsmc(sscsbm,sscs);
 			});
 	  }
 </script>
+
 </head>
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<!-- Save for Web Slices (login1.psd) -->
-<input  type="hidden" class="logininput" name="p_loginip" id="p_loginip"/>
-<input  type="hidden" class="logininput" name="p_loginmac" id="p_loginmac"/>
-<table width="1024" height="640" border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
-<tr>
-		<td>
-			<img src="images/login_01.jpg" width="1024" height="299" alt=""></td>
-	</tr>
+<body background="images/login_bg.jpg" leftmargin="0" topmargin="198" marginwidth="0" marginheight="0">
+<!-- Save for Web Slices (login.psd) -->
+<table   width="595" height="329" border="0" cellpadding="0" cellspacing="0" align="center">
 	<tr>
-		<td><table id="__" width="1024" height="254" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td height="115" valign="top" background="images/login_02_01.jpg"><table width="261" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="275" height="35" align="right" valign="top" style="font-size:12px; color:#146da5; line-height:180%">
-                	<label for="textfield"></label>
-                	<input  type="text" style="border:1px solid #b8d4e0; height:22px;width: 150px" name="p_useraccount" id="p_useraccount" onkeypress="fnkeyToPass()"/>
-                 
-                  </td>
-              </tr>
-              <tr>
-                <td align="right" style="font-size:12px; color:#146da5; line-height:180%">
-                	<input name="t_password" id="t_password" type="password" style="border:1px solid #b8d4e0; height:22px;width: 150px" onkeypress="fnkeypress();"/>
-           			 <input name="p_password" id="p_password" type="hidden"/>
-                </td>
-              </tr>
-              <tr>
-                <td align="right" style="font-size:12px; color:#146da5; line-height:180%">&nbsp;</td>
-              </tr>
-              <tr>
-                <td align="right" style="font-size:12px; color:#146da5; line-height:180%"><table width="100" border="0" cellspacing="0" cellpadding="3">
+	  <td align="center"   background="images/login_04.jpg" style="background-repeat:no-repeat"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="132" colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="89%"><table width="261" border="0" align="right" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="275" height="35" align="right" valign="top" style="font-size:12px; color:#146da5; line-height:180%"><label for="textfield"></label>
+                  <span class="STYLE1">用户名：                  </span>
+                  <input  type="text" style="border:1px solid #b8d4e0; height:20px;width: 150px" name="p_useraccount" id="p_useraccount" onkeypress="fnkeyToPass()"/>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" style="font-size:12px; color:#146da5; line-height:180%"><span class="STYLE1">密码：</span>
+                <input name="t_password" id="t_password" type="password" style="border:1px solid #b8d4e0; height:20px;width: 150px" onkeypress="fnkeypress();"/>
+                  <input name="p_password" id="p_password" type="hidden"/>              </td>
+            </tr>
+            <tr>
+              <td align="right" style="font-size:12px; color:#146da5; line-height:150%">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="right" style="font-size:12px; color:#146da5; line-height:150%"><table width="64" border="0" cellspacing="0" cellpadding="3">
                   <tr>
                     <td><img src="images/loginbutton_03.jpg" alt="登录" width="64" height="23" id="sendajax" style="cursor:hand"></td>
-                    <td><img src="images/loginbutton_05.jpg" alt="重置" width="64" height="23" style="cursor:hand" onclick='fnreset()'></td>
                   </tr>
-                </table></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="139" valign="top" background="images/login_02_02.jpg" style="background-repeat:no-repeat;"><table width="820" border="0" align="right" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="400" align="center" style="font-size:12px; color:#146da5; line-height:180%" id="loginBbh"></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table></td>
-	</tr>
-	<tr>
-		<td valign="top" height="87" background="images/login_03.jpg" style="background-repeat:no-repeat;"><table width="372" border="0" align="center" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="372" align="center" style="font-size:12px; color:#FFFFFF; line-height:160%">
-	            航天金盾科技有限公司研制开发<br/>
-	            建议使用分辨率1024*768显示 IE6.0或以上版本浏览器
-            </td>
-          </tr>
-        </table></td>
+              </table></td>
+            </tr>
+          </table></td>
+          <td width="11%">&nbsp;</td>
+        </tr>
+      </table></td>
   </tr>
 </table>
 <!-- End Save for Web Slices -->
-<div id=div_login style="position:absolute; background:url(images/loadingbg.gif); width:243px; height:55px;font-size:13px; font-weight:bold; color:#666666;">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-		<tr><td height="17px;"></td></tr>
-		<tr><td width="15"></td>
-		    <td><img src="images/loading.gif"/></td>
-		    <td>登录中，请稍候......</td>
-		</tr>
-		</table>
-	</div>
 </body>
 </html>
