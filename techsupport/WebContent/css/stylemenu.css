@@ -106,16 +106,18 @@ TH.cnt {
 TD.cnt {
 	TEXT-ALIGN: center
 }*/
+/*logo+nav的图片路径*/
 #header {
- background-image:url(../images/logo_03.jpg);background-repeat:no-repeat; width:1020px; HEIGHT: 99px
-}
-#header1 {
- background-image:url(../images/logo_033.jpg);background-repeat:no-repeat; width:1020px; HEIGHT: 99px
-}
+	 background-image:url(../images/logo.jpg);
+	 background-repeat:no-repeat; 
+	 width:1020px; 
+	 HEIGHT: 129px;
+	 }
+/*logo的高度----通过这个值定义菜单的位置*/
 #logo {
-	HEIGHT: 73px
+	HEIGHT: 75px
 }
-.navline{background-image:url(../images/navline1.gif); width:1px; height:41px; background-repeat:no-repeat; padding-top:0px;}
+.navline{background-image:url(../images/navline1.gif); width:1px; height:24px; background-repeat:no-repeat; padding-top:0px;}
 #jdsharp {
 	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 12px 0px 0px 24px; PADDING-TOP: 0px
 }
