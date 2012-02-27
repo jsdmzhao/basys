@@ -18,6 +18,7 @@ import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDepartmentService;
 import com.aisino2.sysadmin.service.IUserService;
+import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
 import com.aisino2.techsupport.domain.Word;
@@ -105,7 +106,7 @@ public class WordImpl implements IWord {
 		cell.setRowspan(3);// 设置合并的行数
 		table.addCell(cell);*/
 		//Font fontChinese=new Font(macintosh,15,Font.NORMAL,Color.black);
-		if(word.getStatus().equals("going")){//进行状态
+		if(word.getStatus().equals(Constants.ST_STATUS_GOING)){//进行状态
 			//设置第一行第一列
 			Cell fRow_firstColumn=new Cell(word.getfRow_firstColumn());//创建但单元格
 			table.addCell(fRow_firstColumn);
@@ -157,8 +158,11 @@ public class WordImpl implements IWord {
 				tracking.setStId(newLst.get(i).getId());
 				User user=newLst.get(i).getLstSupportLeaders().get(0);
 				//tracking.setProcessorId(user.getUserid());
-				tracking.setType("30");
-				List<Tracking> trackList=TrackingServiceImpl.getTrackingList(tracking);
+				List<Tracking> trackList=new ArrayList<Tracking>();
+				tracking.setStId(newLst.get(i).getId());
+				
+				trackList.addAll(TrackingServiceImpl.getTrackingList(tracking));
+				
 				//技术支持单编号
 				table.addCell(new Cell(newLst.get(i).getStNo()));
 				//技术支持单内容
@@ -181,7 +185,7 @@ public class WordImpl implements IWord {
 				long days=diff/(1000 * 60 * 60 * 24);
 				table.addCell(new Cell(String.valueOf(days)));
 			}
-		}else if(word.getStatus().equals("wait_feedback")){//待反馈状态
+		}else if(word.getStatus().equals(Constants.ST_STATUS_WAIT_FEEDBACK)){//待反馈状态
 			//设置第一行第一列
 			Cell fRow_firstColumn=new Cell(word.getfRow_firstColumn());//创建但单元格
 			table.addCell(fRow_firstColumn);
@@ -241,8 +245,9 @@ public class WordImpl implements IWord {
 				User user=newLst.get(i).getLstSupportLeaders().get(0);
 				table.addCell(new Cell(user.getUsername()));
 				//提请反馈时间
-				tracking.setProcessorId(user.getUserid());
-				tracking.setSuperbWhere(" (t.type=0 or t.type=10 or t.type=30) ");//设置查询追踪单子的状态，0-30之间都是处于待反馈状态
+//				tracking.setProcessorId(user.getUserid());
+//				tracking.setSuperbWhere(" (t.type=0 or t.type=10 or t.type=30) ");//设置查询追踪单子的状态，0-30之间都是处于待反馈状态
+				tracking.setStId(newLst.get(i).getId());
 				//tracking.setType("40");
 				List<Tracking> trackingList=TrackingServiceImpl.getTrackingList(tracking);
 				table.addCell(new Cell(format.format(trackingList.get(0).getTrackingDate())));
