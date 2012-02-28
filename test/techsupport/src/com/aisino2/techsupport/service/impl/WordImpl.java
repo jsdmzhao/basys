@@ -140,7 +140,7 @@ public class WordImpl implements IWord {
 			List<SupportTicket> newLst=new ArrayList<SupportTicket>();
 			List<User> newUser=new ArrayList<User>();
 			List<User> userList=new ArrayList<User>();
-			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
 			for(int i=0;i<lst.size();i++){
 				userList=lst.get(i).getLstSupportLeaders();
 				for(int j=0;j<userList.size();j++){
@@ -216,7 +216,7 @@ public class WordImpl implements IWord {
 			List<SupportTicket> newLst=new ArrayList<SupportTicket>();
 			List<User> newUser=new ArrayList<User>();
 			List<User> userList=new ArrayList<User>();
-			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
 			for(int i=0;i<lst.size();i++){
 				userList=lst.get(i).getLstSupportLeaders();
 				for(int j=0;j<userList.size();j++){
