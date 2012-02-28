@@ -91,7 +91,9 @@ function lazyLoad(){
 
 		
 		$('.ro').attr('readOnly',true);
-
+		//导出按钮
+		$('#export_btn').attr("disabled",true);
+		
  		
 		var roleURL="sysadmin/queryUsreRoleList_user.action"
 		setParams('t_');
@@ -146,6 +148,17 @@ function lazyLoad(){
 					$('#rgName').click(function(){
 						getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
 					});
+ 	 			}
+ 				else if (ST_ROLE_NAME_DM == data.userRoleList[i].rolename){
+ 	 				alert(1);
+ 	 				//设置导出按钮
+ 	 				$('#export_btn').attr('disabled',false);
+ 	 				$('#export_btn').click(function(){
+ 	 	 				$.post(BUSNEISS_PATH+'/excel_export_supportTicket',null,function(data){
+ 	 	 	 				alert('已成功导出');
+ 	 	 	 			});
+						
+ 	 	 			});
  	 			}
 
  				
@@ -284,7 +297,7 @@ function lazyLoad(){
 				<div class="column column-width-default">
 						<label class="label">申请人:</label>
 						<input type="text" class="item inputstyle ro" id="applicantName">
-						<input type="hidden" id="p_applicantId" name="st.applicant.userid">
+						<input type="hidden" id="p_applicantId">
 					<div class="clear-column"></div>
 				</div>
 				
@@ -322,6 +335,7 @@ function lazyLoad(){
 				</div>
 				<div class="column" style="width:10%;">
 					<a href="#" class="item searchbutton" id="queryBtn">查  询</a>
+					<a href="#" class="item button" id="export_btn">全部导出</a>
 					<div class="clear-column"></div>
 				</div>
 				<div class="column" style="width:10%;">
