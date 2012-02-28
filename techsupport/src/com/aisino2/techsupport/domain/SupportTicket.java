@@ -15,7 +15,7 @@ public class SupportTicket {
 //	private User supportLeader;
 //	@fixed 一个支持单指派多个负责人
 	private List<User> lstSupportLeaders=new ArrayList<User>();
-	private List<Department> supportDeptList;
+	private List<Department> supportDeptList=new ArrayList<Department>();;
 	private Date devScheDate;
 	private Date psgScheDate;
 	private String stStatus;
@@ -54,7 +54,7 @@ public class SupportTicket {
 	private User archiveUser;
 	
 	//进展与意见 ->>> 包含了总工批复等
-	private List<Tracking> trackList;
+	private List<Tracking> trackList = new ArrayList<Tracking>();
 //	用于查询的字段
 //	当前进展
 	private String trackingProcess;
@@ -73,10 +73,10 @@ public class SupportTicket {
 	private Integer supportLeaderId;
 	
 	//附件信息
-	private List<Attachment> attachment_list;
+	private List<Attachment> attachment_list=new ArrayList<Attachment>();
 
 	//督办
-	private List<Supervision> supervision_list;
+	private List<Supervision> supervision_list=new ArrayList<Supervision>();
 	
 	//最后改动时间
 	private Date lastUpdateDate;
