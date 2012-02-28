@@ -72,49 +72,49 @@ public class WordAction extends BaseAction {
 			String cc=null;//抄送人
 			String text=null;//内容
 			if(status!=null&&status.equals(Constants.ST_STATUS_GOING)){//进展状态
-				word.setfRow_firstColumn(new String(properties.getProperty("going_fRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
+				word.setfRow_firstColumn(new String(properties.getProperty("going_fRow_firstColumn")));
 				word.setfRow_secondColumn(new SimpleDateFormat("yyyy年MM月dd日 ").format(new Date()));
-				word.setsRow_firstColumn(new String(properties.getProperty("going_sRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_secondColumn(new String(properties.getProperty("going_sRow_secondColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_thirdColumn(new String(properties.getProperty("going_sRow_thirdColumn").getBytes("ISO8859-1"),"UTF-8") );
-				word.setsRow_fourthColumn(new String(properties.getProperty("going_sRow_fourthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_fifthColumn(new String(properties.getProperty("going_sRow_fifthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_sixthColumn(new String(properties.getProperty("going_sRow_sixthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_seventhColumn(new String(properties.getProperty("going_sRow_seventhColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("going_tableCloumnSize").getBytes("ISO8859-1"),"UTF-8")));
-				word.setTheme(new String(properties.getProperty("going_theam").getBytes("ISO8859-1"),"UTF-8"));
+				word.setsRow_firstColumn(new String(properties.getProperty("going_sRow_firstColumn")));
+				word.setsRow_secondColumn(new String(properties.getProperty("going_sRow_secondColumn")));
+				word.setsRow_thirdColumn(new String(properties.getProperty("going_sRow_thirdColumn")) );
+				word.setsRow_fourthColumn(new String(properties.getProperty("going_sRow_fourthColumn")));
+				word.setsRow_fifthColumn(new String(properties.getProperty("going_sRow_fifthColumn")));
+				word.setsRow_sixthColumn(new String(properties.getProperty("going_sRow_sixthColumn")));
+				word.setsRow_seventhColumn(new String(properties.getProperty("going_sRow_seventhColumn")));
+				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("going_tableCloumnSize"))));
+				word.setTheme(new String(properties.getProperty("going_theam")));
 				Object[] temp={new SimpleDateFormat("yyyy年MM月dd日").format(new Date())};
-				subject=new String(properties.getProperty("going_maiSubject").getBytes("ISO8859-1"),"UTF-8");
+				subject=new String(properties.getProperty("going_maiSubject"));
 				subject=MessageFormat.format(subject, temp);
 				text=subject;
-				to=new String(properties.getProperty("going_recipient").getBytes("ISO8859-1"),"UTF-8");
+				to=new String(properties.getProperty("going_recipient"));
 			}else if(status!=null&&status.equals(Constants.ST_STATUS_WAIT_FEEDBACK)){//待反馈状态
-				word.setfRow_firstColumn(new String(properties.getProperty("feedback_fRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
+				word.setfRow_firstColumn(new String(properties.getProperty("feedback_fRow_firstColumn")));
 				word.setfRow_secondColumn(new SimpleDateFormat("yyyy年MM月dd日 ").format(new Date()));
-				word.setsRow_firstColumn(new String(properties.getProperty("feedback_sRow_firstColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_secondColumn(new String(properties.getProperty("feedback_sRow_secondColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_thirdColumn(new String(properties.getProperty("feedback_sRow_thirdColumn").getBytes("ISO8859-1"),"UTF-8") );
-				word.setsRow_fourthColumn(new String(properties.getProperty("feedback_sRow_fourthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_fifthColumn(new String(properties.getProperty("feedback_sRow_fifthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setsRow_sixthColumn(new String(properties.getProperty("feedback_sRow_sixthColumn").getBytes("ISO8859-1"),"UTF-8"));
-				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("feedback_tableCloumnSize").getBytes("ISO8859-1"),"UTF-8")));
-				word.setTheme(new String(properties.getProperty("feedback_theam").getBytes("ISO8859-1"),"UTF-8"));
+				word.setsRow_firstColumn(new String(properties.getProperty("feedback_sRow_firstColumn")));
+				word.setsRow_secondColumn(new String(properties.getProperty("feedback_sRow_secondColumn")));
+				word.setsRow_thirdColumn(new String(properties.getProperty("feedback_sRow_thirdColumn")) );
+				word.setsRow_fourthColumn(new String(properties.getProperty("feedback_sRow_fourthColumn")));
+				word.setsRow_fifthColumn(new String(properties.getProperty("feedback_sRow_fifthColumn")));
+				word.setsRow_sixthColumn(new String(properties.getProperty("feedback_sRow_sixthColumn")));
+				word.setTableCellSize(Integer.valueOf(new String(properties.getProperty("feedback_tableCloumnSize"))));
+				word.setTheme(new String(properties.getProperty("feedback_theam")));
 				Object[] temp={new SimpleDateFormat("yyyy年MM月dd日").format(new Date())};
-				subject=new String(properties.getProperty("feedback_maiSubject").getBytes("ISO8859-1"),"UTF-8");
+				subject=new String(properties.getProperty("feedback_maiSubject"));
 				subject=MessageFormat.format(subject, temp);
 				text=subject;
-				to=new String(properties.getProperty("feedback_recipient").getBytes("ISO8859-1"),"UTF-8");
+				to=new String(properties.getProperty("feedback_recipient"));
 			}else if(status!=null&&status.equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)){//审批状态
 				
 			}
-			String file=new String(properties.getProperty("filePath").getBytes("ISO8859-1"),"UTF-8")+fileName+".doc";
+			String file=new String(properties.getProperty("filePath"))+fileName+".doc";
 			word.setlSupportTicket(lSt);
 			word.setPath(file);
 			wordService.CreateWord(word);
 			wordService.close();
 			Mail mail=new Mail();
-			mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));
-			mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));
+			mail.setEmail(new String(properties.getProperty("company_Address")));
+			mail.setPassword(new String(properties.getProperty("compnay_password")));
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));

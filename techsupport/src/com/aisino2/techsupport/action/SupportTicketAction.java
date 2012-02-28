@@ -1,20 +1,34 @@
 package com.aisino2.techsupport.action;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.sound.midi.Track;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
-import org.drools.lang.dsl.DSLMapParser.mapping_file_return;
-import org.eclipse.jdt.core.IWorkingCopy;
+import jxl.Workbook;
+import jxl.format.Alignment;
+import jxl.format.VerticalAlignment;
+import jxl.write.DateFormat;
+import jxl.write.DateTime;
+import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.common.ItemChange;
-import com.aisino2.common.PageUtil;
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.domain.Department;
@@ -22,16 +36,17 @@ import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.domain.User_role;
 import com.aisino2.sysadmin.service.IUser_roleService;
 import com.aisino2.techsupport.common.Constants;
+import com.aisino2.techsupport.domain.Supervision;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
-import com.aisino2.techsupport.domain.Worksheet;
 import com.aisino2.techsupport.service.SupportTicketService;
 import com.aisino2.techsupport.service.TrackingService;
 import com.aisino2.techsupport.service.WorksheetService;
 
 @Component
 @Scope("prototype")
-public class SupportTicketAction extends PageAction {
+public class SupportTicketAction extends PageAction implements
+		ServletResponseAware {
 
 	/**
 	 * 
@@ -51,15 +66,134 @@ public class SupportTicketAction extends PageAction {
 
 	private WorksheetService worksheet_service;
 	private IUser_roleService user_role_service;
-	
-	@Resource(name="user_roleService")
+	private HttpServletResponse response;
+
+	@Resource(name = "user_roleService")
 	public void setUser_role_service(IUser_roleService user_role_service) {
 		this.user_role_service = user_role_service;
 	}
 
-	@Resource(name="WorksheetServiceImpl")
+	@Resource(name = "WorksheetServiceImpl")
 	public void setWorksheet_service(WorksheetService worksheet_service) {
 		this.worksheet_service = worksheet_service;
+	}
+
+	/**
+	 * 导出excel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String export_excel() throws Exception {
+		SupportTicket para_st = new SupportTicket();
+		List<SupportTicket> support_ticket_list = stService
+				.getListSupportTicket(para_st);
+		String name = "导出的全部技术支持单";
+		// 临时文件名
+		String filename = name + ".xls";
+		// 文件地址
+		String filestorepath = this.getRequest().getSession()
+				.getServletContext().getRealPath("/")
+				+ File.separator + "uploadTemop" + File.separator + filename;
+		
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("attachment", filename);
+		ServletOutputStream out = response.getOutputStream();
+		// 表头
+		String title[] = { "技术支持单编号", "申请人", "大区/区域", "所属项目名称", "支持类型",
+				"技术支持内容", "技术支持负责人", "技术支持部门", "技术支持单状态", "日期", "填写人", "进展情况",
+				"日期", "填写人", "督办情况" };
+		// 表头列的宽度
+		int[] header_width = { 17, 9, 9, 16, 13, 12, 16, 16, 15, 11, 13, 15,
+				11, 13, 15 };
+		WritableWorkbook workbook = Workbook
+				.createWorkbook(out);
+		WritableSheet sheet = workbook.createSheet(name, 0);
+		// 标题显示标签
+		Label label = null;
+		WritableCellFormat headerFormat = new WritableCellFormat();
+		headerFormat.setAlignment(Alignment.CENTRE);
+		headerFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
+		headerFormat.setFont(new WritableFont(WritableFont.ARIAL, 10,
+				WritableFont.BOLD));
+
+		for (int i = 0; i < title.length; i++) {
+			label = new Label(i, 0, title[i], headerFormat);
+			sheet.setColumnView(i, header_width[i]);
+			sheet.addCell(label);
+		}
+
+		int y = 1;
+		for(int i=0;i<support_ticket_list.size();i++){
+			SupportTicket excel_st = support_ticket_list.get(i);
+			
+			label = new Label(0, y, excel_st.getStNo());
+			sheet.addCell(label);
+			label = new Label(1, y, excel_st.getApplicant().getUsername());
+			sheet.addCell(label);
+			label = new Label(2, y, excel_st.getRegion());
+			sheet.addCell(label);
+			label = new Label(3, y, "");
+			sheet.addCell(label);
+			label = new Label(4, y, "");
+			sheet.addCell(label);
+			label = new Label(5, y, excel_st.getSupportContent());
+			sheet.addCell(label);
+			String slName = "";
+			for (User sl : excel_st.getLstSupportLeaders()) {
+				slName += "," + sl.getUsername();
+			}
+			slName = slName.substring(1);
+
+			label = new Label(6, y, slName);
+			sheet.addCell(label);
+			String departName = "";
+			for (Department dp : excel_st.getSupportDeptList()) {
+				departName += "," + dp.getDepartname();
+			}
+			departName = departName.substring(1);
+			label = new Label(7, y, departName);
+			sheet.addCell(label);
+			label = new Label(8, y, excel_st.getStStatus());
+			sheet.addCell(label);
+			int k = 0;
+			int q = 0;
+			for (int j = 0; j < excel_st.getTrackList().size(); j++) {
+				k = i + j;
+				Tracking tracking = excel_st.getTrackList().get(j);
+				DateFormat df = new DateFormat("yyyy-MM-dd");
+				DateTime dt = new DateTime(9,k,tracking.getTrackingDate(),new WritableCellFormat(df));
+//				label = new Label(9, k,
+//						new SimpleDateFormat("yyyy-MM-dd").format(tracking
+//								.getTrackingDate()));
+				sheet.addCell(dt);
+				label = new Label(10, k, tracking.getProcessor().getUsername());
+				sheet.addCell(label);
+				label = new Label(11, k, tracking.getNewProcess());
+				sheet.addCell(label);
+				
+			}
+			
+			for (int j=0;j<excel_st.getSupervision_list().size();j++){
+				q = i + j;
+				Supervision supervision = excel_st.getSupervision_list().get(j);
+				DateFormat df = new DateFormat("yyyy-MM-dd");
+				DateTime dt = new DateTime(12,q,supervision.getSupervision_date(),new WritableCellFormat(df));
+//				label = new Label(12, k,
+//						new SimpleDateFormat("yyyy-MM-dd").format());
+				sheet.addCell(dt);
+				label = new Label(13, q, supervision.getSupervision_person().getUsername());
+				sheet.addCell(label);
+				label = new Label(14, q, supervision.getSupervision_suggestion());
+				sheet.addCell(label);
+			}
+			y=q>=k?q:k;
+		}
+		workbook.write();
+		workbook.close();
+		out.flush();
+		
+		return null;
 	}
 
 	/**
@@ -74,22 +208,23 @@ public class SupportTicketAction extends PageAction {
 		Tracking settrack = new Tracking();
 		tracking = (Tracking) this.setClass(settrack, null);
 		Department setdept = new Department();
-		limitDeparement = (Department)this.setClass(setdept, null);
-		
+		limitDeparement = (Department) this.setClass(setdept, null);
+
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(supportTicket.getApplicantId()!=null && supportTicket.getApplicantId() > 0){
+		if (supportTicket.getApplicantId() != null
+				&& supportTicket.getApplicantId() > 0) {
 			User user = new User();
 			user.setUserid(supportTicket.getApplicantId());
 			supportTicket.setApplicant(user);
-			
+
 		}
-		if(supportTicket.getSupportLeaderId()!=null && supportTicket.getSupportLeaderId() > 0){
+		if (supportTicket.getSupportLeaderId() != null
+				&& supportTicket.getSupportLeaderId() > 0) {
 			User user = new User();
 			user.setUserid(supportTicket.getSupportLeaderId());
 			supportTicket.getLstSupportLeaders().add(user);
 		}
 
-		
 		params.put("applicant", supportTicket.getApplicant());
 		params.put("lstSupportLeaders", supportTicket.getLstSupportLeaders());
 		params.put("stStatus", supportTicket.getStStatus());
@@ -98,30 +233,31 @@ public class SupportTicketAction extends PageAction {
 		params.put("type", tracking.getType());
 		params.put("trackDateFrom", tracking.getTrackingDateFrom());
 		params.put("trackDateTo", tracking.getTrackingDateTo());
-		if(limitDeparement.getDepartid()!=null){
-			//单位筛选
+		if (limitDeparement.getDepartid() != null) {
+			// 单位筛选
 			params.put("limitUserDeparement", 1);
 			params.put("limitDeparement", limitDeparement.getDepartid());
 		}
-		
+
 		// ++ 最后更改时间天数
 		params.put("last_update_day", Constants.LAST_UPDATE_DAY);
-		params.put("use_last_update_day", supportTicket.getUseLastUpdateDate() );
+		params.put("use_last_update_day", supportTicket.getUseLastUpdateDate());
 		// -- 最后更改时间天数
-		
-//		++ 意见回复人 
-		params.put("tracking_person",tracking.getProcessorId());
-//		-- 意见回复人 
+
+		// ++ 意见回复人
+		params.put("tracking_person", tracking.getProcessorId());
+		// -- 意见回复人
 		// ++ 默认用户管辖范围
-		User current_user  = (User)this.getRequest().getSession().getAttribute(com.aisino2.sysadmin.Constants.userKey);
+		User current_user = (User) this.getRequest().getSession()
+				.getAttribute(com.aisino2.sysadmin.Constants.userKey);
 		Map map = new HashMap();
 		map.put("userid", current_user.getUserid());
 		map.put("departcode", current_user.getDepartcode());
 		List region_list = worksheet_service.get_region_with_userrole(map);
 		params.put("user_region_list", region_list);
 		// -- 默认用户管辖范围
-		//设置TRACKING关联标识
-		if(params.get("type")!=null || params.get("tracking_person") != null)
+		// 设置TRACKING关联标识
+		if (params.get("type") != null || params.get("tracking_person") != null)
 			params.put("join_tracking", true);
 		Page page = stService.getListSupportTicketForPage(params,
 				this.pagesize, this.pagerow, this.sort, this.dir);
@@ -186,53 +322,56 @@ public class SupportTicketAction extends PageAction {
 		lPro.add("supportDeptName");
 		lPro.add("stStatusName");
 
-		
 		List lCol = new ArrayList();
 		List lDetail = new ArrayList();
 		lDetail.add("setDetail");
 		lDetail.add("详情");
 		lCol.add(lDetail);
 
-		
 		// ++ 督办角色的操作
-		User current_user = (User)this.getRequest().getSession().getAttribute(com.aisino2.sysadmin.Constants.userKey);
+		User current_user = (User) this.getRequest().getSession()
+				.getAttribute(com.aisino2.sysadmin.Constants.userKey);
 		User_role ur = new User_role();
 		ur.setUserid(current_user.getUserid());
-		List<User_role> user_role_list = this.user_role_service.getUser_roleListByUserid(ur);
-		for(User_role user_role : user_role_list){
-			
-			if(user_role.getRolename().equals(Constants.ST_ROLE_NAME_SUPERVISION)){
+		List<User_role> user_role_list = this.user_role_service
+				.getUser_roleListByUserid(ur);
+		for (User_role user_role : user_role_list) {
+
+			if (user_role.getRolename().equals(
+					Constants.ST_ROLE_NAME_SUPERVISION)) {
 				List supervision_list = new ArrayList();
 				supervision_list.add("set_supervision");
 				supervision_list.add("督办");
 				lCol.add(supervision_list);
-				
+
 				break;
 			}
 		}
-		
+
 		// -- 督办角色的操作
 		for (SupportTicket st : (List<SupportTicket>) ldata) {
 			st.setStStatusName(ItemChange.codeChange(
 					Constants.ST_STATUS_DICT_CODE, st.getStStatus()));
-//			@fixed 技术负责人变成多个指派
+			// @fixed 技术负责人变成多个指派
 			String supportLeaderNames = "";
 			for (User sl : st.getLstSupportLeaders())
 				supportLeaderNames += "," + sl.getUsername();
 			supportLeaderNames = supportLeaderNames.length() > 0 ? supportLeaderNames
 					.substring(1) : supportLeaderNames;
 			st.setSupportLeaderName(supportLeaderNames);
-			
+
 			String deptNames = "";
 			for (Department dept : st.getSupportDeptList())
 				deptNames += "," + dept.getDepartname();
-			deptNames = deptNames.length() > 0 ? deptNames.substring(1) : deptNames;
+			deptNames = deptNames.length() > 0 ? deptNames.substring(1)
+					: deptNames;
 			st.setSupportDeptName(deptNames);
 			st.setRegionName(ItemChange.codeChange(
 					Constants.ST_REGION_DICT_CODE, st.getRegion()));
-//			set applicantName value
+			// set applicantName value
 			String applicantNames = "";
-			applicantNames=st.getApplicant()!=null ? st.getApplicant().getUsername() : applicantNames;
+			applicantNames = st.getApplicant() != null ? st.getApplicant()
+					.getUsername() : applicantNames;
 			st.setApplicantName(applicantNames);
 		}
 		SupportTicket supportTicket = new SupportTicket();
@@ -271,15 +410,15 @@ public class SupportTicketAction extends PageAction {
 					.get(st.getTrackList().size() - 1).getNewProcess());
 			st.setCheckbox("<input type=\"checkbox\" name=\"lSt[" + i
 					+ "].id\" value=\"" + st.getId() + "\">");
-			
-//			@fixed 技术负责人变成多个指派
+
+			// @fixed 技术负责人变成多个指派
 			String supportLeaderNames = "";
 			for (User sl : st.getLstSupportLeaders())
 				supportLeaderNames = "," + sl.getUsername();
 			supportLeaderNames = supportLeaderNames.length() > 0 ? supportLeaderNames
 					.substring(1) : supportLeaderNames;
 			st.setSupportLeaderName(supportLeaderNames);
-			
+
 			String deptNames = "";
 			for (Department dept : st.getSupportDeptList())
 				deptNames += "," + dept.getDepartname();
@@ -287,9 +426,10 @@ public class SupportTicketAction extends PageAction {
 			st.setSupportDeptName(deptNames);
 			st.setRegionName(ItemChange.codeChange(
 					Constants.ST_REGION_DICT_CODE, st.getRegion()));
-			
+
 			String applicantNames = "";
-			applicantNames=st.getApplicant()!=null ? st.getApplicant().getUsername() : applicantNames;
+			applicantNames = st.getApplicant() != null ? st.getApplicant()
+					.getUsername() : applicantNames;
 			st.setApplicantName(applicantNames);
 		}
 		SupportTicket supportTicket = new SupportTicket();
@@ -362,6 +502,10 @@ public class SupportTicketAction extends PageAction {
 
 	public void setLimitDeparement(Department limitDeparement) {
 		this.limitDeparement = limitDeparement;
+	}
+
+	public void setServletResponse(HttpServletResponse arg0) {
+		response = arg0;
 	}
 
 }
