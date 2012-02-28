@@ -203,36 +203,13 @@ function SupportTicketQuery(pageno,url){
 					jAlert('请先选择发送邮件的对象','提示信息');
 					return;
 				}
-				/* setWidth('email_detail','800');
+				setWidth('email_detail','800');
 				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');取消这种弹出页面的形式改为直接发送的方式
-				bindDocument('email_detail'); */
-				var params={};
-				for(var i=0;i<stNoList.length;i++){
-					params['lSt['+i+'].id']=stNoList[i];
-				}
-
-				params['mail.status']=$('#p_stStatus').val();
-				$("#div_send").show(); //打开 AJAX 等待动画
-          		jQuery.ajax({
-					type: 'POST',
-					url: BUSNEISS_PATH+'/send_mail.action',
-					data: params,
-					async: true,
-					dataType: 'json',
-					success: function(data){
-						if(data.result=='success'){
-							alert('导出并发送成功','提示信息');
-						}else{
-							alert('导出并发送失败,请与管理员联系','提示信息');
-						}
-					},
-					complete: function(){
-						$("#div_send").hide(); //关闭 AJAX 等待动画
-					}
-				});
+				bindDocument('email_detail');
 			});
 			//导出数据并发送邮件
 			$("#sendWord").click(function(){
+				$("input[type=button]").attr('disabled',true);
 				var paramss={};
 				var fields=$('input:checked[name^=lSt]');
 				var paramObject=new Array();
@@ -268,6 +245,7 @@ function SupportTicketQuery(pageno,url){
 					},
 					complete: function(){
 						$("#div_send").hide(); //关闭 AJAX 等待动画
+						$("input[type=button]").attr('disabled',false);
 					}
 				});
 			});
