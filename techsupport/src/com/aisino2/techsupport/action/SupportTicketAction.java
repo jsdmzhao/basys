@@ -97,7 +97,7 @@ public class SupportTicketAction extends PageAction implements
 				+ File.separator + "uploadTemop" + File.separator + filename;
 		
 		response.setContentType("application/vnd.ms-excel");
-		response.setHeader("attachment", filename);
+		response.setHeader("Content-Disposition", "attachement; filename="+filename);
 		ServletOutputStream out = response.getOutputStream();
 		// 表头
 		String title[] = { "技术支持单编号", "申请人", "大区/区域", "所属项目名称", "支持类型",
@@ -126,7 +126,6 @@ public class SupportTicketAction extends PageAction implements
 		int y = 1;
 		for(int i=0;i<support_ticket_list.size();i++){
 			SupportTicket excel_st = support_ticket_list.get(i);
-			
 			label = new Label(0, y, excel_st.getStNo());
 			sheet.addCell(label);
 			label = new Label(1, y, excel_st.getApplicant().getUsername());
@@ -187,8 +186,9 @@ public class SupportTicketAction extends PageAction implements
 				label = new Label(14, q, supervision.getSupervision_suggestion());
 				sheet.addCell(label);
 			}
-			y=q>=k?q:k;
+			y=q>=k?q+1:k+1;
 		}
+		
 		workbook.write();
 		workbook.close();
 		out.flush();
