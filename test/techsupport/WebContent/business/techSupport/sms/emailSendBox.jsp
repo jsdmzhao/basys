@@ -14,6 +14,7 @@
 		},'json');
 		//发送邮件
 		$("#send").click(function(){
+			$("input[type=button]").attr('disabled',true);
 			var params={};
 			params['mail.user']=user;
 			params['mail.password']=$("#password").val();
@@ -21,6 +22,29 @@
 			for(var i=0;i<stNoList.length;i++){
 				params['lSt['+i+'].id']=stNoList[i];
 			}
+			params['mail.status']=$('#p_stStatus').val();
+			$("#div_send").show(); //打开 AJAX 等待动画
+      		jQuery.ajax({
+				type: 'POST',
+				url: BUSNEISS_PATH+'/send_mail.action',
+				data: params,
+				async: true,
+				dataType: 'json',
+				success: function(data){
+					if(data.result=='success'){
+						alert('导出并发送成功','提示信息');
+					}else{
+						alert('导出并发送失败,请与管理员联系','提示信息');
+					}
+				},
+				complete: function(){
+					$("#div_send").hide(); //关闭 AJAX 等待动画
+					$("input[type=button]").attr('disabled',false);
+					$("#email_detail").hideAndRemove("show");
+				}
+			});
+			
+			
 			/* $.post(BUSNEISS_PATH+'/send_mail.action',params,function(json){
 				alert(json.result);
 				$("#email_detail").hideAndRemove("show");
