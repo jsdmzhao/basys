@@ -103,8 +103,8 @@ public class MailAction extends BaseAction {
 			Properties mailConfig=new Properties();
 			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
 			mailConfig.load(config);
-			//mail.setEmail(new String(properties.getProperty("company_Address").getBytes("ISO8859-1"),"UTF-8"));
-			//mail.setPassword(new String(properties.getProperty("compnay_password").getBytes("ISO8859-1"),"UTF-8"));
+			//mail.setEmail(new String(properties.getProperty("company_Address")));
+			//mail.setPassword(new String(properties.getProperty("compnay_password")));
 			mail.setEmail(email);
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
@@ -125,18 +125,18 @@ public class MailAction extends BaseAction {
 			//判断状态选择相应的邮件主题和内容
 			//进行中
 			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_GOING)){
-				content=new String(properties.getProperty("Going_Content").getBytes("ISO8859-1"),"UTF-8");
-				subject=new String(properties.getProperty("Going_Subject").getBytes("ISO8859-1"),"UTF-8");
+				content=new String(properties.getProperty("Going_Content"));
+				subject=new String(properties.getProperty("Going_Subject"));
 			}
 			//待反馈
 			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_FEEDBACK)){
-				content=new String(properties.getProperty("Feedback_Content").getBytes("ISO8859-1"),"UTF-8");
-				subject=new String(properties.getProperty("Feedback_Subject").getBytes("ISO8859-1"),"UTF-8");
+				content=new String(properties.getProperty("Feedback_Content"));
+				subject=new String(properties.getProperty("Feedback_Subject"));
 			}
 			//待审批
 			if(mail.getStatus()!=null&&(mail.getStatus().equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)||mail.getStatus().equals("wait_department_appraval"))){
-				content=new String(properties.getProperty("Approval_Content").getBytes("ISO8859-1"),"UTF-8");
-				subject=new String(properties.getProperty("Approval_Subject").getBytes("ISO8859-1"),"UTF-8");
+				content=new String(properties.getProperty("Approval_Content"));
+				subject=new String(properties.getProperty("Approval_Subject"));
 			}
 			for(Recipient recipient:mail.getRecipients()){
 				if(recipient.getLastEditTime()!=null&&!"".equals(recipient.getLastEditTime())&&!content.equals("")&&!subject.equals("")){
