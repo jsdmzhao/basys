@@ -382,11 +382,14 @@
 		</isNotEmpty>
 		<!-- 默认地区范围 -->
 		<isEmpty prepend="and" property="region">
-			<isNotEmpty property="user_region_list">
-				t.region in <iterate open="(" close=")" property="user_region_list" conjunction=",">
-					#user_region_list[].fact_value#
-				</iterate>
-			</isNotEmpty>
+			<isPropertyAvailable property="user_region_list">
+				<isNotEmpty property="user_region_list">
+					t.region in <iterate open="(" close=")" property="user_region_list" conjunction=",">
+						#user_region_list[].fact_value#
+					</iterate>
+				</isNotEmpty>
+			</isPropertyAvailable>
+			
 		</isEmpty>
 		
 		<isNotEmpty prepend="and" property="stStatus">
