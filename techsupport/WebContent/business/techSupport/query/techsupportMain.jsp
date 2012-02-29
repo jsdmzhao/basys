@@ -60,13 +60,13 @@ function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-25;
+		-$('#allDiv').height()-80;
 	loadPageSupportTicketQuery(divnid);
 	
 }
 //初始化加载
 	$(function(){
-		setTimeout(lazyLoad,10);
+		setTimeout(lazyLoad,5);
 		divnid="queryContent";//查询内容容器ID
 		tableid="queryContentTable";//查询内容格式表格ID
 		pageUrl=BUSNEISS_PATH+ "/querylist_supportTicket.action";
@@ -150,13 +150,10 @@ function lazyLoad(){
 					});
  	 			}
  				else if (ST_ROLE_NAME_DM == data.userRoleList[i].rolename){
- 	 				alert(1);
  	 				//设置导出按钮
  	 				$('#export_btn').attr('disabled',false);
  	 				$('#export_btn').click(function(){
- 	 	 				$.post(BUSNEISS_PATH+'/excel_export_supportTicket',null,function(data){
- 	 	 	 				alert('已成功导出');
- 	 	 	 			});
+ 	 	 				window.open(BUSNEISS_PATH+'/export_excel_supportTicket.action');
 						
  	 	 			});
  	 			}
@@ -220,7 +217,7 @@ function lazyLoad(){
 													__tr = $(this);
 													$(this).find("a[title=督办]").each(function(){
 														var text = __tr.find('td').eq(5).text();
-														if(text == '已完成' || text == '已终止'){
+														if(text == '已完成' || text == '已中止'){
 															/*
 															$(this).removeAttr('href').css('color','gray');
 															$(this).unbind('click');
@@ -333,18 +330,15 @@ function lazyLoad(){
 				<div class="column" style="width: 80%;">
 					<div class="clear-column"></div>
 				</div>
-				<div class="column" style="width:10%;">
+				<div class="column" style="width:20%;">
 					<a href="#" class="item searchbutton" id="queryBtn">查  询</a>
-					<a href="#" class="item button" id="export_btn">全部导出</a>
-					<div class="clear-column"></div>
-				</div>
-				<div class="column" style="width:10%;">
 					<div class="clear-column"></div>
 				</div>
 				<div class="clear-row"></div>
 			</div>
 			
 		</div>
+		<a href="#" class="item " id="export_btn">全部导出</a>
 		<div id="queryContent">
 			<table id="queryContentTable" width="100%" border="1">
 			  <thead>
