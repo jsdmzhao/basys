@@ -63,6 +63,10 @@
 			<include refid="Supervision_where_page" />
 	</select>
 	
+	<select id="supervision.query" parameterClass="Supervision" resultMap="Supervision_result">
+		select t.*,u.username from t_ts_supervision t , t_user u where u.userid = t.supervision_person
+		<include refid="Supervision_where_page"/>
+	</select>
 	<insert id="supervision.insert" parameterClass="Supervision">
 		insert into t_ts_supervision(
 			ID,
