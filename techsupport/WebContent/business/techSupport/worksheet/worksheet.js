@@ -24,7 +24,7 @@ function lazyLoad() {
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-23;
+		-$('#allDiv').height()-50;
 	loadPageWorksheetQuery(worksheet_div_id);
 	worksheetQuery(1);
 }
