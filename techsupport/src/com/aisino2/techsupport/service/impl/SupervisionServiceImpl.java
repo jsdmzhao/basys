@@ -1,5 +1,6 @@
 package com.aisino2.techsupport.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -34,6 +35,11 @@ public class SupervisionServiceImpl implements ISupervisionService {
 		if(supervision.getId()==null)
 			throw new RuntimeException("督办ID不能为空");
 		return this.supervision_dao.get(supervision);
+	}
+
+	public List<Supervision> query_supervision(Supervision supervision) {
+		
+		return this.supervision_dao.query(supervision);
 	}
 
 }

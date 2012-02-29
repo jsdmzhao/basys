@@ -1,6 +1,8 @@
 package com.aisino2.techsupport.action;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,13 +34,16 @@ import com.aisino2.common.ItemChange;
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.domain.Department;
+import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.domain.User_role;
+import com.aisino2.sysadmin.service.IDict_itemService;
 import com.aisino2.sysadmin.service.IUser_roleService;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.Supervision;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
+import com.aisino2.techsupport.service.ISupervisionService;
 import com.aisino2.techsupport.service.SupportTicketService;
 import com.aisino2.techsupport.service.TrackingService;
 import com.aisino2.techsupport.service.WorksheetService;
@@ -67,6 +72,18 @@ public class SupportTicketAction extends PageAction implements
 	private WorksheetService worksheet_service;
 	private IUser_roleService user_role_service;
 	private HttpServletResponse response;
+	private ISupervisionService supervision_service;
+	private IDict_itemService dict_item_service;
+	
+	@Resource(name="dict_itemService")
+	public void setDict_item_service(IDict_itemService dict_item_service) {
+		this.dict_item_service = dict_item_service;
+	}
+
+	@Resource(name = "SupervisionServiceImpl")
+	public void setSupervision_service(ISupervisionService supervision_service) {
+		this.supervision_service = supervision_service;
+	}
 
 	@Resource(name = "user_roleService")
 	public void setUser_role_service(IUser_roleService user_role_service) {
@@ -90,15 +107,15 @@ public class SupportTicketAction extends PageAction implements
 				.getListSupportTicket(para_st);
 		String name = "导出的全部技术支持单";
 		// 临时文件名
-		String filename = name + ".xls";
+		String filename = new Date().getTime() + ".xls";
 		// 文件地址
+		String filepath = "/"+"uploadTemp" + "/"+ filename;
 		String filestorepath = this.getRequest().getSession()
 				.getServletContext().getRealPath("/")
-				+ File.separator + "uploadTemop" + File.separator + filename;
+				+ "/" + "uploadTemp" + "/" + filename;
+
 		
-		response.setContentType("application/vnd.ms-excel");
-		response.setHeader("Content-Disposition", "attachement; filename="+filename);
-		ServletOutputStream out = response.getOutputStream();
+		
 		// 表头
 		String title[] = { "技术支持单编号", "申请人", "大区/区域", "所属项目名称", "支持类型",
 				"技术支持内容", "技术支持负责人", "技术支持部门", "技术支持单状态", "日期", "填写人", "进展情况",
@@ -106,8 +123,9 @@ public class SupportTicketAction extends PageAction implements
 		// 表头列的宽度
 		int[] header_width = { 17, 9, 9, 16, 13, 12, 16, 16, 15, 11, 13, 15,
 				11, 13, 15 };
+		File tempfile = new File(filestorepath);
 		WritableWorkbook workbook = Workbook
-				.createWorkbook(out);
+				.createWorkbook(tempfile);
 		WritableSheet sheet = workbook.createSheet(name, 0);
 		// 标题显示标签
 		Label label = null;
@@ -124,8 +142,32 @@ public class SupportTicketAction extends PageAction implements
 		}
 
 		int y = 1;
-		for(int i=0;i<support_ticket_list.size();i++){
+		for (int i = 0; i < support_ticket_list.size(); i++) {
 			SupportTicket excel_st = support_ticket_list.get(i);
+			// 进展
+			Tracking track = new Tracking();
+			track.setStId(excel_st.getId());
+			List<Tracking> trackings = trackingService.getTrackingList(track);
+			excel_st.setTrackList(trackings);
+			// 督办信息
+			Supervision superv = new Supervision();
+			superv.setSt_id(excel_st.getId());
+			List<Supervision> supervision_list = supervision_service
+					.query_supervision(superv);
+			excel_st.setSupervision_list(supervision_list);
+			//地区
+			Dict_item dictitem=new Dict_item();
+			dictitem.setDict_code(Constants.ST_REGION_DICT_CODE);
+			dictitem.setFact_value(excel_st.getRegion());
+			dictitem = dict_item_service.getDict_item(dictitem);
+			excel_st.setRegion(dictitem.getDisplay_name());
+			//状态
+			dictitem=new Dict_item();
+			dictitem.setDict_code(Constants.ST_STATUS_DICT_CODE);
+			dictitem.setFact_value(excel_st.getStStatus());
+			dictitem = dict_item_service.getDict_item(dictitem);
+			excel_st.setStStatus(dictitem.getDisplay_name());
+			
 			label = new Label(0, y, excel_st.getStNo());
 			sheet.addCell(label);
 			label = new Label(1, y, excel_st.getApplicant().getUsername());
@@ -142,7 +184,7 @@ public class SupportTicketAction extends PageAction implements
 			for (User sl : excel_st.getLstSupportLeaders()) {
 				slName += "," + sl.getUsername();
 			}
-			slName = slName.substring(1);
+			slName = slName.length() > 0 ? slName.substring(1) : slName;
 
 			label = new Label(6, y, slName);
 			sheet.addCell(label);
@@ -150,48 +192,57 @@ public class SupportTicketAction extends PageAction implements
 			for (Department dp : excel_st.getSupportDeptList()) {
 				departName += "," + dp.getDepartname();
 			}
-			departName = departName.substring(1);
+			departName = departName.length() > 0 ? departName.substring(1)
+					: departName;
+
 			label = new Label(7, y, departName);
 			sheet.addCell(label);
 			label = new Label(8, y, excel_st.getStStatus());
 			sheet.addCell(label);
-			int k = 0;
-			int q = 0;
+			int k = y;
+			int q = y;
 			for (int j = 0; j < excel_st.getTrackList().size(); j++) {
-				k = i + j;
+				k = y + j;
 				Tracking tracking = excel_st.getTrackList().get(j);
 				DateFormat df = new DateFormat("yyyy-MM-dd");
-				DateTime dt = new DateTime(9,k,tracking.getTrackingDate(),new WritableCellFormat(df));
-//				label = new Label(9, k,
-//						new SimpleDateFormat("yyyy-MM-dd").format(tracking
-//								.getTrackingDate()));
+				DateTime dt = new DateTime(9, k, tracking.getTrackingDate(),
+						new WritableCellFormat(df));
+				// label = new Label(9, k,
+				// new SimpleDateFormat("yyyy-MM-dd").format(tracking
+				// .getTrackingDate()));
 				sheet.addCell(dt);
 				label = new Label(10, k, tracking.getProcessor().getUsername());
 				sheet.addCell(label);
 				label = new Label(11, k, tracking.getNewProcess());
 				sheet.addCell(label);
-				
+
 			}
-			
-			for (int j=0;j<excel_st.getSupervision_list().size();j++){
-				q = i + j;
+
+			for (int j = 0; j < excel_st.getSupervision_list().size(); j++) {
+				q = y + j;
 				Supervision supervision = excel_st.getSupervision_list().get(j);
 				DateFormat df = new DateFormat("yyyy-MM-dd");
-				DateTime dt = new DateTime(12,q,supervision.getSupervision_date(),new WritableCellFormat(df));
-//				label = new Label(12, k,
-//						new SimpleDateFormat("yyyy-MM-dd").format());
+				DateTime dt = new DateTime(12, q,
+						supervision.getSupervision_date(),
+						new WritableCellFormat(df));
+				// label = new Label(12, k,
+				// new SimpleDateFormat("yyyy-MM-dd").format());
 				sheet.addCell(dt);
-				label = new Label(13, q, supervision.getSupervision_person().getUsername());
+				label = new Label(13, q, supervision.getSupervision_person()
+						.getUsername());
 				sheet.addCell(label);
-				label = new Label(14, q, supervision.getSupervision_suggestion());
+				label = new Label(14, q,
+						supervision.getSupervision_suggestion());
 				sheet.addCell(label);
 			}
-			y=q>=k?q+1:k+1;
+			y = q >= k ? q + 1 : k + 1;
 		}
-		
 		workbook.write();
 		workbook.close();
-		out.flush();
+		this.getRequest().setAttribute("filefullname", filestorepath);
+		this.getRequest().setAttribute("need_remove", true);
+		this.getRequest().setAttribute("filename", name+".xls");
+		this.getRequest().getRequestDispatcher("/business/techSupport/common/attach_download.jsp").forward(getRequest(), response);
 		
 		return null;
 	}

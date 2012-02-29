@@ -1,5 +1,6 @@
 package com.aisino2.techsupport.dao.ibatis;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -44,6 +45,11 @@ public class SupervisionDaoImpl extends TechSupportBaseDao implements
 
 	public Supervision get(Supervision supervision) {
 		return (Supervision) this.queryForObject("supervision.get", supervision);
+	}
+
+	public List<Supervision> query(Supervision supervision) {
+		
+		return this.queryForList("supervision.query", supervision);
 	}
 
 }
