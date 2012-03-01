@@ -12,44 +12,86 @@
 		$.post(BUSNEISS_PATH+'/findEmailAdreesByName_mail.action',parameters,function(json){
 			$("#email").val(json.mail.email);
 		},'json');
+		
 		//发送邮件
-		$("#send").click(function(){
-			$("input[type=button]").attr('disabled',true);
-			var params={};
-			params['mail.user']=user;
-			params['mail.password']=$("#password").val();
-			params['mail.status']=$('#p_stStatus').val();
-			for(var i=0;i<stNoList.length;i++){
-				params['lSt['+i+'].id']=stNoList[i];
-			}
-			params['mail.status']=$('#p_stStatus').val();
-			$("#div_send").show(); //打开 AJAX 等待动画
-      		jQuery.ajax({
-				type: 'POST',
-				url: BUSNEISS_PATH+'/send_mail.action',
-				data: params,
-				async: true,
-				dataType: 'json',
-				success: function(data){
-					if(data.result=='success'){
-						alert('导出并发送成功','提示信息');
-					}else{
-						alert('导出并发送失败,请与管理员联系','提示信息');
-					}
-				},
-				complete: function(){
-					$("#div_send").hide(); //关闭 AJAX 等待动画
-					$("input[type=button]").attr('disabled',false);
-					$("#email_detail").hideAndRemove("show");
+		if(send_or_export_flag == 1){
+			$("#send").click(function(){
+				$("input[type=button]").attr('disabled',true);
+				var params={};
+				
+				for(var i=0;i<stNoList.length;i++){
+					params['lSt['+i+'].id']=stNoList[i];
 				}
+				params['mail.user']=user;
+				params['mail.password']=$("#password").val();
+				params['mail.status']=$('#p_stStatus').val();
+				$("#div_send").show(); //打开 AJAX 等待动画
+	      		jQuery.ajax({
+					type: 'POST',
+					url: BUSNEISS_PATH+'/send_mail.action',
+					data: params,
+					async: true,
+					dataType: 'json',
+					success: function(data){
+						if(data.result=='success'){
+							jAlert('发送成功','提示信息');
+						}else{
+							jAlert('发送失败,请与管理员联系','提示信息');
+						}
+					},
+					complete: function(){
+						$("#div_send").hide(); //关闭 AJAX 等待动画
+						$("input[type=button]").attr('disabled',false);
+						$("#email_detail").hideAndRemove("show");
+					}
+				});
+				
+				//发送并导出
+				
+				/* $.post(BUSNEISS_PATH+'/send_mail.action',params,function(json){
+					alert(json.result);
+					$("#email_detail").hideAndRemove("show");
+				},'json');  */
 			});
-			
-			
-			/* $.post(BUSNEISS_PATH+'/send_mail.action',params,function(json){
-				alert(json.result);
-				$("#email_detail").hideAndRemove("show");
-			},'json');  */
-		});
+		}
+		//发送并导出
+		else if(send_or_export_flag == 2){
+			$('#send').click(function(){
+				var params={};
+				for(var i=0;i<stNoList.length;i++){
+					params['lSt['+i+'].id']=stNoList[i];
+				}
+				params['word.status']=$("#p_stStatus").val();
+				params['word.mail_username']=user;
+				params['word.mail_password']=$("#password").val();
+				params['word.mail']=$('#email').val();
+				
+				/* $.post(BUSNEISS_PATH+'/createWord_word.action',paramss,function(data){
+					alert(data.result);
+				},'json'); */
+				$("#div_send").show(); //打开 AJAX 等待动画
+	      		jQuery.ajax({
+					type: 'POST',
+					url: BUSNEISS_PATH+'/createWord_word.action',
+					data: params,
+					async: true,
+					dataType: 'json',
+					success: function(data){
+						if(data.result=='success'){
+							alert('导出并发送成功','提示信息');
+						}else{
+							alert('导出并发送失败,请与管理员联系','提示信息');
+						}
+					},
+					complete: function(){
+						$("#div_send").hide(); //关闭 AJAX 等待动画
+						$("input[type=button]").attr('disabled',false);
+						$("#email_detail").hideAndRemove("show");
+					}
+				});
+			});
+		}
+		
 	});
 </script>
 <style>
