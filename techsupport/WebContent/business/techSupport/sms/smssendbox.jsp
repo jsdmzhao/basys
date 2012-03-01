@@ -52,9 +52,16 @@ function lazyLoad(){
 		
 		ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-56;
+		-$('#allDiv').height()-80;
 		loadPageSupportTicketQuery(divnid);
-	
+
+// 		全选
+		$('#selectAll').click(function(){
+			if($(this).attr('checked'))
+				$('input:checkbox[name^=lSt]').attr('checked',true);
+			else
+				$('input:checkbox[name^=lSt]').attr('checked',false);
+		});
 }
 
 /**
@@ -137,19 +144,7 @@ function SupportTicketQuery(pageno,url){
 			getUserofDept('slName','p_supportLeaderId',HTJD_DEPT_CODE);
 		});
 		
-		
-		 
-// 		全选
-		$('#selectAll').click(function(){
-			alert(0);
-			if($(this).attr('checked')){
-				alert(1);
-				$('input[name^=lSt.][type=checkbox]').attr('checked',true);
-			}
-			else {
-				$('input[name^=lSt.][type=checkbox]').attr('checked',false);
-			}
-		});
+
 		
 		
 // 		页面权限控制 
@@ -204,7 +199,7 @@ function SupportTicketQuery(pageno,url){
 					return;
 				}
 				setWidth('email_detail','800');
-				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');取消这种弹出页面的形式改为直接发送的方式
+				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');//取消这种弹出页面的形式改为直接发送的方式
 				bindDocument('email_detail');
 			});
 			//导出数据并发送邮件
