@@ -1,11 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@include file="../../../public/common.jsp"%>
+<%@include file="../common/base.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function() {
 		//初始化收件人和发送人的默认地址
-		var user=$('span[class=yhxx]').text().substring(0,3);
+		var user='<%=username%>';
 		$("#fPeople").val(user);
 		var parameters={};
 		parameters['mail.user']=user;
