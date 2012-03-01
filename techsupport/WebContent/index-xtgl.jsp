@@ -69,11 +69,11 @@
       </tr>
       <tr>
         <td width="9%"></td>
-        <td width="91%" valign="bottom" class="titlefont" >技术支持单系统</td>
+        <td width="91%" valign="bottom" class="titlefont" ></td>
       </tr>
       <tr>
         <td></td>
-        <td valign="top" class="smalltitlefont" >系统管理</td>
+        <td valign="top" class="smalltitlefont" ></td>
       </tr>
     </table></td>
   </tr>
