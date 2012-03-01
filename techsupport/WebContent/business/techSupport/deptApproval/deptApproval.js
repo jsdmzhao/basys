@@ -107,6 +107,12 @@ $(function(){
 	relateHide('devstage');
 	relateHide('psgstage');
 	
+	//当阶段按钮取消的时候，需要情况阶段时间
+	alert($('#devstage,#psgstage').length);
+	$('#devstage,#psgstage').click(function(){
+		if(!$(this).attr('checked'))
+			$('.'+$(this).attr('name')).find('input').val('');	
+	});
 	//设置大区
 //	$('#regionName').click(function(){
 //		getDict_item('regionName','regionCode',ST_REGION_DICT_CODE);
