@@ -32,6 +32,5 @@
 		os.write(buff, 0, bufflen);
 	in.close();
 	os.flush();
-	out.clear();    
-    out = pageContext.pushBody();    
+	os.close();
 %>
