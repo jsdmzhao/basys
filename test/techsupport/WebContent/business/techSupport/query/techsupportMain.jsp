@@ -131,8 +131,6 @@ function lazyLoad(){
  				}
  				//反馈人 控制
  				else if(ST_ROLE_NAME_FEEDBACKER == data.userRoleList[i].rolename){
-					//设置反馈人ID
-					$('#p_processorId').val($('#t_userid').val());
 					//设置大区智能选择器
 					$('#rgName').click(function(){
 						getRegionWithRole('rgName','p_region');
