@@ -55,13 +55,6 @@ function lazyLoad(){
 		-$('#allDiv').height()-80;
 		loadPageSupportTicketQuery(divnid);
 
-// 		全选
-		$('#selectAll').click(function(){
-			if($(this).attr('checked'))
-				$('input:checkbox[name^=lSt]').attr('checked',true);
-			else
-				$('input:checkbox[name^=lSt]').attr('checked',false);
-		});
 }
 
 /**
@@ -102,7 +95,15 @@ function SupportTicketQuery(pageno,url){
                                       	hideColIndex:[8],
 										pageNumber: pageno,
 										colWidths: ["4%","14%","6%","12%","12%","12%","18%","18%","10%"]				
-									});				
+									});
+
+// 		全选
+		$('#selectAll').click(function(){
+			if($(this).attr('checked'))
+				$('input:checkbox[name^=lSt]').attr('checked',true);
+			else
+				$('input:checkbox[name^=lSt]').attr('checked',false);
+		});				
 		}
 }
 
