@@ -45,6 +45,8 @@
 </style>
 
 <script type="text/javascript">
+//是否
+var send_or_export_flag=1;
 var ingridHeight=200;
 var stNoList;
 function lazyLoad(){
@@ -128,9 +130,6 @@ function SupportTicketQuery(pageno,url){
 				left: (pageWidth/2-120) + 'px'
 			});
 		$("#div_send").hide();
-// 		lazyLoad();
-// 		SupportTicketQuery(1);
-
 		
 		//设置申请人
 		$('#applicantName').click(function(){
@@ -205,45 +204,23 @@ function SupportTicketQuery(pageno,url){
 			});
 			//导出数据并发送邮件
 			$("#sendWord").click(function(){
-				$("input[type=button]").attr('disabled',true);
-				var paramss={};
+				send_or_export_flag = 2;
 				var fields=$('input:checked[name^=lSt]');
-				var paramObject=new Array();
+				stNoList=new Array();
 				$(fields).each(function(i){
 					if($(this).attr('checked')){
-						paramObject.push(fields.eq(i).val());
+						stNoList.push(fields.eq(i).val());
 					}
 				});
-				if(paramObject.length==0){
-					jAlert("没有选择支持单","提示信息");
+				if(stNoList.length==0){
+					jAlert('请先选择发送邮件的对象','提示信息');
 					return;
 				}
-				for(var i=0;i<paramObject.length;i++){
-					paramss['lSt['+i+'].id']=paramObject[i];
-				}
-				paramss['word.status']=$("#p_stStatus").val();
-				/* $.post(BUSNEISS_PATH+'/createWord_word.action',paramss,function(data){
-					alert(data.result);
-				},'json'); */
-				$("#div_send").show(); //打开 AJAX 等待动画
-          		jQuery.ajax({
-					type: 'POST',
-					url: BUSNEISS_PATH+'/createWord_word.action',
-					data: paramss,
-					async: true,
-					dataType: 'json',
-					success: function(data){
-						if(data.result=='success'){
-							alert('导出并发送成功','提示信息');
-						}else{
-							alert('导出并发送失败,请与管理员联系','提示信息');
-						}
-					},
-					complete: function(){
-						$("#div_send").hide(); //关闭 AJAX 等待动画
-						$("input[type=button]").attr('disabled',false);
-					}
-				});
+				
+				$("input[type=button]").attr('disabled',true);
+				setWidth('email_detail','800');
+				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');//取消这种弹出页面的形式改为直接发送的方式
+				bindDocument('email_detail');
 			});
 			
 			$('#sendSmsBtn').attr('disabled',false);
