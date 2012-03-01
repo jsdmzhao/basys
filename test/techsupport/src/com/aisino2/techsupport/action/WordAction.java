@@ -113,8 +113,8 @@ public class WordAction extends BaseAction {
 			wordService.CreateWord(word);
 			wordService.close();
 			Mail mail=new Mail();
-			mail.setEmail(new String(properties.getProperty("company_Address")));
-			mail.setPassword(new String(properties.getProperty("compnay_password")));
+			mail.setEmail(word.getMail());
+			mail.setPassword(word.getMail_password());
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));
