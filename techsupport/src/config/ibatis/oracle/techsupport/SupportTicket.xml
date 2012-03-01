@@ -416,10 +416,10 @@
 	 	
 		
 		<isNotEmpty prepend="and" property="trackDateFrom">
-			tr.trackingDate >= #trackingDateFrom#
+			tr.tracking_Date >= #trackingDateFrom#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="trackDateTo">
-			tr.trackingDate &lt;= #trackingDateTo#
+			tr.tracking_Date &lt;= #trackingDateTo#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="type">
 			tr.type = #type# and tr.st_id = t.id
