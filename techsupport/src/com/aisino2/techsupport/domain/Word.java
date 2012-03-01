@@ -39,8 +39,31 @@ public class Word {
 	private List<SupportTicket> lSupportTicket;
 	
 	private List<User> userList;
+	//邮箱用户名
+	private String mail_username;
+	//邮箱密码
+	private String mail_password;
+	//邮箱
+	private String mail;
 	
-	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getMail_username() {
+		return mail_username;
+	}
+	public void setMail_username(String mail_username) {
+		this.mail_username = mail_username;
+	}
+	public String getMail_password() {
+		return mail_password;
+	}
+	public void setMail_password(String mail_password) {
+		this.mail_password = mail_password;
+	}
 	public String getName() {
 		return name;
 	}
