@@ -16,9 +16,7 @@
 			    <interceptor-ref name="profiling"/>
 			    <interceptor-ref name="scopedModelDriven"/>
 			    <interceptor-ref name="modelDriven"/>
-			    <!-- 
-			    <interceptor-ref name="fileUpload"/>
-			     -->
+<!-- 			    <interceptor-ref name="fileUpload"/> -->
 			    <interceptor-ref name="checkbox"/>
 			    <interceptor-ref name="staticParams"/>
 			    <interceptor-ref name="params">
@@ -101,6 +99,10 @@
   	</action>
   	<!--导出数据并发送邮件 -->
   	<action name="*_word" class="wordAction" method="{1}">
+  		<result type="json"></result>
+  	</action>
+<!--   	例外处理 -->
+  	<action name="*_exception" class="ExceptionAction" method="{1}">
   		<result type="json"></result>
   	</action>
   </package>
