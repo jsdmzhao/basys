@@ -159,6 +159,14 @@ function lazyLoad(){
 						
  	 	 			});
  	 			}
+ 				else if (data.userRoleList[i].rolename.indexOf('区总') != -1){
+					//填报人
+					$('#applicantName').unbind('click');
+ 					$('#applicantName').click(function(){
+ 	 					getUserofDept('applicantName','p_applicantId',gxdwdm,[ST_ROLE_NAME_APPLICANT]);
+ 	 				});
+	
+ 	 			}
 
  				
  			}
