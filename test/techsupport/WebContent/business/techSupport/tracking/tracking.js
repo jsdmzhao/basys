@@ -75,16 +75,16 @@ function toFeedbackVerify(){
 		// -- bug 在阶段选项打开的时候，内容为必填	
 	}
 	if(gxdwmc.indexOf('开发部') > -1){
-		if (!checkControlValue("p_devCompDate","Date",null,null,null,1,"技术研发部实际完成时间"))
+		if (!checkControlValue("p_devCompDate","Date",null,null,null,1,"技术开发部实际完成时间"))
 				return false;
 		// ++ bug 在阶段选项打开的时候，内容为必填
 		if($('#devcpstage').attr("checked")){
 			
-			if (!checkControlValue("p_devDsCompDate","Date",null,null,null,1,"技术研发部实际设计完成时间"))
+			if (!checkControlValue("p_devDsCompDate","Date",null,null,null,1,"技术开发部实际设计完成时间"))
 				return false;
-			if (!checkControlValue("p_devDdCompDate","Date",null,null,null,1,"技术研发部实际开发完成时间"))
+			if (!checkControlValue("p_devDdCompDate","Date",null,null,null,1,"技术开发部实际开发完成时间"))
 				return false;
-			if (!checkControlValue("p_devDtCompDate","Date",null,null,null,1,"技术研发部实际测试完成时间"))
+			if (!checkControlValue("p_devDtCompDate","Date",null,null,null,1,"技术开发部实际测试完成时间"))
 				return false;
 		}
 	}

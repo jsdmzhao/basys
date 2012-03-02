@@ -152,7 +152,7 @@
 	</div>
 	<div class="column column-block2" id="jsb_block">
 		<div>
-			<label class="label label-80">技术研发部:</label>
+			<label class="label label-80">技术开发部:</label>
 		</div>
 		<div class="clear-column"></div>
 
