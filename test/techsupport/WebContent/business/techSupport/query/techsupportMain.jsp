@@ -163,7 +163,7 @@ function lazyLoad(){
 					//填报人
 					$('#applicantName').unbind('click');
  					$('#applicantName').click(function(){
- 	 					getUserofDept('applicantName','p_applicantId',gxdwdm,[ST_ROLE_NAME_APPLICANT]);
+ 	 					getUserofDept('applicantName','p_applicantId',gxdwbm,[ST_ROLE_NAME_APPLICANT]);
  	 				});
 	
  	 			}
