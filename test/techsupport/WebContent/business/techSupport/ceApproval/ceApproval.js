@@ -220,7 +220,7 @@ function submitVerity(){
 	// fixed bug 在选择不通过的时候，也要选择指派的单位
 	if($("#ceApprovalRadioPanel  input").eq(0).attr("checked")){
 		if($('#deptApprovalPanel input:checked').length == 0){
-			jAlert('技术支持部门必须至少选择一个','提示');
+			jAlert('至少选择一个技术支持部门！','提示');
 			return false;
 		}
 	}
