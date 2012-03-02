@@ -111,7 +111,7 @@
 			
 			
 			<div class="column-block2 column">
-				<label class="label label-80">技术研发部:</label>
+				<label class="label label-80">技术开发部:</label>
 				<div class="clear-column"></div>
 				
 				<div class="row">
