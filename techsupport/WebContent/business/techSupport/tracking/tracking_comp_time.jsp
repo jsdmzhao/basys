@@ -66,7 +66,7 @@
 			
 			//设置任务号
 			params.taskId = $('#p_taskId').val();
-			
+
 			$.post(toFeedbackURL,params,function(data){
 				if(!data){
 					alert("传输错误，管理人员");
@@ -192,8 +192,8 @@
 			<div class="column">
 				<div class="devcpstage">
 					<label class="label label-80">开发:</label> <input type="text"
-						class=" item inputstyle date " name="trSt.devDsCompDate"
-						id="p_devDsCompDate">
+						class=" item inputstyle date " name="trSt.devDdCompDate"
+						id="p_devDdCompDate">
 				</div>
 				<div class="clear-column"></div>
 			</div>
