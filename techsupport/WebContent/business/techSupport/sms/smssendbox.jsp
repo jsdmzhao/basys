@@ -217,7 +217,6 @@ function SupportTicketQuery(pageno,url){
 					return;
 				}
 				
-				$("input[type=button]").attr('disabled',true);
 				setWidth('email_detail','800');
 				setUrl('email_detail','business/techSupport/sms/emailSendBox.jsp');//取消这种弹出页面的形式改为直接发送的方式
 				bindDocument('email_detail');
