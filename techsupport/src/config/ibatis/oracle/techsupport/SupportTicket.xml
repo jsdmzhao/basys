@@ -84,7 +84,7 @@
 		<result property="devCompDate" column="DEV_COMP_DATE" />
 		<result property="psgDsCompDate" column="PSG_DS_COMP_DATE" />
 		<result property="psgIsCompDate" column="PSG_IS_COMP_DATE" />
-		<result property="psgIsCompDate" column="DEV_DS_COMP_DATE" />
+		<result property="devDsCompDate" column="DEV_DS_COMP_DATE" />
 		<result property="devDdCompDate" column="DEV_DD_COMP_DATE" />
 		<result property="devDtCompDate" column="DEV_DT_COMP_DATE" />
 		<result property="applyingFeedbackDate" column="APPLYING_FEEDBACK_DATE" />
