@@ -52,9 +52,8 @@ var stNoList;
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
 		
-		ingridHeight=pageHeight-queryPanelHeight
-		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-80-50;
+		ingridHeight=$('#iframes').height()-queryPanelHeight
+		-$('#title').outerHeight(true)-80-28;
 		loadPageSupportTicketQuery(divnid);
 
 }
