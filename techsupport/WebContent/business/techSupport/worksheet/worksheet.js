@@ -25,8 +25,11 @@ function lazyLoad() {
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
 		-$('#allDiv').height()-50;
+	
 	loadPageWorksheetQuery(worksheet_div_id);
-	worksheetQuery(1);
+	
+	//	 ++添加流程筛选
+	$('#p_activityName').selectBox({code:ST_WORKFLOW_NAME_DICT_CODE});
 }
  $(document).ready(function(){
 
@@ -40,7 +43,6 @@ function lazyLoad() {
 	detailWidth=950;
 	detailid = "detailCt";
 	detailWindow=$('#'+detailid).get(0);
-	
 	//查询按钮动作
 	$('#queryBtn').click(function(){
 		worksheetQuery(1);
@@ -54,8 +56,7 @@ function lazyLoad() {
 	$('#slName').click(function(){
 		getUserofDept('slName','p_supportLeaderId',null,ST_ROLE_NAME_STLEADER);
 	});
-//	 ++添加流程筛选
-	$('#p_activityName').selectBox({code:ST_WORKFLOW_NAME_DICT_CODE});
+
 	//控制宽度
 //	$('#div_p_activeName ul').width($('#p_activityName').width());
 //	 --添加流程筛选 
@@ -90,13 +91,10 @@ function lazyLoad() {
 		url=worksheetQueryList(pageno,url);
 		// create the grid
 		// returns a jQ object with a 'g' property - that's ingrid
-		
 		var mygrid1 = $("#"+worksheet_table_id).ingrid({
 										url: url,	
 										height:ingridHeight,
 										ingridPageWidth:1000,
-										isPlayResultNull: false,
-										havaWaiDivGunDong: true,
                                        	ingridPageParams:sXML,
                                        	noSortColIndex:[7],
                                        	onRowSelect:null,

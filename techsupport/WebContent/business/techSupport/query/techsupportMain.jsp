@@ -64,13 +64,13 @@ function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-80;
+		-$('#allDiv').height()-71;
 	loadPageSupportTicketQuery(divnid);
 	
 }
 //初始化加载
 	$(function(){
-		setTimeout(lazyLoad,5);
+		setTimeout(lazyLoad,10);
 		divnid="queryContent";//查询内容容器ID
 		tableid="queryContentTable";//查询内容格式表格ID
 		pageUrl=BUSNEISS_PATH+ "/querylist_supportTicket.action";
