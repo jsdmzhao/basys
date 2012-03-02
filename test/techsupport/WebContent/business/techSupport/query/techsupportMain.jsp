@@ -4,7 +4,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@include file="../common/base.jsp" %>
 
-<script type="text/javascript" src="<%=tsBase %>/common/javascript/common.js"></script>
+<html>
+	<head>
+	<meta http-equiv="pragma" content="no-cache" />
+		<title>技术支持单查询统计</title>
+		<script type="text/javascript" src="<%=tsBase %>/common/javascript/common.js"></script>
 
 <link href="<%=tsBase %>/common/css/basets.css" type="text/css" rel="stylesheet"></link>
 
@@ -256,8 +260,9 @@ function lazyLoad(){
 		detailDialog(supervision_div,supervision_width,supervision_page);
 	}	
 </script>
-
-<input type="hidden" id="p_tag" value="">
+	</head>
+	<body>
+		<input type="hidden" id="p_tag" value="">
 <input type="hidden" id="t_userid" value="<%=user.getUserid() %>">
 <input type="hidden" id="p_processorId" value=""/>
 <div id="tsworksheet" class="bnbody">
@@ -356,3 +361,5 @@ function lazyLoad(){
 	</div>
 <div id="detailCt" style="position: absolute; z-index: 1000; top:0px; left:160px; display: none;" class="page-layout"></div>
 <div id="supervision_div" style="position: absolute; z-index: 1000; top:0px; left:160px; display: none;" class="page-layout"></div>
+	</body>
+</html>
