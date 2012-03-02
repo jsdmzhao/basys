@@ -2,7 +2,7 @@
  * archive.js
  * 归档结单或者例外
  * */
-
+ 
 var processUrl2;
 var ingridUrl;
 var ingridWidth=400;
