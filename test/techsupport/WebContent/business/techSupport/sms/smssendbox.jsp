@@ -54,7 +54,7 @@ function lazyLoad(){
 		
 		ingridHeight=pageHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-80;
+		-$('#allDiv').height()-80-50;
 		loadPageSupportTicketQuery(divnid);
 
 }

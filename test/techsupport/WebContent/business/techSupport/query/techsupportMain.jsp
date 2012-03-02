@@ -62,9 +62,9 @@ var supervision_width = 690;
 // 延迟加载
 function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
-	ingridHeight=pageHeight-queryPanelHeight
+	ingridHeight=document.body.offsetHeight-queryPanelHeight
 		-$('#title').outerHeight(true)
-		-$('#allDiv').height()-71;
+		-$('#allDiv').height()-71-50;
 	loadPageSupportTicketQuery(divnid);
 	
 }
