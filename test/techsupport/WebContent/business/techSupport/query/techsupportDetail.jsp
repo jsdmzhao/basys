@@ -2,7 +2,7 @@
 <%@ page language="java" pageEncoding="utf8"%>
 <%@include file="../../../public/common.jsp"%>
 <%@include file="../common/base.jsp" %>
-
+ 
 <script type="text/javascript" src="<%=tsBase %>/query/techsupportDetail.js"></script>
 <link href="<%=tsBase %>/common/css/basets.css" type="text/css" rel="stylesheet"></link>
 
