@@ -434,10 +434,15 @@
 			</isNotEmpty>
 		</isNotEmpty>
 		
+<!-- 		<isNotEmpty prepend="and" property="limitUserDeparement"> -->
+<!-- 			a.userid=ssmap.sl_id -->
+<!-- 			and  -->
+<!-- 			a.departid=#limitDeparement# -->
+<!-- 		</isNotEmpty> -->
 		<isNotEmpty prepend="and" property="limitUserDeparement">
-			a.userid=ssmap.sl_id
-			and 
-			a.departid=#limitDeparement#
+			std.st_id = t.id
+			and
+			std.DEPT_ID=#limitDeparement#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="applicant.userid" open="(" close=")">
 			t.applicant=#applicant.userid#
@@ -471,10 +476,11 @@
 		 	T_TS_STSL_MAP ssmap
 		 </isNotEmpty>
 		 <isNotEmpty prepend="," property="limitUserDeparement">
-		 	t_user a
-	 	<isEmpty prepend="," property="lstSupportLeaders">
-		 	T_TS_STSL_MAP ssmap
-		 </isEmpty>
+<!-- 		 	t_user a -->
+<!-- 	 	<isEmpty prepend="," property="lstSupportLeaders"> -->
+<!-- 		 	T_TS_STSL_MAP ssmap -->
+<!-- 		 </isEmpty> -->
+			T_TS_STDEPT_MAPPING std
 		 </isNotEmpty>
 	</sql>
 	<!-- 获取支持单列表 不分页 -->
