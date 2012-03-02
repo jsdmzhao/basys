@@ -457,8 +457,9 @@ public class SupportTicketAction extends PageAction implements
 			Tracking t = new Tracking();
 			t.setStId(st.getId());
 			st.setTrackList(trackingService.getTrackingList(t));
-			st.setTrackingProcess(st.getTrackList()
-					.get(st.getTrackList().size() - 1).getNewProcess());
+			if(!st.getTrackList().isEmpty())
+				st.setTrackingProcess(st.getTrackList()
+					.get(0).getNewProcess());
 			st.setCheckbox("<input type=\"checkbox\" name=\"lSt[" + i
 					+ "].id\" value=\"" + st.getId() + "\">");
 
@@ -473,7 +474,7 @@ public class SupportTicketAction extends PageAction implements
 			String deptNames = "";
 			for (Department dept : st.getSupportDeptList())
 				deptNames += "," + dept.getDepartname();
-			deptNames = deptNames.substring(1);
+			deptNames = deptNames.length() > 0?deptNames.substring(1):deptNames;
 			st.setSupportDeptName(deptNames);
 			st.setRegionName(ItemChange.codeChange(
 					Constants.ST_REGION_DICT_CODE, st.getRegion()));
