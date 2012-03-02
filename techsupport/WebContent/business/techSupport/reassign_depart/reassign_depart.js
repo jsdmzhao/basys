@@ -20,6 +20,10 @@ function saveVerify() {
 		return false;
 	if (!checkControlValue("p_trackingDate","Date",null,null,null,1,"日期"))
 		return false;
+	if($('#deptApprovalPanel input:checked').length == 0){
+		jAlert('至少选择一个技术支持部门！','提示');
+		return false;
+	}
 	return true;
 }
 
