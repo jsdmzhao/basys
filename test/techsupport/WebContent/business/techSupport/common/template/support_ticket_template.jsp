@@ -13,7 +13,7 @@
         <div class="row">
             <div class="column pagedistd" >
                 <label class="label red">申请人:</label>
-                <input type="text" class=" item inputstyle" id="applicantName" name="st.applicant.username">
+                <input type="text" class=" item inputstyle ro" id="applicantName" name="st.applicant.username">
                 <input type="hidden" class=" item inputstyle" id="applicantId" name="st.applicant.userid">
                 <div class="clear-column"></div>
             </div>
