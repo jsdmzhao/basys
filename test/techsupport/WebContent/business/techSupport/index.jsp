@@ -2,6 +2,19 @@
 <%@include file="../../public/common.jsp" %>
 <%@include file="../../public/user-info.jsp" %>  
 <script type="text/javascript">
+function jiaZaiShouYeYeMian(){
+	//$("#password_modify").empty();
+ 	$("#iframes").empty();
+ 	if(shouYeJiaZaiYeMian!=null && shouYeJiaZaiYeMian!=""){
+ 	 	$.ajax({url:shouYeJiaZaiYeMian,cache:false,success:function(data){
+ 	 		$("#iframes").html(data);
+ 	 	 	}
+	 	 });
+ 		//$("#iframes").load(shouYeJiaZaiYeMian);
+ 	}
+	$("#iframes").show("slow");
+	$("#iframes").width("1020");
+}
     $(document).ready(function (){
     	
         getLoginlogNum();
