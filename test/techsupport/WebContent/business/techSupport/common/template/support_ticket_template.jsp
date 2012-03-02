@@ -19,7 +19,7 @@
             </div>
             <div class="column pagedistd" >
                 <label class="label red" style="width:100px;">大区/区域:</label>
-                <input type="text" class=" item inputstyle genStNo" id="regionName">
+                <input type="text" class=" item inputstyle genStNo ro" id="regionName">
                 <input type="hidden" name="st.region" id="regionCode">
                 <div class="clear-column"></div>
             </div>
