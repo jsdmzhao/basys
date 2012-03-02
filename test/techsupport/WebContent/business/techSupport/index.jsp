@@ -2,18 +2,21 @@
 <%@include file="../../public/common.jsp" %>
 <%@include file="../../public/user-info.jsp" %>  
 <script type="text/javascript">
-function jiaZaiShouYeYeMian(){
-	//$("#password_modify").empty();
- 	$("#iframes").empty();
- 	if(shouYeJiaZaiYeMian!=null && shouYeJiaZaiYeMian!=""){
- 	 	$.ajax({url:shouYeJiaZaiYeMian,cache:false,success:function(data){
- 	 		$("#iframes").html(data);
- 	 	 	}
-	 	 });
- 		//$("#iframes").load(shouYeJiaZaiYeMian);
- 	}
-	$("#iframes").show("slow");
-	$("#iframes").width("1020");
+//点击叶子菜单 导航到相应页面
+function showContent(obj)
+{	
+    closemusic();           /////选择菜单的时候关闭报警音乐
+    clearTimeout(testtime); //// 清空setTimeout现成
+	//$('#'+jQuery(obj).attr("id")).click(function (){
+		func_code = jQuery(obj).attr("id");
+		$("#password_modify").empty();
+		$("#iframes").empty();
+	$.ajax({url:jQuery(obj).attr("path"),cache:false,success:function(data){
+		$("#iframes").html(data);
+	}});
+	
+	$("#iframes").show("slow"); 	
+	//});
 }
     $(document).ready(function (){
     	
