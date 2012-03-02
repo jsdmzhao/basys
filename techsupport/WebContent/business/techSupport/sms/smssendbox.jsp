@@ -137,7 +137,7 @@ function SupportTicketQuery(pageno,url){
 		});
 		//设置大区
 		$('#rgName').click(function(){
-			getDict_item('rgName','p_regionCode',ST_REGION_DICT_CODE);
+			getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
 		});
 		//设置技术负责人
 		$('#slName').click(function(){
@@ -272,7 +272,7 @@ function SupportTicketQuery(pageno,url){
 				<div class="column pagedistd">
 					<label class="label">大区/区域:</label>
 					<input type="text" class="item inputstyle" id="rgName">
-					<input type="hidden" id="p_regionCode" name="p_regionCode">
+					<input type="hidden" id="p_region" name="p_regionCode">
 					<div class="clear-column"></div>
 				</div>
 				
