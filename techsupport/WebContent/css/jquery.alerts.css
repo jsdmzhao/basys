@@ -2,7 +2,7 @@
 	font-family: Arial, sans-serif;
 	font-size: 12px;
 	min-width: 240px; /* Dialog will be no smaller than this */
-	max-width: 400px; /* Dialog will wrap after this width */
+	width: 400px; /* Dialog will wrap after this width */
 	background: #ffffe3;
 	border: solid 1px #a5a800;
 	color: #000;

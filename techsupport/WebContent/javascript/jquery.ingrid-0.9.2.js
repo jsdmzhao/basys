@@ -553,7 +553,7 @@ jQuery.fn.ingrid = function(o){
 							}
 						});
 				// << 首页
-				var $pb1 = jQuery('<a href="#" title="首页">11111111111111111111</a>').addClass(cfg.pageStartClass).click(function(){
+				var $pb1 = jQuery('<a href="#" title="首页"></a>').addClass(cfg.pageStartClass).click(function(){
 						var _p = cfg.pageNumber;
 						if (totp>1&&_p!=1) { //总页数大于1 当前页数不为1
 							cfg.pageNumber = 1;
