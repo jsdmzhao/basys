@@ -132,9 +132,9 @@ $(function(){
 			if(data.returnNo == 0){
 //				alert(data.returnMsg);
 				
-				worksheetQuery(1);
-				
+				$(detailWindow).empty();
 				$(detailWindow).hideAndRemove("show");
+				worksheetQuery(1);
 				
 			}
 		});
@@ -169,7 +169,6 @@ $(function(){
 				$(detailWindow).empty();
 				$(detailWindow).hideAndRemove("show");
 				worksheetQuery(1);
-				
 				
 			}
 			else{
