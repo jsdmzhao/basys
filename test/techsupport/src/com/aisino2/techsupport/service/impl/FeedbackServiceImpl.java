@@ -1,13 +1,15 @@
 package com.aisino2.techsupport.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
-
 
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.service.BaseService;
+import com.aisino2.sysadmin.domain.User;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.SupportTicket;
 import com.aisino2.techsupport.domain.Tracking;
@@ -51,7 +53,15 @@ public class FeedbackServiceImpl extends BaseService implements FeedbackService 
 			trackService.insertTracking(tracking);
 			
 			//流程回退(流程支线 不与反馈)
-			workflow.workflowNext(workflow.setVariable(taskId, "no_feedback", null));
+			Map candidateUsers = new HashMap();
+			String supportLeaderIds = "";
+			SupportTicket comm_st = stService.getSupportTicket(st);
+			for (User sl : comm_st.getLstSupportLeaders())
+				supportLeaderIds += "," + sl.getUserid();
+			supportLeaderIds = supportLeaderIds.length() > 0 ? supportLeaderIds
+					.substring(1) : supportLeaderIds;
+			candidateUsers.put("trackingUsers", supportLeaderIds);
+			workflow.workflowNext(workflow.setVariable(taskId, "no_feedback", candidateUsers));
 		} catch (RuntimeException e) {
 			log.error(e);
 			throw e;
