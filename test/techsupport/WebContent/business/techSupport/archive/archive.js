@@ -114,10 +114,11 @@ $(function(){
 			
 			if(data.returnNo == 0){
 //				alert(data.returnMsg);
-				
+				$(detailWindow).empty();
+				$(detailWindow).hideAndRemove("show");
 				worksheetQuery(1);
 				
-				$(detailWindow).hideAndRemove("show");
+				
 				
 			}
 		});

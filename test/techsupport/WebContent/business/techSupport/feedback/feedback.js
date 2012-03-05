@@ -166,10 +166,10 @@ $(function(){
 			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
-				
+				$(detailWindow).empty();
+				$(detailWindow).hideAndRemove("show");
 				worksheetQuery(1);
 				
-				$(detailWindow).hideAndRemove("show");
 				
 			}
 			else{

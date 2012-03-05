@@ -137,6 +137,7 @@ $(function(){
 		$.post(saveURL,params,function(data){
 			dataobj=eval("("+data+")");
 			if(dataobj.returnNo==0){
+				$(detailWindow).empty();
 				$(detailWindow).hideAndRemove("show");
 				worksheetQuery(1);
 			}
