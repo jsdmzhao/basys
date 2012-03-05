@@ -107,7 +107,8 @@ public class WordAction extends BaseAction {
 			}else if(status!=null&&status.equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)){//审批状态
 				
 			}
-			String file=new String(properties.getProperty("filePath"))+fileName+".doc";
+			//修改临时文件保存地址为系统的临时文件夹
+			String file=System.getProperty("java.io.tmpdir")+fileName+".doc";
 			word.setlSupportTicket(lSt);
 			word.setPath(file);
 			wordService.CreateWord(word);
