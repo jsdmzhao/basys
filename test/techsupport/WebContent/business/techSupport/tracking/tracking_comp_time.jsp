@@ -20,7 +20,11 @@
 		//非阶段性隐藏
 		relateHide('devcpstage');
 		relateHide('psgcpstage');
-		
+		//当阶段按钮取消的时候，需要情况阶段时间
+		$('#devcpstage,#psgcpstage').click(function(){
+			if(!$(this).attr('checked'))
+				$('.'+$(this).attr('id')).find('input:text').val('');	
+		});
 //		初始化提请反馈必填项颜色信息
 //		if($('#p_deptName').val().indexOf('方案部') > -1){
 		if(	gxdwmc.indexOf('方案部') > -1){
