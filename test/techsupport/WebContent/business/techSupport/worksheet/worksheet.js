@@ -47,6 +47,8 @@ function lazyLoad() {
 		worksheetQuery(1);
 	});
 	
+	//设置只读
+	$('.ro').attr('readOnly',true);
 	//设置大区
 	$('#rgName').click(function(){
 		getDict_item('rgName','p_regionCode',ST_REGION_DICT_CODE);

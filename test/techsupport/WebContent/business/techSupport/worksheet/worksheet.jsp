@@ -60,14 +60,14 @@
 			<div class="row">
 				<div class="column pagedistd">
 					<label class="label">技术支持单负责人:</label>
-					<input type="text" class="item inputstyle" id="slName">
+					<input type="text" class="item inputstyle ro" id="slName">
 					<input type="hidden" id="p_supportLeaderId" name="p_supportLeaderId">
 					<div class="clear-column"></div>
 				</div>
 				
 				<div class="column pagedistd">
 					<label class="label">大区/区域:</label>
-					<input type="text" class="item inputstyle" id="rgName">
+					<input type="text" class="item inputstyle ro" id="rgName">
 					<input type="hidden" id="p_regionCode" name="p_regionCode">
 					<div class="clear-column"></div>
 				</div>
