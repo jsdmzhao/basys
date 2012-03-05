@@ -162,12 +162,16 @@ public class WorksheetServiceImpl extends BaseService implements
 //				过滤
 				if (stNO != null && stNO.trim().length()>0 && result)
 					result = result && st.getStNo().equals(stNO);
-				if (slNo != null && result)
+				if (slNo != null && result){
+					boolean contain_sl = false;
 					for (User sl : st.getLstSupportLeaders()) {
-						result = result
-								&& slNo.equals(sl.getUserid().toString());
+							if(	slNo.equals(sl.getUserid().toString())){
+								contain_sl=true;
+								break;
+							}
 					}
-
+					result = result && contain_sl;
+				}
 				if (region != null && result)
 					result = result && region.equals(st.getRegion());
 
