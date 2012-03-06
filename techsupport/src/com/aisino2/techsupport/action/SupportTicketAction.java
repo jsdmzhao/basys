@@ -466,11 +466,11 @@ public class SupportTicketAction extends PageAction implements
 			// @fixed 技术负责人变成多个指派
 			String supportLeaderNames = "";
 			for (User sl : st.getLstSupportLeaders())
-				supportLeaderNames = "," + sl.getUsername();
+				supportLeaderNames += "," + sl.getUsername();
 			supportLeaderNames = supportLeaderNames.length() > 0 ? supportLeaderNames
 					.substring(1) : supportLeaderNames;
 			st.setSupportLeaderName(supportLeaderNames);
-
+			
 			String deptNames = "";
 			for (Department dept : st.getSupportDeptList())
 				deptNames += "," + dept.getDepartname();
