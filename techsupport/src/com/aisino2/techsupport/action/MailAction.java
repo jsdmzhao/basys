@@ -228,8 +228,8 @@ public class MailAction extends BaseAction {
 					long diff=now.getTime()-editTime.getTime();
 					long days=diff/(1000 * 60 * 60 * 24);
 					Object template[]={recipient.getrName(),recipient.getSt_NO(),format.format(recipient.getLastEditTime()),days};
-					content=MessageFormat.format(content, template);
-					mailService.send(mail, subject, recipient.getrAddress(), null, content, false);
+					String mailContent=MessageFormat.format(content, template);
+					mailService.send(mail, subject, recipient.getrAddress(), null, mailContent, false);
 				}
 			}
 			this.result=SUCCESS;
