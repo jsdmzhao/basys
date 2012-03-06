@@ -143,7 +143,7 @@ function SupportTicketQuery(pageno,url){
 			getUserofDept('slName','p_supportLeaderId',HTJD_DEPT_CODE);
 		});
 		
-
+		$('.ro').attr("readOnly",true);
 		
 		
 // 		页面权限控制 
@@ -164,6 +164,18 @@ function SupportTicketQuery(pageno,url){
 			optExpr=optExpr.substring(4	);
 			selectBoxOption($('#p_stStatus'),{expr:optExpr});
 			$('#div_p_stStatus').find('ul li:visible').eq(0).click();
+
+			//设置当为审核状态的时候，关闭发送导出
+			$('#p_stStatus').change(function(){
+				if($(this).val() == ST_STATUS_WAIT_COMPANY_APPRAVAL || $(this).val() == ST_STATUS_WAIT_DEPARTMENT_APPRAVAL)
+				{
+					$('#sendWord').hide();
+				}
+				else
+				{
+					$('#sendWord').show()
+				}
+			});
 //	 		初始化查询动作
 			$('#queryBtn').click(function(){
 				SupportTicketQuery(1);
@@ -186,6 +198,7 @@ function SupportTicketQuery(pageno,url){
 			});
 			//发送邮件
 			$("#sendEmail").click(function(){
+				send_or_export_flag = 1;
 				var fields=$('input:checked[name^=lSt]');
 				stNoList=new Array();
 				$(fields).each(function(i){
@@ -253,7 +266,7 @@ function SupportTicketQuery(pageno,url){
 				<div class="column pagedistd">
 					<div>
 						<label class="label">申请人:</label>
-						<input type="text" class="item inputstyle" id="applicantName">
+						<input type="text" class="item ro inputstyle" id="applicantName">
 						<input type="hidden" id="p_applicantId" name="st.applicant.userid">
 					</div>
 					<div class="clear-column"></div>
@@ -262,7 +275,7 @@ function SupportTicketQuery(pageno,url){
 				<div class="column pagedistd">
 					<div>
 						<label class="label">技术负责人:</label>
-						<input type="text" class="item inputstyle" id="slName">
+						<input type="text" class="item ro inputstyle" id="slName">
 						<input type="hidden" id="p_supportLeaderId" name="p_supportLeaderId">
 					</div>
 					<div class="clear-column"></div>
@@ -270,7 +283,7 @@ function SupportTicketQuery(pageno,url){
 				
 				<div class="column pagedistd">
 					<label class="label">大区/区域:</label>
-					<input type="text" class="item inputstyle" id="rgName">
+					<input type="text" class="item ro inputstyle" id="rgName">
 					<input type="hidden" id="p_region" name="p_regionCode">
 					<div class="clear-column"></div>
 				</div>

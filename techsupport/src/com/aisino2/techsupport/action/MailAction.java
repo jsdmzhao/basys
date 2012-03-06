@@ -5,8 +5,11 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -14,10 +17,13 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.BaseAction;
+import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.service.IDict_itemService;
+import com.aisino2.sysadmin.service.IUserService;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.Mail;
 import com.aisino2.techsupport.domain.Recipient;
@@ -38,6 +44,12 @@ public class MailAction extends BaseAction {
 	private Mail mail;
 	private List<Mail> lMailList=new ArrayList<Mail>();
 	private List<Recipient> lRecipient=new ArrayList<Recipient>();
+	private IUserService userService;
+	@Resource(name="userService")
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
+
 	public String sendMail(){
 		return "success";
 	}
@@ -110,8 +122,32 @@ public class MailAction extends BaseAction {
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));
 			mailService.connect(mail, true, true, false);
-			for(SupportTicket st: lSt){
-				for(User user:st.getLstSupportLeaders()){
+			
+			properties.load(in);
+			//判断状态选择相应的邮件主题和内容
+			//进行中
+			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_GOING)){
+				content=new String(properties.getProperty("Going_Content"));
+				subject=new String(properties.getProperty("Going_Subject"));
+				for(SupportTicket st: lSt){
+					for(User user:st.getLstSupportLeaders()){
+						Recipient recipient=new Recipient();
+						recipient.setLastEditTime(st.getLastUpdateDate());
+						recipient.setrAddress(getAdressByName(user.getUsername()));
+						recipient.setrName(user.getUsername());
+						recipient.setSt_NO(st.getStNo());
+						recipients.add(recipient);
+					}
+				}
+				mail.setRecipients(recipients);
+			}
+			//待反馈
+			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_FEEDBACK)){
+				content=new String(properties.getProperty("Feedback_Content"));
+				subject=new String(properties.getProperty("Feedback_Subject"));
+				//设置反馈提示收件人
+				for(SupportTicket st: lSt){
+					User user = st.getApplicant();
 					Recipient recipient=new Recipient();
 					recipient.setLastEditTime(st.getLastUpdateDate());
 					recipient.setrAddress(getAdressByName(user.getUsername()));
@@ -119,24 +155,70 @@ public class MailAction extends BaseAction {
 					recipient.setSt_NO(st.getStNo());
 					recipients.add(recipient);
 				}
+				mail.setRecipients(recipients);
 			}
-			mail.setRecipients(recipients);
-			properties.load(in);
-			//判断状态选择相应的邮件主题和内容
-			//进行中
-			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_GOING)){
-				content=new String(properties.getProperty("Going_Content"));
-				subject=new String(properties.getProperty("Going_Subject"));
-			}
-			//待反馈
-			if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_FEEDBACK)){
-				content=new String(properties.getProperty("Feedback_Content"));
-				subject=new String(properties.getProperty("Feedback_Subject"));
-			}
-			//待审批
-			if(mail.getStatus()!=null&&(mail.getStatus().equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL)||mail.getStatus().equals("wait_department_appraval"))){
+			//@fix 分情况决定发送目标
+			//待公司审批
+			if(mail.getStatus()!=null&&(mail.getStatus().equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL))){
 				content=new String(properties.getProperty("Approval_Content"));
 				subject=new String(properties.getProperty("Approval_Subject"));
+				//获取所有公司审批人角色的用户
+				Map<String,Object> map = new HashMap<String,Object>();
+				//++设置角色名称列表
+				List<String> rolename_list = new ArrayList<String>();
+				rolename_list.add(Constants.ST_ROLE_NAME_CE);
+				map.put("userRoles", rolename_list);
+				//--设置角色名称列表
+
+				Page userpageList = userService.getListForPage(map, 1, 9999999,
+						null, "desc");
+				List<User> userList = userpageList.getData();
+				for(SupportTicket st: lSt){
+					for(User user : userList){
+						Recipient recipient=new Recipient();
+						recipient.setLastEditTime(st.getLastUpdateDate());
+						recipient.setrAddress(getAdressByName(user.getUsername()));
+						recipient.setrName(user.getUsername());
+						recipient.setSt_NO(st.getStNo());
+						recipients.add(recipient);
+					}
+				}
+				
+				mail.setRecipients(recipients);
+			}
+			//带部门审批
+			else if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL)){
+				content=new String(properties.getProperty("Approval_Content"));
+				subject=new String(properties.getProperty("Approval_Subject"));
+				
+				//获取所有公司审批人角色的用户
+				Map<String,Object> map = new HashMap<String,Object>();
+				//++设置角色名称列表
+				List<String> rolename_list = new ArrayList<String>();
+				rolename_list.add(Constants.ST_ROLE_NAME_DEPTMANAGE);
+				map.put("userRoles", rolename_list);
+				//--设置角色名称列表
+
+				Page userpageList = userService.getListForPage(map, 1, 9999999,
+						null, "desc");
+				List<User> userList = userpageList.getData();
+				for(SupportTicket st: lSt){
+					for(User user : userList){
+						for(Department d : st.getSupportDeptList()){
+							if(d.getDepartid().equals(user.getDepartid()) ){
+								Recipient recipient=new Recipient();
+								recipient.setLastEditTime(st.getLastUpdateDate());
+								recipient.setrAddress(getAdressByName(user.getUsername()));
+								recipient.setrName(user.getUsername());
+								recipient.setSt_NO(st.getStNo());
+								recipients.add(recipient);
+							}
+						}
+						
+					}
+				}
+				
+				mail.setRecipients(recipients);
 			}
 			for(Recipient recipient:mail.getRecipients()){
 				if(recipient.getLastEditTime()!=null&&!"".equals(recipient.getLastEditTime())&&!content.equals("")&&!subject.equals("")){

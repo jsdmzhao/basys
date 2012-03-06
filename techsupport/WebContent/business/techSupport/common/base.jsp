@@ -27,6 +27,14 @@
 	var ST_STATUS_WAIT_FEEDBACK="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_WAIT_FEEDBACK%>";
 	//已反馈
 	var ST_STATUS_FEEDBACKED="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_FEEDBACKED%>";
+	//带公司审批
+	var ST_STATUS_WAIT_COMPANY_APPRAVAL="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL%>";
+	//公司审批未通过
+	var ST_STATUS_COMPANY_APPRAVAL_NOPASS="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_COMPANY_APPRAVAL_NOPASS%>";
+	//带部门审批
+	var ST_STATUS_WAIT_DEPARTMENT_APPRAVAL="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL%>";
+	//部门审批未通过
+	var ST_STATUS_DEPARTMENT_APPRAVAL_NOPASS="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_DEPARTMENT_APPRAVAL_NOPASS%>";
 	
 	//支持单状态字典代码
 	var ST_STATUS_DICT_CODE="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_DICT_CODE%>";
