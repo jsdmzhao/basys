@@ -3,6 +3,7 @@ package com.aisino2.techsupport.service.impl;
 import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.sysadmin.domain.Department;
@@ -24,17 +26,13 @@ import com.aisino2.techsupport.domain.Tracking;
 import com.aisino2.techsupport.domain.Word;
 import com.aisino2.techsupport.service.IWord;
 import com.aisino2.techsupport.service.TrackingService;
-
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
 import com.lowagie.text.Table;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.rtf.RtfWriter2;
@@ -51,7 +49,7 @@ public class WordImpl implements IWord {
 	private Document document;
 	
 	public void CreateWord(Word word) throws DocumentException,
-			IOException, ParseException {
+			IOException, ParseException, IllegalAccessException, InvocationTargetException {
 		//创建文档并且设置纸张大小
 		document = new Document(PageSize.A4);
 		// 建立一个书写器(Writer)与document对象关联，通过书写器(Writer)可以将文档写入到磁盘中
@@ -138,17 +136,18 @@ public class WordImpl implements IWord {
 			// 如果技术支持单负责人跨区域有多个，将一张支持单拆分为多N张
 			List<SupportTicket> lst=word.getlSupportTicket();
 			List<SupportTicket> newLst=new ArrayList<SupportTicket>();
-			List<User> newUser=new ArrayList<User>();
+			
 			List<User> userList=new ArrayList<User>();
 			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
 			for(int i=0;i<lst.size();i++){
 				userList=lst.get(i).getLstSupportLeaders();
 				for(int j=0;j<userList.size();j++){
+					List<User> newUser=new ArrayList<User>();
 					SupportTicket st=new SupportTicket();
 					User user=new User();
 					user=userList.get(j);
 					newUser.add(user);
-					st=lst.get(i);
+					BeanUtils.copyProperties(st, lst.get(i));
 					st.setLstSupportLeaders(newUser);
 					newLst.add(st);
 				}
@@ -214,17 +213,17 @@ public class WordImpl implements IWord {
 			// 如果技术支持单负责人跨区域有多个，将一张支持单拆分为多N张
 			List<SupportTicket> lst=word.getlSupportTicket();
 			List<SupportTicket> newLst=new ArrayList<SupportTicket>();
-			List<User> newUser=new ArrayList<User>();
 			List<User> userList=new ArrayList<User>();
 			DateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
 			for(int i=0;i<lst.size();i++){
 				userList=lst.get(i).getLstSupportLeaders();
 				for(int j=0;j<userList.size();j++){
+					List<User> newUser=new ArrayList<User>();
 					SupportTicket st=new SupportTicket();
 					User user=new User();
 					user=userList.get(j);
 					newUser.add(user);
-					st=lst.get(i);
+					BeanUtils.copyProperties(st, lst.get(i));
 					st.setLstSupportLeaders(newUser);
 					newLst.add(st);
 				}
