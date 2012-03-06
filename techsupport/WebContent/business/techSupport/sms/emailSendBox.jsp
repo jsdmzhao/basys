@@ -32,7 +32,8 @@
 					dataType: 'json',
 					success: function(data){
 						if(data.result=='success'){
-							jAlert('发送成功','提示信息');
+							//jAlert('发送成功','提示');
+							alert('发送成功');
 						}else{
 							jAlert('发送失败,请与管理员联系','提示信息');
 						}
