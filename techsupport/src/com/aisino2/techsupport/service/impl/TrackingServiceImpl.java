@@ -180,6 +180,8 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 				{
 					workflow.getTaskService().removeTaskParticipatingUser(taskId, p.getUserId(), Participation.CANDIDATE);
 					tracking_users.remove(p);
+					//@fix 多部门第一次无法保存
+					stService.updateSupportTicket(st);
 					break;
 				}
 			}
