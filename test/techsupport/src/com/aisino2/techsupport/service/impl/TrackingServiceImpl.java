@@ -180,8 +180,6 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 				{
 					workflow.getTaskService().removeTaskParticipatingUser(taskId, p.getUserId(), Participation.CANDIDATE);
 					tracking_users.remove(p);
-					//@fix 多部门第一次无法保存
-					stService.updateSupportTicket(st);
 					break;
 				}
 			}
@@ -200,8 +198,8 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 				//设置状态
 				st.setStStatus(Constants.ST_STATUS_WAIT_FEEDBACK);
 				
-				stService.updateSupportTicket(st);
 			}
+			stService.updateSupportTicket(st);
 			
 		} catch (RuntimeException e) {
 			logger.error(e,e.fillInStackTrace());
