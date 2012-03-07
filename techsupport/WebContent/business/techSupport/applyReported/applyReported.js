@@ -8,8 +8,10 @@ var windowClientHeight = $(window).height();
 $(function(){
 	
 	//设置内容自动高度
-	setTimeout(autoHeight,5);
-	
+	//setTimeout(autoHeight,5);
+	var supportContentHeight = 180;
+	$('#supportContent').height(supportContentHeight);
+	$('#supportContent').parent().css('line-height',supportContentHeight+"px");
 	//设置所有日期参数
 	$('.datero').each(function(){
 		$(this).attr('readonly',true);
