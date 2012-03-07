@@ -57,7 +57,7 @@ $(function(){
 		if(!saveVerify()){
 			return;
 		}
-		if(!confirm("您确认本本支持单中止吗？"))
+		if(!confirm("您确认本支持单中止吗？"))
 			return;
 		var params = {};
 		
