@@ -55,7 +55,6 @@ function showContent(obj)
     }
 </script>
 
-<body style="margin:0px;">
 <table width="1020" border="0"  align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td>
