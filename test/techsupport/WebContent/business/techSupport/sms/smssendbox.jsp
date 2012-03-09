@@ -245,7 +245,7 @@ function SupportTicketQuery(pageno,url){
 
 <div id="tsworksheet" class="bnbody">
 	<%-- 使用最后更新时间查询 --%>
-	<input type="hidden" id="p_use_last_update_day" value="1">
+	<input type="hidden" id="p_useLastUpdateDate" value="1">
 	<input type="hidden" id="p_tag" value="dxts">
 	<div id="title" class="queryfont">
 		短信提示
