@@ -132,7 +132,7 @@ function SupportTicketQuery(pageno,url){
 		
 		//设置申请人
 		$('#applicantName').click(function(){
-			getUserofDept('applicantName','p_applicantId',HTJD_DEPT_CODE);
+			getUserofDept('applicantName','p_applicantId',null,ST_ROLE_NAME_APPLICANT);
 		});
 		//设置大区
 		$('#rgName').click(function(){
@@ -140,7 +140,7 @@ function SupportTicketQuery(pageno,url){
 		});
 		//设置技术负责人
 		$('#slName').click(function(){
-			getUserofDept('slName','p_supportLeaderId',HTJD_DEPT_CODE);
+			getUserofDept('slName','p_supportLeaderId',null,ST_ROLE_NAME_STLEADER);
 		});
 		
 		$('.ro').attr("readOnly",true);
