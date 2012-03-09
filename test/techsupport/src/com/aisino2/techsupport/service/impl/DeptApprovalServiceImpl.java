@@ -1,5 +1,6 @@
 package com.aisino2.techsupport.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,8 @@ public class DeptApprovalServiceImpl extends BaseService implements
 		if(Constants.ST_APPR_TYPE_APPR_NOPASS.equals(tracking.getApprovalCode()) ){
 			st.setStStatus(Constants.ST_STATUS_DEPARTMENT_APPRAVAL_NOPASS);
 		}
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 //		保存技术支持单信息
 		stService.updateSupportTicket(st);
 //		保存部门审核意见信息
