@@ -133,6 +133,13 @@ public class Constants {
 	//重指派支持单负责人
 	public static final String ST_PROCESS_REASSGIN_STLEADER = "reassgin_stleader";
 	
+	//审批更新间隔代码
+	public static final String ST_APPRAVAL_UPDATE_INTERVAL_DAY = "st_appraval_update_interval_day";
+	//进展更新间隔代码
+	public static final String ST_TRACKING_UPDATE_INTERVAL_DAY = "st_tracking_update_interval_day";
+	//反馈更新间隔代码
+	public static final String ST_FEEDBACK_UPDATE_INTERVAL_DAY = "st_feedback_update_interval_day";
+	
 	static {
 		util = new CommonUtil();
 		try {
