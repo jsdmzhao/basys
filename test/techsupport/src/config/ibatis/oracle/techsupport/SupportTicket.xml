@@ -461,7 +461,7 @@
 		<!-- ++ 使用最后修改时间 -->
 		<isNotEmpty prepend="and" property="use_last_update_day">
 			<isNotEmpty property="last_update_day">
-				t.last_update_date &lt; sysdate - #last_update_day#
+				t.last_update_date &lt;= sysdate - #last_update_day#
 			</isNotEmpty>
 		</isNotEmpty>
 		<!-- __ 使用最后修改时间 -->
