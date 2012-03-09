@@ -82,6 +82,8 @@ public class FeedbackServiceImpl extends BaseService implements FeedbackService 
 			//保存支持单信息
 			//设置状态为已反馈
 			st.setStStatus(Constants.ST_STATUS_FEEDBACKED);
+			//更新最后操作时间
+			st.setLastUpdateDate(new Date());
 			//设置反馈时间
 			st.setFeedbackConfirmDate(new Date());
 			
