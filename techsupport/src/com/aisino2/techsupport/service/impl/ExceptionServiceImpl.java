@@ -1,5 +1,7 @@
 package com.aisino2.techsupport.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
@@ -36,6 +38,8 @@ public class ExceptionServiceImpl implements IExceptionService {
 			Tracking tracking) {
 		//保存支持单状态
 		st.setStStatus(Constants.ST_STATUS_STOP);
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 		st_service.updateSupportTicket(st);
 		//保存进展信息之终止原因
 		tracking_service.insertTracking(tracking);

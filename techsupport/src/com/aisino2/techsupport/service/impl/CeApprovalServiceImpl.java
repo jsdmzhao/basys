@@ -41,12 +41,12 @@ public class CeApprovalServiceImpl extends BaseService implements
 			st.setStStatus(Constants.ST_STATUS_COMPANY_APPRAVAL_NOPASS);
 		else
 			st.setStStatus(Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL);
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 //		保存支持单信息
 		stService.updateSupportTicket(st);
 //		保存审核意见信息
 		trackingService.insertTracking(tracking);
-		//设置最后更新时间
-		st.setLastUpdateDate(new Date());
 //		流程控制
 //		当提交的技术支持单，在本环节重新对单位做出了指派的时候，那么主要更新指派信息
 		Map<String, Object> candidate_users=new HashMap<String, Object>();

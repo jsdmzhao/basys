@@ -1,6 +1,7 @@
 package com.aisino2.techsupport.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		if (st.getSupportDeptList() == null
 				|| st.getSupportDeptList().isEmpty())
 			throw new RuntimeException("需要变更的部门为空");
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 		// 保存支持单信息指派部门信息
 		support_ticket_service.updateSupportTicket(st);
 		// 保存变更原因为进展
@@ -197,6 +200,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		if (st.getLstSupportLeaders() == null
 				|| st.getLstSupportLeaders().isEmpty())
 			throw new RuntimeException("需要变更的支持单负责人为空");
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 		// 保存支持单信息指派部门信息
 		support_ticket_service.updateSupportTicket(st);
 		// 保存变更原因为进展

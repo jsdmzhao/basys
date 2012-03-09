@@ -1,5 +1,7 @@
 package com.aisino2.techsupport.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
@@ -29,6 +31,8 @@ public class ArchiveServiceImpl extends BaseService implements ArchiveSerivce {
 	public void inserArchive(String taskId, SupportTicket st) {
 //		保存支持单信息
 		st.setStStatus(Constants.ST_STATUS_COMPLETE);
+		//更新最后操作时间
+		st.setLastUpdateDate(new Date());
 		stService.updateSupportTicket(st);
 		
 //		流程控制

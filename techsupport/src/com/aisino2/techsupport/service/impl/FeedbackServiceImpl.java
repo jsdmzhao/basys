@@ -45,7 +45,8 @@ public class FeedbackServiceImpl extends BaseService implements FeedbackService 
 			//保存支持单信息
 			//设置状态为进行中
 			st.setStStatus(Constants.ST_STATUS_GOING);
-			
+			//更新最后操作时间
+			st.setLastUpdateDate(new Date());
 			stService.updateSupportTicket(st);
 			
 			//保存进展信息
