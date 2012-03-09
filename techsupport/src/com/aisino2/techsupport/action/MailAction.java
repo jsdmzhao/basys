@@ -160,8 +160,8 @@ public class MailAction extends BaseAction {
 			//@fix 分情况决定发送目标
 			//待公司审批
 			if(mail.getStatus()!=null&&(mail.getStatus().equals(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL))){
-				content=new String(properties.getProperty("Approval_Content"));
-				subject=new String(properties.getProperty("Approval_Subject"));
+				content=properties.getProperty("Approval_Content");
+				subject=properties.getProperty("Approval_Subject");
 				//获取所有公司审批人角色的用户
 				Map<String,Object> map = new HashMap<String,Object>();
 				//++设置角色名称列表
@@ -188,8 +188,8 @@ public class MailAction extends BaseAction {
 			}
 			//带部门审批
 			else if(mail.getStatus()!=null&&mail.getStatus().equals(Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL)){
-				content=new String(properties.getProperty("Approval_Content"));
-				subject=new String(properties.getProperty("Approval_Subject"));
+				content=properties.getProperty("Approval_Content");
+				subject=properties.getProperty("Approval_Subject");
 				
 				//获取所有公司审批人角色的用户
 				Map<String,Object> map = new HashMap<String,Object>();
