@@ -52,7 +52,11 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 			if(tracking.getType()==null || tracking.getType().trim().length() == 0)
 				tracking.setType(Constants.TRACKING_TYPE_TRACKING);
 			track = trackDao.insertTracking(tracking);
-			
+			SupportTicket st = new SupportTicket();
+			st.setId(tracking.getStId());
+			//更新最后操作时间
+			st.setLastUpdateDate(new Date());
+			stService.updateSupportTicket(st);
 		} catch (RuntimeException e) {
 			logger.error(e,e.fillInStackTrace());
 			throw e;
@@ -199,6 +203,8 @@ public class TrackingServiceImpl extends BaseService implements TrackingService 
 				st.setStStatus(Constants.ST_STATUS_WAIT_FEEDBACK);
 				
 			}
+			//更新最后操作时间
+			st.setLastUpdateDate(new Date());
 			stService.updateSupportTicket(st);
 			
 		} catch (RuntimeException e) {
