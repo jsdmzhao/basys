@@ -308,7 +308,8 @@ public class SupportTicketAction extends PageAction implements
 		params.put("user_region_list", region_list);
 		// -- 默认用户管辖范围
 		// 设置TRACKING关联标识
-		if (params.get("type") != null || params.get("tracking_person") != null)
+		if ((params.get("type") != null && !params.get("type").equals("")) 
+				|| (params.get("tracking_person") != null && !params.get("tracking_person").equals("")))
 			params.put("join_tracking", true);
 		Page page = stService.getListSupportTicketForPage(params,
 				this.pagesize, this.pagerow, this.sort, this.dir);
