@@ -1,10 +1,6 @@
 package com.aisino2.techsupport.action;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import jxl.Workbook;
@@ -35,9 +30,11 @@ import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.Dict_item;
+import com.aisino2.sysadmin.domain.Globalpar;
 import com.aisino2.sysadmin.domain.User;
 import com.aisino2.sysadmin.domain.User_role;
 import com.aisino2.sysadmin.service.IDict_itemService;
+import com.aisino2.sysadmin.service.IGlobalparService;
 import com.aisino2.sysadmin.service.IUser_roleService;
 import com.aisino2.techsupport.common.Constants;
 import com.aisino2.techsupport.domain.Supervision;
@@ -74,8 +71,14 @@ public class SupportTicketAction extends PageAction implements
 	private HttpServletResponse response;
 	private ISupervisionService supervision_service;
 	private IDict_itemService dict_item_service;
-	
-	@Resource(name="dict_itemService")
+	private IGlobalparService globalparService;
+
+	@Resource(name = "globalparService")
+	public void setGlobalparService(IGlobalparService globalparService) {
+		this.globalparService = globalparService;
+	}
+
+	@Resource(name = "dict_itemService")
 	public void setDict_item_service(IDict_itemService dict_item_service) {
 		this.dict_item_service = dict_item_service;
 	}
@@ -109,13 +112,11 @@ public class SupportTicketAction extends PageAction implements
 		// 临时文件名
 		String filename = new Date().getTime() + ".xls";
 		// 文件地址
-		String filepath = "/"+"uploadTemp" + "/"+ filename;
+		String filepath = "/" + "uploadTemp" + "/" + filename;
 		String filestorepath = this.getRequest().getSession()
 				.getServletContext().getRealPath("/")
 				+ "/" + "uploadTemp" + "/" + filename;
 
-		
-		
 		// 表头
 		String title[] = { "技术支持单编号", "申请人", "大区/区域", "所属项目名称", "支持类型",
 				"技术支持内容", "技术支持负责人", "技术支持部门", "技术支持单状态", "日期", "填写人", "进展情况",
@@ -124,8 +125,7 @@ public class SupportTicketAction extends PageAction implements
 		int[] header_width = { 17, 9, 9, 16, 13, 12, 16, 16, 15, 11, 13, 15,
 				11, 13, 15 };
 		File tempfile = new File(filestorepath);
-		WritableWorkbook workbook = Workbook
-				.createWorkbook(tempfile);
+		WritableWorkbook workbook = Workbook.createWorkbook(tempfile);
 		WritableSheet sheet = workbook.createSheet(name, 0);
 		// 标题显示标签
 		Label label = null;
@@ -155,19 +155,19 @@ public class SupportTicketAction extends PageAction implements
 			List<Supervision> supervision_list = supervision_service
 					.query_supervision(superv);
 			excel_st.setSupervision_list(supervision_list);
-			//地区
-			Dict_item dictitem=new Dict_item();
+			// 地区
+			Dict_item dictitem = new Dict_item();
 			dictitem.setDict_code(Constants.ST_REGION_DICT_CODE);
 			dictitem.setFact_value(excel_st.getRegion());
 			dictitem = dict_item_service.getDict_item(dictitem);
 			excel_st.setRegion(dictitem.getDisplay_name());
-			//状态
-			dictitem=new Dict_item();
+			// 状态
+			dictitem = new Dict_item();
 			dictitem.setDict_code(Constants.ST_STATUS_DICT_CODE);
 			dictitem.setFact_value(excel_st.getStStatus());
 			dictitem = dict_item_service.getDict_item(dictitem);
 			excel_st.setStStatus(dictitem.getDisplay_name());
-			
+
 			label = new Label(0, y, excel_st.getStNo());
 			sheet.addCell(label);
 			label = new Label(1, y, excel_st.getApplicant().getUsername());
@@ -241,9 +241,12 @@ public class SupportTicketAction extends PageAction implements
 		workbook.close();
 		this.getRequest().setAttribute("filefullname", filestorepath);
 		this.getRequest().setAttribute("need_remove", true);
-		this.getRequest().setAttribute("filename", name+".xls");
-		this.getRequest().getRequestDispatcher("/business/techSupport/common/attach_download.jsp").forward(getRequest(), response);
-		
+		this.getRequest().setAttribute("filename", name + ".xls");
+		this.getRequest()
+				.getRequestDispatcher(
+						"/business/techSupport/common/attach_download.jsp")
+				.forward(getRequest(), response);
+
 		return null;
 	}
 
@@ -253,6 +256,7 @@ public class SupportTicketAction extends PageAction implements
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public String querylist() throws Exception {
 		SupportTicket setsupportTicket = new SupportTicket();
 		supportTicket = (SupportTicket) this.setClass(setsupportTicket, null);
@@ -291,8 +295,41 @@ public class SupportTicketAction extends PageAction implements
 		}
 
 		// ++ 最后更改时间天数
-		params.put("last_update_day", Constants.LAST_UPDATE_DAY);
+		
 		params.put("use_last_update_day", supportTicket.getUseLastUpdateDate());
+		if(supportTicket.getUseLastUpdateDate()!=null && supportTicket.getUseLastUpdateDate().trim().length() > 0)
+		{
+			
+			int lastUpdateIntervalDay = Constants.LAST_UPDATE_DAY;
+			
+			try{
+				Globalpar gp = new Globalpar();
+				if(Constants.ST_STATUS_GOING.equals(supportTicket.getStStatus()))
+				{
+					gp.setGlobalparcode(Constants.ST_TRACKING_UPDATE_INTERVAL_DAY);
+					gp = globalparService.getGlobalpar(gp);
+					lastUpdateIntervalDay = Integer.parseInt(gp.getGlobalparvalue());
+				}
+				else if (Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL.equals(supportTicket.getStStatus())
+						||Constants.ST_STATUS_WAIT_DEPARTMENT_APPRAVAL.equals(supportTicket.getStStatus()))
+				{
+					gp.setGlobalparcode(Constants.ST_APPRAVAL_UPDATE_INTERVAL_DAY);
+					gp = globalparService.getGlobalpar(gp);
+					lastUpdateIntervalDay = Integer.parseInt(gp.getGlobalparvalue());
+				}
+				else if (Constants.ST_STATUS_WAIT_FEEDBACK.equals(supportTicket.getStStatus()))
+				{
+					gp.setGlobalparcode(Constants.ST_FEEDBACK_UPDATE_INTERVAL_DAY);
+					gp = globalparService.getGlobalpar(gp);
+					lastUpdateIntervalDay = Integer.parseInt(gp.getGlobalparvalue());
+				}
+				
+			}catch (Exception e) {
+				log.error(e);
+				log.debug(e,e.fillInStackTrace());
+			}
+			params.put("last_update_day", lastUpdateIntervalDay);
+		}
 		// -- 最后更改时间天数
 
 		// ++ 意见回复人
@@ -458,9 +495,8 @@ public class SupportTicketAction extends PageAction implements
 			Tracking t = new Tracking();
 			t.setStId(st.getId());
 			st.setTrackList(trackingService.getTrackingList(t));
-			if(!st.getTrackList().isEmpty())
-				st.setTrackingProcess(st.getTrackList()
-					.get(0).getNewProcess());
+			if (!st.getTrackList().isEmpty())
+				st.setTrackingProcess(st.getTrackList().get(0).getNewProcess());
 			st.setCheckbox("<input type=\"checkbox\" name=\"lSt[" + i
 					+ "].id\" value=\"" + st.getId() + "\">");
 
@@ -471,11 +507,12 @@ public class SupportTicketAction extends PageAction implements
 			supportLeaderNames = supportLeaderNames.length() > 0 ? supportLeaderNames
 					.substring(1) : supportLeaderNames;
 			st.setSupportLeaderName(supportLeaderNames);
-			
+
 			String deptNames = "";
 			for (Department dept : st.getSupportDeptList())
 				deptNames += "," + dept.getDepartname();
-			deptNames = deptNames.length() > 0?deptNames.substring(1):deptNames;
+			deptNames = deptNames.length() > 0 ? deptNames.substring(1)
+					: deptNames;
 			st.setSupportDeptName(deptNames);
 			st.setRegionName(ItemChange.codeChange(
 					Constants.ST_REGION_DICT_CODE, st.getRegion()));
