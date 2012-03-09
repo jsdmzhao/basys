@@ -185,7 +185,7 @@ function SupportTicketQuery(pageno,url){
 				var paramss={};
 				var fields=$('input:checked[name^=lSt]');
 				for(i=0;i<fields.length;i++){
-					paramss[fields.eq(i).attr('name')]=fields.eq(i).val();
+					paramss['lSt['+i+'].id']=fields.eq(i).val();
 				}
 				$.post(sendSmsURL,paramss,function(data){
 					
