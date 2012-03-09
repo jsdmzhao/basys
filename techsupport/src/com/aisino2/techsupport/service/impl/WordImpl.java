@@ -174,11 +174,11 @@ public class WordImpl implements IWord {
 				department=departmentService.getDepartment(department);
 				table.addCell(new Cell(department.getDepartname()));
 				//上次填报时间
-				table.addCell(new Cell(format.format(trackList.get(0).getTrackingDate())));
+				table.addCell(new Cell(format.format(newLst.get(i).getLastUpdateDate())));
 				//上次填报内容
 				table.addCell(new Cell(trackList.get(0).getNewProcess()));
 				//逾期时间
-				Date editTime=format.parse(format.format(trackList.get(0).getTrackingDate()));
+				Date editTime=format.parse(format.format(newLst.get(i).getLastUpdateDate()));
 				Date now=format.parse(format.format(new Date()));
 				long diff=now.getTime()-editTime.getTime();
 				long days=diff/(1000 * 60 * 60 * 24);
@@ -249,9 +249,9 @@ public class WordImpl implements IWord {
 				tracking.setStId(newLst.get(i).getId());
 				//tracking.setType("40");
 				List<Tracking> trackingList=TrackingServiceImpl.getTrackingList(tracking);
-				table.addCell(new Cell(format.format(trackingList.get(0).getTrackingDate())));
+				table.addCell(new Cell(format.format(newLst.get(i).getApplyingFeedbackDate())));
 				//逾期时间
-				Date editTime=format.parse(format.format(trackingList.get(0).getTrackingDate()));
+				Date editTime=format.parse(format.format(newLst.get(i).getLastUpdateDate()));
 				Date now=format.parse(format.format(new Date()));
 				long diff=now.getTime()-editTime.getTime();
 				long days=diff/(1000 * 60 * 60 * 24);
