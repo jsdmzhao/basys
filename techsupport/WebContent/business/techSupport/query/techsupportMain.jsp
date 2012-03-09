@@ -62,8 +62,12 @@ var supervision_width = 690;
 // 延迟加载
 function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
-	ingridHeight=$('#iframes').height()-queryPanelHeight
-	-$('#title').outerHeight(true)-$('#export_btn').height()-80;
+	if(window.screen.height > 768 )
+		ingridHeight=$('#iframes').height()-queryPanelHeight
+		-$('#title').outerHeight(true)-80-$('#export_btn').height();
+	else
+		ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
+		-$('#title').outerHeight(true)-80-$('#export_btn').height();
 	loadPageSupportTicketQuery(divnid);
 	
 }

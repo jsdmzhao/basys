@@ -51,9 +51,13 @@ var ingridHeight=200;
 var stNoList;
 function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
-		
-		ingridHeight=$('#iframes').height()-queryPanelHeight
-		-$('#title').outerHeight(true)-80-28;
+		if(window.screen.height > 768 )
+			ingridHeight=$('#iframes').height()-queryPanelHeight
+			-$('#title').outerHeight(true)-80-28;
+		else
+			ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true)
+			-queryPanelHeight
+			-$('#title').outerHeight(true)-80-28;
 		loadPageSupportTicketQuery(divnid);
 
 }
@@ -245,7 +249,7 @@ function SupportTicketQuery(pageno,url){
 
 <div id="tsworksheet" class="bnbody">
 	<%-- 使用最后更新时间查询 --%>
-	<input type="hidden" id="p_useLastUpdateDate" value="1">
+	<input type="hidden" id="p_useLastUpdateDate" value="">
 	<input type="hidden" id="p_tag" value="dxts">
 	<div id="title" class="queryfont">
 		短信提示

@@ -22,9 +22,12 @@ var worksheet_table_id;
 var worksheet_page_url;
 function lazyLoad() {
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
-	ingridHeight=$('#iframes').height()-queryPanelHeight
-		-$('#title').outerHeight(true)-80;
-	
+	if(window.screen.height > 768 )
+			ingridHeight=$('#iframes').height()-queryPanelHeight
+			-$('#title').outerHeight(true)-80;
+		else
+			ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
+			-$('#title').outerHeight(true)-80;
 	loadPageWorksheetQuery(worksheet_div_id);
 	
 	//	 ++添加流程筛选
