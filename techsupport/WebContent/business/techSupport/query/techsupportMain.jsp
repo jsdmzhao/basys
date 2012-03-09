@@ -204,7 +204,7 @@ function lazyLoad(){
 	 			$('#p_type').val(TRACKING_TYPE_CEREPLY);
 	 		}
 	 		else
-	 			$('#p_type').val('');
+	 			$('#p_type').val(null);
 			url=setList(pageno,url);
 			// create the grid
 			// returns a jQ object with a 'g' property - that's ingrid
