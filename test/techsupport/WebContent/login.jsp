@@ -43,7 +43,7 @@
 
 <html>
 <head>
-<title>login</title>
+<title>技术支持单流转系统登录</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 <!--
@@ -90,7 +90,7 @@ $(document).ready(function (){
 	
 	%>
    	$('#sendajax').click(function (){ //直接把onclick事件写在了JS中，而不需要混在XHTML中了
-   	 	  if (checkControlValue("p_useraccount","String",1,30,null,1,"用户名") && checkControlValue("t_password","String",1,100,null,1,"密码")){	
+   	 	  if (verify()){	
           		//hash = hex_md5(#("p_password"));
           		//alert(hex_md5($("#t_password").val()));
           		$("#p_password").val(hex_md5($("#t_password").val()));
@@ -129,9 +129,10 @@ function update_page (json) { //回传函数实体，参数为XMLhttpRequest.res
 		$("#waitTable").css("display","none");
       if (json.result=="success"){
       	//window.location="index1.jsp";//分批加载菜单
+      	$("#errorText").text('');
       	window.location="temp-index.jsp";//一次取出所有菜单
       }else{
-      	jAlert(json.result, '登录信息');
+      	$("#errorText").text(json.result);
       	$("#p_useraccount").val("");
       	$("#p_password").val("");
       	$("#t_password").val("");
@@ -209,10 +210,29 @@ creatSessionForCsbmCsmc(sscsbm,sscs);
 		
 			});
 	  }
+
+function verify(){
+	if(!$('#p_useraccount').val())
+	{
+		$('#p_useraccount').focus();
+		$('#errorText').text("用户名必填");
+		return false;
+	}
+
+	if(!$('#t_password').val())
+	{
+		$('#t_password').focus();
+		$('#errorText').text("密码必填");
+		return false;
+	}
+	return true;
+}
 </script>
 
 </head>
-<body background="images/login_bg.jpg" leftmargin="0" topmargin="198" marginwidth="0" marginheight="0">
+<body  leftmargin="0" topmargin="198" marginwidth="0" marginheight="0" style=" background: url(images/login_bg.jpg); ">
+<input  type="hidden" class="logininput" name="p_loginip" id="p_loginip"/>
+<input  type="hidden" class="logininput" name="p_loginmac" id="p_loginmac"/>
 <!-- Save for Web Slices (login.psd) -->
 <table   width="595" height="329" border="0" cellpadding="0" cellspacing="0" align="center">
 	<tr>
@@ -234,7 +254,7 @@ creatSessionForCsbmCsmc(sscsbm,sscs);
                   <input name="p_password" id="p_password" type="hidden"/>              </td>
             </tr>
             <tr>
-              <td align="right" style="font-size:12px; color:#146da5; line-height:150%">&nbsp;</td>
+              <td align="right" style="font-size:12px; color:#146da5; line-height:150%;color: red;" id="errorText">&nbsp;</td>
             </tr>
             <tr>
               <td align="right" style="font-size:12px; color:#146da5; line-height:150%"><table width="64" border="0" cellspacing="0" cellpadding="3">
@@ -249,6 +269,15 @@ creatSessionForCsbmCsmc(sscsbm,sscs);
       </table></td>
   </tr>
 </table>
+<div id=div_login style="position:absolute; background:url(images/loadingbg.gif); width:243px; height:55px;font-size:13px; font-weight:bold; color:#666666;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr><td height="17px;"></td></tr>
+		<tr><td width="15"></td>
+		    <td><img src="images/loading.gif"/></td>
+		    <td>登录中，请稍候......</td>
+		</tr>
+		</table>
+	</div>
 <!-- End Save for Web Slices -->
 </body>
 </html>
