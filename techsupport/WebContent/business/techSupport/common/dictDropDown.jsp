@@ -34,8 +34,8 @@ function setList1(pageno,url){
 }	
 
 $(document).ready(function() {
-	if($('#pageurl').val())
-		pageUrld = $('#pageurl').val();
+	if($('#d_pageurl').val())
+		pageUrld = $('#d_pageurl').val();
 	
 	if(gcodeValue!=null && gcodeValue!=""){
 		$("#t_query_simplepin").val(gcodeValue);
@@ -170,7 +170,7 @@ String user_rolename_list = request.getParameter("rolename_list");
 if(user_rolename_list == null)
 	user_rolename_list = "";
 %>
-<input type="hidden" id="pageurl" value="<%=pageurl%>"/>
+<input type="hidden" id="d_pageurl" value="<%=pageurl%>"/>
 <input id='t_super_item_id' type='hidden' />
 <table width="100%" border="0" cellpadding="0" cellspacing="0"  background="images/toolbar.gif">
     <tr>
