@@ -64,10 +64,10 @@ function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	if(window.screen.height > 768 )
 		ingridHeight=$('#iframes').height()-queryPanelHeight
-		-$('#title').outerHeight(true)-80-$('#export_btn').height();
+		-$('#title').outerHeight(true)-80;
 	else
 		ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
-		-$('#title').outerHeight(true)-80-$('#export_btn').height();
+		-$('#title').outerHeight(true)-80;
 	loadPageSupportTicketQuery(divnid);
 	
 }
@@ -362,18 +362,24 @@ function lazyLoad(){
 				<div class="clear-row"></div>
 			</div>
 			<div class="row">
-				<div class="column" style="width: 80%;">
+				<div class="column" style="width: 75%;">
 					<div class="clear-column"></div>
 				</div>
-				<div class="column" style="width:20%;">
-					<a href="#" class="item searchbutton" id="queryBtn">查  询</a>
+				<div class="column" style="width:25%;">
+					<div class="column">
+						<a href="#" class="item searchbutton " id="queryBtn">查  询</a>
+						<div class="clear-column"></div>
+					</div>
+					<div class="column">
+						<a href="#" class="item submitbutton" id="export_btn" style="margin-left: 10px;">全部导出</a>
+						<div class="clear-column"></div>
+					</div>
 					<div class="clear-column"></div>
 				</div>
 				<div class="clear-row"></div>
 			</div>
 			
 		</div>
-		<a href="#" class="item " id="export_btn">全部导出</a>
 		<div id="queryContent">
 			<table id="queryContentTable" width="100%" border="1">
 			  <thead>
