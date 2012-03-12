@@ -363,15 +363,14 @@ function showloading(visable,msg) {
 
 
 /** 获取更具当前用户的角色信息获取地区 mcId-字典显示值控件ID,dmId-字典实际值控件ID,dictCode-字典编码*/
-function getRegionWithRole(mcId,dmId)
-{	
+function getRegionWithRole(mcId,dmId){
 	gmcId=mcId;
 	gdmId=dmId;
 	gdictCode=ST_REGION_DICT_CODE;
 	if($("#divs_"+mcId).length>0){return;} //yangbo 4.29 add:偶尔筛选不好用
 	shuaiXuanKuangComm(mcId,dmId);
  	detailidDict="divs_"+mcId;//DIV层的ID
- 	
+ 	alert(1);//###
     addHtmlDict="business/techSupport/common/dictDropDown.jsp";//DIV层内嵌的jsp页面
 	addWidthDict="420";	//DIV层的宽度
 	setDictPage({pageurl:'techsupport/querylistRegionByRole_tscommon.action'});

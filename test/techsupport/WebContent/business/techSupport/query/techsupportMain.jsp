@@ -114,6 +114,7 @@ function lazyLoad(){
  					$('#p_applicantId').val('<%=user.getUserid()%>');
 
  					//支持单负责人选择器
+ 					$('#slName').unbind('click');
  					$("#slName").click(function(){
  						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
 	 	 			});
@@ -139,21 +140,29 @@ function lazyLoad(){
  				//反馈人 控制
  				else if(ST_ROLE_NAME_FEEDBACKER == data.userRoleList[i].rolename){
 					//设置大区智能选择器
+					$('#rgName').unbind('click');
 					$('#rgName').click(function(){
 						getRegionWithRole('rgName','p_region');
 					});
  	 			}
  	 			//支持单负责人 控制
  				else if(ST_ROLE_NAME_STLEADER == data.userRoleList[i].rolename){
+ 	 				//填报人
+ 	 				$('#applicantName').unbind('click');
+ 					$('#applicantName').click(function(){
+ 	 					getUserofDept('applicantName','p_applicantId',null,[ST_ROLE_NAME_APPLICANT]);
+ 	 				});
  	 				//设置支持单负责人为本人
 					$('#slName').val("<%=username%>");
 					$('#p_supportLeaderId').val("<%=user.getUserid()%>");
 					
 					//设置大区智能选择器
+					$('#rgName').unbind('click');
 					$('#rgName').click(function(){
 						getDict_item('rgName','p_region',ST_REGION_DICT_CODE);
 					});
  	 			}
+ 	 			//全部导出
  				else if (ST_ROLE_NAME_DM == data.userRoleList[i].rolename){
  	 				//设置导出按钮
  	 				$('#export_btn').attr('disabled',false);
@@ -162,13 +171,25 @@ function lazyLoad(){
 						
  	 	 			});
  	 			}
+ 	 			//区总
  				else if (data.userRoleList[i].rolename.indexOf('区总') != -1){
 					//填报人
 					$('#applicantName').unbind('click');
  					$('#applicantName').click(function(){
  	 					getUserofDept('applicantName','p_applicantId',gxdwbm,[ST_ROLE_NAME_APPLICANT]);
  	 				});
-	
+					
+ 					//设置大区智能选择器
+ 					$('#rgName').unbind('click');
+					$('#rgName').click(function(){
+						getRegionWithRole('rgName','p_region');
+					});
+
+					//支持单负责人选择器
+					$('#slName').unbind('click');
+ 					$("#slName").click(function(){
+ 						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
+	 	 			});
  	 			}
 
  				
