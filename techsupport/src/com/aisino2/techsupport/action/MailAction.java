@@ -115,9 +115,9 @@ public class MailAction extends BaseAction {
 			Properties mailConfig=new Properties();
 			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
 			mailConfig.load(config);
-			//mail.setEmail(new String(properties.getProperty("company_Address")));
-			//mail.setPassword(new String(properties.getProperty("compnay_password")));
-			mail.setEmail(email);
+			mail.setEmail(properties.getProperty("company_Address"));
+			mail.setPassword(properties.getProperty("compnay_password"));
+//			mail.setEmail(email);
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));

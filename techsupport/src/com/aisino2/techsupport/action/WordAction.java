@@ -65,6 +65,11 @@ public class WordAction extends BaseAction {
 			Properties mailConfig=new Properties();
 			InputStream config = this.getClass().getClassLoader().getResourceAsStream("mailConfig.properties");
 			mailConfig.load(config);
+			//读取系统邮件发送信息
+			Properties mailInfomation = new Properties();
+			InputStream mailInfoIn = this.getClass().getClassLoader().getResourceAsStream("mailContent.properties");
+			mailInfomation.load(mailInfoIn);
+			
 			String status=word.getStatus();
 			String fileName=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			String subject=null;//邮件主题
@@ -114,8 +119,13 @@ public class WordAction extends BaseAction {
 			wordService.CreateWord(word);
 			wordService.close();
 			Mail mail=new Mail();
-			mail.setEmail(word.getMail());
-			mail.setPassword(word.getMail_password());
+			
+//			mail.setEmail(word.getMail());
+//			mail.setPassword(word.getMail_password());
+			//统一系统邮件发送人 @fixed
+			mail.setEmail(mailInfomation.getProperty("company_Address"));
+			mail.setPassword(mailInfomation.getProperty("compnay_password"));
+			
 			mail.setProtocol(mailConfig.getProperty("protocol"));
 			mail.setSmtphost(mailConfig.getProperty("smtphost"));
 			mail.setHost(mailConfig.getProperty("host"));
