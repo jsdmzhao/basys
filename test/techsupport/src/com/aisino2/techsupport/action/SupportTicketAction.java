@@ -288,6 +288,8 @@ public class SupportTicketAction extends PageAction implements
 		params.put("type", tracking.getType());
 		params.put("trackDateFrom", tracking.getTrackingDateFrom());
 		params.put("trackDateTo", tracking.getTrackingDateTo());
+		params.put("applyDateFrom", supportTicket.getApplyDateFrom());
+		params.put("applyDateTo", supportTicket.getApplyDateTo());
 		if (limitDeparement.getDepartid() != null) {
 			// 单位筛选
 			params.put("limitUserDeparement", 1);
