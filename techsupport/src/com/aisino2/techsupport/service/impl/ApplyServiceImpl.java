@@ -42,6 +42,8 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 		st.setStStatus(Constants.ST_STATUS_WAIT_COMPANY_APPRAVAL);
 		//更新最后操作时间
 		st.setLastUpdateDate(new Date());
+		//填报时间
+		st.setApplyDate(st.getLastUpdateDate());
 		try{
 			
 			supportTicket=this.stService.insertSupportTicket(st);

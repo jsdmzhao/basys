@@ -312,14 +312,14 @@ function lazyLoad(){
 					<div class="clear-column"></div>
 				</div>
 				<div class="column column-width-default">
-					<label class="label">进展时间:</label>
-						<input type="text" class="item date  inputstyle" id="p_trackingDateFrom"></select>
-						<input type="hidden" value="" id="p_type">
+					<label class="label">填报时间:</label>
+						<input type="text" class="item date  inputstyle" id="p_applyDateFrom"></select>
+<!--						<input type="hidden" value="" id="p_type">-->
 					<div class="clear-column"></div>
 				</div>
 				<div class="column column-width-default">
 					<label class="label">到:</label>
-						<input type="text" class="item date  inputstyle" id="p_trackingDateTo"></select>
+						<input type="text" class="item date  inputstyle" id="p_applyDateTo"></select>
 					<div class="clear-column"></div>
 				</div>
 				

@@ -96,7 +96,7 @@
 		<result property="archiveUser.userid" column="ARCHIVE_USERID" />
 		<result property="lastUpdateDate" column="last_update_date"/>
 		<result property="archive_code" column="archive_code"/>
-		
+		<result property="applyDate" column="apply_date"/>
 	</resultMap>
 	
 	
@@ -191,6 +191,9 @@
 			<isNotEmpty prepend="," property="lastUpdateDate">
 				last_update_date
 			</isNotEmpty>
+			<isNotEmpty prepend="," property="applyDate">
+				apply_date
+			</isNotEmpty>
 		</dynamic>
 
 
@@ -268,6 +271,9 @@
 			</isNotNull>
 			<isNotEmpty prepend="," property="lastUpdateDate">
 				#lastUpdateDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="applyDate">
+				#applyDate#
 			</isNotEmpty>
 		</dynamic>
 
@@ -424,6 +430,12 @@
 		<isNotEmpty prepend="and" property="type">
 			tr.type = #type# and tr.st_id = t.id
 		</isNotEmpty>
+		<isNotEmpty prepend="and" property="applyDateFrom">
+			apply_date >= #applyDateFrom#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="applyDateTo">
+			apply_date &lt;= #applyDateTo#
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="lstSupportLeaders">
 			ssmap.ST_ID=t.id
 			<isNotEmpty prepend="and"  property="lstSupportLeaders">
@@ -560,7 +572,8 @@
 				
 				t.ARCHIVE_USERID,
 				t.last_update_date,
-				t.archive_code
+				t.archive_code,
+				t.apply_date
 
 
 <!-- 		, -->

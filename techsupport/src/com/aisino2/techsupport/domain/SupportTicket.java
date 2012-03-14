@@ -81,10 +81,34 @@ public class SupportTicket {
 	//最后改动时间
 	private Date lastUpdateDate;
 	private String useLastUpdateDate;
-	
+	//填报时间
+	private Date applyDate;
+	//查询用填报起始时间
+	private Date applyDateFrom;
+	//查询用填报终止时间
+	private Date applyDateTo; 
 	//归档号
 	private String archive_code;
 	
+	
+	public Date getApplyDateFrom() {
+		return applyDateFrom;
+	}
+	public void setApplyDateFrom(Date applyDateFrom) {
+		this.applyDateFrom = applyDateFrom;
+	}
+	public Date getApplyDateTo() {
+		return applyDateTo;
+	}
+	public void setApplyDateTo(Date applyDateTo) {
+		this.applyDateTo = applyDateTo;
+	}
+	public Date getApplyDate() {
+		return applyDate;
+	}
+	public void setApplyDate(Date applyDate) {
+		this.applyDate = applyDate;
+	}
 	public String getArchive_code() {
 		return archive_code;
 	}
