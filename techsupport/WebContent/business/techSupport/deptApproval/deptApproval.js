@@ -125,9 +125,11 @@ $(function(){
 	$('#savebtn').click(function(){
 		if(!submitVerity())
 			return;
-		if($("#deptRadioPanel  input").eq(1).attr("checked"))
+		if($("#deptRadioPanel  input").eq(1).attr("checked")){
 			if(!confirm("您确认本支持单不通过审批吗？"))
 				return;
+			$('#devAppr input,#psgAppr input').val('');
+		}
 		var params={};
 		
 		params = getSubmitParams('.deptApproval input,textarea',params);
