@@ -269,7 +269,7 @@
 					<div class="column">
 						<div class="devcpstage">
 							<label class="label label-80" >开发:</label>
-							<input type="text" class=" item label-80 ro inputstyle" name="st.devDsCompDate" id="devDsCompDate">
+							<input type="text" class=" item label-80 ro inputstyle" name="st.devDdCompDate" id="devDdCompDate">
 						</div>
 						<div class="clear-column"></div>
 					</div>
