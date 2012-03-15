@@ -431,10 +431,10 @@
 			tr.type = #type# and tr.st_id = t.id
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="applyDateFrom">
-			apply_date >= #applyDateFrom#
+			trunc(apply_date,'dd') >= #applyDateFrom#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="applyDateTo">
-			apply_date &lt;= #applyDateTo#
+			trunc(apply_date,'dd') &lt;= #applyDateTo#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="lstSupportLeaders">
 			ssmap.ST_ID=t.id

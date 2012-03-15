@@ -312,7 +312,7 @@ function lazyLoad(){
 					<div class="clear-column"></div>
 				</div>
 				<div class="column column-width-default">
-					<label class="label">填报时间:</label>
+					<label class="label">支持单申请时间:从:</label>
 						<input type="text" class="item date  inputstyle" id="p_applyDateFrom"></select>
 <!--						<input type="hidden" value="" id="p_type">-->
 					<div class="clear-column"></div>
