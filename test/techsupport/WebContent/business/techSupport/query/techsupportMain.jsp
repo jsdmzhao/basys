@@ -209,6 +209,11 @@ function lazyLoad(){
 	  * 表单验证
 	  * */
 	 function validate(){
+		if($('#p_applyDateFrom').val() > $('#p_applyDateFrom').val())
+		{
+			jAlert("支持单申请时间起始时间应该小于等于结束时间","提示");
+			return false;
+		}
 	 	return true;
 	 }
 	 
