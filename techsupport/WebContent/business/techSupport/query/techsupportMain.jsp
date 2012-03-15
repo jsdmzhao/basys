@@ -209,10 +209,18 @@ function lazyLoad(){
 	  * 表单验证
 	  * */
 	 function validate(){
-		if($('#p_applyDateFrom').val() > $('#p_applyDateFrom').val())
+		
+		if($('#p_applyDateFrom').val() && $('#p_applyDateTo').val())
 		{
-			jAlert("支持单申请时间起始时间应该小于等于结束时间","提示");
-			return false;
+			var fromDateStr = $('#p_applyDateFrom').val().replace("-","/"); 
+			var toDateStr = $('#p_applyDateTo').val().replace("-","/");
+			var fromDate = new Date(Date.parse(fromDateStr))
+			var toDate = new Date(Date.parse(toDateStr));
+			if(fromDate > toDate)
+			{
+				jAlert("支持单申请时间起始时间应该小于等于结束时间","提示");
+				return false;
+			}
 		}
 	 	return true;
 	 }
