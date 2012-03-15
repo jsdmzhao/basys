@@ -89,7 +89,7 @@ function lazyLoad(){
 		$('#p_stStatus').selectBox({code:ST_STATUS_DICT_CODE});
 		//设置部门选择器
 		
-		$('#p_departid').selectBox({code:"dm_ts_depart_list"});
+		$('#p_departcode').selectBox({code:"dm_ts_depart_list"});
 // 		时间选择器设置
 		$('.date').each(function(){
 			$(this).attr('readOnly',true);
@@ -122,13 +122,12 @@ function lazyLoad(){
  				}
 //  	 			督办 角色控制
  				else if(ST_ROLE_NAME_SUPERVISION == data.userRoleList[i].rolename){
- 					//$('#p_departid').val('<%=user.getDepartid()%>');
  					$('#applicantName').click(function(){
  	 					getUserofDept('applicantName','p_applicantId',null,[ST_ROLE_NAME_APPLICANT]);
  	 				});
  					//设置技术负责人
  					$('#slName').click(function(){
- 						getUserofDept('slName','p_supportLeaderId',$('#p_departid').val(),ST_ROLE_NAME_STLEADER);
+ 						getUserofDept('slName','p_supportLeaderId',$('#p_departcode').val(),ST_ROLE_NAME_STLEADER);
  					});
  					
  					//设置大区
@@ -353,7 +352,7 @@ function lazyLoad(){
 			<div class="row">
 				<div class="column column-width-default">
 					<label class="label">技术支持部门:</label>
-					<select class="item" id="p_departid" >
+					<select class="item" id="p_departcode" >
 						<option></option>
 					</select>
 					

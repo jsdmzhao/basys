@@ -454,7 +454,8 @@
 		<isNotEmpty prepend="and" property="limitUserDeparement">
 			std.st_id = t.id
 			and
-			std.DEPT_ID=#limitDeparement#
+			std.DEPT_ID= d.departid
+			and d.departcode = #limitDeparement#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="applicant.userid" open="(" close=")">
 			t.applicant=#applicant.userid#
@@ -492,7 +493,8 @@
 <!-- 	 	<isEmpty prepend="," property="lstSupportLeaders"> -->
 <!-- 		 	T_TS_STSL_MAP ssmap -->
 <!-- 		 </isEmpty> -->
-			T_TS_STDEPT_MAPPING std
+			T_TS_STDEPT_MAPPING std,
+			t_department d
 		 </isNotEmpty>
 	</sql>
 	<!-- 获取支持单列表 不分页 -->
