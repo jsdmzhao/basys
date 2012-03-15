@@ -290,10 +290,10 @@ public class SupportTicketAction extends PageAction implements
 		params.put("trackDateTo", tracking.getTrackingDateTo());
 		params.put("applyDateFrom", supportTicket.getApplyDateFrom());
 		params.put("applyDateTo", supportTicket.getApplyDateTo());
-		if (limitDeparement.getDepartid() != null) {
+		if (limitDeparement.getDepartcode() != null) {
 			// 单位筛选
 			params.put("limitUserDeparement", 1);
-			params.put("limitDeparement", limitDeparement.getDepartid());
+			params.put("limitDeparement", limitDeparement.getDepartcode());
 		}
 
 		// ++ 最后更改时间天数
