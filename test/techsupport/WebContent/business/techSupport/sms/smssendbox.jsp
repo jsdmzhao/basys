@@ -136,7 +136,10 @@ function SupportTicketQuery(pageno,url){
 		
 		//设置申请人
 		$('#applicantName').click(function(){
-			getUserofDept('applicantName','p_applicantId',null,ST_ROLE_NAME_APPLICANT);
+			var __gxdwbm=null;
+			if($("#p_region").val())
+				__gxdwbm = $('#p_region').val();
+			getUserofDept('applicantName','p_applicantId',__gxdwbm,ST_ROLE_NAME_APPLICANT);
 		});
 		//设置大区
 		$('#rgName').click(function(){
