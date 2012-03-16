@@ -11,4 +11,6 @@ public interface WorksheetDao {
 	Page get_region_with_userrole_for_page(Map user,int pageno, int pagesize,String dir, String sort);
 	List<Dict_item> get_region_with_deptcode(Map map);
 	Page get_region_with_deptcode_for_page(Map map, int pageno, int pagesize,String dir, String sort);
+	
+	Page getWorksheetTaskForPage(Map<String, Object> map, int pageno, int pagesize, String dir, String sort);
 }
