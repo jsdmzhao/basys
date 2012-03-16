@@ -40,6 +40,11 @@
 	<resultMap id="sib_orderResult" class="dict_item">
 		<result property="sib_order" column="sib_order" />
 	</resultMap>
+	<sql id="t_dict_itemWhereForUpdate">
+		<isNotEmpty prepend="and" property="item_id">
+				a.item_id=#item_id#
+			</isNotEmpty>
+	</sql>
 	<sql id="t_dict_itemWhere">
 			<isNotEmpty prepend="and" property="item_id">
 				a.item_id=#item_id#
@@ -191,7 +196,7 @@
 		</dynamic>
 		where 1=1
 		<dynamic prepend="">
-			<include refid="t_dict_itemWhere" />
+			<include refid="t_dict_itemWhereForUpdate" />
 		</dynamic>
 	</update>
 	<!--字典项(t_dict_item)-->
