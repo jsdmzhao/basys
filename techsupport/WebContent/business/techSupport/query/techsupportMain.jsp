@@ -123,7 +123,10 @@ function lazyLoad(){
 //  	 			督办 角色控制
  				else if(ST_ROLE_NAME_SUPERVISION == data.userRoleList[i].rolename){
  					$('#applicantName').click(function(){
- 	 					getUserofDept('applicantName','p_applicantId',null,[ST_ROLE_NAME_APPLICANT]);
+ 	 					var __gxdwbm=null;
+ 	 					if($('#p_region').val())
+ 	 	 					__gxdwbm = $('#p_region').val();
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
  	 				});
  					//设置技术负责人
  					$('#slName').click(function(){
@@ -148,8 +151,11 @@ function lazyLoad(){
  				else if(ST_ROLE_NAME_STLEADER == data.userRoleList[i].rolename){
  	 				//填报人
  	 				$('#applicantName').unbind('click');
- 					$('#applicantName').click(function(){
- 	 					getUserofDept('applicantName','p_applicantId',null,[ST_ROLE_NAME_APPLICANT]);
+ 	 				$('#applicantName').click(function(){
+ 	 					var __gxdwbm=null;
+ 	 					if($('#p_region').val())
+ 	 	 					__gxdwbm = $('#p_region').val();
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
  	 				});
  	 				//设置支持单负责人为本人
 					$('#slName').val("<%=username%>");
@@ -175,7 +181,10 @@ function lazyLoad(){
 					//填报人
 					$('#applicantName').unbind('click');
  					$('#applicantName').click(function(){
- 	 					getUserofDept('applicantName','p_applicantId',gxdwbm,[ST_ROLE_NAME_APPLICANT]);
+ 	 					var __gxdwbm=null;
+ 	 					if($('#p_region').val())
+ 	 	 					__gxdwbm = $('#p_region').val();
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
  	 				});
 					
  					//设置大区智能选择器
