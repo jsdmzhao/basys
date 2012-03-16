@@ -1,9 +1,10 @@
 package com.aisino2.techsupport.domain;
 
-import org.jbpm.api.task.Task;
+import org.jbpm.pvm.internal.task.TaskImpl;
+
 
 public class Worksheet {
-	private Task task;
+	private TaskImpl task;
 	private SupportTicket st;
 	
 	//------------------用于page------------------------------//
@@ -24,10 +25,10 @@ public class Worksheet {
 	private String stStatusCode;//支持单状态代码
 	
 	
-	public Task getTask() {
+	public TaskImpl getTask() {
 		return task;
 	}
-	public void setTask(Task task) {
+	public void setTask(TaskImpl task) {
 		this.task = task;
 	}
 	public SupportTicket getSt() {

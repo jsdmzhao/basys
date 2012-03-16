@@ -1,13 +1,16 @@
 package com.aisino2.techsupport.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.jbpm.api.TaskService;
+import org.jbpm.api.task.Participation;
 import org.jbpm.api.task.Task;
+import org.jbpm.pvm.internal.task.TaskImpl;
 import org.springframework.stereotype.Component;
 
 import com.aisino2.core.dao.Page;
@@ -43,91 +46,8 @@ public class WorksheetServiceImpl extends BaseService implements
 	}
 	public List<Worksheet> getWorksheetTaskList(String assignee,
 			String activity, String candidateUser, String slNo, String region) {
-		TaskService taskService = workflow.getTaskService();
 
-		List<Task> tasklist = taskService.createTaskQuery().assignee(assignee)
-				.candidate(candidateUser).activityName(activity).list();
-		List<Worksheet> worksheetList = new ArrayList<Worksheet>();
-
-		if (tasklist != null && tasklist.size() > 0) {
-			for (Task task : tasklist) {
-				boolean result = true;
-				Integer stId = (Integer) taskService.getVariable(task.getId(),
-						"worksheetno");
-
-				SupportTicket st = new SupportTicket();
-				st.setId(stId);
-				st = stService.getSupportTicket(st);
-
-				try {
-					if (slNo != null && result)
-						for (User sl : st.getLstSupportLeaders()) {
-							result = result
-									&& slNo.equals(sl.getUserid().toString());
-						}
-					if (region != null && result)
-						result = result && region.equals(st.getRegion());
-
-					if (result) {
-						Worksheet sheet = new Worksheet();
-
-						sheet.setTask(task);
-						sheet.setSt(st);
-
-						sheet.setTaskId(sheet.getTask().getId());
-						Dict_item tempDictI = new Dict_item();
-						tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
-						tempDictI.setFact_value(sheet.getTask().getActivityName());
-						sheet.setActivityName(dicItemService.getDictItemNameByDcFv(tempDictI));
-
-						sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
-								.getSt().getApplicant().getUsername()
-								: "");
-						// 技术负责人
-						String sSupportLeaderName = "";
-						for (User sl : sheet.getSt().getLstSupportLeaders())
-							sSupportLeaderName += "," + sl.getUsername();
-						sSupportLeaderName = sSupportLeaderName.length() > 0 ? sSupportLeaderName
-								.substring(1) : sSupportLeaderName;
-						sheet.setSupportLeaderName(sSupportLeaderName);
-						// 设置单位名称
-						String supportDeptName = "";
-						for (Department dept : sheet.getSt()
-								.getSupportDeptList()) {
-							supportDeptName += dept.getDepartname() + ",";
-						}
-						supportDeptName = supportDeptName.length() > 0 ? supportDeptName
-								.substring(0, supportDeptName.length() - 1)
-								: supportDeptName;
-
-						sheet.setSupportDeptName(supportDeptName);
-						sheet.setStNo(sheet.getSt().getStNo());
-
-						tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
-						tempDictI.setFact_value(sheet.getSt().getRegion());
-						sheet.setRegionName(dicItemService
-								.getDictionaryItemByDictCodeAndFactValue(
-										tempDictI).getDisplay_name());
-
-						tempDictI.setDict_code(Constants.ST_STATUS_DICT_CODE);
-						tempDictI.setFact_value(sheet.getSt().getStStatus());
-						sheet.setStStatusName(dicItemService
-								.getDictionaryItemByDictCodeAndFactValue(
-										tempDictI).getDisplay_name());
-
-						worksheetList.add(sheet);
-					}
-				} catch (Exception e) {
-					log.error(e);
-					log.debug(e.fillInStackTrace());
-				}
-
-			}
-
-			tasklist.clear();
-		}
-
-		return worksheetList;
+		return null;
 	}
 
 	/*
@@ -141,45 +61,39 @@ public class WorksheetServiceImpl extends BaseService implements
 	public Page getWorksheetTaskForPage(int pageNo, int pagesize,
 			String assignee, String activity, String candidateUser,
 			String slNo, String region,String stNO) {
-		TaskService taskService = workflow.getTaskService();
+		Map <String,Object> map = new HashMap<String, Object>();
+		
+		if(assignee!=null && assignee.trim().length() > 0){
+//			map.put("user", assignee);
+//			map.put("type",Participation.OWNER );
+			map.put("assignee", assignee);
+		}
+		if(activity!=null && activity.trim().length() > 0){
+			map.put("activity", activity);
+		}
+		if (candidateUser!=null && candidateUser.trim().length() > 0){
+			map.put("user", candidateUser);
+			map.put("type", Participation.CANDIDATE);
+		}
+		if(slNo !=null && slNo.trim().length() > 0){
+			map.put("supportLeader", slNo);
+			map.put("useSlMap", 1);
+		}
+		if(region!=null && region.trim().length() > 0){
+			map.put("region", region);
+		}
+		if(stNO!=null && stNO.trim().length() > 0){
+			map.put("stNo", stNO);
+		}
+		
+		Page pagein = worksheet_dao.getWorksheetTaskForPage(map, pageNo, pagesize, null, null);
+		List<Worksheet> worksheetList =pagein.getData();
 
-		List<Task> tasklist = taskService.createTaskQuery().assignee(assignee)
-				.candidate(candidateUser).activityName(activity)
-				.page((pageNo - 1) * pagesize, pagesize).orderDesc("id").list();
-		List<Worksheet> worksheetList = new ArrayList<Worksheet>();
-
-		for (Task task : tasklist) {
+		for (Worksheet sheet : worksheetList) {
 			boolean result = true;
-			Integer stId = (Integer) taskService.getVariable(task.getId(),
-					"worksheetno");
-
-			SupportTicket st = new SupportTicket();
-			st.setId(stId);
-
-			st = stService.getSupportTicket(st);
 
 			try {
-//				过滤
-				if (stNO != null && stNO.trim().length()>0 && result)
-					result = result && st.getStNo().equals(stNO);
-				if (slNo != null && result){
-					boolean contain_sl = false;
-					for (User sl : st.getLstSupportLeaders()) {
-							if(	slNo.equals(sl.getUserid().toString())){
-								contain_sl=true;
-								break;
-							}
-					}
-					result = result && contain_sl;
-				}
-				if (region != null && result)
-					result = result && region.equals(st.getRegion());
-
 				if (result) {
-					Worksheet sheet = new Worksheet();
-
-					sheet.setTask(task);
-					sheet.setSt(st);
 
 					sheet.setTaskId(sheet.getTask().getId());
 					
@@ -225,9 +139,7 @@ public class WorksheetServiceImpl extends BaseService implements
 							.getDictionaryItemByDictCodeAndFactValue(tempDictI)
 							.getDisplay_name());
 					sheet.setStStatusCode(sheet.getSt().getStStatus());
-					worksheetList.add(sheet);
 
-					sheet.setTask(null);
 				}
 			} catch (Exception e) {
 				log.error(e);
@@ -236,15 +148,120 @@ public class WorksheetServiceImpl extends BaseService implements
 
 		}
 
-		tasklist.clear();
 
-		Page pagein = new Page(pageNo, pagesize);
-		pagein.setData(worksheetList);
-		pagein.setTotalRows(worksheetList.size());
+//		Page pagein = new Page(pageNo, pagesize);
+//		pagein.setData(worksheetList);
+//		pagein.setTotalRows(worksheetList.size());
 
 		return pagein;
 	}
 
+//	public Page getWorksheetTaskForPage(int pageNo, int pagesize,
+//			String assignee, String activity, String candidateUser,
+//			String slNo, String region,String stNO) {
+//		TaskService taskService = workflow.getTaskService();
+//
+//		List<Task> tasklist = taskService.createTaskQuery().assignee(assignee)
+//				.candidate(candidateUser).activityName(activity)
+//				.page((pageNo - 1) * pagesize, pagesize).orderDesc("id").list();
+//		List<Worksheet> worksheetList = new ArrayList<Worksheet>();
+//
+//		for (Task task : tasklist) {
+//			boolean result = true;
+//			Integer stId = (Integer) taskService.getVariable(task.getId(),
+//					"worksheetno");
+//
+//			SupportTicket st = new SupportTicket();
+//			st.setId(stId);
+//
+//			st = stService.getSupportTicket(st);
+//
+//			try {
+////				过滤
+//				if (stNO != null && stNO.trim().length()>0 && result)
+//					result = result && st.getStNo().equals(stNO);
+//				if (slNo != null && result){
+//					boolean contain_sl = false;
+//					for (User sl : st.getLstSupportLeaders()) {
+//							if(	slNo.equals(sl.getUserid().toString())){
+//								contain_sl=true;
+//								break;
+//							}
+//					}
+//					result = result && contain_sl;
+//				}
+//				if (region != null && result)
+//					result = result && region.equals(st.getRegion());
+//
+//				if (result) {
+//					Worksheet sheet = new Worksheet();
+//
+//					sheet.setTask(task);
+//					sheet.setSt(st);
+//
+//					sheet.setTaskId(sheet.getTask().getId());
+//					
+//					Dict_item tempDictI = new Dict_item();
+//					tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
+//					tempDictI.setFact_value(sheet.getTask().getActivityName());
+//					sheet.setActivityName(dicItemService.getDictItemNameByDcFv(tempDictI));
+//					sheet.setApplicantName(sheet.getSt().getApplicant() != null ? sheet
+//							.getSt().getApplicant().getUsername()
+//							: "");
+//					// 技术负责人
+//					String sSupportLeaderName = "";
+//					for (User sl : sheet.getSt().getLstSupportLeaders())
+//						sSupportLeaderName += "," + sl.getUsername();
+//					sSupportLeaderName = sSupportLeaderName.length() > 0 ? sSupportLeaderName
+//							.substring(1) : sSupportLeaderName;
+//					sheet.setSupportLeaderName(sSupportLeaderName);
+//
+//					// 设置单位名称
+//					String supportDeptName = "";
+//					for (Department dept : sheet.getSt().getSupportDeptList()) {
+//						supportDeptName += dept.getDepartname() + ",";
+//					}
+//					supportDeptName = supportDeptName.length() > 0 ? supportDeptName
+//							.substring(0, supportDeptName.length() - 1)
+//							: supportDeptName;
+//
+//					sheet.setSupportDeptName(supportDeptName);
+//					// sheet.setSupportDeptCode(sheet.getSt().getSupportDept()
+//					// .getDepartcode());
+//					sheet.setStNo(sheet.getSt().getStNo());
+//
+//					tempDictI.setDict_code(Constants.ST_REGION_DICT_CODE);
+//					tempDictI.setFact_value(sheet.getSt().getRegion());
+//					sheet.setRegionName(dicItemService
+//							.getDictionaryItemByDictCodeAndFactValue(tempDictI)
+//							.getDisplay_name());
+//					sheet.setRegionCode(sheet.getSt().getRegion());
+//
+//					tempDictI.setDict_code(Constants.ST_STATUS_DICT_CODE);
+//					tempDictI.setFact_value(sheet.getSt().getStStatus());
+//					sheet.setStStatusName(dicItemService
+//							.getDictionaryItemByDictCodeAndFactValue(tempDictI)
+//							.getDisplay_name());
+//					sheet.setStStatusCode(sheet.getSt().getStStatus());
+//					worksheetList.add(sheet);
+//
+//					sheet.setTask(null);
+//				}
+//			} catch (Exception e) {
+//				log.error(e);
+//				log.debug(e.fillInStackTrace());
+//			}
+//
+//		}
+//
+//		tasklist.clear();
+//
+//		Page pagein = new Page(pageNo, pagesize);
+//		pagein.setData(worksheetList);
+//		pagein.setTotalRows(worksheetList.size());
+//
+//		return pagein;
+//	}
 	public Worksheet getWorksheetTask(String taskId) {
 		Worksheet worksheet = null;
 		TaskService taskService = workflow.getTaskService();
@@ -274,7 +291,7 @@ public class WorksheetServiceImpl extends BaseService implements
 				st = stService.getSupportTicket(st);
 
 				worksheet = new Worksheet();
-				worksheet.setTask(task);
+				worksheet.setTask((TaskImpl)task);
 				Dict_item tempDictI = new Dict_item();
 				tempDictI.setDict_code(Constants.ST_WORKFLOW_NAME_DICT_CODE);
 				tempDictI.setFact_value(worksheet.getTask().getActivityName());
