@@ -30,20 +30,36 @@
 <!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
 <!-- 		<property name="dataSource" ref="dataSysadmin" /> -->
 <!-- 	</bean>  -->
-	<aop:config>
-		<aop:advisor pointcut="execution(* com.aisino2..service.*.*(..))"
-			advice-ref="txAdvice" />
-	</aop:config>
+<!-- 	<aop:config> -->
+<!-- 		<aop:advisor pointcut="execution(* com.aisino2..service.*.*(..))" -->
+<!-- 			advice-ref="txAdvice" /> -->
+<!-- 	</aop:config> -->
 
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="insert*" />
-			<tx:method name="delete*" />
-			<tx:method name="update*" />
-			<tx:method name="*" read-only="true" />
-		</tx:attributes>
-	</tx:advice>
+<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
+<!-- 		<tx:attributes> -->
+<!-- 			<tx:method name="insert*" /> -->
+<!-- 			<tx:method name="delete*" /> -->
+<!-- 			<tx:method name="update*" /> -->
+<!-- 			<tx:method name="*" read-only="true" /> -->
+<!-- 		</tx:attributes> -->
+<!-- 	</tx:advice> -->
 
+  
+    <!-- 事务代理拦截器的配置 -->  
+    <bean id="transactionProxy" abstract="true"  
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">  
+        <property name="transactionManager">  
+            <ref bean="transactionManager" />  
+        </property>  
+        <property name="transactionAttributes">  
+            <props>  
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>  
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>  
+            </props>  
+        </property>  
+    </bean>  
 	<bean id="sqlMapSysadmin" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="configLocation"
 			value="classpath:config/ibatis/oracle/sql-map-sysadmin-config.xml" />
@@ -89,6 +105,21 @@
 				<value>jbpm.identity.hbm.xml</value>
 			</list>
 		</property>
+		<property name="hibernateProperties"> 
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">
+					true
+				</prop>
+				<prop key="hibernate.format_sql">
+					true
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+			</props>
+		</property>
+		<property name="useTransactionAwareDataSource" value="true"></property>
 	</bean>
 	
 </beans>
