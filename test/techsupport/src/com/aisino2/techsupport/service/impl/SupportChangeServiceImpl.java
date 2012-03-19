@@ -255,60 +255,51 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 						e.fillInStackTrace());
 			}
 		}
-
+		
+		User sl = user_service.getUser(st.getLstSupportLeaders().get(0));
 		for (Participation p : tracking_candidate_users) {
 			User old_tracking_user = new User();
 			old_tracking_user.setUserid(Integer.parseInt(p.getUserId()));
 			old_tracking_user = user_service.getUser(old_tracking_user);
-			User sl = user_service.getUser(st.getLstSupportLeaders().get(0));
-			boolean is_support_department = false;
-			// 验证以往的 追踪批复候选人是不是在支持部门里面,如果在就移除支持单候选
-			for (Department d : comm_st.getSupportDeptList()) {
-				if (d.getDepartid().equals(old_tracking_user.getDepartid())) {
-					is_support_department = true;
-					break;
-				}
-			}
-
-			if (!is_support_department)
-				workflow.getTaskService().removeTaskParticipatingUser(
-						tracking_task.getId(), p.getUserId(),
-						Participation.CANDIDATE);
+			
+			
 			// 因为一个部门只允许指派一个
-			else if (sl.getDepartid().equals(old_tracking_user.getDepartid()))
+			if (sl.getDepartid().equals(old_tracking_user.getDepartid()))
 				workflow.getTaskService().removeTaskParticipatingUser(
 						tracking_task.getId(), p.getUserId(),
 						Participation.CANDIDATE);
 
-			if (!sl.getUserid().equals(old_tracking_user.getUserid())) {
-				try {
+		}
+		
+		workflow.getTaskService().addTaskParticipatingUser(
+				tracking_task.getId(), sl.getUserid().toString(),
+				Participation.CANDIDATE);
 
+		try {
+			
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("reassign_stleader_repeat",
+					"to_reassgin_stleader");
+			// 完成本流程跳转到下一个流程
+			workflow.getTaskService().completeTask(taskId, params);
+			
+		} catch (Exception e) {
+			List<Participation> new_tracking_candidate_users = workflow
+					.getTaskService().getTaskParticipations(
+							tracking_task.getId());
+			for(Participation p : new_tracking_candidate_users)
+				workflow.getTaskService().removeTaskParticipatingUser(
+						tracking_task.getId(), p.getUserId(),
+						Participation.CANDIDATE);
+			for(Participation p : tracking_candidate_users){
+				// 当添加出错的时候，滚回以前的状态
 					workflow.getTaskService().addTaskParticipatingUser(
-							tracking_task.getId(), sl.getUserid().toString(),
+							tracking_task.getId(), p.getUserId(),
 							Participation.CANDIDATE);
-
-					Map<String, String> params = new HashMap<String, String>();
-					params.put("reassign_stleader_repeat",
-							"to_reassgin_stleader");
-					// 完成本流程跳转到下一个流程
-					workflow.getTaskService().completeTask(taskId, params);
-					break;
-				} catch (Exception e) {
-					List<Participation> new_tracking_candidate_users = workflow
-							.getTaskService().getTaskParticipations(
-									tracking_task.getId());
-					// 当添加出错的时候，滚回以前的状态
-					if (!new_tracking_candidate_users.contains(p)) {
-						workflow.getTaskService().addTaskParticipatingUser(
-								tracking_task.getId(), p.getUserId(),
-								Participation.CANDIDATE);
-					}
-					throw new RuntimeException("流程控制 追踪批复 候选人发生错误",
-							e.fillInStackTrace());
-				}
-
 			}
-
+			
+			throw new RuntimeException("流程控制 追踪批复 候选人发生错误",
+					e.fillInStackTrace());
 		}
 
 	}
