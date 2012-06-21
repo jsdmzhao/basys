@@ -79,19 +79,19 @@
 			</div>
 		</div>
 	<fieldset>
-		<legend>总工审批信息</legend>
+		<legend>公司一级审批信息</legend>
 		<div id="ceApproval" >
 			<input type="hidden" name="ceApprovalSt.id">
 			<input type="hidden" name="ceApprovalSt.trackList[0].stId" id="tracklist_stId">
 			  <div class="row" >
 	            <div class="column " >
-	                <label class="label red">总工审批日期:</label>
+	                <label class="label red">审批日期:</label>
 	                <input type="text" class=" item ro inputstyle" name="ceApprovalSt.trackList[0].trackingDate" id="ceApprovalDate" value="<%=dateNow%>">
 	                <div class="clear-column"></div>
 	                
 	                <div class="row" >
 	                    <div class="column " >
-	                        <label class="label red">总工审批:</label>
+	                        <label class="label red">审批结果:</label>
 	                         <div id="ceApprovalRadioPanel" class="item">
 	                         </div>
 	                        <div class="clear-column"></div>
@@ -101,7 +101,7 @@
 	                
 	                <div class="row" >
 	                    <div class="column " >
-	                        <label class="label red">总工名称:</label>
+	                        <label class="label red">审批人:</label>
 	                         <div>
 	                            <input type="text" class=" item ro inputstyle" name="ceApprovalSt.trackList[0].processor.username" id="ceName" value="<%=username %>">
 	                            <input type="hidden" name="ceApprovalSt.trackList[0].processor.userid" value="<%=user.getUserid()%>">
@@ -113,7 +113,7 @@
 	            </div>
 	            
 	            <div class="column " style="width: 600px;">
-	                <label class="label red">总工意见:</label>
+	                <label class="label red">审批意见:</label>
 	                <textarea class=" item inputstyle" style="width:349px !important;height: 77px;" name="ceApprovalSt.trackList[0].newProcess" id="ceReply"></textarea>
 	                <input type="hidden" name="ceApprovalSt.trackList[0].type" value="<%=com.aisino2.techsupport.common.Constants.TRACKING_TYPE_CEREPLY%>">
 	                <div class="clear-column"></div>
