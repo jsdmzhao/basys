@@ -209,13 +209,13 @@ function loadData(){
 function submitVerity(){
 	if (!checkControlValue("tracklist_stId","String",1,100,null,1,"技术支持单编号"))
 		return false;
-	if (!checkControlValue("ceName","String",1,50,null,1,"总工名称"))
+	if (!checkControlValue("ceName","String",1,50,null,1,"审批人"))
 		return false;
-	if (!checkControlValue("ceApprovalDate","Date",1,100,null,1,"总工审批日期"))
+	if (!checkControlValue("ceApprovalDate","Date",1,100,null,1,"审批日期"))
 		return false;
 	
 	if($('#ceApprovalRadioPanel input:checked').length == 0){
-		jAlert('总工审批 必须选择','提示');
+		jAlert('审批结果 必须选择','提示');
 		return false;
 	}
 	// fixed bug 在选择不通过的时候，也要选择指派的单位
@@ -227,8 +227,8 @@ function submitVerity(){
 	}
 	
 	
-	//总工意见
-	if(!checkControlValue("ceReply","String",1,4000,null,1,"总工意见"))
+	//审批意见
+	if(!checkControlValue("ceReply","String",1,4000,null,1,"审批意见"))
 		return false;
 		
 	
