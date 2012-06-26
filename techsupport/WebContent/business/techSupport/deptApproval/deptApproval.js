@@ -240,9 +240,9 @@ function loadData(){
  * 提交验证
  */
 function submitVerity() {
-	if (!checkControlValue("deptApprovalDate","Date",1,100,null,1,"部门审批日期"))
+	if (!checkControlValue("deptApprovalDate","Date",1,100,null,1,"审批日期"))
 		return false;
-	if (!checkControlValue("deptName","String",1,50,null,1,"部门审批人"))
+	if (!checkControlValue("deptName","String",1,50,null,1,"审批人"))
 		return false;
 
 	//在部门审批通过的时候验证。
@@ -298,7 +298,7 @@ function submitVerity() {
 	  
 	
 	//部门意见
-	if(!checkControlValue("deptReply","String",1,4000,null,1,"部门审批意见"))
+	if(!checkControlValue("deptReply","String",1,4000,null,1,"审批意见"))
 		return false;
 		
 	
