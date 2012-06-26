@@ -97,14 +97,14 @@
 						<legend>公司审批信息</legend>
 						<div id="ceApproval">
 							<div class="column ">
-								<label class="label red">总工审批日期:</label> <input type="text"
+								<label class="label red">审批日期:</label> <input type="text"
 									class=" item ro inputstyle" name="st.trackList[0].trackingDate"
 									id="ceApprovalDate">
 								<div class="clear-column"></div>
 
 								<div class="row">
 									<div class="column ">
-										<label class="label red">总工审批:</label>
+										<label class="label red">审批结果:</label>
 										<div id="ceApprovalRadioPanel">
 											<span class="item"></span>
 										</div>
@@ -115,7 +115,7 @@
 
 								<div class="row">
 									<div class="column ">
-										<label class="label red">总工名称:</label>
+										<label class="label red">审批人:</label>
 										<div>
 											<input type="text" class=" item ro inputstyle"
 												name="st.trackList[0].processor.username" id="ceName"
@@ -127,7 +127,7 @@
 							</div>
 
 							<div class="column " style="width: 600px;">
-								<label class="label">总工意见:</label>
+								<label class="label">审批意见:</label>
 								<textarea class="ro item inputstyle"
 									style="width: 320px !important; height: 66px;"
 									name="st.trackList[0].newProcess" id="ceReply"></textarea>
@@ -147,7 +147,7 @@
 								id="stId">
 							<div class="row">
 								<div class="column ">
-									<label class="label red label-100">部门审批日期:</label> <input type="text"
+									<label class="label red label-100">审批日期:</label> <input type="text"
 										class=" item ro inputstyle"
 										name="st.trackList[0].trackingDate" id="deptApprovalDate"
 										value="<%=dateNow%>"> <input type="hidden"
@@ -159,7 +159,7 @@
 
 									<div class="row">
 										<div class="column ">
-											<label class="label red label-100">部门审批:</label>
+											<label class="label red label-100">审批结果:</label>
 											<div id="deptRadioPanel"></div>
 											<div class="clear-column"></div>
 										</div>
@@ -167,7 +167,7 @@
 
 									<div class="row">
 										<div class="column ">
-											<label class="label red label-100">部门审批人:</label>
+											<label class="label red label-100">审批人:</label>
 											<div>
 												<input type="text" class=" item ro"
 													name="st.trackList[0].processor.username" id="deptName"
@@ -181,7 +181,7 @@
 							</div>
 
 							<div class="column " >
-								<label class="label red label-100">部门审批意见:</label>
+								<label class="label red label-100">审批意见:</label>
 								<textarea class=" item inputstyle"
 									style="width: 320px !important; height: 60px;"
 									name="st.trackList[0].newProcess" id="deptReply"></textarea>
