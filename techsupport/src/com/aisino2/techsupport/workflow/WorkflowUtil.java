@@ -215,6 +215,42 @@ public class WorkflowUtil {
 		return var;
 	}
 
+	// add 级联找出符合要求的二级审核候选人
+	private StringBuffer findAssigneeDeptUsersIdByDepartment(Department department) {
+		StringBuffer assigneeDeptUsersId = new StringBuffer();
+		User user = new User();
+		user.setDepartid(department.getDepartid());
+		List<User> deptUsers = userService.getListUser(user);
+		for (User deptUser : deptUsers) {
+			User_role deptUserRole = new User_role();
+			deptUserRole.setUserid(deptUser.getUserid());
+			
+			List<User_role> userrolelist = userroleService.getUser_roleListByUserid(deptUserRole);
+			for (User_role userRole : userrolelist) {
+				if (userRole
+						.getRolename()
+						.equals(Constants.ST_ROLE_NAME_DEPTMANAGE)) {
+					assigneeDeptUsersId.append(userRole.getUserid()
+							+ ",");
+				}
+			}
+			
+		}
+		
+		//查看是否包含子机构，包含子机构，重复查找
+		//清除FULLCODE,departlevel，以免DAO查询加入错误的选项
+		department.setDepartfullcode(null);
+		department.setDepartlevel(null);
+		
+		List<Department> child_department_list  = departmentService.getChildDepart(department);
+		if(child_department_list.size() > 0){
+			for(Department child_dept : child_department_list){
+				assigneeDeptUsersId.append(findAssigneeDeptUsersIdByDepartment(child_dept));
+			}
+		}
+		
+		return assigneeDeptUsersId;
+	}
 	public  Map<String, Object> setDeptAssigneeVariable(
 			List<Department> asssigneeDeptList) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -223,11 +259,9 @@ public class WorkflowUtil {
 //		if(asssigneeDeptList==null)
 //			throw new RuntimeException("需要指派的单位列表为空");
 		params.put("deptApprovalUsers", "");
-		try {
 
-			// 通过选定的单位找到拥有部门经理角色的用户 来做指派
-			String assigneeDeptUsersId = "";
 			
+			StringBuffer assigneeDeptUsersId_buffer = new StringBuffer();
 			if(asssigneeDeptList != null)
 			// -- fixed bug 总工审批在不同意的时候，也必须指派部门
 			for (Department dept : asssigneeDeptList) {
@@ -237,34 +271,16 @@ public class WorkflowUtil {
 				department.setDepartcode(dept.getDepartcode());
 				department=departmentService.getDepartment(department);
 				
-				User user = new User();
-				user.setDepartid(department.getDepartid());
-				List<User> deptUsers = userService.getListUser(user);
-				for (User deptUser : deptUsers) {
-					User_role deptUserRole = new User_role();
-					deptUserRole.setUserid(deptUser.getUserid());
-					
-					List<User_role> userrolelist = userroleService.getUser_roleListByUserid(deptUserRole);
-					for (User_role userRole : userrolelist) {
-						if (userRole
-								.getRolename()
-								.equals(Constants.ST_ROLE_NAME_DEPTMANAGE)) {
-							assigneeDeptUsersId += userRole.getUserid()
-									+ ",";
-						}
-					}
-				}
-
+				assigneeDeptUsersId_buffer.append(findAssigneeDeptUsersIdByDepartment(department));
 			}
-			assigneeDeptUsersId = assigneeDeptUsersId.substring(0,
-					assigneeDeptUsersId.length() - 1);
+			// 通过选定的单位找到拥有部门经理角色的用户 来做指派
+					String assigneeDeptUsersId = assigneeDeptUsersId_buffer.substring(0,
+							assigneeDeptUsersId_buffer.length() - 1);
 
 			params.put("deptApprovalUsers", assigneeDeptUsersId);
-		} catch (IndexOutOfBoundsException e) {
-		} catch (NullPointerException e) {
-		} finally{
-			return params;
-		}
+		
+		return params;
+		
 	}
 	
 	@Resource(name="userService")
