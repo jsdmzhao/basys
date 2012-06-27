@@ -118,7 +118,7 @@ $(function(){
 //	});
 	//设置技术负责人
 	$('#supportLeaderName').click(function(){
-		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm,[ST_ROLE_NAME_STLEADER]);
+		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm,[ST_ROLE_NAME_STLEADER],true);
 	});
 	
 	//按钮动作
