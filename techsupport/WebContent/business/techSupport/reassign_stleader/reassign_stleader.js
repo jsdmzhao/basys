@@ -96,7 +96,7 @@ $(function(){
 	//重新指派支持单负责人
 	$('#p_processor').click(function(){
 	
-		getUserofDept('p_processor','p_processorId',gxdwbm,ST_ROLE_NAME_STLEADER);
+		getUserofDept('p_processor','p_processorId',gxdwbm,ST_ROLE_NAME_STLEADER,true);
 	});
 	
 	//设置保存按钮
