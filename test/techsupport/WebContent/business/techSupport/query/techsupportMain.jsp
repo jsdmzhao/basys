@@ -21,7 +21,7 @@
 }
 
 .item{
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #queryContent {
@@ -82,7 +82,7 @@ function lazyLoad(){
 		detailURL="business/techSupport/query/techsupportDetail.jsp";
 		queryTable=$("#"+tableid);
 		detailWindow=$('#'+detailid);
-		lazyLoad();
+		lazyLoad(); 
 		
 		daggleDiv(detailid);
 // 		设置状态下拉条
@@ -116,7 +116,7 @@ function lazyLoad(){
  					//支持单负责人选择器
  					$('#slName').unbind('click');
  					$("#slName").click(function(){
- 						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
+ 						getUserofDept('slName','p_supportLeaderId',$('#p_departcode').val(),[ST_ROLE_NAME_STLEADER],true);
 	 	 			});
  					
  				}
@@ -126,11 +126,11 @@ function lazyLoad(){
  	 					var __gxdwbm=null;
  	 					if($('#p_region').val())
  	 	 					__gxdwbm = $('#p_region').val();
- 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT],true);
  	 				});
  					//设置技术负责人
  					$('#slName').click(function(){
- 						getUserofDept('slName','p_supportLeaderId',$('#p_departcode').val(),ST_ROLE_NAME_STLEADER);
+ 						getUserofDept('slName','p_supportLeaderId',$('#p_departcode').val(),ST_ROLE_NAME_STLEADER,true);
  					});
  					
  					//设置大区
@@ -155,7 +155,7 @@ function lazyLoad(){
  	 					var __gxdwbm=null;
  	 					if($('#p_region').val())
  	 	 					__gxdwbm = $('#p_region').val();
- 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT],true);
  	 				});
  	 				//设置支持单负责人为本人
 					$('#slName').val("<%=username%>");
@@ -184,7 +184,7 @@ function lazyLoad(){
  	 					var __gxdwbm=null;
  	 					if($('#p_region').val())
  	 	 					__gxdwbm = $('#p_region').val();
- 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT]);
+ 	 					getUserofDept('applicantName','p_applicantId',__gxdwbm,[ST_ROLE_NAME_APPLICANT],true);
  	 				});
 					
  					//设置大区智能选择器
@@ -196,7 +196,7 @@ function lazyLoad(){
 					//支持单负责人选择器
 					$('#slName').unbind('click');
  					$("#slName").click(function(){
- 						getUserofDept('slName','p_supportLeaderId',null,[ST_ROLE_NAME_STLEADER]);
+ 						getUserofDept('slName','p_supportLeaderId',$('#p_departcode').val(),[ST_ROLE_NAME_STLEADER],true);
 	 	 			});
  	 			}
 
@@ -326,7 +326,7 @@ function lazyLoad(){
 		<div id="queryPanel">
 			<div class="row">
 				<div class="column column-width-default">
-					<label class="label">支持单状态:</label>
+					<label class="label" style="margin-right: 5px">支持单状态:</label>
 					<select class="item" name="st.stStatus" id="p_stStatus">
 						<option></option>
 					</select>
@@ -373,7 +373,7 @@ function lazyLoad(){
 			
 			<div class="row">
 				<div class="column column-width-default">
-					<label class="label">技术支持部门:</label>
+					<label class="label" style="margin-right: 5px">技术支持部门:</label>
 					<select class="item" id="p_departcode" >
 						<option></option>
 					</select>
