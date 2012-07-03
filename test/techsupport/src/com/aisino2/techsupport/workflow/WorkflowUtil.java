@@ -2,8 +2,10 @@ package com.aisino2.techsupport.workflow;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -259,19 +261,27 @@ public class WorkflowUtil {
 //		if(asssigneeDeptList==null)
 //			throw new RuntimeException("需要指派的单位列表为空");
 		params.put("deptApprovalUsers", "");
-
+		Set<Department> assignee_dept_set = new HashSet<Department>(); 
 			
 			StringBuffer assigneeDeptUsersId_buffer = new StringBuffer();
 			if(asssigneeDeptList != null)
 			// -- fixed bug 总工审批在不同意的时候，也必须指派部门
-			for (Department dept : asssigneeDeptList) {
+			
+			for (Department dept : asssigneeDeptList) { //处理父亲部门
 				if(dept==null)
 					continue;
-				Department department=new Department();
-				department.setDepartcode(dept.getDepartcode());
-				department=departmentService.getDepartment(department);
+//				Department department=new Department();
+//				department.setDepartcode(dept.getDepartcode());
+//				department=departmentService.getDepartment(department);
 				
-				assigneeDeptUsersId_buffer.append(findAssigneeDeptUsersIdByDepartment(department));
+				//问题记录序号-9 父级部门可以处理子部门的部门审批、
+				dept = departmentService.getDepartment(dept);
+				assignee_dept_set.add(dept);
+				Department department = departmentService.getParentDepart(dept);
+				assignee_dept_set.add(department);
+			}
+			for (Department dept : assignee_dept_set){
+				assigneeDeptUsersId_buffer.append(findAssigneeDeptUsersIdByDepartment(dept));
 			}
 			// 通过选定的单位找到拥有部门经理角色的用户 来做指派
 					String assigneeDeptUsersId = assigneeDeptUsersId_buffer.substring(0,

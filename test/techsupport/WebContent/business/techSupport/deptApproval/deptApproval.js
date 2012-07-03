@@ -79,8 +79,13 @@ function supervision_query(pageno,url){
 										colWidths: ["14%","70%","16%"]				
 									});
 		}
-}	
+}
+
+
+var gxdwmc_ = gxdwmc; //把gxdwmc 局部化
+var gxdwbm_ = gxdwbm; //把gxdwbm 局部化
 $(function(){
+	//
 	
 	divnid="trackingTableDiv";//查询内容容器ID
 	tableid="trackingTable";//查询内容格式表格ID
@@ -118,7 +123,7 @@ $(function(){
 //	});
 	//设置技术负责人
 	$('#supportLeaderName').click(function(){
-		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm,[ST_ROLE_NAME_STLEADER],true);
+		getUserofDept('supportLeaderName','supportLeaderCode',gxdwbm_,[ST_ROLE_NAME_STLEADER],true);
 	});
 	
 	//按钮动作
@@ -154,11 +159,11 @@ $(function(){
 	buildHTMLComponentByDict('<input type="radio" class=" item " name="st.trackList[0].approvalCode" value="{fact_value}">{display}',$('#deptRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
 //	默认选中通过
 	$('#deptRadioPanel input:radio').eq(0).attr('checked',true);
-	if(gxdwmc=="技术开发部"){
+	if(gxdwmc_=="技术开发部"){
 		$('#devAppr').show();
 		$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_HDEVREPLY+'">');
 	}
-	else if(gxdwmc=="产品方案部"){
+	else if(gxdwmc_=="产品方案部"){
 		$('#psgAppr').show();
 		$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_PGMREPLY+'">');
 	}
@@ -233,6 +238,17 @@ function loadData(){
 		supervision_query(1);
 		//进展
 		trackingQuery(1,ingridUrl);
+		
+		//问题记录序号-9 父级部门可以处理子部门的部门审批
+		//通过计划时间来区别 技术部门或者产品部门
+		if(!$('#psgScheDate').val()){
+			gxdwmc_ = '技术开发部';
+			gxdwbm_ = 'jskfb';
+		}
+		else {
+			gxdwmc_ = '产品方案部';
+			gxdwbm_ = 'cpfab';
+		}
 	});
 }
 
@@ -251,7 +267,7 @@ function submitVerity() {
 		if (!checkControlValue("supportLeaderName","String",1,100,null,1,"支持单负责人"))
 			return false;
 		
-		if (gxdwmc == '产品方案部') {
+		if (gxdwmc_ == '产品方案部') {
 
 			if (!checkControlValue("psgScheDate", "Date", 1, 100, null, 1,
 					"计划完成时间"))
@@ -271,7 +287,7 @@ function submitVerity() {
 					return false;
 				}
 			}
-		} else if (gxdwmc == '技术开发部') {
+		} else if (gxdwmc_ == '技术开发部') {
 			if (!checkControlValue("devScheDate", "Date", 1, 100, null, 1,
 					"计划完成时间"))
 				return false;
