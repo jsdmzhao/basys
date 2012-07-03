@@ -82,7 +82,7 @@ function trackingQuery(pageno,url){
 		// returns a jQ object with a 'g' property - that's ingrid
 		var mygrid2 = $("#"+tracking_table_id).ingrid({ 
 										url: url,	
-										height:70,
+										height:100,// 修改问题记录序号-11 技术支持单查询，详情中的备注框有些大。
 										ingridPageWidth:ingridWidth,
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,

@@ -365,7 +365,22 @@
 					</div>
 					<div class="clear-column"></div>
 				</fieldset>
+				<%-- 修改问题记录序号-11 技术支持单查询，详情中的备注框有些大。 --%>
+				<div class="row">
+					<div class="column">
+						<div>
+							<label class="label label-80">备注:</label>
+							<input class="item ro inputstyle" 
+								style="width:75% ! important;" 
+								name="st.comments" id="comments">
+						</div>
+						<div class="clear-column"></div>
+					</div>
+					
+					<div class="clear-row"></div>
+				</div>
 			</div>
+			
 	
 			<div class="column" style="width: 49%;float: right;">
 				<fieldset>
@@ -385,15 +400,5 @@
 				</fieldset>
 			</div>
 		</div>
-	<div class="row">
-		<div class="column" style="width: 800px;">
-			<div>
-				<label class="label label-80">备注:</label>
-				<textarea class="item ro inputstyle" style="width:700px ! important;height: 78px;" name="st.comments" id="comments"></textarea>
-			</div>
-			<div class="clear-column"></div>
-		</div>
-		
-		<div class="clear-row"></div>
-	</div>
+	
 </div>
