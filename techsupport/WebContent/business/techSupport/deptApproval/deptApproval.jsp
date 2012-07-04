@@ -76,7 +76,7 @@
 			<div class="column" style="width: 49%;float: right;">
 				<fieldset>
 					<legend>进展信息</legend>
-					<div id="trackingTableDiv" >
+					<div id="trackingTableDiv" style="margin-left: auto;margin-right: auto;text-align: center;">
 						<table id="trackingTable" width="100%" border="1" cellpadding="0" cellspacing="0">
 						  <thead>
 						    <tr>       
@@ -119,7 +119,7 @@
 										<div>
 											<input type="text" class=" item ro inputstyle"
 												name="st.trackList[0].processor.username" id="ceName"
-												value="">
+												style="width: 80px !important;">
 										</div>
 										<div class="clear-column"></div>
 									</div>
@@ -171,7 +171,7 @@
 											<div>
 												<input type="text" class=" item ro"
 													name="st.trackList[0].processor.username" id="deptName"
-													value="<%=username%>" style="width: 80px !imporant;">
+													value="<%=username%>" style="width: 80px !important;">
 											</div>
 											<div class="clear-column"></div>
 										</div>

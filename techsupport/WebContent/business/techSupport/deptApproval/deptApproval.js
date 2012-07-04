@@ -159,14 +159,6 @@ $(function(){
 	buildHTMLComponentByDict('<input type="radio" class=" item " name="st.trackList[0].approvalCode" value="{fact_value}">{display}',$('#deptRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
 //	默认选中通过
 	$('#deptRadioPanel input:radio').eq(0).attr('checked',true);
-	if(gxdwmc_=="技术开发部"){
-		$('#devAppr').show();
-		$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_HDEVREPLY+'">');
-	}
-	else if(gxdwmc_=="产品方案部"){
-		$('#psgAppr').show();
-		$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_PGMREPLY+'">');
-	}
 	
 	loadData();
 });
@@ -248,6 +240,15 @@ function loadData(){
 		else {
 			gxdwmc_ = '产品方案部';
 			gxdwbm_ = 'cpfab';
+		}
+		
+		if(gxdwmc_=="技术开发部"){
+			$('#devAppr').show();
+			$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_HDEVREPLY+'">');
+		}
+		else if(gxdwmc_=="产品方案部"){
+			$('#psgAppr').show();
+			$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_PGMREPLY+'">');
 		}
 	});
 }
