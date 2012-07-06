@@ -4,17 +4,17 @@
    <start g="34,16,48,48" name="start1">
       <transition to="ce_appr"/>
    </start>
-   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="367,208,144,52" name="tracking_appr">
+   <task candidate-users="#{trackingUsers}" form="/business/techSupport/tracking/tracking.jsp" g="497,308,144,52" name="tracking_appr">
       <description>追踪批复</description>
       <transition to="terminate_exception_proc"/>
    </task>
-   <end g="732,402,48,48" name="end"/>
-   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="617,177,92,52" name="feedback">
+   <end g="879,610,48,48" name="end"/>
+   <task candidate-users="#{feedbackUsers}" form="/business/techSupport/feedback/feedback.jsp" g="841,242,92,52" name="feedback">
    	  <description>反馈确认</description>
       <transition to="archive"/>
-      <transition g="556,170:-85,-25" name="no_feedback" to="tracking_appr"/>
+      <transition g="-85,-25" name="no_feedback" to="tracking_appr"/>
    </task>
-   <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="737,219,92,52" name="archive">
+   <task candidate-users="#{archiveUsers}" form="/business/techSupport/archive/archive.jsp" g="851,388,92,52" name="archive">
    	  <description>归档</description>
       <transition to="end"/>
    </task>
@@ -22,14 +22,14 @@
    	  <description>公司审批/总工审批</description>
       <transition to="ce_appr_condition"/>
    </task>
-   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/deptApproval/deptApproval.jsp" g="76,187,157,52" name="department_appr">
+   <task candidate-users="#{deptApprovalUsers}" form="/business/techSupport/deptApproval/deptApproval.jsp" g="58,357,175,52" name="tech_department_appr">
       <description>部门审批</description>
-      <transition to="department_appr_condition"/>
+      <transition to="join1"/>
    </task>
-   <decision expr="#{ceApprovalCode == approvalCodePassed ? 'department_appr':'end'}" g="49,300,48,48" name="ce_appr_condition">
-      <description>公司审批条件/总工审批条件</description>
-      <transition g="-85,-25" name="department_appr" to="department_appr"/>
+   <decision expr="#{ceApprovalCode == approvalCodePassed ? 'department_appr':'end'}" g="25,613,48,48" name="ce_appr_condition">
+   	  <description>公司审批条件/总工审批条件</description>
       <transition g="-62,-25" name="end" to="end"/>
+      <transition g="-85,-25" name="department_appr"/>
    </decision>
    <decision expr="#{ deptApprovalCode == approvalCodePassed  ? 'tracking_appr' : 'ce_appr' }" g="179,62,48,48" name="department_appr_condition">
    	  <description>部门审批条件</description>
@@ -44,11 +44,11 @@
       <transition to="reassign_depart"/>
       <transition to="reassgin_stleader"/>
    </fork>
-   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/exception/exception.jsp" g="202,273,171,46" name="exception_process">
+   <task candidate-users="#{ceApprovalUsers}" form="/business/techSupport/exception/exception.jsp" g="455,502,171,46" name="exception_process">
    	<description>例外处理</description>
    	<transition to="end"/>
    </task>
-   <join g="586,297,48,48" multiplicity="1" name="terminate_exception_proc">
+   <join g="750,390,48,48" multiplicity="1" name="terminate_exception_proc">
       <description>结束例外处理分支</description>
       <transition to="feedback"/>
    </join>
@@ -62,7 +62,23 @@
    <decision expr="#{reassign_stleader_repeat}" g="731,57,48,48" name="reassign_stleader_condition">
       <transition g="762,146:-151,-25" name="to_reassgin_stleader" to="reassgin_stleader"/>
    </decision>
-   <decision g="571,7,48,48" name="reassign_depart_condition" expr="#{reassign_depart_repeat}">
+   <decision expr="#{reassign_depart_repeat}" g="571,7,48,48" name="reassign_depart_condition">
       <transition g="520,77:-141,-25" name="to reassign_depart" to="reassign_depart"/>
+   </decision>
+   <task g="249,358,195,52" name="product_department_appr">
+      <transition to="join1"/>
+   </task>
+   <fork g="165,449,48,48" name="fork1">
+      <transition to="tech_department_appr">
+      </transition>
+      <transition to="product_department_appr"/>
+   </fork>
+   <join g="165,197,48,48" name="join1">
+      <transition to="department_appr_condition"/>
+   </join>
+   <decision g="140,576,48,48">
+      <transition name="tech_appr,product_appr" to="fork1" g="-5,-20"/>
+      <transition name="tech_appr" to="tech_department_appr" g="-51,-8"/>
+      <transition name="product_appr" to="product_department_appr" g="-40,0"/>
    </decision>
 </process>
