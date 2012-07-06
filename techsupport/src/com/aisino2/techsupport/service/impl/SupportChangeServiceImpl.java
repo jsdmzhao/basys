@@ -202,6 +202,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			throw new RuntimeException("需要变更的支持单负责人为空");
 		//更新最后操作时间
 		st.setLastUpdateDate(new Date());
+		//添加部门审批信息
+		st.getTrackList().add(tracking);
 		// 保存支持单信息指派部门信息
 		support_ticket_service.updateSupportTicket(st);
 		// 保存变更原因为进展
@@ -257,6 +259,12 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		}
 		
 		User sl = user_service.getUser(st.getLstSupportLeaders().get(0));
+		//修正子部门和父级部门可以分别指派的问题 
+		//获取当前部门审批人的部门信息
+		User curr_appr_user = new User();
+		curr_appr_user.setUserid(tracking.getProcessor().getUserid());
+		curr_appr_user = user_service.getUser(curr_appr_user);
+		
 		for (Participation p : tracking_candidate_users) {
 			User old_tracking_user = new User();
 			old_tracking_user.setUserid(Integer.parseInt(p.getUserId()));
@@ -264,10 +272,33 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			
 			
 			// 因为一个部门只允许指派一个
-			if (sl.getDepartid().equals(old_tracking_user.getDepartid()))
-				workflow.getTaskService().removeTaskParticipatingUser(
-						tracking_task.getId(), p.getUserId(),
-						Participation.CANDIDATE);
+			//修正子部门和父级部门可以分别指派的问题
+			Department old_department = new Department();
+			old_department.setDepartid(old_tracking_user.getDepartid());
+			old_department = department_service.getDepartment(old_department);
+			
+			while(!old_department.getDepartid().equals(
+					curr_appr_user.getDepartid())){
+				old_department = department_service.getParentDepart(old_department);
+			}
+			if (old_department != null && old_department.getDepartid()
+					.equals(curr_appr_user.getDepartid())){
+				
+				Department sl_department = new Department();
+				sl_department.setDepartid(sl.getDepartid());
+				sl_department = department_service.getDepartment(sl_department);
+				while(!sl_department.getDepartid().equals(
+						curr_appr_user.getDepartid())){
+					sl_department = department_service.getParentDepart(sl_department);
+				}
+				
+				if(sl_department != null && sl_department.getDepartid()
+					.equals(curr_appr_user.getDepartid())){
+					workflow.getTaskService().removeTaskParticipatingUser(
+							tracking_task.getId(), p.getUserId(),
+							Participation.CANDIDATE);
+				}
+			}
 
 		}
 		
