@@ -196,10 +196,23 @@ public class SupportTicketServiceImpl extends BaseService implements
 					
 					SupportLeaderRelation check_slrelation = new SupportLeaderRelation();
 					sl = user_service.getUser(sl);
-					
-					check_slrelation.setDepartid(sl.getDepartid());
-					check_slrelation.setStId(st.getId());
-					this.supportLeaderRelationDao.delete(check_slrelation);
+					//修正子部门和父级部门可以分别指派的问题
+					if(st.getTrackList()!=null && st.getTrackList().size()>0){
+						User tracking_user = user_service.getUser(
+								st.getTrackList().get(0).getProcessor());
+						Department old_department = new Department();
+						old_department.setDepartid(tracking_user.getDepartid());
+						old_department = departmentService.getDepartment(old_department);
+						List<Department> sl_department_list = 
+								departmentService.getAllChildDepart(old_department);
+						sl_department_list.add(0, old_department);
+						check_slrelation.setStId(st.getId());
+						for(Department guess_sl_dept : sl_department_list){
+							check_slrelation.setDepartid(guess_sl_dept.getDepartid());
+							this.supportLeaderRelationDao.delete(check_slrelation);
+						}
+						
+					}
 					
 					SupportLeaderRelation slrelation=new SupportLeaderRelation();
 					slrelation.setStId(st.getId());
