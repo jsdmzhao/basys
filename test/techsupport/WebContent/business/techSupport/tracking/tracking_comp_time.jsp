@@ -12,9 +12,9 @@
 			$(this).attr('readOnly',true);
 		});
 		
-		if(gxdwmc.indexOf('方案部') > -1)
+		if(departfullcode.indexOf('.cpfab.') > -1)
 			$('#jsb_block').hide();
-		if(gxdwmc.indexOf('开发部') > -1)
+		if(departfullcode.indexOf('.jskfb.') > -1)
 			$('#cpb_block').hide();
 
 		//非阶段性隐藏
@@ -27,7 +27,7 @@
 		});
 //		初始化提请反馈必填项颜色信息
 //		if($('#p_deptName').val().indexOf('方案部') > -1){
-		if(	gxdwmc.indexOf('方案部') > -1){
+		if(	departfullcode.indexOf('.cpfab.') > -1){
 			$('#p_psgCompDate').prev('label').addClass('blue');
 			// 修正bug 添加必要的颜色信息
 			$("#psgcpstage").blur(function() {
@@ -38,7 +38,7 @@
 				}
 			});
 		}
-		if(gxdwmc.indexOf('开发部') > -1){
+		if(departfullcode.indexOf('.jskfb.') > -1){
 			$('#p_devCompDate').prev('label').addClass('blue');
 			// 修正bug 添加必要的颜色信息
 			$("#devcpstage").blur(function() {
