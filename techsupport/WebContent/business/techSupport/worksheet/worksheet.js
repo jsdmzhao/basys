@@ -103,6 +103,16 @@ function lazyLoad() {
                                        	noSortColIndex:[7],
                                        	onRowSelect:null,
 										pageNumber: pageno,
+										//暂时屏蔽 重指派部门，待日后完善后开发
+										changeHref:function($table){
+											$table.find('tr').each(function(){
+												$td_6 = $(this).find('td').eq(6);
+												if($td_6.text() == '重指派部门'){
+													$(this).remove();
+												}
+											});
+											
+										},
 										colWidths: ["14%","10%","12%","12%","12%","12%","12%","12%"]				
 									});				
 		}
