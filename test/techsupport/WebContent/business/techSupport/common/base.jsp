@@ -17,6 +17,9 @@
 	var gxdwbm="<%=gxdwbm%>";
 	var userid="<%=user.getUserid()%>";
 	var username="<%=username%>";
+	//机构全码
+	var departfullcode = '<%=user.getDepartment().getDepartfullcode()%>';
+	
 	//进行中
 	var ST_STATUS_GOING="<%=com.aisino2.techsupport.common.Constants.ST_STATUS_GOING%>";
 	//例外终止
