@@ -3,8 +3,8 @@
 <%@include file="/public/common.jsp"%>
 <%@include file="../common/base.jsp" %>
 
-<%-- <script type="text/javascript" src="<%=tsBase%>/common/javascript/uploadify/jquery.uploadify.v2.1.4.min.js"></script>  --%>
-<%-- <script type="text/javascript" src="<%=tsBase%>/common/javascript/uploadify/swfobject.js"></script> --%>
+<script type="text/javascript" src="<%=tsBase%>/common/javascript/uploadify/jquery.uploadify.v2.1.4.min.js"></script> 
+<script type="text/javascript" src="<%=tsBase%>/common/javascript/uploadify/swfobject.js"></script>
 <script type="text/javascript" src="<%=tsBase %>/common/javascript/common.js"></script>
 <script type="text/javascript" src="<%=tsBase %>/applyReported/applyReported.js"></script>
 
@@ -57,31 +57,40 @@
 <!--			<div class="clear-row"></div>-->
 <!--		</div>-->
 		<%-- 附件上传 --%>
-<!-- 		<div class="row"> -->
-<!-- 			<div class="pagedistd" style="width: 600px;"> -->
-<!-- 				<label class="label">附件:</label> -->
-<!-- 				<div class="item"> -->
-<!-- 					<input type="file" name="uploadFileX" id="uploadFile"> -->
-<!-- 					<input type="button" id="uploadButton" value="添加"> -->
-<!-- 					<div id="fileUploadPanel"> -->
-<!-- 						<table id="fileUploadTable"> -->
-<!-- 							<thead> -->
-<!-- 								<th>文件名</th> -->
-<!-- 								<th>文件大小</th> -->
-<!-- 								<th>文件类型</th> -->
-<!-- 								<th>备注</th> -->
-<!-- 								<th>操作</th> -->
-<!-- 							</thead> -->
+		
+		<div class="row">
+			<div class="pagedistd column" style="width: 600px;">
+				<label class="label">附件:</label>
+				<div class="item">
+					<div id="fileUploadPanel">
+						<table id="fileUploadTable">
+							<thead>
+								<th>文件名</th>
+								<th>文件大小</th>
+								<th>文件类型</th>
+								<th>备注</th>
+								<th>操作</th>
+							</thead>
 							
-<!-- 						</table> -->
-<!-- 					</div> -->
-					
-<!-- 				</div> -->
-<!-- 				<div class="clear-column"></div> -->
-<!-- 			</div> -->
+						</table>
+					</div>
+				</div>
+				<div class="clear-column"></div>
+				<div class="row">
+					<div class="column">
+						<label class="label"></label>
+						<div class="item">
+							<input type="file" name="upload" id="uploadFile">
+							<input type="button" id="uploadButton" value="添加">
+						</div>
+					</div>
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>
 			
-<!-- 			<div class="clear-row"></div> -->
-<!-- 		</div> -->
+			<div class="clear-row"></div>
+		</div>
 		<!-- content end -->
 	</div>
 	<div id="footerCt">
