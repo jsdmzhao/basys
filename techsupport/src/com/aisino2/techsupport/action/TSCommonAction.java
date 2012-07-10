@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -21,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import com.aisino2.common.PageUtil;
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.Constants;
@@ -53,9 +55,10 @@ public class TSCommonAction extends PageAction {
 	private String result;
 	private String tabledata = "";
 	// 文件上传部分
-//	private File upload;
-//	private String uploadContentType;
-//	private String uploadFileName;
+	private String upload;
+	private String uploadContentType;
+	private String uploadFileName;
+	
 	// 临时存放目录
 	private String uploadTempPath;
 	private List<Attachment> attachmentList;
@@ -189,16 +192,27 @@ public class TSCommonAction extends PageAction {
 		List lCol = new ArrayList();
 		List lModify = new ArrayList();
 
-		//自由上传者或者技术质量员权限的用户可以删除附件。###暂时没有控制。
-		lModify.add("removeAttachment");
-		lModify.add("删除");
-		lCol.add(lModify);
+		//填报人,技术质量员权限的用户可以删除附件。
+		
+		if(PageUtil.checkFunction("ts_removeAttachment")){
+			lModify.add("removeAttachment");
+			lModify.add("删除");
+			lCol.add(lModify);
+		}
+		if(PageUtil.checkFunction("ts_downloadAttachment")){
+			List lDownload = new ArrayList();
+			lDownload.add("downloadAttachment");
+			lDownload.add("下载");
 
-		List lDownload = new ArrayList();
-		lDownload.add("downloadAttachment");
-		lDownload.add("下载");
-
-		lCol.add(lDownload);
+			lCol.add(lDownload);
+		}
+		if(PageUtil.checkFunction("ts_viewAttachment")){
+			List lDetail = new ArrayList();
+			lDetail.add("detailAttachemnt");
+			lDetail.add("查看");
+			
+			lCol.add(lDetail);
+		}
 
 		//
 		// this.setData(getGlryzmdzcl,lData,lPro,lCol);
@@ -215,97 +229,15 @@ public class TSCommonAction extends PageAction {
 	 * @throws Exception
 	 */
 	public String uploadFile() throws Exception {
-		org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper req = (org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper)this.getRequest();
+		HttpServletRequest req = this.getRequest();
 		this.uploadTempPath=req.getParameter("folder");
 		File dir = new File(this.getUploadTempPath());
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		long file_size_max = 10000000;
 		
-		List<Attachment> local_attachment_list = new ArrayList<Attachment>();
-		DiskFileItemFactory factory=new DiskFileItemFactory();
-		factory.setRepository(dir);
 		
-		ServletFileUpload sfu = new ServletFileUpload(factory);
-		//设置最大文件大小为10M
-		sfu.setFileSizeMax(10000000);
-		sfu.setSizeMax(10000000);
-		sfu.setHeaderEncoding("UTF-8");
-		//原始的使用FILE UPLOAD 组件上传
-		
-		Enumeration<String> file_para_enum = req.getFileParameterNames();
-		this.uploadId=req.getParameter("uploadId");
-		
-		while(file_para_enum.hasMoreElements()){
-			String file_item_name = file_para_enum.nextElement();
-			String[] filenames = req.getFileNames(file_item_name);
-			String[] file_content_types = req.getContentTypes(file_item_name);
-			File[] files = req.getFiles(file_item_name);
-			Map<String,Object> file_para_map =  req.getParameterMap();
-			
-			for(int i=0;i<files.length;i++){
-				File file_item = files[i];
-				String filename = filenames[i];
-				String file_content_type = file_content_types[i];
-				
-				//临时文件名
-				String temp_file_name=this.uploadId+"__"+System.currentTimeMillis();
-				
-				//原始文件名
-				String orginal_file_name=filename;
-				//文件大小
-				long file_size = file_item.length();
-				//文件类型
-				String file_type = file_content_type;
-				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file_item));
-//				文件内容字节码
-				byte[] file_content = new byte[(int) file_item.length()];
-				bis.read(file_content, 0, (int) file_item.length());
-				bis.close();
-				
-				
-				if(file_content != null && file_content.length > 0){
-					BufferedOutputStream bufout=null;
-					try{
-						bufout=new BufferedOutputStream(
-								new FileOutputStream(new File(getUploadTempPath()+File.separator+
-										temp_file_name)));
-						bufout.write(file_content);
-					}catch (Exception e) {
-						log.error(e);
-						log.debug(e.fillInStackTrace());
-					}
-					finally{
-						bufout.close();
-					}
-					
-					Attachment temp_attachment = new Attachment();
-					temp_attachment.setAttachmentName(temp_file_name);
-					temp_attachment.setAttachmentSize(file_size);
-					temp_attachment.setAttachmentContentType(file_type);
-					temp_attachment.setTempPath(this.getUploadTempPath()+File.separator+temp_file_name);
-					attachmentService.insertTempAttachment(temp_attachment);
-					
-					//临时显示
-					Attachment attachment = new Attachment();
-					BeanUtils.copyProperties(attachment, temp_attachment);
-					attachment.setAttachmentName(orginal_file_name);
-					local_attachment_list.add(attachment);
-					
-				}
-			}
-			
-		}
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		String stId = req.getParameter("stId");
-		map.put("stId", stId);
-		Page database_attachments =  attachmentService.queryAttachmentForPage(map, pagerow, pagesize, sort, "desc");
-		local_attachment_list.addAll(database_attachments.getData());
-		setTabledataForAttachment(local_attachment_list);
-		this.result = SUCCESS;
-		return SUCCESS;
+		return null;
 	}
 
 	/**
@@ -460,28 +392,29 @@ public class TSCommonAction extends PageAction {
 		this.sheet_service = sheet_service;
 	}
 
-//	public File getUpload() {
-//		return upload;
-//	}
-//
-//	public void setUpload(File upload) {
-//		this.upload = upload;
-//	}
-//
-//	public String getUploadContentType() {
-//		return uploadContentType;
-//	}
-//
-//	public void setUploadContentType(String uploadContentType) {
-//		this.uploadContentType = uploadContentType;
-//	}
-//
-//	public String getUploadFileName() {
-//		return uploadFileName;
-//	}
-//
-//	public void setUploadFileName(String uploadFileName) {
-//		this.uploadFileName = uploadFileName;
-//	}
+
+	public String getUpload() {
+		return upload;
+	}
+
+	public void setUpload(String upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
 
 }
