@@ -10,7 +10,10 @@
 		<result property="attachmentComment" column="attachment_Comment"/>
 		<result property="attachmentSize" column="attachment_Size"/>
 		<result property="stId" column="st_id"/>
-		<result property="attachmentContent" column="attachment_Content"/>
+		<result property="attachmentPath" column="attachment_Path"/>
+		<result property="uploadTime" column="upload_Time"/>
+		<result property="attachmentContentType" column="attachment_ContentType"/>
+		<result property="batchNumber" column="batch_Number"/>
 	</resultMap>
 	
 	<sql id="AttachmentFrom">
@@ -28,6 +31,16 @@
 		<isNotNull prepend="and" property="stId">
 			t.stId = #stId#
 		</isNotNull>
+		<isNotNull prepend="and" property="uploadTimeF">
+			t.upload_Time >= #uploadTimeF#
+		</isNotNull>
+		<isNotNull prepend="and" property="uploadTimeT">
+			t.upload_Time &lt;= #uploadTimeT#
+		</isNotNull>
+		<isNotNull prepend="and" property="batchNumber">
+			t.batch_Number = #batchNumber#
+		</isNotNull>
+		
 	</sql>
 	
 	<sql id="AttachmentPageWhere">
@@ -52,8 +65,17 @@
 				<isNotNull prepend="," property="stId">
 					st_Id
 				</isNotNull>
-				<isNotNull prepend="," property="attachmentContent">
-					attachment_Content
+				<isNotNull prepend="," property="attachmentPath">
+					attachment_Path
+				</isNotNull>
+				<isNotNull prepend="," property="uploadTime">
+					upload_Time
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentContentType">
+					attachment_ContentType
+				</isNotNull>
+				<isNotNull prepend="," property="batchNumber">
+					batch_Number
 				</isNotNull>
 			</dynamic>
 		)
@@ -74,8 +96,17 @@
 				<isNotNull prepend="," property="stId">
 					#stId#
 				</isNotNull>
-				<isNotNull prepend="," property="attachmentContent">
-					#attachmentContent#
+				<isNotNull prepend="," property="attachmentPath">
+					#attachmentPath#
+				</isNotNull>
+				<isNotNull prepend="," property="uploadTime">
+					#uploadTime#
+				</isNotNull>
+				<isNotNull prepend="," property="attachmentContentType">
+					#attachmentContentType#
+				</isNotNull>
+				<isNotNull prepend="," property="batchNumber">
+					#batchNumber#
 				</isNotNull>
 			</dynamic>
 		)
@@ -100,8 +131,17 @@
 			<isNotNull prepend="," property="stId">
 				st_Id = #stId#
 			</isNotNull>
-			<isNotNull prepend="," property="attachmentContent">
-				attachment_Content = #attachmentContent#
+			<isNotNull prepend="," property="attachmentPath">
+				attachment_Path = #attachmentPath#
+			</isNotNull>
+			<isNotNull prepend="," property="uploadTime">
+				upload_Time=#uploadTime#
+			</isNotNull>
+			<isNotNull prepend="," property="attachmentContentType">
+				attachment_ContentType=#attachmentContentType#
+			</isNotNull>
+			<isNotNull prepend="," property="batchNumber">
+				batch_Number = #batchNumber#
 			</isNotNull>
 		</dynamic>
 		
@@ -122,14 +162,13 @@
 		select x.* from (
 		select rownum rowno,z.* from 
 		(select   t.*
-		 from T_TS_TECH_SUPPORT t 
+		 from T_TS_SUPPORT_ATTACHMENT t 
 		
 		 <dynamic prepend="">
 			<include refid="AttachmentFrom"/>
 		 </dynamic>
-		where 1=1
 		
-		<dynamic prepend="">
+		<dynamic prepend="where">
 			<include refid="AttachmentPageWhere"/>	
 		</dynamic>
 		order by $pageSort$)  z) x where rowno &gt;$beginRow$ and rowno &lt;= $endRow$
@@ -137,14 +176,12 @@
 	
 <!-- 	分页用获取记录数 -->
 	<select id="Attachment.queryForPageCount" parameterClass="map" resultClass="int">
-		select count(1) from T_TS_TECH_SUPPORT t 
+		select count(1) from T_TS_SUPPORT_ATTACHMENT t 
 		
 		 <dynamic prepend="">
 			<include refid="AttachmentFrom"/>
 		 </dynamic>
-		where 1=1
-		
-		<dynamic prepend="">
+		<dynamic prepend="where">
 			<include refid="AttachmentPageWhere"/>	
 		</dynamic>
 	</select>
@@ -152,14 +189,13 @@
 <!-- 	获取列表 -->
 	<select id="Attachment.query" parameterClass="Attachment" resultMap="AttachmentResult">
 		select   t.*
-		 from T_TS_TECH_SUPPORT t 
+		 from T_TS_SUPPORT_ATTACHMENT t 
 		
-		 <dynamic prepend="">
+		 <dynamic prepend=",">
 			<include refid="AttachmentFrom"/>
 		 </dynamic>
-		where 1=1
 		
-		<dynamic prepend="">
+		<dynamic prepend="where">
 			<include refid="AttachmentWhere"/>	
 		</dynamic> 
 	</select>
@@ -167,7 +203,7 @@
 <!-- 	获取单一 -->
 	<select id="Attachment.get" parameterClass="Attachment" resultMap="AttachmentResult">
 		select   t.*
-		 from T_TS_TECH_SUPPORT t 
+		 from T_TS_SUPPORT_ATTACHMENT t 
 		where t.attachment_Id = #attachmentId#
 		
 	</select>
