@@ -9,7 +9,7 @@
     <constant name="struts.devMode" value="true" />
     <constant name="struts.multipart.maxSize" value="104857600" />
     <constant name="struts.multipart.parser" value="jakarta"></constant>
-    <constant name="struts.multipart.saveDir" value="/uploadTemp"/>
+<!--     <constant name="struts.multipart.saveDir" value="/uploadTemp"/> -->
 
     <include file="config/struts/sysadmin-struts.xml"/>
     <include file="config/struts/basicsystem-struts.xml"/>
