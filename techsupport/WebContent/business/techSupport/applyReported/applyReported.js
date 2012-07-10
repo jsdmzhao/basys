@@ -89,48 +89,51 @@ $(function(){
 	
 	//设置技术支持单编号
 	stNoSetting();
+	//上传地址
+	var uploadURL="techsupport/common_upload.action?"+'uploadId='+$('#uploadId').val();
+	//上传队列容器id
+	var queue_id = 'fileUploadPanel';
+	//上传组件名字
+	var upload_name = 'upload';
+	//上传文件存放地址
+	var upload_folder = '/upload';
+	//允许上传大小 字节
+	var allow_max_size = 1024000000;
 	
-	var uploadURL="techsupport/uploadFile_tscommon.action?"+'uploadId='+$('#uploadId').val();
+	
 	//设置上传
-//	$('#uploadFile').uploadify({
-//		'uploader'  : 'business/techSupport/common/javascript/uploadify/uploadify.swf',  
-//                  'script'    : uploadURL,  
-//                  'cancelImg' : 'business/techSupport/common/javascript/uploadify/cancel.png',  
-//                  'fileDataName':'uploadFileX',
-////                  'queueID' : 'fileUploadPanel',
-//                  'folder':'/uploadTemp',
-//                  //解决中文按钮名的好方式  
-//                  //'buttonImg' : 'common/javascript/uploadify/select.jpg',  
-//                  //可选  
-////                  'height'    : 20,  
-//                  //可选  
-////                  'width'     : 50,  
-//                  //设置允许上传的文件格式  
-//                  'fileExt'   : '*.txt;',  
-//                  //设置允许上传的文件格式后，必须加上下面这行代码才能帮你过滤  
+	$('#uploadFile').uploadify({
+		'uploader'  : 'business/techSupport/common/javascript/uploadify/uploadify.swf',  
+                  'script'    : uploadURL,  
+                  'cancelImg' : 'business/techSupport/common/javascript/uploadify/cancel.png',  
+                  'fileDataName':upload_name,
+                  'queueID' : queue_id,
+                  'folder': upload_folder,
+                  //解决中文按钮名的好方式  
+                  //'buttonImg' : 'common/javascript/uploadify/select.jpg',  
+                  //可选  
+//                  'height'    : 20,  
+                  //可选  
+//                  'width'     : 50,  
+                  //设置允许上传的文件格式  
+//                  'fileExt'   : '*;',  
+                  //设置允许上传的文件格式后，必须加上下面这行代码才能帮你过滤  
 //                  'fileDesc'    : 'txt',  
-//                  //允许连续上传多个文件  
-//                  'multi':'true',  
-//                  //一次性最多允许上传多少个,不设置的话默认为999个  
+                  //允许连续上传多个文件  
+                  'multi':true,  
+                  //一次性最多允许上传多少个,不设置的话默认为999个  
 //                  'queueSizeLimit' : 3,  
-//                  //每个文件允许上传的大小(字节)  
-//                  'sizeLimit'   : 10240,
-//                  auto:false
-//                  
-//	});
-//	$('#uploadButton').click(function(){
-//		$('#uploadFile').uploadifyUpload();
-////		alert($('#uploadFile').val());
-////		$.ajax({
-////		type:'POST',
-////		url:uploadURL,
-////		data:{"upload":$('#uploadFile').val()},
-////		success:function(json){
-////			alert(json);
-////		}
-////		});
-//		
-//	});
+                  //每个文件允许上传的大小(字节)  
+                  'sizeLimit'   : allow_max_size,
+                  auto:false,
+                  onComplete:function(){
+                	  
+                  }
+                  
+	});
+	$('#uploadButton').click(function(){
+		$('#uploadFile').uploadifyUpload();
+	});
 });
 
 
