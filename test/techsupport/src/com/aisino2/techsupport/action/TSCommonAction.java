@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,19 +15,13 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.aisino2.common.PageUtil;
 import com.aisino2.core.dao.Page;
 import com.aisino2.core.web.PageAction;
 import com.aisino2.sysadmin.Constants;
-import com.aisino2.sysadmin.action.Dict_itemAction;
-import com.aisino2.sysadmin.dao.IUser_roleDao;
 import com.aisino2.sysadmin.domain.Department;
 import com.aisino2.sysadmin.domain.Dict_item;
 import com.aisino2.sysadmin.domain.User;
@@ -236,6 +230,32 @@ public class TSCommonAction extends PageAction {
 			dir.mkdirs();
 		}
 		
+		File upload_file = new File(upload);
+		if(!upload_file.exists())
+			throw new RuntimeException("文件不存在，可能被别人或者自动清理程序删除");
+		String real_filename = uploadId+"__"+System.currentTimeMillis();
+		
+		Attachment attachment = new Attachment();
+		attachment.setAttachmentContentType(uploadContentType);
+		attachment.setAttachmentName(uploadFileName);
+		attachment.setBatchNumber(uploadId);
+		attachment.setUploadTime(new Date());
+		attachment.setAttachmentPath(uploadTempPath + "/" + real_filename);
+		
+		attachmentService.insertAttachment(attachment);
+		
+		//存放文件到指定地点
+		byte[] buff = new byte[8192];
+		int len = 0;
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(upload_file));
+		BufferedOutputStream bos = new BufferedOutputStream(
+				new FileOutputStream(this.getUploadTempPath()+"/"+real_filename));
+		while((len = bis.read(buff, 0, buff.length)) > -1){
+			bos.write(buff, 0, len);
+		}
+		
+		bos.close();
+		bis.close();
 		
 		return null;
 	}
