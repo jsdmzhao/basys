@@ -221,7 +221,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 		// 之前的 追踪批复 候选人
 		List<Participation> tracking_candidate_users = workflow
 				.getTaskService().getTaskParticipations(tracking_task.getId());
-
+		System.out.println("================taskID="+tracking_task.getId());
+		
 		SupportTicket comm_st = support_ticket_service.getSupportTicket(st);
 
 		if (tracking_candidate_users.isEmpty()) {
@@ -258,6 +259,7 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			}
 		}
 		
+		System.out.println("====================2222222222222222");
 		User sl = user_service.getUser(st.getLstSupportLeaders().get(0));
 		//修正子部门和父级部门可以分别指派的问题 
 		//获取当前部门审批人的部门信息
@@ -276,8 +278,8 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			Department old_department = new Department();
 			old_department.setDepartid(old_tracking_user.getDepartid());
 			old_department = department_service.getDepartment(old_department);
-			
-			while(!old_department.getDepartid().equals(
+			System.out.println("==========33333333333333333");
+			while(old_department != null && !old_department.getDepartid().equals(
 					curr_appr_user.getDepartid())){
 				old_department = department_service.getParentDepart(old_department);
 			}
@@ -301,7 +303,7 @@ public class SupportChangeServiceImpl implements ISupportChangeService {
 			}
 
 		}
-		
+		System.out.println("=============4444444444444444444");
 		workflow.getTaskService().addTaskParticipatingUser(
 				tracking_task.getId(), sl.getUserid().toString(),
 				Participation.CANDIDATE);
