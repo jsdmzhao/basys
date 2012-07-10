@@ -20,10 +20,28 @@ public class Attachment {
 //	附件内容
 	private byte[] attachmentContent;
 	private String tempPath;
+	//附件类型
 	private String attachmentContentType;
+	//附件存放路径
+	private String attachmentPath;
+	
 	//上传时间
 	private Date uploadTime;
+	//上传批号，通过批号确定上传的批次，把同批次的数据添加到业务数据表中
+	private String batchNumber;
 	
+	public String getBatchNumber() {
+		return batchNumber;
+	}
+	public void setBatchNumber(String batchNumber) {
+		this.batchNumber = batchNumber;
+	}
+	public String getAttachmentPath() {
+		return attachmentPath;
+	}
+	public void setAttachmentPath(String attachmentPath) {
+		this.attachmentPath = attachmentPath;
+	}
 	public Integer getAttachmentId() {
 		return attachmentId;
 	}
