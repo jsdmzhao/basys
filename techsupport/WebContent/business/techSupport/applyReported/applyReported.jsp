@@ -9,6 +9,8 @@
 <script type="text/javascript" src="<%=tsBase %>/applyReported/applyReported.js"></script>
 
 <link href="<%=tsBase %>/common/css/basets.css" type="text/css" rel="stylesheet"></link>
+<link href="<%=tsBase%>/common/javascript/uploadify/default.css"  rel="stylesheet" type="text/css"/>  
+<link href="<%=tsBase%>/common/javascript/uploadify/uploadify.css"  rel="stylesheet" type="text/css"/>  
 <style><!--
  #contentCt {
  	overflow-x:hidden;
@@ -38,6 +40,9 @@
  
 --></style>
 <input id="uploadId"  type="hidden" name="uploadId" value="<%=UUID.randomUUID()%>">
+<div id="fileUploadPanel" style="position: absolute; display: none;width: 400px; ">
+
+</div>
 <div id="applyReportedCt" class="bnbody">
 	<div id="title" class="queryfont">
 		技术支持单录入
@@ -62,8 +67,8 @@
 			<div class="pagedistd column" style="width: 600px;">
 				<label class="label">附件:</label>
 				<div class="item">
-					<div id="fileUploadPanel">
-						<table id="fileUploadTable">
+					<div id="attachmentDiv">
+						<table id="attachmentTable">
 							<thead>
 								<th>文件名</th>
 								<th>文件大小</th>

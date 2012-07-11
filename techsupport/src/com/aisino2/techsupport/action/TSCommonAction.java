@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +66,18 @@ public class TSCommonAction extends PageAction {
 	
 	private int totalrows;
 	
+	/**
+	 * 批号 
+	 */
+	private String batchNumber;
+	
+	public String getBatchNumber() {
+		return batchNumber;
+	}
+
+	public void setBatchNumber(String batchNumber) {
+		this.batchNumber = batchNumber;
+	}
 
 	public int getTotalrows() {
 		return totalrows;
@@ -257,7 +270,7 @@ public class TSCommonAction extends PageAction {
 		bos.close();
 		bis.close();
 		
-		return null;
+		return SUCCESS;
 	}
 
 	/**
@@ -281,6 +294,17 @@ public class TSCommonAction extends PageAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 生成批号
+	 * @return
+	 * @throws Exception
+	 */
+	public String generateBatchNumber() throws Exception{
+		//生成一个128位的随机的UUID
+		batchNumber = UUID.randomUUID().toString();
+		
+		return SUCCESS;
+	}
 	
 	// ++ 通过角色筛选地区字典
 	

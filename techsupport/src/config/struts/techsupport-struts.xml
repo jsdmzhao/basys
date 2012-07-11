@@ -20,6 +20,7 @@
 	</action>
 	<!-- 上传 -->
 	<action name="common_upload" class="TSCommonAction" method="uploadFile">
+		<result type="json"></result>
   	</action>
   	<!-- 公用调用 -->
   	<action name="*_tscommon" class="TSCommonAction" method="{1}">

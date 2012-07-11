@@ -31,7 +31,8 @@ $(function(){
 		//getDict_item('regionName','regionCode',ST_REGION_DICT_CODE);
 		getRegionWithRole('regionName','regionCode');
 	});
-	
+	//设置批号
+//	generateBatchNumber(); //废弃
 	//按钮动作
 	$('#savebtn').click(function(){
 		if(!saveVerify())
@@ -76,7 +77,10 @@ $(function(){
 			
 			if(dataobj.returnNo==0){
 				jAlert(dataobj.returnMsg,"提示 ");
-				fieldreset();
+//				fieldreset();
+//				generateBatchNumber();
+				//重载本页面获取新的UPLOADID，UPLOADID不能通过JS方式更新,uploadify组件无法获取到动态更新后的属性
+				$('#iframes').load("business/techSupport/applyReported/applyReported.jsp");
 			}
 			
 			jAlert(dataobj.returnMsg,"提示 ");
@@ -125,11 +129,18 @@ $(function(){
 //                  'queueSizeLimit' : 3,  
                   //每个文件允许上传的大小(字节)  
                   'sizeLimit'   : allow_max_size,
-                  auto:false,
-                  onComplete:function(){
-                	  
-                  }
-                  
+                  'onSelect' : function(file) {
+                      var left = document.documentElement.clientWidth / 2 - $('#'+queue_id).width() / 2 ;
+                      var top = document.documentElement.clientHeight / 2 - $('#'+queue_id).height() / 2 ;
+                      $('#'+queue_id).css('top',top).css('left',left)
+                      				.show();
+                  },
+                  'onQueueComplete' : function(queueData) {
+                      alert(queueData.uploadsSuccessful + ' files were successfully uploaded.');
+                      alert(1);
+                	  $('#'+queue_id).empty().hide();
+                  }, 
+                  auto:false
 	});
 	$('#uploadButton').click(function(){
 		$('#uploadFile').uploadifyUpload();
@@ -156,7 +167,12 @@ function snGenerater(obj,func){
 		func();
 	},'json');
 }
-
+//设置批号
+function generateBatchNumber(){ //废弃
+	$.post('techsupport/generateBatchNumber_tscommon.action',null,function(res){
+		$('#uploadId').val(res.batchNumber);
+	},'json');
+}
 //回填取消
 function fieldreset(){
 //	@fixed 修复每次填入后保留那些基本数据
