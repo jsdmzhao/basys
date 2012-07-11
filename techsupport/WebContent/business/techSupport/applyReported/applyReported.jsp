@@ -50,19 +50,7 @@
 	<div id="contentCt" class="tdbg scrollbarface">
 		<!-- content start -->
 		<%@include file="../common/template/support_ticket_template.jsp" %>
-		
-<!--		<div class="row">-->
-<!--			<div class="column pagedistd" >-->
-<!--				<label class="label">技术支持部门:</label>-->
-<!--				<div id="assigneeDeptPanel"></div>-->
-<!--					<label><input type="checkbox" class="item" name="st.supportDeptList[0].departcode" value="cpfab">产品方案部</label>-->
-<!--					<label><input type="checkbox" class="item" name="st.supportDeptList[1].departcode" value="jskfb">技术开发部</label>-->
-<!--				<div class="clear-column"></div>-->
-<!--			</div>-->
-<!--			<div class="clear-row"></div>-->
-<!--		</div>-->
 		<%-- 附件上传 --%>
-		
 		<div class="row">
 			<div class="pagedistd column" style="width: 600px;">
 				<label class="label">附件:</label>
