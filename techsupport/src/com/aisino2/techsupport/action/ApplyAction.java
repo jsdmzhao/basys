@@ -37,52 +37,22 @@ public class ApplyAction extends BaseAction {
 	private String returnMsg;
 	private IAttachmentService attachmentService;
 	
-	//通用工具
-	private CommonUtil util;
+	/**
+	 * 参数用附件 
+	 */
+	private Attachment attachment;
+	
 	
 	public String save() throws Exception{
 		try{
-//			HttpServletRequest req = this.getRequest();
-//			//初始化附件信息
-//			List<Attachment> attachment_list = new ArrayList<Attachment>();
-//			String upload_id = req.getParameter("uploadId");
-//			//当不为空的时候，初始化附件信息
-//			if(upload_id != null){
-//				Attachment temp_attach_setting = new Attachment();
-//				temp_attach_setting.setAttachmentName(upload_id+"__");
-//				attachment_list =  attachmentService.queryTempAttachment(temp_attach_setting);
-//				for(Attachment temp_attachment : attachment_list){
-//					
-//					//读取文件内容
-//					byte[] file_content =  new byte[temp_attachment.getAttachmentSize().intValue()];
-//					BufferedInputStream bis =null;
-//					try{
-//						bis=new BufferedInputStream(new FileInputStream(temp_attachment.getTempPath()));
-//						bis.read(file_content, 0, file_content.length);
-//					}catch (Exception e) {
-//						log.debug(e.fillInStackTrace());
-//					}finally{
-//						bis.close();
-//					}
-//					
-//					temp_attachment.setAttachmentContent(file_content);
-//				}
-//				
-//			}
-//			st.setAttachment_list(attachment_list);
+			//如果有附件的话，就像支持单结构里面添加附件信息
+			if(attachment != null && attachment.getBatchNumber() != null){
+				List<Attachment> attachment_list = attachmentService.queryAttachment(attachment);
+				st.setAttachment_list(attachment_list);
+			}
 			
 			applyService.insertApplyAndGo(st);
 			
-////			支持单保存完毕删除临时文件
-//			if(upload_id != null){
-//				for(Attachment need_del_attach : attachment_list){
-//					File del_file = new File(need_del_attach.getTempPath());
-//					if(del_file.delete()){
-//						attachmentService.removeTempAttachment(need_del_attach);
-//					}
-//					
-//				}
-//			}
 			returnNo=0;
 			returnMsg="录入申请成功";
 		}catch (RuntimeException e) {
@@ -94,6 +64,14 @@ public class ApplyAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public Attachment getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(Attachment attachment) {
+		this.attachment = attachment;
+	}
+
 	/**
 	 * 生成序号
 	 * @return
@@ -169,11 +147,6 @@ public class ApplyAction extends BaseAction {
 	@Resource(name="SupportTicketServiceImpl")
 	public void setStService(SupportTicketService stService) {
 		this.stService = stService;
-	}
-
-	@Resource(name="CommonUtil")
-	public void setUtil(CommonUtil util) {
-		this.util = util;
 	}
 
 	@Resource(name="attachmentServiceImpl")
