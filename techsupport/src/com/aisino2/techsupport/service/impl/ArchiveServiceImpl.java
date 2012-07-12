@@ -24,7 +24,6 @@ public class ArchiveServiceImpl extends BaseService implements ArchiveSerivce {
 	 * 支持单服务
 	 */
 	private SupportTicketService stService;
-	private IAttachmentService attachmeng_service;
 	
 	/**
 	 *  流程服务
@@ -55,10 +54,4 @@ public class ArchiveServiceImpl extends BaseService implements ArchiveSerivce {
 		this.workflow = workflow;
 	}
 
-	@Resource(name="")
-	public void setAttachmeng_service(IAttachmentService attachmeng_service) {
-		this.attachmeng_service = attachmeng_service;
-	}
-
-	
 }
