@@ -342,7 +342,9 @@ jQuery.fn.ingrid = function(o){
 					async: cfg.loadAsync,
 					success: function(result){
 						if (cfg.dataType == 'json') {
-							var $rows  = eval( '(' + result + ')' );
+							//修复在jquery-1.4.2的错误
+//							var $rows  = eval( '(' + result + ')' );
+							var $rows = result;
 							if($rows.result=='success'){
 								cfg.totalRecords=$rows.totalrows;
 								$ingrider.setPageCon($rows.tabledata);
