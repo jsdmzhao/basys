@@ -19,7 +19,6 @@ public class Attachment {
 	private Integer stId;
 //	附件内容
 	private byte[] attachmentContent;
-	private String tempPath;
 	//附件类型
 	private String attachmentContentType;
 	//附件存放路径
@@ -30,18 +29,9 @@ public class Attachment {
 	//上传批号，通过批号确定上传的批次，把同批次的数据添加到业务数据表中
 	private String batchNumber;
 	
-	public String getBatchNumber() {
-		return batchNumber;
-	}
-	public void setBatchNumber(String batchNumber) {
-		this.batchNumber = batchNumber;
-	}
-	public String getAttachmentPath() {
-		return attachmentPath;
-	}
-	public void setAttachmentPath(String attachmentPath) {
-		this.attachmentPath = attachmentPath;
-	}
+	//查询用上传时间断
+	private Date uploadTimeF;
+	private Date uploadTimeT;
 	public Integer getAttachmentId() {
 		return attachmentId;
 	}
@@ -60,6 +50,12 @@ public class Attachment {
 	public void setAttachmentComment(String attachmentComment) {
 		this.attachmentComment = attachmentComment;
 	}
+	public Long getAttachmentSize() {
+		return attachmentSize;
+	}
+	public void setAttachmentSize(Long attachmentSize) {
+		this.attachmentSize = attachmentSize;
+	}
 	public Integer getStId() {
 		return stId;
 	}
@@ -72,29 +68,41 @@ public class Attachment {
 	public void setAttachmentContent(byte[] attachmentContent) {
 		this.attachmentContent = attachmentContent;
 	}
-	public String getTempPath() {
-		return tempPath;
-	}
-	public void setTempPath(String tempPath) {
-		this.tempPath = tempPath;
-	}
-	public Long getAttachmentSize() {
-		return attachmentSize;
-	}
-	public void setAttachmentSize(Long attachmentSize) {
-		this.attachmentSize = attachmentSize;
-	}
 	public String getAttachmentContentType() {
 		return attachmentContentType;
 	}
 	public void setAttachmentContentType(String attachmentContentType) {
 		this.attachmentContentType = attachmentContentType;
 	}
+	public String getAttachmentPath() {
+		return attachmentPath;
+	}
+	public void setAttachmentPath(String attachmentPath) {
+		this.attachmentPath = attachmentPath;
+	}
 	public Date getUploadTime() {
 		return uploadTime;
 	}
 	public void setUploadTime(Date uploadTime) {
 		this.uploadTime = uploadTime;
+	}
+	public String getBatchNumber() {
+		return batchNumber;
+	}
+	public void setBatchNumber(String batchNumber) {
+		this.batchNumber = batchNumber;
+	}
+	public Date getUploadTimeF() {
+		return uploadTimeF;
+	}
+	public void setUploadTimeF(Date uploadTimeF) {
+		this.uploadTimeF = uploadTimeF;
+	}
+	public Date getUploadTimeT() {
+		return uploadTimeT;
+	}
+	public void setUploadTimeT(Date uploadTimeT) {
+		this.uploadTimeT = uploadTimeT;
 	}
 	
 	

@@ -133,8 +133,8 @@ public class SupportTicketServiceImpl extends BaseService implements
 				for(Attachment attachment : supportTicket.getAttachment_list()){
 					attachment.setStId(supportTicket.getId());
 					
-					//插入附件信息到数据库
-					attachmentService.insertAttachment(attachment);
+					//关联数据到支持单信息
+					attachmentService.updateAttachment(attachment);
 				}
 			}
 		} catch (RuntimeException e) {
@@ -236,8 +236,8 @@ public class SupportTicketServiceImpl extends BaseService implements
 				for(Attachment attachment : st.getAttachment_list()){
 					attachment.setStId(st.getId());
 					
-					//插入附件信息到数据库
-					attachmentService.insertAttachment(attachment);
+					//关联数据到支持单信息
+					attachmentService.updateAttachment(attachment);
 				}
 			}
 		} catch (RuntimeException e) {
