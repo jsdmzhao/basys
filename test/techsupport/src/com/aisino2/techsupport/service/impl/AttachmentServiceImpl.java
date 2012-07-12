@@ -1,9 +1,11 @@
 package com.aisino2.techsupport.service.impl;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
@@ -33,6 +35,16 @@ public class AttachmentServiceImpl implements IAttachmentService {
 		attachment_dao.delete(attachment);
 	}
 
+	public void removeAttachment(Attachment attachment, HttpServletRequest request){
+		attachment_dao.delete(attachment);
+		
+		File upload_file = new File(request.getSession()
+				.getServletContext()
+				.getRealPath("/")+attachment.getAttachmentPath());
+		if(upload_file.exists()){
+			upload_file.delete();
+		}
+	}
 	public List<Attachment> queryAttachment(Attachment attachment) {
 		if(attachment==null)
 			attachment=new Attachment();
@@ -54,21 +66,6 @@ public class AttachmentServiceImpl implements IAttachmentService {
 	@Resource(name="attachmentDaoImpl")
 	public void setAttachment_dao(IAttachmentDao attachment_dao) {
 		this.attachment_dao = attachment_dao;
-	}
-
-	public List<Attachment> queryTempAttachment(Attachment attachment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void removeTempAttachment(Attachment attachment) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void insertTempAttachment(Attachment attachment) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -393,6 +393,11 @@ public class TSCommonAction extends PageAction implements ServletResponseAware {
 	 * @throws Exception
 	 */
 	public String deleteFile() throws Exception {
+		
+		if(attachment == null || attachment.getAttachmentId() == null)
+			throw new RuntimeException("附件ID为空。");
+		
+		attachmentService.removeAttachment(attachment, getRequest());
 		return SUCCESS;
 	}
 	
