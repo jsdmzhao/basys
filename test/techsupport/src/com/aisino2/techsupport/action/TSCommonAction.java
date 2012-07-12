@@ -5,6 +5,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -14,8 +16,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.management.RuntimeErrorException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -40,7 +46,7 @@ import com.aisino2.techsupport.service.WorksheetService;
 @SuppressWarnings("serial")
 @Component("TSCommonAction")
 @Scope("prototype")
-public class TSCommonAction extends PageAction {
+public class TSCommonAction extends PageAction implements ServletResponseAware {
 	private IDepartmentService departmentService;
 	private IUserService userService;
 	private WorksheetService sheet_service;
@@ -56,7 +62,15 @@ public class TSCommonAction extends PageAction {
 	
 	// 临时存放目录
 	private String uploadTempPath;
+	
+	/**
+	 * 附件列表 
+	 */
 	private List<Attachment> attachmentList;
+	/**
+	 * 附件
+	 */
+	private Attachment attachment;
 	private String uploadId;
 	
 	private IAttachmentService attachmentService;
@@ -71,6 +85,19 @@ public class TSCommonAction extends PageAction {
 	 */
 	private String batchNumber;
 	
+	/**
+	 * 响应信息 
+	 */
+	private HttpServletResponse response;
+	
+	public Attachment getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(Attachment attachment) {
+		this.attachment = attachment;
+	}
+
 	public String getBatchNumber() {
 		return batchNumber;
 	}
@@ -221,6 +248,12 @@ public class TSCommonAction extends PageAction {
 			lCol.add(lDetail);
 		}
 
+		if(lCol.size() == 0){
+			List block = new ArrayList();
+			block.add("");
+			block.add("");
+			lCol.add(block);
+		}
 		//
 		// this.setData(getGlryzmdzcl,lData,lPro,lCol);
 		Attachment attachment_ = new Attachment();
@@ -229,6 +262,38 @@ public class TSCommonAction extends PageAction {
 		totalrows = this.getTotalrows();
 	}
 
+	
+	/**
+	 * 附件查询
+	 * @return 
+	 * @throws Exception
+	 */
+	public String querylistAttachment() throws Exception{
+		Attachment setAttachment = new Attachment();
+		attachment = (Attachment) this.setClass(setAttachment, null);
+		
+		//参数
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("batchNumber", attachment.getBatchNumber());
+		map.put("attachmentId", attachment.getAttachmentId());
+		map.put("attachmentName", attachment.getAttachmentName());
+		map.put("attachmentContentType", attachment.getAttachmentContentType());
+		map.put("stId", attachment.getStId());
+		map.put("uploadTimeF", attachment.getUploadTimeF());
+		map.put("uploadTimeT", attachment.getUploadTimeT());
+		
+		Page page = attachmentService
+				.queryAttachmentForPage(map, pagesize, pagerow, dir, sort );
+		
+		attachmentList = page.getData();
+
+		totalpage = page.getTotalPages();
+		totalrows = page.getTotalRows();
+
+		setTabledataForAttachment(attachmentList);
+		this.result = "success";
+		return SUCCESS;
+	}
 	/**
 	 * 文件上传
 	 * 
@@ -253,6 +318,7 @@ public class TSCommonAction extends PageAction {
 		attachment.setAttachmentName(uploadFileName);
 		attachment.setBatchNumber(uploadId);
 		attachment.setUploadTime(new Date());
+		attachment.setAttachmentSize(upload_file.getTotalSpace());
 		attachment.setAttachmentPath(uploadTempPath + "/" + real_filename);
 		
 		attachmentService.insertAttachment(attachment);
@@ -280,8 +346,44 @@ public class TSCommonAction extends PageAction {
 	 * @throws Exception
 	 */
 	public String downloadFile() throws Exception {
+		try{
+			if(attachment == null || attachment.getAttachmentId() == null)
+				throw new RuntimeException("附件ID为空。");
+			
+			attachment = attachmentService.getAttachment(attachment);
+			if(attachment == null)
+				throw new RuntimeException("附件不存在");
+			response.setContentType(attachment.getAttachmentContentType());
+			response.addHeader("Content-Disposition",
+					"attachment; filename="+
+					new String(attachment.getAttachmentName().getBytes(),"iso-8859-1"));
+			ServletOutputStream out = response.getOutputStream();
+			String real_path = this.getRequest().getSession()
+					.getServletContext()
+					.getRealPath("/")+attachment.getAttachmentPath();
+			File download_file = new File(real_path);
+			if(download_file.exists()){
+				BufferedInputStream bis = 
+						new BufferedInputStream(new FileInputStream(download_file));
+				byte[] buff = new byte[8192];
+				int len = 0;
+				
+				while((len = bis.read(buff, 0, buff.length)) > 0){
+					out.write(buff, 0, len);
+				}
+			}
+			out.close();
+//			out.clear();
+//			out=pageContext.pushBody();
+		}catch (RuntimeException e) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out =  response.getWriter();
+			out.println(e);
+			
+			out.close();
+		}
+		return null;
 		
-		return SUCCESS;
 	}
 
 	/**
@@ -459,6 +561,11 @@ public class TSCommonAction extends PageAction {
 
 	public void setUploadFileName(String uploadFileName) {
 		this.uploadFileName = uploadFileName;
+	}
+
+	@Override
+	public void setServletResponse(HttpServletResponse arg0) {
+		this.response = arg0;
 	}
 
 }
