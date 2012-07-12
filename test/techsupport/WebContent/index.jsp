@@ -42,11 +42,11 @@
 	<head>
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />     
 		<title></title>
-		<script language="javascript" type="text/javascript" src="javascript/jquery.js"></script>
-<!-- 		<script language="javascript" type="text/javascript" src="business/techSupport/common/javascript/uploadify/jquery-1.4.2.min.js"></script> -->
-		<script language="javascript" type="text/javascript" src="javascript/ext/adapter/jquery/ext-jquery-adapter.js"></script>
-        <script language="javascript" type="text/javascript" src="javascript/ext/adapter/ext/ext-base.js"></script>
-        <script language="javascript" type="text/javascript" src="javascript/ext/ext-all.js"></script>
+<!-- 		<script language="javascript" type="text/javascript" src="javascript/jquery.js"></script> -->
+		<script language="javascript" type="text/javascript" src="business/techSupport/common/javascript/uploadify/jquery-1.4.2.min.js"></script>
+<!-- 		<script language="javascript" type="text/javascript" src="javascript/ext/adapter/jquery/ext-jquery-adapter.js"></script> -->
+<!--         <script language="javascript" type="text/javascript" src="javascript/ext/adapter/ext/ext-base.js"></script> -->
+<!--         <script language="javascript" type="text/javascript" src="javascript/ext/ext-all.js"></script> -->
 		<script language="javascript" type="text/javascript" src="javascript/jquery.bgiframe.js?"></script>
 		<script language="javascript" type="text/javascript" src="javascript/jquery.dimensions.js?"></script>
 		<script language="javascript" type="text/javascript" src="javascript/jdsharp.js?"></script>
