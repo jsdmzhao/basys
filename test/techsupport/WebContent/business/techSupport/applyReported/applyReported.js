@@ -3,13 +3,57 @@
  */
 
 var windowClientHeight = $(window).height();
+
+//附件
+var attachment_div_id="attachment_list_div";
+var attachment_table_id="attachment_list_table";
+var attachment_tables;
+//附件查询路径
+var attachment_query_url = BUSNEISS_PATH +"/querylistAttachment_tscommon.action";
+
+function load_page_attachment_query(divpageid){
+	attachment_tables=$("#"+divpageid).html();
+	attachment_query(1,'#');
+}
+
+function set_attachment_list(pageno,url){	
+	$("#"+attachment_div_id).html(attachment_tables);
+	createXML("att_");
+	if (url==null || url=="undefined"){
+		url=attachment_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function attachment_query(pageno,url){
+	
+	if (true){
+		url=set_attachment_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
+										url: url,	
+										height:60,
+										ingridPageWidth:627,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										colWidths: ["70%","10%","10%","10%"]				
+									});
+		}
+}
 //onload
 
 $(function(){
 	
 	//设置内容自动高度
 	//setTimeout(autoHeight,5);
-	var supportContentHeight = 180;
+	var supportContentHeight = 140;
 	$('#supportContent').height(supportContentHeight);
 	$('#supportContent').parent().css('line-height',supportContentHeight+"px");
 	//设置所有日期参数
@@ -33,6 +77,9 @@ $(function(){
 	});
 	//设置批号
 //	generateBatchNumber(); //废弃
+	
+	//附件显示框
+	load_page_attachment_query(attachment_div_id);
 	//按钮动作
 	$('#savebtn').click(function(){
 		if(!saveVerify())
@@ -94,7 +141,7 @@ $(function(){
 	//设置技术支持单编号
 	stNoSetting();
 	//上传地址
-	var uploadURL="techsupport/common_upload.action?"+'uploadId='+$('#uploadId').val();
+	var uploadURL="techsupport/common_upload.action?"+'uploadId='+$('#att_batchNumber').val();
 	//上传队列容器id
 	var queue_id = 'fileUploadPanel';
 	//上传组件名字
@@ -107,7 +154,7 @@ $(function(){
 	
 	//设置上传
 	$('#uploadFile').uploadify({
-		'uploader'  : 'business/techSupport/common/javascript/uploadify/uploadify.swf',  
+				  'uploader'  : 'business/techSupport/common/javascript/uploadify/uploadify.swf',  
                   'script'    : uploadURL,  
                   'cancelImg' : 'business/techSupport/common/javascript/uploadify/cancel.png',  
                   'fileDataName':upload_name,
@@ -135,17 +182,23 @@ $(function(){
                       $('#'+queue_id).css('top',top).css('left',left)
                       				.show();
                   },
-                  'onQueueComplete' : function(queueData) {
-                      alert(queueData.uploadsSuccessful + ' files were successfully uploaded.');
-                      alert(1);
-                	  $('#'+queue_id).empty().hide();
-                  }, 
+                  'onAllComplete'  : function(event,data) {
+                      attachment_query(1);
+                  },
+//                  'onComplete'  : function(event,data) {
+//                	  alert(2)
+//                   },
                   auto:false
 	});
 	$('#uploadButton').click(function(){
 		$('#uploadFile').uploadifyUpload();
 	});
+	//取消上传队列
+//	$('#uploadCancelQueueButton').click(function(){
+//		$('#uploadFile').uploadify('cancel','*');
+//	});
 });
+
 
 
 function autoHeight(){
