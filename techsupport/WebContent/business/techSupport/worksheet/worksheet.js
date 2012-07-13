@@ -29,7 +29,6 @@ function lazyLoad() {
 			ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
 			-$('#title').outerHeight(true)-80;
 	loadPageWorksheetQuery(worksheet_div_id);
-	
 	//	 ++添加流程筛选
 	$('#p_activityName').selectBox({code:ST_WORKFLOW_NAME_DICT_CODE});
 }
@@ -127,7 +126,7 @@ function setProcess(taskId){
 	var worksheet;
 	
 	$.post(workSheetUrl,{'taskId':taskId},function(data){
-		worksheet=eval("("+data+")")['worksheet'];
+		worksheet=data['worksheet'];
 		if(!worksheet){
 			alert('获取工作单信息发送错误(开发人员详见LOG)');
 			return;
@@ -158,7 +157,7 @@ function setProcess(taskId){
 function sendSMS(taskId){
 	var worksheet;
 	$(workSheetUrl,{'taskId':taskId},function(data){
-		worksheet=eval("("+data+")")['worksheet'];
+		worksheet=data['worksheet'];
 		
 		if(!worksheet){
 			alert('获取工作单信息发送错误(开发人员详见LOG)');

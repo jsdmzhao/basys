@@ -71,7 +71,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 				$(detailWindow).empty();
@@ -80,7 +79,7 @@ $(function(){
 			}
 			else
 				jAlert(data.returnMsg,"提示");
-		});
+		},'json');
 		
 	});
 });
@@ -122,7 +121,6 @@ function loadData(){
 	
 	$.post(processUrl2,paramsss,function(data){
 		
-		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
@@ -191,7 +189,7 @@ function loadData(){
 		
 		trackingQuery(1,ingridUrl);
 		
-	});
+	},'json');
 	
 	
 }

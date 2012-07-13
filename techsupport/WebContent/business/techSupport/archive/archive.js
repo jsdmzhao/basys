@@ -110,7 +110,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，联系管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 //				alert(data.returnMsg);
@@ -121,7 +120,7 @@ $(function(){
 				
 				
 			}
-		});
+		},'json');
 		
 	});
 });
@@ -162,7 +161,6 @@ function loadData(){
 	
 	$.post(processUrl2,paramsss,function(data){
 		
-		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
@@ -220,7 +218,7 @@ function loadData(){
 		$('#sv_st_id').val(data.st.id);
 		
 		supervision_query(1);
-	});
+	},'json');
 	
 	
 }
