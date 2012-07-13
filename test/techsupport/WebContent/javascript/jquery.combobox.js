@@ -39,9 +39,8 @@ jQuery.fn.combobox = function(options)
 	//#endregion public events
 	
 	return this.each(
-		function()
+		function(idx,fal,total)
 		{
-		
 			//#region 'private' variables
 			
 			// This class can operate of N elements depending on how ComboBox is called
@@ -76,7 +75,6 @@ var _originalElementJQuery = jQuery(this);
 			var _downdownListPositionIsInverted = false;
 			var _maximumItemLength = 0;
 			var _dropDownListOffset = null;
-			
 			//#endregion 'private' variables
 			
 			//#region 'private' methods
@@ -369,7 +367,6 @@ var _originalElementJQuery = jQuery(this);
 					_dropDownListJQuery.css("height",listHeigth);
 					recursivelyBuildList(_dropDownListJQuery, originalElementChildrenJQuery);
 				}
-				
 			}
 			
 			///<summary>
@@ -485,31 +482,29 @@ var _originalElementJQuery = jQuery(this);
 			///</summary>			
 			function bindItemEvents()
 			{
-				jQuery("*", _dropDownListJQuery).not("ul").not("span").not("[@dataType='optgroup']").each(
+				jQuery("*", _dropDownListJQuery).not("ul").not("span").not("[dataType='optgroup']").each(
 					function()
 					{
 						var itemJQuery = jQuery(this);
+						
 						itemJQuery.click(
 							function(clickEvent)
 							{
 								// Stops the click event propagating to the Container and the Container.onClick firing
 								clickEvent.stopPropagation();
-								
 								container_onItemClick(itemJQuery);
 							});
-						
 						itemJQuery.mouseover(
 							function()
 							{
 								container_onItemMouseOver(itemJQuery);
 							});
-							
 						itemJQuery.mouseout(
 							function()
 							{
 								container_onItemMouseOut(itemJQuery);
 							});
-					});			
+					});	
 			}
 
 			///<summary>
@@ -556,10 +551,9 @@ var _originalElementJQuery = jQuery(this);
 					{
 						keyEvent.preventDefault();container_onKeyDown(keyEvent)
 					});
+				
 				bindContainerClickEvent();
-					
 				bindBlurEvent();
-					
 				bindItemEvents();
 			}
 						
@@ -605,8 +599,7 @@ var _originalElementJQuery = jQuery(this);
 					}
 					
 					// Find the DropDown Item Element that corresponds to the current value in the Select element
-					_lastItemSelectedJQuery = jQuery("li[@dataValue='" + _lastValue + "']", _dropDownListJQuery);
-					
+					_lastItemSelectedJQuery = jQuery("li[dataValue='" + _lastValue + "']", _dropDownListJQuery);
 					toggleItemHighlight(_lastItemSelectedJQuery, true);
 				}
 			}
@@ -693,15 +686,12 @@ var _originalElementJQuery = jQuery(this);
 				buildValueDisplay();
 				
 				buildDropDownList();
-				
 				applyLayout();
-			
 				var onlyAttr = _originalElementJQuery.attr("readonly");
 
 				if(!onlyAttr || onlyAttr=="false"){
 					bindEvents();
 				}
-				
 				setDisplayValue();
 				//alert(_containerJQuery.html());
 			}
@@ -976,7 +966,7 @@ var _originalElementJQuery = jQuery(this);
 				
 				_originalElementJQuery.combobox.setVal = 
 					function(selValue){
-					jQuery("*", _dropDownListJQuery).not("ul").not("span").not("[@dataType='optgroup']").each(
+					jQuery("*", _dropDownListJQuery).not("ul").not("span").not("[dataType='optgroup']").each(
 							function()
 							{
 								var itemJQuery = jQuery(this);
@@ -1126,10 +1116,9 @@ var _originalElementJQuery = jQuery(this);
 			}
 			
 			//#endregion private events
-			
 			initialiseControl();
 		});
-}
+};
 
 jQuery.fn.selectBox = function(options){
 	var sourceSelect = jQuery(this);
@@ -1173,7 +1162,6 @@ jQuery.fn.selectBox = function(options){
 			else
 				sourceSelect.before("<div style='display:none' id='dispalyControl_"+sourceSelect.attr("id")+"'></div>");
 	}else{
-	
 		if(params.code!=undefined && params.code!=null && params.code!=""){
 			selData = {dict_code:params.code,query_simplepin:params.query,orderBySib_order:params.order};
 		}else{
@@ -1214,7 +1202,7 @@ jQuery.fn.selectBox = function(options){
 		}
 	}
 		
-}
+};
 
 jQuery.fn.setValue = function(selValue,selWidth){
 	var sourceSelect = jQuery(this);
