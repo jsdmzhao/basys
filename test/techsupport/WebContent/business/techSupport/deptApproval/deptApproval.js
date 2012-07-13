@@ -141,8 +141,7 @@ $(function(){
 //		设置任务号
 		params['taskId']=$('#p_taskId').val();
 
-		$.post(saveURL,params,function(data){
-			dataobj=eval("("+data+")");
+		$.post(saveURL,params,function(dataobj){
 			if(dataobj.returnNo==0){
 				$(detailWindow).empty();
 				$(detailWindow).hideAndRemove("show");
@@ -150,7 +149,7 @@ $(function(){
 			}
 			
 			jAlert(dataobj.returnMsg,"提示");
-		});
+		},'json');
 		
 	});
 	
@@ -170,7 +169,6 @@ $(function(){
 function loadData(){
 	var paramsss = {'taskId':$('#p_taskId').val()};
 	$.post(processUrl2,paramsss,function(data){
-		data = eval("("+data+")");
 		$('input:text[name^=st.]').each(function(){
 			try{ 
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
@@ -250,7 +248,7 @@ function loadData(){
 			$('#psgAppr').show();
 			$('#devAppr').append('<input type="hidden" name="st.trackList[0].type" value="'+TRACKING_TYPE_PGMREPLY+'">');
 		}
-	});
+	},'json');
 }
 
 /**

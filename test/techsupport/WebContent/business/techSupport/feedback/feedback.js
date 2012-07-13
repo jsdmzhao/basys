@@ -127,7 +127,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，联系管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 //				alert(data.returnMsg);
@@ -137,7 +136,7 @@ $(function(){
 				worksheetQuery(1);
 				
 			}
-		});
+		},'json');
 		
 	});
 	//设置不予反馈按钮
@@ -213,7 +212,6 @@ function loadData(){
 	var paramsss = {'taskId':$('#p_taskId').val()};
 	
 	$.post(processUrl2,paramsss,function(data){
-		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
@@ -267,7 +265,7 @@ function loadData(){
 		
 		supervision_query(1);
 		
-	});
+	},'json');
 	
 	
 }

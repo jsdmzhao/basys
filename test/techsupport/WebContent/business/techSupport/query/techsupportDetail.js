@@ -102,7 +102,6 @@ function loadData(){
 	
 	$.post(processUrl2,paramsss,function(data){
 		
-		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
 				$(this).val(setNull(eval("("+"data.lSupportTicket[0]"+$(this).attr('name').substring($(this).attr('name').indexOf('.'))+")")));
@@ -165,7 +164,7 @@ function loadData(){
 		load_page_supervision_query(supervision_div_id);
 		supervision_query(1);
 		
-	});
+	},'json');
 	
 	
 }

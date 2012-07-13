@@ -82,7 +82,6 @@ function supervision_query(pageno,url){
 }	
 
 $(function(){
-	
 	divnid="trackingTableDiv";//查询内容容器ID
 	tableid="trackingTable";//查询内容格式表格ID
 	loadPageTrackingQuery(divnid);
@@ -145,7 +144,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 				$(detailWindow).empty();
@@ -153,7 +151,7 @@ $(function(){
 				worksheetQuery(1);
 			}
 			jAlert(data.returnMsg,"提示");
-		});
+		},'json');
 		
 	});
 	
@@ -172,7 +170,7 @@ $(function(){
 function loadData(){
 	var paramsss = {'taskId':$('#p_taskId').val()};
 	$.post(processUrl2,paramsss,function(data){
-		data = eval("("+data+")");
+		
 		$('input[name^=st.][type!=checkbox]').each(function(){
 			$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
 		});
@@ -200,7 +198,8 @@ function loadData(){
 		supervision_query(1);
 		//进展
 		trackingQuery(1,ingridUrl);
-	});
+		
+	},'json');
 }
 
 /**

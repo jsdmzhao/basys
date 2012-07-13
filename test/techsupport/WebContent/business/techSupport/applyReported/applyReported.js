@@ -113,11 +113,13 @@ $(function(){
 			params[allfields[i].attr('name')]=allfields[i].val();
 		}
 		
+		//添加附件批号信息
+		params['attachment.batchNumber'] = $('#att_batchNumber').val();
 		//加载等待效果
 		showloading(true,"正在处理中,请稍后......");
 		
-		$.post(BUSNEISS_PATH+'/save_apply.action',params,function(data){
-			dataobj=eval("("+data+")");
+		$.post(BUSNEISS_PATH+'/save_apply.action',params,function(dataobj){
+//			dataobj=$.parseJSON(data);
 			
 //			关闭等待效果
 			showloading(false);
@@ -131,7 +133,7 @@ $(function(){
 			}
 			
 			jAlert(dataobj.returnMsg,"提示 ");
-		});
+		},'json');
 		
 	});
 	
