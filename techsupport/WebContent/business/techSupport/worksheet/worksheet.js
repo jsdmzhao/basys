@@ -146,7 +146,7 @@ function setProcess(taskId){
 			usingDetailWidth=detailWidth;
 		detailDialog(detailid,usingDetailWidth,processURL,null);
 		
-	});
+	},'json');
 	
 }
 
@@ -164,6 +164,6 @@ function sendSMS(taskId){
 			return;
 		}
 		
-	});
+	},'json');
 }
 
