@@ -224,7 +224,6 @@ function loadData(){
 	
 	$.post(processUrl2,paramsss,function(data){
 		
-		data = eval("("+data+")");
 		$('input[name^=st.]').each(function(){
 			try{
 				$(this).val(setNull(eval("("+"data."+$(this).attr('name')+")")));
@@ -270,7 +269,7 @@ function loadData(){
 		$('#sv_st_id').val(data.st.id);
 		
 		supervision_query(1);
-	});
+	},'json');
 	
 	
 }
