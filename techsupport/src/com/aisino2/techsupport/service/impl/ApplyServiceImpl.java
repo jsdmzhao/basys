@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.management.RuntimeErrorException;
 
 import org.springframework.stereotype.Component;
 
@@ -47,7 +48,6 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 		try{
 			
 			supportTicket=this.stService.insertSupportTicket(st);
-			
 			// 指派下一个环节操作用户 --
 			// 开始流程 
 			Map<String, Object> params = new HashMap<String, Object>();
@@ -160,6 +160,7 @@ public class ApplyServiceImpl extends BaseService implements ApplyService {
 			//流程启动
 			workflow.workflowStart(workflow.setVariable(null, null,
 					candidateUsers, params));
+//			throw new RuntimeException("test");
 		}catch (RuntimeException e) {
 			log.error(e);
 			throw e;

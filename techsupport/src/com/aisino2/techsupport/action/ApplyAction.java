@@ -58,6 +58,7 @@ public class ApplyAction extends BaseAction {
 		}catch (RuntimeException e) {
 			returnNo=1;
 			returnMsg="录入申请错误:"+e.getMessage();
+			log.debug(e);
 		}
 		
 		

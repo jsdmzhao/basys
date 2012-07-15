@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.management.RuntimeErrorException;
 
+import org.jbpm.api.JbpmException;
 import org.jbpm.api.TaskService;
 import org.jbpm.api.task.Participation;
 import org.jbpm.api.task.Task;
@@ -33,7 +35,6 @@ public class WorksheetServiceImpl extends BaseService implements
 	private IDict_itemService dicItemService;
 	private SupportTicketService stService;
 	private WorksheetDao worksheet_dao;
-
 
 	/**
 	 * 流程服务
@@ -369,5 +370,14 @@ public class WorksheetServiceImpl extends BaseService implements
 		if(result.getData().isEmpty())
 			result = this.worksheet_dao.get_region_with_deptcode_for_page(map, pageno, pagesize, dir, sort);
 		return result;
+	}
+	@Override
+	public void deployWorkflow() {
+		try{
+			workflow.workflowDeploy();
+		}catch(JbpmException e){
+			log.debug(e);
+			throw new RuntimeException("该版本的流程图已经发布过了");
+		}
 	}
 }
