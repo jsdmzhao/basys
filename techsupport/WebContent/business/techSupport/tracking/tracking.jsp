@@ -251,6 +251,29 @@
 			</div>
 		</div>
 	<fieldset>
+		<legend>附件</legend>
+		<div class="row">
+			<div class="column" style="width: 100%;">
+				<label></label>
+				<div class="item">
+					<div id="attachment_list_div">
+						<table id="attachment_list_table">
+							<thead>
+								<th>文件名</th>
+								<th>文件大小</th>
+								<th>备注</th>
+								<th>操作</th>
+							</thead>
+							
+						</table>
+					</div>
+				</div>
+				<div class="clear-column"></div>
+			</div>
+			<div class="clear-row"></div>
+		</div>	
+	</fieldset>
+	<fieldset>
 		<legend>新进展信息</legend>
 		<div class="row">
 			<div class="column column-block">
