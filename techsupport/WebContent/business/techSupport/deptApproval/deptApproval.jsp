@@ -20,7 +20,8 @@
 }
 
 .item {
-	margin-left: 8px;
+	margin-left: 5px;
+	float: left;
 }
 
 .select {
@@ -136,7 +137,7 @@
 							<div class="clear-row"></div>
 					</fieldset>
 				</div>
-
+				
 				<div class="column " style="width: 49%;float: right;">
 					<fieldset>
 						<legend>部门审批信息</legend>
@@ -157,36 +158,42 @@
 										value="<%=user.getDepartid()%>">
 									<div class="clear-column"></div>
 
-									<div class="row">
-										<div class="column ">
-											<label class="label red label-100">审批结果:</label>
-											<div id="deptRadioPanel"></div>
-											<div class="clear-column"></div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="column ">
-											<label class="label red label-100">审批人:</label>
-											<div>
-												<input type="text" class=" item ro"
-													name="st.trackList[0].processor.username" id="deptName"
-													value="<%=username%>" style="width: 80px !important;">
-											</div>
-											<div class="clear-column"></div>
-										</div>
-									</div>
+									
 								</div>
 								<div class="clear-row"></div>
 							</div>
-
-							<div class="column " >
-								<label class="label red label-100">审批意见:</label>
-								<textarea class=" item inputstyle"
-									style="width: 320px !important; height: 60px;"
-									name="st.trackList[0].newProcess" id="deptReply"></textarea>
-								<div class="clear-column"></div>
+							<div class="row">
+								<div class="column ">
+									<label class="label red label-100">审批结果:</label>
+									<div id="deptRadioPanel" class="item" style="width: 120px;"></div>
+									<div class="clear-column"></div>
+								</div>
+								
+								<div class="column ">
+									<label class="label red label-80">审批人:</label>
+									<div class=" item ">
+										<input type="text" class="ro"
+											name="st.trackList[0].processor.username" id="deptName"
+											value="<%=username%>" style="width: 80px !important;">
+									</div>
+									<div class="clear-column"></div>
+								</div>
+								<div class="clear-row"></div>
 							</div>
+								
+							
+							<div class="row">
+								<div class="column " >
+									<label class="label red label-100">审批意见:</label>
+									<textarea class=" item inputstyle"
+										style="width: 320px !important; height: 60px;"
+										name="st.trackList[0].newProcess" id="deptReply"></textarea>
+									<div class="clear-column"></div>
+									
+								</div>
+								<div class="clear-row"></div>
+							</div>
+							
 
 						</div>
 					</fieldset>
@@ -197,7 +204,30 @@
 				<div class="clear-row"></div>
 			</div>
 		</div>
-
+		<fieldset>
+			<legend>附件</legend>
+			<div class="row">
+				<div class="column" style="width: 100%;">
+					<label></label>
+					<div class="item">
+						<div id="attachment_list_div">
+							<table id="attachment_list_table">
+								<thead>
+									<th>文件名</th>
+									<th>文件大小</th>
+									<th>备注</th>
+									<th>操作</th>
+								</thead>
+								
+							</table>
+						</div>
+					</div>
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>	
+		</fieldset>
+		
 		<div class="row deptApproval">
 			<div id="psgAppr">
 				<div class="row">
