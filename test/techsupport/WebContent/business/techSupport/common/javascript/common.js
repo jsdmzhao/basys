@@ -403,3 +403,55 @@ function getSubmitParams(expr,params){
 	
 	return params;
 }
+
+/**
+ * 附件组件
+ */
+function Attachemnt(){
+	//附件
+	var attachment_div_id="attachment_list_div";
+	var attachment_table_id="attachment_list_table";
+	var attachment_tables;
+	//附件查询路径
+	var attachment_query_url = BUSNEISS_PATH +"/querylistAttachment_tscommon.action";
+	
+	
+	function load_page_attachment_query(divpageid){
+		attachment_tables=$("#"+divpageid).html();
+		attachment_query(1,'#');
+	}
+
+	function set_attachment_list(pageno,url){	
+		$("#"+attachment_div_id).html(attachment_tables);
+		createXML("att_");
+		if (url==null || url=="undefined"){
+			url=attachment_query_url;
+		}
+		return url;
+	}
+
+	/**
+	 * 查询函数
+	 * */
+	function attachment_query(pageno,url){
+		
+		if (true){
+			url=set_attachment_list(pageno,url);
+			// create the grid
+			// returns a jQ object with a 'g' property - that's ingrid
+			var mygrid2 = $("#"+attachment_table_id).ingrid({ 
+											url: url,	
+											height:122,
+											ingridPageWidth:ingridWidth,
+											isPlayResultNull: false,
+											havaWaiDivGunDong: true,
+	                                      	ingridPageParams:sXML,
+	                                      	onRowSelect:null,
+											pageNumber: pageno,
+											colWidths: ["70%","10%","10%","10%"]				
+										});
+			}
+	}
+	
+	
+}

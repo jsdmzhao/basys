@@ -37,6 +37,7 @@
  
  .item{
  	margin-left: 5px;
+ 	float: left;
  }
  
  .date{
