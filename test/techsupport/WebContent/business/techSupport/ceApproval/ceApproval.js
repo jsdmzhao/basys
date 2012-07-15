@@ -15,6 +15,51 @@ function loadPageTrackingQuery(divpageid){
 	trackingQuery(1,'#');
 }	
 
+//附件
+var attachment_div_id="attachment_list_div";
+var attachment_table_id="attachment_list_table";
+var attachment_tables;
+//附件查询路径
+var attachment_query_url = BUSNEISS_PATH +"/querylistAttachment_tscommon.action";
+
+function load_page_attachment_query(divpageid){
+	attachment_tables=$("#"+divpageid).html();
+	attachment_query(1,'#');
+}
+
+function set_attachment_list(pageno,url){	
+	$("#"+attachment_div_id).html(attachment_tables);
+	createXML("att_");
+	if (url==null || url=="undefined"){
+		url=attachment_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function attachment_query(pageno,url){
+	
+	if (true){
+		url=set_attachment_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
+										url: url,	
+										height:106,
+										ingridPageWidth:ingridWidth,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										noSortColIndex:[3],
+										colWidths: ["70%","10%","10%","10%"]				
+									});
+		}
+}
+
 /**
  * 查询函数
  * */
@@ -158,10 +203,12 @@ $(function(){
 	
 //	总工审批单选
 //	<input type="radio" class=" item " name="st.ceApprovalCode" id="ceApprovalCodeLess">通过
-	buildHTMLComponentByDict('<label><input type="radio" class=" item " name="ceApprovalSt.trackList[0].approvalCode" value="{fact_value}">{display}</label>',$('#ceApprovalRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
+	buildHTMLComponentByDict('<label><input type="radio" name="ceApprovalSt.trackList[0].approvalCode" value="{fact_value}">{display}</label>',$('#ceApprovalRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
 	$('input:radio','#ceApproval ').eq(0).attr('checked',true);
 	
 	loadData();
+	//附件显示框
+	load_page_attachment_query(attachment_div_id);
 });
 
 /**
@@ -198,7 +245,9 @@ function loadData(){
 		supervision_query(1);
 		//进展
 		trackingQuery(1,ingridUrl);
-		
+		//附件
+		$('#att_stId').val(data.st.id);
+		attachment_query(1);
 	},'json');
 }
 
