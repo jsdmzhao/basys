@@ -7,6 +7,53 @@ var processUrl2=BUSNEISS_PATH +"/init_deptApproval.action";
 var saveURL=BUSNEISS_PATH+'/save_deptApproval.action';
 var trackingInfoURL=BUSNEISS_PATH+"/querylistNoPage_tracking.action";
 var ingridWidth=400;
+
+//附件
+var attachment_div_id="attachment_list_div";
+var attachment_table_id="attachment_list_table";
+var attachment_tables;
+//附件查询路径
+var attachment_query_url = BUSNEISS_PATH +"/querylistAttachment_tscommon.action";
+
+
+function load_page_attachment_query(divpageid){
+	attachment_tables=$("#"+divpageid).html();
+	attachment_query(1,'#');
+}
+
+function set_attachment_list(pageno,url){	
+	$("#"+attachment_div_id).html(attachment_tables);
+	createXML("att_");
+	if (url==null || url=="undefined"){
+		url=attachment_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function attachment_query(pageno,url){
+	
+	if (true){
+		url=set_attachment_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
+										url: url,	
+										height:40,
+										ingridPageWidth:830,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										noSortColIndex:[3],
+										colWidths: ["60%","10%","10%","20%"]				
+									});
+		}
+}
+
 //进展
 //追踪批复查询URL
 var	ingridUrl=getContextPath() + "/techsupport/querylist_tracking.action";
@@ -155,11 +202,14 @@ $(function(){
 	
 //	部门审批单选
 //	<input type="radio" class=" item " name="st.devApprovalCode" id="devApprovalCodeLess">通过
-	buildHTMLComponentByDict('<input type="radio" class=" item " name="st.trackList[0].approvalCode" value="{fact_value}">{display}',$('#deptRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
+	buildHTMLComponentByDict('<input type="radio" name="st.trackList[0].approvalCode" value="{fact_value}">{display}',$('#deptRadioPanel'),ST_APPR_TYPE_DICT_CODE,'dict_item.fact_value == 0');
 //	默认选中通过
 	$('#deptRadioPanel input:radio').eq(0).attr('checked',true);
 	
 	loadData();
+	//附件显示框
+	load_page_attachment_query(attachment_div_id);
+	
 });
 
 
@@ -228,17 +278,20 @@ function loadData(){
 		supervision_query(1);
 		//进展
 		trackingQuery(1,ingridUrl);
+		//附件
+		$('#att_stId').val(data.st.id);
+		attachment_query(1);
 		
 		//问题记录序号-9 父级部门可以处理子部门的部门审批
 		//通过计划时间来区别 技术部门或者产品部门
-		if(!$('#psgScheDate').val()){
-			gxdwmc_ = '技术开发部';
-			gxdwbm_ = 'jskfb';
-		}
-		else {
-			gxdwmc_ = '产品方案部';
-			gxdwbm_ = 'cpfab';
-		}
+//		if(!$('#psgScheDate').val()){
+//			gxdwmc_ = '技术开发部';
+//			gxdwbm_ = 'jskfb';
+//		}
+//		else {
+//			gxdwmc_ = '产品方案部';
+//			gxdwbm_ = 'cpfab';
+//		}
 		
 		if(gxdwmc_=="技术开发部"){
 			$('#devAppr').show();
