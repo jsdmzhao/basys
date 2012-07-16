@@ -15,6 +15,7 @@
 <input type="hidden" id="p_taskId">
 <input type="hidden" name="st.id">
 <input type="hidden" id="sv_st_id">
+<input type="hidden" id="att_stId">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">归档</td>
@@ -298,31 +299,11 @@
 	</fieldset>
 
 	
-	<fieldset>
-		<legend>进展</legend>
-		<div class="row" style="width: 90%; margin: 0 auto; ">
-			<div class="column" style="width: 100%;">
-				<div id="trackingTableDiv" style="margin-left: auto;margin-right: auto;text-align: center;">
-					<table id="trackingTable" width="100%" border="1" cellpadding="0" cellspacing="0">
-					  <thead>
-					    <tr>       
-					     	<th name="l_stNo">日期</th>
-					     	<th name="l_region">进展</th>
-					     	<th name="l_applicant">填写人员</th>
-					    </tr>
-					  </thead>
-					</table>
-				</div>
-				<div class="clear-column"></div>
-			</div>
-			<div class="clear-row"></div>
-		</div>
-	</fieldset>
+	<div class="row" style="width: 100%;">
 	
-	<fieldset>
-		<legend>督办进展</legend>
-		<div class="row" style="width: 90%; margin: 0 auto; ">
-			<div class="column" style="width: 100%;">
+		<div class="column" style="width: 49%;">
+			<fieldset>
+				<legend>督办进展</legend>
 				<div id="supervision_list_div" style="margin-left: auto;margin-right: auto;text-align: center;">
 					<table id="supervision_list_table" >
 						<thead>
@@ -335,11 +316,50 @@
 					</table>
 				</div>
 				<div class="clear-column"></div>
+			</fieldset>
+		</div>
+
+		<div class="column" style="width: 49%;float: right;">
+			<fieldset>
+				<legend>进展信息</legend>
+				<div id="trackingTableDiv" >
+					<table id="trackingTable" width="100%" border="1" cellpadding="0" cellspacing="0">
+					  <thead>
+					    <tr>       
+					     	<th name="l_stNo">日期</th>
+					     	<th name="l_region">进展</th>
+					     	<th name="l_applicant">填写人员</th>
+					    </tr>
+					  </thead>
+					</table>
+				</div>
+				<div class="clear-column"></div>
+			</fieldset>
+		</div>
+	</div>
+	<fieldset>
+		<legend>附件</legend>
+		<div class="row">
+			<div class="column" style="width: 100%;">
+				<label></label>
+				<div class="item">
+					<div id="attachment_list_div">
+						<table id="attachment_list_table">
+							<thead>
+								<th>文件名</th>
+								<th>文件大小</th>
+								<th>备注</th>
+								<th>操作</th>
+							</thead>
+							
+						</table>
+					</div>
+				</div>
+				<div class="clear-column"></div>
 			</div>
 			<div class="clear-row"></div>
-		</div>				
-	</fieldset>
-			
+		</div>	
+	</fieldset>	
 	<div class="row">
 		<div class="column">
 			<div>

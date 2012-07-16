@@ -41,7 +41,7 @@ function attachment_query(pageno,url){
 		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
 										url: url,	
 										height:40,
-										ingridPageWidth:830,
+										ingridPageWidth:820,
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
                                       	ingridPageParams:sXML,
@@ -212,7 +212,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，联系管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 				$(detailWindow).empty();
@@ -223,7 +222,7 @@ $(function(){
 			else{
 				alert(data.returnMsg);
 			}
-		});
+		},'json');
 	});
 });
 
