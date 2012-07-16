@@ -53,7 +53,7 @@ function lazyLoad(){
 		queryPanelHeight = $("#queryPanel").outerHeight(true);
 		if(window.screen.height > 768 )
 			ingridHeight=$('#iframes').height()-queryPanelHeight
-			-$('#title').outerHeight(true)-80-28;
+			-$('#title').outerHeight(true)-80-28-35;
 		else
 			ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true)
 			-queryPanelHeight
@@ -117,7 +117,7 @@ function SupportTicketQuery(pageno,url){
 		//延迟加载
 		$("#email_detail").hide();
 		daggleDiv('email_detail');
-		setTimeout(lazyLoad,5);
+		setTimeout(lazyLoad,100);
 		var sendSmsURL=BUSNEISS_PATH + "/sendSms_smsHint.action";
 		divnid="queryContent";//查询内容容器ID
 		tableid="queryContentTable";//查询内容格式表格ID

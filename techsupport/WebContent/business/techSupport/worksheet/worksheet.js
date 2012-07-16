@@ -24,7 +24,7 @@ function lazyLoad() {
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	if(window.screen.height > 768 )
 			ingridHeight=$('#iframes').height()-queryPanelHeight
-			-$('#title').outerHeight(true)-80;
+			-$('#title').outerHeight(true)-80 -35;
 		else
 			ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
 			-$('#title').outerHeight(true)-80;
@@ -35,7 +35,7 @@ function lazyLoad() {
  $(document).ready(function(){
 
  	//设置自动高度
- 	setTimeout(lazyLoad,10);
+ 	setTimeout(lazyLoad,100);
  	
  	worksheet_div_id="queryContent";//查询内容容器ID
 	worksheet_table_id="queryContentTable";//查询内容格式表格ID
