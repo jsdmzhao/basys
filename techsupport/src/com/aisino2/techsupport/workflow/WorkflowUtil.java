@@ -274,11 +274,8 @@ public class WorkflowUtil {
 //				department.setDepartcode(dept.getDepartcode());
 //				department=departmentService.getDepartment(department);
 				
-				//问题记录序号-9 父级部门可以处理子部门的部门审批、
 				dept = departmentService.getDepartment(dept);
 				assignee_dept_set.add(dept);
-				Department department = departmentService.getParentDepart(dept);
-				assignee_dept_set.add(department);
 			}
 			for (Department dept : assignee_dept_set){
 				assigneeDeptUsersId_buffer.append(findAssigneeDeptUsersIdByDepartment(dept));
