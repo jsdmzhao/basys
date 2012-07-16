@@ -16,9 +16,9 @@
 }
 </style>
 <input type="hidden" id="id">
-<input type="hidden" name="st.id">
 <input type="hidden" id="track_stId">
 <input type="hidden" id="sv_st_id">
+<input type="hidden" id="att_stId">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">支持单详情</td>
@@ -364,14 +364,14 @@
 						</table>
 					</div>
 					<div class="clear-column"></div>
-				</fieldset>
+				
 				<%-- 修改问题记录序号-11 技术支持单查询，详情中的备注框有些大。 --%>
 				<div class="row">
 					<div class="column">
 						<div>
-							<label class="label label-80">备注:</label>
+							<label class="label" style="width: 8%;">备注:</label>
 							<input class="item ro inputstyle" 
-								style="width:75% ! important;" 
+								style="width:88% ! important;" 
 								name="st.comments" id="comments">
 						</div>
 						<div class="clear-column"></div>
@@ -379,6 +379,8 @@
 					
 					<div class="clear-row"></div>
 				</div>
+				
+				</fieldset>
 			</div>
 			
 	
@@ -400,5 +402,27 @@
 				</fieldset>
 			</div>
 		</div>
-	
+		<fieldset>
+			<legend>附件</legend>
+			<div class="row">
+				<div class="column" style="width: 100%;">
+					<label></label>
+					<div class="item">
+						<div id="attachment_list_div">
+							<table id="attachment_list_table">
+								<thead>
+									<th>文件名</th>
+									<th>文件大小</th>
+									<th>备注</th>
+									<th>操作</th>
+								</thead>
+								
+							</table>
+						</div>
+					</div>
+					<div class="clear-column"></div>
+				</div>
+				<div class="clear-row"></div>
+			</div>	
+		</fieldset>
 </div>

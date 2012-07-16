@@ -64,7 +64,7 @@ function lazyLoad(){
 	queryPanelHeight = $("#queryPanel").outerHeight(true);
 	if(window.screen.height > 768 )
 		ingridHeight=$('#iframes').height()-queryPanelHeight
-		-$('#title').outerHeight(true)-80;
+		-$('#title').outerHeight(true)-80 - 35;
 	else
 		ingridHeight=document.body.clientHeight -$('#allDiv').outerHeight(true) -queryPanelHeight
 		-$('#title').outerHeight(true)-80;
@@ -82,7 +82,7 @@ function lazyLoad(){
 		detailURL="business/techSupport/query/techsupportDetail.jsp";
 		queryTable=$("#"+tableid);
 		detailWindow=$('#'+detailid);
-		lazyLoad(); 
+		//lazyLoad(); 
 		
 		daggleDiv(detailid);
 // 		设置状态下拉条
@@ -236,7 +236,6 @@ function lazyLoad(){
 	 
 	 function loadPageSupportTicketQuery(divpageid){
 		tables=$("#"+divpageid).html();
-		$("#"+detailid).hide(); 	
 		SupportTicketQuery(1,'#');
 	}	
 
