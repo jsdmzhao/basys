@@ -75,7 +75,6 @@
 				if(!data){
 					alert("传输错误，管理人员");
 				}
-				data = eval("("+data+")");
 				
 				if(data.returnNo == 0){
 //					alert(data.returnMsg);
@@ -89,7 +88,7 @@
 				else{
 					alert(data.returnMsg);
 				}
-			});
+			},'json');
 		});
 	});
 //-->

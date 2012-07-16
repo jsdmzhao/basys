@@ -36,6 +36,7 @@
 </style>
 <input type="hidden" id="p_taskId">
 <input type="hidden" id="sv_st_id">
+<input type="hidden" id="att_stId">
 <table width="100%" border="0" cellpadding="0" cellspacing="0"
 	align="center">
 	<tr>

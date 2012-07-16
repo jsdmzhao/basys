@@ -15,6 +15,7 @@
 <input type="hidden" id="p_taskId">
 <input type="hidden" name="st.id">
 <input type="hidden" id="sv_st_id">
+<input type="hidden" id="att_stId">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
     <tr>
       <td align="left" class="title1">反馈确认</td>
@@ -371,6 +372,29 @@
 				</fieldset>
 			</div>
 		</div>
+	<fieldset>
+		<legend>附件</legend>
+		<div class="row">
+			<div class="column" style="width: 100%;">
+				<label></label>
+				<div class="item">
+					<div id="attachment_list_div">
+						<table id="attachment_list_table">
+							<thead>
+								<th>文件名</th>
+								<th>文件大小</th>
+								<th>备注</th>
+								<th>操作</th>
+							</thead>
+							
+						</table>
+					</div>
+				</div>
+				<div class="clear-column"></div>
+			</div>
+			<div class="clear-row"></div>
+		</div>	
+	</fieldset>
 	<div class="row">
 		<div class="column">
 			<div class="row">
