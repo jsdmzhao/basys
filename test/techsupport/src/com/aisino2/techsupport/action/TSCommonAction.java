@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.mail.internet.MimeUtility;
 import javax.management.RuntimeErrorException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -353,10 +355,16 @@ public class TSCommonAction extends PageAction implements ServletResponseAware {
 			attachment = attachmentService.getAttachment(attachment);
 			if(attachment == null)
 				throw new RuntimeException("附件不存在");
+			org.apache.catalina.util.URLEncoder encoder = new org.apache.catalina.util.URLEncoder();
+			
+			String filename = encoder.encode(attachment.getAttachmentName()); 
+					//URLEncoder.encode(attachment.getAttachmentName()); 
+					//MimeUtility.encodeText(attachment.getAttachmentName(),"UTF-8","B");
+					//new String(attachment.getAttachmentName().getBytes(),"ISO8859_1");
 			response.setContentType(attachment.getAttachmentContentType());
 			response.addHeader("Content-Disposition",
-					"attachment; filename="+
-					new String(attachment.getAttachmentName().getBytes(),"iso-8859-1"));
+					"attachment; filename="+filename
+					);
 			ServletOutputStream out = response.getOutputStream();
 			String real_path = this.getRequest().getSession()
 					.getServletContext()
