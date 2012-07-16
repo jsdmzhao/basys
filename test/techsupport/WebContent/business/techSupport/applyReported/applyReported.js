@@ -43,7 +43,7 @@ function attachment_query(pageno,url){
                                       	ingridPageParams:sXML,
                                       	onRowSelect:null,
 										pageNumber: pageno,
-										colWidths: ["70%","10%","10%","10%"]				
+										colWidths: ["60%","10%","10%","20%"]				
 									});
 		}
 }

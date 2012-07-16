@@ -405,6 +405,34 @@ function getSubmitParams(expr,params){
 }
 
 /**
+ * 通用附件删除功能
+ */
+function removeAttachment(attachment_id){
+	if(attachment_id){
+		var process_url = "techsupport/deleteFile_tscommon.action";
+		var process_params = {'attachment.attachmentId':attachment_id};
+		var process_callback = function(data){
+			attachment_query(1);
+		};
+		$.post(process_url,process_params,process_callback,'json');
+	}
+}
+/**
+ * 下载附件
+ * @param attachment_id
+ */
+function downloadAttachment(attachment_id){
+	if(attachment_id){
+		var process_url = "techsupport/downloadFile_tscommon.action";
+		var process_params = "?attachment.attachmentId="+attachment_id;
+//		var process_callback = function(data){
+//		};
+//		$.post(process_url,process_params,process_callback,'json');
+		window.open(process_url+process_params);
+	}
+}
+
+/**
  * 附件组件
  */
 function Attachemnt(){
