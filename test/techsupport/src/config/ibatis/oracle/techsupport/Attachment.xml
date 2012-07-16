@@ -28,15 +28,7 @@
 		<isNotNull prepend="and" property="attachmentComment">
 			t.attachment_Comment like '%$attachmentComment$%'
 		</isNotNull>
-		<isNotNull prepend="and" property="stId">
-			t.stId = #stId#
-		</isNotNull>
-		<isNotNull prepend="and" property="uploadTimeF">
-			t.upload_Time >= #uploadTimeF#
-		</isNotNull>
-		<isNotNull prepend="and" property="uploadTimeT">
-			t.upload_Time &lt;= #uploadTimeT#
-		</isNotNull>
+	
 		<isNotNull prepend="and" property="batchNumber">
 			t.batch_Number = #batchNumber#
 		</isNotNull>
@@ -45,6 +37,16 @@
 	
 	<sql id="AttachmentPageWhere">
 		<include refid="AttachmentWhere"/>
+		
+		<isNotNull prepend="and" property="stId">
+			t.st_Id = #stId#
+		</isNotNull>
+		<isNotNull prepend="and" property="uploadTimeF">
+			t.upload_Time >= #uploadTimeF#
+		</isNotNull>
+		<isNotNull prepend="and" property="uploadTimeT">
+			t.upload_Time &lt;= #uploadTimeT#
+		</isNotNull>
 	</sql>
 <!-- 	插入 -->
 	<insert id="Attachment.insert" parameterClass="Attachment">
@@ -116,9 +118,6 @@
 	<update id="Attachment.update" parameterClass="Attachment">
 		update T_TS_SUPPORT_ATTACHMENT t set attachment_Id=attachment_Id
 		<dynamic prepend="">
-			<isNotNull prepend="," property="attachmentId">
-				attachment_Id = #attachmentId#
-			</isNotNull>
 			<isNotNull prepend="," property="attachmentName">
 				attachment_Name = #attachmentName#
 			</isNotNull>
