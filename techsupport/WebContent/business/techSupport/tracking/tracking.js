@@ -214,7 +214,6 @@ $(function(){
 			if(!data){
 				alert("传输错误，管理人员");
 			}
-			data = eval("("+data+")");
 			
 			if(data.returnNo == 0){
 				$(detailWindow).hideAndRemove("show");
@@ -224,7 +223,7 @@ $(function(){
 				jAlert(data.returnMsg,"提示");
 		});
 		
-	});
+	},'json');
 	//设置反馈按钮
 	$('#toFeedbackBtn').click(function(){
 		

@@ -6,6 +6,53 @@
 var processUrl2;
 var ingridUrl;
 var ingridWidth=400;
+
+//附件
+var attachment_div_id="attachment_list_div";
+var attachment_table_id="attachment_list_table";
+var attachment_tables;
+//附件查询路径
+var attachment_query_url = BUSNEISS_PATH +"/querylistAttachment_tscommon.action";
+
+
+function load_page_attachment_query(divpageid){
+	attachment_tables=$("#"+divpageid).html();
+	attachment_query(1,'#');
+}
+
+function set_attachment_list(pageno,url){	
+	$("#"+attachment_div_id).html(attachment_tables);
+	createXML("att_");
+	if (url==null || url=="undefined"){
+		url=attachment_query_url;
+	}
+	return url;
+}
+
+/**
+ * 查询函数
+ * */
+function attachment_query(pageno,url){
+	
+	if (true){
+		url=set_attachment_list(pageno,url);
+		// create the grid
+		// returns a jQ object with a 'g' property - that's ingrid
+		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
+										url: url,	
+										height:40,
+										ingridPageWidth:830,
+										isPlayResultNull: false,
+										havaWaiDivGunDong: true,
+                                      	ingridPageParams:sXML,
+                                      	onRowSelect:null,
+										pageNumber: pageno,
+										noSortColIndex:[3],
+										colWidths: ["60%","10%","10%","20%"]				
+									});
+		}
+}
+
 //督办
 var supervision_div_id="supervision_list_div";
 var supervision_table_id="supervision_list_table";
@@ -101,6 +148,9 @@ $(function(){
 	load_page_supervision_query(supervision_div_id);
 	
 	loadData();
+	
+	//附件显示框
+	load_page_attachment_query(attachment_div_id);
 	
 	//设置保存按钮
 	$('#saveBtn').click(function(){
@@ -264,6 +314,9 @@ function loadData(){
 		$('#sv_st_id').val(data.st.id);
 		
 		supervision_query(1);
+		//附件
+		$('#att_stId').val(data.st.id);
+		attachment_query(1);
 		
 	},'json');
 	

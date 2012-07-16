@@ -42,7 +42,7 @@ function attachment_query(pageno,url){
 		var mygrid2 = $("#"+attachment_table_id).ingrid({ 
 										url: url,	
 										height:40,
-										ingridPageWidth:830,
+										ingridPageWidth:900,
 										isPlayResultNull: false,
 										havaWaiDivGunDong: true,
                                       	ingridPageParams:sXML,
