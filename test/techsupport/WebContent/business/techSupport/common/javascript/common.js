@@ -431,7 +431,14 @@ function downloadAttachment(attachment_id){
 		window.open(process_url+process_params);
 	}
 }
-
+/**
+ * 查看附件，暂时不做
+ * @param attachment_id
+ */
+function viewAttachment(attachment_id){
+	if(attachment_id){
+	}
+}
 /**
  * 附件组件
  */
