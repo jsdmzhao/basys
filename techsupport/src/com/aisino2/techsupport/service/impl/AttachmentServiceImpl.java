@@ -36,6 +36,7 @@ public class AttachmentServiceImpl implements IAttachmentService {
 	}
 
 	public void removeAttachment(Attachment attachment, HttpServletRequest request){
+		attachment = attachment_dao.get(attachment);
 		attachment_dao.delete(attachment);
 		
 		File upload_file = new File(request.getSession()
